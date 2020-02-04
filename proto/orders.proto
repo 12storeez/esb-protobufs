@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option go_package = "go/orders";
+import "google/protobuf/empty.proto";
+
+package orders;
+
+service Orders {
+    rpc Ping (google.protobuf.Empty) returns (PingResponse) {
+    }
+    rpc OfflineByClient (ParamsOfflineByClient) returns (ResponseOfflineByClient) {
+    }
+    rpc OnlineByClient (ParamsOnlineByClient) returns (ResponseOnlineByClient) {
+    }
+}
+
+message PingResponse {
+    string response = 1;
+}
+
+message ParamsOfflineByClient {
+    int32 clientId = 1;
+}
+
+message ResponseOfflineByClient {
+    repeated OfflineOrder orders = 1;
+}
+
+message ParamsOnlineByClient {
+    int32 clientId = 1;
+}
+
+message ResponseOnlineByClient {
+    repeated int32 order = 1;
+}
+
+message OfflineOrder {
+    string store_name = 1;
+    int32 store_id = 2;
+    int32 cashbox_id = 3;
+    string order_id = 4;
+    int32 row_receipt = 5;
+    string date = 6;
+    string time = 7;
+    string article = 8;
+    string title = 9;
+    string color = 10;
+    string size = 11;
+    string barcode = 12;
+    int32 qty = 13;
+    int32 total_gross = 14;
+    int32 discount = 15;
+    int32 total = 16;
+    int32 client_id = 17;
+    string seller = 18;
+    string family = 19;
+    int32 operation = 20;
+    string source = 21;
+    int32 bonuses_wasted = 22;
+    int32 bonuses_accrued = 23;
+}

@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option go_package = "go/meta";
+import "google/protobuf/empty.proto";
+
+package meta;
+
+service Meta {
+    rpc Ping (google.protobuf.Empty) returns (PingResponse) {
+    }
+    rpc AllOfflineStoresInfo (google.protobuf.Empty) returns (ResponseAllOfflineStoresInfo) {
+    }
+    rpc OfflineStoreInfoByID (paramsOfflineStoreInfoByID) returns (ResponseOfflineStoreInfoByID) {
+    }
+}
+
+message PingResponse {
+    string response = 1;
+}
+
+message ResponseAllOfflineStoresInfo {
+    repeated OfflineStore stores = 1;
+}
+
+message OfflineStore {
+    int32 store_id = 1;
+    string title = 2;
+    string address = 3;
+    string phone = 4;
+    string geo = 5;
+    string city = 6;
+    string country = 7;
+    bool active = 8;
+}
+
+message paramsOfflineStoreInfoByID {
+    int32 store_id = 1;
+}
+
+message ResponseOfflineStoreInfoByID {
+    OfflineStore store = 1;
+}
