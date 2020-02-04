@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+option go_package = "go/mindbox";
 import "google/protobuf/empty.proto";
 
 package mindbox;
