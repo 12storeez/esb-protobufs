@@ -38,6 +38,8 @@ type MetaService interface {
 	Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error)
 	AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAllOfflineStoresInfo, error)
 	OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...client.CallOption) (*ResponseOfflineStoreInfoByID, error)
+	MobileAPIContacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error)
+	MobileApiAbout(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error)
 }
 
 type metaService struct {
@@ -88,12 +90,34 @@ func (c *metaService) OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflin
 	return out, nil
 }
 
+func (c *metaService) MobileAPIContacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error) {
+	req := c.c.NewRequest(c.name, "Meta.MobileAPIContacts", in)
+	out := new(ResponseMobileAPIContacts)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *metaService) MobileApiAbout(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error) {
+	req := c.c.NewRequest(c.name, "Meta.MobileApiAbout", in)
+	out := new(ResponseMobileApiAbout)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Meta service
 
 type MetaHandler interface {
 	Ping(context.Context, *empty.Empty, *PingResponse) error
 	AllOfflineStoresInfo(context.Context, *empty.Empty, *ResponseAllOfflineStoresInfo) error
 	OfflineStoreInfoByID(context.Context, *ParamsOfflineStoreInfoByID, *ResponseOfflineStoreInfoByID) error
+	MobileAPIContacts(context.Context, *empty.Empty, *ResponseMobileAPIContacts) error
+	MobileApiAbout(context.Context, *empty.Empty, *ResponseMobileApiAbout) error
 }
 
 func RegisterMetaHandler(s server.Server, hdlr MetaHandler, opts ...server.HandlerOption) error {
@@ -101,6 +125,8 @@ func RegisterMetaHandler(s server.Server, hdlr MetaHandler, opts ...server.Handl
 		Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error
 		AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, out *ResponseAllOfflineStoresInfo) error
 		OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error
+		MobileAPIContacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error
+		MobileApiAbout(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error
 	}
 	type Meta struct {
 		meta
@@ -123,4 +149,12 @@ func (h *metaHandler) AllOfflineStoresInfo(ctx context.Context, in *empty.Empty,
 
 func (h *metaHandler) OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error {
 	return h.MetaHandler.OfflineStoreInfoByID(ctx, in, out)
+}
+
+func (h *metaHandler) MobileAPIContacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error {
+	return h.MetaHandler.MobileAPIContacts(ctx, in, out)
+}
+
+func (h *metaHandler) MobileApiAbout(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error {
+	return h.MetaHandler.MobileApiAbout(ctx, in, out)
 }

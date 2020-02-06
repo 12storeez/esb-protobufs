@@ -12,6 +12,10 @@ service Meta {
     }
     rpc OfflineStoreInfoByID (paramsOfflineStoreInfoByID) returns (ResponseOfflineStoreInfoByID) {
     }
+    rpc MobileAPIContacts (google.protobuf.Empty) returns (ResponseMobileAPIContacts) {
+    }
+    rpc MobileApiAbout (google.protobuf.Empty) returns (ResponseMobileApiAbout) {
+    }
 }
 
 message PingResponse {
@@ -39,4 +43,26 @@ message paramsOfflineStoreInfoByID {
 
 message ResponseOfflineStoreInfoByID {
     OfflineStore store = 1;
+}
+
+message ResponseMobileAPIContacts {
+    repeated Contact contacts = 1;
+}
+
+message Contact {
+    string title = 1;
+    string subtitle = 2;
+    string text = 3;
+}
+
+message ResponseMobileApiAbout {
+    string about = 1;
+    string mission = 2;
+    repeated Block blocks = 3;
+    string image_url = 4;
+}
+
+message Block {
+    string title = 1;
+    string value = 2;
 }
