@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option go_package = "go/payments";
+import "google/protobuf/empty.proto";
+
+package payments;
+
+service Payments {
+    rpc Ping (google.protobuf.Empty) returns (PingResponse) {
+    }
+    rpc GetCardsByUserID (ParamsGetCardByUserID) returns (ResponseGetCardByUserID) {
+    }
+    rpc SaveUserCard (UserCard) returns (ResponseSuccess) {
+    }
+    rpc DeleteCardByID (ParamsDeleteCardByID) returns (ResponseSuccess) {
+    }
+}
+
+message PingResponse {
+    string response = 1;
+}
+
+message ParamsGetCardByUserID {
+    int32 user_id = 1;
+}
+
+message ResponseGetCardByUserID {
+    int32 total = 1;
+    repeated UserCard cards = 2;
+}
+
+message ResponseSuccess {
+    bool ok = 1;
+}
+
+message ParamsDeleteCardByID {
+    int32 card_id = 1;
+}
+
+message UserCard {
+    int32 id = 1;
+    int32 user_id = 2;
+    string type = 3;
+    string vendor = 4;
+    string number = 5;
+    string exp_date = 6;
+    bool active = 7;
+    bool test = 8;
+}
