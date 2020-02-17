@@ -38,6 +38,9 @@ message OfflineStore {
     string city = 6;
     string country = 7;
     bool active = 8;
+    string picture_url = 9;
+    string schedule = 10;
+    int32 city_id = 11;
 }
 
 message paramsOfflineStoreInfoByID {
