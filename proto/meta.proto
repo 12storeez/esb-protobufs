@@ -16,6 +16,9 @@ service Meta {
     }
     rpc MobileApiAbout (google.protobuf.Empty) returns (ResponseMobileApiAbout) {
     }
+    rpc Faq (google.protobuf.Empty) returns (ResponseFaq) {
+
+    }
 }
 
 message PingResponse {
@@ -65,4 +68,18 @@ message ResponseMobileApiAbout {
 message Block {
     string title = 1;
     string value = 2;
+}
+
+message ResponseFaq {
+    repeated BlockFaq result = 1;
+}
+
+message BlockFaq {
+    string title = 1;
+    repeated TextFaq context = 2;
+}
+
+message TextFaq {
+    string title = 1;
+    string answer = 2;
 }
