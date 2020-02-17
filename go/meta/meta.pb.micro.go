@@ -40,6 +40,7 @@ type MetaService interface {
 	OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...client.CallOption) (*ResponseOfflineStoreInfoByID, error)
 	MobileAPIContacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error)
 	MobileApiAbout(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error)
+	Faq(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseFaq, error)
 }
 
 type metaService struct {
@@ -110,6 +111,16 @@ func (c *metaService) MobileApiAbout(ctx context.Context, in *empty.Empty, opts 
 	return out, nil
 }
 
+func (c *metaService) Faq(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseFaq, error) {
+	req := c.c.NewRequest(c.name, "Meta.Faq", in)
+	out := new(ResponseFaq)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Meta service
 
 type MetaHandler interface {
@@ -118,6 +129,7 @@ type MetaHandler interface {
 	OfflineStoreInfoByID(context.Context, *ParamsOfflineStoreInfoByID, *ResponseOfflineStoreInfoByID) error
 	MobileAPIContacts(context.Context, *empty.Empty, *ResponseMobileAPIContacts) error
 	MobileApiAbout(context.Context, *empty.Empty, *ResponseMobileApiAbout) error
+	Faq(context.Context, *empty.Empty, *ResponseFaq) error
 }
 
 func RegisterMetaHandler(s server.Server, hdlr MetaHandler, opts ...server.HandlerOption) error {
@@ -127,6 +139,7 @@ func RegisterMetaHandler(s server.Server, hdlr MetaHandler, opts ...server.Handl
 		OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error
 		MobileAPIContacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error
 		MobileApiAbout(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error
+		Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error
 	}
 	type Meta struct {
 		meta
@@ -157,4 +170,8 @@ func (h *metaHandler) MobileAPIContacts(ctx context.Context, in *empty.Empty, ou
 
 func (h *metaHandler) MobileApiAbout(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error {
 	return h.MetaHandler.MobileApiAbout(ctx, in, out)
+}
+
+func (h *metaHandler) Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error {
+	return h.MetaHandler.Faq(ctx, in, out)
 }
