@@ -32,67 +32,34 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
-// Client API for Meta service
+// Client API for Mobile service
 
-type MetaService interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error)
-	AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAllOfflineStoresInfo, error)
-	OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...client.CallOption) (*ResponseOfflineStoreInfoByID, error)
-	MobileAPIContacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error)
-	MobileApiAbout(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error)
+type MobileService interface {
+	Contacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error)
+	About(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error)
 	Faq(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseFaq, error)
 }
 
-type metaService struct {
+type mobileService struct {
 	c    client.Client
 	name string
 }
 
-func NewMetaService(name string, c client.Client) MetaService {
+func NewMobileService(name string, c client.Client) MobileService {
 	if c == nil {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
 		name = "meta"
 	}
-	return &metaService{
+	return &mobileService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *metaService) Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error) {
-	req := c.c.NewRequest(c.name, "Meta.Ping", in)
-	out := new(PingResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *metaService) AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAllOfflineStoresInfo, error) {
-	req := c.c.NewRequest(c.name, "Meta.AllOfflineStoresInfo", in)
-	out := new(ResponseAllOfflineStoresInfo)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *metaService) OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...client.CallOption) (*ResponseOfflineStoreInfoByID, error) {
-	req := c.c.NewRequest(c.name, "Meta.OfflineStoreInfoByID", in)
-	out := new(ResponseOfflineStoreInfoByID)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *metaService) MobileAPIContacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error) {
-	req := c.c.NewRequest(c.name, "Meta.MobileAPIContacts", in)
+func (c *mobileService) Contacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Contacts", in)
 	out := new(ResponseMobileAPIContacts)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -101,8 +68,8 @@ func (c *metaService) MobileAPIContacts(ctx context.Context, in *empty.Empty, op
 	return out, nil
 }
 
-func (c *metaService) MobileApiAbout(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error) {
-	req := c.c.NewRequest(c.name, "Meta.MobileApiAbout", in)
+func (c *mobileService) About(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error) {
+	req := c.c.NewRequest(c.name, "Mobile.About", in)
 	out := new(ResponseMobileApiAbout)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -111,8 +78,8 @@ func (c *metaService) MobileApiAbout(ctx context.Context, in *empty.Empty, opts 
 	return out, nil
 }
 
-func (c *metaService) Faq(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseFaq, error) {
-	req := c.c.NewRequest(c.name, "Meta.Faq", in)
+func (c *mobileService) Faq(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseFaq, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Faq", in)
 	out := new(ResponseFaq)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -121,57 +88,115 @@ func (c *metaService) Faq(ctx context.Context, in *empty.Empty, opts ...client.C
 	return out, nil
 }
 
-// Server API for Meta service
+// Server API for Mobile service
 
-type MetaHandler interface {
-	Ping(context.Context, *empty.Empty, *PingResponse) error
-	AllOfflineStoresInfo(context.Context, *empty.Empty, *ResponseAllOfflineStoresInfo) error
-	OfflineStoreInfoByID(context.Context, *ParamsOfflineStoreInfoByID, *ResponseOfflineStoreInfoByID) error
-	MobileAPIContacts(context.Context, *empty.Empty, *ResponseMobileAPIContacts) error
-	MobileApiAbout(context.Context, *empty.Empty, *ResponseMobileApiAbout) error
+type MobileHandler interface {
+	Contacts(context.Context, *empty.Empty, *ResponseMobileAPIContacts) error
+	About(context.Context, *empty.Empty, *ResponseMobileApiAbout) error
 	Faq(context.Context, *empty.Empty, *ResponseFaq) error
 }
 
-func RegisterMetaHandler(s server.Server, hdlr MetaHandler, opts ...server.HandlerOption) error {
-	type meta interface {
-		Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error
-		AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, out *ResponseAllOfflineStoresInfo) error
-		OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error
-		MobileAPIContacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error
-		MobileApiAbout(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error
+func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
+	type mobile interface {
+		Contacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error
+		About(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error
 		Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error
 	}
-	type Meta struct {
-		meta
+	type Mobile struct {
+		mobile
 	}
-	h := &metaHandler{hdlr}
-	return s.Handle(s.NewHandler(&Meta{h}, opts...))
+	h := &mobileHandler{hdlr}
+	return s.Handle(s.NewHandler(&Mobile{h}, opts...))
 }
 
-type metaHandler struct {
-	MetaHandler
+type mobileHandler struct {
+	MobileHandler
 }
 
-func (h *metaHandler) Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error {
-	return h.MetaHandler.Ping(ctx, in, out)
+func (h *mobileHandler) Contacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error {
+	return h.MobileHandler.Contacts(ctx, in, out)
 }
 
-func (h *metaHandler) AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, out *ResponseAllOfflineStoresInfo) error {
-	return h.MetaHandler.AllOfflineStoresInfo(ctx, in, out)
+func (h *mobileHandler) About(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error {
+	return h.MobileHandler.About(ctx, in, out)
 }
 
-func (h *metaHandler) OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error {
-	return h.MetaHandler.OfflineStoreInfoByID(ctx, in, out)
+func (h *mobileHandler) Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error {
+	return h.MobileHandler.Faq(ctx, in, out)
 }
 
-func (h *metaHandler) MobileAPIContacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error {
-	return h.MetaHandler.MobileAPIContacts(ctx, in, out)
+// Client API for Stores service
+
+type StoresService interface {
+	All(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAllOfflineStoresInfo, error)
+	ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...client.CallOption) (*ResponseOfflineStoreInfoByID, error)
 }
 
-func (h *metaHandler) MobileApiAbout(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error {
-	return h.MetaHandler.MobileApiAbout(ctx, in, out)
+type storesService struct {
+	c    client.Client
+	name string
 }
 
-func (h *metaHandler) Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error {
-	return h.MetaHandler.Faq(ctx, in, out)
+func NewStoresService(name string, c client.Client) StoresService {
+	if c == nil {
+		c = client.NewClient()
+	}
+	if len(name) == 0 {
+		name = "meta"
+	}
+	return &storesService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *storesService) All(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAllOfflineStoresInfo, error) {
+	req := c.c.NewRequest(c.name, "Stores.All", in)
+	out := new(ResponseAllOfflineStoresInfo)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storesService) ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...client.CallOption) (*ResponseOfflineStoreInfoByID, error) {
+	req := c.c.NewRequest(c.name, "Stores.ByID", in)
+	out := new(ResponseOfflineStoreInfoByID)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Stores service
+
+type StoresHandler interface {
+	All(context.Context, *empty.Empty, *ResponseAllOfflineStoresInfo) error
+	ByID(context.Context, *ParamsOfflineStoreInfoByID, *ResponseOfflineStoreInfoByID) error
+}
+
+func RegisterStoresHandler(s server.Server, hdlr StoresHandler, opts ...server.HandlerOption) error {
+	type stores interface {
+		All(ctx context.Context, in *empty.Empty, out *ResponseAllOfflineStoresInfo) error
+		ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error
+	}
+	type Stores struct {
+		stores
+	}
+	h := &storesHandler{hdlr}
+	return s.Handle(s.NewHandler(&Stores{h}, opts...))
+}
+
+type storesHandler struct {
+	StoresHandler
+}
+
+func (h *storesHandler) All(ctx context.Context, in *empty.Empty, out *ResponseAllOfflineStoresInfo) error {
+	return h.StoresHandler.All(ctx, in, out)
+}
+
+func (h *storesHandler) ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error {
+	return h.StoresHandler.ByID(ctx, in, out)
 }

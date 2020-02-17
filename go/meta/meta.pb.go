@@ -25,45 +25,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type PingResponse struct {
-	Response             string   `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *PingResponse) Reset()         { *m = PingResponse{} }
-func (m *PingResponse) String() string { return proto.CompactTextString(m) }
-func (*PingResponse) ProtoMessage()    {}
-func (*PingResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{0}
-}
-
-func (m *PingResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PingResponse.Unmarshal(m, b)
-}
-func (m *PingResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PingResponse.Marshal(b, m, deterministic)
-}
-func (m *PingResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PingResponse.Merge(m, src)
-}
-func (m *PingResponse) XXX_Size() int {
-	return xxx_messageInfo_PingResponse.Size(m)
-}
-func (m *PingResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_PingResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PingResponse proto.InternalMessageInfo
-
-func (m *PingResponse) GetResponse() string {
-	if m != nil {
-		return m.Response
-	}
-	return ""
-}
-
 type ResponseAllOfflineStoresInfo struct {
 	Stores               []*OfflineStore `protobuf:"bytes,1,rep,name=stores,proto3" json:"stores,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
@@ -75,7 +36,7 @@ func (m *ResponseAllOfflineStoresInfo) Reset()         { *m = ResponseAllOffline
 func (m *ResponseAllOfflineStoresInfo) String() string { return proto.CompactTextString(m) }
 func (*ResponseAllOfflineStoresInfo) ProtoMessage()    {}
 func (*ResponseAllOfflineStoresInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{1}
+	return fileDescriptor_0bcdfb81738caa4f, []int{0}
 }
 
 func (m *ResponseAllOfflineStoresInfo) XXX_Unmarshal(b []byte) error {
@@ -124,7 +85,7 @@ func (m *OfflineStore) Reset()         { *m = OfflineStore{} }
 func (m *OfflineStore) String() string { return proto.CompactTextString(m) }
 func (*OfflineStore) ProtoMessage()    {}
 func (*OfflineStore) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{2}
+	return fileDescriptor_0bcdfb81738caa4f, []int{1}
 }
 
 func (m *OfflineStore) XXX_Unmarshal(b []byte) error {
@@ -233,7 +194,7 @@ func (m *ParamsOfflineStoreInfoByID) Reset()         { *m = ParamsOfflineStoreIn
 func (m *ParamsOfflineStoreInfoByID) String() string { return proto.CompactTextString(m) }
 func (*ParamsOfflineStoreInfoByID) ProtoMessage()    {}
 func (*ParamsOfflineStoreInfoByID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{3}
+	return fileDescriptor_0bcdfb81738caa4f, []int{2}
 }
 
 func (m *ParamsOfflineStoreInfoByID) XXX_Unmarshal(b []byte) error {
@@ -272,7 +233,7 @@ func (m *ResponseOfflineStoreInfoByID) Reset()         { *m = ResponseOfflineSto
 func (m *ResponseOfflineStoreInfoByID) String() string { return proto.CompactTextString(m) }
 func (*ResponseOfflineStoreInfoByID) ProtoMessage()    {}
 func (*ResponseOfflineStoreInfoByID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{4}
+	return fileDescriptor_0bcdfb81738caa4f, []int{3}
 }
 
 func (m *ResponseOfflineStoreInfoByID) XXX_Unmarshal(b []byte) error {
@@ -311,7 +272,7 @@ func (m *ResponseMobileAPIContacts) Reset()         { *m = ResponseMobileAPICont
 func (m *ResponseMobileAPIContacts) String() string { return proto.CompactTextString(m) }
 func (*ResponseMobileAPIContacts) ProtoMessage()    {}
 func (*ResponseMobileAPIContacts) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{5}
+	return fileDescriptor_0bcdfb81738caa4f, []int{4}
 }
 
 func (m *ResponseMobileAPIContacts) XXX_Unmarshal(b []byte) error {
@@ -352,7 +313,7 @@ func (m *Contact) Reset()         { *m = Contact{} }
 func (m *Contact) String() string { return proto.CompactTextString(m) }
 func (*Contact) ProtoMessage()    {}
 func (*Contact) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{6}
+	return fileDescriptor_0bcdfb81738caa4f, []int{5}
 }
 
 func (m *Contact) XXX_Unmarshal(b []byte) error {
@@ -408,7 +369,7 @@ func (m *ResponseMobileApiAbout) Reset()         { *m = ResponseMobileApiAbout{}
 func (m *ResponseMobileApiAbout) String() string { return proto.CompactTextString(m) }
 func (*ResponseMobileApiAbout) ProtoMessage()    {}
 func (*ResponseMobileApiAbout) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{7}
+	return fileDescriptor_0bcdfb81738caa4f, []int{6}
 }
 
 func (m *ResponseMobileApiAbout) XXX_Unmarshal(b []byte) error {
@@ -469,7 +430,7 @@ func (m *Block) Reset()         { *m = Block{} }
 func (m *Block) String() string { return proto.CompactTextString(m) }
 func (*Block) ProtoMessage()    {}
 func (*Block) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{8}
+	return fileDescriptor_0bcdfb81738caa4f, []int{7}
 }
 
 func (m *Block) XXX_Unmarshal(b []byte) error {
@@ -515,7 +476,7 @@ func (m *ResponseFaq) Reset()         { *m = ResponseFaq{} }
 func (m *ResponseFaq) String() string { return proto.CompactTextString(m) }
 func (*ResponseFaq) ProtoMessage()    {}
 func (*ResponseFaq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{9}
+	return fileDescriptor_0bcdfb81738caa4f, []int{8}
 }
 
 func (m *ResponseFaq) XXX_Unmarshal(b []byte) error {
@@ -555,7 +516,7 @@ func (m *BlockFaq) Reset()         { *m = BlockFaq{} }
 func (m *BlockFaq) String() string { return proto.CompactTextString(m) }
 func (*BlockFaq) ProtoMessage()    {}
 func (*BlockFaq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{10}
+	return fileDescriptor_0bcdfb81738caa4f, []int{9}
 }
 
 func (m *BlockFaq) XXX_Unmarshal(b []byte) error {
@@ -602,7 +563,7 @@ func (m *TextFaq) Reset()         { *m = TextFaq{} }
 func (m *TextFaq) String() string { return proto.CompactTextString(m) }
 func (*TextFaq) ProtoMessage()    {}
 func (*TextFaq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0bcdfb81738caa4f, []int{11}
+	return fileDescriptor_0bcdfb81738caa4f, []int{10}
 }
 
 func (m *TextFaq) XXX_Unmarshal(b []byte) error {
@@ -638,7 +599,6 @@ func (m *TextFaq) GetAnswer() string {
 }
 
 func init() {
-	proto.RegisterType((*PingResponse)(nil), "meta.PingResponse")
 	proto.RegisterType((*ResponseAllOfflineStoresInfo)(nil), "meta.ResponseAllOfflineStoresInfo")
 	proto.RegisterType((*OfflineStore)(nil), "meta.OfflineStore")
 	proto.RegisterType((*ParamsOfflineStoreInfoByID)(nil), "meta.paramsOfflineStoreInfoByID")
@@ -655,50 +615,48 @@ func init() {
 func init() { proto.RegisterFile("proto/meta.proto", fileDescriptor_0bcdfb81738caa4f) }
 
 var fileDescriptor_0bcdfb81738caa4f = []byte{
-	// 678 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x55, 0xcd, 0x4e, 0xdb, 0x40,
-	0x10, 0x4e, 0x48, 0x62, 0x3b, 0x13, 0x8a, 0x60, 0x15, 0x51, 0x13, 0x90, 0x88, 0xb6, 0x52, 0x9b,
-	0x72, 0x08, 0x12, 0xb4, 0xe2, 0x0c, 0x6d, 0x23, 0x52, 0x89, 0x82, 0x5c, 0xb8, 0xf4, 0x50, 0xb4,
-	0x71, 0x36, 0xc1, 0xea, 0xc6, 0x6b, 0xbc, 0x6b, 0x4a, 0x5e, 0xa1, 0xef, 0xd0, 0x77, 0xe9, 0xa3,
-	0x55, 0xfb, 0xe3, 0x60, 0x20, 0xe6, 0x36, 0xdf, 0xec, 0xcc, 0xb7, 0x3b, 0xf3, 0x8d, 0xc7, 0xb0,
-	0x9e, 0xa4, 0x5c, 0xf2, 0xfd, 0x19, 0x95, 0xa4, 0xaf, 0x4d, 0x54, 0x57, 0x76, 0x67, 0x7b, 0xca,
-	0xf9, 0x94, 0xd1, 0x7d, 0xed, 0x1b, 0x65, 0x93, 0x7d, 0x3a, 0x4b, 0xe4, 0xdc, 0x84, 0xe0, 0x3d,
-	0x58, 0xbd, 0x88, 0xe2, 0x69, 0x40, 0x45, 0xc2, 0x63, 0x41, 0x51, 0x07, 0xbc, 0xd4, 0xda, 0x7e,
-	0xb5, 0x5b, 0xed, 0x35, 0x83, 0x05, 0xc6, 0x5f, 0x61, 0x27, 0x8f, 0x3b, 0x66, 0xec, 0x7c, 0x32,
-	0x61, 0x51, 0x4c, 0xbf, 0x4b, 0x9e, 0x52, 0x31, 0x8c, 0x27, 0x1c, 0xed, 0x81, 0x23, 0x34, 0xf2,
-	0xab, 0xdd, 0x5a, 0xaf, 0x75, 0x80, 0xfa, 0xfa, 0x2d, 0xc5, 0xc0, 0xc0, 0x46, 0xe0, 0xbf, 0x2b,
-	0xb0, 0x5a, 0x3c, 0x40, 0x5b, 0xe0, 0xe9, 0xa3, 0xeb, 0x68, 0xac, 0x2f, 0x6e, 0x04, 0xae, 0xc6,
-	0xc3, 0x31, 0x6a, 0x43, 0x43, 0x46, 0x92, 0x51, 0x7f, 0x45, 0x3f, 0xc8, 0x00, 0xe4, 0x83, 0x4b,
-	0xc6, 0xe3, 0x94, 0x0a, 0xe1, 0xd7, 0xb4, 0x3f, 0x87, 0x2a, 0x3e, 0xb9, 0xe1, 0x31, 0xf5, 0xeb,
-	0x26, 0x5e, 0x03, 0xb4, 0x0e, 0xb5, 0x29, 0xe5, 0x7e, 0x43, 0xfb, 0x94, 0x89, 0x10, 0xd4, 0xc3,
-	0x48, 0xce, 0x7d, 0x47, 0xbb, 0xb4, 0xad, 0x58, 0x43, 0x9e, 0xc5, 0x32, 0x9d, 0xfb, 0xae, 0x61,
-	0xb5, 0x10, 0x6d, 0x82, 0x43, 0x42, 0x19, 0xdd, 0x51, 0xdf, 0xeb, 0x56, 0x7b, 0x5e, 0x60, 0x11,
-	0xda, 0x85, 0x56, 0x12, 0x85, 0x32, 0x4b, 0xe9, 0x75, 0x96, 0x32, 0xbf, 0xa9, 0xb3, 0xc0, 0xba,
-	0xae, 0x52, 0xa6, 0x5a, 0x2a, 0xc2, 0x1b, 0x3a, 0xce, 0x18, 0xf5, 0xc1, 0xb4, 0x34, 0xc7, 0xe8,
-	0x35, 0xb8, 0xea, 0x5a, 0x55, 0x74, 0x4b, 0x17, 0xed, 0x28, 0x38, 0x1c, 0xe3, 0x23, 0xe8, 0x24,
-	0x24, 0x25, 0x33, 0x51, 0x6c, 0x92, 0xea, 0xf2, 0xc9, 0x7c, 0xf8, 0xf9, 0x85, 0x66, 0xe1, 0xd3,
-	0x07, 0x91, 0x96, 0xa6, 0xf6, 0xa0, 0xa1, 0x43, 0x75, 0xde, 0x72, 0x8d, 0x4c, 0x00, 0x1e, 0xc0,
-	0x56, 0xce, 0x74, 0xc6, 0x47, 0x11, 0xa3, 0xc7, 0x17, 0xc3, 0x4f, 0x3c, 0x96, 0x24, 0x94, 0x02,
-	0xbd, 0x07, 0x2f, 0xb4, 0xb6, 0x55, 0xfb, 0x95, 0x61, 0xb2, 0x11, 0xc1, 0xe2, 0x18, 0x9f, 0x83,
-	0x6b, 0x9d, 0x0f, 0x4a, 0x56, 0x8b, 0x4a, 0xaa, 0x06, 0x65, 0xa3, 0xa2, 0xc4, 0x0b, 0xac, 0x34,
-	0x92, 0xf4, 0x5e, 0x5a, 0x89, 0xb5, 0x8d, 0xff, 0x54, 0x61, 0xf3, 0xc9, 0xcb, 0x92, 0xe8, 0x78,
-	0xc4, 0x33, 0x7d, 0x01, 0x51, 0x46, 0x7e, 0x81, 0x06, 0x4a, 0xd4, 0x59, 0x24, 0x44, 0xc4, 0x63,
-	0xcb, 0x9f, 0x43, 0xf4, 0x06, 0x9c, 0x11, 0xe3, 0xe1, 0x2f, 0x35, 0x43, 0xaa, 0x88, 0x96, 0x29,
-	0xe2, 0x44, 0xf9, 0x02, 0x7b, 0x84, 0xb6, 0xa1, 0x19, 0xcd, 0xc8, 0xd4, 0xe8, 0x6b, 0x66, 0xca,
-	0xd3, 0x8e, 0xab, 0x94, 0xe1, 0x43, 0x68, 0xe8, 0xe8, 0x92, 0xda, 0xda, 0xd0, 0xb8, 0x23, 0x2c,
-	0x5b, 0xcc, 0xae, 0x06, 0xf8, 0x23, 0xb4, 0xf2, 0x02, 0x06, 0xe4, 0x16, 0xbd, 0x05, 0x27, 0xa5,
-	0x22, 0x63, 0xd2, 0xb6, 0x72, 0xad, 0xf0, 0x8a, 0x01, 0xb9, 0x0d, 0xec, 0x29, 0x1e, 0x82, 0x97,
-	0xfb, 0x4a, 0xae, 0x7b, 0xa7, 0xc6, 0x37, 0xd6, 0x1d, 0x5b, 0x29, 0xaa, 0x72, 0x49, 0xef, 0xa5,
-	0x62, 0xca, 0x4f, 0xf1, 0x11, 0xb8, 0xd6, 0x57, 0xc2, 0xa4, 0xc6, 0x3d, 0x16, 0xbf, 0x69, 0x6a,
-	0x5f, 0x6e, 0xd1, 0xc1, 0xbf, 0x1a, 0xd4, 0xcf, 0xa8, 0x24, 0xe8, 0x03, 0xd4, 0xd5, 0xe6, 0x40,
-	0x9b, 0x7d, 0xb3, 0x5f, 0xfa, 0xf9, 0x7e, 0xe9, 0x7f, 0x51, 0xfb, 0xa5, 0x63, 0x27, 0xab, 0xb8,
-	0x5d, 0x70, 0x05, 0x5d, 0x42, 0x7b, 0xe9, 0xee, 0x28, 0x63, 0xc1, 0x86, 0xe5, 0xa5, 0xbd, 0x83,
-	0x2b, 0xe8, 0x27, 0xb4, 0x97, 0x0e, 0x7b, 0xd7, 0x64, 0x97, 0x7f, 0x49, 0x4f, 0xf9, 0x97, 0xc5,
-	0xe0, 0x0a, 0xfa, 0x06, 0x1b, 0xcf, 0x3f, 0x81, 0xb2, 0x27, 0xef, 0x3e, 0xa6, 0x7c, 0x96, 0x88,
-	0x2b, 0xe8, 0x14, 0xd6, 0x9e, 0x0c, 0x6e, 0x19, 0xd9, 0xce, 0x52, 0x32, 0x9b, 0x85, 0x2b, 0xe8,
-	0x00, 0x6a, 0x4a, 0xc3, 0xb2, 0xf4, 0x8d, 0xc7, 0xe9, 0x03, 0x72, 0x8b, 0x2b, 0x27, 0xcd, 0x1f,
-	0xee, 0xd4, 0xfc, 0x27, 0x46, 0x8e, 0x8e, 0x3f, 0xfc, 0x1f, 0x00, 0x00, 0xff, 0xff, 0x6f, 0x34,
-	0x78, 0xa7, 0x3c, 0x06, 0x00, 0x00,
+	// 651 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x54, 0xdd, 0x6e, 0xd3, 0x4c,
+	0x10, 0x8d, 0x9b, 0xf8, 0x27, 0x93, 0xef, 0x43, 0x65, 0x55, 0x15, 0x37, 0xad, 0xd4, 0x68, 0x91,
+	0x20, 0x70, 0x91, 0x4a, 0xa9, 0x50, 0x2f, 0x51, 0x5a, 0x1a, 0x11, 0x24, 0x28, 0x32, 0xf4, 0x86,
+	0x9b, 0xca, 0x71, 0x36, 0xa9, 0xc5, 0xc6, 0xeb, 0xda, 0xeb, 0xd2, 0xbc, 0x02, 0xef, 0xd0, 0xb7,
+	0xe1, 0xc1, 0xd0, 0xce, 0xae, 0x53, 0xb7, 0x8a, 0xb9, 0x9b, 0x33, 0x3f, 0x67, 0x3d, 0x73, 0xc6,
+	0x03, 0xdb, 0x69, 0x26, 0xa4, 0x38, 0x5a, 0x32, 0x19, 0x0e, 0xd0, 0x24, 0x2d, 0x65, 0x77, 0xf7,
+	0x17, 0x42, 0x2c, 0x38, 0x3b, 0x42, 0xdf, 0xb4, 0x98, 0x1f, 0xb1, 0x65, 0x2a, 0x57, 0x3a, 0x85,
+	0x7e, 0x82, 0x83, 0x80, 0xe5, 0xa9, 0x48, 0x72, 0x36, 0xe2, 0xfc, 0x62, 0x3e, 0xe7, 0x71, 0xc2,
+	0xbe, 0x49, 0x91, 0xb1, 0x7c, 0x92, 0xcc, 0x05, 0x79, 0x0b, 0x4e, 0x8e, 0xc8, 0xb7, 0x7a, 0xcd,
+	0x7e, 0x67, 0x48, 0x06, 0xc8, 0x5f, 0x4d, 0x0c, 0x4c, 0x06, 0xbd, 0xdf, 0x82, 0xff, 0xaa, 0x01,
+	0xb2, 0x07, 0x1e, 0x86, 0xae, 0xe2, 0x99, 0x6f, 0xf5, 0xac, 0xbe, 0x1d, 0xb8, 0x88, 0x27, 0x33,
+	0xb2, 0x03, 0xb6, 0x8c, 0x25, 0x67, 0xfe, 0x56, 0xcf, 0xea, 0xb7, 0x03, 0x0d, 0x88, 0x0f, 0x6e,
+	0x38, 0x9b, 0x65, 0x2c, 0xcf, 0xfd, 0x26, 0xfa, 0x4b, 0xa8, 0xf2, 0xd3, 0x6b, 0x91, 0x30, 0xbf,
+	0xa5, 0xf3, 0x11, 0x90, 0x6d, 0x68, 0x2e, 0x98, 0xf0, 0x6d, 0xf4, 0x29, 0x93, 0x10, 0x68, 0x45,
+	0xb1, 0x5c, 0xf9, 0x0e, 0xba, 0xd0, 0x56, 0xac, 0x91, 0x28, 0x12, 0x99, 0xad, 0x7c, 0x57, 0xb3,
+	0x1a, 0x48, 0x76, 0xc1, 0x09, 0x23, 0x19, 0xdf, 0x32, 0xdf, 0xeb, 0x59, 0x7d, 0x2f, 0x30, 0x88,
+	0x1c, 0x42, 0x27, 0x8d, 0x23, 0x59, 0x64, 0xec, 0xaa, 0xc8, 0xb8, 0xdf, 0xc6, 0x2a, 0x30, 0xae,
+	0xcb, 0x8c, 0x93, 0x2e, 0x78, 0x79, 0x74, 0xcd, 0x66, 0x05, 0x67, 0x3e, 0x60, 0x74, 0x8d, 0xc9,
+	0x0b, 0x70, 0xd5, 0xb3, 0xaa, 0xe9, 0x0e, 0x36, 0xed, 0x28, 0x38, 0x99, 0xd1, 0x13, 0xe8, 0xa6,
+	0x61, 0x16, 0x2e, 0xf3, 0xea, 0x90, 0xd4, 0x94, 0x4f, 0x57, 0x93, 0x0f, 0xff, 0x18, 0x16, 0xfd,
+	0xf8, 0x20, 0xd2, 0xc6, 0xd2, 0x3e, 0xd8, 0x98, 0x8a, 0x75, 0x9b, 0x35, 0xd2, 0x09, 0x74, 0x0c,
+	0x7b, 0x25, 0xd3, 0x67, 0x31, 0x8d, 0x39, 0x1b, 0x7d, 0x9d, 0x9c, 0x89, 0x44, 0x86, 0x91, 0xcc,
+	0xc9, 0x1b, 0xf0, 0x22, 0x63, 0x1b, 0xb5, 0xff, 0xd7, 0x4c, 0x26, 0x23, 0x58, 0x87, 0xe9, 0x05,
+	0xb8, 0xc6, 0xf9, 0xa0, 0xa4, 0x55, 0x55, 0x52, 0x0d, 0xa8, 0x98, 0x56, 0x25, 0x5e, 0x63, 0xa5,
+	0x91, 0x64, 0x77, 0xd2, 0x48, 0x8c, 0x36, 0xfd, 0x6d, 0xc1, 0xee, 0x93, 0x2f, 0x4b, 0xe3, 0xd1,
+	0x54, 0x14, 0xf8, 0x40, 0xa8, 0x8c, 0xf2, 0x01, 0x04, 0x4a, 0xd4, 0x65, 0x9c, 0xe7, 0xb1, 0x48,
+	0x0c, 0x7f, 0x09, 0xc9, 0x4b, 0x70, 0xa6, 0x5c, 0x44, 0x3f, 0xd5, 0x0e, 0xa9, 0x26, 0x3a, 0xba,
+	0x89, 0x53, 0xe5, 0x0b, 0x4c, 0x88, 0xec, 0x43, 0x3b, 0x5e, 0x86, 0x0b, 0xad, 0xaf, 0xde, 0x29,
+	0x0f, 0x1d, 0x97, 0x19, 0xa7, 0xc7, 0x60, 0x63, 0x76, 0x4d, 0x6f, 0x3b, 0x60, 0xdf, 0x86, 0xbc,
+	0x58, 0xef, 0x2e, 0x02, 0xfa, 0x0e, 0x3a, 0x65, 0x03, 0xe3, 0xf0, 0x86, 0xbc, 0x02, 0x27, 0x63,
+	0x79, 0xc1, 0xa5, 0x19, 0xe5, 0xb3, 0xca, 0x57, 0x8c, 0xc3, 0x9b, 0xc0, 0x44, 0xe9, 0x04, 0xbc,
+	0xd2, 0x57, 0xf3, 0xdc, 0x6b, 0xb5, 0xbe, 0x09, 0x4e, 0x6c, 0xab, 0xaa, 0xca, 0x77, 0x76, 0x27,
+	0x15, 0x53, 0x19, 0xa5, 0x27, 0xe0, 0x1a, 0x5f, 0x0d, 0x93, 0x5a, 0xf7, 0x24, 0xff, 0xc5, 0x32,
+	0xf3, 0xe5, 0x06, 0x0d, 0xff, 0x58, 0xe0, 0xe8, 0xa1, 0x93, 0x73, 0xf0, 0xd6, 0xfb, 0xb0, 0x3b,
+	0xd0, 0x97, 0x63, 0x50, 0x5e, 0x8e, 0xc1, 0xb9, 0xba, 0x1c, 0xdd, 0x43, 0xfd, 0x7e, 0xed, 0x22,
+	0xd1, 0x06, 0x79, 0x0f, 0xb6, 0x16, 0xaf, 0x8e, 0xe3, 0x60, 0x23, 0x87, 0x91, 0x9c, 0x36, 0xc8,
+	0x10, 0x9a, 0xaa, 0x8f, 0xba, 0xf2, 0xe7, 0x8f, 0xcb, 0xc7, 0xe1, 0x0d, 0x6d, 0x0c, 0xef, 0x2d,
+	0x70, 0xf4, 0xe9, 0x22, 0x67, 0xd0, 0x1c, 0x71, 0x5e, 0x5b, 0x4e, 0x1f, 0x97, 0x6f, 0xba, 0x7c,
+	0xb4, 0x41, 0xbe, 0x40, 0x0b, 0x7f, 0xaf, 0x9e, 0xce, 0xae, 0xff, 0x77, 0x9f, 0xf2, 0x6d, 0xca,
+	0xa1, 0x8d, 0xd3, 0xf6, 0x0f, 0x77, 0xa1, 0xef, 0xf3, 0xd4, 0xc1, 0x0f, 0x3a, 0xfe, 0x1b, 0x00,
+	0x00, 0xff, 0xff, 0xea, 0x3e, 0xb5, 0x99, 0xb4, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -709,252 +667,252 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// MetaClient is the client API for Meta service.
+// MobileClient is the client API for Mobile service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type MetaClient interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*PingResponse, error)
-	AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAllOfflineStoresInfo, error)
-	OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...grpc.CallOption) (*ResponseOfflineStoreInfoByID, error)
-	MobileAPIContacts(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error)
-	MobileApiAbout(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error)
+type MobileClient interface {
+	Contacts(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error)
+	About(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error)
 	Faq(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseFaq, error)
 }
 
-type metaClient struct {
+type mobileClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewMetaClient(cc *grpc.ClientConn) MetaClient {
-	return &metaClient{cc}
+func NewMobileClient(cc *grpc.ClientConn) MobileClient {
+	return &mobileClient{cc}
 }
 
-func (c *metaClient) Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*PingResponse, error) {
-	out := new(PingResponse)
-	err := c.cc.Invoke(ctx, "/meta.Meta/Ping", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *metaClient) AllOfflineStoresInfo(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAllOfflineStoresInfo, error) {
-	out := new(ResponseAllOfflineStoresInfo)
-	err := c.cc.Invoke(ctx, "/meta.Meta/AllOfflineStoresInfo", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *metaClient) OfflineStoreInfoByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...grpc.CallOption) (*ResponseOfflineStoreInfoByID, error) {
-	out := new(ResponseOfflineStoreInfoByID)
-	err := c.cc.Invoke(ctx, "/meta.Meta/OfflineStoreInfoByID", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *metaClient) MobileAPIContacts(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error) {
+func (c *mobileClient) Contacts(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error) {
 	out := new(ResponseMobileAPIContacts)
-	err := c.cc.Invoke(ctx, "/meta.Meta/MobileAPIContacts", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/meta.Mobile/Contacts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *metaClient) MobileApiAbout(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error) {
+func (c *mobileClient) About(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error) {
 	out := new(ResponseMobileApiAbout)
-	err := c.cc.Invoke(ctx, "/meta.Meta/MobileApiAbout", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/meta.Mobile/About", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *metaClient) Faq(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseFaq, error) {
+func (c *mobileClient) Faq(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseFaq, error) {
 	out := new(ResponseFaq)
-	err := c.cc.Invoke(ctx, "/meta.Meta/Faq", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/meta.Mobile/Faq", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MetaServer is the server API for Meta service.
-type MetaServer interface {
-	Ping(context.Context, *empty.Empty) (*PingResponse, error)
-	AllOfflineStoresInfo(context.Context, *empty.Empty) (*ResponseAllOfflineStoresInfo, error)
-	OfflineStoreInfoByID(context.Context, *ParamsOfflineStoreInfoByID) (*ResponseOfflineStoreInfoByID, error)
-	MobileAPIContacts(context.Context, *empty.Empty) (*ResponseMobileAPIContacts, error)
-	MobileApiAbout(context.Context, *empty.Empty) (*ResponseMobileApiAbout, error)
+// MobileServer is the server API for Mobile service.
+type MobileServer interface {
+	Contacts(context.Context, *empty.Empty) (*ResponseMobileAPIContacts, error)
+	About(context.Context, *empty.Empty) (*ResponseMobileApiAbout, error)
 	Faq(context.Context, *empty.Empty) (*ResponseFaq, error)
 }
 
-// UnimplementedMetaServer can be embedded to have forward compatible implementations.
-type UnimplementedMetaServer struct {
+// UnimplementedMobileServer can be embedded to have forward compatible implementations.
+type UnimplementedMobileServer struct {
 }
 
-func (*UnimplementedMetaServer) Ping(ctx context.Context, req *empty.Empty) (*PingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+func (*UnimplementedMobileServer) Contacts(ctx context.Context, req *empty.Empty) (*ResponseMobileAPIContacts, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Contacts not implemented")
 }
-func (*UnimplementedMetaServer) AllOfflineStoresInfo(ctx context.Context, req *empty.Empty) (*ResponseAllOfflineStoresInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AllOfflineStoresInfo not implemented")
+func (*UnimplementedMobileServer) About(ctx context.Context, req *empty.Empty) (*ResponseMobileApiAbout, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method About not implemented")
 }
-func (*UnimplementedMetaServer) OfflineStoreInfoByID(ctx context.Context, req *ParamsOfflineStoreInfoByID) (*ResponseOfflineStoreInfoByID, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OfflineStoreInfoByID not implemented")
-}
-func (*UnimplementedMetaServer) MobileAPIContacts(ctx context.Context, req *empty.Empty) (*ResponseMobileAPIContacts, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MobileAPIContacts not implemented")
-}
-func (*UnimplementedMetaServer) MobileApiAbout(ctx context.Context, req *empty.Empty) (*ResponseMobileApiAbout, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MobileApiAbout not implemented")
-}
-func (*UnimplementedMetaServer) Faq(ctx context.Context, req *empty.Empty) (*ResponseFaq, error) {
+func (*UnimplementedMobileServer) Faq(ctx context.Context, req *empty.Empty) (*ResponseFaq, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Faq not implemented")
 }
 
-func RegisterMetaServer(s *grpc.Server, srv MetaServer) {
-	s.RegisterService(&_Meta_serviceDesc, srv)
+func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
+	s.RegisterService(&_Mobile_serviceDesc, srv)
 }
 
-func _Meta_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_Contacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MetaServer).Ping(ctx, in)
+		return srv.(MobileServer).Contacts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/meta.Meta/Ping",
+		FullMethod: "/meta.Mobile/Contacts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetaServer).Ping(ctx, req.(*empty.Empty))
+		return srv.(MobileServer).Contacts(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Meta_AllOfflineStoresInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_About_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MetaServer).AllOfflineStoresInfo(ctx, in)
+		return srv.(MobileServer).About(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/meta.Meta/AllOfflineStoresInfo",
+		FullMethod: "/meta.Mobile/About",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetaServer).AllOfflineStoresInfo(ctx, req.(*empty.Empty))
+		return srv.(MobileServer).About(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Meta_OfflineStoreInfoByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_Faq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).Faq(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meta.Mobile/Faq",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).Faq(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Mobile_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "meta.Mobile",
+	HandlerType: (*MobileServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Contacts",
+			Handler:    _Mobile_Contacts_Handler,
+		},
+		{
+			MethodName: "About",
+			Handler:    _Mobile_About_Handler,
+		},
+		{
+			MethodName: "Faq",
+			Handler:    _Mobile_Faq_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/meta.proto",
+}
+
+// StoresClient is the client API for Stores service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type StoresClient interface {
+	All(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAllOfflineStoresInfo, error)
+	ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...grpc.CallOption) (*ResponseOfflineStoreInfoByID, error)
+}
+
+type storesClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewStoresClient(cc *grpc.ClientConn) StoresClient {
+	return &storesClient{cc}
+}
+
+func (c *storesClient) All(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAllOfflineStoresInfo, error) {
+	out := new(ResponseAllOfflineStoresInfo)
+	err := c.cc.Invoke(ctx, "/meta.Stores/All", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storesClient) ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...grpc.CallOption) (*ResponseOfflineStoreInfoByID, error) {
+	out := new(ResponseOfflineStoreInfoByID)
+	err := c.cc.Invoke(ctx, "/meta.Stores/ByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StoresServer is the server API for Stores service.
+type StoresServer interface {
+	All(context.Context, *empty.Empty) (*ResponseAllOfflineStoresInfo, error)
+	ByID(context.Context, *ParamsOfflineStoreInfoByID) (*ResponseOfflineStoreInfoByID, error)
+}
+
+// UnimplementedStoresServer can be embedded to have forward compatible implementations.
+type UnimplementedStoresServer struct {
+}
+
+func (*UnimplementedStoresServer) All(ctx context.Context, req *empty.Empty) (*ResponseAllOfflineStoresInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method All not implemented")
+}
+func (*UnimplementedStoresServer) ByID(ctx context.Context, req *ParamsOfflineStoreInfoByID) (*ResponseOfflineStoreInfoByID, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByID not implemented")
+}
+
+func RegisterStoresServer(s *grpc.Server, srv StoresServer) {
+	s.RegisterService(&_Stores_serviceDesc, srv)
+}
+
+func _Stores_All_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoresServer).All(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meta.Stores/All",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoresServer).All(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Stores_ByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ParamsOfflineStoreInfoByID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MetaServer).OfflineStoreInfoByID(ctx, in)
+		return srv.(StoresServer).ByID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/meta.Meta/OfflineStoreInfoByID",
+		FullMethod: "/meta.Stores/ByID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetaServer).OfflineStoreInfoByID(ctx, req.(*ParamsOfflineStoreInfoByID))
+		return srv.(StoresServer).ByID(ctx, req.(*ParamsOfflineStoreInfoByID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Meta_MobileAPIContacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MetaServer).MobileAPIContacts(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/meta.Meta/MobileAPIContacts",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetaServer).MobileAPIContacts(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Meta_MobileApiAbout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MetaServer).MobileApiAbout(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/meta.Meta/MobileApiAbout",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetaServer).MobileApiAbout(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Meta_Faq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MetaServer).Faq(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/meta.Meta/Faq",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetaServer).Faq(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Meta_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "meta.Meta",
-	HandlerType: (*MetaServer)(nil),
+var _Stores_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "meta.Stores",
+	HandlerType: (*StoresServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Ping",
-			Handler:    _Meta_Ping_Handler,
+			MethodName: "All",
+			Handler:    _Stores_All_Handler,
 		},
 		{
-			MethodName: "AllOfflineStoresInfo",
-			Handler:    _Meta_AllOfflineStoresInfo_Handler,
-		},
-		{
-			MethodName: "OfflineStoreInfoByID",
-			Handler:    _Meta_OfflineStoreInfoByID_Handler,
-		},
-		{
-			MethodName: "MobileAPIContacts",
-			Handler:    _Meta_MobileAPIContacts_Handler,
-		},
-		{
-			MethodName: "MobileApiAbout",
-			Handler:    _Meta_MobileApiAbout_Handler,
-		},
-		{
-			MethodName: "Faq",
-			Handler:    _Meta_Faq_Handler,
+			MethodName: "ByID",
+			Handler:    _Stores_ByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
