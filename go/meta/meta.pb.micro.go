@@ -130,6 +130,8 @@ func (h *mobileHandler) Faq(ctx context.Context, in *empty.Empty, out *ResponseF
 type StoresService interface {
 	All(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAllOfflineStoresInfo, error)
 	ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, opts ...client.CallOption) (*ResponseOfflineStoreInfoByID, error)
+	Cities(ctx context.Context, in *ParamsStoresCities, opts ...client.CallOption) (*ResponseStoresCities, error)
+	ByCity(ctx context.Context, in *ParamsStoresByCity, opts ...client.CallOption) (*ResponseStoresByCity, error)
 }
 
 type storesService struct {
@@ -170,17 +172,41 @@ func (c *storesService) ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID
 	return out, nil
 }
 
+func (c *storesService) Cities(ctx context.Context, in *ParamsStoresCities, opts ...client.CallOption) (*ResponseStoresCities, error) {
+	req := c.c.NewRequest(c.name, "Stores.Cities", in)
+	out := new(ResponseStoresCities)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storesService) ByCity(ctx context.Context, in *ParamsStoresByCity, opts ...client.CallOption) (*ResponseStoresByCity, error) {
+	req := c.c.NewRequest(c.name, "Stores.ByCity", in)
+	out := new(ResponseStoresByCity)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Stores service
 
 type StoresHandler interface {
 	All(context.Context, *empty.Empty, *ResponseAllOfflineStoresInfo) error
 	ByID(context.Context, *ParamsOfflineStoreInfoByID, *ResponseOfflineStoreInfoByID) error
+	Cities(context.Context, *ParamsStoresCities, *ResponseStoresCities) error
+	ByCity(context.Context, *ParamsStoresByCity, *ResponseStoresByCity) error
 }
 
 func RegisterStoresHandler(s server.Server, hdlr StoresHandler, opts ...server.HandlerOption) error {
 	type stores interface {
 		All(ctx context.Context, in *empty.Empty, out *ResponseAllOfflineStoresInfo) error
 		ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error
+		Cities(ctx context.Context, in *ParamsStoresCities, out *ResponseStoresCities) error
+		ByCity(ctx context.Context, in *ParamsStoresByCity, out *ResponseStoresByCity) error
 	}
 	type Stores struct {
 		stores
@@ -199,4 +225,12 @@ func (h *storesHandler) All(ctx context.Context, in *empty.Empty, out *ResponseA
 
 func (h *storesHandler) ByID(ctx context.Context, in *ParamsOfflineStoreInfoByID, out *ResponseOfflineStoreInfoByID) error {
 	return h.StoresHandler.ByID(ctx, in, out)
+}
+
+func (h *storesHandler) Cities(ctx context.Context, in *ParamsStoresCities, out *ResponseStoresCities) error {
+	return h.StoresHandler.Cities(ctx, in, out)
+}
+
+func (h *storesHandler) ByCity(ctx context.Context, in *ParamsStoresByCity, out *ResponseStoresByCity) error {
+	return h.StoresHandler.ByCity(ctx, in, out)
 }
