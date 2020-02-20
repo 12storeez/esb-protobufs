@@ -13,7 +13,7 @@ service Mobile {
     }
 }
 message ResponseOk {
-    bool success = 1;
+    bool ok = 1;
 }
 
 message RequestApp {
