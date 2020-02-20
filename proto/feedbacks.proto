@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option go_package = "go/feedbacks";
+package feedbacks;
+
+
+service Mobile {
+    rpc App (RequestApp) returns (ResponseOk) {
+    }
+    rpc Store (RequestStore) returns (ResponseOk) {
+    }
+    rpc Order (RequestOrder) returns (ResponseOk) {
+    }
+}
+message ResponseOk {
+    bool ok = 1;
+}
+
+message RequestApp {
+    int64 client_id = 1;
+    string app_version = 2;
+    string rate = 3;
+    repeated int32 reason = 4;
+    string comment = 5;
+    string date = 6;
+}
+
+message RequestStore {
+    int64 client_id = 1;
+    string rate = 2;
+    repeated int32 reason = 3;
+    string comment = 4;
+    string city = 5;
+    string date = 6;
+}
+
+message RequestOrder {
+    string order_id = 1;
+    int64 client_id = 2;
+    string payment_type = 3;
+    string delivery_type = 4;
+    string rate = 5;
+    repeated int32 reason = 6;
+    string comment = 7;
+    string date_order  = 8;
+    string date_rate = 9;
+    string store_name = 10;
+    string transport_company = 11;
+    string country = 12;
+    string city = 13;
+}
