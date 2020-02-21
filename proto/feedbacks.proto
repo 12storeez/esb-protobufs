@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 option go_package = "go/feedbacks";
+import "google/protobuf/empty.proto";
 package feedbacks;
 
 
@@ -11,6 +12,15 @@ service Mobile {
     }
     rpc Order (RequestOrder) returns (ResponseOk) {
     }
+    rpc AnswersStore (google.protobuf.Empty) returns (ResponseAnswersStore) {
+    }
+    rpc AnswersPickupBoxberry (google.protobuf.Empty) returns (ResponseAnswersPickupBoxberry) {
+    }
+    rpc AnswersPickupStore (google.protobuf.Empty) returns (ResponseAnswersPickupStore) {
+    }
+    rpc AnswersExpressDelivery (google.protobuf.Empty) returns (ResponseAnswersExpressDelivery) {
+    }
+
 }
 message ResponseOk {
     bool ok = 1;
@@ -42,10 +52,31 @@ message RequestOrder {
     string rate = 5;
     repeated int32 reason = 6;
     string comment = 7;
-    string date_order  = 8;
+    string date_order = 8;
     string date_rate = 9;
     string store_name = 10;
     string transport_company = 11;
     string country = 12;
     string city = 13;
+}
+
+message ResponseAnswersStore {
+    repeated Answer result = 1;
+}
+
+message Answer {
+    int32 id = 1;
+    string title = 2;
+}
+
+message ResponseAnswersPickupBoxberry {
+    repeated Answer result = 1;
+}
+
+message ResponseAnswersPickupStore {
+    repeated Answer result = 1;
+}
+
+message ResponseAnswersExpressDelivery {
+    repeated Answer result = 1;
 }

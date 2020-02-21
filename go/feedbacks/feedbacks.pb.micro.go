@@ -6,6 +6,7 @@ package feedbacks
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -37,6 +38,10 @@ type MobileService interface {
 	App(ctx context.Context, in *RequestApp, opts ...client.CallOption) (*ResponseOk, error)
 	Store(ctx context.Context, in *RequestStore, opts ...client.CallOption) (*ResponseOk, error)
 	Order(ctx context.Context, in *RequestOrder, opts ...client.CallOption) (*ResponseOk, error)
+	AnswersStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersStore, error)
+	AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupBoxberry, error)
+	AnswersPickupStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupStore, error)
+	AnswersExpressDelivery(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersExpressDelivery, error)
 }
 
 type mobileService struct {
@@ -87,12 +92,56 @@ func (c *mobileService) Order(ctx context.Context, in *RequestOrder, opts ...cli
 	return out, nil
 }
 
+func (c *mobileService) AnswersStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersStore, error) {
+	req := c.c.NewRequest(c.name, "Mobile.AnswersStore", in)
+	out := new(ResponseAnswersStore)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileService) AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupBoxberry, error) {
+	req := c.c.NewRequest(c.name, "Mobile.AnswersPickupBoxberry", in)
+	out := new(ResponseAnswersPickupBoxberry)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileService) AnswersPickupStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupStore, error) {
+	req := c.c.NewRequest(c.name, "Mobile.AnswersPickupStore", in)
+	out := new(ResponseAnswersPickupStore)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileService) AnswersExpressDelivery(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersExpressDelivery, error) {
+	req := c.c.NewRequest(c.name, "Mobile.AnswersExpressDelivery", in)
+	out := new(ResponseAnswersExpressDelivery)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Mobile service
 
 type MobileHandler interface {
 	App(context.Context, *RequestApp, *ResponseOk) error
 	Store(context.Context, *RequestStore, *ResponseOk) error
 	Order(context.Context, *RequestOrder, *ResponseOk) error
+	AnswersStore(context.Context, *empty.Empty, *ResponseAnswersStore) error
+	AnswersPickupBoxberry(context.Context, *empty.Empty, *ResponseAnswersPickupBoxberry) error
+	AnswersPickupStore(context.Context, *empty.Empty, *ResponseAnswersPickupStore) error
+	AnswersExpressDelivery(context.Context, *empty.Empty, *ResponseAnswersExpressDelivery) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -100,6 +149,10 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		App(ctx context.Context, in *RequestApp, out *ResponseOk) error
 		Store(ctx context.Context, in *RequestStore, out *ResponseOk) error
 		Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error
+		AnswersStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersStore) error
+		AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupBoxberry) error
+		AnswersPickupStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupStore) error
+		AnswersExpressDelivery(ctx context.Context, in *empty.Empty, out *ResponseAnswersExpressDelivery) error
 	}
 	type Mobile struct {
 		mobile
@@ -122,4 +175,20 @@ func (h *mobileHandler) Store(ctx context.Context, in *RequestStore, out *Respon
 
 func (h *mobileHandler) Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error {
 	return h.MobileHandler.Order(ctx, in, out)
+}
+
+func (h *mobileHandler) AnswersStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersStore) error {
+	return h.MobileHandler.AnswersStore(ctx, in, out)
+}
+
+func (h *mobileHandler) AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupBoxberry) error {
+	return h.MobileHandler.AnswersPickupBoxberry(ctx, in, out)
+}
+
+func (h *mobileHandler) AnswersPickupStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupStore) error {
+	return h.MobileHandler.AnswersPickupStore(ctx, in, out)
+}
+
+func (h *mobileHandler) AnswersExpressDelivery(ctx context.Context, in *empty.Empty, out *ResponseAnswersExpressDelivery) error {
+	return h.MobileHandler.AnswersExpressDelivery(ctx, in, out)
 }
