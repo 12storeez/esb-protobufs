@@ -1,6 +1,6 @@
 {
   "name": "esb-protobufs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "protobuf for esb project",
   "main": "./typescript/index.js",
   "types": "./typescript/index.d.ts",
@@ -17,7 +17,7 @@
     "proto",
     "12stz"
   ],
-  "author": "afro.funky.lover@gmail.com",
+  "author": "r.zhuba@12storeez.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zhs/esb-protobufs/issues"
