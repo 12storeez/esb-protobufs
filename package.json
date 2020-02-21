@@ -1,0 +1,29 @@
+{
+  "name": "esb-protobufs",
+  "version": "0.0.7",
+  "description": "protobuf for esb project",
+  "main": "./typescript/index.js",
+  "types": "./typescript/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhs/esb-protobufs.git"
+  },
+  "keywords": [
+    "esb",
+    "protobuf",
+    "proto",
+    "12stz"
+  ],
+  "author": "afro.funky.lover@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhs/esb-protobufs/issues"
+  },
+  "homepage": "https://github.com/zhs/esb-protobufs#readme",
+  "dependencies": {
+    "protobufjs": "^6.8.8"
+  }
+}

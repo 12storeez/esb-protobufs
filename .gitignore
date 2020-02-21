@@ -7,3 +7,5 @@
 .idea
 profile*.*
 main
+
+/node_modules
