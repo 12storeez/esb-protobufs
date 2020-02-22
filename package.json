@@ -1,8 +1,7 @@
 {
   "name": "esb-protobufs",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "protobuf for esb project",
-  "main": "./typescript/index.js",
   "types": "./typescript/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
