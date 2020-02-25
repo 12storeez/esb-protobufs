@@ -6,6 +6,7 @@ package feedbacks
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -37,6 +38,8 @@ type MobileService interface {
 	App(ctx context.Context, in *RequestApp, opts ...client.CallOption) (*ResponseOk, error)
 	Store(ctx context.Context, in *RequestStore, opts ...client.CallOption) (*ResponseOk, error)
 	Order(ctx context.Context, in *RequestOrder, opts ...client.CallOption) (*ResponseOk, error)
+	Categories(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseCategories, error)
+	Choices(ctx context.Context, in *RequestChoices, opts ...client.CallOption) (*ResponseChoices, error)
 }
 
 type mobileService struct {
@@ -87,12 +90,34 @@ func (c *mobileService) Order(ctx context.Context, in *RequestOrder, opts ...cli
 	return out, nil
 }
 
+func (c *mobileService) Categories(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseCategories, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Categories", in)
+	out := new(ResponseCategories)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileService) Choices(ctx context.Context, in *RequestChoices, opts ...client.CallOption) (*ResponseChoices, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Choices", in)
+	out := new(ResponseChoices)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Mobile service
 
 type MobileHandler interface {
 	App(context.Context, *RequestApp, *ResponseOk) error
 	Store(context.Context, *RequestStore, *ResponseOk) error
 	Order(context.Context, *RequestOrder, *ResponseOk) error
+	Categories(context.Context, *empty.Empty, *ResponseCategories) error
+	Choices(context.Context, *RequestChoices, *ResponseChoices) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -100,6 +125,8 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		App(ctx context.Context, in *RequestApp, out *ResponseOk) error
 		Store(ctx context.Context, in *RequestStore, out *ResponseOk) error
 		Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error
+		Categories(ctx context.Context, in *empty.Empty, out *ResponseCategories) error
+		Choices(ctx context.Context, in *RequestChoices, out *ResponseChoices) error
 	}
 	type Mobile struct {
 		mobile
@@ -122,4 +149,12 @@ func (h *mobileHandler) Store(ctx context.Context, in *RequestStore, out *Respon
 
 func (h *mobileHandler) Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error {
 	return h.MobileHandler.Order(ctx, in, out)
+}
+
+func (h *mobileHandler) Categories(ctx context.Context, in *empty.Empty, out *ResponseCategories) error {
+	return h.MobileHandler.Categories(ctx, in, out)
+}
+
+func (h *mobileHandler) Choices(ctx context.Context, in *RequestChoices, out *ResponseChoices) error {
+	return h.MobileHandler.Choices(ctx, in, out)
 }
