@@ -38,8 +38,8 @@ type MobileService interface {
 	App(ctx context.Context, in *RequestApp, opts ...client.CallOption) (*ResponseOk, error)
 	Store(ctx context.Context, in *RequestStore, opts ...client.CallOption) (*ResponseOk, error)
 	Order(ctx context.Context, in *RequestOrder, opts ...client.CallOption) (*ResponseOk, error)
-	Choices(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseChoices, error)
-	ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...client.CallOption) (*ResponseChoicesCategory, error)
+	Categories(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseCategories, error)
+	Choices(ctx context.Context, in *RequestChoices, opts ...client.CallOption) (*ResponseChoices, error)
 }
 
 type mobileService struct {
@@ -90,9 +90,9 @@ func (c *mobileService) Order(ctx context.Context, in *RequestOrder, opts ...cli
 	return out, nil
 }
 
-func (c *mobileService) Choices(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseChoices, error) {
-	req := c.c.NewRequest(c.name, "Mobile.Choices", in)
-	out := new(ResponseChoices)
+func (c *mobileService) Categories(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseCategories, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Categories", in)
+	out := new(ResponseCategories)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -100,9 +100,9 @@ func (c *mobileService) Choices(ctx context.Context, in *empty.Empty, opts ...cl
 	return out, nil
 }
 
-func (c *mobileService) ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...client.CallOption) (*ResponseChoicesCategory, error) {
-	req := c.c.NewRequest(c.name, "Mobile.ChoicesCategory", in)
-	out := new(ResponseChoicesCategory)
+func (c *mobileService) Choices(ctx context.Context, in *RequestChoices, opts ...client.CallOption) (*ResponseChoices, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Choices", in)
+	out := new(ResponseChoices)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -116,8 +116,8 @@ type MobileHandler interface {
 	App(context.Context, *RequestApp, *ResponseOk) error
 	Store(context.Context, *RequestStore, *ResponseOk) error
 	Order(context.Context, *RequestOrder, *ResponseOk) error
-	Choices(context.Context, *empty.Empty, *ResponseChoices) error
-	ChoicesCategory(context.Context, *RequestChoicesCategory, *ResponseChoicesCategory) error
+	Categories(context.Context, *empty.Empty, *ResponseCategories) error
+	Choices(context.Context, *RequestChoices, *ResponseChoices) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -125,8 +125,8 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		App(ctx context.Context, in *RequestApp, out *ResponseOk) error
 		Store(ctx context.Context, in *RequestStore, out *ResponseOk) error
 		Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error
-		Choices(ctx context.Context, in *empty.Empty, out *ResponseChoices) error
-		ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, out *ResponseChoicesCategory) error
+		Categories(ctx context.Context, in *empty.Empty, out *ResponseCategories) error
+		Choices(ctx context.Context, in *RequestChoices, out *ResponseChoices) error
 	}
 	type Mobile struct {
 		mobile
@@ -151,10 +151,10 @@ func (h *mobileHandler) Order(ctx context.Context, in *RequestOrder, out *Respon
 	return h.MobileHandler.Order(ctx, in, out)
 }
 
-func (h *mobileHandler) Choices(ctx context.Context, in *empty.Empty, out *ResponseChoices) error {
-	return h.MobileHandler.Choices(ctx, in, out)
+func (h *mobileHandler) Categories(ctx context.Context, in *empty.Empty, out *ResponseCategories) error {
+	return h.MobileHandler.Categories(ctx, in, out)
 }
 
-func (h *mobileHandler) ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, out *ResponseChoicesCategory) error {
-	return h.MobileHandler.ChoicesCategory(ctx, in, out)
+func (h *mobileHandler) Choices(ctx context.Context, in *RequestChoices, out *ResponseChoices) error {
+	return h.MobileHandler.Choices(ctx, in, out)
 }

@@ -357,54 +357,54 @@ func (m *RequestOrder) GetCity() string {
 	return ""
 }
 
-type Answer struct {
+type Choice struct {
 	Title                string   `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	IdMethod             int32    `protobuf:"varint,2,opt,name=id_method,json=idMethod,proto3" json:"id_method,omitempty"`
+	CategoryId           int32    `protobuf:"varint,2,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Answer) Reset()         { *m = Answer{} }
-func (m *Answer) String() string { return proto.CompactTextString(m) }
-func (*Answer) ProtoMessage()    {}
-func (*Answer) Descriptor() ([]byte, []int) {
+func (m *Choice) Reset()         { *m = Choice{} }
+func (m *Choice) String() string { return proto.CompactTextString(m) }
+func (*Choice) ProtoMessage()    {}
+func (*Choice) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{4}
 }
 
-func (m *Answer) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Answer.Unmarshal(m, b)
+func (m *Choice) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Choice.Unmarshal(m, b)
 }
-func (m *Answer) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Answer.Marshal(b, m, deterministic)
+func (m *Choice) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Choice.Marshal(b, m, deterministic)
 }
-func (m *Answer) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Answer.Merge(m, src)
+func (m *Choice) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Choice.Merge(m, src)
 }
-func (m *Answer) XXX_Size() int {
-	return xxx_messageInfo_Answer.Size(m)
+func (m *Choice) XXX_Size() int {
+	return xxx_messageInfo_Choice.Size(m)
 }
-func (m *Answer) XXX_DiscardUnknown() {
-	xxx_messageInfo_Answer.DiscardUnknown(m)
+func (m *Choice) XXX_DiscardUnknown() {
+	xxx_messageInfo_Choice.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Answer proto.InternalMessageInfo
+var xxx_messageInfo_Choice proto.InternalMessageInfo
 
-func (m *Answer) GetTitle() string {
+func (m *Choice) GetTitle() string {
 	if m != nil {
 		return m.Title
 	}
 	return ""
 }
 
-func (m *Answer) GetIdMethod() int32 {
+func (m *Choice) GetCategoryId() int32 {
 	if m != nil {
-		return m.IdMethod
+		return m.CategoryId
 	}
 	return 0
 }
 
-type ChoiceTitle struct {
+type Category struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -412,135 +412,96 @@ type ChoiceTitle struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ChoiceTitle) Reset()         { *m = ChoiceTitle{} }
-func (m *ChoiceTitle) String() string { return proto.CompactTextString(m) }
-func (*ChoiceTitle) ProtoMessage()    {}
-func (*ChoiceTitle) Descriptor() ([]byte, []int) {
+func (m *Category) Reset()         { *m = Category{} }
+func (m *Category) String() string { return proto.CompactTextString(m) }
+func (*Category) ProtoMessage()    {}
+func (*Category) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{5}
 }
 
-func (m *ChoiceTitle) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ChoiceTitle.Unmarshal(m, b)
+func (m *Category) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Category.Unmarshal(m, b)
 }
-func (m *ChoiceTitle) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ChoiceTitle.Marshal(b, m, deterministic)
+func (m *Category) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Category.Marshal(b, m, deterministic)
 }
-func (m *ChoiceTitle) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ChoiceTitle.Merge(m, src)
+func (m *Category) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Category.Merge(m, src)
 }
-func (m *ChoiceTitle) XXX_Size() int {
-	return xxx_messageInfo_ChoiceTitle.Size(m)
+func (m *Category) XXX_Size() int {
+	return xxx_messageInfo_Category.Size(m)
 }
-func (m *ChoiceTitle) XXX_DiscardUnknown() {
-	xxx_messageInfo_ChoiceTitle.DiscardUnknown(m)
+func (m *Category) XXX_DiscardUnknown() {
+	xxx_messageInfo_Category.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ChoiceTitle proto.InternalMessageInfo
+var xxx_messageInfo_Category proto.InternalMessageInfo
 
-func (m *ChoiceTitle) GetId() int32 {
+func (m *Category) GetId() int32 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-func (m *ChoiceTitle) GetTitle() string {
+func (m *Category) GetTitle() string {
 	if m != nil {
 		return m.Title
 	}
 	return ""
 }
 
-type RequestChoicesCategory struct {
-	IdMethod             int32    `protobuf:"varint,1,opt,name=id_method,json=idMethod,proto3" json:"id_method,omitempty"`
+type RequestChoices struct {
+	CategoryId           int32    `protobuf:"varint,1,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RequestChoicesCategory) Reset()         { *m = RequestChoicesCategory{} }
-func (m *RequestChoicesCategory) String() string { return proto.CompactTextString(m) }
-func (*RequestChoicesCategory) ProtoMessage()    {}
-func (*RequestChoicesCategory) Descriptor() ([]byte, []int) {
+func (m *RequestChoices) Reset()         { *m = RequestChoices{} }
+func (m *RequestChoices) String() string { return proto.CompactTextString(m) }
+func (*RequestChoices) ProtoMessage()    {}
+func (*RequestChoices) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{6}
 }
 
-func (m *RequestChoicesCategory) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RequestChoicesCategory.Unmarshal(m, b)
+func (m *RequestChoices) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RequestChoices.Unmarshal(m, b)
 }
-func (m *RequestChoicesCategory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RequestChoicesCategory.Marshal(b, m, deterministic)
+func (m *RequestChoices) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RequestChoices.Marshal(b, m, deterministic)
 }
-func (m *RequestChoicesCategory) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RequestChoicesCategory.Merge(m, src)
+func (m *RequestChoices) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RequestChoices.Merge(m, src)
 }
-func (m *RequestChoicesCategory) XXX_Size() int {
-	return xxx_messageInfo_RequestChoicesCategory.Size(m)
+func (m *RequestChoices) XXX_Size() int {
+	return xxx_messageInfo_RequestChoices.Size(m)
 }
-func (m *RequestChoicesCategory) XXX_DiscardUnknown() {
-	xxx_messageInfo_RequestChoicesCategory.DiscardUnknown(m)
+func (m *RequestChoices) XXX_DiscardUnknown() {
+	xxx_messageInfo_RequestChoices.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RequestChoicesCategory proto.InternalMessageInfo
+var xxx_messageInfo_RequestChoices proto.InternalMessageInfo
 
-func (m *RequestChoicesCategory) GetIdMethod() int32 {
+func (m *RequestChoices) GetCategoryId() int32 {
 	if m != nil {
-		return m.IdMethod
+		return m.CategoryId
 	}
 	return 0
 }
 
-type ResponseChoicesCategory struct {
-	Result               []*Answer `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
+type ResponseChoices struct {
+	Result               []*Choice `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *ResponseChoicesCategory) Reset()         { *m = ResponseChoicesCategory{} }
-func (m *ResponseChoicesCategory) String() string { return proto.CompactTextString(m) }
-func (*ResponseChoicesCategory) ProtoMessage()    {}
-func (*ResponseChoicesCategory) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ada70ba69b487c57, []int{7}
-}
-
-func (m *ResponseChoicesCategory) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseChoicesCategory.Unmarshal(m, b)
-}
-func (m *ResponseChoicesCategory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseChoicesCategory.Marshal(b, m, deterministic)
-}
-func (m *ResponseChoicesCategory) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseChoicesCategory.Merge(m, src)
-}
-func (m *ResponseChoicesCategory) XXX_Size() int {
-	return xxx_messageInfo_ResponseChoicesCategory.Size(m)
-}
-func (m *ResponseChoicesCategory) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseChoicesCategory.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ResponseChoicesCategory proto.InternalMessageInfo
-
-func (m *ResponseChoicesCategory) GetResult() []*Answer {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type ResponseChoices struct {
-	Result               []*ChoiceTitle `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
 }
 
 func (m *ResponseChoices) Reset()         { *m = ResponseChoices{} }
 func (m *ResponseChoices) String() string { return proto.CompactTextString(m) }
 func (*ResponseChoices) ProtoMessage()    {}
 func (*ResponseChoices) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ada70ba69b487c57, []int{8}
+	return fileDescriptor_ada70ba69b487c57, []int{7}
 }
 
 func (m *ResponseChoices) XXX_Unmarshal(b []byte) error {
@@ -561,7 +522,46 @@ func (m *ResponseChoices) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ResponseChoices proto.InternalMessageInfo
 
-func (m *ResponseChoices) GetResult() []*ChoiceTitle {
+func (m *ResponseChoices) GetResult() []*Choice {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ResponseCategories struct {
+	Result               []*Category `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
+}
+
+func (m *ResponseCategories) Reset()         { *m = ResponseCategories{} }
+func (m *ResponseCategories) String() string { return proto.CompactTextString(m) }
+func (*ResponseCategories) ProtoMessage()    {}
+func (*ResponseCategories) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ada70ba69b487c57, []int{8}
+}
+
+func (m *ResponseCategories) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseCategories.Unmarshal(m, b)
+}
+func (m *ResponseCategories) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseCategories.Marshal(b, m, deterministic)
+}
+func (m *ResponseCategories) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseCategories.Merge(m, src)
+}
+func (m *ResponseCategories) XXX_Size() int {
+	return xxx_messageInfo_ResponseCategories.Size(m)
+}
+func (m *ResponseCategories) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseCategories.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ResponseCategories proto.InternalMessageInfo
+
+func (m *ResponseCategories) GetResult() []*Category {
 	if m != nil {
 		return m.Result
 	}
@@ -573,58 +573,57 @@ func init() {
 	proto.RegisterType((*RequestApp)(nil), "feedbacks.RequestApp")
 	proto.RegisterType((*RequestStore)(nil), "feedbacks.RequestStore")
 	proto.RegisterType((*RequestOrder)(nil), "feedbacks.RequestOrder")
-	proto.RegisterType((*Answer)(nil), "feedbacks.Answer")
-	proto.RegisterType((*ChoiceTitle)(nil), "feedbacks.ChoiceTitle")
-	proto.RegisterType((*RequestChoicesCategory)(nil), "feedbacks.RequestChoicesCategory")
-	proto.RegisterType((*ResponseChoicesCategory)(nil), "feedbacks.ResponseChoicesCategory")
+	proto.RegisterType((*Choice)(nil), "feedbacks.Choice")
+	proto.RegisterType((*Category)(nil), "feedbacks.Category")
+	proto.RegisterType((*RequestChoices)(nil), "feedbacks.RequestChoices")
 	proto.RegisterType((*ResponseChoices)(nil), "feedbacks.ResponseChoices")
+	proto.RegisterType((*ResponseCategories)(nil), "feedbacks.ResponseCategories")
 }
 
 func init() { proto.RegisterFile("proto/feedbacks.proto", fileDescriptor_ada70ba69b487c57) }
 
 var fileDescriptor_ada70ba69b487c57 = []byte{
-	// 646 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x54, 0x4d, 0x4f, 0xdb, 0x4c,
-	0x10, 0xc6, 0x36, 0xce, 0xc7, 0x24, 0xc0, 0xcb, 0xea, 0x25, 0xf8, 0x0d, 0x2f, 0x6a, 0x70, 0x2f,
-	0xa9, 0x2a, 0x05, 0x09, 0xc4, 0xa1, 0xea, 0xa1, 0xa2, 0xb4, 0x07, 0x0e, 0x14, 0xc9, 0x45, 0x3d,
-	0x70, 0xb1, 0x9c, 0x78, 0x08, 0x56, 0x62, 0xef, 0x76, 0xbd, 0xa1, 0xf2, 0x5f, 0xe8, 0x3f, 0xe8,
-	0xbd, 0xbf, 0xa8, 0xbf, 0xa8, 0xda, 0x5d, 0x6f, 0x3e, 0x4c, 0xc2, 0x6d, 0xe7, 0x99, 0xe7, 0x99,
-	0x7d, 0xc6, 0xe3, 0x1d, 0x38, 0x60, 0x9c, 0x0a, 0x7a, 0xfa, 0x80, 0x18, 0x0f, 0xa3, 0xd1, 0x24,
-	0x1f, 0xa8, 0x98, 0x34, 0xe7, 0x40, 0xf7, 0x68, 0x4c, 0xe9, 0x78, 0x8a, 0xa7, 0x2a, 0x31, 0x9c,
-	0x3d, 0x9c, 0x62, 0xca, 0x44, 0xa1, 0x79, 0xfe, 0xff, 0x00, 0x01, 0xe6, 0x8c, 0x66, 0x39, 0xde,
-	0x4e, 0xc8, 0x2e, 0xd8, 0x74, 0xe2, 0x59, 0x3d, 0xab, 0xdf, 0x08, 0x6c, 0x3a, 0xf1, 0x7f, 0x5b,
-	0x32, 0xfd, 0x7d, 0x86, 0xb9, 0xb8, 0x64, 0x8c, 0x1c, 0x41, 0x73, 0x34, 0x4d, 0x30, 0x13, 0x61,
-	0x12, 0x2b, 0x96, 0x13, 0x34, 0x34, 0x70, 0x1d, 0x93, 0x57, 0xd0, 0x8a, 0x18, 0x0b, 0x9f, 0x90,
-	0xe7, 0x09, 0xcd, 0x3c, 0xbb, 0x67, 0xf5, 0x9b, 0x01, 0x44, 0x8c, 0x7d, 0xd3, 0x08, 0x21, 0xb0,
-	0xcd, 0x23, 0x81, 0x9e, 0xa3, 0x32, 0xea, 0x4c, 0x3a, 0x50, 0xe3, 0x18, 0xe5, 0x34, 0xf3, 0xb6,
-	0x7b, 0x4e, 0xdf, 0x0d, 0xca, 0x88, 0x78, 0x50, 0x1f, 0xd1, 0x34, 0xc5, 0x4c, 0x78, 0xae, 0xa2,
-	0x9b, 0x50, 0x56, 0x89, 0x65, 0x95, 0x9a, 0xae, 0x22, 0xcf, 0xfe, 0x2f, 0x0b, 0xda, 0xa5, 0xcd,
-	0xaf, 0x82, 0x72, 0x7c, 0xd9, 0xa8, 0xf1, 0x61, 0xaf, 0xf5, 0xe1, 0x6c, 0xf2, 0xb1, 0xfd, 0xcc,
-	0xc7, 0x28, 0x11, 0x45, 0x69, 0x4f, 0x9d, 0xd7, 0x7a, 0xfb, 0xe9, 0xcc, 0xbd, 0xdd, 0xf2, 0x18,
-	0x39, 0xf9, 0x0f, 0x1a, 0x54, 0x1e, 0x8c, 0xb5, 0x66, 0x50, 0x57, 0xf1, 0x75, 0xbc, 0x6a, 0xdb,
-	0xae, 0xd8, 0x3e, 0x81, 0x36, 0x8b, 0x0a, 0x79, 0x77, 0x28, 0x0a, 0x66, 0x3e, 0x63, 0xab, 0xc4,
-	0xee, 0x0a, 0x86, 0xe4, 0x35, 0xec, 0xc4, 0x38, 0x4d, 0x9e, 0x90, 0x17, 0x9a, 0xa3, 0x3d, 0xb7,
-	0x0d, 0xa8, 0x48, 0xa6, 0x7d, 0x77, 0x6d, 0xfb, 0xb5, 0x4d, 0xed, 0xd7, 0x57, 0xdb, 0x3f, 0x06,
-	0x90, 0xed, 0x85, 0xca, 0xba, 0xd7, 0x50, 0xc9, 0xa6, 0x44, 0x74, 0x93, 0x47, 0xa0, 0x82, 0x50,
-	0xdd, 0xd4, 0x54, 0xd9, 0x86, 0x04, 0x02, 0x79, 0xdb, 0x31, 0x40, 0x2e, 0xc7, 0x14, 0x66, 0x51,
-	0x8a, 0x1e, 0x68, 0xad, 0x42, 0xbe, 0x44, 0x29, 0x92, 0xb7, 0xb0, 0x2f, 0x78, 0x94, 0xe5, 0x8c,
-	0x72, 0x11, 0x8e, 0x68, 0xca, 0xa2, 0xac, 0xf0, 0x5a, 0x8a, 0xf5, 0xcf, 0x3c, 0x71, 0xa5, 0x71,
-	0xed, 0x70, 0x96, 0x09, 0x5e, 0x78, 0x6d, 0xe3, 0x50, 0x85, 0xf3, 0x01, 0xed, 0x2c, 0x06, 0xe4,
-	0xbf, 0x87, 0xda, 0x65, 0x96, 0xff, 0x40, 0x4e, 0xfe, 0x05, 0x57, 0x24, 0x62, 0x8a, 0xe5, 0x08,
-	0x74, 0x20, 0x6d, 0x27, 0x71, 0x98, 0xa2, 0x78, 0xa4, 0x7a, 0x00, 0x6e, 0xd0, 0x48, 0xe2, 0x1b,
-	0x15, 0xfb, 0xe7, 0xd0, 0xba, 0x7a, 0xa4, 0xc9, 0x08, 0xef, 0x14, 0x77, 0x17, 0xec, 0x72, 0x82,
-	0x6e, 0x60, 0x27, 0xf1, 0xa2, 0xa2, 0xbd, 0x54, 0xd1, 0xbf, 0x80, 0x4e, 0x39, 0x7d, 0xad, 0xcd,
-	0xaf, 0x22, 0x81, 0x63, 0xca, 0x8b, 0xd5, 0xbb, 0xac, 0xca, 0x5d, 0x9f, 0xe0, 0xd0, 0x3c, 0xcb,
-	0xaa, 0xee, 0x8d, 0x9c, 0x55, 0x3e, 0x9b, 0x0a, 0xcf, 0xea, 0x39, 0xfd, 0xd6, 0xd9, 0xfe, 0x60,
-	0xf1, 0xf6, 0x75, 0x73, 0x41, 0x49, 0xf0, 0x2f, 0x61, 0xaf, 0x52, 0x85, 0x0c, 0x2a, 0xea, 0xce,
-	0x92, 0x7a, 0xa9, 0x3b, 0x53, 0xe2, 0xec, 0x8f, 0x0d, 0xb5, 0x1b, 0x3a, 0x4c, 0xa6, 0x48, 0x2e,
-	0xc0, 0x91, 0x4b, 0xe0, 0x60, 0x49, 0xb1, 0xd8, 0x0d, 0xdd, 0x55, 0xd8, 0x6c, 0x14, 0x7f, 0x8b,
-	0xbc, 0x03, 0x57, 0x3f, 0xca, 0xc3, 0xe7, 0x42, 0x95, 0x78, 0x51, 0xaa, 0x7f, 0xa7, 0x35, 0x52,
-	0x95, 0xd8, 0x2c, 0xfd, 0x00, 0x75, 0xd3, 0x72, 0x67, 0xa0, 0x17, 0xe0, 0xc0, 0x2c, 0xc0, 0xc1,
-	0x67, 0xb9, 0x00, 0xbb, 0xdd, 0x35, 0xda, 0x52, 0xe3, 0x6f, 0x91, 0x7b, 0xd8, 0xab, 0x7e, 0xf9,
-	0x93, 0xe7, 0x2e, 0x2a, 0x94, 0xae, 0xbf, 0xb9, 0xa6, 0xe1, 0xf8, 0x5b, 0x1f, 0x77, 0xef, 0xdb,
-	0xe3, 0xa5, 0x95, 0x3d, 0xac, 0x29, 0x67, 0xe7, 0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0x0d, 0x8b,
-	0xc9, 0x62, 0xcc, 0x05, 0x00, 0x00,
+	// 635 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x54, 0xcd, 0x6e, 0xd3, 0x40,
+	0x10, 0xae, 0xed, 0x3a, 0x3f, 0x93, 0xb4, 0xd0, 0x85, 0x16, 0x37, 0xa5, 0x22, 0x98, 0x4b, 0x50,
+	0xa5, 0x14, 0x8a, 0x38, 0x20, 0x21, 0xa1, 0xb6, 0xea, 0xa1, 0x07, 0xa8, 0x64, 0x10, 0x07, 0x2e,
+	0x96, 0x63, 0x4f, 0x83, 0x15, 0xdb, 0xbb, 0xac, 0x37, 0x95, 0xfc, 0x0a, 0xbc, 0x01, 0x77, 0x1e,
+	0x84, 0x47, 0x43, 0xbb, 0xeb, 0x4d, 0xd2, 0xc6, 0xed, 0x6d, 0xe7, 0x9b, 0x99, 0x6f, 0xbe, 0xf1,
+	0x78, 0x06, 0x76, 0x19, 0xa7, 0x82, 0x1e, 0x5f, 0x23, 0x26, 0x93, 0x28, 0x9e, 0x95, 0x63, 0x65,
+	0x93, 0xee, 0x02, 0x18, 0x1c, 0x4c, 0x29, 0x9d, 0x66, 0x78, 0xac, 0x1c, 0x93, 0xf9, 0xf5, 0x31,
+	0xe6, 0x4c, 0x54, 0x3a, 0xce, 0x7f, 0x0e, 0x10, 0x60, 0xc9, 0x68, 0x51, 0xe2, 0xd5, 0x8c, 0x6c,
+	0x83, 0x4d, 0x67, 0x9e, 0x35, 0xb4, 0x46, 0x9d, 0xc0, 0xa6, 0x33, 0xff, 0xaf, 0x25, 0xdd, 0xbf,
+	0xe6, 0x58, 0x8a, 0x53, 0xc6, 0xc8, 0x01, 0x74, 0xe3, 0x2c, 0xc5, 0x42, 0x84, 0x69, 0xa2, 0xa2,
+	0x9c, 0xa0, 0xa3, 0x81, 0xcb, 0x84, 0xbc, 0x80, 0x5e, 0xc4, 0x58, 0x78, 0x83, 0xbc, 0x4c, 0x69,
+	0xe1, 0xd9, 0x43, 0x6b, 0xd4, 0x0d, 0x20, 0x62, 0xec, 0xbb, 0x46, 0x08, 0x81, 0x4d, 0x1e, 0x09,
+	0xf4, 0x1c, 0xe5, 0x51, 0x6f, 0xb2, 0x07, 0x2d, 0x8e, 0x51, 0x49, 0x0b, 0x6f, 0x73, 0xe8, 0x8c,
+	0xdc, 0xa0, 0xb6, 0x88, 0x07, 0xed, 0x98, 0xe6, 0x39, 0x16, 0xc2, 0x73, 0x55, 0xb8, 0x31, 0x25,
+	0x4b, 0x22, 0x59, 0x5a, 0x9a, 0x45, 0xbe, 0xfd, 0x3f, 0x16, 0xf4, 0x6b, 0x99, 0x5f, 0x05, 0xe5,
+	0xf8, 0xb0, 0x50, 0xa3, 0xc3, 0x6e, 0xd4, 0xe1, 0xdc, 0xa7, 0x63, 0x73, 0x4d, 0x47, 0x9c, 0x8a,
+	0xaa, 0x96, 0xa7, 0xde, 0x8d, 0xda, 0x7e, 0x3b, 0x0b, 0x6d, 0x57, 0x3c, 0x41, 0x4e, 0xf6, 0xa1,
+	0x43, 0xe5, 0xc3, 0x48, 0xeb, 0x06, 0x6d, 0x65, 0x5f, 0x26, 0xb7, 0x65, 0xdb, 0x77, 0x64, 0xbf,
+	0x84, 0x3e, 0x8b, 0x2a, 0x59, 0x3b, 0x14, 0x15, 0x33, 0x9f, 0xb1, 0x57, 0x63, 0xdf, 0x2a, 0x86,
+	0xe4, 0x15, 0x6c, 0x25, 0x98, 0xa5, 0x37, 0xc8, 0x2b, 0x1d, 0xa3, 0x35, 0xf7, 0x0d, 0xa8, 0x82,
+	0x4c, 0xfb, 0x6e, 0x63, 0xfb, 0xad, 0xfb, 0xda, 0x6f, 0xdf, 0x6e, 0xff, 0x10, 0x40, 0xb6, 0x17,
+	0x2a, 0xe9, 0x5e, 0x47, 0x39, 0xbb, 0x12, 0xd1, 0x4d, 0x1e, 0x80, 0x32, 0x42, 0x55, 0xa9, 0xab,
+	0xbc, 0x1d, 0x09, 0x04, 0xb2, 0xda, 0x21, 0x40, 0x29, 0xc7, 0x14, 0x16, 0x51, 0x8e, 0x1e, 0xe8,
+	0x5c, 0x85, 0x7c, 0x89, 0x72, 0x24, 0x47, 0xb0, 0x23, 0x78, 0x54, 0x94, 0x8c, 0x72, 0x11, 0xc6,
+	0x34, 0x67, 0x51, 0x51, 0x79, 0x3d, 0x15, 0xf5, 0x78, 0xe1, 0x38, 0xd7, 0xb8, 0x56, 0x38, 0x2f,
+	0x04, 0xaf, 0xbc, 0xbe, 0x51, 0xa8, 0xcc, 0xc5, 0x80, 0xb6, 0x96, 0x03, 0xf2, 0x3f, 0x41, 0xeb,
+	0xfc, 0x27, 0x4d, 0x63, 0x24, 0x4f, 0xc1, 0x15, 0xa9, 0xc8, 0xb0, 0x1e, 0x81, 0x36, 0xe4, 0x3f,
+	0x1c, 0x47, 0x02, 0xa7, 0x94, 0x57, 0x66, 0x04, 0x6e, 0x00, 0x06, 0xba, 0x4c, 0xfc, 0x37, 0xd0,
+	0x39, 0xaf, 0x2d, 0xb9, 0x2c, 0xf5, 0x08, 0xdd, 0xc0, 0x4e, 0x93, 0x25, 0xa5, 0xbd, 0x42, 0xe9,
+	0xbf, 0x85, 0xed, 0x7a, 0xfc, 0xba, 0x72, 0x79, 0xb7, 0x88, 0xb5, 0x56, 0xe4, 0x23, 0x3c, 0x32,
+	0x3b, 0x69, 0x72, 0x5e, 0xcb, 0x01, 0x95, 0xf3, 0x4c, 0x78, 0xd6, 0xd0, 0x19, 0xf5, 0x4e, 0x76,
+	0xc6, 0xcb, 0x85, 0xd7, 0x31, 0x41, 0x1d, 0xe0, 0x9f, 0x02, 0x59, 0x64, 0x6b, 0xce, 0x14, 0x4b,
+	0x72, 0x74, 0x87, 0xe0, 0xc9, 0x2a, 0x41, 0x5d, 0xda, 0x50, 0x9c, 0xfc, 0xb3, 0xa1, 0xf5, 0x99,
+	0x4e, 0xd2, 0x0c, 0xc9, 0x7b, 0x70, 0xe4, 0xe6, 0xef, 0xae, 0x84, 0x2f, 0x0f, 0xc2, 0xe0, 0x36,
+	0x6c, 0xce, 0x88, 0xbf, 0x41, 0x3e, 0x80, 0xab, 0x37, 0xf1, 0xd9, 0x7a, 0xa2, 0x72, 0x3c, 0x98,
+	0xaa, 0xff, 0xa1, 0x86, 0x54, 0xe5, 0xb8, 0x3f, 0xf5, 0x02, 0x60, 0xa5, 0xe5, 0xbd, 0xb1, 0x3e,
+	0x7c, 0x63, 0x73, 0xf8, 0xc6, 0x17, 0xf2, 0xf0, 0x0d, 0x0e, 0x1b, 0xd2, 0x97, 0x69, 0xfe, 0x06,
+	0x39, 0x83, 0xb6, 0xf9, 0xee, 0xfb, 0xeb, 0x1a, 0x6a, 0xd7, 0x60, 0xd0, 0x44, 0xa3, 0x7d, 0xfe,
+	0xc6, 0xd9, 0xf6, 0x8f, 0xfe, 0x74, 0xe5, 0x2a, 0x4f, 0x5a, 0x4a, 0xc4, 0xbb, 0xff, 0x01, 0x00,
+	0x00, 0xff, 0xff, 0x78, 0x9b, 0x94, 0xf4, 0xaf, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -642,8 +641,8 @@ type MobileClient interface {
 	App(ctx context.Context, in *RequestApp, opts ...grpc.CallOption) (*ResponseOk, error)
 	Store(ctx context.Context, in *RequestStore, opts ...grpc.CallOption) (*ResponseOk, error)
 	Order(ctx context.Context, in *RequestOrder, opts ...grpc.CallOption) (*ResponseOk, error)
-	Choices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseChoices, error)
-	ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...grpc.CallOption) (*ResponseChoicesCategory, error)
+	Categories(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseCategories, error)
+	Choices(ctx context.Context, in *RequestChoices, opts ...grpc.CallOption) (*ResponseChoices, error)
 }
 
 type mobileClient struct {
@@ -681,18 +680,18 @@ func (c *mobileClient) Order(ctx context.Context, in *RequestOrder, opts ...grpc
 	return out, nil
 }
 
-func (c *mobileClient) Choices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseChoices, error) {
-	out := new(ResponseChoices)
-	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Choices", in, out, opts...)
+func (c *mobileClient) Categories(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseCategories, error) {
+	out := new(ResponseCategories)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Categories", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mobileClient) ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...grpc.CallOption) (*ResponseChoicesCategory, error) {
-	out := new(ResponseChoicesCategory)
-	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/ChoicesCategory", in, out, opts...)
+func (c *mobileClient) Choices(ctx context.Context, in *RequestChoices, opts ...grpc.CallOption) (*ResponseChoices, error) {
+	out := new(ResponseChoices)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Choices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -704,8 +703,8 @@ type MobileServer interface {
 	App(context.Context, *RequestApp) (*ResponseOk, error)
 	Store(context.Context, *RequestStore) (*ResponseOk, error)
 	Order(context.Context, *RequestOrder) (*ResponseOk, error)
-	Choices(context.Context, *empty.Empty) (*ResponseChoices, error)
-	ChoicesCategory(context.Context, *RequestChoicesCategory) (*ResponseChoicesCategory, error)
+	Categories(context.Context, *empty.Empty) (*ResponseCategories, error)
+	Choices(context.Context, *RequestChoices) (*ResponseChoices, error)
 }
 
 // UnimplementedMobileServer can be embedded to have forward compatible implementations.
@@ -721,11 +720,11 @@ func (*UnimplementedMobileServer) Store(ctx context.Context, req *RequestStore) 
 func (*UnimplementedMobileServer) Order(ctx context.Context, req *RequestOrder) (*ResponseOk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Order not implemented")
 }
-func (*UnimplementedMobileServer) Choices(ctx context.Context, req *empty.Empty) (*ResponseChoices, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Choices not implemented")
+func (*UnimplementedMobileServer) Categories(ctx context.Context, req *empty.Empty) (*ResponseCategories, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Categories not implemented")
 }
-func (*UnimplementedMobileServer) ChoicesCategory(ctx context.Context, req *RequestChoicesCategory) (*ResponseChoicesCategory, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChoicesCategory not implemented")
+func (*UnimplementedMobileServer) Choices(ctx context.Context, req *RequestChoices) (*ResponseChoices, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Choices not implemented")
 }
 
 func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
@@ -786,8 +785,26 @@ func _Mobile_Order_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Mobile_Choices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_Categories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).Categories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/feedbacks.Mobile/Categories",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).Categories(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mobile_Choices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestChoices)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -799,25 +816,7 @@ func _Mobile_Choices_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: "/feedbacks.Mobile/Choices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Choices(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Mobile_ChoicesCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RequestChoicesCategory)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MobileServer).ChoicesCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/feedbacks.Mobile/ChoicesCategory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).ChoicesCategory(ctx, req.(*RequestChoicesCategory))
+		return srv.(MobileServer).Choices(ctx, req.(*RequestChoices))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -839,12 +838,12 @@ var _Mobile_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Mobile_Order_Handler,
 		},
 		{
-			MethodName: "Choices",
-			Handler:    _Mobile_Choices_Handler,
+			MethodName: "Categories",
+			Handler:    _Mobile_Categories_Handler,
 		},
 		{
-			MethodName: "ChoicesCategory",
-			Handler:    _Mobile_ChoicesCategory_Handler,
+			MethodName: "Choices",
+			Handler:    _Mobile_Choices_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

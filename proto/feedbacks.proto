@@ -12,9 +12,9 @@ service Mobile {
     }
     rpc Order (RequestOrder) returns (ResponseOk) {
     }
-    rpc Categories (google.protobuf.Empty) returns (ResponseChoices) {
+    rpc Categories (google.protobuf.Empty) returns (ResponseCategories) {
     }
-    rpc Choices (RequestChoicesCategory) returns (ResponseChoicesCategory) {
+    rpc Choices (RequestChoices) returns (ResponseChoices) {
     }
 }
 message ResponseOk {
@@ -55,24 +55,24 @@ message RequestOrder {
     string city = 13;
 }
 
-message Answer {
+message Choice {
     string title = 1;
-    int32 choice_id = 2;
+    int32 category_id = 2;
 }
 
-message ChoiceTitle {
+message Category {
     int32 id = 1;
     string title = 2;
 }
 
-message RequestChoicesCategory {
-    int32 choice_id = 1;
-}
-
-message ResponseChoicesCategory {
-    repeated Answer result = 1;
+message RequestChoices {
+    int32 category_id = 1;
 }
 
 message ResponseChoices {
-    repeated ChoiceTitle result = 1;
+    repeated Choice result = 1;
+}
+
+message ResponseCategories {
+    repeated Category result = 1;
 }
