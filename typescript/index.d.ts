@@ -9,6 +9,10 @@ export namespace feedbacks {
         public store(request: feedbacks.IRequestStore): Promise<feedbacks.ResponseOk>;
         public order(request: feedbacks.IRequestOrder, callback: feedbacks.Mobile.OrderCallback): void;
         public order(request: feedbacks.IRequestOrder): Promise<feedbacks.ResponseOk>;
+        public categories(request: google.protobuf.IEmpty, callback: feedbacks.Mobile.CategoriesCallback): void;
+        public categories(request: google.protobuf.IEmpty): Promise<feedbacks.ResponseCategories>;
+        public choices(request: feedbacks.IRequestChoices, callback: feedbacks.Mobile.ChoicesCallback): void;
+        public choices(request: feedbacks.IRequestChoices): Promise<feedbacks.ResponseChoices>;
     }
 
     namespace Mobile {
@@ -18,6 +22,10 @@ export namespace feedbacks {
         type StoreCallback = (error: (Error|null), response?: feedbacks.ResponseOk) => void;
 
         type OrderCallback = (error: (Error|null), response?: feedbacks.ResponseOk) => void;
+
+        type CategoriesCallback = (error: (Error|null), response?: feedbacks.ResponseCategories) => void;
+
+        type ChoicesCallback = (error: (Error|null), response?: feedbacks.ResponseChoices) => void;
     }
 
     interface IResponseOk {
@@ -114,6 +122,92 @@ export namespace feedbacks {
         public static encodeDelimited(message: feedbacks.IRequestOrder, writer?: $protobuf.Writer): $protobuf.Writer;
         public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): feedbacks.RequestOrder;
         public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): feedbacks.RequestOrder;
+    }
+
+    interface IChoice {
+        title?: (string|null);
+        category_id?: (number|null);
+    }
+
+    class Choice implements IChoice {
+        constructor(properties?: feedbacks.IChoice);
+        public title: string;
+        public category_id: number;
+        public static encode(message: feedbacks.IChoice, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: feedbacks.IChoice, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): feedbacks.Choice;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): feedbacks.Choice;
+    }
+
+    interface ICategory {
+        id?: (number|null);
+        title?: (string|null);
+    }
+
+    class Category implements ICategory {
+        constructor(properties?: feedbacks.ICategory);
+        public id: number;
+        public title: string;
+        public static encode(message: feedbacks.ICategory, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: feedbacks.ICategory, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): feedbacks.Category;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): feedbacks.Category;
+    }
+
+    interface IRequestChoices {
+        category_id?: (number|null);
+    }
+
+    class RequestChoices implements IRequestChoices {
+        constructor(properties?: feedbacks.IRequestChoices);
+        public category_id: number;
+        public static encode(message: feedbacks.IRequestChoices, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: feedbacks.IRequestChoices, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): feedbacks.RequestChoices;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): feedbacks.RequestChoices;
+    }
+
+    interface IResponseChoices {
+        result?: (feedbacks.IChoice[]|null);
+    }
+
+    class ResponseChoices implements IResponseChoices {
+        constructor(properties?: feedbacks.IResponseChoices);
+        public result: feedbacks.IChoice[];
+        public static encode(message: feedbacks.IResponseChoices, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: feedbacks.IResponseChoices, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): feedbacks.ResponseChoices;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): feedbacks.ResponseChoices;
+    }
+
+    interface IResponseCategories {
+        result?: (feedbacks.ICategory[]|null);
+    }
+
+    class ResponseCategories implements IResponseCategories {
+        constructor(properties?: feedbacks.IResponseCategories);
+        public result: feedbacks.ICategory[];
+        public static encode(message: feedbacks.IResponseCategories, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: feedbacks.IResponseCategories, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): feedbacks.ResponseCategories;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): feedbacks.ResponseCategories;
+    }
+}
+
+export namespace google {
+
+    namespace protobuf {
+
+        interface IEmpty {
+        }
+
+        class Empty implements IEmpty {
+            constructor(properties?: google.protobuf.IEmpty);
+            public static encode(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+            public static encodeDelimited(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.Empty;
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.Empty;
+        }
     }
 }
 
@@ -332,23 +426,6 @@ export namespace logistics {
         public static encodeDelimited(message: logistics.Istatus, writer?: $protobuf.Writer): $protobuf.Writer;
         public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): logistics.status;
         public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): logistics.status;
-    }
-}
-
-export namespace google {
-
-    namespace protobuf {
-
-        interface IEmpty {
-        }
-
-        class Empty implements IEmpty {
-            constructor(properties?: google.protobuf.IEmpty);
-            public static encode(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
-            public static encodeDelimited(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.Empty;
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.Empty;
-        }
     }
 }
 
