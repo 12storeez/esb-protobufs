@@ -357,48 +357,9 @@ func (m *RequestOrder) GetCity() string {
 	return ""
 }
 
-type ResponseAnswersStore struct {
-	Result               []*Answer `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *ResponseAnswersStore) Reset()         { *m = ResponseAnswersStore{} }
-func (m *ResponseAnswersStore) String() string { return proto.CompactTextString(m) }
-func (*ResponseAnswersStore) ProtoMessage()    {}
-func (*ResponseAnswersStore) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ada70ba69b487c57, []int{4}
-}
-
-func (m *ResponseAnswersStore) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseAnswersStore.Unmarshal(m, b)
-}
-func (m *ResponseAnswersStore) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseAnswersStore.Marshal(b, m, deterministic)
-}
-func (m *ResponseAnswersStore) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseAnswersStore.Merge(m, src)
-}
-func (m *ResponseAnswersStore) XXX_Size() int {
-	return xxx_messageInfo_ResponseAnswersStore.Size(m)
-}
-func (m *ResponseAnswersStore) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseAnswersStore.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ResponseAnswersStore proto.InternalMessageInfo
-
-func (m *ResponseAnswersStore) GetResult() []*Answer {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
 type Answer struct {
-	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Title                string   `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	IdMethod             int32    `protobuf:"varint,2,opt,name=id_method,json=idMethod,proto3" json:"id_method,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -408,7 +369,7 @@ func (m *Answer) Reset()         { *m = Answer{} }
 func (m *Answer) String() string { return proto.CompactTextString(m) }
 func (*Answer) ProtoMessage()    {}
 func (*Answer) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ada70ba69b487c57, []int{5}
+	return fileDescriptor_ada70ba69b487c57, []int{4}
 }
 
 func (m *Answer) XXX_Unmarshal(b []byte) error {
@@ -429,13 +390,6 @@ func (m *Answer) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Answer proto.InternalMessageInfo
 
-func (m *Answer) GetId() int32 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
 func (m *Answer) GetTitle() string {
 	if m != nil {
 		return m.Title
@@ -443,117 +397,171 @@ func (m *Answer) GetTitle() string {
 	return ""
 }
 
-type ResponseAnswersPickupBoxberry struct {
-	Result               []*Answer `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+func (m *Answer) GetIdMethod() int32 {
+	if m != nil {
+		return m.IdMethod
+	}
+	return 0
 }
 
-func (m *ResponseAnswersPickupBoxberry) Reset()         { *m = ResponseAnswersPickupBoxberry{} }
-func (m *ResponseAnswersPickupBoxberry) String() string { return proto.CompactTextString(m) }
-func (*ResponseAnswersPickupBoxberry) ProtoMessage()    {}
-func (*ResponseAnswersPickupBoxberry) Descriptor() ([]byte, []int) {
+type ChoiceTitle struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ChoiceTitle) Reset()         { *m = ChoiceTitle{} }
+func (m *ChoiceTitle) String() string { return proto.CompactTextString(m) }
+func (*ChoiceTitle) ProtoMessage()    {}
+func (*ChoiceTitle) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ada70ba69b487c57, []int{5}
+}
+
+func (m *ChoiceTitle) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ChoiceTitle.Unmarshal(m, b)
+}
+func (m *ChoiceTitle) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ChoiceTitle.Marshal(b, m, deterministic)
+}
+func (m *ChoiceTitle) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChoiceTitle.Merge(m, src)
+}
+func (m *ChoiceTitle) XXX_Size() int {
+	return xxx_messageInfo_ChoiceTitle.Size(m)
+}
+func (m *ChoiceTitle) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChoiceTitle.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChoiceTitle proto.InternalMessageInfo
+
+func (m *ChoiceTitle) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *ChoiceTitle) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+type RequestChoicesCategory struct {
+	IdMethod             int32    `protobuf:"varint,1,opt,name=id_method,json=idMethod,proto3" json:"id_method,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RequestChoicesCategory) Reset()         { *m = RequestChoicesCategory{} }
+func (m *RequestChoicesCategory) String() string { return proto.CompactTextString(m) }
+func (*RequestChoicesCategory) ProtoMessage()    {}
+func (*RequestChoicesCategory) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{6}
 }
 
-func (m *ResponseAnswersPickupBoxberry) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseAnswersPickupBoxberry.Unmarshal(m, b)
+func (m *RequestChoicesCategory) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RequestChoicesCategory.Unmarshal(m, b)
 }
-func (m *ResponseAnswersPickupBoxberry) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseAnswersPickupBoxberry.Marshal(b, m, deterministic)
+func (m *RequestChoicesCategory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RequestChoicesCategory.Marshal(b, m, deterministic)
 }
-func (m *ResponseAnswersPickupBoxberry) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseAnswersPickupBoxberry.Merge(m, src)
+func (m *RequestChoicesCategory) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RequestChoicesCategory.Merge(m, src)
 }
-func (m *ResponseAnswersPickupBoxberry) XXX_Size() int {
-	return xxx_messageInfo_ResponseAnswersPickupBoxberry.Size(m)
+func (m *RequestChoicesCategory) XXX_Size() int {
+	return xxx_messageInfo_RequestChoicesCategory.Size(m)
 }
-func (m *ResponseAnswersPickupBoxberry) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseAnswersPickupBoxberry.DiscardUnknown(m)
+func (m *RequestChoicesCategory) XXX_DiscardUnknown() {
+	xxx_messageInfo_RequestChoicesCategory.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResponseAnswersPickupBoxberry proto.InternalMessageInfo
+var xxx_messageInfo_RequestChoicesCategory proto.InternalMessageInfo
 
-func (m *ResponseAnswersPickupBoxberry) GetResult() []*Answer {
+func (m *RequestChoicesCategory) GetIdMethod() int32 {
 	if m != nil {
-		return m.Result
+		return m.IdMethod
 	}
-	return nil
+	return 0
 }
 
-type ResponseAnswersPickupStore struct {
+type ResponseChoicesCategory struct {
 	Result               []*Answer `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
 }
 
-func (m *ResponseAnswersPickupStore) Reset()         { *m = ResponseAnswersPickupStore{} }
-func (m *ResponseAnswersPickupStore) String() string { return proto.CompactTextString(m) }
-func (*ResponseAnswersPickupStore) ProtoMessage()    {}
-func (*ResponseAnswersPickupStore) Descriptor() ([]byte, []int) {
+func (m *ResponseChoicesCategory) Reset()         { *m = ResponseChoicesCategory{} }
+func (m *ResponseChoicesCategory) String() string { return proto.CompactTextString(m) }
+func (*ResponseChoicesCategory) ProtoMessage()    {}
+func (*ResponseChoicesCategory) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{7}
 }
 
-func (m *ResponseAnswersPickupStore) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseAnswersPickupStore.Unmarshal(m, b)
+func (m *ResponseChoicesCategory) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseChoicesCategory.Unmarshal(m, b)
 }
-func (m *ResponseAnswersPickupStore) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseAnswersPickupStore.Marshal(b, m, deterministic)
+func (m *ResponseChoicesCategory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseChoicesCategory.Marshal(b, m, deterministic)
 }
-func (m *ResponseAnswersPickupStore) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseAnswersPickupStore.Merge(m, src)
+func (m *ResponseChoicesCategory) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseChoicesCategory.Merge(m, src)
 }
-func (m *ResponseAnswersPickupStore) XXX_Size() int {
-	return xxx_messageInfo_ResponseAnswersPickupStore.Size(m)
+func (m *ResponseChoicesCategory) XXX_Size() int {
+	return xxx_messageInfo_ResponseChoicesCategory.Size(m)
 }
-func (m *ResponseAnswersPickupStore) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseAnswersPickupStore.DiscardUnknown(m)
+func (m *ResponseChoicesCategory) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseChoicesCategory.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResponseAnswersPickupStore proto.InternalMessageInfo
+var xxx_messageInfo_ResponseChoicesCategory proto.InternalMessageInfo
 
-func (m *ResponseAnswersPickupStore) GetResult() []*Answer {
+func (m *ResponseChoicesCategory) GetResult() []*Answer {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type ResponseAnswersExpressDelivery struct {
-	Result               []*Answer `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+type ResponseChoices struct {
+	Result               []*ChoiceTitle `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
-func (m *ResponseAnswersExpressDelivery) Reset()         { *m = ResponseAnswersExpressDelivery{} }
-func (m *ResponseAnswersExpressDelivery) String() string { return proto.CompactTextString(m) }
-func (*ResponseAnswersExpressDelivery) ProtoMessage()    {}
-func (*ResponseAnswersExpressDelivery) Descriptor() ([]byte, []int) {
+func (m *ResponseChoices) Reset()         { *m = ResponseChoices{} }
+func (m *ResponseChoices) String() string { return proto.CompactTextString(m) }
+func (*ResponseChoices) ProtoMessage()    {}
+func (*ResponseChoices) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{8}
 }
 
-func (m *ResponseAnswersExpressDelivery) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseAnswersExpressDelivery.Unmarshal(m, b)
+func (m *ResponseChoices) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseChoices.Unmarshal(m, b)
 }
-func (m *ResponseAnswersExpressDelivery) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseAnswersExpressDelivery.Marshal(b, m, deterministic)
+func (m *ResponseChoices) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseChoices.Marshal(b, m, deterministic)
 }
-func (m *ResponseAnswersExpressDelivery) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseAnswersExpressDelivery.Merge(m, src)
+func (m *ResponseChoices) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseChoices.Merge(m, src)
 }
-func (m *ResponseAnswersExpressDelivery) XXX_Size() int {
-	return xxx_messageInfo_ResponseAnswersExpressDelivery.Size(m)
+func (m *ResponseChoices) XXX_Size() int {
+	return xxx_messageInfo_ResponseChoices.Size(m)
 }
-func (m *ResponseAnswersExpressDelivery) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseAnswersExpressDelivery.DiscardUnknown(m)
+func (m *ResponseChoices) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseChoices.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResponseAnswersExpressDelivery proto.InternalMessageInfo
+var xxx_messageInfo_ResponseChoices proto.InternalMessageInfo
 
-func (m *ResponseAnswersExpressDelivery) GetResult() []*Answer {
+func (m *ResponseChoices) GetResult() []*ChoiceTitle {
 	if m != nil {
 		return m.Result
 	}
@@ -565,58 +573,58 @@ func init() {
 	proto.RegisterType((*RequestApp)(nil), "feedbacks.RequestApp")
 	proto.RegisterType((*RequestStore)(nil), "feedbacks.RequestStore")
 	proto.RegisterType((*RequestOrder)(nil), "feedbacks.RequestOrder")
-	proto.RegisterType((*ResponseAnswersStore)(nil), "feedbacks.ResponseAnswersStore")
 	proto.RegisterType((*Answer)(nil), "feedbacks.Answer")
-	proto.RegisterType((*ResponseAnswersPickupBoxberry)(nil), "feedbacks.ResponseAnswersPickupBoxberry")
-	proto.RegisterType((*ResponseAnswersPickupStore)(nil), "feedbacks.ResponseAnswersPickupStore")
-	proto.RegisterType((*ResponseAnswersExpressDelivery)(nil), "feedbacks.ResponseAnswersExpressDelivery")
+	proto.RegisterType((*ChoiceTitle)(nil), "feedbacks.ChoiceTitle")
+	proto.RegisterType((*RequestChoicesCategory)(nil), "feedbacks.RequestChoicesCategory")
+	proto.RegisterType((*ResponseChoicesCategory)(nil), "feedbacks.ResponseChoicesCategory")
+	proto.RegisterType((*ResponseChoices)(nil), "feedbacks.ResponseChoices")
 }
 
 func init() { proto.RegisterFile("proto/feedbacks.proto", fileDescriptor_ada70ba69b487c57) }
 
 var fileDescriptor_ada70ba69b487c57 = []byte{
-	// 650 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x55, 0x4f, 0x6f, 0xd3, 0x4e,
-	0x10, 0x4d, 0xe2, 0x24, 0x4d, 0x26, 0x6e, 0xf5, 0xeb, 0xaa, 0xed, 0xcf, 0xa4, 0x94, 0x06, 0x23,
-	0xa4, 0x54, 0x48, 0xae, 0x54, 0xc4, 0x81, 0x63, 0x0b, 0x15, 0x2a, 0x08, 0x8a, 0xcc, 0x9f, 0x03,
-	0x08, 0x59, 0x8e, 0xbd, 0xad, 0xac, 0xd8, 0xde, 0x65, 0x77, 0x53, 0xea, 0xaf, 0xc0, 0x95, 0x13,
-	0x77, 0x3e, 0x28, 0xda, 0x5d, 0x6f, 0xda, 0xa4, 0x76, 0x51, 0x6f, 0x3b, 0x6f, 0x66, 0xde, 0xbc,
-	0xc9, 0x8c, 0x27, 0xb0, 0x49, 0x19, 0x11, 0x64, 0xff, 0x0c, 0xe3, 0x78, 0x12, 0x46, 0x53, 0xee,
-	0x29, 0x1b, 0xf5, 0xe7, 0xc0, 0x70, 0xfb, 0x9c, 0x90, 0xf3, 0x14, 0xef, 0x2b, 0xc7, 0x64, 0x76,
-	0xb6, 0x8f, 0x33, 0x2a, 0x0a, 0x1d, 0xe7, 0xde, 0x07, 0xf0, 0x31, 0xa7, 0x24, 0xe7, 0xf8, 0x74,
-	0x8a, 0xd6, 0xa0, 0x45, 0xa6, 0x4e, 0x73, 0xd4, 0x1c, 0xf7, 0xfc, 0x16, 0x99, 0xba, 0x7f, 0x9a,
-	0xd2, 0xfd, 0x7d, 0x86, 0xb9, 0x38, 0xa4, 0x14, 0x6d, 0x43, 0x3f, 0x4a, 0x13, 0x9c, 0x8b, 0x20,
-	0x89, 0x55, 0x94, 0xe5, 0xf7, 0x34, 0x70, 0x12, 0xa3, 0x5d, 0x18, 0x84, 0x94, 0x06, 0x17, 0x98,
-	0xf1, 0x84, 0xe4, 0x4e, 0x6b, 0xd4, 0x1c, 0xf7, 0x7d, 0x08, 0x29, 0xfd, 0xac, 0x11, 0x84, 0xa0,
-	0xcd, 0x42, 0x81, 0x1d, 0x4b, 0x79, 0xd4, 0x1b, 0x6d, 0x41, 0x97, 0xe1, 0x90, 0x93, 0xdc, 0x69,
-	0x8f, 0xac, 0x71, 0xc7, 0x2f, 0x2d, 0xe4, 0xc0, 0x4a, 0x44, 0xb2, 0x0c, 0xe7, 0xc2, 0xe9, 0xa8,
-	0x70, 0x63, 0x4a, 0x96, 0x58, 0xb2, 0x74, 0x35, 0x8b, 0x7c, 0xbb, 0xbf, 0x9b, 0x60, 0x97, 0x32,
-	0x3f, 0x08, 0xc2, 0xf0, 0xed, 0x42, 0x8d, 0x8e, 0x56, 0xa5, 0x0e, 0xab, 0x4e, 0x47, 0xfb, 0x86,
-	0x8e, 0x28, 0x11, 0x45, 0x29, 0x4f, 0xbd, 0x2b, 0xb5, 0xfd, 0xb4, 0xe6, 0xda, 0x4e, 0x59, 0x8c,
-	0x19, 0xba, 0x07, 0x3d, 0x22, 0x1f, 0x46, 0x5a, 0xdf, 0x5f, 0x51, 0xf6, 0x49, 0xbc, 0x28, 0xbb,
-	0xb5, 0x24, 0xfb, 0x21, 0xd8, 0x34, 0x2c, 0x64, 0xed, 0x40, 0x14, 0xd4, 0xfc, 0x8c, 0x83, 0x12,
-	0xfb, 0x58, 0x50, 0x8c, 0x1e, 0xc1, 0x6a, 0x8c, 0xd3, 0xe4, 0x02, 0xb3, 0x42, 0xc7, 0x68, 0xcd,
-	0xb6, 0x01, 0x55, 0x90, 0x69, 0xbf, 0x53, 0xd9, 0x7e, 0xb7, 0xae, 0xfd, 0x95, 0xc5, 0xf6, 0x77,
-	0x00, 0x64, 0x7b, 0x81, 0x92, 0xee, 0xf4, 0x94, 0xb3, 0x2f, 0x11, 0xdd, 0xe4, 0x36, 0x28, 0x23,
-	0x50, 0x95, 0xfa, 0xca, 0xdb, 0x93, 0x80, 0x2f, 0xab, 0xed, 0x00, 0x70, 0x39, 0xa6, 0x20, 0x0f,
-	0x33, 0xec, 0x80, 0xce, 0x55, 0xc8, 0xbb, 0x30, 0xc3, 0xe8, 0x09, 0xac, 0x0b, 0x16, 0xe6, 0x9c,
-	0x12, 0x26, 0x82, 0x88, 0x64, 0x34, 0xcc, 0x0b, 0x67, 0xa0, 0xa2, 0xfe, 0x9b, 0x3b, 0x5e, 0x68,
-	0x5c, 0x2b, 0x9c, 0xe5, 0x82, 0x15, 0x8e, 0x6d, 0x14, 0x2a, 0x73, 0x3e, 0xa0, 0xd5, 0xab, 0x01,
-	0xb9, 0x87, 0xb0, 0x61, 0xb6, 0xfd, 0x30, 0xe7, 0x3f, 0x30, 0xe3, 0x7a, 0x5f, 0xf6, 0x64, 0xff,
-	0x7c, 0x96, 0x0a, 0xa7, 0x39, 0xb2, 0xc6, 0x83, 0x83, 0x75, 0xef, 0xea, 0x7b, 0xd2, 0x81, 0x7e,
-	0x19, 0xe0, 0x7a, 0xd0, 0xd5, 0x88, 0xfc, 0x58, 0xca, 0x11, 0x76, 0xfc, 0x56, 0x12, 0xa3, 0x0d,
-	0xe8, 0x88, 0x44, 0xa4, 0x66, 0xb1, 0xb4, 0xe1, 0xbe, 0x86, 0x9d, 0xa5, 0x92, 0xef, 0x93, 0x68,
-	0x3a, 0xa3, 0x47, 0xe4, 0x72, 0x82, 0x19, 0x2b, 0xee, 0x52, 0xfb, 0x15, 0x0c, 0x2b, 0xb9, 0xee,
-	0xdc, 0xc4, 0x1b, 0x78, 0xb0, 0x44, 0x74, 0x7c, 0x49, 0x19, 0xe6, 0xfc, 0x65, 0xb9, 0x29, 0x77,
-	0x20, 0x3b, 0xf8, 0xd5, 0x86, 0xee, 0x5b, 0x32, 0x49, 0x52, 0x8c, 0x9e, 0x81, 0x25, 0xef, 0xc4,
-	0xe6, 0xb5, 0xe0, 0xab, 0xf3, 0x31, 0x5c, 0x84, 0xcd, 0xd1, 0x71, 0x1b, 0xe8, 0x39, 0x74, 0x74,
-	0x0b, 0xff, 0xdf, 0x4c, 0x54, 0x8e, 0x5b, 0x53, 0xf5, 0xc6, 0x55, 0xa4, 0x2a, 0x47, 0x7d, 0xea,
-	0x09, 0xd8, 0x0b, 0x4b, 0xb0, 0xe5, 0xe9, 0x43, 0xe9, 0x99, 0x43, 0xe9, 0x1d, 0xcb, 0x43, 0x39,
-	0xdc, 0xad, 0x20, 0xb8, 0x9e, 0xe8, 0x36, 0xd0, 0x57, 0xd8, 0xac, 0x1e, 0x6e, 0x1d, 0xe7, 0xb8,
-	0x9e, 0x73, 0x91, 0xc1, 0x6d, 0xa0, 0x4f, 0x80, 0x2a, 0xa6, 0x5d, 0xc7, 0xfc, 0xf8, 0x5f, 0xcc,
-	0x46, 0xf3, 0x37, 0xd8, 0xaa, 0x99, 0x7d, 0x1d, 0xf5, 0x5e, 0x3d, 0xf5, 0x12, 0x85, 0xdb, 0x38,
-	0x5a, 0xfb, 0x62, 0x9f, 0x5f, 0xfb, 0x5b, 0x9a, 0x74, 0x15, 0xd9, 0xd3, 0xbf, 0x01, 0x00, 0x00,
-	0xff, 0xff, 0x62, 0x87, 0x2a, 0xcb, 0xb0, 0x06, 0x00, 0x00,
+	// 646 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x54, 0x4d, 0x4f, 0xdb, 0x4c,
+	0x10, 0xc6, 0x36, 0xce, 0xc7, 0x24, 0xc0, 0xcb, 0xea, 0x25, 0xf8, 0x0d, 0x2f, 0x6a, 0x70, 0x2f,
+	0xa9, 0x2a, 0x05, 0x09, 0xc4, 0xa1, 0xea, 0xa1, 0xa2, 0xb4, 0x07, 0x0e, 0x14, 0xc9, 0x45, 0x3d,
+	0x70, 0xb1, 0x9c, 0x78, 0x08, 0x56, 0x62, 0xef, 0x76, 0xbd, 0xa1, 0xf2, 0x5f, 0xe8, 0x3f, 0xe8,
+	0xbd, 0xbf, 0xa8, 0xbf, 0xa8, 0xda, 0x5d, 0x6f, 0x3e, 0x4c, 0xc2, 0x6d, 0xe7, 0x99, 0xe7, 0x99,
+	0x7d, 0xc6, 0xe3, 0x1d, 0x38, 0x60, 0x9c, 0x0a, 0x7a, 0xfa, 0x80, 0x18, 0x0f, 0xa3, 0xd1, 0x24,
+	0x1f, 0xa8, 0x98, 0x34, 0xe7, 0x40, 0xf7, 0x68, 0x4c, 0xe9, 0x78, 0x8a, 0xa7, 0x2a, 0x31, 0x9c,
+	0x3d, 0x9c, 0x62, 0xca, 0x44, 0xa1, 0x79, 0xfe, 0xff, 0x00, 0x01, 0xe6, 0x8c, 0x66, 0x39, 0xde,
+	0x4e, 0xc8, 0x2e, 0xd8, 0x74, 0xe2, 0x59, 0x3d, 0xab, 0xdf, 0x08, 0x6c, 0x3a, 0xf1, 0x7f, 0x5b,
+	0x32, 0xfd, 0x7d, 0x86, 0xb9, 0xb8, 0x64, 0x8c, 0x1c, 0x41, 0x73, 0x34, 0x4d, 0x30, 0x13, 0x61,
+	0x12, 0x2b, 0x96, 0x13, 0x34, 0x34, 0x70, 0x1d, 0x93, 0x57, 0xd0, 0x8a, 0x18, 0x0b, 0x9f, 0x90,
+	0xe7, 0x09, 0xcd, 0x3c, 0xbb, 0x67, 0xf5, 0x9b, 0x01, 0x44, 0x8c, 0x7d, 0xd3, 0x08, 0x21, 0xb0,
+	0xcd, 0x23, 0x81, 0x9e, 0xa3, 0x32, 0xea, 0x4c, 0x3a, 0x50, 0xe3, 0x18, 0xe5, 0x34, 0xf3, 0xb6,
+	0x7b, 0x4e, 0xdf, 0x0d, 0xca, 0x88, 0x78, 0x50, 0x1f, 0xd1, 0x34, 0xc5, 0x4c, 0x78, 0xae, 0xa2,
+	0x9b, 0x50, 0x56, 0x89, 0x65, 0x95, 0x9a, 0xae, 0x22, 0xcf, 0xfe, 0x2f, 0x0b, 0xda, 0xa5, 0xcd,
+	0xaf, 0x82, 0x72, 0x7c, 0xd9, 0xa8, 0xf1, 0x61, 0xaf, 0xf5, 0xe1, 0x6c, 0xf2, 0xb1, 0xfd, 0xcc,
+	0xc7, 0x28, 0x11, 0x45, 0x69, 0x4f, 0x9d, 0xd7, 0x7a, 0xfb, 0xe9, 0xcc, 0xbd, 0xdd, 0xf2, 0x18,
+	0x39, 0xf9, 0x0f, 0x1a, 0x54, 0x1e, 0x8c, 0xb5, 0x66, 0x50, 0x57, 0xf1, 0x75, 0xbc, 0x6a, 0xdb,
+	0xae, 0xd8, 0x3e, 0x81, 0x36, 0x8b, 0x0a, 0x79, 0x77, 0x28, 0x0a, 0x66, 0x3e, 0x63, 0xab, 0xc4,
+	0xee, 0x0a, 0x86, 0xe4, 0x35, 0xec, 0xc4, 0x38, 0x4d, 0x9e, 0x90, 0x17, 0x9a, 0xa3, 0x3d, 0xb7,
+	0x0d, 0xa8, 0x48, 0xa6, 0x7d, 0x77, 0x6d, 0xfb, 0xb5, 0x4d, 0xed, 0xd7, 0x57, 0xdb, 0x3f, 0x06,
+	0x90, 0xed, 0x85, 0xca, 0xba, 0xd7, 0x50, 0xc9, 0xa6, 0x44, 0x74, 0x93, 0x47, 0xa0, 0x82, 0x50,
+	0xdd, 0xd4, 0x54, 0xd9, 0x86, 0x04, 0x02, 0x79, 0xdb, 0x31, 0x40, 0x2e, 0xc7, 0x14, 0x66, 0x51,
+	0x8a, 0x1e, 0x68, 0xad, 0x42, 0xbe, 0x44, 0x29, 0x92, 0xb7, 0xb0, 0x2f, 0x78, 0x94, 0xe5, 0x8c,
+	0x72, 0x11, 0x8e, 0x68, 0xca, 0xa2, 0xac, 0xf0, 0x5a, 0x8a, 0xf5, 0xcf, 0x3c, 0x71, 0xa5, 0x71,
+	0xed, 0x70, 0x96, 0x09, 0x5e, 0x78, 0x6d, 0xe3, 0x50, 0x85, 0xf3, 0x01, 0xed, 0x2c, 0x06, 0xe4,
+	0xbf, 0x87, 0xda, 0x65, 0x96, 0xff, 0x40, 0x4e, 0xfe, 0x05, 0x57, 0x24, 0x62, 0x8a, 0xe5, 0x08,
+	0x74, 0x20, 0x6d, 0x27, 0x71, 0x98, 0xa2, 0x78, 0xa4, 0x7a, 0x00, 0x6e, 0xd0, 0x48, 0xe2, 0x1b,
+	0x15, 0xfb, 0xe7, 0xd0, 0xba, 0x7a, 0xa4, 0xc9, 0x08, 0xef, 0x14, 0x77, 0x17, 0xec, 0x72, 0x82,
+	0x6e, 0x60, 0x27, 0xf1, 0xa2, 0xa2, 0xbd, 0x54, 0xd1, 0xbf, 0x80, 0x4e, 0x39, 0x7d, 0xad, 0xcd,
+	0xaf, 0x22, 0x81, 0x63, 0xca, 0x8b, 0xd5, 0xbb, 0xac, 0xca, 0x5d, 0x9f, 0xe0, 0xd0, 0x3c, 0xcb,
+	0xaa, 0xee, 0x8d, 0x9c, 0x55, 0x3e, 0x9b, 0x0a, 0xcf, 0xea, 0x39, 0xfd, 0xd6, 0xd9, 0xfe, 0x60,
+	0xf1, 0xf6, 0x75, 0x73, 0x41, 0x49, 0xf0, 0x2f, 0x61, 0xaf, 0x52, 0x85, 0x0c, 0x2a, 0xea, 0xce,
+	0x92, 0x7a, 0xa9, 0x3b, 0x53, 0xe2, 0xec, 0x8f, 0x0d, 0xb5, 0x1b, 0x3a, 0x4c, 0xa6, 0x48, 0x2e,
+	0xc0, 0x91, 0x4b, 0xe0, 0x60, 0x49, 0xb1, 0xd8, 0x0d, 0xdd, 0x55, 0xd8, 0x6c, 0x14, 0x7f, 0x8b,
+	0xbc, 0x03, 0x57, 0x3f, 0xca, 0xc3, 0xe7, 0x42, 0x95, 0x78, 0x51, 0xaa, 0x7f, 0xa7, 0x35, 0x52,
+	0x95, 0xd8, 0x2c, 0xfd, 0x00, 0x75, 0xd3, 0x72, 0x67, 0xa0, 0x17, 0xe0, 0xc0, 0x2c, 0xc0, 0xc1,
+	0x67, 0xb9, 0x00, 0xbb, 0xdd, 0x35, 0xda, 0x52, 0xe3, 0x6f, 0x91, 0x7b, 0xd8, 0xab, 0x7e, 0xf9,
+	0x93, 0xe7, 0x2e, 0x2a, 0x94, 0xae, 0xbf, 0xb9, 0xa6, 0xe1, 0xf8, 0x5b, 0x1f, 0x77, 0xef, 0xdb,
+	0xe3, 0xa5, 0x95, 0x3d, 0xac, 0x29, 0x67, 0xe7, 0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0x0d, 0x8b,
+	0xc9, 0x62, 0xcc, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -634,10 +642,8 @@ type MobileClient interface {
 	App(ctx context.Context, in *RequestApp, opts ...grpc.CallOption) (*ResponseOk, error)
 	Store(ctx context.Context, in *RequestStore, opts ...grpc.CallOption) (*ResponseOk, error)
 	Order(ctx context.Context, in *RequestOrder, opts ...grpc.CallOption) (*ResponseOk, error)
-	AnswersStore(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersStore, error)
-	AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersPickupBoxberry, error)
-	AnswersPickupStore(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersPickupStore, error)
-	AnswersExpressDelivery(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersExpressDelivery, error)
+	Choices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseChoices, error)
+	ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...grpc.CallOption) (*ResponseChoicesCategory, error)
 }
 
 type mobileClient struct {
@@ -675,36 +681,18 @@ func (c *mobileClient) Order(ctx context.Context, in *RequestOrder, opts ...grpc
 	return out, nil
 }
 
-func (c *mobileClient) AnswersStore(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersStore, error) {
-	out := new(ResponseAnswersStore)
-	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/AnswersStore", in, out, opts...)
+func (c *mobileClient) Choices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseChoices, error) {
+	out := new(ResponseChoices)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Choices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mobileClient) AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersPickupBoxberry, error) {
-	out := new(ResponseAnswersPickupBoxberry)
-	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/AnswersPickupBoxberry", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mobileClient) AnswersPickupStore(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersPickupStore, error) {
-	out := new(ResponseAnswersPickupStore)
-	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/AnswersPickupStore", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mobileClient) AnswersExpressDelivery(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseAnswersExpressDelivery, error) {
-	out := new(ResponseAnswersExpressDelivery)
-	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/AnswersExpressDelivery", in, out, opts...)
+func (c *mobileClient) ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...grpc.CallOption) (*ResponseChoicesCategory, error) {
+	out := new(ResponseChoicesCategory)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/ChoicesCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -716,10 +704,8 @@ type MobileServer interface {
 	App(context.Context, *RequestApp) (*ResponseOk, error)
 	Store(context.Context, *RequestStore) (*ResponseOk, error)
 	Order(context.Context, *RequestOrder) (*ResponseOk, error)
-	AnswersStore(context.Context, *empty.Empty) (*ResponseAnswersStore, error)
-	AnswersPickupBoxberry(context.Context, *empty.Empty) (*ResponseAnswersPickupBoxberry, error)
-	AnswersPickupStore(context.Context, *empty.Empty) (*ResponseAnswersPickupStore, error)
-	AnswersExpressDelivery(context.Context, *empty.Empty) (*ResponseAnswersExpressDelivery, error)
+	Choices(context.Context, *empty.Empty) (*ResponseChoices, error)
+	ChoicesCategory(context.Context, *RequestChoicesCategory) (*ResponseChoicesCategory, error)
 }
 
 // UnimplementedMobileServer can be embedded to have forward compatible implementations.
@@ -735,17 +721,11 @@ func (*UnimplementedMobileServer) Store(ctx context.Context, req *RequestStore) 
 func (*UnimplementedMobileServer) Order(ctx context.Context, req *RequestOrder) (*ResponseOk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Order not implemented")
 }
-func (*UnimplementedMobileServer) AnswersStore(ctx context.Context, req *empty.Empty) (*ResponseAnswersStore, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AnswersStore not implemented")
+func (*UnimplementedMobileServer) Choices(ctx context.Context, req *empty.Empty) (*ResponseChoices, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Choices not implemented")
 }
-func (*UnimplementedMobileServer) AnswersPickupBoxberry(ctx context.Context, req *empty.Empty) (*ResponseAnswersPickupBoxberry, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AnswersPickupBoxberry not implemented")
-}
-func (*UnimplementedMobileServer) AnswersPickupStore(ctx context.Context, req *empty.Empty) (*ResponseAnswersPickupStore, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AnswersPickupStore not implemented")
-}
-func (*UnimplementedMobileServer) AnswersExpressDelivery(ctx context.Context, req *empty.Empty) (*ResponseAnswersExpressDelivery, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AnswersExpressDelivery not implemented")
+func (*UnimplementedMobileServer) ChoicesCategory(ctx context.Context, req *RequestChoicesCategory) (*ResponseChoicesCategory, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChoicesCategory not implemented")
 }
 
 func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
@@ -806,74 +786,38 @@ func _Mobile_Order_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Mobile_AnswersStore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_Choices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileServer).AnswersStore(ctx, in)
+		return srv.(MobileServer).Choices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks.Mobile/AnswersStore",
+		FullMethod: "/feedbacks.Mobile/Choices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).AnswersStore(ctx, req.(*empty.Empty))
+		return srv.(MobileServer).Choices(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Mobile_AnswersPickupBoxberry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
+func _Mobile_ChoicesCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestChoicesCategory)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileServer).AnswersPickupBoxberry(ctx, in)
+		return srv.(MobileServer).ChoicesCategory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks.Mobile/AnswersPickupBoxberry",
+		FullMethod: "/feedbacks.Mobile/ChoicesCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).AnswersPickupBoxberry(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Mobile_AnswersPickupStore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MobileServer).AnswersPickupStore(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/feedbacks.Mobile/AnswersPickupStore",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).AnswersPickupStore(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Mobile_AnswersExpressDelivery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MobileServer).AnswersExpressDelivery(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/feedbacks.Mobile/AnswersExpressDelivery",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).AnswersExpressDelivery(ctx, req.(*empty.Empty))
+		return srv.(MobileServer).ChoicesCategory(ctx, req.(*RequestChoicesCategory))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -895,20 +839,12 @@ var _Mobile_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Mobile_Order_Handler,
 		},
 		{
-			MethodName: "AnswersStore",
-			Handler:    _Mobile_AnswersStore_Handler,
+			MethodName: "Choices",
+			Handler:    _Mobile_Choices_Handler,
 		},
 		{
-			MethodName: "AnswersPickupBoxberry",
-			Handler:    _Mobile_AnswersPickupBoxberry_Handler,
-		},
-		{
-			MethodName: "AnswersPickupStore",
-			Handler:    _Mobile_AnswersPickupStore_Handler,
-		},
-		{
-			MethodName: "AnswersExpressDelivery",
-			Handler:    _Mobile_AnswersExpressDelivery_Handler,
+			MethodName: "ChoicesCategory",
+			Handler:    _Mobile_ChoicesCategory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -38,10 +38,8 @@ type MobileService interface {
 	App(ctx context.Context, in *RequestApp, opts ...client.CallOption) (*ResponseOk, error)
 	Store(ctx context.Context, in *RequestStore, opts ...client.CallOption) (*ResponseOk, error)
 	Order(ctx context.Context, in *RequestOrder, opts ...client.CallOption) (*ResponseOk, error)
-	AnswersStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersStore, error)
-	AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupBoxberry, error)
-	AnswersPickupStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupStore, error)
-	AnswersExpressDelivery(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersExpressDelivery, error)
+	Choices(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseChoices, error)
+	ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...client.CallOption) (*ResponseChoicesCategory, error)
 }
 
 type mobileService struct {
@@ -92,9 +90,9 @@ func (c *mobileService) Order(ctx context.Context, in *RequestOrder, opts ...cli
 	return out, nil
 }
 
-func (c *mobileService) AnswersStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersStore, error) {
-	req := c.c.NewRequest(c.name, "Mobile.AnswersStore", in)
-	out := new(ResponseAnswersStore)
+func (c *mobileService) Choices(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseChoices, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Choices", in)
+	out := new(ResponseChoices)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,29 +100,9 @@ func (c *mobileService) AnswersStore(ctx context.Context, in *empty.Empty, opts 
 	return out, nil
 }
 
-func (c *mobileService) AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupBoxberry, error) {
-	req := c.c.NewRequest(c.name, "Mobile.AnswersPickupBoxberry", in)
-	out := new(ResponseAnswersPickupBoxberry)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mobileService) AnswersPickupStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersPickupStore, error) {
-	req := c.c.NewRequest(c.name, "Mobile.AnswersPickupStore", in)
-	out := new(ResponseAnswersPickupStore)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mobileService) AnswersExpressDelivery(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseAnswersExpressDelivery, error) {
-	req := c.c.NewRequest(c.name, "Mobile.AnswersExpressDelivery", in)
-	out := new(ResponseAnswersExpressDelivery)
+func (c *mobileService) ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, opts ...client.CallOption) (*ResponseChoicesCategory, error) {
+	req := c.c.NewRequest(c.name, "Mobile.ChoicesCategory", in)
+	out := new(ResponseChoicesCategory)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -138,10 +116,8 @@ type MobileHandler interface {
 	App(context.Context, *RequestApp, *ResponseOk) error
 	Store(context.Context, *RequestStore, *ResponseOk) error
 	Order(context.Context, *RequestOrder, *ResponseOk) error
-	AnswersStore(context.Context, *empty.Empty, *ResponseAnswersStore) error
-	AnswersPickupBoxberry(context.Context, *empty.Empty, *ResponseAnswersPickupBoxberry) error
-	AnswersPickupStore(context.Context, *empty.Empty, *ResponseAnswersPickupStore) error
-	AnswersExpressDelivery(context.Context, *empty.Empty, *ResponseAnswersExpressDelivery) error
+	Choices(context.Context, *empty.Empty, *ResponseChoices) error
+	ChoicesCategory(context.Context, *RequestChoicesCategory, *ResponseChoicesCategory) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -149,10 +125,8 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		App(ctx context.Context, in *RequestApp, out *ResponseOk) error
 		Store(ctx context.Context, in *RequestStore, out *ResponseOk) error
 		Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error
-		AnswersStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersStore) error
-		AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupBoxberry) error
-		AnswersPickupStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupStore) error
-		AnswersExpressDelivery(ctx context.Context, in *empty.Empty, out *ResponseAnswersExpressDelivery) error
+		Choices(ctx context.Context, in *empty.Empty, out *ResponseChoices) error
+		ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, out *ResponseChoicesCategory) error
 	}
 	type Mobile struct {
 		mobile
@@ -177,18 +151,10 @@ func (h *mobileHandler) Order(ctx context.Context, in *RequestOrder, out *Respon
 	return h.MobileHandler.Order(ctx, in, out)
 }
 
-func (h *mobileHandler) AnswersStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersStore) error {
-	return h.MobileHandler.AnswersStore(ctx, in, out)
+func (h *mobileHandler) Choices(ctx context.Context, in *empty.Empty, out *ResponseChoices) error {
+	return h.MobileHandler.Choices(ctx, in, out)
 }
 
-func (h *mobileHandler) AnswersPickupBoxberry(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupBoxberry) error {
-	return h.MobileHandler.AnswersPickupBoxberry(ctx, in, out)
-}
-
-func (h *mobileHandler) AnswersPickupStore(ctx context.Context, in *empty.Empty, out *ResponseAnswersPickupStore) error {
-	return h.MobileHandler.AnswersPickupStore(ctx, in, out)
-}
-
-func (h *mobileHandler) AnswersExpressDelivery(ctx context.Context, in *empty.Empty, out *ResponseAnswersExpressDelivery) error {
-	return h.MobileHandler.AnswersExpressDelivery(ctx, in, out)
+func (h *mobileHandler) ChoicesCategory(ctx context.Context, in *RequestChoicesCategory, out *ResponseChoicesCategory) error {
+	return h.MobileHandler.ChoicesCategory(ctx, in, out)
 }

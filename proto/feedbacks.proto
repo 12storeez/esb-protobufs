@@ -12,15 +12,10 @@ service Mobile {
     }
     rpc Order (RequestOrder) returns (ResponseOk) {
     }
-    rpc AnswersStore (google.protobuf.Empty) returns (ResponseAnswersStore) {
+    rpc Choices (google.protobuf.Empty) returns (ResponseChoices) {
     }
-    rpc AnswersPickupBoxberry (google.protobuf.Empty) returns (ResponseAnswersPickupBoxberry) {
+    rpc ChoicesCategory (RequestChoicesCategory) returns (ResponseChoicesCategory) {
     }
-    rpc AnswersPickupStore (google.protobuf.Empty) returns (ResponseAnswersPickupStore) {
-    }
-    rpc AnswersExpressDelivery (google.protobuf.Empty) returns (ResponseAnswersExpressDelivery) {
-    }
-
 }
 message ResponseOk {
     bool ok = 1;
@@ -60,23 +55,24 @@ message RequestOrder {
     string city = 13;
 }
 
-message ResponseAnswersStore {
-    repeated Answer result = 1;
+message Answer {
+    string title = 1;
+    int32 id_method = 2;
 }
 
-message Answer {
+message ChoiceTitle {
     int32 id = 1;
     string title = 2;
 }
 
-message ResponseAnswersPickupBoxberry {
+message RequestChoicesCategory {
+    int32 id_method = 1;
+}
+
+message ResponseChoicesCategory {
     repeated Answer result = 1;
 }
 
-message ResponseAnswersPickupStore {
-    repeated Answer result = 1;
-}
-
-message ResponseAnswersExpressDelivery {
-    repeated Answer result = 1;
+message ResponseChoices {
+    repeated ChoiceTitle result = 1;
 }
