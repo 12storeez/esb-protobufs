@@ -12,9 +12,9 @@ service Mobile {
     }
     rpc Order (RequestOrder) returns (ResponseOk) {
     }
-    rpc Choices (google.protobuf.Empty) returns (ResponseChoices) {
+    rpc Categories (google.protobuf.Empty) returns (ResponseChoices) {
     }
-    rpc ChoicesCategory (RequestChoicesCategory) returns (ResponseChoicesCategory) {
+    rpc Choices (RequestChoicesCategory) returns (ResponseChoicesCategory) {
     }
 }
 message ResponseOk {
@@ -57,7 +57,7 @@ message RequestOrder {
 
 message Answer {
     string title = 1;
-    int32 id_method = 2;
+    int32 choice_id = 2;
 }
 
 message ChoiceTitle {
@@ -66,7 +66,7 @@ message ChoiceTitle {
 }
 
 message RequestChoicesCategory {
-    int32 id_method = 1;
+    int32 choice_id = 1;
 }
 
 message ResponseChoicesCategory {
