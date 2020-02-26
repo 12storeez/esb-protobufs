@@ -56,8 +56,9 @@ message RequestOrder {
 }
 
 message Choice {
-    string title = 1;
-    int32 category_id = 2;
+    int32 id = 1;
+    string title = 2;
+    int32 category_id = 3;
 }
 
 message Category {
