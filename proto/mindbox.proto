@@ -18,7 +18,7 @@ message PingResponse {
 }
 
 message ParamsUserInformation {
-    int32 client_id = 1;
+    string client_id = 1;
 }
 
 message ResponseUserInformation {
@@ -33,7 +33,7 @@ message ResponseUserInformation {
 }
 
 message ParamsOrdersHistory {
-    int32 client_id = 1;
+    string client_id = 1;
 }
 
 message ResponseOrdersHistory {
