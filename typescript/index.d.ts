@@ -125,12 +125,14 @@ export namespace feedbacks {
     }
 
     interface IChoice {
+        id?: (number|null);
         title?: (string|null);
         category_id?: (number|null);
     }
 
     class Choice implements IChoice {
         constructor(properties?: feedbacks.IChoice);
+        public id: number;
         public title: string;
         public category_id: number;
         public static encode(message: feedbacks.IChoice, writer?: $protobuf.Writer): $protobuf.Writer;
