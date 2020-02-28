@@ -3,8 +3,6 @@ syntax = "proto3";
 option go_package = "go/meta";
 import "google/protobuf/empty.proto";
 
-package meta;
-
 service Mobile {
     rpc Contacts (google.protobuf.Empty) returns (ResponseMobileAPIContacts) {
     }
@@ -80,7 +78,7 @@ message ResponseFaq {
 
 message BlockFaq {
     string title = 1;
-    repeated TextFaq context = 2;
+    repeated TextFaq content = 2;
 }
 
 message TextFaq {
