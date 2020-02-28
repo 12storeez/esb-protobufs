@@ -50,7 +50,7 @@ func NewMobileService(name string, c client.Client) MobileService {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
-		name = "meta"
+		name = "mobile"
 	}
 	return &mobileService{
 		c:    c,
@@ -144,7 +144,7 @@ func NewStoresService(name string, c client.Client) StoresService {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
-		name = "meta"
+		name = "stores"
 	}
 	return &storesService{
 		c:    c,
