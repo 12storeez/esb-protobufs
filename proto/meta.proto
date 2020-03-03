@@ -2,6 +2,7 @@ syntax = "proto3";
 
 option go_package = "go/meta";
 import "google/protobuf/empty.proto";
+package meta;
 
 service Mobile {
     rpc Contacts (google.protobuf.Empty) returns (ResponseMobileAPIContacts) {
