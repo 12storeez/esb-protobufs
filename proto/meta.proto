@@ -10,6 +10,8 @@ service Mobile {
     }
     rpc Faq (google.protobuf.Empty) returns (ResponseFaq) {
     }
+    rpc Countries (ParamsCountries) returns (ResponseCountries) {
+    }
 }
 
 service Stores {
@@ -21,7 +23,6 @@ service Stores {
     }
     rpc ByCity (paramsStoresByCity) returns (responseStoresByCity) {
     }
-
 }
 
 message ResponseAllOfflineStoresInfo {
@@ -111,4 +112,21 @@ message responseStoresByCity {
     string title = 2;
     int32 total = 3;
     repeated OfflineStore stores = 4;
+}
+
+message ParamsCountries {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+
+message ResponseCountries {
+    int32 total = 1;
+    repeated Country result = 2;
+}
+
+message Country {
+    int64 id = 1;
+    string country_code = 2;
+    string prefix = 3;
+    string title_ru = 4;
 }
