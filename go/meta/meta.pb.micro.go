@@ -38,6 +38,7 @@ type MobileService interface {
 	Contacts(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileAPIContacts, error)
 	About(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error)
 	Faq(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseFaq, error)
+	Countries(ctx context.Context, in *ParamsCountries, opts ...client.CallOption) (*ResponseCountries, error)
 }
 
 type mobileService struct {
@@ -88,12 +89,23 @@ func (c *mobileService) Faq(ctx context.Context, in *empty.Empty, opts ...client
 	return out, nil
 }
 
+func (c *mobileService) Countries(ctx context.Context, in *ParamsCountries, opts ...client.CallOption) (*ResponseCountries, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Countries", in)
+	out := new(ResponseCountries)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Mobile service
 
 type MobileHandler interface {
 	Contacts(context.Context, *empty.Empty, *ResponseMobileAPIContacts) error
 	About(context.Context, *empty.Empty, *ResponseMobileApiAbout) error
 	Faq(context.Context, *empty.Empty, *ResponseFaq) error
+	Countries(context.Context, *ParamsCountries, *ResponseCountries) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -101,6 +113,7 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		Contacts(ctx context.Context, in *empty.Empty, out *ResponseMobileAPIContacts) error
 		About(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error
 		Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error
+		Countries(ctx context.Context, in *ParamsCountries, out *ResponseCountries) error
 	}
 	type Mobile struct {
 		mobile
@@ -123,6 +136,10 @@ func (h *mobileHandler) About(ctx context.Context, in *empty.Empty, out *Respons
 
 func (h *mobileHandler) Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error {
 	return h.MobileHandler.Faq(ctx, in, out)
+}
+
+func (h *mobileHandler) Countries(ctx context.Context, in *ParamsCountries, out *ResponseCountries) error {
+	return h.MobileHandler.Countries(ctx, in, out)
 }
 
 // Client API for Stores service
