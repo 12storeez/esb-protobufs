@@ -47,7 +47,7 @@ func NewHealthService(name string, c client.Client) HealthService {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
-		name = "health"
+		name = "grpc.health.v1"
 	}
 	return &healthService{
 		c:    c,
