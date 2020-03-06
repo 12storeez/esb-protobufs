@@ -64,11 +64,11 @@ func (m *ResponseOk) GetOk() bool {
 	return false
 }
 
-type RequestApp struct {
+type ParamsApp struct {
 	ClientId             int64    `protobuf:"varint,1,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	AppVersion           string   `protobuf:"bytes,2,opt,name=app_version,json=appVersion,proto3" json:"app_version,omitempty"`
 	Rate                 string   `protobuf:"bytes,3,opt,name=rate,proto3" json:"rate,omitempty"`
-	Reason               []int32  `protobuf:"varint,4,rep,packed,name=reason,proto3" json:"reason,omitempty"`
+	Reasons              []int32  `protobuf:"varint,4,rep,packed,name=reasons,proto3" json:"reasons,omitempty"`
 	Comment              string   `protobuf:"bytes,5,opt,name=comment,proto3" json:"comment,omitempty"`
 	Date                 string   `protobuf:"bytes,6,opt,name=date,proto3" json:"date,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -76,77 +76,77 @@ type RequestApp struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RequestApp) Reset()         { *m = RequestApp{} }
-func (m *RequestApp) String() string { return proto.CompactTextString(m) }
-func (*RequestApp) ProtoMessage()    {}
-func (*RequestApp) Descriptor() ([]byte, []int) {
+func (m *ParamsApp) Reset()         { *m = ParamsApp{} }
+func (m *ParamsApp) String() string { return proto.CompactTextString(m) }
+func (*ParamsApp) ProtoMessage()    {}
+func (*ParamsApp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{1}
 }
 
-func (m *RequestApp) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RequestApp.Unmarshal(m, b)
+func (m *ParamsApp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsApp.Unmarshal(m, b)
 }
-func (m *RequestApp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RequestApp.Marshal(b, m, deterministic)
+func (m *ParamsApp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsApp.Marshal(b, m, deterministic)
 }
-func (m *RequestApp) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RequestApp.Merge(m, src)
+func (m *ParamsApp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsApp.Merge(m, src)
 }
-func (m *RequestApp) XXX_Size() int {
-	return xxx_messageInfo_RequestApp.Size(m)
+func (m *ParamsApp) XXX_Size() int {
+	return xxx_messageInfo_ParamsApp.Size(m)
 }
-func (m *RequestApp) XXX_DiscardUnknown() {
-	xxx_messageInfo_RequestApp.DiscardUnknown(m)
+func (m *ParamsApp) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsApp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RequestApp proto.InternalMessageInfo
+var xxx_messageInfo_ParamsApp proto.InternalMessageInfo
 
-func (m *RequestApp) GetClientId() int64 {
+func (m *ParamsApp) GetClientId() int64 {
 	if m != nil {
 		return m.ClientId
 	}
 	return 0
 }
 
-func (m *RequestApp) GetAppVersion() string {
+func (m *ParamsApp) GetAppVersion() string {
 	if m != nil {
 		return m.AppVersion
 	}
 	return ""
 }
 
-func (m *RequestApp) GetRate() string {
+func (m *ParamsApp) GetRate() string {
 	if m != nil {
 		return m.Rate
 	}
 	return ""
 }
 
-func (m *RequestApp) GetReason() []int32 {
+func (m *ParamsApp) GetReasons() []int32 {
 	if m != nil {
-		return m.Reason
+		return m.Reasons
 	}
 	return nil
 }
 
-func (m *RequestApp) GetComment() string {
+func (m *ParamsApp) GetComment() string {
 	if m != nil {
 		return m.Comment
 	}
 	return ""
 }
 
-func (m *RequestApp) GetDate() string {
+func (m *ParamsApp) GetDate() string {
 	if m != nil {
 		return m.Date
 	}
 	return ""
 }
 
-type RequestStore struct {
+type ParamsStore struct {
 	ClientId             int64    `protobuf:"varint,1,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	Rate                 string   `protobuf:"bytes,2,opt,name=rate,proto3" json:"rate,omitempty"`
-	Reason               []int32  `protobuf:"varint,3,rep,packed,name=reason,proto3" json:"reason,omitempty"`
+	Reasons              []int32  `protobuf:"varint,3,rep,packed,name=reasons,proto3" json:"reasons,omitempty"`
 	Comment              string   `protobuf:"bytes,4,opt,name=comment,proto3" json:"comment,omitempty"`
 	City                 string   `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
 	Date                 string   `protobuf:"bytes,6,opt,name=date,proto3" json:"date,omitempty"`
@@ -155,209 +155,137 @@ type RequestStore struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RequestStore) Reset()         { *m = RequestStore{} }
-func (m *RequestStore) String() string { return proto.CompactTextString(m) }
-func (*RequestStore) ProtoMessage()    {}
-func (*RequestStore) Descriptor() ([]byte, []int) {
+func (m *ParamsStore) Reset()         { *m = ParamsStore{} }
+func (m *ParamsStore) String() string { return proto.CompactTextString(m) }
+func (*ParamsStore) ProtoMessage()    {}
+func (*ParamsStore) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{2}
 }
 
-func (m *RequestStore) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RequestStore.Unmarshal(m, b)
+func (m *ParamsStore) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsStore.Unmarshal(m, b)
 }
-func (m *RequestStore) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RequestStore.Marshal(b, m, deterministic)
+func (m *ParamsStore) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsStore.Marshal(b, m, deterministic)
 }
-func (m *RequestStore) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RequestStore.Merge(m, src)
+func (m *ParamsStore) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsStore.Merge(m, src)
 }
-func (m *RequestStore) XXX_Size() int {
-	return xxx_messageInfo_RequestStore.Size(m)
+func (m *ParamsStore) XXX_Size() int {
+	return xxx_messageInfo_ParamsStore.Size(m)
 }
-func (m *RequestStore) XXX_DiscardUnknown() {
-	xxx_messageInfo_RequestStore.DiscardUnknown(m)
+func (m *ParamsStore) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsStore.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RequestStore proto.InternalMessageInfo
+var xxx_messageInfo_ParamsStore proto.InternalMessageInfo
 
-func (m *RequestStore) GetClientId() int64 {
+func (m *ParamsStore) GetClientId() int64 {
 	if m != nil {
 		return m.ClientId
 	}
 	return 0
 }
 
-func (m *RequestStore) GetRate() string {
+func (m *ParamsStore) GetRate() string {
 	if m != nil {
 		return m.Rate
 	}
 	return ""
 }
 
-func (m *RequestStore) GetReason() []int32 {
+func (m *ParamsStore) GetReasons() []int32 {
 	if m != nil {
-		return m.Reason
+		return m.Reasons
 	}
 	return nil
 }
 
-func (m *RequestStore) GetComment() string {
+func (m *ParamsStore) GetComment() string {
 	if m != nil {
 		return m.Comment
 	}
 	return ""
 }
 
-func (m *RequestStore) GetCity() string {
+func (m *ParamsStore) GetCity() string {
 	if m != nil {
 		return m.City
 	}
 	return ""
 }
 
-func (m *RequestStore) GetDate() string {
+func (m *ParamsStore) GetDate() string {
 	if m != nil {
 		return m.Date
 	}
 	return ""
 }
 
-type RequestOrder struct {
+type ParamsOrder struct {
 	OrderId              string   `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	ClientId             int64    `protobuf:"varint,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
-	PaymentType          string   `protobuf:"bytes,3,opt,name=payment_type,json=paymentType,proto3" json:"payment_type,omitempty"`
-	DeliveryType         string   `protobuf:"bytes,4,opt,name=delivery_type,json=deliveryType,proto3" json:"delivery_type,omitempty"`
-	Rate                 string   `protobuf:"bytes,5,opt,name=rate,proto3" json:"rate,omitempty"`
-	Reason               []int32  `protobuf:"varint,6,rep,packed,name=reason,proto3" json:"reason,omitempty"`
-	Comment              string   `protobuf:"bytes,7,opt,name=comment,proto3" json:"comment,omitempty"`
-	DateOrder            string   `protobuf:"bytes,8,opt,name=date_order,json=dateOrder,proto3" json:"date_order,omitempty"`
-	DateRate             string   `protobuf:"bytes,9,opt,name=date_rate,json=dateRate,proto3" json:"date_rate,omitempty"`
-	StoreName            string   `protobuf:"bytes,10,opt,name=store_name,json=storeName,proto3" json:"store_name,omitempty"`
-	TransportCompany     string   `protobuf:"bytes,11,opt,name=transport_company,json=transportCompany,proto3" json:"transport_company,omitempty"`
-	Country              string   `protobuf:"bytes,12,opt,name=country,proto3" json:"country,omitempty"`
-	City                 string   `protobuf:"bytes,13,opt,name=city,proto3" json:"city,omitempty"`
+	Rate                 string   `protobuf:"bytes,2,opt,name=rate,proto3" json:"rate,omitempty"`
+	Reasons              []int32  `protobuf:"varint,3,rep,packed,name=reasons,proto3" json:"reasons,omitempty"`
+	Comment              string   `protobuf:"bytes,4,opt,name=comment,proto3" json:"comment,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RequestOrder) Reset()         { *m = RequestOrder{} }
-func (m *RequestOrder) String() string { return proto.CompactTextString(m) }
-func (*RequestOrder) ProtoMessage()    {}
-func (*RequestOrder) Descriptor() ([]byte, []int) {
+func (m *ParamsOrder) Reset()         { *m = ParamsOrder{} }
+func (m *ParamsOrder) String() string { return proto.CompactTextString(m) }
+func (*ParamsOrder) ProtoMessage()    {}
+func (*ParamsOrder) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{3}
 }
 
-func (m *RequestOrder) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RequestOrder.Unmarshal(m, b)
+func (m *ParamsOrder) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsOrder.Unmarshal(m, b)
 }
-func (m *RequestOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RequestOrder.Marshal(b, m, deterministic)
+func (m *ParamsOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsOrder.Marshal(b, m, deterministic)
 }
-func (m *RequestOrder) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RequestOrder.Merge(m, src)
+func (m *ParamsOrder) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsOrder.Merge(m, src)
 }
-func (m *RequestOrder) XXX_Size() int {
-	return xxx_messageInfo_RequestOrder.Size(m)
+func (m *ParamsOrder) XXX_Size() int {
+	return xxx_messageInfo_ParamsOrder.Size(m)
 }
-func (m *RequestOrder) XXX_DiscardUnknown() {
-	xxx_messageInfo_RequestOrder.DiscardUnknown(m)
+func (m *ParamsOrder) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsOrder.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RequestOrder proto.InternalMessageInfo
+var xxx_messageInfo_ParamsOrder proto.InternalMessageInfo
 
-func (m *RequestOrder) GetOrderId() string {
+func (m *ParamsOrder) GetOrderId() string {
 	if m != nil {
 		return m.OrderId
 	}
 	return ""
 }
 
-func (m *RequestOrder) GetClientId() int64 {
-	if m != nil {
-		return m.ClientId
-	}
-	return 0
-}
-
-func (m *RequestOrder) GetPaymentType() string {
-	if m != nil {
-		return m.PaymentType
-	}
-	return ""
-}
-
-func (m *RequestOrder) GetDeliveryType() string {
-	if m != nil {
-		return m.DeliveryType
-	}
-	return ""
-}
-
-func (m *RequestOrder) GetRate() string {
+func (m *ParamsOrder) GetRate() string {
 	if m != nil {
 		return m.Rate
 	}
 	return ""
 }
 
-func (m *RequestOrder) GetReason() []int32 {
+func (m *ParamsOrder) GetReasons() []int32 {
 	if m != nil {
-		return m.Reason
+		return m.Reasons
 	}
 	return nil
 }
 
-func (m *RequestOrder) GetComment() string {
+func (m *ParamsOrder) GetComment() string {
 	if m != nil {
 		return m.Comment
 	}
 	return ""
 }
 
-func (m *RequestOrder) GetDateOrder() string {
-	if m != nil {
-		return m.DateOrder
-	}
-	return ""
-}
-
-func (m *RequestOrder) GetDateRate() string {
-	if m != nil {
-		return m.DateRate
-	}
-	return ""
-}
-
-func (m *RequestOrder) GetStoreName() string {
-	if m != nil {
-		return m.StoreName
-	}
-	return ""
-}
-
-func (m *RequestOrder) GetTransportCompany() string {
-	if m != nil {
-		return m.TransportCompany
-	}
-	return ""
-}
-
-func (m *RequestOrder) GetCountry() string {
-	if m != nil {
-		return m.Country
-	}
-	return ""
-}
-
-func (m *RequestOrder) GetCity() string {
-	if m != nil {
-		return m.City
-	}
-	return ""
-}
-
-type Choice struct {
+type Reason struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	CategoryId           int32    `protobuf:"varint,3,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
@@ -366,46 +294,46 @@ type Choice struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Choice) Reset()         { *m = Choice{} }
-func (m *Choice) String() string { return proto.CompactTextString(m) }
-func (*Choice) ProtoMessage()    {}
-func (*Choice) Descriptor() ([]byte, []int) {
+func (m *Reason) Reset()         { *m = Reason{} }
+func (m *Reason) String() string { return proto.CompactTextString(m) }
+func (*Reason) ProtoMessage()    {}
+func (*Reason) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{4}
 }
 
-func (m *Choice) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Choice.Unmarshal(m, b)
+func (m *Reason) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Reason.Unmarshal(m, b)
 }
-func (m *Choice) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Choice.Marshal(b, m, deterministic)
+func (m *Reason) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Reason.Marshal(b, m, deterministic)
 }
-func (m *Choice) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Choice.Merge(m, src)
+func (m *Reason) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Reason.Merge(m, src)
 }
-func (m *Choice) XXX_Size() int {
-	return xxx_messageInfo_Choice.Size(m)
+func (m *Reason) XXX_Size() int {
+	return xxx_messageInfo_Reason.Size(m)
 }
-func (m *Choice) XXX_DiscardUnknown() {
-	xxx_messageInfo_Choice.DiscardUnknown(m)
+func (m *Reason) XXX_DiscardUnknown() {
+	xxx_messageInfo_Reason.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Choice proto.InternalMessageInfo
+var xxx_messageInfo_Reason proto.InternalMessageInfo
 
-func (m *Choice) GetId() int32 {
+func (m *Reason) GetId() int32 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-func (m *Choice) GetTitle() string {
+func (m *Reason) GetTitle() string {
 	if m != nil {
 		return m.Title
 	}
 	return ""
 }
 
-func (m *Choice) GetCategoryId() int32 {
+func (m *Reason) GetCategoryId() int32 {
 	if m != nil {
 		return m.CategoryId
 	}
@@ -498,39 +426,39 @@ func (m *RequestChoices) GetCategoryId() int32 {
 	return 0
 }
 
-type ResponseChoices struct {
-	Result               []*Choice `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
+type ResponseReasons struct {
+	Result               []*Reason `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
 }
 
-func (m *ResponseChoices) Reset()         { *m = ResponseChoices{} }
-func (m *ResponseChoices) String() string { return proto.CompactTextString(m) }
-func (*ResponseChoices) ProtoMessage()    {}
-func (*ResponseChoices) Descriptor() ([]byte, []int) {
+func (m *ResponseReasons) Reset()         { *m = ResponseReasons{} }
+func (m *ResponseReasons) String() string { return proto.CompactTextString(m) }
+func (*ResponseReasons) ProtoMessage()    {}
+func (*ResponseReasons) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ada70ba69b487c57, []int{7}
 }
 
-func (m *ResponseChoices) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseChoices.Unmarshal(m, b)
+func (m *ResponseReasons) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseReasons.Unmarshal(m, b)
 }
-func (m *ResponseChoices) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseChoices.Marshal(b, m, deterministic)
+func (m *ResponseReasons) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseReasons.Marshal(b, m, deterministic)
 }
-func (m *ResponseChoices) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseChoices.Merge(m, src)
+func (m *ResponseReasons) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseReasons.Merge(m, src)
 }
-func (m *ResponseChoices) XXX_Size() int {
-	return xxx_messageInfo_ResponseChoices.Size(m)
+func (m *ResponseReasons) XXX_Size() int {
+	return xxx_messageInfo_ResponseReasons.Size(m)
 }
-func (m *ResponseChoices) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseChoices.DiscardUnknown(m)
+func (m *ResponseReasons) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseReasons.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResponseChoices proto.InternalMessageInfo
+var xxx_messageInfo_ResponseReasons proto.InternalMessageInfo
 
-func (m *ResponseChoices) GetResult() []*Choice {
+func (m *ResponseReasons) GetResult() []*Reason {
 	if m != nil {
 		return m.Result
 	}
@@ -576,62 +504,96 @@ func (m *ResponseCategories) GetResult() []*Category {
 	return nil
 }
 
+type ParamsReasonsByOrder struct {
+	Order                string   `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsReasonsByOrder) Reset()         { *m = ParamsReasonsByOrder{} }
+func (m *ParamsReasonsByOrder) String() string { return proto.CompactTextString(m) }
+func (*ParamsReasonsByOrder) ProtoMessage()    {}
+func (*ParamsReasonsByOrder) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ada70ba69b487c57, []int{9}
+}
+
+func (m *ParamsReasonsByOrder) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsReasonsByOrder.Unmarshal(m, b)
+}
+func (m *ParamsReasonsByOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsReasonsByOrder.Marshal(b, m, deterministic)
+}
+func (m *ParamsReasonsByOrder) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsReasonsByOrder.Merge(m, src)
+}
+func (m *ParamsReasonsByOrder) XXX_Size() int {
+	return xxx_messageInfo_ParamsReasonsByOrder.Size(m)
+}
+func (m *ParamsReasonsByOrder) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsReasonsByOrder.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsReasonsByOrder proto.InternalMessageInfo
+
+func (m *ParamsReasonsByOrder) GetOrder() string {
+	if m != nil {
+		return m.Order
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*ResponseOk)(nil), "feedbacks.ResponseOk")
-	proto.RegisterType((*RequestApp)(nil), "feedbacks.RequestApp")
-	proto.RegisterType((*RequestStore)(nil), "feedbacks.RequestStore")
-	proto.RegisterType((*RequestOrder)(nil), "feedbacks.RequestOrder")
-	proto.RegisterType((*Choice)(nil), "feedbacks.Choice")
+	proto.RegisterType((*ParamsApp)(nil), "feedbacks.ParamsApp")
+	proto.RegisterType((*ParamsStore)(nil), "feedbacks.ParamsStore")
+	proto.RegisterType((*ParamsOrder)(nil), "feedbacks.ParamsOrder")
+	proto.RegisterType((*Reason)(nil), "feedbacks.Reason")
 	proto.RegisterType((*Category)(nil), "feedbacks.Category")
 	proto.RegisterType((*RequestChoices)(nil), "feedbacks.RequestChoices")
-	proto.RegisterType((*ResponseChoices)(nil), "feedbacks.ResponseChoices")
+	proto.RegisterType((*ResponseReasons)(nil), "feedbacks.ResponseReasons")
 	proto.RegisterType((*ResponseCategories)(nil), "feedbacks.ResponseCategories")
+	proto.RegisterType((*ParamsReasonsByOrder)(nil), "feedbacks.ParamsReasonsByOrder")
 }
 
 func init() { proto.RegisterFile("proto/feedbacks.proto", fileDescriptor_ada70ba69b487c57) }
 
 var fileDescriptor_ada70ba69b487c57 = []byte{
-	// 633 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0xad, 0xed, 0xda, 0xb1, 0x27, 0x69, 0xa1, 0x0b, 0x2d, 0x6e, 0x4a, 0x45, 0x30, 0x97, 0xa0,
-	0x4a, 0x29, 0x14, 0x71, 0x40, 0xe2, 0xd2, 0x56, 0x3d, 0xf4, 0x00, 0x95, 0x0c, 0xe2, 0xc0, 0xc5,
-	0x72, 0xec, 0x6d, 0xb0, 0x62, 0x7b, 0x97, 0xf5, 0xa6, 0x92, 0x7f, 0x81, 0x3f, 0xe0, 0xce, 0x87,
-	0xf0, 0x69, 0x68, 0x77, 0xbd, 0x49, 0x9a, 0x38, 0x15, 0xb7, 0x9d, 0xf7, 0xde, 0xcc, 0xbc, 0xf1,
-	0xae, 0x07, 0xf6, 0x29, 0x23, 0x9c, 0x9c, 0xde, 0x62, 0x9c, 0x8e, 0xe3, 0x64, 0x5a, 0x8d, 0x64,
-	0x8c, 0xbc, 0x39, 0xd0, 0x3f, 0x9a, 0x10, 0x32, 0xc9, 0xf1, 0xa9, 0x24, 0xc6, 0xb3, 0xdb, 0x53,
-	0x5c, 0x50, 0x5e, 0x2b, 0x5d, 0xf0, 0x1c, 0x20, 0xc4, 0x15, 0x25, 0x65, 0x85, 0x6f, 0xa6, 0x68,
-	0x17, 0x4c, 0x32, 0xf5, 0x8d, 0x81, 0x31, 0x74, 0x43, 0x93, 0x4c, 0x83, 0x3f, 0x86, 0xa0, 0x7f,
-	0xce, 0x70, 0xc5, 0xcf, 0x29, 0x45, 0x47, 0xe0, 0x25, 0x79, 0x86, 0x4b, 0x1e, 0x65, 0xa9, 0x54,
-	0x59, 0xa1, 0xab, 0x80, 0xeb, 0x14, 0xbd, 0x80, 0x6e, 0x4c, 0x69, 0x74, 0x87, 0x59, 0x95, 0x91,
-	0xd2, 0x37, 0x07, 0xc6, 0xd0, 0x0b, 0x21, 0xa6, 0xf4, 0x9b, 0x42, 0x10, 0x82, 0x6d, 0x16, 0x73,
-	0xec, 0x5b, 0x92, 0x91, 0x67, 0x74, 0x00, 0x0e, 0xc3, 0x71, 0x45, 0x4a, 0x7f, 0x7b, 0x60, 0x0d,
-	0xed, 0xb0, 0x89, 0x90, 0x0f, 0x9d, 0x84, 0x14, 0x05, 0x2e, 0xb9, 0x6f, 0x4b, 0xb9, 0x0e, 0x45,
-	0x95, 0x54, 0x54, 0x71, 0x54, 0x15, 0x71, 0x0e, 0x7e, 0x1b, 0xd0, 0x6b, 0x6c, 0x7e, 0xe1, 0x84,
-	0xe1, 0x87, 0x8d, 0x6a, 0x1f, 0x66, 0xab, 0x0f, 0x6b, 0x93, 0x8f, 0xed, 0x35, 0x1f, 0x49, 0xc6,
-	0xeb, 0xc6, 0x9e, 0x3c, 0xb7, 0x7a, 0xfb, 0x65, 0xcd, 0xbd, 0xdd, 0xb0, 0x14, 0x33, 0x74, 0x08,
-	0x2e, 0x11, 0x07, 0x6d, 0xcd, 0x0b, 0x3b, 0x32, 0xbe, 0x4e, 0xef, 0xdb, 0x36, 0x57, 0x6c, 0xbf,
-	0x84, 0x1e, 0x8d, 0x6b, 0xd1, 0x3b, 0xe2, 0x35, 0xd5, 0x9f, 0xb1, 0xdb, 0x60, 0x5f, 0x6b, 0x8a,
-	0xd1, 0x2b, 0xd8, 0x49, 0x71, 0x9e, 0xdd, 0x61, 0x56, 0x2b, 0x8d, 0xf2, 0xdc, 0xd3, 0xa0, 0x14,
-	0xe9, 0xf1, 0xed, 0xd6, 0xf1, 0x9d, 0x4d, 0xe3, 0x77, 0xee, 0x8f, 0x7f, 0x0c, 0x20, 0xc6, 0x8b,
-	0xa4, 0x75, 0xdf, 0x95, 0xa4, 0x27, 0x10, 0x35, 0xe4, 0x11, 0xc8, 0x20, 0x92, 0x9d, 0x3c, 0xc9,
-	0xba, 0x02, 0x08, 0x45, 0xb7, 0x63, 0x80, 0x4a, 0x5c, 0x53, 0x54, 0xc6, 0x05, 0xf6, 0x41, 0xe5,
-	0x4a, 0xe4, 0x73, 0x5c, 0x60, 0x74, 0x02, 0x7b, 0x9c, 0xc5, 0x65, 0x45, 0x09, 0xe3, 0x51, 0x42,
-	0x0a, 0x1a, 0x97, 0xb5, 0xdf, 0x95, 0xaa, 0xc7, 0x73, 0xe2, 0x52, 0xe1, 0xca, 0xe1, 0xac, 0xe4,
-	0xac, 0xf6, 0x7b, 0xda, 0xa1, 0x0c, 0xe7, 0x17, 0xb4, 0xb3, 0xb8, 0xa0, 0xe0, 0x06, 0x9c, 0xcb,
-	0x1f, 0x24, 0x4b, 0xb0, 0x78, 0xe9, 0xcd, 0xf7, 0xb7, 0x43, 0x33, 0x4b, 0xd1, 0x53, 0xb0, 0x79,
-	0xc6, 0x73, 0xfd, 0x2a, 0x54, 0x20, 0xde, 0x74, 0x12, 0x73, 0x3c, 0x21, 0xac, 0x16, 0x57, 0x62,
-	0x49, 0x39, 0x68, 0xe8, 0x3a, 0x0d, 0xde, 0x80, 0x7b, 0xd9, 0x44, 0xff, 0x57, 0x32, 0x78, 0x0b,
-	0xbb, 0xcd, 0x73, 0x50, 0x4e, 0xaa, 0xd5, 0x26, 0xc6, 0x5a, 0x93, 0x8f, 0xf0, 0x48, 0xff, 0xa3,
-	0x3a, 0xe7, 0xb5, 0xb8, 0xb0, 0x6a, 0x96, 0x73, 0xdf, 0x18, 0x58, 0xc3, 0xee, 0xd9, 0xde, 0x68,
-	0xb1, 0x00, 0x94, 0x26, 0x6c, 0x04, 0xc1, 0x39, 0xa0, 0x79, 0xb6, 0xaa, 0x99, 0xe1, 0x0a, 0x9d,
-	0xac, 0x14, 0x78, 0xb2, 0x5c, 0xa0, 0x69, 0xad, 0x4b, 0x9c, 0xfd, 0x35, 0xc1, 0xf9, 0x44, 0xc6,
-	0x59, 0x8e, 0xd1, 0x7b, 0xb0, 0xc4, 0x26, 0xd8, 0x5f, 0x92, 0x2f, 0x16, 0x44, 0xff, 0x3e, 0xac,
-	0xd7, 0x4a, 0xb0, 0x85, 0x3e, 0x80, 0xad, 0xfe, 0xcc, 0x67, 0xeb, 0x89, 0x92, 0x78, 0x30, 0x55,
-	0xbd, 0xa9, 0x96, 0x54, 0x49, 0x6c, 0x4e, 0xbd, 0x02, 0x58, 0x1a, 0xf9, 0x60, 0xa4, 0x16, 0xe1,
-	0x48, 0x2f, 0xc2, 0xd1, 0x95, 0x58, 0x84, 0xfd, 0xe3, 0x96, 0xf4, 0x45, 0x5a, 0xb0, 0x85, 0x2e,
-	0xa0, 0xa3, 0xbf, 0xfb, 0xe1, 0xba, 0x87, 0x86, 0xea, 0xf7, 0xdb, 0xca, 0x28, 0x2e, 0xd8, 0xba,
-	0xd8, 0xfd, 0xde, 0x9b, 0x2c, 0x6d, 0xe9, 0xb1, 0x23, 0x4d, 0xbc, 0xfb, 0x17, 0x00, 0x00, 0xff,
-	0xff, 0x70, 0x71, 0x44, 0x47, 0xbf, 0x05, 0x00, 0x00,
+	// 533 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x94, 0xcf, 0x6e, 0x13, 0x31,
+	0x10, 0xc6, 0xb3, 0xd9, 0x6c, 0x9a, 0x4c, 0x50, 0x10, 0x26, 0xad, 0x96, 0x14, 0xd4, 0xc8, 0xa7,
+	0x20, 0x50, 0x02, 0x85, 0x03, 0x07, 0x2e, 0x6d, 0x55, 0xa4, 0x1e, 0x50, 0x90, 0x91, 0x38, 0x70,
+	0xa9, 0x36, 0xbb, 0xd3, 0xb0, 0xca, 0x1f, 0x1b, 0xdb, 0x41, 0xca, 0x6b, 0x70, 0xe4, 0xce, 0x7b,
+	0x22, 0xdb, 0xeb, 0x34, 0x69, 0xb6, 0x11, 0x87, 0xde, 0x3c, 0xb3, 0xf3, 0x7d, 0xf3, 0x5b, 0x8f,
+	0x6d, 0x38, 0x14, 0x92, 0x6b, 0x3e, 0xbc, 0x41, 0xcc, 0xc6, 0x49, 0x3a, 0x55, 0x03, 0x1b, 0x93,
+	0xe6, 0x3a, 0xd1, 0x3d, 0x9e, 0x70, 0x3e, 0x99, 0xe1, 0xd0, 0x7e, 0x18, 0x2f, 0x6f, 0x86, 0x38,
+	0x17, 0x7a, 0xe5, 0xea, 0xe8, 0x73, 0x00, 0x86, 0x4a, 0xf0, 0x85, 0xc2, 0xd1, 0x94, 0xb4, 0xa1,
+	0xca, 0xa7, 0x71, 0xd0, 0x0b, 0xfa, 0x0d, 0x56, 0xe5, 0x53, 0xfa, 0x37, 0x80, 0xe6, 0x97, 0x44,
+	0x26, 0x73, 0x75, 0x26, 0x04, 0x39, 0x86, 0x66, 0x3a, 0xcb, 0x71, 0xa1, 0xaf, 0xf3, 0xcc, 0x16,
+	0x85, 0xac, 0xe1, 0x12, 0x57, 0x19, 0x39, 0x81, 0x56, 0x22, 0xc4, 0xf5, 0x2f, 0x94, 0x2a, 0xe7,
+	0x8b, 0xb8, 0xda, 0x0b, 0xfa, 0x4d, 0x06, 0x89, 0x10, 0xdf, 0x5c, 0x86, 0x10, 0xa8, 0xc9, 0x44,
+	0x63, 0x1c, 0xda, 0x2f, 0x76, 0x4d, 0x62, 0x38, 0x90, 0x98, 0x28, 0xbe, 0x50, 0x71, 0xad, 0x17,
+	0xf6, 0x23, 0xe6, 0x43, 0xf3, 0x25, 0xe5, 0xf3, 0x39, 0x2e, 0x74, 0x1c, 0x59, 0x81, 0x0f, 0x8d,
+	0x4f, 0x66, 0x7c, 0xea, 0xce, 0xc7, 0xac, 0xe9, 0x9f, 0x00, 0x5a, 0x8e, 0xf3, 0xab, 0xe6, 0x12,
+	0xf7, 0x93, 0x7a, 0x90, 0x6a, 0x39, 0x48, 0x78, 0x2f, 0x48, 0x6d, 0x07, 0x24, 0xcd, 0xf5, 0xaa,
+	0xe0, 0xb3, 0xeb, 0x52, 0x38, 0xe1, 0xd9, 0x46, 0x32, 0x43, 0x49, 0x9e, 0x41, 0x83, 0x9b, 0x85,
+	0x47, 0x6b, 0xb2, 0x03, 0x1b, 0x3f, 0x1c, 0x19, 0x1d, 0x41, 0x9d, 0xd9, 0x22, 0x33, 0xd0, 0xa2,
+	0x4d, 0xc4, 0xaa, 0x79, 0x46, 0x3a, 0x10, 0xe9, 0x5c, 0xcf, 0x7c, 0x0b, 0x17, 0x98, 0xd9, 0xa5,
+	0x89, 0xc6, 0x09, 0x97, 0x2b, 0x43, 0x15, 0xda, 0x72, 0xf0, 0xa9, 0xab, 0x8c, 0xbe, 0x81, 0xc6,
+	0x45, 0x11, 0xfd, 0x9f, 0x25, 0x7d, 0x0b, 0x6d, 0x86, 0x3f, 0x97, 0xa8, 0xf4, 0xc5, 0x0f, 0x9e,
+	0xa7, 0xa8, 0xee, 0x36, 0x09, 0x76, 0x9a, 0x7c, 0x84, 0xc7, 0xfe, 0x28, 0xb2, 0xe2, 0x17, 0x5f,
+	0x42, 0x5d, 0xa2, 0x5a, 0xce, 0x74, 0x1c, 0xf4, 0xc2, 0x7e, 0xeb, 0xf4, 0xc9, 0xe0, 0xf6, 0x9c,
+	0xbb, 0x1a, 0x56, 0x14, 0xd0, 0x33, 0x20, 0x5e, 0x5d, 0xa0, 0xe6, 0xa8, 0xc8, 0xab, 0x3b, 0x06,
+	0x4f, 0x37, 0x0c, 0xfc, 0x1f, 0xad, 0x2d, 0x5e, 0x43, 0xc7, 0x0d, 0xaa, 0x68, 0x7f, 0xbe, 0x72,
+	0x13, 0xeb, 0x40, 0x64, 0x27, 0x54, 0x8c, 0xcb, 0x05, 0xa7, 0xbf, 0x43, 0xa8, 0x7f, 0xe6, 0xe3,
+	0x7c, 0x86, 0xe4, 0x3d, 0x84, 0xe6, 0x7e, 0x74, 0x36, 0xcc, 0xd7, 0xb7, 0xa6, 0x7b, 0xb8, 0xc5,
+	0xec, 0xaf, 0x1a, 0xad, 0x90, 0x0f, 0x10, 0xb9, 0xd3, 0x7a, 0xb4, 0xa3, 0xb3, 0xf9, 0xbd, 0x4a,
+	0x47, 0xb6, 0xab, 0xb4, 0xf9, 0xfb, 0x95, 0x97, 0x00, 0x1b, 0xbb, 0x73, 0x34, 0x70, 0x4f, 0xc3,
+	0xc0, 0x3f, 0x0d, 0x83, 0x4b, 0xf3, 0x34, 0x74, 0x5f, 0x94, 0xc8, 0x6f, 0x65, 0xb4, 0x42, 0x46,
+	0x66, 0xba, 0x5b, 0x7b, 0x74, 0xb2, 0x43, 0xb2, 0x5d, 0xd0, 0xed, 0x96, 0x78, 0x16, 0x25, 0xb4,
+	0x42, 0x3e, 0x6d, 0x18, 0xfa, 0x4d, 0x29, 0x67, 0xdb, 0xeb, 0x73, 0xde, 0xfe, 0xfe, 0x68, 0xb2,
+	0xf1, 0x18, 0x8e, 0xeb, 0x56, 0xfd, 0xee, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x0b, 0xa9, 0x1a,
+	0x5c, 0x26, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -646,11 +608,12 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MobileClient interface {
-	App(ctx context.Context, in *RequestApp, opts ...grpc.CallOption) (*ResponseOk, error)
-	Store(ctx context.Context, in *RequestStore, opts ...grpc.CallOption) (*ResponseOk, error)
-	Order(ctx context.Context, in *RequestOrder, opts ...grpc.CallOption) (*ResponseOk, error)
+	App(ctx context.Context, in *ParamsApp, opts ...grpc.CallOption) (*ResponseOk, error)
+	Store(ctx context.Context, in *ParamsStore, opts ...grpc.CallOption) (*ResponseOk, error)
+	Order(ctx context.Context, in *ParamsOrder, opts ...grpc.CallOption) (*ResponseOk, error)
 	Categories(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseCategories, error)
-	Choices(ctx context.Context, in *RequestChoices, opts ...grpc.CallOption) (*ResponseChoices, error)
+	ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, opts ...grpc.CallOption) (*ResponseReasons, error)
+	ReasonsByStore(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseReasons, error)
 }
 
 type mobileClient struct {
@@ -661,7 +624,7 @@ func NewMobileClient(cc *grpc.ClientConn) MobileClient {
 	return &mobileClient{cc}
 }
 
-func (c *mobileClient) App(ctx context.Context, in *RequestApp, opts ...grpc.CallOption) (*ResponseOk, error) {
+func (c *mobileClient) App(ctx context.Context, in *ParamsApp, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
 	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/App", in, out, opts...)
 	if err != nil {
@@ -670,7 +633,7 @@ func (c *mobileClient) App(ctx context.Context, in *RequestApp, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *mobileClient) Store(ctx context.Context, in *RequestStore, opts ...grpc.CallOption) (*ResponseOk, error) {
+func (c *mobileClient) Store(ctx context.Context, in *ParamsStore, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
 	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Store", in, out, opts...)
 	if err != nil {
@@ -679,7 +642,7 @@ func (c *mobileClient) Store(ctx context.Context, in *RequestStore, opts ...grpc
 	return out, nil
 }
 
-func (c *mobileClient) Order(ctx context.Context, in *RequestOrder, opts ...grpc.CallOption) (*ResponseOk, error) {
+func (c *mobileClient) Order(ctx context.Context, in *ParamsOrder, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
 	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Order", in, out, opts...)
 	if err != nil {
@@ -697,9 +660,18 @@ func (c *mobileClient) Categories(ctx context.Context, in *empty.Empty, opts ...
 	return out, nil
 }
 
-func (c *mobileClient) Choices(ctx context.Context, in *RequestChoices, opts ...grpc.CallOption) (*ResponseChoices, error) {
-	out := new(ResponseChoices)
-	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Choices", in, out, opts...)
+func (c *mobileClient) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, opts ...grpc.CallOption) (*ResponseReasons, error) {
+	out := new(ResponseReasons)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/ReasonsByOrder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileClient) ReasonsByStore(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseReasons, error) {
+	out := new(ResponseReasons)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/ReasonsByStore", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -708,31 +680,35 @@ func (c *mobileClient) Choices(ctx context.Context, in *RequestChoices, opts ...
 
 // MobileServer is the server API for Mobile service.
 type MobileServer interface {
-	App(context.Context, *RequestApp) (*ResponseOk, error)
-	Store(context.Context, *RequestStore) (*ResponseOk, error)
-	Order(context.Context, *RequestOrder) (*ResponseOk, error)
+	App(context.Context, *ParamsApp) (*ResponseOk, error)
+	Store(context.Context, *ParamsStore) (*ResponseOk, error)
+	Order(context.Context, *ParamsOrder) (*ResponseOk, error)
 	Categories(context.Context, *empty.Empty) (*ResponseCategories, error)
-	Choices(context.Context, *RequestChoices) (*ResponseChoices, error)
+	ReasonsByOrder(context.Context, *ParamsReasonsByOrder) (*ResponseReasons, error)
+	ReasonsByStore(context.Context, *empty.Empty) (*ResponseReasons, error)
 }
 
 // UnimplementedMobileServer can be embedded to have forward compatible implementations.
 type UnimplementedMobileServer struct {
 }
 
-func (*UnimplementedMobileServer) App(ctx context.Context, req *RequestApp) (*ResponseOk, error) {
+func (*UnimplementedMobileServer) App(ctx context.Context, req *ParamsApp) (*ResponseOk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method App not implemented")
 }
-func (*UnimplementedMobileServer) Store(ctx context.Context, req *RequestStore) (*ResponseOk, error) {
+func (*UnimplementedMobileServer) Store(ctx context.Context, req *ParamsStore) (*ResponseOk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Store not implemented")
 }
-func (*UnimplementedMobileServer) Order(ctx context.Context, req *RequestOrder) (*ResponseOk, error) {
+func (*UnimplementedMobileServer) Order(ctx context.Context, req *ParamsOrder) (*ResponseOk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Order not implemented")
 }
 func (*UnimplementedMobileServer) Categories(ctx context.Context, req *empty.Empty) (*ResponseCategories, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Categories not implemented")
 }
-func (*UnimplementedMobileServer) Choices(ctx context.Context, req *RequestChoices) (*ResponseChoices, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Choices not implemented")
+func (*UnimplementedMobileServer) ReasonsByOrder(ctx context.Context, req *ParamsReasonsByOrder) (*ResponseReasons, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReasonsByOrder not implemented")
+}
+func (*UnimplementedMobileServer) ReasonsByStore(ctx context.Context, req *empty.Empty) (*ResponseReasons, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReasonsByStore not implemented")
 }
 
 func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
@@ -740,7 +716,7 @@ func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
 }
 
 func _Mobile_App_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RequestApp)
+	in := new(ParamsApp)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -752,13 +728,13 @@ func _Mobile_App_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: "/feedbacks.Mobile/App",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).App(ctx, req.(*RequestApp))
+		return srv.(MobileServer).App(ctx, req.(*ParamsApp))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Mobile_Store_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RequestStore)
+	in := new(ParamsStore)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -770,13 +746,13 @@ func _Mobile_Store_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/feedbacks.Mobile/Store",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Store(ctx, req.(*RequestStore))
+		return srv.(MobileServer).Store(ctx, req.(*ParamsStore))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Mobile_Order_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RequestOrder)
+	in := new(ParamsOrder)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -788,7 +764,7 @@ func _Mobile_Order_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/feedbacks.Mobile/Order",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Order(ctx, req.(*RequestOrder))
+		return srv.(MobileServer).Order(ctx, req.(*ParamsOrder))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -811,20 +787,38 @@ func _Mobile_Categories_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Mobile_Choices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RequestChoices)
+func _Mobile_ReasonsByOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsReasonsByOrder)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileServer).Choices(ctx, in)
+		return srv.(MobileServer).ReasonsByOrder(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks.Mobile/Choices",
+		FullMethod: "/feedbacks.Mobile/ReasonsByOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Choices(ctx, req.(*RequestChoices))
+		return srv.(MobileServer).ReasonsByOrder(ctx, req.(*ParamsReasonsByOrder))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mobile_ReasonsByStore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).ReasonsByStore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/feedbacks.Mobile/ReasonsByStore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).ReasonsByStore(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -850,8 +844,12 @@ var _Mobile_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Mobile_Categories_Handler,
 		},
 		{
-			MethodName: "Choices",
-			Handler:    _Mobile_Choices_Handler,
+			MethodName: "ReasonsByOrder",
+			Handler:    _Mobile_ReasonsByOrder_Handler,
+		},
+		{
+			MethodName: "ReasonsByStore",
+			Handler:    _Mobile_ReasonsByStore_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

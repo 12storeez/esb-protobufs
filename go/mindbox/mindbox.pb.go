@@ -371,6 +371,524 @@ func (m *Order) GetAcquiredBalanceChange() float64 {
 	return 0
 }
 
+type ParamsAuthorization struct {
+	Endpoint             string   `protobuf:"bytes,1,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	DeviceUuid           string   `protobuf:"bytes,2,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsAuthorization) Reset()         { *m = ParamsAuthorization{} }
+func (m *ParamsAuthorization) String() string { return proto.CompactTextString(m) }
+func (*ParamsAuthorization) ProtoMessage()    {}
+func (*ParamsAuthorization) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{6}
+}
+
+func (m *ParamsAuthorization) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsAuthorization.Unmarshal(m, b)
+}
+func (m *ParamsAuthorization) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsAuthorization.Marshal(b, m, deterministic)
+}
+func (m *ParamsAuthorization) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsAuthorization.Merge(m, src)
+}
+func (m *ParamsAuthorization) XXX_Size() int {
+	return xxx_messageInfo_ParamsAuthorization.Size(m)
+}
+func (m *ParamsAuthorization) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsAuthorization.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsAuthorization proto.InternalMessageInfo
+
+func (m *ParamsAuthorization) GetEndpoint() string {
+	if m != nil {
+		return m.Endpoint
+	}
+	return ""
+}
+
+func (m *ParamsAuthorization) GetDeviceUuid() string {
+	if m != nil {
+		return m.DeviceUuid
+	}
+	return ""
+}
+
+type ResponseAuthorization struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ResponseAuthorization) Reset()         { *m = ResponseAuthorization{} }
+func (m *ResponseAuthorization) String() string { return proto.CompactTextString(m) }
+func (*ResponseAuthorization) ProtoMessage()    {}
+func (*ResponseAuthorization) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{7}
+}
+
+func (m *ResponseAuthorization) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseAuthorization.Unmarshal(m, b)
+}
+func (m *ResponseAuthorization) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseAuthorization.Marshal(b, m, deterministic)
+}
+func (m *ResponseAuthorization) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseAuthorization.Merge(m, src)
+}
+func (m *ResponseAuthorization) XXX_Size() int {
+	return xxx_messageInfo_ResponseAuthorization.Size(m)
+}
+func (m *ResponseAuthorization) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseAuthorization.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ResponseAuthorization proto.InternalMessageInfo
+
+func (m *ResponseAuthorization) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
+type ParamsRegistration struct {
+	Endpoint             string   `protobuf:"bytes,1,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	DeviceUuid           string   `protobuf:"bytes,2,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
+	ClientId             string   `protobuf:"bytes,3,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	Email                string   `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	FullName             string   `protobuf:"bytes,5,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	MobilePhone          string   `protobuf:"bytes,6,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsRegistration) Reset()         { *m = ParamsRegistration{} }
+func (m *ParamsRegistration) String() string { return proto.CompactTextString(m) }
+func (*ParamsRegistration) ProtoMessage()    {}
+func (*ParamsRegistration) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{8}
+}
+
+func (m *ParamsRegistration) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsRegistration.Unmarshal(m, b)
+}
+func (m *ParamsRegistration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsRegistration.Marshal(b, m, deterministic)
+}
+func (m *ParamsRegistration) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsRegistration.Merge(m, src)
+}
+func (m *ParamsRegistration) XXX_Size() int {
+	return xxx_messageInfo_ParamsRegistration.Size(m)
+}
+func (m *ParamsRegistration) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsRegistration.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsRegistration proto.InternalMessageInfo
+
+func (m *ParamsRegistration) GetEndpoint() string {
+	if m != nil {
+		return m.Endpoint
+	}
+	return ""
+}
+
+func (m *ParamsRegistration) GetDeviceUuid() string {
+	if m != nil {
+		return m.DeviceUuid
+	}
+	return ""
+}
+
+func (m *ParamsRegistration) GetClientId() string {
+	if m != nil {
+		return m.ClientId
+	}
+	return ""
+}
+
+func (m *ParamsRegistration) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *ParamsRegistration) GetFullName() string {
+	if m != nil {
+		return m.FullName
+	}
+	return ""
+}
+
+func (m *ParamsRegistration) GetMobilePhone() string {
+	if m != nil {
+		return m.MobilePhone
+	}
+	return ""
+}
+
+type ResponseRegistration struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ResponseRegistration) Reset()         { *m = ResponseRegistration{} }
+func (m *ResponseRegistration) String() string { return proto.CompactTextString(m) }
+func (*ResponseRegistration) ProtoMessage()    {}
+func (*ResponseRegistration) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{9}
+}
+
+func (m *ResponseRegistration) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseRegistration.Unmarshal(m, b)
+}
+func (m *ResponseRegistration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseRegistration.Marshal(b, m, deterministic)
+}
+func (m *ResponseRegistration) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseRegistration.Merge(m, src)
+}
+func (m *ResponseRegistration) XXX_Size() int {
+	return xxx_messageInfo_ResponseRegistration.Size(m)
+}
+func (m *ResponseRegistration) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseRegistration.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ResponseRegistration proto.InternalMessageInfo
+
+func (m *ResponseRegistration) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
+type ParamsCode struct {
+	Endpoint             string   `protobuf:"bytes,1,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	MobilePhone          string   `protobuf:"bytes,2,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsCode) Reset()         { *m = ParamsCode{} }
+func (m *ParamsCode) String() string { return proto.CompactTextString(m) }
+func (*ParamsCode) ProtoMessage()    {}
+func (*ParamsCode) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{10}
+}
+
+func (m *ParamsCode) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsCode.Unmarshal(m, b)
+}
+func (m *ParamsCode) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsCode.Marshal(b, m, deterministic)
+}
+func (m *ParamsCode) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsCode.Merge(m, src)
+}
+func (m *ParamsCode) XXX_Size() int {
+	return xxx_messageInfo_ParamsCode.Size(m)
+}
+func (m *ParamsCode) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsCode.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsCode proto.InternalMessageInfo
+
+func (m *ParamsCode) GetEndpoint() string {
+	if m != nil {
+		return m.Endpoint
+	}
+	return ""
+}
+
+func (m *ParamsCode) GetMobilePhone() string {
+	if m != nil {
+		return m.MobilePhone
+	}
+	return ""
+}
+
+type ResponseCode struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ResponseCode) Reset()         { *m = ResponseCode{} }
+func (m *ResponseCode) String() string { return proto.CompactTextString(m) }
+func (*ResponseCode) ProtoMessage()    {}
+func (*ResponseCode) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{11}
+}
+
+func (m *ResponseCode) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseCode.Unmarshal(m, b)
+}
+func (m *ResponseCode) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseCode.Marshal(b, m, deterministic)
+}
+func (m *ResponseCode) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseCode.Merge(m, src)
+}
+func (m *ResponseCode) XXX_Size() int {
+	return xxx_messageInfo_ResponseCode.Size(m)
+}
+func (m *ResponseCode) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseCode.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ResponseCode proto.InternalMessageInfo
+
+func (m *ResponseCode) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
+type ParamsCheckCode struct {
+	Endpoint             string   `protobuf:"bytes,1,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	MobilePhone          string   `protobuf:"bytes,2,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
+	Code                 string   `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsCheckCode) Reset()         { *m = ParamsCheckCode{} }
+func (m *ParamsCheckCode) String() string { return proto.CompactTextString(m) }
+func (*ParamsCheckCode) ProtoMessage()    {}
+func (*ParamsCheckCode) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{12}
+}
+
+func (m *ParamsCheckCode) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsCheckCode.Unmarshal(m, b)
+}
+func (m *ParamsCheckCode) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsCheckCode.Marshal(b, m, deterministic)
+}
+func (m *ParamsCheckCode) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsCheckCode.Merge(m, src)
+}
+func (m *ParamsCheckCode) XXX_Size() int {
+	return xxx_messageInfo_ParamsCheckCode.Size(m)
+}
+func (m *ParamsCheckCode) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsCheckCode.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsCheckCode proto.InternalMessageInfo
+
+func (m *ParamsCheckCode) GetEndpoint() string {
+	if m != nil {
+		return m.Endpoint
+	}
+	return ""
+}
+
+func (m *ParamsCheckCode) GetMobilePhone() string {
+	if m != nil {
+		return m.MobilePhone
+	}
+	return ""
+}
+
+func (m *ParamsCheckCode) GetCode() string {
+	if m != nil {
+		return m.Code
+	}
+	return ""
+}
+
+type ResponseCheckCode struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	Status               string   `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	ClientId             string   `protobuf:"bytes,3,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	MindboxId            int64    `protobuf:"varint,4,opt,name=mindbox_id,json=mindboxId,proto3" json:"mindbox_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ResponseCheckCode) Reset()         { *m = ResponseCheckCode{} }
+func (m *ResponseCheckCode) String() string { return proto.CompactTextString(m) }
+func (*ResponseCheckCode) ProtoMessage()    {}
+func (*ResponseCheckCode) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{13}
+}
+
+func (m *ResponseCheckCode) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseCheckCode.Unmarshal(m, b)
+}
+func (m *ResponseCheckCode) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseCheckCode.Marshal(b, m, deterministic)
+}
+func (m *ResponseCheckCode) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseCheckCode.Merge(m, src)
+}
+func (m *ResponseCheckCode) XXX_Size() int {
+	return xxx_messageInfo_ResponseCheckCode.Size(m)
+}
+func (m *ResponseCheckCode) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseCheckCode.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ResponseCheckCode proto.InternalMessageInfo
+
+func (m *ResponseCheckCode) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
+func (m *ResponseCheckCode) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *ResponseCheckCode) GetClientId() string {
+	if m != nil {
+		return m.ClientId
+	}
+	return ""
+}
+
+func (m *ResponseCheckCode) GetMindboxId() int64 {
+	if m != nil {
+		return m.MindboxId
+	}
+	return 0
+}
+
+type ParamsCreation struct {
+	Endpoint             string   `protobuf:"bytes,1,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	DeviceUuid           string   `protobuf:"bytes,2,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
+	Id                   string   `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
+	Vendor               string   `protobuf:"bytes,4,opt,name=vendor,proto3" json:"vendor,omitempty"`
+	Model                string   `protobuf:"bytes,5,opt,name=model,proto3" json:"model,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsCreation) Reset()         { *m = ParamsCreation{} }
+func (m *ParamsCreation) String() string { return proto.CompactTextString(m) }
+func (*ParamsCreation) ProtoMessage()    {}
+func (*ParamsCreation) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{14}
+}
+
+func (m *ParamsCreation) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsCreation.Unmarshal(m, b)
+}
+func (m *ParamsCreation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsCreation.Marshal(b, m, deterministic)
+}
+func (m *ParamsCreation) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsCreation.Merge(m, src)
+}
+func (m *ParamsCreation) XXX_Size() int {
+	return xxx_messageInfo_ParamsCreation.Size(m)
+}
+func (m *ParamsCreation) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsCreation.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsCreation proto.InternalMessageInfo
+
+func (m *ParamsCreation) GetEndpoint() string {
+	if m != nil {
+		return m.Endpoint
+	}
+	return ""
+}
+
+func (m *ParamsCreation) GetDeviceUuid() string {
+	if m != nil {
+		return m.DeviceUuid
+	}
+	return ""
+}
+
+func (m *ParamsCreation) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *ParamsCreation) GetVendor() string {
+	if m != nil {
+		return m.Vendor
+	}
+	return ""
+}
+
+func (m *ParamsCreation) GetModel() string {
+	if m != nil {
+		return m.Model
+	}
+	return ""
+}
+
+type ResponseCreation struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ResponseCreation) Reset()         { *m = ResponseCreation{} }
+func (m *ResponseCreation) String() string { return proto.CompactTextString(m) }
+func (*ResponseCreation) ProtoMessage()    {}
+func (*ResponseCreation) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{15}
+}
+
+func (m *ResponseCreation) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseCreation.Unmarshal(m, b)
+}
+func (m *ResponseCreation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseCreation.Marshal(b, m, deterministic)
+}
+func (m *ResponseCreation) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseCreation.Merge(m, src)
+}
+func (m *ResponseCreation) XXX_Size() int {
+	return xxx_messageInfo_ResponseCreation.Size(m)
+}
+func (m *ResponseCreation) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseCreation.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ResponseCreation proto.InternalMessageInfo
+
+func (m *ResponseCreation) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*PingResponse)(nil), "mindbox.PingResponse")
 	proto.RegisterType((*ParamsUserInformation)(nil), "mindbox.ParamsUserInformation")
@@ -378,49 +896,81 @@ func init() {
 	proto.RegisterType((*ParamsOrdersHistory)(nil), "mindbox.ParamsOrdersHistory")
 	proto.RegisterType((*ResponseOrdersHistory)(nil), "mindbox.ResponseOrdersHistory")
 	proto.RegisterType((*Order)(nil), "mindbox.order")
+	proto.RegisterType((*ParamsAuthorization)(nil), "mindbox.ParamsAuthorization")
+	proto.RegisterType((*ResponseAuthorization)(nil), "mindbox.ResponseAuthorization")
+	proto.RegisterType((*ParamsRegistration)(nil), "mindbox.ParamsRegistration")
+	proto.RegisterType((*ResponseRegistration)(nil), "mindbox.ResponseRegistration")
+	proto.RegisterType((*ParamsCode)(nil), "mindbox.ParamsCode")
+	proto.RegisterType((*ResponseCode)(nil), "mindbox.ResponseCode")
+	proto.RegisterType((*ParamsCheckCode)(nil), "mindbox.ParamsCheckCode")
+	proto.RegisterType((*ResponseCheckCode)(nil), "mindbox.ResponseCheckCode")
+	proto.RegisterType((*ParamsCreation)(nil), "mindbox.ParamsCreation")
+	proto.RegisterType((*ResponseCreation)(nil), "mindbox.ResponseCreation")
 }
 
 func init() { proto.RegisterFile("proto/mindbox.proto", fileDescriptor_c1ddbb12eed38be6) }
 
 var fileDescriptor_c1ddbb12eed38be6 = []byte{
-	// 589 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x94, 0xcd, 0x72, 0xd3, 0x30,
-	0x10, 0xc7, 0x6b, 0xb7, 0xe9, 0xc7, 0x26, 0x4d, 0x40, 0x6d, 0x5a, 0x4f, 0x0a, 0x6d, 0x30, 0x03,
-	0x84, 0x1e, 0xd2, 0x99, 0xd2, 0x81, 0x73, 0x3f, 0x98, 0xa1, 0x07, 0x68, 0xc6, 0xd3, 0x5e, 0xb8,
-	0x18, 0xd9, 0x52, 0x53, 0x0d, 0xb6, 0x64, 0x64, 0x85, 0x21, 0xef, 0x02, 0x2f, 0xc8, 0x53, 0x30,
-	0x5e, 0xc9, 0x29, 0x09, 0x1f, 0x37, 0xef, 0xef, 0xbf, 0x5a, 0xad, 0x77, 0xfd, 0x37, 0x6c, 0x15,
-	0x5a, 0x19, 0x75, 0x94, 0x0b, 0xc9, 0x12, 0xf5, 0x6d, 0x88, 0x11, 0x59, 0x73, 0x61, 0x6f, 0x6f,
-	0xac, 0xd4, 0x38, 0xe3, 0x47, 0x88, 0x93, 0xc9, 0xed, 0x11, 0xcf, 0x0b, 0x33, 0xb5, 0x59, 0xe1,
-	0x21, 0xb4, 0x46, 0x42, 0x8e, 0x23, 0x5e, 0x16, 0x4a, 0x96, 0x9c, 0xf4, 0x60, 0x5d, 0xbb, 0xe7,
-	0xc0, 0xeb, 0x7b, 0x83, 0x8d, 0x68, 0x16, 0x87, 0x27, 0xd0, 0x1d, 0x51, 0x4d, 0xf3, 0xf2, 0xa6,
-	0xe4, 0xfa, 0x52, 0xde, 0x2a, 0x9d, 0x53, 0x23, 0x94, 0x24, 0x7b, 0xb0, 0x91, 0x66, 0x82, 0x4b,
-	0x13, 0x0b, 0x56, 0x9f, 0xb2, 0xe0, 0x92, 0x85, 0xdf, 0x7d, 0xd8, 0xad, 0xcb, 0x2f, 0x1e, 0x7c,
-	0x0c, 0x70, 0x2b, 0x74, 0x69, 0x62, 0x49, 0xf3, 0xfa, 0xbe, 0x0d, 0x24, 0x1f, 0x68, 0xce, 0xab,
-	0xba, 0x19, 0xad, 0x55, 0xdf, 0xd6, 0xad, 0x00, 0x8a, 0xdb, 0xd0, 0xe0, 0x39, 0x15, 0x59, 0xb0,
-	0x8c, 0x82, 0x0d, 0x2a, 0x5a, 0xdc, 0x29, 0xc9, 0x83, 0x15, 0x4b, 0x31, 0x20, 0x07, 0xd0, 0x4c,
-	0x94, 0x9c, 0x94, 0xb1, 0x51, 0x86, 0x66, 0x41, 0xa3, 0xef, 0x0d, 0x1a, 0x11, 0x20, 0xba, 0xae,
-	0x08, 0x79, 0x01, 0x1d, 0x9b, 0x40, 0xbf, 0x52, 0x91, 0xd1, 0x24, 0xe3, 0xc1, 0x2a, 0x26, 0xb5,
-	0x11, 0x9f, 0xd6, 0x94, 0x3c, 0x85, 0x4d, 0x9b, 0x98, 0x64, 0x2a, 0xfd, 0xcc, 0x59, 0xb0, 0x86,
-	0x69, 0x2d, 0x84, 0x67, 0x96, 0x91, 0x43, 0x78, 0x88, 0x17, 0xc5, 0x05, 0x15, 0x2c, 0xa6, 0xb9,
-	0x9a, 0x48, 0x13, 0xac, 0xf7, 0xbd, 0x81, 0x17, 0x75, 0x50, 0x18, 0x51, 0xc1, 0x4e, 0x11, 0x87,
-	0xc7, 0xb0, 0x65, 0x87, 0x7a, 0xa5, 0x19, 0xd7, 0xe5, 0x3b, 0x51, 0x1a, 0xa5, 0xa7, 0xff, 0x1f,
-	0xe9, 0x27, 0xe8, 0xd6, 0x13, 0x9d, 0x3f, 0x75, 0x00, 0x4d, 0x7b, 0x71, 0x8a, 0x57, 0x7a, 0xf6,
-	0x3d, 0x11, 0x9d, 0x57, 0x84, 0x3c, 0x87, 0x55, 0x85, 0x27, 0x02, 0xbf, 0xbf, 0x3c, 0x68, 0x1e,
-	0xb7, 0x87, 0xf5, 0x47, 0x83, 0x38, 0x72, 0x6a, 0xf8, 0xc3, 0x87, 0x06, 0x3e, 0x92, 0x36, 0xf8,
-	0xb3, 0x0e, 0x7c, 0xc1, 0xc8, 0x13, 0x68, 0xa5, 0x9a, 0x53, 0xc3, 0x59, 0xcc, 0xa8, 0xa9, 0xd7,
-	0xd2, 0x74, 0xec, 0x82, 0x1a, 0x5e, 0xa5, 0x14, 0x74, 0x9a, 0x57, 0xcd, 0x9b, 0x69, 0xc1, 0xdd,
-	0x82, 0x9a, 0x8e, 0x5d, 0x4f, 0x0b, 0x4e, 0x4e, 0x60, 0x87, 0x89, 0x12, 0xbb, 0xe4, 0x2c, 0x76,
-	0xc3, 0xd2, 0x22, 0xb5, 0x7b, 0xf3, 0xa2, 0xed, 0x7b, 0x15, 0x17, 0x34, 0xaa, 0x34, 0xf2, 0x0c,
-	0xda, 0x75, 0x61, 0x37, 0xd4, 0x06, 0x66, 0x6f, 0x3a, 0x6a, 0x47, 0x4a, 0x5e, 0xc2, 0x03, 0x5a,
-	0x14, 0x99, 0xa8, 0x5a, 0x74, 0x65, 0x70, 0x9b, 0x5e, 0xd4, 0x71, 0xfc, 0xc2, 0x61, 0xf2, 0x1a,
-	0x76, 0x69, 0xfa, 0x65, 0x22, 0x34, 0x67, 0x71, 0x42, 0x33, 0x2a, 0x53, 0x1e, 0xa7, 0x77, 0x54,
-	0x8e, 0x39, 0x2e, 0xd6, 0x8b, 0xba, 0xb5, 0x7c, 0x66, 0xd5, 0x73, 0x14, 0x8f, 0x7f, 0x7a, 0xb0,
-	0xf6, 0xde, 0x4e, 0x8e, 0xbc, 0x81, 0x95, 0xca, 0x42, 0x64, 0x67, 0x68, 0x8d, 0x36, 0xac, 0x8d,
-	0x36, 0x7c, 0x5b, 0x19, 0xad, 0xd7, 0x9d, 0xcd, 0xf8, 0x77, 0xa7, 0x85, 0x4b, 0xe4, 0x06, 0x3a,
-	0x8b, 0x86, 0xd8, 0xbf, 0xcf, 0xfd, 0x9b, 0xd3, 0x7a, 0xfd, 0x99, 0xfe, 0x0f, 0x4b, 0x85, 0x4b,
-	0xe4, 0x0a, 0x36, 0xe7, 0xbf, 0x8a, 0x47, 0x0b, 0x45, 0xe7, 0xd4, 0xde, 0xfe, 0x1f, 0x25, 0xe7,
-	0xf4, 0x70, 0xe9, 0xac, 0xf5, 0x11, 0xc6, 0xb3, 0xbf, 0x4b, 0xb2, 0x8a, 0xaf, 0xf7, 0xea, 0x57,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0x0a, 0xb2, 0xbb, 0x93, 0x75, 0x04, 0x00, 0x00,
+	// 944 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xdd, 0x72, 0xdb, 0x44,
+	0x14, 0xb6, 0x94, 0xd8, 0x89, 0x4f, 0x1c, 0xbb, 0xdd, 0xfc, 0x19, 0x85, 0xa4, 0xee, 0x32, 0xb4,
+	0xa1, 0x17, 0xce, 0x4c, 0xc8, 0xc0, 0x2d, 0x49, 0xca, 0x0c, 0x19, 0x28, 0xf5, 0x68, 0x9a, 0x1b,
+	0x6e, 0xc4, 0x5a, 0xbb, 0x71, 0x76, 0x22, 0x69, 0x85, 0x7e, 0x02, 0xe6, 0x15, 0x78, 0x05, 0x78,
+	0x1b, 0x9e, 0x86, 0x4b, 0x9e, 0x80, 0xd9, 0x3f, 0xd9, 0x92, 0x4b, 0x6e, 0xda, 0x3b, 0x9d, 0xef,
+	0xdb, 0x3d, 0xff, 0x67, 0x8f, 0x60, 0x27, 0xcd, 0x44, 0x21, 0x4e, 0x63, 0x9e, 0xd0, 0xa9, 0xf8,
+	0x6d, 0xac, 0x24, 0xb4, 0x61, 0x44, 0xef, 0x70, 0x26, 0xc4, 0x2c, 0x62, 0xa7, 0x0a, 0x9e, 0x96,
+	0xb7, 0xa7, 0x2c, 0x4e, 0x8b, 0xb9, 0x3e, 0x85, 0x5f, 0x41, 0x6f, 0xc2, 0x93, 0x99, 0xcf, 0xf2,
+	0x54, 0x24, 0x39, 0x43, 0x1e, 0x6c, 0x66, 0xe6, 0x7b, 0xe8, 0x8c, 0x9c, 0x93, 0xae, 0x5f, 0xc9,
+	0xf8, 0x1c, 0xf6, 0x26, 0x24, 0x23, 0x71, 0x7e, 0x93, 0xb3, 0xec, 0x3a, 0xb9, 0x15, 0x59, 0x4c,
+	0x0a, 0x2e, 0x12, 0x74, 0x08, 0xdd, 0x30, 0xe2, 0x2c, 0x29, 0x02, 0x4e, 0xed, 0x2d, 0x0d, 0x5c,
+	0x53, 0xfc, 0xa7, 0x0b, 0x07, 0x56, 0x7d, 0xf3, 0xe2, 0x11, 0xc0, 0x2d, 0xcf, 0xf2, 0x22, 0x48,
+	0x48, 0x6c, 0xed, 0x75, 0x15, 0xf2, 0x23, 0x89, 0x99, 0xd4, 0x1b, 0x11, 0xcb, 0xba, 0x5a, 0xaf,
+	0x04, 0x14, 0xb9, 0x0b, 0x6d, 0x16, 0x13, 0x1e, 0x0d, 0xd7, 0x14, 0xa1, 0x05, 0x89, 0xa6, 0x77,
+	0x22, 0x61, 0xc3, 0x75, 0x8d, 0x2a, 0x01, 0x3d, 0x83, 0xad, 0xa9, 0x48, 0xca, 0x3c, 0x28, 0x44,
+	0x41, 0xa2, 0x61, 0x7b, 0xe4, 0x9c, 0xb4, 0x7d, 0x50, 0xd0, 0x3b, 0x89, 0xa0, 0x97, 0x30, 0xd0,
+	0x07, 0xc8, 0x03, 0xe1, 0x11, 0x99, 0x46, 0x6c, 0xd8, 0x51, 0x87, 0xfa, 0x0a, 0xbe, 0xb0, 0x28,
+	0xfa, 0x0c, 0xb6, 0xf5, 0xc1, 0x69, 0x24, 0xc2, 0x7b, 0x46, 0x87, 0x1b, 0xea, 0x58, 0x4f, 0x81,
+	0x97, 0x1a, 0x43, 0xaf, 0xe0, 0xa9, 0x32, 0x14, 0xa4, 0x84, 0xd3, 0x80, 0xc4, 0xa2, 0x4c, 0x8a,
+	0xe1, 0xe6, 0xc8, 0x39, 0x71, 0xfc, 0x81, 0x22, 0x26, 0x84, 0xd3, 0x0b, 0x05, 0xe3, 0x33, 0xd8,
+	0xd1, 0x49, 0x7d, 0x9b, 0x51, 0x96, 0xe5, 0xdf, 0xf1, 0xbc, 0x10, 0xd9, 0xfc, 0xf1, 0x94, 0xfe,
+	0x0c, 0x7b, 0x36, 0xa3, 0xf5, 0x5b, 0xcf, 0x60, 0x4b, 0x1b, 0x0e, 0x95, 0x49, 0x47, 0xc7, 0xa9,
+	0xa0, 0x2b, 0x89, 0xa0, 0x17, 0xd0, 0x11, 0xea, 0xc6, 0xd0, 0x1d, 0xad, 0x9d, 0x6c, 0x9d, 0xf5,
+	0xc7, 0xb6, 0x69, 0x14, 0xec, 0x1b, 0x16, 0xff, 0xe5, 0x42, 0x5b, 0x7d, 0xa2, 0x3e, 0xb8, 0x95,
+	0x07, 0x2e, 0xa7, 0xe8, 0x39, 0xf4, 0xc2, 0x8c, 0x91, 0x82, 0xd1, 0x80, 0x92, 0xc2, 0x96, 0x65,
+	0xcb, 0x60, 0xaf, 0x49, 0xc1, 0xe4, 0x91, 0x94, 0xcc, 0x63, 0xe9, 0x7c, 0x31, 0x4f, 0x99, 0x29,
+	0xd0, 0x96, 0xc1, 0xde, 0xcd, 0x53, 0x86, 0xce, 0x61, 0x9f, 0xf2, 0x5c, 0x79, 0xc9, 0x68, 0x60,
+	0x92, 0x95, 0xf1, 0x50, 0xd7, 0xcd, 0xf1, 0x77, 0x17, 0xac, 0x2a, 0xd0, 0x44, 0x72, 0xe8, 0x73,
+	0xe8, 0x5b, 0xc5, 0x26, 0xa9, 0x6d, 0x75, 0x7a, 0xdb, 0xa0, 0x3a, 0xa5, 0xe8, 0x0b, 0x78, 0x42,
+	0xd2, 0x34, 0xe2, 0xd2, 0x45, 0xa3, 0x46, 0x55, 0xd3, 0xf1, 0x07, 0x06, 0x7f, 0x6d, 0x60, 0xf4,
+	0x15, 0x1c, 0x90, 0xf0, 0x97, 0x92, 0x67, 0x8c, 0x06, 0x53, 0x12, 0x91, 0x24, 0x64, 0x41, 0x78,
+	0x47, 0x92, 0x19, 0x53, 0x85, 0x75, 0xfc, 0x3d, 0x4b, 0x5f, 0x6a, 0xf6, 0x4a, 0x91, 0xd8, 0xb7,
+	0x55, 0xbb, 0x28, 0x8b, 0x3b, 0x91, 0xf1, 0xdf, 0x75, 0x3f, 0x7b, 0xb0, 0xc9, 0x12, 0x9a, 0x0a,
+	0x6e, 0x92, 0xdf, 0xf5, 0x2b, 0x59, 0xd6, 0x86, 0xb2, 0x07, 0x1e, 0xb2, 0xa0, 0x2c, 0x39, 0x35,
+	0x79, 0x03, 0x0d, 0xdd, 0x94, 0x9c, 0xe2, 0x97, 0x8b, 0xaa, 0xd6, 0xb5, 0xf6, 0xc1, 0x15, 0xf7,
+	0x4a, 0xdf, 0xa6, 0xef, 0x8a, 0x7b, 0xfc, 0xb7, 0x03, 0x48, 0x5b, 0xf7, 0xd9, 0x8c, 0xe7, 0x45,
+	0xf6, 0xe1, 0xc6, 0xeb, 0xfd, 0xb6, 0x56, 0xef, 0xb7, 0xc5, 0xa8, 0xad, 0x2f, 0x8f, 0xda, 0x21,
+	0x74, 0x6f, 0xcb, 0x28, 0xd2, 0xd3, 0xd9, 0xd6, 0x57, 0x24, 0xa0, 0xa6, 0xf3, 0x39, 0xf4, 0x62,
+	0x31, 0xe5, 0x11, 0x0b, 0xf4, 0x38, 0x76, 0x74, 0x0f, 0x68, 0x6c, 0x22, 0x21, 0xfc, 0x02, 0x76,
+	0x6d, 0xbc, 0xb5, 0x38, 0x9a, 0xe1, 0x7e, 0x0f, 0xa0, 0xa3, 0xbd, 0x12, 0x94, 0x3d, 0x1a, 0x65,
+	0xd3, 0xa8, 0xbb, 0x6a, 0xf4, 0x18, 0x7a, 0xd6, 0xa8, 0x52, 0xd7, 0x34, 0x46, 0x61, 0x60, 0x8c,
+	0xdd, 0xb1, 0xf0, 0xfe, 0x23, 0x58, 0x44, 0x08, 0xd6, 0x43, 0x41, 0xed, 0x14, 0xa8, 0x6f, 0xfc,
+	0x2b, 0x3c, 0xad, 0xbc, 0xa8, 0xec, 0x34, 0x5c, 0x41, 0xfb, 0xd0, 0xc9, 0x0b, 0x52, 0x94, 0xb9,
+	0xd1, 0x6a, 0xa4, 0xc7, 0x4b, 0x75, 0x04, 0x60, 0x26, 0x5a, 0xb2, 0xb2, 0x5e, 0x6b, 0x7e, 0xd7,
+	0x20, 0xd7, 0x14, 0xff, 0xe1, 0x40, 0xdf, 0xc4, 0x27, 0x07, 0xf6, 0x83, 0xdb, 0x46, 0xbf, 0x0e,
+	0x6b, 0xd5, 0xeb, 0xb0, 0x0f, 0x9d, 0x07, 0x96, 0x50, 0x91, 0x99, 0x56, 0x31, 0x92, 0xec, 0xa0,
+	0x58, 0x50, 0x16, 0x99, 0x3e, 0xd1, 0x02, 0xc6, 0xf0, 0xa4, 0x4a, 0x83, 0x75, 0xa7, 0x91, 0x85,
+	0xb3, 0x7f, 0x1c, 0xd8, 0x78, 0xa3, 0xfd, 0x47, 0x5f, 0xc3, 0xba, 0x5c, 0x56, 0x68, 0x7f, 0xac,
+	0x57, 0xda, 0xd8, 0xae, 0xb4, 0xf1, 0xb7, 0x72, 0xa5, 0x79, 0x7b, 0xd5, 0x6b, 0xb6, 0xbc, 0xd3,
+	0x70, 0x0b, 0xdd, 0xc0, 0xa0, 0xb9, 0x7a, 0x8e, 0x17, 0x67, 0xdf, 0xb7, 0xd3, 0xbc, 0x51, 0xc5,
+	0xff, 0xcf, 0xf2, 0xc2, 0x2d, 0xf4, 0x16, 0xb6, 0xeb, 0xef, 0xef, 0xa7, 0x0d, 0xa5, 0x35, 0xd6,
+	0x3b, 0x5e, 0x51, 0x59, 0xe3, 0x71, 0xeb, 0xec, 0x5f, 0x17, 0x76, 0xdf, 0xa8, 0xde, 0x91, 0x2f,
+	0x00, 0x4b, 0x0a, 0x1e, 0x6a, 0x6f, 0xbf, 0x81, 0xcd, 0x2a, 0x43, 0x07, 0x0d, 0x23, 0x96, 0xf0,
+	0x3e, 0x59, 0xd1, 0x6f, 0x29, 0xed, 0x6b, 0xfd, 0x55, 0x69, 0xfa, 0x5a, 0x63, 0xdf, 0xe3, 0x6b,
+	0x8d, 0xc7, 0x2d, 0xf4, 0x83, 0x9c, 0xa4, 0xa5, 0xb1, 0x3d, 0x6c, 0xe8, 0x5b, 0x26, 0xbd, 0xa3,
+	0x15, 0x75, 0xcb, 0x34, 0x6e, 0xa1, 0x73, 0x58, 0x57, 0x43, 0xb0, 0xd3, 0x0c, 0x4e, 0x50, 0xb6,
+	0x54, 0xd7, 0xe5, 0xd9, 0xc5, 0x2d, 0x74, 0x05, 0xdd, 0xc5, 0xfc, 0x0c, 0x9b, 0x57, 0x2d, 0xe3,
+	0x79, 0xab, 0xf7, 0x2d, 0x87, 0x5b, 0x97, 0xbd, 0x9f, 0x60, 0x56, 0xfd, 0x3c, 0x4d, 0x3b, 0xaa,
+	0xa7, 0xbe, 0xfc, 0x2f, 0x00, 0x00, 0xff, 0xff, 0xc7, 0x48, 0x99, 0x70, 0x54, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -569,6 +1119,222 @@ var _Mindbox_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "OrdersHistory",
 			Handler:    _Mindbox_OrdersHistory_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mindbox.proto",
+}
+
+// MobileAuthenticationClient is the client API for MobileAuthentication service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type MobileAuthenticationClient interface {
+	Creation(ctx context.Context, in *ParamsCreation, opts ...grpc.CallOption) (*ResponseCreation, error)
+	Authorization(ctx context.Context, in *ParamsAuthorization, opts ...grpc.CallOption) (*ResponseAuthorization, error)
+	Registration(ctx context.Context, in *ParamsRegistration, opts ...grpc.CallOption) (*ResponseRegistration, error)
+	Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error)
+	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error)
+}
+
+type mobileAuthenticationClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewMobileAuthenticationClient(cc *grpc.ClientConn) MobileAuthenticationClient {
+	return &mobileAuthenticationClient{cc}
+}
+
+func (c *mobileAuthenticationClient) Creation(ctx context.Context, in *ParamsCreation, opts ...grpc.CallOption) (*ResponseCreation, error) {
+	out := new(ResponseCreation)
+	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Creation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationClient) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...grpc.CallOption) (*ResponseAuthorization, error) {
+	out := new(ResponseAuthorization)
+	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Authorization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationClient) Registration(ctx context.Context, in *ParamsRegistration, opts ...grpc.CallOption) (*ResponseRegistration, error) {
+	out := new(ResponseRegistration)
+	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Registration", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationClient) Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error) {
+	out := new(ResponseCode)
+	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Code", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationClient) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error) {
+	out := new(ResponseCheckCode)
+	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/CheckCode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MobileAuthenticationServer is the server API for MobileAuthentication service.
+type MobileAuthenticationServer interface {
+	Creation(context.Context, *ParamsCreation) (*ResponseCreation, error)
+	Authorization(context.Context, *ParamsAuthorization) (*ResponseAuthorization, error)
+	Registration(context.Context, *ParamsRegistration) (*ResponseRegistration, error)
+	Code(context.Context, *ParamsCode) (*ResponseCode, error)
+	CheckCode(context.Context, *ParamsCheckCode) (*ResponseCheckCode, error)
+}
+
+// UnimplementedMobileAuthenticationServer can be embedded to have forward compatible implementations.
+type UnimplementedMobileAuthenticationServer struct {
+}
+
+func (*UnimplementedMobileAuthenticationServer) Creation(ctx context.Context, req *ParamsCreation) (*ResponseCreation, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Creation not implemented")
+}
+func (*UnimplementedMobileAuthenticationServer) Authorization(ctx context.Context, req *ParamsAuthorization) (*ResponseAuthorization, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Authorization not implemented")
+}
+func (*UnimplementedMobileAuthenticationServer) Registration(ctx context.Context, req *ParamsRegistration) (*ResponseRegistration, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Registration not implemented")
+}
+func (*UnimplementedMobileAuthenticationServer) Code(ctx context.Context, req *ParamsCode) (*ResponseCode, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Code not implemented")
+}
+func (*UnimplementedMobileAuthenticationServer) CheckCode(ctx context.Context, req *ParamsCheckCode) (*ResponseCheckCode, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckCode not implemented")
+}
+
+func RegisterMobileAuthenticationServer(s *grpc.Server, srv MobileAuthenticationServer) {
+	s.RegisterService(&_MobileAuthentication_serviceDesc, srv)
+}
+
+func _MobileAuthentication_Creation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsCreation)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileAuthenticationServer).Creation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.MobileAuthentication/Creation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileAuthenticationServer).Creation(ctx, req.(*ParamsCreation))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MobileAuthentication_Authorization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsAuthorization)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileAuthenticationServer).Authorization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.MobileAuthentication/Authorization",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileAuthenticationServer).Authorization(ctx, req.(*ParamsAuthorization))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MobileAuthentication_Registration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsRegistration)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileAuthenticationServer).Registration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.MobileAuthentication/Registration",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileAuthenticationServer).Registration(ctx, req.(*ParamsRegistration))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MobileAuthentication_Code_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsCode)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileAuthenticationServer).Code(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.MobileAuthentication/Code",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileAuthenticationServer).Code(ctx, req.(*ParamsCode))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MobileAuthentication_CheckCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsCheckCode)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileAuthenticationServer).CheckCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.MobileAuthentication/CheckCode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileAuthenticationServer).CheckCode(ctx, req.(*ParamsCheckCode))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _MobileAuthentication_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.MobileAuthentication",
+	HandlerType: (*MobileAuthenticationServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Creation",
+			Handler:    _MobileAuthentication_Creation_Handler,
+		},
+		{
+			MethodName: "Authorization",
+			Handler:    _MobileAuthentication_Authorization_Handler,
+		},
+		{
+			MethodName: "Registration",
+			Handler:    _MobileAuthentication_Registration_Handler,
+		},
+		{
+			MethodName: "Code",
+			Handler:    _MobileAuthentication_Code_Handler,
+		},
+		{
+			MethodName: "CheckCode",
+			Handler:    _MobileAuthentication_CheckCode_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

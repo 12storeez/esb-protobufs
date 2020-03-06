@@ -124,3 +124,130 @@ func (h *mindboxHandler) UserInformation(ctx context.Context, in *ParamsUserInfo
 func (h *mindboxHandler) OrdersHistory(ctx context.Context, in *ParamsOrdersHistory, out *ResponseOrdersHistory) error {
 	return h.MindboxHandler.OrdersHistory(ctx, in, out)
 }
+
+// Client API for MobileAuthentication service
+
+type MobileAuthenticationService interface {
+	Creation(ctx context.Context, in *ParamsCreation, opts ...client.CallOption) (*ResponseCreation, error)
+	Authorization(ctx context.Context, in *ParamsAuthorization, opts ...client.CallOption) (*ResponseAuthorization, error)
+	Registration(ctx context.Context, in *ParamsRegistration, opts ...client.CallOption) (*ResponseRegistration, error)
+	Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error)
+	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error)
+}
+
+type mobileAuthenticationService struct {
+	c    client.Client
+	name string
+}
+
+func NewMobileAuthenticationService(name string, c client.Client) MobileAuthenticationService {
+	if c == nil {
+		c = client.NewClient()
+	}
+	if len(name) == 0 {
+		name = "mindbox"
+	}
+	return &mobileAuthenticationService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *mobileAuthenticationService) Creation(ctx context.Context, in *ParamsCreation, opts ...client.CallOption) (*ResponseCreation, error) {
+	req := c.c.NewRequest(c.name, "MobileAuthentication.Creation", in)
+	out := new(ResponseCreation)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationService) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...client.CallOption) (*ResponseAuthorization, error) {
+	req := c.c.NewRequest(c.name, "MobileAuthentication.Authorization", in)
+	out := new(ResponseAuthorization)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationService) Registration(ctx context.Context, in *ParamsRegistration, opts ...client.CallOption) (*ResponseRegistration, error) {
+	req := c.c.NewRequest(c.name, "MobileAuthentication.Registration", in)
+	out := new(ResponseRegistration)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationService) Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error) {
+	req := c.c.NewRequest(c.name, "MobileAuthentication.Code", in)
+	out := new(ResponseCode)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileAuthenticationService) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error) {
+	req := c.c.NewRequest(c.name, "MobileAuthentication.CheckCode", in)
+	out := new(ResponseCheckCode)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for MobileAuthentication service
+
+type MobileAuthenticationHandler interface {
+	Creation(context.Context, *ParamsCreation, *ResponseCreation) error
+	Authorization(context.Context, *ParamsAuthorization, *ResponseAuthorization) error
+	Registration(context.Context, *ParamsRegistration, *ResponseRegistration) error
+	Code(context.Context, *ParamsCode, *ResponseCode) error
+	CheckCode(context.Context, *ParamsCheckCode, *ResponseCheckCode) error
+}
+
+func RegisterMobileAuthenticationHandler(s server.Server, hdlr MobileAuthenticationHandler, opts ...server.HandlerOption) error {
+	type mobileAuthentication interface {
+		Creation(ctx context.Context, in *ParamsCreation, out *ResponseCreation) error
+		Authorization(ctx context.Context, in *ParamsAuthorization, out *ResponseAuthorization) error
+		Registration(ctx context.Context, in *ParamsRegistration, out *ResponseRegistration) error
+		Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error
+		CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error
+	}
+	type MobileAuthentication struct {
+		mobileAuthentication
+	}
+	h := &mobileAuthenticationHandler{hdlr}
+	return s.Handle(s.NewHandler(&MobileAuthentication{h}, opts...))
+}
+
+type mobileAuthenticationHandler struct {
+	MobileAuthenticationHandler
+}
+
+func (h *mobileAuthenticationHandler) Creation(ctx context.Context, in *ParamsCreation, out *ResponseCreation) error {
+	return h.MobileAuthenticationHandler.Creation(ctx, in, out)
+}
+
+func (h *mobileAuthenticationHandler) Authorization(ctx context.Context, in *ParamsAuthorization, out *ResponseAuthorization) error {
+	return h.MobileAuthenticationHandler.Authorization(ctx, in, out)
+}
+
+func (h *mobileAuthenticationHandler) Registration(ctx context.Context, in *ParamsRegistration, out *ResponseRegistration) error {
+	return h.MobileAuthenticationHandler.Registration(ctx, in, out)
+}
+
+func (h *mobileAuthenticationHandler) Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error {
+	return h.MobileAuthenticationHandler.Code(ctx, in, out)
+}
+
+func (h *mobileAuthenticationHandler) CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error {
+	return h.MobileAuthenticationHandler.CheckCode(ctx, in, out)
+}

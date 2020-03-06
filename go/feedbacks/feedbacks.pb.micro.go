@@ -35,11 +35,12 @@ var _ server.Option
 // Client API for Mobile service
 
 type MobileService interface {
-	App(ctx context.Context, in *RequestApp, opts ...client.CallOption) (*ResponseOk, error)
-	Store(ctx context.Context, in *RequestStore, opts ...client.CallOption) (*ResponseOk, error)
-	Order(ctx context.Context, in *RequestOrder, opts ...client.CallOption) (*ResponseOk, error)
+	App(ctx context.Context, in *ParamsApp, opts ...client.CallOption) (*ResponseOk, error)
+	Store(ctx context.Context, in *ParamsStore, opts ...client.CallOption) (*ResponseOk, error)
+	Order(ctx context.Context, in *ParamsOrder, opts ...client.CallOption) (*ResponseOk, error)
 	Categories(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseCategories, error)
-	Choices(ctx context.Context, in *RequestChoices, opts ...client.CallOption) (*ResponseChoices, error)
+	ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, opts ...client.CallOption) (*ResponseReasons, error)
+	ReasonsByStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseReasons, error)
 }
 
 type mobileService struct {
@@ -60,7 +61,7 @@ func NewMobileService(name string, c client.Client) MobileService {
 	}
 }
 
-func (c *mobileService) App(ctx context.Context, in *RequestApp, opts ...client.CallOption) (*ResponseOk, error) {
+func (c *mobileService) App(ctx context.Context, in *ParamsApp, opts ...client.CallOption) (*ResponseOk, error) {
 	req := c.c.NewRequest(c.name, "Mobile.App", in)
 	out := new(ResponseOk)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -70,7 +71,7 @@ func (c *mobileService) App(ctx context.Context, in *RequestApp, opts ...client.
 	return out, nil
 }
 
-func (c *mobileService) Store(ctx context.Context, in *RequestStore, opts ...client.CallOption) (*ResponseOk, error) {
+func (c *mobileService) Store(ctx context.Context, in *ParamsStore, opts ...client.CallOption) (*ResponseOk, error) {
 	req := c.c.NewRequest(c.name, "Mobile.Store", in)
 	out := new(ResponseOk)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -80,7 +81,7 @@ func (c *mobileService) Store(ctx context.Context, in *RequestStore, opts ...cli
 	return out, nil
 }
 
-func (c *mobileService) Order(ctx context.Context, in *RequestOrder, opts ...client.CallOption) (*ResponseOk, error) {
+func (c *mobileService) Order(ctx context.Context, in *ParamsOrder, opts ...client.CallOption) (*ResponseOk, error) {
 	req := c.c.NewRequest(c.name, "Mobile.Order", in)
 	out := new(ResponseOk)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -100,9 +101,19 @@ func (c *mobileService) Categories(ctx context.Context, in *empty.Empty, opts ..
 	return out, nil
 }
 
-func (c *mobileService) Choices(ctx context.Context, in *RequestChoices, opts ...client.CallOption) (*ResponseChoices, error) {
-	req := c.c.NewRequest(c.name, "Mobile.Choices", in)
-	out := new(ResponseChoices)
+func (c *mobileService) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, opts ...client.CallOption) (*ResponseReasons, error) {
+	req := c.c.NewRequest(c.name, "Mobile.ReasonsByOrder", in)
+	out := new(ResponseReasons)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileService) ReasonsByStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseReasons, error) {
+	req := c.c.NewRequest(c.name, "Mobile.ReasonsByStore", in)
+	out := new(ResponseReasons)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -113,20 +124,22 @@ func (c *mobileService) Choices(ctx context.Context, in *RequestChoices, opts ..
 // Server API for Mobile service
 
 type MobileHandler interface {
-	App(context.Context, *RequestApp, *ResponseOk) error
-	Store(context.Context, *RequestStore, *ResponseOk) error
-	Order(context.Context, *RequestOrder, *ResponseOk) error
+	App(context.Context, *ParamsApp, *ResponseOk) error
+	Store(context.Context, *ParamsStore, *ResponseOk) error
+	Order(context.Context, *ParamsOrder, *ResponseOk) error
 	Categories(context.Context, *empty.Empty, *ResponseCategories) error
-	Choices(context.Context, *RequestChoices, *ResponseChoices) error
+	ReasonsByOrder(context.Context, *ParamsReasonsByOrder, *ResponseReasons) error
+	ReasonsByStore(context.Context, *empty.Empty, *ResponseReasons) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
 	type mobile interface {
-		App(ctx context.Context, in *RequestApp, out *ResponseOk) error
-		Store(ctx context.Context, in *RequestStore, out *ResponseOk) error
-		Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error
+		App(ctx context.Context, in *ParamsApp, out *ResponseOk) error
+		Store(ctx context.Context, in *ParamsStore, out *ResponseOk) error
+		Order(ctx context.Context, in *ParamsOrder, out *ResponseOk) error
 		Categories(ctx context.Context, in *empty.Empty, out *ResponseCategories) error
-		Choices(ctx context.Context, in *RequestChoices, out *ResponseChoices) error
+		ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, out *ResponseReasons) error
+		ReasonsByStore(ctx context.Context, in *empty.Empty, out *ResponseReasons) error
 	}
 	type Mobile struct {
 		mobile
@@ -139,15 +152,15 @@ type mobileHandler struct {
 	MobileHandler
 }
 
-func (h *mobileHandler) App(ctx context.Context, in *RequestApp, out *ResponseOk) error {
+func (h *mobileHandler) App(ctx context.Context, in *ParamsApp, out *ResponseOk) error {
 	return h.MobileHandler.App(ctx, in, out)
 }
 
-func (h *mobileHandler) Store(ctx context.Context, in *RequestStore, out *ResponseOk) error {
+func (h *mobileHandler) Store(ctx context.Context, in *ParamsStore, out *ResponseOk) error {
 	return h.MobileHandler.Store(ctx, in, out)
 }
 
-func (h *mobileHandler) Order(ctx context.Context, in *RequestOrder, out *ResponseOk) error {
+func (h *mobileHandler) Order(ctx context.Context, in *ParamsOrder, out *ResponseOk) error {
 	return h.MobileHandler.Order(ctx, in, out)
 }
 
@@ -155,6 +168,10 @@ func (h *mobileHandler) Categories(ctx context.Context, in *empty.Empty, out *Re
 	return h.MobileHandler.Categories(ctx, in, out)
 }
 
-func (h *mobileHandler) Choices(ctx context.Context, in *RequestChoices, out *ResponseChoices) error {
-	return h.MobileHandler.Choices(ctx, in, out)
+func (h *mobileHandler) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, out *ResponseReasons) error {
+	return h.MobileHandler.ReasonsByOrder(ctx, in, out)
+}
+
+func (h *mobileHandler) ReasonsByStore(ctx context.Context, in *empty.Empty, out *ResponseReasons) error {
+	return h.MobileHandler.ReasonsByStore(ctx, in, out)
 }
