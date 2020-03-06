@@ -1,21 +1,17 @@
 syntax = "proto3";
 
 option go_package = "go/orders";
-import "google/protobuf/empty.proto";
 
 package orders;
 
-service Orders {
-    rpc Ping (google.protobuf.Empty) returns (PingResponse) {
-    }
-    rpc OfflineByClient (ParamsOfflineByClient) returns (ResponseOfflineByClient) {
-    }
-    rpc OnlineByClient (ParamsOnlineByClient) returns (ResponseOnlineByClient) {
+service Offline {
+    rpc ByClient (ParamsOfflineByClient) returns (ResponseOfflineByClient) {
     }
 }
 
-message PingResponse {
-    string response = 1;
+service Online {
+    rpc ByClient (ParamsOnlineByClient) returns (ResponseOnlineByClient) {
+    }
 }
 
 message ParamsOfflineByClient {

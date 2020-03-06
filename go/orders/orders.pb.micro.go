@@ -6,7 +6,6 @@ package orders
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -32,44 +31,32 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
-// Client API for Orders service
+// Client API for Offline service
 
-type OrdersService interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error)
-	OfflineByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...client.CallOption) (*ResponseOfflineByClient, error)
-	OnlineByClient(ctx context.Context, in *ParamsOnlineByClient, opts ...client.CallOption) (*ResponseOnlineByClient, error)
+type OfflineService interface {
+	ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...client.CallOption) (*ResponseOfflineByClient, error)
 }
 
-type ordersService struct {
+type offlineService struct {
 	c    client.Client
 	name string
 }
 
-func NewOrdersService(name string, c client.Client) OrdersService {
+func NewOfflineService(name string, c client.Client) OfflineService {
 	if c == nil {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
 		name = "orders"
 	}
-	return &ordersService{
+	return &offlineService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *ordersService) Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error) {
-	req := c.c.NewRequest(c.name, "Orders.Ping", in)
-	out := new(PingResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ordersService) OfflineByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...client.CallOption) (*ResponseOfflineByClient, error) {
-	req := c.c.NewRequest(c.name, "Orders.OfflineByClient", in)
+func (c *offlineService) ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...client.CallOption) (*ResponseOfflineByClient, error) {
+	req := c.c.NewRequest(c.name, "Offline.ByClient", in)
 	out := new(ResponseOfflineByClient)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -78,8 +65,57 @@ func (c *ordersService) OfflineByClient(ctx context.Context, in *ParamsOfflineBy
 	return out, nil
 }
 
-func (c *ordersService) OnlineByClient(ctx context.Context, in *ParamsOnlineByClient, opts ...client.CallOption) (*ResponseOnlineByClient, error) {
-	req := c.c.NewRequest(c.name, "Orders.OnlineByClient", in)
+// Server API for Offline service
+
+type OfflineHandler interface {
+	ByClient(context.Context, *ParamsOfflineByClient, *ResponseOfflineByClient) error
+}
+
+func RegisterOfflineHandler(s server.Server, hdlr OfflineHandler, opts ...server.HandlerOption) error {
+	type offline interface {
+		ByClient(ctx context.Context, in *ParamsOfflineByClient, out *ResponseOfflineByClient) error
+	}
+	type Offline struct {
+		offline
+	}
+	h := &offlineHandler{hdlr}
+	return s.Handle(s.NewHandler(&Offline{h}, opts...))
+}
+
+type offlineHandler struct {
+	OfflineHandler
+}
+
+func (h *offlineHandler) ByClient(ctx context.Context, in *ParamsOfflineByClient, out *ResponseOfflineByClient) error {
+	return h.OfflineHandler.ByClient(ctx, in, out)
+}
+
+// Client API for Online service
+
+type OnlineService interface {
+	ByClient(ctx context.Context, in *ParamsOnlineByClient, opts ...client.CallOption) (*ResponseOnlineByClient, error)
+}
+
+type onlineService struct {
+	c    client.Client
+	name string
+}
+
+func NewOnlineService(name string, c client.Client) OnlineService {
+	if c == nil {
+		c = client.NewClient()
+	}
+	if len(name) == 0 {
+		name = "orders"
+	}
+	return &onlineService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *onlineService) ByClient(ctx context.Context, in *ParamsOnlineByClient, opts ...client.CallOption) (*ResponseOnlineByClient, error) {
+	req := c.c.NewRequest(c.name, "Online.ByClient", in)
 	out := new(ResponseOnlineByClient)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -88,39 +124,27 @@ func (c *ordersService) OnlineByClient(ctx context.Context, in *ParamsOnlineByCl
 	return out, nil
 }
 
-// Server API for Orders service
+// Server API for Online service
 
-type OrdersHandler interface {
-	Ping(context.Context, *empty.Empty, *PingResponse) error
-	OfflineByClient(context.Context, *ParamsOfflineByClient, *ResponseOfflineByClient) error
-	OnlineByClient(context.Context, *ParamsOnlineByClient, *ResponseOnlineByClient) error
+type OnlineHandler interface {
+	ByClient(context.Context, *ParamsOnlineByClient, *ResponseOnlineByClient) error
 }
 
-func RegisterOrdersHandler(s server.Server, hdlr OrdersHandler, opts ...server.HandlerOption) error {
-	type orders interface {
-		Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error
-		OfflineByClient(ctx context.Context, in *ParamsOfflineByClient, out *ResponseOfflineByClient) error
-		OnlineByClient(ctx context.Context, in *ParamsOnlineByClient, out *ResponseOnlineByClient) error
+func RegisterOnlineHandler(s server.Server, hdlr OnlineHandler, opts ...server.HandlerOption) error {
+	type online interface {
+		ByClient(ctx context.Context, in *ParamsOnlineByClient, out *ResponseOnlineByClient) error
 	}
-	type Orders struct {
-		orders
+	type Online struct {
+		online
 	}
-	h := &ordersHandler{hdlr}
-	return s.Handle(s.NewHandler(&Orders{h}, opts...))
+	h := &onlineHandler{hdlr}
+	return s.Handle(s.NewHandler(&Online{h}, opts...))
 }
 
-type ordersHandler struct {
-	OrdersHandler
+type onlineHandler struct {
+	OnlineHandler
 }
 
-func (h *ordersHandler) Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error {
-	return h.OrdersHandler.Ping(ctx, in, out)
-}
-
-func (h *ordersHandler) OfflineByClient(ctx context.Context, in *ParamsOfflineByClient, out *ResponseOfflineByClient) error {
-	return h.OrdersHandler.OfflineByClient(ctx, in, out)
-}
-
-func (h *ordersHandler) OnlineByClient(ctx context.Context, in *ParamsOnlineByClient, out *ResponseOnlineByClient) error {
-	return h.OrdersHandler.OnlineByClient(ctx, in, out)
+func (h *onlineHandler) ByClient(ctx context.Context, in *ParamsOnlineByClient, out *ResponseOnlineByClient) error {
+	return h.OnlineHandler.ByClient(ctx, in, out)
 }
