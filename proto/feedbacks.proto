@@ -44,6 +44,7 @@ message ParamsOrder {
     string rate = 2;
     repeated int32 reasons = 3;
     string comment = 4;
+    int32 store_id = 5;
 }
 
 message Reason {

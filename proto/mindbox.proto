@@ -62,37 +62,33 @@ message Order {
 }
 
 message ParamsAuthorization {
-    string endpoint = 1;
-    string device_uuid = 2;
+    string device_uuid = 1;
 }
 message ResponseAuthorization {
     bool ok = 1;
 }
 
 message ParamsRegistration {
-    string endpoint = 1;
-    string device_uuid = 2;
-    string client_id = 3;
-    string email = 4;
-    string full_name = 5;
-    string mobile_phone = 6;
+    string device_uuid = 1;
+    string client_id = 2;
+    string email = 3;
+    string full_name = 4;
+    string mobile_phone = 5;
 }
 message ResponseRegistration {
     bool ok = 1;
 }
 
 message ParamsCode {
-    string endpoint = 1;
-    string mobile_phone = 2;
+    string mobile_phone = 1;
 }
 message ResponseCode {
     bool ok = 1;
 }
 
 message ParamsCheckCode {
-    string endpoint = 1;
-    string mobile_phone = 2;
-    string code = 3;
+    string mobile_phone = 1;
+    string code = 2;
 }
 message ResponseCheckCode {
     bool ok = 1;
@@ -102,11 +98,10 @@ message ResponseCheckCode {
 }
 
 message  ParamsCreation {
-    string endpoint = 1;
-    string device_uuid = 2;
-    string id = 3;
-    string vendor = 4;
-    string model = 5;
+    string device_uuid = 1;
+    string id = 2;
+    string vendor = 3;
+    string model = 4;
 }
 
 message ResponseCreation {
@@ -114,10 +109,9 @@ message ResponseCreation {
 }
 
 message ParamsEditUser {
-    string endpoint = 1;
-    string device_uuid = 2;
-    string client_id = 3;
-    string mobile_phone = 4;
+    string device_uuid = 1;
+    string client_id = 2;
+    string mobile_phone = 3;
 }
 
 message ResponseEditUser {
