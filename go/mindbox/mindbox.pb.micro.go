@@ -6,7 +6,6 @@ package mindbox
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -32,35 +31,34 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
-// Client API for Mindbox service
+// Client API for User service
 
-type MindboxService interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error)
-	UserInformation(ctx context.Context, in *ParamsUserInformation, opts ...client.CallOption) (*ResponseUserInformation, error)
-	OrdersHistory(ctx context.Context, in *ParamsOrdersHistory, opts ...client.CallOption) (*ResponseOrdersHistory, error)
+type UserService interface {
+	Info(ctx context.Context, in *ParamsUser, opts ...client.CallOption) (*ResponseUser, error)
+	Orders(ctx context.Context, in *ParamsOrders, opts ...client.CallOption) (*ResponseOrders, error)
 }
 
-type mindboxService struct {
+type userService struct {
 	c    client.Client
 	name string
 }
 
-func NewMindboxService(name string, c client.Client) MindboxService {
+func NewUserService(name string, c client.Client) UserService {
 	if c == nil {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
 		name = "mindbox"
 	}
-	return &mindboxService{
+	return &userService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *mindboxService) Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error) {
-	req := c.c.NewRequest(c.name, "Mindbox.Ping", in)
-	out := new(PingResponse)
+func (c *userService) Info(ctx context.Context, in *ParamsUser, opts ...client.CallOption) (*ResponseUser, error) {
+	req := c.c.NewRequest(c.name, "User.Info", in)
+	out := new(ResponseUser)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,9 +66,9 @@ func (c *mindboxService) Ping(ctx context.Context, in *empty.Empty, opts ...clie
 	return out, nil
 }
 
-func (c *mindboxService) UserInformation(ctx context.Context, in *ParamsUserInformation, opts ...client.CallOption) (*ResponseUserInformation, error) {
-	req := c.c.NewRequest(c.name, "Mindbox.UserInformation", in)
-	out := new(ResponseUserInformation)
+func (c *userService) Orders(ctx context.Context, in *ParamsOrders, opts ...client.CallOption) (*ResponseOrders, error) {
+	req := c.c.NewRequest(c.name, "User.Orders", in)
+	out := new(ResponseOrders)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,83 +76,68 @@ func (c *mindboxService) UserInformation(ctx context.Context, in *ParamsUserInfo
 	return out, nil
 }
 
-func (c *mindboxService) OrdersHistory(ctx context.Context, in *ParamsOrdersHistory, opts ...client.CallOption) (*ResponseOrdersHistory, error) {
-	req := c.c.NewRequest(c.name, "Mindbox.OrdersHistory", in)
-	out := new(ResponseOrdersHistory)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
+// Server API for User service
+
+type UserHandler interface {
+	Info(context.Context, *ParamsUser, *ResponseUser) error
+	Orders(context.Context, *ParamsOrders, *ResponseOrders) error
+}
+
+func RegisterUserHandler(s server.Server, hdlr UserHandler, opts ...server.HandlerOption) error {
+	type user interface {
+		Info(ctx context.Context, in *ParamsUser, out *ResponseUser) error
+		Orders(ctx context.Context, in *ParamsOrders, out *ResponseOrders) error
 	}
-	return out, nil
-}
-
-// Server API for Mindbox service
-
-type MindboxHandler interface {
-	Ping(context.Context, *empty.Empty, *PingResponse) error
-	UserInformation(context.Context, *ParamsUserInformation, *ResponseUserInformation) error
-	OrdersHistory(context.Context, *ParamsOrdersHistory, *ResponseOrdersHistory) error
-}
-
-func RegisterMindboxHandler(s server.Server, hdlr MindboxHandler, opts ...server.HandlerOption) error {
-	type mindbox interface {
-		Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error
-		UserInformation(ctx context.Context, in *ParamsUserInformation, out *ResponseUserInformation) error
-		OrdersHistory(ctx context.Context, in *ParamsOrdersHistory, out *ResponseOrdersHistory) error
+	type User struct {
+		user
 	}
-	type Mindbox struct {
-		mindbox
-	}
-	h := &mindboxHandler{hdlr}
-	return s.Handle(s.NewHandler(&Mindbox{h}, opts...))
+	h := &userHandler{hdlr}
+	return s.Handle(s.NewHandler(&User{h}, opts...))
 }
 
-type mindboxHandler struct {
-	MindboxHandler
+type userHandler struct {
+	UserHandler
 }
 
-func (h *mindboxHandler) Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error {
-	return h.MindboxHandler.Ping(ctx, in, out)
+func (h *userHandler) Info(ctx context.Context, in *ParamsUser, out *ResponseUser) error {
+	return h.UserHandler.Info(ctx, in, out)
 }
 
-func (h *mindboxHandler) UserInformation(ctx context.Context, in *ParamsUserInformation, out *ResponseUserInformation) error {
-	return h.MindboxHandler.UserInformation(ctx, in, out)
+func (h *userHandler) Orders(ctx context.Context, in *ParamsOrders, out *ResponseOrders) error {
+	return h.UserHandler.Orders(ctx, in, out)
 }
 
-func (h *mindboxHandler) OrdersHistory(ctx context.Context, in *ParamsOrdersHistory, out *ResponseOrdersHistory) error {
-	return h.MindboxHandler.OrdersHistory(ctx, in, out)
-}
+// Client API for Mobile service
 
-// Client API for MobileAuthentication service
-
-type MobileAuthenticationService interface {
+type MobileService interface {
 	Creation(ctx context.Context, in *ParamsCreation, opts ...client.CallOption) (*ResponseCreation, error)
 	Authorization(ctx context.Context, in *ParamsAuthorization, opts ...client.CallOption) (*ResponseAuthorization, error)
 	Registration(ctx context.Context, in *ParamsRegistration, opts ...client.CallOption) (*ResponseRegistration, error)
 	Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error)
 	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error)
+	EditUser(ctx context.Context, in *ParamsEditUser, opts ...client.CallOption) (*ResponseEditUser, error)
 }
 
-type mobileAuthenticationService struct {
+type mobileService struct {
 	c    client.Client
 	name string
 }
 
-func NewMobileAuthenticationService(name string, c client.Client) MobileAuthenticationService {
+func NewMobileService(name string, c client.Client) MobileService {
 	if c == nil {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
 		name = "mindbox"
 	}
-	return &mobileAuthenticationService{
+	return &mobileService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *mobileAuthenticationService) Creation(ctx context.Context, in *ParamsCreation, opts ...client.CallOption) (*ResponseCreation, error) {
-	req := c.c.NewRequest(c.name, "MobileAuthentication.Creation", in)
+func (c *mobileService) Creation(ctx context.Context, in *ParamsCreation, opts ...client.CallOption) (*ResponseCreation, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Creation", in)
 	out := new(ResponseCreation)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -163,8 +146,8 @@ func (c *mobileAuthenticationService) Creation(ctx context.Context, in *ParamsCr
 	return out, nil
 }
 
-func (c *mobileAuthenticationService) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...client.CallOption) (*ResponseAuthorization, error) {
-	req := c.c.NewRequest(c.name, "MobileAuthentication.Authorization", in)
+func (c *mobileService) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...client.CallOption) (*ResponseAuthorization, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Authorization", in)
 	out := new(ResponseAuthorization)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -173,8 +156,8 @@ func (c *mobileAuthenticationService) Authorization(ctx context.Context, in *Par
 	return out, nil
 }
 
-func (c *mobileAuthenticationService) Registration(ctx context.Context, in *ParamsRegistration, opts ...client.CallOption) (*ResponseRegistration, error) {
-	req := c.c.NewRequest(c.name, "MobileAuthentication.Registration", in)
+func (c *mobileService) Registration(ctx context.Context, in *ParamsRegistration, opts ...client.CallOption) (*ResponseRegistration, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Registration", in)
 	out := new(ResponseRegistration)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -183,8 +166,8 @@ func (c *mobileAuthenticationService) Registration(ctx context.Context, in *Para
 	return out, nil
 }
 
-func (c *mobileAuthenticationService) Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error) {
-	req := c.c.NewRequest(c.name, "MobileAuthentication.Code", in)
+func (c *mobileService) Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error) {
+	req := c.c.NewRequest(c.name, "Mobile.Code", in)
 	out := new(ResponseCode)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -193,8 +176,8 @@ func (c *mobileAuthenticationService) Code(ctx context.Context, in *ParamsCode, 
 	return out, nil
 }
 
-func (c *mobileAuthenticationService) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error) {
-	req := c.c.NewRequest(c.name, "MobileAuthentication.CheckCode", in)
+func (c *mobileService) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error) {
+	req := c.c.NewRequest(c.name, "Mobile.CheckCode", in)
 	out := new(ResponseCheckCode)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -203,51 +186,67 @@ func (c *mobileAuthenticationService) CheckCode(ctx context.Context, in *ParamsC
 	return out, nil
 }
 
-// Server API for MobileAuthentication service
+func (c *mobileService) EditUser(ctx context.Context, in *ParamsEditUser, opts ...client.CallOption) (*ResponseEditUser, error) {
+	req := c.c.NewRequest(c.name, "Mobile.EditUser", in)
+	out := new(ResponseEditUser)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
-type MobileAuthenticationHandler interface {
+// Server API for Mobile service
+
+type MobileHandler interface {
 	Creation(context.Context, *ParamsCreation, *ResponseCreation) error
 	Authorization(context.Context, *ParamsAuthorization, *ResponseAuthorization) error
 	Registration(context.Context, *ParamsRegistration, *ResponseRegistration) error
 	Code(context.Context, *ParamsCode, *ResponseCode) error
 	CheckCode(context.Context, *ParamsCheckCode, *ResponseCheckCode) error
+	EditUser(context.Context, *ParamsEditUser, *ResponseEditUser) error
 }
 
-func RegisterMobileAuthenticationHandler(s server.Server, hdlr MobileAuthenticationHandler, opts ...server.HandlerOption) error {
-	type mobileAuthentication interface {
+func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
+	type mobile interface {
 		Creation(ctx context.Context, in *ParamsCreation, out *ResponseCreation) error
 		Authorization(ctx context.Context, in *ParamsAuthorization, out *ResponseAuthorization) error
 		Registration(ctx context.Context, in *ParamsRegistration, out *ResponseRegistration) error
 		Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error
 		CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error
+		EditUser(ctx context.Context, in *ParamsEditUser, out *ResponseEditUser) error
 	}
-	type MobileAuthentication struct {
-		mobileAuthentication
+	type Mobile struct {
+		mobile
 	}
-	h := &mobileAuthenticationHandler{hdlr}
-	return s.Handle(s.NewHandler(&MobileAuthentication{h}, opts...))
+	h := &mobileHandler{hdlr}
+	return s.Handle(s.NewHandler(&Mobile{h}, opts...))
 }
 
-type mobileAuthenticationHandler struct {
-	MobileAuthenticationHandler
+type mobileHandler struct {
+	MobileHandler
 }
 
-func (h *mobileAuthenticationHandler) Creation(ctx context.Context, in *ParamsCreation, out *ResponseCreation) error {
-	return h.MobileAuthenticationHandler.Creation(ctx, in, out)
+func (h *mobileHandler) Creation(ctx context.Context, in *ParamsCreation, out *ResponseCreation) error {
+	return h.MobileHandler.Creation(ctx, in, out)
 }
 
-func (h *mobileAuthenticationHandler) Authorization(ctx context.Context, in *ParamsAuthorization, out *ResponseAuthorization) error {
-	return h.MobileAuthenticationHandler.Authorization(ctx, in, out)
+func (h *mobileHandler) Authorization(ctx context.Context, in *ParamsAuthorization, out *ResponseAuthorization) error {
+	return h.MobileHandler.Authorization(ctx, in, out)
 }
 
-func (h *mobileAuthenticationHandler) Registration(ctx context.Context, in *ParamsRegistration, out *ResponseRegistration) error {
-	return h.MobileAuthenticationHandler.Registration(ctx, in, out)
+func (h *mobileHandler) Registration(ctx context.Context, in *ParamsRegistration, out *ResponseRegistration) error {
+	return h.MobileHandler.Registration(ctx, in, out)
 }
 
-func (h *mobileAuthenticationHandler) Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error {
-	return h.MobileAuthenticationHandler.Code(ctx, in, out)
+func (h *mobileHandler) Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error {
+	return h.MobileHandler.Code(ctx, in, out)
 }
 
-func (h *mobileAuthenticationHandler) CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error {
-	return h.MobileAuthenticationHandler.CheckCode(ctx, in, out)
+func (h *mobileHandler) CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error {
+	return h.MobileHandler.CheckCode(ctx, in, out)
+}
+
+func (h *mobileHandler) EditUser(ctx context.Context, in *ParamsEditUser, out *ResponseEditUser) error {
+	return h.MobileHandler.EditUser(ctx, in, out)
 }

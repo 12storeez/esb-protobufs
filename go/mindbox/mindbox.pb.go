@@ -7,7 +7,6 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -64,46 +63,46 @@ func (m *PingResponse) GetResponse() string {
 	return ""
 }
 
-type ParamsUserInformation struct {
+type ParamsUser struct {
 	ClientId             string   `protobuf:"bytes,1,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ParamsUserInformation) Reset()         { *m = ParamsUserInformation{} }
-func (m *ParamsUserInformation) String() string { return proto.CompactTextString(m) }
-func (*ParamsUserInformation) ProtoMessage()    {}
-func (*ParamsUserInformation) Descriptor() ([]byte, []int) {
+func (m *ParamsUser) Reset()         { *m = ParamsUser{} }
+func (m *ParamsUser) String() string { return proto.CompactTextString(m) }
+func (*ParamsUser) ProtoMessage()    {}
+func (*ParamsUser) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c1ddbb12eed38be6, []int{1}
 }
 
-func (m *ParamsUserInformation) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ParamsUserInformation.Unmarshal(m, b)
+func (m *ParamsUser) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsUser.Unmarshal(m, b)
 }
-func (m *ParamsUserInformation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ParamsUserInformation.Marshal(b, m, deterministic)
+func (m *ParamsUser) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsUser.Marshal(b, m, deterministic)
 }
-func (m *ParamsUserInformation) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ParamsUserInformation.Merge(m, src)
+func (m *ParamsUser) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsUser.Merge(m, src)
 }
-func (m *ParamsUserInformation) XXX_Size() int {
-	return xxx_messageInfo_ParamsUserInformation.Size(m)
+func (m *ParamsUser) XXX_Size() int {
+	return xxx_messageInfo_ParamsUser.Size(m)
 }
-func (m *ParamsUserInformation) XXX_DiscardUnknown() {
-	xxx_messageInfo_ParamsUserInformation.DiscardUnknown(m)
+func (m *ParamsUser) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsUser.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ParamsUserInformation proto.InternalMessageInfo
+var xxx_messageInfo_ParamsUser proto.InternalMessageInfo
 
-func (m *ParamsUserInformation) GetClientId() string {
+func (m *ParamsUser) GetClientId() string {
 	if m != nil {
 		return m.ClientId
 	}
 	return ""
 }
 
-type ResponseUserInformation struct {
+type ResponseUser struct {
 	FirstName            string   `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName             string   `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	Email                string   `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
@@ -117,169 +116,169 @@ type ResponseUserInformation struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ResponseUserInformation) Reset()         { *m = ResponseUserInformation{} }
-func (m *ResponseUserInformation) String() string { return proto.CompactTextString(m) }
-func (*ResponseUserInformation) ProtoMessage()    {}
-func (*ResponseUserInformation) Descriptor() ([]byte, []int) {
+func (m *ResponseUser) Reset()         { *m = ResponseUser{} }
+func (m *ResponseUser) String() string { return proto.CompactTextString(m) }
+func (*ResponseUser) ProtoMessage()    {}
+func (*ResponseUser) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c1ddbb12eed38be6, []int{2}
 }
 
-func (m *ResponseUserInformation) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseUserInformation.Unmarshal(m, b)
+func (m *ResponseUser) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseUser.Unmarshal(m, b)
 }
-func (m *ResponseUserInformation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseUserInformation.Marshal(b, m, deterministic)
+func (m *ResponseUser) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseUser.Marshal(b, m, deterministic)
 }
-func (m *ResponseUserInformation) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseUserInformation.Merge(m, src)
+func (m *ResponseUser) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseUser.Merge(m, src)
 }
-func (m *ResponseUserInformation) XXX_Size() int {
-	return xxx_messageInfo_ResponseUserInformation.Size(m)
+func (m *ResponseUser) XXX_Size() int {
+	return xxx_messageInfo_ResponseUser.Size(m)
 }
-func (m *ResponseUserInformation) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseUserInformation.DiscardUnknown(m)
+func (m *ResponseUser) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseUser.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResponseUserInformation proto.InternalMessageInfo
+var xxx_messageInfo_ResponseUser proto.InternalMessageInfo
 
-func (m *ResponseUserInformation) GetFirstName() string {
+func (m *ResponseUser) GetFirstName() string {
 	if m != nil {
 		return m.FirstName
 	}
 	return ""
 }
 
-func (m *ResponseUserInformation) GetLastName() string {
+func (m *ResponseUser) GetLastName() string {
 	if m != nil {
 		return m.LastName
 	}
 	return ""
 }
 
-func (m *ResponseUserInformation) GetEmail() string {
+func (m *ResponseUser) GetEmail() string {
 	if m != nil {
 		return m.Email
 	}
 	return ""
 }
 
-func (m *ResponseUserInformation) GetPhone() string {
+func (m *ResponseUser) GetPhone() string {
 	if m != nil {
 		return m.Phone
 	}
 	return ""
 }
 
-func (m *ResponseUserInformation) GetBonusTotal() int32 {
+func (m *ResponseUser) GetBonusTotal() int32 {
 	if m != nil {
 		return m.BonusTotal
 	}
 	return 0
 }
 
-func (m *ResponseUserInformation) GetBonusAvailable() int32 {
+func (m *ResponseUser) GetBonusAvailable() int32 {
 	if m != nil {
 		return m.BonusAvailable
 	}
 	return 0
 }
 
-func (m *ResponseUserInformation) GetBonusBlocked() int32 {
+func (m *ResponseUser) GetBonusBlocked() int32 {
 	if m != nil {
 		return m.BonusBlocked
 	}
 	return 0
 }
 
-func (m *ResponseUserInformation) GetTotalPaidAmount() float64 {
+func (m *ResponseUser) GetTotalPaidAmount() float64 {
 	if m != nil {
 		return m.TotalPaidAmount
 	}
 	return 0
 }
 
-type ParamsOrdersHistory struct {
+type ParamsOrders struct {
 	ClientId             string   `protobuf:"bytes,1,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ParamsOrdersHistory) Reset()         { *m = ParamsOrdersHistory{} }
-func (m *ParamsOrdersHistory) String() string { return proto.CompactTextString(m) }
-func (*ParamsOrdersHistory) ProtoMessage()    {}
-func (*ParamsOrdersHistory) Descriptor() ([]byte, []int) {
+func (m *ParamsOrders) Reset()         { *m = ParamsOrders{} }
+func (m *ParamsOrders) String() string { return proto.CompactTextString(m) }
+func (*ParamsOrders) ProtoMessage()    {}
+func (*ParamsOrders) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c1ddbb12eed38be6, []int{3}
 }
 
-func (m *ParamsOrdersHistory) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ParamsOrdersHistory.Unmarshal(m, b)
+func (m *ParamsOrders) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsOrders.Unmarshal(m, b)
 }
-func (m *ParamsOrdersHistory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ParamsOrdersHistory.Marshal(b, m, deterministic)
+func (m *ParamsOrders) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsOrders.Marshal(b, m, deterministic)
 }
-func (m *ParamsOrdersHistory) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ParamsOrdersHistory.Merge(m, src)
+func (m *ParamsOrders) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsOrders.Merge(m, src)
 }
-func (m *ParamsOrdersHistory) XXX_Size() int {
-	return xxx_messageInfo_ParamsOrdersHistory.Size(m)
+func (m *ParamsOrders) XXX_Size() int {
+	return xxx_messageInfo_ParamsOrders.Size(m)
 }
-func (m *ParamsOrdersHistory) XXX_DiscardUnknown() {
-	xxx_messageInfo_ParamsOrdersHistory.DiscardUnknown(m)
+func (m *ParamsOrders) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsOrders.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ParamsOrdersHistory proto.InternalMessageInfo
+var xxx_messageInfo_ParamsOrders proto.InternalMessageInfo
 
-func (m *ParamsOrdersHistory) GetClientId() string {
+func (m *ParamsOrders) GetClientId() string {
 	if m != nil {
 		return m.ClientId
 	}
 	return ""
 }
 
-type ResponseOrdersHistory struct {
-	TotalCount           int32    `protobuf:"varint,1,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
-	Orders               []*Order `protobuf:"bytes,2,rep,name=orders,proto3" json:"orders,omitempty"`
+type ResponseOrders struct {
+	Total                int32    `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Result               []*Order `protobuf:"bytes,2,rep,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ResponseOrdersHistory) Reset()         { *m = ResponseOrdersHistory{} }
-func (m *ResponseOrdersHistory) String() string { return proto.CompactTextString(m) }
-func (*ResponseOrdersHistory) ProtoMessage()    {}
-func (*ResponseOrdersHistory) Descriptor() ([]byte, []int) {
+func (m *ResponseOrders) Reset()         { *m = ResponseOrders{} }
+func (m *ResponseOrders) String() string { return proto.CompactTextString(m) }
+func (*ResponseOrders) ProtoMessage()    {}
+func (*ResponseOrders) Descriptor() ([]byte, []int) {
 	return fileDescriptor_c1ddbb12eed38be6, []int{4}
 }
 
-func (m *ResponseOrdersHistory) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseOrdersHistory.Unmarshal(m, b)
+func (m *ResponseOrders) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseOrders.Unmarshal(m, b)
 }
-func (m *ResponseOrdersHistory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseOrdersHistory.Marshal(b, m, deterministic)
+func (m *ResponseOrders) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseOrders.Marshal(b, m, deterministic)
 }
-func (m *ResponseOrdersHistory) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseOrdersHistory.Merge(m, src)
+func (m *ResponseOrders) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseOrders.Merge(m, src)
 }
-func (m *ResponseOrdersHistory) XXX_Size() int {
-	return xxx_messageInfo_ResponseOrdersHistory.Size(m)
+func (m *ResponseOrders) XXX_Size() int {
+	return xxx_messageInfo_ResponseOrders.Size(m)
 }
-func (m *ResponseOrdersHistory) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseOrdersHistory.DiscardUnknown(m)
+func (m *ResponseOrders) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseOrders.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResponseOrdersHistory proto.InternalMessageInfo
+var xxx_messageInfo_ResponseOrders proto.InternalMessageInfo
 
-func (m *ResponseOrdersHistory) GetTotalCount() int32 {
+func (m *ResponseOrders) GetTotal() int32 {
 	if m != nil {
-		return m.TotalCount
+		return m.Total
 	}
 	return 0
 }
 
-func (m *ResponseOrdersHistory) GetOrders() []*Order {
+func (m *ResponseOrders) GetResult() []*Order {
 	if m != nil {
-		return m.Orders
+		return m.Result
 	}
 	return nil
 }
@@ -889,13 +888,115 @@ func (m *ResponseCreation) GetOk() bool {
 	return false
 }
 
+type ParamsEditUser struct {
+	Endpoint             string   `protobuf:"bytes,1,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	DeviceUuid           string   `protobuf:"bytes,2,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
+	ClientId             string   `protobuf:"bytes,3,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	MobilePhone          string   `protobuf:"bytes,4,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsEditUser) Reset()         { *m = ParamsEditUser{} }
+func (m *ParamsEditUser) String() string { return proto.CompactTextString(m) }
+func (*ParamsEditUser) ProtoMessage()    {}
+func (*ParamsEditUser) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{16}
+}
+
+func (m *ParamsEditUser) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsEditUser.Unmarshal(m, b)
+}
+func (m *ParamsEditUser) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsEditUser.Marshal(b, m, deterministic)
+}
+func (m *ParamsEditUser) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsEditUser.Merge(m, src)
+}
+func (m *ParamsEditUser) XXX_Size() int {
+	return xxx_messageInfo_ParamsEditUser.Size(m)
+}
+func (m *ParamsEditUser) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsEditUser.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsEditUser proto.InternalMessageInfo
+
+func (m *ParamsEditUser) GetEndpoint() string {
+	if m != nil {
+		return m.Endpoint
+	}
+	return ""
+}
+
+func (m *ParamsEditUser) GetDeviceUuid() string {
+	if m != nil {
+		return m.DeviceUuid
+	}
+	return ""
+}
+
+func (m *ParamsEditUser) GetClientId() string {
+	if m != nil {
+		return m.ClientId
+	}
+	return ""
+}
+
+func (m *ParamsEditUser) GetMobilePhone() string {
+	if m != nil {
+		return m.MobilePhone
+	}
+	return ""
+}
+
+type ResponseEditUser struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ResponseEditUser) Reset()         { *m = ResponseEditUser{} }
+func (m *ResponseEditUser) String() string { return proto.CompactTextString(m) }
+func (*ResponseEditUser) ProtoMessage()    {}
+func (*ResponseEditUser) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{17}
+}
+
+func (m *ResponseEditUser) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseEditUser.Unmarshal(m, b)
+}
+func (m *ResponseEditUser) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseEditUser.Marshal(b, m, deterministic)
+}
+func (m *ResponseEditUser) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseEditUser.Merge(m, src)
+}
+func (m *ResponseEditUser) XXX_Size() int {
+	return xxx_messageInfo_ResponseEditUser.Size(m)
+}
+func (m *ResponseEditUser) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseEditUser.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ResponseEditUser proto.InternalMessageInfo
+
+func (m *ResponseEditUser) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*PingResponse)(nil), "mindbox.PingResponse")
-	proto.RegisterType((*ParamsUserInformation)(nil), "mindbox.ParamsUserInformation")
-	proto.RegisterType((*ResponseUserInformation)(nil), "mindbox.ResponseUserInformation")
-	proto.RegisterType((*ParamsOrdersHistory)(nil), "mindbox.ParamsOrdersHistory")
-	proto.RegisterType((*ResponseOrdersHistory)(nil), "mindbox.ResponseOrdersHistory")
-	proto.RegisterType((*Order)(nil), "mindbox.order")
+	proto.RegisterType((*ParamsUser)(nil), "mindbox.ParamsUser")
+	proto.RegisterType((*ResponseUser)(nil), "mindbox.ResponseUser")
+	proto.RegisterType((*ParamsOrders)(nil), "mindbox.ParamsOrders")
+	proto.RegisterType((*ResponseOrders)(nil), "mindbox.ResponseOrders")
+	proto.RegisterType((*Order)(nil), "mindbox.Order")
 	proto.RegisterType((*ParamsAuthorization)(nil), "mindbox.ParamsAuthorization")
 	proto.RegisterType((*ResponseAuthorization)(nil), "mindbox.ResponseAuthorization")
 	proto.RegisterType((*ParamsRegistration)(nil), "mindbox.ParamsRegistration")
@@ -906,71 +1007,72 @@ func init() {
 	proto.RegisterType((*ResponseCheckCode)(nil), "mindbox.ResponseCheckCode")
 	proto.RegisterType((*ParamsCreation)(nil), "mindbox.ParamsCreation")
 	proto.RegisterType((*ResponseCreation)(nil), "mindbox.ResponseCreation")
+	proto.RegisterType((*ParamsEditUser)(nil), "mindbox.ParamsEditUser")
+	proto.RegisterType((*ResponseEditUser)(nil), "mindbox.ResponseEditUser")
 }
 
 func init() { proto.RegisterFile("proto/mindbox.proto", fileDescriptor_c1ddbb12eed38be6) }
 
 var fileDescriptor_c1ddbb12eed38be6 = []byte{
-	// 944 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xdd, 0x72, 0xdb, 0x44,
-	0x14, 0xb6, 0x94, 0xd8, 0x89, 0x4f, 0x1c, 0xbb, 0xdd, 0xfc, 0x19, 0x85, 0xa4, 0xee, 0x32, 0xb4,
-	0xa1, 0x17, 0xce, 0x4c, 0xc8, 0xc0, 0x2d, 0x49, 0xca, 0x0c, 0x19, 0x28, 0xf5, 0x68, 0x9a, 0x1b,
-	0x6e, 0xc4, 0x5a, 0xbb, 0x71, 0x76, 0x22, 0x69, 0x85, 0x7e, 0x02, 0xe6, 0x15, 0x78, 0x05, 0x78,
-	0x1b, 0x9e, 0x86, 0x4b, 0x9e, 0x80, 0xd9, 0x3f, 0xd9, 0x92, 0x4b, 0x6e, 0xda, 0x3b, 0x9d, 0xef,
-	0xdb, 0x3d, 0xff, 0x67, 0x8f, 0x60, 0x27, 0xcd, 0x44, 0x21, 0x4e, 0x63, 0x9e, 0xd0, 0xa9, 0xf8,
-	0x6d, 0xac, 0x24, 0xb4, 0x61, 0x44, 0xef, 0x70, 0x26, 0xc4, 0x2c, 0x62, 0xa7, 0x0a, 0x9e, 0x96,
-	0xb7, 0xa7, 0x2c, 0x4e, 0x8b, 0xb9, 0x3e, 0x85, 0x5f, 0x41, 0x6f, 0xc2, 0x93, 0x99, 0xcf, 0xf2,
-	0x54, 0x24, 0x39, 0x43, 0x1e, 0x6c, 0x66, 0xe6, 0x7b, 0xe8, 0x8c, 0x9c, 0x93, 0xae, 0x5f, 0xc9,
-	0xf8, 0x1c, 0xf6, 0x26, 0x24, 0x23, 0x71, 0x7e, 0x93, 0xb3, 0xec, 0x3a, 0xb9, 0x15, 0x59, 0x4c,
-	0x0a, 0x2e, 0x12, 0x74, 0x08, 0xdd, 0x30, 0xe2, 0x2c, 0x29, 0x02, 0x4e, 0xed, 0x2d, 0x0d, 0x5c,
-	0x53, 0xfc, 0xa7, 0x0b, 0x07, 0x56, 0x7d, 0xf3, 0xe2, 0x11, 0xc0, 0x2d, 0xcf, 0xf2, 0x22, 0x48,
-	0x48, 0x6c, 0xed, 0x75, 0x15, 0xf2, 0x23, 0x89, 0x99, 0xd4, 0x1b, 0x11, 0xcb, 0xba, 0x5a, 0xaf,
-	0x04, 0x14, 0xb9, 0x0b, 0x6d, 0x16, 0x13, 0x1e, 0x0d, 0xd7, 0x14, 0xa1, 0x05, 0x89, 0xa6, 0x77,
-	0x22, 0x61, 0xc3, 0x75, 0x8d, 0x2a, 0x01, 0x3d, 0x83, 0xad, 0xa9, 0x48, 0xca, 0x3c, 0x28, 0x44,
-	0x41, 0xa2, 0x61, 0x7b, 0xe4, 0x9c, 0xb4, 0x7d, 0x50, 0xd0, 0x3b, 0x89, 0xa0, 0x97, 0x30, 0xd0,
-	0x07, 0xc8, 0x03, 0xe1, 0x11, 0x99, 0x46, 0x6c, 0xd8, 0x51, 0x87, 0xfa, 0x0a, 0xbe, 0xb0, 0x28,
-	0xfa, 0x0c, 0xb6, 0xf5, 0xc1, 0x69, 0x24, 0xc2, 0x7b, 0x46, 0x87, 0x1b, 0xea, 0x58, 0x4f, 0x81,
-	0x97, 0x1a, 0x43, 0xaf, 0xe0, 0xa9, 0x32, 0x14, 0xa4, 0x84, 0xd3, 0x80, 0xc4, 0xa2, 0x4c, 0x8a,
-	0xe1, 0xe6, 0xc8, 0x39, 0x71, 0xfc, 0x81, 0x22, 0x26, 0x84, 0xd3, 0x0b, 0x05, 0xe3, 0x33, 0xd8,
-	0xd1, 0x49, 0x7d, 0x9b, 0x51, 0x96, 0xe5, 0xdf, 0xf1, 0xbc, 0x10, 0xd9, 0xfc, 0xf1, 0x94, 0xfe,
-	0x0c, 0x7b, 0x36, 0xa3, 0xf5, 0x5b, 0xcf, 0x60, 0x4b, 0x1b, 0x0e, 0x95, 0x49, 0x47, 0xc7, 0xa9,
-	0xa0, 0x2b, 0x89, 0xa0, 0x17, 0xd0, 0x11, 0xea, 0xc6, 0xd0, 0x1d, 0xad, 0x9d, 0x6c, 0x9d, 0xf5,
-	0xc7, 0xb6, 0x69, 0x14, 0xec, 0x1b, 0x16, 0xff, 0xe5, 0x42, 0x5b, 0x7d, 0xa2, 0x3e, 0xb8, 0x95,
-	0x07, 0x2e, 0xa7, 0xe8, 0x39, 0xf4, 0xc2, 0x8c, 0x91, 0x82, 0xd1, 0x80, 0x92, 0xc2, 0x96, 0x65,
-	0xcb, 0x60, 0xaf, 0x49, 0xc1, 0xe4, 0x91, 0x94, 0xcc, 0x63, 0xe9, 0x7c, 0x31, 0x4f, 0x99, 0x29,
-	0xd0, 0x96, 0xc1, 0xde, 0xcd, 0x53, 0x86, 0xce, 0x61, 0x9f, 0xf2, 0x5c, 0x79, 0xc9, 0x68, 0x60,
-	0x92, 0x95, 0xf1, 0x50, 0xd7, 0xcd, 0xf1, 0x77, 0x17, 0xac, 0x2a, 0xd0, 0x44, 0x72, 0xe8, 0x73,
-	0xe8, 0x5b, 0xc5, 0x26, 0xa9, 0x6d, 0x75, 0x7a, 0xdb, 0xa0, 0x3a, 0xa5, 0xe8, 0x0b, 0x78, 0x42,
-	0xd2, 0x34, 0xe2, 0xd2, 0x45, 0xa3, 0x46, 0x55, 0xd3, 0xf1, 0x07, 0x06, 0x7f, 0x6d, 0x60, 0xf4,
-	0x15, 0x1c, 0x90, 0xf0, 0x97, 0x92, 0x67, 0x8c, 0x06, 0x53, 0x12, 0x91, 0x24, 0x64, 0x41, 0x78,
-	0x47, 0x92, 0x19, 0x53, 0x85, 0x75, 0xfc, 0x3d, 0x4b, 0x5f, 0x6a, 0xf6, 0x4a, 0x91, 0xd8, 0xb7,
-	0x55, 0xbb, 0x28, 0x8b, 0x3b, 0x91, 0xf1, 0xdf, 0x75, 0x3f, 0x7b, 0xb0, 0xc9, 0x12, 0x9a, 0x0a,
-	0x6e, 0x92, 0xdf, 0xf5, 0x2b, 0x59, 0xd6, 0x86, 0xb2, 0x07, 0x1e, 0xb2, 0xa0, 0x2c, 0x39, 0x35,
-	0x79, 0x03, 0x0d, 0xdd, 0x94, 0x9c, 0xe2, 0x97, 0x8b, 0xaa, 0xd6, 0xb5, 0xf6, 0xc1, 0x15, 0xf7,
-	0x4a, 0xdf, 0xa6, 0xef, 0x8a, 0x7b, 0xfc, 0xb7, 0x03, 0x48, 0x5b, 0xf7, 0xd9, 0x8c, 0xe7, 0x45,
-	0xf6, 0xe1, 0xc6, 0xeb, 0xfd, 0xb6, 0x56, 0xef, 0xb7, 0xc5, 0xa8, 0xad, 0x2f, 0x8f, 0xda, 0x21,
-	0x74, 0x6f, 0xcb, 0x28, 0xd2, 0xd3, 0xd9, 0xd6, 0x57, 0x24, 0xa0, 0xa6, 0xf3, 0x39, 0xf4, 0x62,
-	0x31, 0xe5, 0x11, 0x0b, 0xf4, 0x38, 0x76, 0x74, 0x0f, 0x68, 0x6c, 0x22, 0x21, 0xfc, 0x02, 0x76,
-	0x6d, 0xbc, 0xb5, 0x38, 0x9a, 0xe1, 0x7e, 0x0f, 0xa0, 0xa3, 0xbd, 0x12, 0x94, 0x3d, 0x1a, 0x65,
-	0xd3, 0xa8, 0xbb, 0x6a, 0xf4, 0x18, 0x7a, 0xd6, 0xa8, 0x52, 0xd7, 0x34, 0x46, 0x61, 0x60, 0x8c,
-	0xdd, 0xb1, 0xf0, 0xfe, 0x23, 0x58, 0x44, 0x08, 0xd6, 0x43, 0x41, 0xed, 0x14, 0xa8, 0x6f, 0xfc,
-	0x2b, 0x3c, 0xad, 0xbc, 0xa8, 0xec, 0x34, 0x5c, 0x41, 0xfb, 0xd0, 0xc9, 0x0b, 0x52, 0x94, 0xb9,
-	0xd1, 0x6a, 0xa4, 0xc7, 0x4b, 0x75, 0x04, 0x60, 0x26, 0x5a, 0xb2, 0xb2, 0x5e, 0x6b, 0x7e, 0xd7,
-	0x20, 0xd7, 0x14, 0xff, 0xe1, 0x40, 0xdf, 0xc4, 0x27, 0x07, 0xf6, 0x83, 0xdb, 0x46, 0xbf, 0x0e,
-	0x6b, 0xd5, 0xeb, 0xb0, 0x0f, 0x9d, 0x07, 0x96, 0x50, 0x91, 0x99, 0x56, 0x31, 0x92, 0xec, 0xa0,
-	0x58, 0x50, 0x16, 0x99, 0x3e, 0xd1, 0x02, 0xc6, 0xf0, 0xa4, 0x4a, 0x83, 0x75, 0xa7, 0x91, 0x85,
-	0xb3, 0x7f, 0x1c, 0xd8, 0x78, 0xa3, 0xfd, 0x47, 0x5f, 0xc3, 0xba, 0x5c, 0x56, 0x68, 0x7f, 0xac,
-	0x57, 0xda, 0xd8, 0xae, 0xb4, 0xf1, 0xb7, 0x72, 0xa5, 0x79, 0x7b, 0xd5, 0x6b, 0xb6, 0xbc, 0xd3,
-	0x70, 0x0b, 0xdd, 0xc0, 0xa0, 0xb9, 0x7a, 0x8e, 0x17, 0x67, 0xdf, 0xb7, 0xd3, 0xbc, 0x51, 0xc5,
-	0xff, 0xcf, 0xf2, 0xc2, 0x2d, 0xf4, 0x16, 0xb6, 0xeb, 0xef, 0xef, 0xa7, 0x0d, 0xa5, 0x35, 0xd6,
-	0x3b, 0x5e, 0x51, 0x59, 0xe3, 0x71, 0xeb, 0xec, 0x5f, 0x17, 0x76, 0xdf, 0xa8, 0xde, 0x91, 0x2f,
-	0x00, 0x4b, 0x0a, 0x1e, 0x6a, 0x6f, 0xbf, 0x81, 0xcd, 0x2a, 0x43, 0x07, 0x0d, 0x23, 0x96, 0xf0,
-	0x3e, 0x59, 0xd1, 0x6f, 0x29, 0xed, 0x6b, 0xfd, 0x55, 0x69, 0xfa, 0x5a, 0x63, 0xdf, 0xe3, 0x6b,
-	0x8d, 0xc7, 0x2d, 0xf4, 0x83, 0x9c, 0xa4, 0xa5, 0xb1, 0x3d, 0x6c, 0xe8, 0x5b, 0x26, 0xbd, 0xa3,
-	0x15, 0x75, 0xcb, 0x34, 0x6e, 0xa1, 0x73, 0x58, 0x57, 0x43, 0xb0, 0xd3, 0x0c, 0x4e, 0x50, 0xb6,
-	0x54, 0xd7, 0xe5, 0xd9, 0xc5, 0x2d, 0x74, 0x05, 0xdd, 0xc5, 0xfc, 0x0c, 0x9b, 0x57, 0x2d, 0xe3,
-	0x79, 0xab, 0xf7, 0x2d, 0x87, 0x5b, 0x97, 0xbd, 0x9f, 0x60, 0x56, 0xfd, 0x3c, 0x4d, 0x3b, 0xaa,
-	0xa7, 0xbe, 0xfc, 0x2f, 0x00, 0x00, 0xff, 0xff, 0xc7, 0x48, 0x99, 0x70, 0x54, 0x09, 0x00, 0x00,
+	// 917 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x56, 0xcd, 0x6e, 0xdb, 0x46,
+	0x10, 0x16, 0x29, 0x89, 0xb1, 0xc6, 0xb2, 0x9c, 0xac, 0xff, 0x58, 0xba, 0x4e, 0x9d, 0x2d, 0x9a,
+	0x38, 0x29, 0x90, 0x02, 0x6e, 0xd0, 0x43, 0x4f, 0xb5, 0x9d, 0x1e, 0x8c, 0xb6, 0x89, 0x40, 0x24,
+	0x97, 0x5e, 0x88, 0x15, 0x77, 0x6d, 0x2f, 0x4c, 0x72, 0x59, 0x72, 0xe9, 0xc6, 0x7d, 0x85, 0xa2,
+	0x87, 0x3e, 0x40, 0xaf, 0x7d, 0x92, 0x3e, 0x58, 0xb1, 0x7f, 0x94, 0x44, 0x05, 0xbe, 0xb8, 0xbd,
+	0x69, 0xbe, 0x6f, 0x76, 0x66, 0xf6, 0x9b, 0x99, 0xa5, 0x60, 0xab, 0xac, 0x84, 0x14, 0x5f, 0xe5,
+	0xbc, 0xa0, 0x33, 0xf1, 0xe1, 0xa5, 0xb6, 0xd0, 0x03, 0x6b, 0xe2, 0x17, 0x30, 0x9e, 0xf2, 0xe2,
+	0x32, 0x66, 0x75, 0x29, 0x8a, 0x9a, 0xa1, 0x08, 0xd6, 0x2a, 0xfb, 0x3b, 0xf4, 0x0e, 0xbd, 0xa3,
+	0x51, 0xdc, 0xda, 0xf8, 0x39, 0xc0, 0x94, 0x54, 0x24, 0xaf, 0xdf, 0xd7, 0xac, 0x42, 0xfb, 0x30,
+	0x4a, 0x33, 0xce, 0x0a, 0x99, 0x70, 0xea, 0x5c, 0x0d, 0x70, 0x4e, 0xf1, 0x9f, 0x3e, 0x8c, 0x5d,
+	0x4c, 0xed, 0x7d, 0x00, 0x70, 0xc1, 0xab, 0x5a, 0x26, 0x05, 0xc9, 0x5d, 0xe4, 0x91, 0x46, 0xde,
+	0x90, 0x9c, 0xa9, 0x60, 0x19, 0x71, 0xac, 0x6f, 0x82, 0x29, 0x40, 0x93, 0xdb, 0x30, 0x64, 0x39,
+	0xe1, 0x59, 0xd8, 0xd7, 0x84, 0x31, 0x14, 0x5a, 0x5e, 0x89, 0x82, 0x85, 0x03, 0x83, 0x6a, 0x03,
+	0x7d, 0x06, 0xeb, 0x33, 0x51, 0x34, 0x75, 0x22, 0x85, 0x24, 0x59, 0x38, 0x3c, 0xf4, 0x8e, 0x86,
+	0x31, 0x68, 0xe8, 0x9d, 0x42, 0xd0, 0x33, 0xd8, 0x34, 0x0e, 0xe4, 0x86, 0xf0, 0x8c, 0xcc, 0x32,
+	0x16, 0x06, 0xda, 0x69, 0xa2, 0xe1, 0x13, 0x87, 0xa2, 0xcf, 0x61, 0xc3, 0x38, 0xce, 0x32, 0x91,
+	0x5e, 0x33, 0x1a, 0x3e, 0xd0, 0x6e, 0x63, 0x0d, 0x9e, 0x1a, 0x0c, 0xbd, 0x80, 0x47, 0x3a, 0x51,
+	0x52, 0x12, 0x4e, 0x13, 0x92, 0x8b, 0xa6, 0x90, 0xe1, 0xda, 0xa1, 0x77, 0xe4, 0xc5, 0x9b, 0x9a,
+	0x98, 0x12, 0x4e, 0x4f, 0x34, 0x8c, 0xbf, 0x84, 0xb1, 0x91, 0xef, 0x6d, 0x45, 0x59, 0x55, 0xdf,
+	0x2d, 0xe0, 0x1b, 0x98, 0x38, 0xfd, 0xac, 0xfb, 0x36, 0x0c, 0xcd, 0x9d, 0x3c, 0x5d, 0x87, 0x31,
+	0xd0, 0x53, 0x08, 0x2a, 0x56, 0x37, 0x99, 0x0c, 0xfd, 0xc3, 0xfe, 0xd1, 0xfa, 0xf1, 0xe4, 0xa5,
+	0x6b, 0xb4, 0x3e, 0x16, 0x5b, 0x16, 0xff, 0xe5, 0xc3, 0x50, 0x23, 0x68, 0x02, 0x7e, 0x9b, 0xcf,
+	0xe7, 0x14, 0x3d, 0x81, 0x71, 0x5a, 0x31, 0x22, 0x19, 0x4d, 0x28, 0x91, 0x4e, 0xfd, 0x75, 0x8b,
+	0xbd, 0x26, 0x92, 0x29, 0x97, 0x92, 0xdc, 0xe6, 0xaa, 0x54, 0x79, 0x5b, 0x32, 0xdb, 0x87, 0x75,
+	0x8b, 0xbd, 0xbb, 0x2d, 0x19, 0x7a, 0x05, 0xbb, 0x94, 0xd7, 0xa9, 0xba, 0x28, 0xa3, 0x89, 0xd5,
+	0xa4, 0xe2, 0xa9, 0x69, 0x8f, 0x17, 0x6f, 0xcf, 0x59, 0xdd, 0x87, 0xa9, 0xe2, 0xd0, 0x17, 0x30,
+	0x71, 0x81, 0xad, 0x76, 0x43, 0xed, 0xbd, 0x61, 0x51, 0xa3, 0x1c, 0x7a, 0x0e, 0x0f, 0x49, 0x59,
+	0x66, 0x5c, 0x95, 0x68, 0xc3, 0xe8, 0xa6, 0x79, 0xf1, 0xa6, 0xc5, 0x5f, 0x5b, 0x18, 0x7d, 0x03,
+	0x7b, 0x24, 0xfd, 0xa5, 0xe1, 0x15, 0xa3, 0xc9, 0x8c, 0x64, 0xa4, 0x48, 0x59, 0x92, 0x5e, 0x91,
+	0xe2, 0x92, 0xe9, 0xfe, 0x79, 0xf1, 0x8e, 0xa3, 0x4f, 0x0d, 0x7b, 0xa6, 0x49, 0x1c, 0xc3, 0x96,
+	0x69, 0xce, 0x49, 0x23, 0xaf, 0x44, 0xc5, 0x7f, 0x23, 0x92, 0x8b, 0x42, 0xad, 0x03, 0x2b, 0x68,
+	0x29, 0x78, 0x21, 0x5d, 0x8b, 0x9c, 0xad, 0x46, 0x8d, 0xb2, 0x1b, 0x9e, 0xb2, 0xa4, 0x69, 0x38,
+	0xb5, 0xba, 0x81, 0x81, 0xde, 0x37, 0x9c, 0xe2, 0x67, 0xb0, 0xe3, 0x7a, 0xb8, 0x1c, 0x75, 0x02,
+	0xbe, 0xb8, 0xd6, 0xf1, 0xd6, 0x62, 0x5f, 0x5c, 0xe3, 0x7f, 0x3c, 0x40, 0x26, 0x7b, 0xcc, 0x2e,
+	0x79, 0x2d, 0xab, 0xfb, 0x27, 0x5f, 0x9e, 0xae, 0xfe, 0xf2, 0x74, 0xcd, 0x37, 0x6a, 0xb0, 0xb8,
+	0x51, 0xfb, 0x30, 0xba, 0x68, 0xb2, 0xcc, 0x2c, 0xe1, 0xd0, 0x1c, 0x51, 0x80, 0x5e, 0xc2, 0x27,
+	0x30, 0xce, 0xc5, 0x8c, 0x67, 0x2c, 0x31, 0x5b, 0x17, 0x98, 0x19, 0x30, 0xd8, 0x54, 0x41, 0xf8,
+	0x29, 0x6c, 0xbb, 0xfb, 0x2e, 0xdd, 0xa3, 0x7b, 0xdd, 0x1f, 0xdc, 0x3b, 0x72, 0x26, 0x28, 0xbb,
+	0xf3, 0x96, 0xdd, 0xa4, 0xfe, 0x6a, 0xd2, 0xc7, 0xf3, 0x87, 0x46, 0x87, 0xeb, 0x26, 0xa3, 0xb0,
+	0x69, 0x93, 0x5d, 0xb1, 0xf4, 0xfa, 0x3f, 0xc8, 0x88, 0x10, 0x0c, 0x52, 0x41, 0xdd, 0x16, 0xe8,
+	0xdf, 0xf8, 0x57, 0x78, 0xd4, 0x56, 0xd1, 0xe6, 0xe9, 0x94, 0x82, 0x76, 0x21, 0xa8, 0x25, 0x91,
+	0x4d, 0x6d, 0xa3, 0x5a, 0xeb, 0xee, 0x56, 0x1d, 0x00, 0xd8, 0x8d, 0x56, 0xac, 0xea, 0x57, 0x3f,
+	0x1e, 0x59, 0xe4, 0x9c, 0xe2, 0xdf, 0x3d, 0x98, 0xd8, 0xfb, 0xa9, 0x85, 0xbd, 0xf7, 0xd8, 0x98,
+	0xd7, 0xa1, 0xdf, 0xbe, 0x0e, 0xbb, 0x10, 0xdc, 0xb0, 0x82, 0x8a, 0xca, 0x8e, 0x8a, 0xb5, 0xd4,
+	0x04, 0xe5, 0x82, 0xb2, 0xcc, 0xce, 0x89, 0x31, 0x30, 0x86, 0x87, 0xad, 0x0c, 0xae, 0x9c, 0x6e,
+	0x43, 0xfe, 0x68, 0x2b, 0xfe, 0x9e, 0x72, 0xa9, 0x3f, 0x0e, 0xff, 0xdf, 0xa0, 0x77, 0xdb, 0x39,
+	0x58, 0x1d, 0xa0, 0x85, 0x9a, 0xdb, 0x82, 0x3a, 0x35, 0x1f, 0x7f, 0x80, 0x81, 0xc6, 0x5f, 0xc1,
+	0xe0, 0xbc, 0xb8, 0x10, 0x68, 0xab, 0x7d, 0x65, 0xe7, 0x1f, 0xc4, 0x68, 0xa7, 0x05, 0x17, 0xbf,
+	0x7c, 0xb8, 0x87, 0xbe, 0x85, 0xc0, 0xbe, 0xe1, 0x3b, 0x9d, 0x73, 0x06, 0x8e, 0xf6, 0x56, 0x4e,
+	0x1a, 0x02, 0xf7, 0x8e, 0xff, 0xee, 0x43, 0xf0, 0x93, 0xae, 0x16, 0x7d, 0x07, 0x6b, 0xad, 0xa8,
+	0x7b, 0x9d, 0x40, 0x8e, 0x88, 0x3e, 0x59, 0x09, 0xe5, 0x28, 0xdc, 0x43, 0x6f, 0x61, 0x63, 0xf9,
+	0x21, 0xfa, 0xb4, 0x13, 0x66, 0x89, 0x8d, 0x1e, 0xaf, 0xc4, 0x5a, 0xe2, 0x71, 0x0f, 0xfd, 0xa8,
+	0x96, 0x6f, 0x61, 0xd3, 0xf7, 0x3b, 0xf1, 0x16, 0xc9, 0xe8, 0x60, 0x25, 0xdc, 0x22, 0x8d, 0x7b,
+	0x4a, 0x5d, 0xbd, 0x37, 0x5d, 0x75, 0x15, 0xf8, 0x11, 0x75, 0x15, 0x8c, 0x7b, 0xe8, 0x0c, 0x46,
+	0xf3, 0x95, 0x0b, 0xbb, 0x47, 0x1d, 0x13, 0x45, 0xab, 0xe7, 0x1d, 0x87, 0x7b, 0x4a, 0xdb, 0xb6,
+	0xf9, 0x5d, 0x6d, 0x1d, 0xf1, 0x11, 0x6d, 0x1d, 0x85, 0x7b, 0xa7, 0xe3, 0x9f, 0xe1, 0xb2, 0xfd,
+	0x97, 0x35, 0x0b, 0xf4, 0xdf, 0xac, 0xaf, 0xff, 0x0d, 0x00, 0x00, 0xff, 0xff, 0xff, 0x14, 0x6f,
+	0xfb, 0x7d, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -981,360 +1083,360 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// MindboxClient is the client API for Mindbox service.
+// UserClient is the client API for User service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type MindboxClient interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*PingResponse, error)
-	UserInformation(ctx context.Context, in *ParamsUserInformation, opts ...grpc.CallOption) (*ResponseUserInformation, error)
-	OrdersHistory(ctx context.Context, in *ParamsOrdersHistory, opts ...grpc.CallOption) (*ResponseOrdersHistory, error)
+type UserClient interface {
+	Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error)
+	Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.CallOption) (*ResponseOrders, error)
 }
 
-type mindboxClient struct {
+type userClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewMindboxClient(cc *grpc.ClientConn) MindboxClient {
-	return &mindboxClient{cc}
+func NewUserClient(cc *grpc.ClientConn) UserClient {
+	return &userClient{cc}
 }
 
-func (c *mindboxClient) Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*PingResponse, error) {
-	out := new(PingResponse)
-	err := c.cc.Invoke(ctx, "/mindbox.Mindbox/Ping", in, out, opts...)
+func (c *userClient) Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error) {
+	out := new(ResponseUser)
+	err := c.cc.Invoke(ctx, "/mindbox.User/Info", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mindboxClient) UserInformation(ctx context.Context, in *ParamsUserInformation, opts ...grpc.CallOption) (*ResponseUserInformation, error) {
-	out := new(ResponseUserInformation)
-	err := c.cc.Invoke(ctx, "/mindbox.Mindbox/UserInformation", in, out, opts...)
+func (c *userClient) Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.CallOption) (*ResponseOrders, error) {
+	out := new(ResponseOrders)
+	err := c.cc.Invoke(ctx, "/mindbox.User/Orders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mindboxClient) OrdersHistory(ctx context.Context, in *ParamsOrdersHistory, opts ...grpc.CallOption) (*ResponseOrdersHistory, error) {
-	out := new(ResponseOrdersHistory)
-	err := c.cc.Invoke(ctx, "/mindbox.Mindbox/OrdersHistory", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+// UserServer is the server API for User service.
+type UserServer interface {
+	Info(context.Context, *ParamsUser) (*ResponseUser, error)
+	Orders(context.Context, *ParamsOrders) (*ResponseOrders, error)
 }
 
-// MindboxServer is the server API for Mindbox service.
-type MindboxServer interface {
-	Ping(context.Context, *empty.Empty) (*PingResponse, error)
-	UserInformation(context.Context, *ParamsUserInformation) (*ResponseUserInformation, error)
-	OrdersHistory(context.Context, *ParamsOrdersHistory) (*ResponseOrdersHistory, error)
+// UnimplementedUserServer can be embedded to have forward compatible implementations.
+type UnimplementedUserServer struct {
 }
 
-// UnimplementedMindboxServer can be embedded to have forward compatible implementations.
-type UnimplementedMindboxServer struct {
+func (*UnimplementedUserServer) Info(ctx context.Context, req *ParamsUser) (*ResponseUser, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
+}
+func (*UnimplementedUserServer) Orders(ctx context.Context, req *ParamsOrders) (*ResponseOrders, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Orders not implemented")
 }
 
-func (*UnimplementedMindboxServer) Ping(ctx context.Context, req *empty.Empty) (*PingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
-}
-func (*UnimplementedMindboxServer) UserInformation(ctx context.Context, req *ParamsUserInformation) (*ResponseUserInformation, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UserInformation not implemented")
-}
-func (*UnimplementedMindboxServer) OrdersHistory(ctx context.Context, req *ParamsOrdersHistory) (*ResponseOrdersHistory, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OrdersHistory not implemented")
+func RegisterUserServer(s *grpc.Server, srv UserServer) {
+	s.RegisterService(&_User_serviceDesc, srv)
 }
 
-func RegisterMindboxServer(s *grpc.Server, srv MindboxServer) {
-	s.RegisterService(&_Mindbox_serviceDesc, srv)
-}
-
-func _Mindbox_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
+func _User_Info_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsUser)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MindboxServer).Ping(ctx, in)
+		return srv.(UserServer).Info(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.Mindbox/Ping",
+		FullMethod: "/mindbox.User/Info",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MindboxServer).Ping(ctx, req.(*empty.Empty))
+		return srv.(UserServer).Info(ctx, req.(*ParamsUser))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Mindbox_UserInformation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsUserInformation)
+func _User_Orders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsOrders)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MindboxServer).UserInformation(ctx, in)
+		return srv.(UserServer).Orders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.Mindbox/UserInformation",
+		FullMethod: "/mindbox.User/Orders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MindboxServer).UserInformation(ctx, req.(*ParamsUserInformation))
+		return srv.(UserServer).Orders(ctx, req.(*ParamsOrders))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Mindbox_OrdersHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsOrdersHistory)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MindboxServer).OrdersHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/mindbox.Mindbox/OrdersHistory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MindboxServer).OrdersHistory(ctx, req.(*ParamsOrdersHistory))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Mindbox_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "mindbox.Mindbox",
-	HandlerType: (*MindboxServer)(nil),
+var _User_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.User",
+	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Ping",
-			Handler:    _Mindbox_Ping_Handler,
+			MethodName: "Info",
+			Handler:    _User_Info_Handler,
 		},
 		{
-			MethodName: "UserInformation",
-			Handler:    _Mindbox_UserInformation_Handler,
-		},
-		{
-			MethodName: "OrdersHistory",
-			Handler:    _Mindbox_OrdersHistory_Handler,
+			MethodName: "Orders",
+			Handler:    _User_Orders_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/mindbox.proto",
 }
 
-// MobileAuthenticationClient is the client API for MobileAuthentication service.
+// MobileClient is the client API for Mobile service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type MobileAuthenticationClient interface {
+type MobileClient interface {
 	Creation(ctx context.Context, in *ParamsCreation, opts ...grpc.CallOption) (*ResponseCreation, error)
 	Authorization(ctx context.Context, in *ParamsAuthorization, opts ...grpc.CallOption) (*ResponseAuthorization, error)
 	Registration(ctx context.Context, in *ParamsRegistration, opts ...grpc.CallOption) (*ResponseRegistration, error)
 	Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error)
 	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error)
+	EditUser(ctx context.Context, in *ParamsEditUser, opts ...grpc.CallOption) (*ResponseEditUser, error)
 }
 
-type mobileAuthenticationClient struct {
+type mobileClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewMobileAuthenticationClient(cc *grpc.ClientConn) MobileAuthenticationClient {
-	return &mobileAuthenticationClient{cc}
+func NewMobileClient(cc *grpc.ClientConn) MobileClient {
+	return &mobileClient{cc}
 }
 
-func (c *mobileAuthenticationClient) Creation(ctx context.Context, in *ParamsCreation, opts ...grpc.CallOption) (*ResponseCreation, error) {
+func (c *mobileClient) Creation(ctx context.Context, in *ParamsCreation, opts ...grpc.CallOption) (*ResponseCreation, error) {
 	out := new(ResponseCreation)
-	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Creation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Creation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mobileAuthenticationClient) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...grpc.CallOption) (*ResponseAuthorization, error) {
+func (c *mobileClient) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...grpc.CallOption) (*ResponseAuthorization, error) {
 	out := new(ResponseAuthorization)
-	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Authorization", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Authorization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mobileAuthenticationClient) Registration(ctx context.Context, in *ParamsRegistration, opts ...grpc.CallOption) (*ResponseRegistration, error) {
+func (c *mobileClient) Registration(ctx context.Context, in *ParamsRegistration, opts ...grpc.CallOption) (*ResponseRegistration, error) {
 	out := new(ResponseRegistration)
-	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Registration", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Registration", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mobileAuthenticationClient) Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error) {
+func (c *mobileClient) Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error) {
 	out := new(ResponseCode)
-	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/Code", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Code", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mobileAuthenticationClient) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error) {
+func (c *mobileClient) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error) {
 	out := new(ResponseCheckCode)
-	err := c.cc.Invoke(ctx, "/mindbox.MobileAuthentication/CheckCode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/CheckCode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MobileAuthenticationServer is the server API for MobileAuthentication service.
-type MobileAuthenticationServer interface {
+func (c *mobileClient) EditUser(ctx context.Context, in *ParamsEditUser, opts ...grpc.CallOption) (*ResponseEditUser, error) {
+	out := new(ResponseEditUser)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/EditUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MobileServer is the server API for Mobile service.
+type MobileServer interface {
 	Creation(context.Context, *ParamsCreation) (*ResponseCreation, error)
 	Authorization(context.Context, *ParamsAuthorization) (*ResponseAuthorization, error)
 	Registration(context.Context, *ParamsRegistration) (*ResponseRegistration, error)
 	Code(context.Context, *ParamsCode) (*ResponseCode, error)
 	CheckCode(context.Context, *ParamsCheckCode) (*ResponseCheckCode, error)
+	EditUser(context.Context, *ParamsEditUser) (*ResponseEditUser, error)
 }
 
-// UnimplementedMobileAuthenticationServer can be embedded to have forward compatible implementations.
-type UnimplementedMobileAuthenticationServer struct {
+// UnimplementedMobileServer can be embedded to have forward compatible implementations.
+type UnimplementedMobileServer struct {
 }
 
-func (*UnimplementedMobileAuthenticationServer) Creation(ctx context.Context, req *ParamsCreation) (*ResponseCreation, error) {
+func (*UnimplementedMobileServer) Creation(ctx context.Context, req *ParamsCreation) (*ResponseCreation, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Creation not implemented")
 }
-func (*UnimplementedMobileAuthenticationServer) Authorization(ctx context.Context, req *ParamsAuthorization) (*ResponseAuthorization, error) {
+func (*UnimplementedMobileServer) Authorization(ctx context.Context, req *ParamsAuthorization) (*ResponseAuthorization, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authorization not implemented")
 }
-func (*UnimplementedMobileAuthenticationServer) Registration(ctx context.Context, req *ParamsRegistration) (*ResponseRegistration, error) {
+func (*UnimplementedMobileServer) Registration(ctx context.Context, req *ParamsRegistration) (*ResponseRegistration, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Registration not implemented")
 }
-func (*UnimplementedMobileAuthenticationServer) Code(ctx context.Context, req *ParamsCode) (*ResponseCode, error) {
+func (*UnimplementedMobileServer) Code(ctx context.Context, req *ParamsCode) (*ResponseCode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Code not implemented")
 }
-func (*UnimplementedMobileAuthenticationServer) CheckCode(ctx context.Context, req *ParamsCheckCode) (*ResponseCheckCode, error) {
+func (*UnimplementedMobileServer) CheckCode(ctx context.Context, req *ParamsCheckCode) (*ResponseCheckCode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckCode not implemented")
 }
-
-func RegisterMobileAuthenticationServer(s *grpc.Server, srv MobileAuthenticationServer) {
-	s.RegisterService(&_MobileAuthentication_serviceDesc, srv)
+func (*UnimplementedMobileServer) EditUser(ctx context.Context, req *ParamsEditUser) (*ResponseEditUser, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditUser not implemented")
 }
 
-func _MobileAuthentication_Creation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
+	s.RegisterService(&_Mobile_serviceDesc, srv)
+}
+
+func _Mobile_Creation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ParamsCreation)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileAuthenticationServer).Creation(ctx, in)
+		return srv.(MobileServer).Creation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.MobileAuthentication/Creation",
+		FullMethod: "/mindbox.Mobile/Creation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileAuthenticationServer).Creation(ctx, req.(*ParamsCreation))
+		return srv.(MobileServer).Creation(ctx, req.(*ParamsCreation))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MobileAuthentication_Authorization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_Authorization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ParamsAuthorization)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileAuthenticationServer).Authorization(ctx, in)
+		return srv.(MobileServer).Authorization(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.MobileAuthentication/Authorization",
+		FullMethod: "/mindbox.Mobile/Authorization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileAuthenticationServer).Authorization(ctx, req.(*ParamsAuthorization))
+		return srv.(MobileServer).Authorization(ctx, req.(*ParamsAuthorization))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MobileAuthentication_Registration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_Registration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ParamsRegistration)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileAuthenticationServer).Registration(ctx, in)
+		return srv.(MobileServer).Registration(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.MobileAuthentication/Registration",
+		FullMethod: "/mindbox.Mobile/Registration",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileAuthenticationServer).Registration(ctx, req.(*ParamsRegistration))
+		return srv.(MobileServer).Registration(ctx, req.(*ParamsRegistration))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MobileAuthentication_Code_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_Code_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ParamsCode)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileAuthenticationServer).Code(ctx, in)
+		return srv.(MobileServer).Code(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.MobileAuthentication/Code",
+		FullMethod: "/mindbox.Mobile/Code",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileAuthenticationServer).Code(ctx, req.(*ParamsCode))
+		return srv.(MobileServer).Code(ctx, req.(*ParamsCode))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MobileAuthentication_CheckCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Mobile_CheckCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ParamsCheckCode)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileAuthenticationServer).CheckCode(ctx, in)
+		return srv.(MobileServer).CheckCode(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.MobileAuthentication/CheckCode",
+		FullMethod: "/mindbox.Mobile/CheckCode",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileAuthenticationServer).CheckCode(ctx, req.(*ParamsCheckCode))
+		return srv.(MobileServer).CheckCode(ctx, req.(*ParamsCheckCode))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _MobileAuthentication_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "mindbox.MobileAuthentication",
-	HandlerType: (*MobileAuthenticationServer)(nil),
+func _Mobile_EditUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsEditUser)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).EditUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.Mobile/EditUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).EditUser(ctx, req.(*ParamsEditUser))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Mobile_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.Mobile",
+	HandlerType: (*MobileServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Creation",
-			Handler:    _MobileAuthentication_Creation_Handler,
+			Handler:    _Mobile_Creation_Handler,
 		},
 		{
 			MethodName: "Authorization",
-			Handler:    _MobileAuthentication_Authorization_Handler,
+			Handler:    _Mobile_Authorization_Handler,
 		},
 		{
 			MethodName: "Registration",
-			Handler:    _MobileAuthentication_Registration_Handler,
+			Handler:    _Mobile_Registration_Handler,
 		},
 		{
 			MethodName: "Code",
-			Handler:    _MobileAuthentication_Code_Handler,
+			Handler:    _Mobile_Code_Handler,
 		},
 		{
 			MethodName: "CheckCode",
-			Handler:    _MobileAuthentication_CheckCode_Handler,
+			Handler:    _Mobile_CheckCode_Handler,
+		},
+		{
+			MethodName: "EditUser",
+			Handler:    _Mobile_EditUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
