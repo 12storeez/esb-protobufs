@@ -16,18 +16,16 @@ service Mobile {
 }
 
 service Stores {
-    rpc All (google.protobuf.Empty) returns (ResponseAllOfflineStoresInfo) {
+    rpc All (ParamsStores) returns (ResponseAllOfflineStoresInfo) {
     }
-    rpc ByID (paramsOfflineStoreInfoByID) returns (ResponseOfflineStoreInfoByID) {
+    rpc ByID (ParamsOfflineStoreInfoByID) returns (ResponseOfflineStoreInfoByID) {
     }
-    rpc Cities (paramsStoresCities) returns (ResponseStoresCities) {
-    }
-    rpc ByCity (paramsStoresByCity) returns (responseStoresByCity) {
+    rpc Cities (ParamsStoresCities) returns (ResponseStoresCities) {
     }
 }
 
 message ResponseAllOfflineStoresInfo {
-    repeated OfflineStore stores = 1;
+    repeated OfflineStore result = 1;
 }
 
 message OfflineStore {
@@ -44,7 +42,7 @@ message OfflineStore {
     int32 city_id = 11;
 }
 
-message paramsOfflineStoreInfoByID {
+message ParamsOfflineStoreInfoByID {
     int32 store_id = 1;
 }
 
@@ -88,7 +86,7 @@ message TextFaq {
     string answer = 2;
 }
 
-message paramsStoresCities {
+message ParamsStoresCities {
     int32 offset = 1;
     int32 limit = 2;
 }
@@ -96,13 +94,14 @@ message paramsStoresCities {
 message City {
     int32 city_id = 1;
     string title = 2;
+    int32 store = 3;
 }
 
 message ResponseStoresCities {
-    repeated City cities = 1;
+    repeated City result = 1;
 }
 
-message paramsStoresByCity {
+message ParamsStores {
     int32 city_id = 1;
     int32 offset = 2;
     int32 limit = 3;
