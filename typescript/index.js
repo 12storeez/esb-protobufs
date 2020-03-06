@@ -802,156 +802,180 @@ $root.google = (function() {
     return google;
 })();
 
-$root.health = (function() {
+$root.grpc = (function() {
 
     /**
-     * Namespace health.
-     * @exports health
+     * Namespace grpc.
+     * @exports grpc
      * @namespace
      */
-    var health = {};
+    var grpc = {};
 
-    health.Health = (function() {
-
-        /**
-         * Constructs a new Health service.
-         * @memberof health
-         * @classdesc Represents a Health
-         * @extends $protobuf.rpc.Service
-         * @constructor
-         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         */
-        function Health(rpcImpl, requestDelimited, responseDelimited) {
-            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
-        }
-
-        (Health.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Health;
+    grpc.health = (function() {
 
         /**
-         * Callback as used by {@link health.Health#check}.
-         * @memberof health.Health
-         * @typedef CheckCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {health.HealthCheckResponse} [response] HealthCheckResponse
+         * Namespace health.
+         * @memberof grpc
+         * @namespace
          */
+        var health = {};
 
-        /**
-         * Calls Check.
-         * @function check
-         * @memberof health.Health
-         * @instance
-         * @param {health.IHealthCheckRequest} request HealthCheckRequest message or plain object
-         * @param {health.Health.CheckCallback} callback Node-style callback called with the error, if any, and HealthCheckResponse
-         * @returns {undefined}
-         * @variation 1
-         */
-        Object.defineProperty(Health.prototype.check = function check(request, callback) {
-            return this.rpcCall(check, $root.health.HealthCheckRequest, $root.health.HealthCheckResponse, request, callback);
-        }, "name", { value: "Check" });
+        health.v1 = (function() {
 
-        /**
-         * Calls Check.
-         * @function check
-         * @memberof health.Health
-         * @instance
-         * @param {health.IHealthCheckRequest} request HealthCheckRequest message or plain object
-         * @returns {Promise<health.HealthCheckResponse>} Promise
-         * @variation 2
-         */
+            /**
+             * Namespace v1.
+             * @memberof grpc.health
+             * @namespace
+             */
+            var v1 = {};
 
-        return Health;
-    })();
+            v1.Health = (function() {
 
-    health.HealthCheckRequest = (function() {
+                /**
+                 * Constructs a new Health service.
+                 * @memberof grpc.health.v1
+                 * @classdesc Represents a Health
+                 * @extends $protobuf.rpc.Service
+                 * @constructor
+                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+                 */
+                function Health(rpcImpl, requestDelimited, responseDelimited) {
+                    $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+                }
 
-        /**
-         * Properties of a HealthCheckRequest.
-         * @memberof health
-         * @interface IHealthCheckRequest
-         * @property {string|null} [service] HealthCheckRequest service
-         */
+                (Health.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Health;
 
-        /**
-         * Constructs a new HealthCheckRequest.
-         * @memberof health
-         * @classdesc Represents a HealthCheckRequest.
-         * @implements IHealthCheckRequest
-         * @constructor
-         * @param {health.IHealthCheckRequest=} [properties] Properties to set
-         */
-        function HealthCheckRequest(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
+                /**
+                 * Callback as used by {@link grpc.health.v1.Health#check}.
+                 * @memberof grpc.health.v1.Health
+                 * @typedef CheckCallback
+                 * @type {function}
+                 * @param {Error|null} error Error, if any
+                 * @param {grpc.health.v1.HealthCheckResponse} [response] HealthCheckResponse
+                 */
 
-        /**
-         * HealthCheckRequest service.
-         * @member {string} service
-         * @memberof health.HealthCheckRequest
-         * @instance
-         */
-        HealthCheckRequest.prototype.service = "";
+                /**
+                 * Calls Check.
+                 * @function check
+                 * @memberof grpc.health.v1.Health
+                 * @instance
+                 * @param {grpc.health.v1.IHealthCheckRequest} request HealthCheckRequest message or plain object
+                 * @param {grpc.health.v1.Health.CheckCallback} callback Node-style callback called with the error, if any, and HealthCheckResponse
+                 * @returns {undefined}
+                 * @variation 1
+                 */
+                Object.defineProperty(Health.prototype.check = function check(request, callback) {
+                    return this.rpcCall(check, $root.grpc.health.v1.HealthCheckRequest, $root.grpc.health.v1.HealthCheckResponse, request, callback);
+                }, "name", { value: "Check" });
 
-        return HealthCheckRequest;
-    })();
+                /**
+                 * Calls Check.
+                 * @function check
+                 * @memberof grpc.health.v1.Health
+                 * @instance
+                 * @param {grpc.health.v1.IHealthCheckRequest} request HealthCheckRequest message or plain object
+                 * @returns {Promise<grpc.health.v1.HealthCheckResponse>} Promise
+                 * @variation 2
+                 */
 
-    health.HealthCheckResponse = (function() {
+                return Health;
+            })();
 
-        /**
-         * Properties of a HealthCheckResponse.
-         * @memberof health
-         * @interface IHealthCheckResponse
-         * @property {health.HealthCheckResponse.ServingStatus|null} [status] HealthCheckResponse status
-         */
+            v1.HealthCheckRequest = (function() {
 
-        /**
-         * Constructs a new HealthCheckResponse.
-         * @memberof health
-         * @classdesc Represents a HealthCheckResponse.
-         * @implements IHealthCheckResponse
-         * @constructor
-         * @param {health.IHealthCheckResponse=} [properties] Properties to set
-         */
-        function HealthCheckResponse(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
+                /**
+                 * Properties of a HealthCheckRequest.
+                 * @memberof grpc.health.v1
+                 * @interface IHealthCheckRequest
+                 * @property {string|null} [service] HealthCheckRequest service
+                 */
 
-        /**
-         * HealthCheckResponse status.
-         * @member {health.HealthCheckResponse.ServingStatus} status
-         * @memberof health.HealthCheckResponse
-         * @instance
-         */
-        HealthCheckResponse.prototype.status = 0;
+                /**
+                 * Constructs a new HealthCheckRequest.
+                 * @memberof grpc.health.v1
+                 * @classdesc Represents a HealthCheckRequest.
+                 * @implements IHealthCheckRequest
+                 * @constructor
+                 * @param {grpc.health.v1.IHealthCheckRequest=} [properties] Properties to set
+                 */
+                function HealthCheckRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
 
-        /**
-         * ServingStatus enum.
-         * @name health.HealthCheckResponse.ServingStatus
-         * @enum {string}
-         * @property {number} UNKNOWN=0 UNKNOWN value
-         * @property {number} SERVING=1 SERVING value
-         * @property {number} NOT_SERVING=2 NOT_SERVING value
-         */
-        HealthCheckResponse.ServingStatus = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "UNKNOWN"] = 0;
-            values[valuesById[1] = "SERVING"] = 1;
-            values[valuesById[2] = "NOT_SERVING"] = 2;
-            return values;
+                /**
+                 * HealthCheckRequest service.
+                 * @member {string} service
+                 * @memberof grpc.health.v1.HealthCheckRequest
+                 * @instance
+                 */
+                HealthCheckRequest.prototype.service = "";
+
+                return HealthCheckRequest;
+            })();
+
+            v1.HealthCheckResponse = (function() {
+
+                /**
+                 * Properties of a HealthCheckResponse.
+                 * @memberof grpc.health.v1
+                 * @interface IHealthCheckResponse
+                 * @property {grpc.health.v1.HealthCheckResponse.ServingStatus|null} [status] HealthCheckResponse status
+                 */
+
+                /**
+                 * Constructs a new HealthCheckResponse.
+                 * @memberof grpc.health.v1
+                 * @classdesc Represents a HealthCheckResponse.
+                 * @implements IHealthCheckResponse
+                 * @constructor
+                 * @param {grpc.health.v1.IHealthCheckResponse=} [properties] Properties to set
+                 */
+                function HealthCheckResponse(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * HealthCheckResponse status.
+                 * @member {grpc.health.v1.HealthCheckResponse.ServingStatus} status
+                 * @memberof grpc.health.v1.HealthCheckResponse
+                 * @instance
+                 */
+                HealthCheckResponse.prototype.status = 0;
+
+                /**
+                 * ServingStatus enum.
+                 * @name grpc.health.v1.HealthCheckResponse.ServingStatus
+                 * @enum {string}
+                 * @property {number} UNKNOWN=0 UNKNOWN value
+                 * @property {number} SERVING=1 SERVING value
+                 * @property {number} NOT_SERVING=2 NOT_SERVING value
+                 */
+                HealthCheckResponse.ServingStatus = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "UNKNOWN"] = 0;
+                    values[valuesById[1] = "SERVING"] = 1;
+                    values[valuesById[2] = "NOT_SERVING"] = 2;
+                    return values;
+                })();
+
+                return HealthCheckResponse;
+            })();
+
+            return v1;
         })();
 
-        return HealthCheckResponse;
+        return health;
     })();
 
-    return health;
+    return grpc;
 })();
 
 $root.logistics = (function() {
@@ -1732,1253 +1756,1241 @@ $root.logistics = (function() {
     return logistics;
 })();
 
-$root.Mobile = (function() {
-
-    /**
-     * Constructs a new Mobile service.
-     * @exports Mobile
-     * @classdesc Represents a Mobile
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
-    function Mobile(rpcImpl, requestDelimited, responseDelimited) {
-        $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
-    }
-
-    (Mobile.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Mobile;
-
-    /**
-     * Callback as used by {@link Mobile#contacts}.
-     * @memberof Mobile
-     * @typedef ContactsCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {ResponseMobileAPIContacts} [response] ResponseMobileAPIContacts
-     */
-
-    /**
-     * Calls Contacts.
-     * @function contacts
-     * @memberof Mobile
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @param {Mobile.ContactsCallback} callback Node-style callback called with the error, if any, and ResponseMobileAPIContacts
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Mobile.prototype.contacts = function contacts(request, callback) {
-        return this.rpcCall(contacts, $root.google.protobuf.Empty, $root.ResponseMobileAPIContacts, request, callback);
-    }, "name", { value: "Contacts" });
-
-    /**
-     * Calls Contacts.
-     * @function contacts
-     * @memberof Mobile
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @returns {Promise<ResponseMobileAPIContacts>} Promise
-     * @variation 2
-     */
-
-    /**
-     * Callback as used by {@link Mobile#about}.
-     * @memberof Mobile
-     * @typedef AboutCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {ResponseMobileApiAbout} [response] ResponseMobileApiAbout
-     */
-
-    /**
-     * Calls About.
-     * @function about
-     * @memberof Mobile
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @param {Mobile.AboutCallback} callback Node-style callback called with the error, if any, and ResponseMobileApiAbout
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Mobile.prototype.about = function about(request, callback) {
-        return this.rpcCall(about, $root.google.protobuf.Empty, $root.ResponseMobileApiAbout, request, callback);
-    }, "name", { value: "About" });
-
-    /**
-     * Calls About.
-     * @function about
-     * @memberof Mobile
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @returns {Promise<ResponseMobileApiAbout>} Promise
-     * @variation 2
-     */
-
-    /**
-     * Callback as used by {@link Mobile#faq}.
-     * @memberof Mobile
-     * @typedef FaqCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {ResponseFaq} [response] ResponseFaq
-     */
-
-    /**
-     * Calls Faq.
-     * @function faq
-     * @memberof Mobile
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @param {Mobile.FaqCallback} callback Node-style callback called with the error, if any, and ResponseFaq
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Mobile.prototype.faq = function faq(request, callback) {
-        return this.rpcCall(faq, $root.google.protobuf.Empty, $root.ResponseFaq, request, callback);
-    }, "name", { value: "Faq" });
-
-    /**
-     * Calls Faq.
-     * @function faq
-     * @memberof Mobile
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @returns {Promise<ResponseFaq>} Promise
-     * @variation 2
-     */
-
-    /**
-     * Callback as used by {@link Mobile#countries}.
-     * @memberof Mobile
-     * @typedef CountriesCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {ResponseCountries} [response] ResponseCountries
-     */
-
-    /**
-     * Calls Countries.
-     * @function countries
-     * @memberof Mobile
-     * @instance
-     * @param {IParamsCountries} request ParamsCountries message or plain object
-     * @param {Mobile.CountriesCallback} callback Node-style callback called with the error, if any, and ResponseCountries
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Mobile.prototype.countries = function countries(request, callback) {
-        return this.rpcCall(countries, $root.ParamsCountries, $root.ResponseCountries, request, callback);
-    }, "name", { value: "Countries" });
-
-    /**
-     * Calls Countries.
-     * @function countries
-     * @memberof Mobile
-     * @instance
-     * @param {IParamsCountries} request ParamsCountries message or plain object
-     * @returns {Promise<ResponseCountries>} Promise
-     * @variation 2
-     */
-
-    return Mobile;
-})();
-
-$root.Stores = (function() {
-
-    /**
-     * Constructs a new Stores service.
-     * @exports Stores
-     * @classdesc Represents a Stores
-     * @extends $protobuf.rpc.Service
-     * @constructor
-     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-     */
-    function Stores(rpcImpl, requestDelimited, responseDelimited) {
-        $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
-    }
-
-    (Stores.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Stores;
-
-    /**
-     * Callback as used by {@link Stores#all}.
-     * @memberof Stores
-     * @typedef AllCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {ResponseAllOfflineStoresInfo} [response] ResponseAllOfflineStoresInfo
-     */
-
-    /**
-     * Calls All.
-     * @function all
-     * @memberof Stores
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @param {Stores.AllCallback} callback Node-style callback called with the error, if any, and ResponseAllOfflineStoresInfo
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Stores.prototype.all = function all(request, callback) {
-        return this.rpcCall(all, $root.google.protobuf.Empty, $root.ResponseAllOfflineStoresInfo, request, callback);
-    }, "name", { value: "All" });
-
-    /**
-     * Calls All.
-     * @function all
-     * @memberof Stores
-     * @instance
-     * @param {google.protobuf.IEmpty} request Empty message or plain object
-     * @returns {Promise<ResponseAllOfflineStoresInfo>} Promise
-     * @variation 2
-     */
-
-    /**
-     * Callback as used by {@link Stores#byID}.
-     * @memberof Stores
-     * @typedef ByIDCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {ResponseOfflineStoreInfoByID} [response] ResponseOfflineStoreInfoByID
-     */
-
-    /**
-     * Calls ByID.
-     * @function byID
-     * @memberof Stores
-     * @instance
-     * @param {IparamsOfflineStoreInfoByID} request paramsOfflineStoreInfoByID message or plain object
-     * @param {Stores.ByIDCallback} callback Node-style callback called with the error, if any, and ResponseOfflineStoreInfoByID
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Stores.prototype.byID = function byID(request, callback) {
-        return this.rpcCall(byID, $root.paramsOfflineStoreInfoByID, $root.ResponseOfflineStoreInfoByID, request, callback);
-    }, "name", { value: "ByID" });
-
-    /**
-     * Calls ByID.
-     * @function byID
-     * @memberof Stores
-     * @instance
-     * @param {IparamsOfflineStoreInfoByID} request paramsOfflineStoreInfoByID message or plain object
-     * @returns {Promise<ResponseOfflineStoreInfoByID>} Promise
-     * @variation 2
-     */
-
-    /**
-     * Callback as used by {@link Stores#cities}.
-     * @memberof Stores
-     * @typedef CitiesCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {ResponseStoresCities} [response] ResponseStoresCities
-     */
-
-    /**
-     * Calls Cities.
-     * @function cities
-     * @memberof Stores
-     * @instance
-     * @param {IparamsStoresCities} request paramsStoresCities message or plain object
-     * @param {Stores.CitiesCallback} callback Node-style callback called with the error, if any, and ResponseStoresCities
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Stores.prototype.cities = function cities(request, callback) {
-        return this.rpcCall(cities, $root.paramsStoresCities, $root.ResponseStoresCities, request, callback);
-    }, "name", { value: "Cities" });
-
-    /**
-     * Calls Cities.
-     * @function cities
-     * @memberof Stores
-     * @instance
-     * @param {IparamsStoresCities} request paramsStoresCities message or plain object
-     * @returns {Promise<ResponseStoresCities>} Promise
-     * @variation 2
-     */
-
-    /**
-     * Callback as used by {@link Stores#byCity}.
-     * @memberof Stores
-     * @typedef ByCityCallback
-     * @type {function}
-     * @param {Error|null} error Error, if any
-     * @param {responseStoresByCity} [response] responseStoresByCity
-     */
-
-    /**
-     * Calls ByCity.
-     * @function byCity
-     * @memberof Stores
-     * @instance
-     * @param {IparamsStoresByCity} request paramsStoresByCity message or plain object
-     * @param {Stores.ByCityCallback} callback Node-style callback called with the error, if any, and responseStoresByCity
-     * @returns {undefined}
-     * @variation 1
-     */
-    Object.defineProperty(Stores.prototype.byCity = function byCity(request, callback) {
-        return this.rpcCall(byCity, $root.paramsStoresByCity, $root.responseStoresByCity, request, callback);
-    }, "name", { value: "ByCity" });
-
-    /**
-     * Calls ByCity.
-     * @function byCity
-     * @memberof Stores
-     * @instance
-     * @param {IparamsStoresByCity} request paramsStoresByCity message or plain object
-     * @returns {Promise<responseStoresByCity>} Promise
-     * @variation 2
-     */
-
-    return Stores;
-})();
-
-$root.ResponseAllOfflineStoresInfo = (function() {
-
-    /**
-     * Properties of a ResponseAllOfflineStoresInfo.
-     * @exports IResponseAllOfflineStoresInfo
-     * @interface IResponseAllOfflineStoresInfo
-     * @property {Array.<IOfflineStore>|null} [stores] ResponseAllOfflineStoresInfo stores
-     */
-
-    /**
-     * Constructs a new ResponseAllOfflineStoresInfo.
-     * @exports ResponseAllOfflineStoresInfo
-     * @classdesc Represents a ResponseAllOfflineStoresInfo.
-     * @implements IResponseAllOfflineStoresInfo
-     * @constructor
-     * @param {IResponseAllOfflineStoresInfo=} [properties] Properties to set
-     */
-    function ResponseAllOfflineStoresInfo(properties) {
-        this.stores = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ResponseAllOfflineStoresInfo stores.
-     * @member {Array.<IOfflineStore>} stores
-     * @memberof ResponseAllOfflineStoresInfo
-     * @instance
-     */
-    ResponseAllOfflineStoresInfo.prototype.stores = $util.emptyArray;
-
-    return ResponseAllOfflineStoresInfo;
-})();
-
-$root.OfflineStore = (function() {
-
-    /**
-     * Properties of an OfflineStore.
-     * @exports IOfflineStore
-     * @interface IOfflineStore
-     * @property {number|null} [store_id] OfflineStore store_id
-     * @property {string|null} [title] OfflineStore title
-     * @property {string|null} [address] OfflineStore address
-     * @property {string|null} [phone] OfflineStore phone
-     * @property {string|null} [geo] OfflineStore geo
-     * @property {string|null} [city] OfflineStore city
-     * @property {string|null} [country] OfflineStore country
-     * @property {boolean|null} [active] OfflineStore active
-     * @property {string|null} [picture_url] OfflineStore picture_url
-     * @property {string|null} [schedule] OfflineStore schedule
-     * @property {number|null} [city_id] OfflineStore city_id
-     */
-
-    /**
-     * Constructs a new OfflineStore.
-     * @exports OfflineStore
-     * @classdesc Represents an OfflineStore.
-     * @implements IOfflineStore
-     * @constructor
-     * @param {IOfflineStore=} [properties] Properties to set
-     */
-    function OfflineStore(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * OfflineStore store_id.
-     * @member {number} store_id
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.store_id = 0;
-
-    /**
-     * OfflineStore title.
-     * @member {string} title
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.title = "";
-
-    /**
-     * OfflineStore address.
-     * @member {string} address
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.address = "";
-
-    /**
-     * OfflineStore phone.
-     * @member {string} phone
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.phone = "";
-
-    /**
-     * OfflineStore geo.
-     * @member {string} geo
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.geo = "";
-
-    /**
-     * OfflineStore city.
-     * @member {string} city
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.city = "";
-
-    /**
-     * OfflineStore country.
-     * @member {string} country
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.country = "";
-
-    /**
-     * OfflineStore active.
-     * @member {boolean} active
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.active = false;
-
-    /**
-     * OfflineStore picture_url.
-     * @member {string} picture_url
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.picture_url = "";
-
-    /**
-     * OfflineStore schedule.
-     * @member {string} schedule
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.schedule = "";
-
-    /**
-     * OfflineStore city_id.
-     * @member {number} city_id
-     * @memberof OfflineStore
-     * @instance
-     */
-    OfflineStore.prototype.city_id = 0;
-
-    return OfflineStore;
-})();
-
-$root.paramsOfflineStoreInfoByID = (function() {
-
-    /**
-     * Properties of a paramsOfflineStoreInfoByID.
-     * @exports IparamsOfflineStoreInfoByID
-     * @interface IparamsOfflineStoreInfoByID
-     * @property {number|null} [store_id] paramsOfflineStoreInfoByID store_id
-     */
-
-    /**
-     * Constructs a new paramsOfflineStoreInfoByID.
-     * @exports paramsOfflineStoreInfoByID
-     * @classdesc Represents a paramsOfflineStoreInfoByID.
-     * @implements IparamsOfflineStoreInfoByID
-     * @constructor
-     * @param {IparamsOfflineStoreInfoByID=} [properties] Properties to set
-     */
-    function paramsOfflineStoreInfoByID(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * paramsOfflineStoreInfoByID store_id.
-     * @member {number} store_id
-     * @memberof paramsOfflineStoreInfoByID
-     * @instance
-     */
-    paramsOfflineStoreInfoByID.prototype.store_id = 0;
-
-    return paramsOfflineStoreInfoByID;
-})();
-
-$root.ResponseOfflineStoreInfoByID = (function() {
-
-    /**
-     * Properties of a ResponseOfflineStoreInfoByID.
-     * @exports IResponseOfflineStoreInfoByID
-     * @interface IResponseOfflineStoreInfoByID
-     * @property {IOfflineStore|null} [store] ResponseOfflineStoreInfoByID store
-     */
-
-    /**
-     * Constructs a new ResponseOfflineStoreInfoByID.
-     * @exports ResponseOfflineStoreInfoByID
-     * @classdesc Represents a ResponseOfflineStoreInfoByID.
-     * @implements IResponseOfflineStoreInfoByID
-     * @constructor
-     * @param {IResponseOfflineStoreInfoByID=} [properties] Properties to set
-     */
-    function ResponseOfflineStoreInfoByID(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ResponseOfflineStoreInfoByID store.
-     * @member {IOfflineStore|null|undefined} store
-     * @memberof ResponseOfflineStoreInfoByID
-     * @instance
-     */
-    ResponseOfflineStoreInfoByID.prototype.store = null;
-
-    return ResponseOfflineStoreInfoByID;
-})();
-
-$root.ResponseMobileAPIContacts = (function() {
-
-    /**
-     * Properties of a ResponseMobileAPIContacts.
-     * @exports IResponseMobileAPIContacts
-     * @interface IResponseMobileAPIContacts
-     * @property {Array.<IContact>|null} [contacts] ResponseMobileAPIContacts contacts
-     */
-
-    /**
-     * Constructs a new ResponseMobileAPIContacts.
-     * @exports ResponseMobileAPIContacts
-     * @classdesc Represents a ResponseMobileAPIContacts.
-     * @implements IResponseMobileAPIContacts
-     * @constructor
-     * @param {IResponseMobileAPIContacts=} [properties] Properties to set
-     */
-    function ResponseMobileAPIContacts(properties) {
-        this.contacts = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ResponseMobileAPIContacts contacts.
-     * @member {Array.<IContact>} contacts
-     * @memberof ResponseMobileAPIContacts
-     * @instance
-     */
-    ResponseMobileAPIContacts.prototype.contacts = $util.emptyArray;
-
-    return ResponseMobileAPIContacts;
-})();
-
-$root.Contact = (function() {
-
-    /**
-     * Properties of a Contact.
-     * @exports IContact
-     * @interface IContact
-     * @property {string|null} [title] Contact title
-     * @property {string|null} [subtitle] Contact subtitle
-     * @property {string|null} [text] Contact text
-     */
-
-    /**
-     * Constructs a new Contact.
-     * @exports Contact
-     * @classdesc Represents a Contact.
-     * @implements IContact
-     * @constructor
-     * @param {IContact=} [properties] Properties to set
-     */
-    function Contact(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * Contact title.
-     * @member {string} title
-     * @memberof Contact
-     * @instance
-     */
-    Contact.prototype.title = "";
-
-    /**
-     * Contact subtitle.
-     * @member {string} subtitle
-     * @memberof Contact
-     * @instance
-     */
-    Contact.prototype.subtitle = "";
-
-    /**
-     * Contact text.
-     * @member {string} text
-     * @memberof Contact
-     * @instance
-     */
-    Contact.prototype.text = "";
-
-    return Contact;
-})();
-
-$root.ResponseMobileApiAbout = (function() {
-
-    /**
-     * Properties of a ResponseMobileApiAbout.
-     * @exports IResponseMobileApiAbout
-     * @interface IResponseMobileApiAbout
-     * @property {string|null} [about] ResponseMobileApiAbout about
-     * @property {string|null} [mission] ResponseMobileApiAbout mission
-     * @property {Array.<IBlock>|null} [blocks] ResponseMobileApiAbout blocks
-     * @property {string|null} [image_url] ResponseMobileApiAbout image_url
-     */
-
-    /**
-     * Constructs a new ResponseMobileApiAbout.
-     * @exports ResponseMobileApiAbout
-     * @classdesc Represents a ResponseMobileApiAbout.
-     * @implements IResponseMobileApiAbout
-     * @constructor
-     * @param {IResponseMobileApiAbout=} [properties] Properties to set
-     */
-    function ResponseMobileApiAbout(properties) {
-        this.blocks = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ResponseMobileApiAbout about.
-     * @member {string} about
-     * @memberof ResponseMobileApiAbout
-     * @instance
-     */
-    ResponseMobileApiAbout.prototype.about = "";
-
-    /**
-     * ResponseMobileApiAbout mission.
-     * @member {string} mission
-     * @memberof ResponseMobileApiAbout
-     * @instance
-     */
-    ResponseMobileApiAbout.prototype.mission = "";
-
-    /**
-     * ResponseMobileApiAbout blocks.
-     * @member {Array.<IBlock>} blocks
-     * @memberof ResponseMobileApiAbout
-     * @instance
-     */
-    ResponseMobileApiAbout.prototype.blocks = $util.emptyArray;
-
-    /**
-     * ResponseMobileApiAbout image_url.
-     * @member {string} image_url
-     * @memberof ResponseMobileApiAbout
-     * @instance
-     */
-    ResponseMobileApiAbout.prototype.image_url = "";
-
-    return ResponseMobileApiAbout;
-})();
-
-$root.Block = (function() {
-
-    /**
-     * Properties of a Block.
-     * @exports IBlock
-     * @interface IBlock
-     * @property {string|null} [title] Block title
-     * @property {string|null} [value] Block value
-     */
-
-    /**
-     * Constructs a new Block.
-     * @exports Block
-     * @classdesc Represents a Block.
-     * @implements IBlock
-     * @constructor
-     * @param {IBlock=} [properties] Properties to set
-     */
-    function Block(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * Block title.
-     * @member {string} title
-     * @memberof Block
-     * @instance
-     */
-    Block.prototype.title = "";
-
-    /**
-     * Block value.
-     * @member {string} value
-     * @memberof Block
-     * @instance
-     */
-    Block.prototype.value = "";
-
-    return Block;
-})();
-
-$root.ResponseFaq = (function() {
-
-    /**
-     * Properties of a ResponseFaq.
-     * @exports IResponseFaq
-     * @interface IResponseFaq
-     * @property {Array.<IBlockFaq>|null} [result] ResponseFaq result
-     */
-
-    /**
-     * Constructs a new ResponseFaq.
-     * @exports ResponseFaq
-     * @classdesc Represents a ResponseFaq.
-     * @implements IResponseFaq
-     * @constructor
-     * @param {IResponseFaq=} [properties] Properties to set
-     */
-    function ResponseFaq(properties) {
-        this.result = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ResponseFaq result.
-     * @member {Array.<IBlockFaq>} result
-     * @memberof ResponseFaq
-     * @instance
-     */
-    ResponseFaq.prototype.result = $util.emptyArray;
-
-    return ResponseFaq;
-})();
-
-$root.BlockFaq = (function() {
-
-    /**
-     * Properties of a BlockFaq.
-     * @exports IBlockFaq
-     * @interface IBlockFaq
-     * @property {string|null} [title] BlockFaq title
-     * @property {Array.<ITextFaq>|null} [content] BlockFaq content
-     */
-
-    /**
-     * Constructs a new BlockFaq.
-     * @exports BlockFaq
-     * @classdesc Represents a BlockFaq.
-     * @implements IBlockFaq
-     * @constructor
-     * @param {IBlockFaq=} [properties] Properties to set
-     */
-    function BlockFaq(properties) {
-        this.content = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * BlockFaq title.
-     * @member {string} title
-     * @memberof BlockFaq
-     * @instance
-     */
-    BlockFaq.prototype.title = "";
-
-    /**
-     * BlockFaq content.
-     * @member {Array.<ITextFaq>} content
-     * @memberof BlockFaq
-     * @instance
-     */
-    BlockFaq.prototype.content = $util.emptyArray;
-
-    return BlockFaq;
-})();
-
-$root.TextFaq = (function() {
-
-    /**
-     * Properties of a TextFaq.
-     * @exports ITextFaq
-     * @interface ITextFaq
-     * @property {string|null} [title] TextFaq title
-     * @property {string|null} [answer] TextFaq answer
-     */
-
-    /**
-     * Constructs a new TextFaq.
-     * @exports TextFaq
-     * @classdesc Represents a TextFaq.
-     * @implements ITextFaq
-     * @constructor
-     * @param {ITextFaq=} [properties] Properties to set
-     */
-    function TextFaq(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * TextFaq title.
-     * @member {string} title
-     * @memberof TextFaq
-     * @instance
-     */
-    TextFaq.prototype.title = "";
-
-    /**
-     * TextFaq answer.
-     * @member {string} answer
-     * @memberof TextFaq
-     * @instance
-     */
-    TextFaq.prototype.answer = "";
-
-    return TextFaq;
-})();
-
-$root.paramsStoresCities = (function() {
-
-    /**
-     * Properties of a paramsStoresCities.
-     * @exports IparamsStoresCities
-     * @interface IparamsStoresCities
-     * @property {number|null} [offset] paramsStoresCities offset
-     * @property {number|null} [limit] paramsStoresCities limit
-     */
-
-    /**
-     * Constructs a new paramsStoresCities.
-     * @exports paramsStoresCities
-     * @classdesc Represents a paramsStoresCities.
-     * @implements IparamsStoresCities
-     * @constructor
-     * @param {IparamsStoresCities=} [properties] Properties to set
-     */
-    function paramsStoresCities(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * paramsStoresCities offset.
-     * @member {number} offset
-     * @memberof paramsStoresCities
-     * @instance
-     */
-    paramsStoresCities.prototype.offset = 0;
-
-    /**
-     * paramsStoresCities limit.
-     * @member {number} limit
-     * @memberof paramsStoresCities
-     * @instance
-     */
-    paramsStoresCities.prototype.limit = 0;
-
-    return paramsStoresCities;
-})();
-
-$root.City = (function() {
-
-    /**
-     * Properties of a City.
-     * @exports ICity
-     * @interface ICity
-     * @property {number|null} [city_id] City city_id
-     * @property {string|null} [title] City title
-     */
-
-    /**
-     * Constructs a new City.
-     * @exports City
-     * @classdesc Represents a City.
-     * @implements ICity
-     * @constructor
-     * @param {ICity=} [properties] Properties to set
-     */
-    function City(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * City city_id.
-     * @member {number} city_id
-     * @memberof City
-     * @instance
-     */
-    City.prototype.city_id = 0;
-
-    /**
-     * City title.
-     * @member {string} title
-     * @memberof City
-     * @instance
-     */
-    City.prototype.title = "";
-
-    return City;
-})();
-
-$root.ResponseStoresCities = (function() {
-
-    /**
-     * Properties of a ResponseStoresCities.
-     * @exports IResponseStoresCities
-     * @interface IResponseStoresCities
-     * @property {Array.<ICity>|null} [cities] ResponseStoresCities cities
-     */
-
-    /**
-     * Constructs a new ResponseStoresCities.
-     * @exports ResponseStoresCities
-     * @classdesc Represents a ResponseStoresCities.
-     * @implements IResponseStoresCities
-     * @constructor
-     * @param {IResponseStoresCities=} [properties] Properties to set
-     */
-    function ResponseStoresCities(properties) {
-        this.cities = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ResponseStoresCities cities.
-     * @member {Array.<ICity>} cities
-     * @memberof ResponseStoresCities
-     * @instance
-     */
-    ResponseStoresCities.prototype.cities = $util.emptyArray;
-
-    return ResponseStoresCities;
-})();
-
-$root.paramsStoresByCity = (function() {
-
-    /**
-     * Properties of a paramsStoresByCity.
-     * @exports IparamsStoresByCity
-     * @interface IparamsStoresByCity
-     * @property {number|null} [city_id] paramsStoresByCity city_id
-     * @property {number|null} [offset] paramsStoresByCity offset
-     * @property {number|null} [limit] paramsStoresByCity limit
-     */
-
-    /**
-     * Constructs a new paramsStoresByCity.
-     * @exports paramsStoresByCity
-     * @classdesc Represents a paramsStoresByCity.
-     * @implements IparamsStoresByCity
-     * @constructor
-     * @param {IparamsStoresByCity=} [properties] Properties to set
-     */
-    function paramsStoresByCity(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * paramsStoresByCity city_id.
-     * @member {number} city_id
-     * @memberof paramsStoresByCity
-     * @instance
-     */
-    paramsStoresByCity.prototype.city_id = 0;
-
-    /**
-     * paramsStoresByCity offset.
-     * @member {number} offset
-     * @memberof paramsStoresByCity
-     * @instance
-     */
-    paramsStoresByCity.prototype.offset = 0;
-
-    /**
-     * paramsStoresByCity limit.
-     * @member {number} limit
-     * @memberof paramsStoresByCity
-     * @instance
-     */
-    paramsStoresByCity.prototype.limit = 0;
-
-    return paramsStoresByCity;
-})();
-
-$root.responseStoresByCity = (function() {
-
-    /**
-     * Properties of a responseStoresByCity.
-     * @exports IresponseStoresByCity
-     * @interface IresponseStoresByCity
-     * @property {number|null} [city_id] responseStoresByCity city_id
-     * @property {string|null} [title] responseStoresByCity title
-     * @property {number|null} [total] responseStoresByCity total
-     * @property {Array.<IOfflineStore>|null} [stores] responseStoresByCity stores
-     */
-
-    /**
-     * Constructs a new responseStoresByCity.
-     * @exports responseStoresByCity
-     * @classdesc Represents a responseStoresByCity.
-     * @implements IresponseStoresByCity
-     * @constructor
-     * @param {IresponseStoresByCity=} [properties] Properties to set
-     */
-    function responseStoresByCity(properties) {
-        this.stores = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * responseStoresByCity city_id.
-     * @member {number} city_id
-     * @memberof responseStoresByCity
-     * @instance
-     */
-    responseStoresByCity.prototype.city_id = 0;
-
-    /**
-     * responseStoresByCity title.
-     * @member {string} title
-     * @memberof responseStoresByCity
-     * @instance
-     */
-    responseStoresByCity.prototype.title = "";
-
-    /**
-     * responseStoresByCity total.
-     * @member {number} total
-     * @memberof responseStoresByCity
-     * @instance
-     */
-    responseStoresByCity.prototype.total = 0;
-
-    /**
-     * responseStoresByCity stores.
-     * @member {Array.<IOfflineStore>} stores
-     * @memberof responseStoresByCity
-     * @instance
-     */
-    responseStoresByCity.prototype.stores = $util.emptyArray;
-
-    return responseStoresByCity;
-})();
-
-$root.ParamsCountries = (function() {
-
-    /**
-     * Properties of a ParamsCountries.
-     * @exports IParamsCountries
-     * @interface IParamsCountries
-     * @property {number|null} [offset] ParamsCountries offset
-     * @property {number|null} [limit] ParamsCountries limit
-     */
-
-    /**
-     * Constructs a new ParamsCountries.
-     * @exports ParamsCountries
-     * @classdesc Represents a ParamsCountries.
-     * @implements IParamsCountries
-     * @constructor
-     * @param {IParamsCountries=} [properties] Properties to set
-     */
-    function ParamsCountries(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ParamsCountries offset.
-     * @member {number} offset
-     * @memberof ParamsCountries
-     * @instance
-     */
-    ParamsCountries.prototype.offset = 0;
-
-    /**
-     * ParamsCountries limit.
-     * @member {number} limit
-     * @memberof ParamsCountries
-     * @instance
-     */
-    ParamsCountries.prototype.limit = 0;
-
-    return ParamsCountries;
-})();
-
-$root.ResponseCountries = (function() {
-
-    /**
-     * Properties of a ResponseCountries.
-     * @exports IResponseCountries
-     * @interface IResponseCountries
-     * @property {number|null} [total] ResponseCountries total
-     * @property {Array.<ICountry>|null} [result] ResponseCountries result
-     */
-
-    /**
-     * Constructs a new ResponseCountries.
-     * @exports ResponseCountries
-     * @classdesc Represents a ResponseCountries.
-     * @implements IResponseCountries
-     * @constructor
-     * @param {IResponseCountries=} [properties] Properties to set
-     */
-    function ResponseCountries(properties) {
-        this.result = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ResponseCountries total.
-     * @member {number} total
-     * @memberof ResponseCountries
-     * @instance
-     */
-    ResponseCountries.prototype.total = 0;
-
-    /**
-     * ResponseCountries result.
-     * @member {Array.<ICountry>} result
-     * @memberof ResponseCountries
-     * @instance
-     */
-    ResponseCountries.prototype.result = $util.emptyArray;
-
-    return ResponseCountries;
-})();
-
-$root.Country = (function() {
-
-    /**
-     * Properties of a Country.
-     * @exports ICountry
-     * @interface ICountry
-     * @property {number|Long|null} [id] Country id
-     * @property {string|null} [country_code] Country country_code
-     * @property {string|null} [prefix] Country prefix
-     * @property {string|null} [title_ru] Country title_ru
-     */
-
-    /**
-     * Constructs a new Country.
-     * @exports Country
-     * @classdesc Represents a Country.
-     * @implements ICountry
-     * @constructor
-     * @param {ICountry=} [properties] Properties to set
-     */
-    function Country(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * Country id.
-     * @member {number|Long} id
-     * @memberof Country
-     * @instance
-     */
-    Country.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-    /**
-     * Country country_code.
-     * @member {string} country_code
-     * @memberof Country
-     * @instance
-     */
-    Country.prototype.country_code = "";
-
-    /**
-     * Country prefix.
-     * @member {string} prefix
-     * @memberof Country
-     * @instance
-     */
-    Country.prototype.prefix = "";
-
-    /**
-     * Country title_ru.
-     * @member {string} title_ru
-     * @memberof Country
-     * @instance
-     */
-    Country.prototype.title_ru = "";
-
-    return Country;
+$root.meta = (function() {
+
+    /**
+     * Namespace meta.
+     * @exports meta
+     * @namespace
+     */
+    var meta = {};
+
+    meta.Mobile = (function() {
+
+        /**
+         * Constructs a new Mobile service.
+         * @memberof meta
+         * @classdesc Represents a Mobile
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function Mobile(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (Mobile.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Mobile;
+
+        /**
+         * Callback as used by {@link meta.Mobile#contacts}.
+         * @memberof meta.Mobile
+         * @typedef ContactsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseMobileAPIContacts} [response] ResponseMobileAPIContacts
+         */
+
+        /**
+         * Calls Contacts.
+         * @function contacts
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @param {meta.Mobile.ContactsCallback} callback Node-style callback called with the error, if any, and ResponseMobileAPIContacts
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.contacts = function contacts(request, callback) {
+            return this.rpcCall(contacts, $root.google.protobuf.Empty, $root.meta.ResponseMobileAPIContacts, request, callback);
+        }, "name", { value: "Contacts" });
+
+        /**
+         * Calls Contacts.
+         * @function contacts
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @returns {Promise<meta.ResponseMobileAPIContacts>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link meta.Mobile#about}.
+         * @memberof meta.Mobile
+         * @typedef AboutCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseMobileApiAbout} [response] ResponseMobileApiAbout
+         */
+
+        /**
+         * Calls About.
+         * @function about
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @param {meta.Mobile.AboutCallback} callback Node-style callback called with the error, if any, and ResponseMobileApiAbout
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.about = function about(request, callback) {
+            return this.rpcCall(about, $root.google.protobuf.Empty, $root.meta.ResponseMobileApiAbout, request, callback);
+        }, "name", { value: "About" });
+
+        /**
+         * Calls About.
+         * @function about
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @returns {Promise<meta.ResponseMobileApiAbout>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link meta.Mobile#faq}.
+         * @memberof meta.Mobile
+         * @typedef FaqCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseFaq} [response] ResponseFaq
+         */
+
+        /**
+         * Calls Faq.
+         * @function faq
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @param {meta.Mobile.FaqCallback} callback Node-style callback called with the error, if any, and ResponseFaq
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.faq = function faq(request, callback) {
+            return this.rpcCall(faq, $root.google.protobuf.Empty, $root.meta.ResponseFaq, request, callback);
+        }, "name", { value: "Faq" });
+
+        /**
+         * Calls Faq.
+         * @function faq
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @returns {Promise<meta.ResponseFaq>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link meta.Mobile#countries}.
+         * @memberof meta.Mobile
+         * @typedef CountriesCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseCountries} [response] ResponseCountries
+         */
+
+        /**
+         * Calls Countries.
+         * @function countries
+         * @memberof meta.Mobile
+         * @instance
+         * @param {meta.IParamsCountries} request ParamsCountries message or plain object
+         * @param {meta.Mobile.CountriesCallback} callback Node-style callback called with the error, if any, and ResponseCountries
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.countries = function countries(request, callback) {
+            return this.rpcCall(countries, $root.meta.ParamsCountries, $root.meta.ResponseCountries, request, callback);
+        }, "name", { value: "Countries" });
+
+        /**
+         * Calls Countries.
+         * @function countries
+         * @memberof meta.Mobile
+         * @instance
+         * @param {meta.IParamsCountries} request ParamsCountries message or plain object
+         * @returns {Promise<meta.ResponseCountries>} Promise
+         * @variation 2
+         */
+
+        return Mobile;
+    })();
+
+    meta.Stores = (function() {
+
+        /**
+         * Constructs a new Stores service.
+         * @memberof meta
+         * @classdesc Represents a Stores
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function Stores(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (Stores.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Stores;
+
+        /**
+         * Callback as used by {@link meta.Stores#all}.
+         * @memberof meta.Stores
+         * @typedef AllCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseAllOfflineStoresInfo} [response] ResponseAllOfflineStoresInfo
+         */
+
+        /**
+         * Calls All.
+         * @function all
+         * @memberof meta.Stores
+         * @instance
+         * @param {meta.IParamsStores} request ParamsStores message or plain object
+         * @param {meta.Stores.AllCallback} callback Node-style callback called with the error, if any, and ResponseAllOfflineStoresInfo
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Stores.prototype.all = function all(request, callback) {
+            return this.rpcCall(all, $root.meta.ParamsStores, $root.meta.ResponseAllOfflineStoresInfo, request, callback);
+        }, "name", { value: "All" });
+
+        /**
+         * Calls All.
+         * @function all
+         * @memberof meta.Stores
+         * @instance
+         * @param {meta.IParamsStores} request ParamsStores message or plain object
+         * @returns {Promise<meta.ResponseAllOfflineStoresInfo>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link meta.Stores#byID}.
+         * @memberof meta.Stores
+         * @typedef ByIDCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseOfflineStoreInfoByID} [response] ResponseOfflineStoreInfoByID
+         */
+
+        /**
+         * Calls ByID.
+         * @function byID
+         * @memberof meta.Stores
+         * @instance
+         * @param {meta.IParamsOfflineStoreInfoByID} request ParamsOfflineStoreInfoByID message or plain object
+         * @param {meta.Stores.ByIDCallback} callback Node-style callback called with the error, if any, and ResponseOfflineStoreInfoByID
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Stores.prototype.byID = function byID(request, callback) {
+            return this.rpcCall(byID, $root.meta.ParamsOfflineStoreInfoByID, $root.meta.ResponseOfflineStoreInfoByID, request, callback);
+        }, "name", { value: "ByID" });
+
+        /**
+         * Calls ByID.
+         * @function byID
+         * @memberof meta.Stores
+         * @instance
+         * @param {meta.IParamsOfflineStoreInfoByID} request ParamsOfflineStoreInfoByID message or plain object
+         * @returns {Promise<meta.ResponseOfflineStoreInfoByID>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link meta.Stores#cities}.
+         * @memberof meta.Stores
+         * @typedef CitiesCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseStoresCities} [response] ResponseStoresCities
+         */
+
+        /**
+         * Calls Cities.
+         * @function cities
+         * @memberof meta.Stores
+         * @instance
+         * @param {meta.IParamsStoresCities} request ParamsStoresCities message or plain object
+         * @param {meta.Stores.CitiesCallback} callback Node-style callback called with the error, if any, and ResponseStoresCities
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Stores.prototype.cities = function cities(request, callback) {
+            return this.rpcCall(cities, $root.meta.ParamsStoresCities, $root.meta.ResponseStoresCities, request, callback);
+        }, "name", { value: "Cities" });
+
+        /**
+         * Calls Cities.
+         * @function cities
+         * @memberof meta.Stores
+         * @instance
+         * @param {meta.IParamsStoresCities} request ParamsStoresCities message or plain object
+         * @returns {Promise<meta.ResponseStoresCities>} Promise
+         * @variation 2
+         */
+
+        return Stores;
+    })();
+
+    meta.ResponseAllOfflineStoresInfo = (function() {
+
+        /**
+         * Properties of a ResponseAllOfflineStoresInfo.
+         * @memberof meta
+         * @interface IResponseAllOfflineStoresInfo
+         * @property {Array.<meta.IOfflineStore>|null} [stores] ResponseAllOfflineStoresInfo stores
+         */
+
+        /**
+         * Constructs a new ResponseAllOfflineStoresInfo.
+         * @memberof meta
+         * @classdesc Represents a ResponseAllOfflineStoresInfo.
+         * @implements IResponseAllOfflineStoresInfo
+         * @constructor
+         * @param {meta.IResponseAllOfflineStoresInfo=} [properties] Properties to set
+         */
+        function ResponseAllOfflineStoresInfo(properties) {
+            this.stores = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseAllOfflineStoresInfo stores.
+         * @member {Array.<meta.IOfflineStore>} stores
+         * @memberof meta.ResponseAllOfflineStoresInfo
+         * @instance
+         */
+        ResponseAllOfflineStoresInfo.prototype.stores = $util.emptyArray;
+
+        return ResponseAllOfflineStoresInfo;
+    })();
+
+    meta.OfflineStore = (function() {
+
+        /**
+         * Properties of an OfflineStore.
+         * @memberof meta
+         * @interface IOfflineStore
+         * @property {number|null} [store_id] OfflineStore store_id
+         * @property {string|null} [title] OfflineStore title
+         * @property {string|null} [address] OfflineStore address
+         * @property {string|null} [phone] OfflineStore phone
+         * @property {string|null} [geo] OfflineStore geo
+         * @property {string|null} [city] OfflineStore city
+         * @property {string|null} [country] OfflineStore country
+         * @property {boolean|null} [active] OfflineStore active
+         * @property {string|null} [picture_url] OfflineStore picture_url
+         * @property {string|null} [schedule] OfflineStore schedule
+         * @property {number|null} [city_id] OfflineStore city_id
+         */
+
+        /**
+         * Constructs a new OfflineStore.
+         * @memberof meta
+         * @classdesc Represents an OfflineStore.
+         * @implements IOfflineStore
+         * @constructor
+         * @param {meta.IOfflineStore=} [properties] Properties to set
+         */
+        function OfflineStore(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * OfflineStore store_id.
+         * @member {number} store_id
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.store_id = 0;
+
+        /**
+         * OfflineStore title.
+         * @member {string} title
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.title = "";
+
+        /**
+         * OfflineStore address.
+         * @member {string} address
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.address = "";
+
+        /**
+         * OfflineStore phone.
+         * @member {string} phone
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.phone = "";
+
+        /**
+         * OfflineStore geo.
+         * @member {string} geo
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.geo = "";
+
+        /**
+         * OfflineStore city.
+         * @member {string} city
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.city = "";
+
+        /**
+         * OfflineStore country.
+         * @member {string} country
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.country = "";
+
+        /**
+         * OfflineStore active.
+         * @member {boolean} active
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.active = false;
+
+        /**
+         * OfflineStore picture_url.
+         * @member {string} picture_url
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.picture_url = "";
+
+        /**
+         * OfflineStore schedule.
+         * @member {string} schedule
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.schedule = "";
+
+        /**
+         * OfflineStore city_id.
+         * @member {number} city_id
+         * @memberof meta.OfflineStore
+         * @instance
+         */
+        OfflineStore.prototype.city_id = 0;
+
+        return OfflineStore;
+    })();
+
+    meta.ParamsOfflineStoreInfoByID = (function() {
+
+        /**
+         * Properties of a ParamsOfflineStoreInfoByID.
+         * @memberof meta
+         * @interface IParamsOfflineStoreInfoByID
+         * @property {number|null} [store_id] ParamsOfflineStoreInfoByID store_id
+         */
+
+        /**
+         * Constructs a new ParamsOfflineStoreInfoByID.
+         * @memberof meta
+         * @classdesc Represents a ParamsOfflineStoreInfoByID.
+         * @implements IParamsOfflineStoreInfoByID
+         * @constructor
+         * @param {meta.IParamsOfflineStoreInfoByID=} [properties] Properties to set
+         */
+        function ParamsOfflineStoreInfoByID(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsOfflineStoreInfoByID store_id.
+         * @member {number} store_id
+         * @memberof meta.ParamsOfflineStoreInfoByID
+         * @instance
+         */
+        ParamsOfflineStoreInfoByID.prototype.store_id = 0;
+
+        return ParamsOfflineStoreInfoByID;
+    })();
+
+    meta.ResponseOfflineStoreInfoByID = (function() {
+
+        /**
+         * Properties of a ResponseOfflineStoreInfoByID.
+         * @memberof meta
+         * @interface IResponseOfflineStoreInfoByID
+         * @property {meta.IOfflineStore|null} [store] ResponseOfflineStoreInfoByID store
+         */
+
+        /**
+         * Constructs a new ResponseOfflineStoreInfoByID.
+         * @memberof meta
+         * @classdesc Represents a ResponseOfflineStoreInfoByID.
+         * @implements IResponseOfflineStoreInfoByID
+         * @constructor
+         * @param {meta.IResponseOfflineStoreInfoByID=} [properties] Properties to set
+         */
+        function ResponseOfflineStoreInfoByID(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseOfflineStoreInfoByID store.
+         * @member {meta.IOfflineStore|null|undefined} store
+         * @memberof meta.ResponseOfflineStoreInfoByID
+         * @instance
+         */
+        ResponseOfflineStoreInfoByID.prototype.store = null;
+
+        return ResponseOfflineStoreInfoByID;
+    })();
+
+    meta.ResponseMobileAPIContacts = (function() {
+
+        /**
+         * Properties of a ResponseMobileAPIContacts.
+         * @memberof meta
+         * @interface IResponseMobileAPIContacts
+         * @property {Array.<meta.IContact>|null} [contacts] ResponseMobileAPIContacts contacts
+         */
+
+        /**
+         * Constructs a new ResponseMobileAPIContacts.
+         * @memberof meta
+         * @classdesc Represents a ResponseMobileAPIContacts.
+         * @implements IResponseMobileAPIContacts
+         * @constructor
+         * @param {meta.IResponseMobileAPIContacts=} [properties] Properties to set
+         */
+        function ResponseMobileAPIContacts(properties) {
+            this.contacts = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseMobileAPIContacts contacts.
+         * @member {Array.<meta.IContact>} contacts
+         * @memberof meta.ResponseMobileAPIContacts
+         * @instance
+         */
+        ResponseMobileAPIContacts.prototype.contacts = $util.emptyArray;
+
+        return ResponseMobileAPIContacts;
+    })();
+
+    meta.Contact = (function() {
+
+        /**
+         * Properties of a Contact.
+         * @memberof meta
+         * @interface IContact
+         * @property {string|null} [title] Contact title
+         * @property {string|null} [subtitle] Contact subtitle
+         * @property {string|null} [text] Contact text
+         */
+
+        /**
+         * Constructs a new Contact.
+         * @memberof meta
+         * @classdesc Represents a Contact.
+         * @implements IContact
+         * @constructor
+         * @param {meta.IContact=} [properties] Properties to set
+         */
+        function Contact(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Contact title.
+         * @member {string} title
+         * @memberof meta.Contact
+         * @instance
+         */
+        Contact.prototype.title = "";
+
+        /**
+         * Contact subtitle.
+         * @member {string} subtitle
+         * @memberof meta.Contact
+         * @instance
+         */
+        Contact.prototype.subtitle = "";
+
+        /**
+         * Contact text.
+         * @member {string} text
+         * @memberof meta.Contact
+         * @instance
+         */
+        Contact.prototype.text = "";
+
+        return Contact;
+    })();
+
+    meta.ResponseMobileApiAbout = (function() {
+
+        /**
+         * Properties of a ResponseMobileApiAbout.
+         * @memberof meta
+         * @interface IResponseMobileApiAbout
+         * @property {string|null} [about] ResponseMobileApiAbout about
+         * @property {string|null} [mission] ResponseMobileApiAbout mission
+         * @property {Array.<meta.IBlock>|null} [blocks] ResponseMobileApiAbout blocks
+         * @property {string|null} [image_url] ResponseMobileApiAbout image_url
+         */
+
+        /**
+         * Constructs a new ResponseMobileApiAbout.
+         * @memberof meta
+         * @classdesc Represents a ResponseMobileApiAbout.
+         * @implements IResponseMobileApiAbout
+         * @constructor
+         * @param {meta.IResponseMobileApiAbout=} [properties] Properties to set
+         */
+        function ResponseMobileApiAbout(properties) {
+            this.blocks = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseMobileApiAbout about.
+         * @member {string} about
+         * @memberof meta.ResponseMobileApiAbout
+         * @instance
+         */
+        ResponseMobileApiAbout.prototype.about = "";
+
+        /**
+         * ResponseMobileApiAbout mission.
+         * @member {string} mission
+         * @memberof meta.ResponseMobileApiAbout
+         * @instance
+         */
+        ResponseMobileApiAbout.prototype.mission = "";
+
+        /**
+         * ResponseMobileApiAbout blocks.
+         * @member {Array.<meta.IBlock>} blocks
+         * @memberof meta.ResponseMobileApiAbout
+         * @instance
+         */
+        ResponseMobileApiAbout.prototype.blocks = $util.emptyArray;
+
+        /**
+         * ResponseMobileApiAbout image_url.
+         * @member {string} image_url
+         * @memberof meta.ResponseMobileApiAbout
+         * @instance
+         */
+        ResponseMobileApiAbout.prototype.image_url = "";
+
+        return ResponseMobileApiAbout;
+    })();
+
+    meta.Block = (function() {
+
+        /**
+         * Properties of a Block.
+         * @memberof meta
+         * @interface IBlock
+         * @property {string|null} [title] Block title
+         * @property {string|null} [value] Block value
+         */
+
+        /**
+         * Constructs a new Block.
+         * @memberof meta
+         * @classdesc Represents a Block.
+         * @implements IBlock
+         * @constructor
+         * @param {meta.IBlock=} [properties] Properties to set
+         */
+        function Block(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Block title.
+         * @member {string} title
+         * @memberof meta.Block
+         * @instance
+         */
+        Block.prototype.title = "";
+
+        /**
+         * Block value.
+         * @member {string} value
+         * @memberof meta.Block
+         * @instance
+         */
+        Block.prototype.value = "";
+
+        return Block;
+    })();
+
+    meta.ResponseFaq = (function() {
+
+        /**
+         * Properties of a ResponseFaq.
+         * @memberof meta
+         * @interface IResponseFaq
+         * @property {Array.<meta.IBlockFaq>|null} [result] ResponseFaq result
+         */
+
+        /**
+         * Constructs a new ResponseFaq.
+         * @memberof meta
+         * @classdesc Represents a ResponseFaq.
+         * @implements IResponseFaq
+         * @constructor
+         * @param {meta.IResponseFaq=} [properties] Properties to set
+         */
+        function ResponseFaq(properties) {
+            this.result = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseFaq result.
+         * @member {Array.<meta.IBlockFaq>} result
+         * @memberof meta.ResponseFaq
+         * @instance
+         */
+        ResponseFaq.prototype.result = $util.emptyArray;
+
+        return ResponseFaq;
+    })();
+
+    meta.BlockFaq = (function() {
+
+        /**
+         * Properties of a BlockFaq.
+         * @memberof meta
+         * @interface IBlockFaq
+         * @property {string|null} [title] BlockFaq title
+         * @property {Array.<meta.ITextFaq>|null} [content] BlockFaq content
+         */
+
+        /**
+         * Constructs a new BlockFaq.
+         * @memberof meta
+         * @classdesc Represents a BlockFaq.
+         * @implements IBlockFaq
+         * @constructor
+         * @param {meta.IBlockFaq=} [properties] Properties to set
+         */
+        function BlockFaq(properties) {
+            this.content = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BlockFaq title.
+         * @member {string} title
+         * @memberof meta.BlockFaq
+         * @instance
+         */
+        BlockFaq.prototype.title = "";
+
+        /**
+         * BlockFaq content.
+         * @member {Array.<meta.ITextFaq>} content
+         * @memberof meta.BlockFaq
+         * @instance
+         */
+        BlockFaq.prototype.content = $util.emptyArray;
+
+        return BlockFaq;
+    })();
+
+    meta.TextFaq = (function() {
+
+        /**
+         * Properties of a TextFaq.
+         * @memberof meta
+         * @interface ITextFaq
+         * @property {string|null} [title] TextFaq title
+         * @property {string|null} [answer] TextFaq answer
+         */
+
+        /**
+         * Constructs a new TextFaq.
+         * @memberof meta
+         * @classdesc Represents a TextFaq.
+         * @implements ITextFaq
+         * @constructor
+         * @param {meta.ITextFaq=} [properties] Properties to set
+         */
+        function TextFaq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * TextFaq title.
+         * @member {string} title
+         * @memberof meta.TextFaq
+         * @instance
+         */
+        TextFaq.prototype.title = "";
+
+        /**
+         * TextFaq answer.
+         * @member {string} answer
+         * @memberof meta.TextFaq
+         * @instance
+         */
+        TextFaq.prototype.answer = "";
+
+        return TextFaq;
+    })();
+
+    meta.ParamsStoresCities = (function() {
+
+        /**
+         * Properties of a ParamsStoresCities.
+         * @memberof meta
+         * @interface IParamsStoresCities
+         * @property {number|null} [offset] ParamsStoresCities offset
+         * @property {number|null} [limit] ParamsStoresCities limit
+         */
+
+        /**
+         * Constructs a new ParamsStoresCities.
+         * @memberof meta
+         * @classdesc Represents a ParamsStoresCities.
+         * @implements IParamsStoresCities
+         * @constructor
+         * @param {meta.IParamsStoresCities=} [properties] Properties to set
+         */
+        function ParamsStoresCities(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsStoresCities offset.
+         * @member {number} offset
+         * @memberof meta.ParamsStoresCities
+         * @instance
+         */
+        ParamsStoresCities.prototype.offset = 0;
+
+        /**
+         * ParamsStoresCities limit.
+         * @member {number} limit
+         * @memberof meta.ParamsStoresCities
+         * @instance
+         */
+        ParamsStoresCities.prototype.limit = 0;
+
+        return ParamsStoresCities;
+    })();
+
+    meta.City = (function() {
+
+        /**
+         * Properties of a City.
+         * @memberof meta
+         * @interface ICity
+         * @property {number|null} [city_id] City city_id
+         * @property {string|null} [title] City title
+         * @property {number|null} [store] City store
+         */
+
+        /**
+         * Constructs a new City.
+         * @memberof meta
+         * @classdesc Represents a City.
+         * @implements ICity
+         * @constructor
+         * @param {meta.ICity=} [properties] Properties to set
+         */
+        function City(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * City city_id.
+         * @member {number} city_id
+         * @memberof meta.City
+         * @instance
+         */
+        City.prototype.city_id = 0;
+
+        /**
+         * City title.
+         * @member {string} title
+         * @memberof meta.City
+         * @instance
+         */
+        City.prototype.title = "";
+
+        /**
+         * City store.
+         * @member {number} store
+         * @memberof meta.City
+         * @instance
+         */
+        City.prototype.store = 0;
+
+        return City;
+    })();
+
+    meta.ResponseStoresCities = (function() {
+
+        /**
+         * Properties of a ResponseStoresCities.
+         * @memberof meta
+         * @interface IResponseStoresCities
+         * @property {Array.<meta.ICity>|null} [cities] ResponseStoresCities cities
+         */
+
+        /**
+         * Constructs a new ResponseStoresCities.
+         * @memberof meta
+         * @classdesc Represents a ResponseStoresCities.
+         * @implements IResponseStoresCities
+         * @constructor
+         * @param {meta.IResponseStoresCities=} [properties] Properties to set
+         */
+        function ResponseStoresCities(properties) {
+            this.cities = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseStoresCities cities.
+         * @member {Array.<meta.ICity>} cities
+         * @memberof meta.ResponseStoresCities
+         * @instance
+         */
+        ResponseStoresCities.prototype.cities = $util.emptyArray;
+
+        return ResponseStoresCities;
+    })();
+
+    meta.ParamsStores = (function() {
+
+        /**
+         * Properties of a ParamsStores.
+         * @memberof meta
+         * @interface IParamsStores
+         * @property {number|null} [city_id] ParamsStores city_id
+         * @property {number|null} [offset] ParamsStores offset
+         * @property {number|null} [limit] ParamsStores limit
+         */
+
+        /**
+         * Constructs a new ParamsStores.
+         * @memberof meta
+         * @classdesc Represents a ParamsStores.
+         * @implements IParamsStores
+         * @constructor
+         * @param {meta.IParamsStores=} [properties] Properties to set
+         */
+        function ParamsStores(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsStores city_id.
+         * @member {number} city_id
+         * @memberof meta.ParamsStores
+         * @instance
+         */
+        ParamsStores.prototype.city_id = 0;
+
+        /**
+         * ParamsStores offset.
+         * @member {number} offset
+         * @memberof meta.ParamsStores
+         * @instance
+         */
+        ParamsStores.prototype.offset = 0;
+
+        /**
+         * ParamsStores limit.
+         * @member {number} limit
+         * @memberof meta.ParamsStores
+         * @instance
+         */
+        ParamsStores.prototype.limit = 0;
+
+        return ParamsStores;
+    })();
+
+    meta.responseStoresByCity = (function() {
+
+        /**
+         * Properties of a responseStoresByCity.
+         * @memberof meta
+         * @interface IresponseStoresByCity
+         * @property {number|null} [city_id] responseStoresByCity city_id
+         * @property {string|null} [title] responseStoresByCity title
+         * @property {number|null} [total] responseStoresByCity total
+         * @property {Array.<meta.IOfflineStore>|null} [stores] responseStoresByCity stores
+         */
+
+        /**
+         * Constructs a new responseStoresByCity.
+         * @memberof meta
+         * @classdesc Represents a responseStoresByCity.
+         * @implements IresponseStoresByCity
+         * @constructor
+         * @param {meta.IresponseStoresByCity=} [properties] Properties to set
+         */
+        function responseStoresByCity(properties) {
+            this.stores = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * responseStoresByCity city_id.
+         * @member {number} city_id
+         * @memberof meta.responseStoresByCity
+         * @instance
+         */
+        responseStoresByCity.prototype.city_id = 0;
+
+        /**
+         * responseStoresByCity title.
+         * @member {string} title
+         * @memberof meta.responseStoresByCity
+         * @instance
+         */
+        responseStoresByCity.prototype.title = "";
+
+        /**
+         * responseStoresByCity total.
+         * @member {number} total
+         * @memberof meta.responseStoresByCity
+         * @instance
+         */
+        responseStoresByCity.prototype.total = 0;
+
+        /**
+         * responseStoresByCity stores.
+         * @member {Array.<meta.IOfflineStore>} stores
+         * @memberof meta.responseStoresByCity
+         * @instance
+         */
+        responseStoresByCity.prototype.stores = $util.emptyArray;
+
+        return responseStoresByCity;
+    })();
+
+    meta.ParamsCountries = (function() {
+
+        /**
+         * Properties of a ParamsCountries.
+         * @memberof meta
+         * @interface IParamsCountries
+         * @property {number|null} [offset] ParamsCountries offset
+         * @property {number|null} [limit] ParamsCountries limit
+         */
+
+        /**
+         * Constructs a new ParamsCountries.
+         * @memberof meta
+         * @classdesc Represents a ParamsCountries.
+         * @implements IParamsCountries
+         * @constructor
+         * @param {meta.IParamsCountries=} [properties] Properties to set
+         */
+        function ParamsCountries(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsCountries offset.
+         * @member {number} offset
+         * @memberof meta.ParamsCountries
+         * @instance
+         */
+        ParamsCountries.prototype.offset = 0;
+
+        /**
+         * ParamsCountries limit.
+         * @member {number} limit
+         * @memberof meta.ParamsCountries
+         * @instance
+         */
+        ParamsCountries.prototype.limit = 0;
+
+        return ParamsCountries;
+    })();
+
+    meta.ResponseCountries = (function() {
+
+        /**
+         * Properties of a ResponseCountries.
+         * @memberof meta
+         * @interface IResponseCountries
+         * @property {number|null} [total] ResponseCountries total
+         * @property {Array.<meta.ICountry>|null} [result] ResponseCountries result
+         */
+
+        /**
+         * Constructs a new ResponseCountries.
+         * @memberof meta
+         * @classdesc Represents a ResponseCountries.
+         * @implements IResponseCountries
+         * @constructor
+         * @param {meta.IResponseCountries=} [properties] Properties to set
+         */
+        function ResponseCountries(properties) {
+            this.result = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseCountries total.
+         * @member {number} total
+         * @memberof meta.ResponseCountries
+         * @instance
+         */
+        ResponseCountries.prototype.total = 0;
+
+        /**
+         * ResponseCountries result.
+         * @member {Array.<meta.ICountry>} result
+         * @memberof meta.ResponseCountries
+         * @instance
+         */
+        ResponseCountries.prototype.result = $util.emptyArray;
+
+        return ResponseCountries;
+    })();
+
+    meta.Country = (function() {
+
+        /**
+         * Properties of a Country.
+         * @memberof meta
+         * @interface ICountry
+         * @property {number|Long|null} [id] Country id
+         * @property {string|null} [country_code] Country country_code
+         * @property {string|null} [prefix] Country prefix
+         * @property {string|null} [title_ru] Country title_ru
+         */
+
+        /**
+         * Constructs a new Country.
+         * @memberof meta
+         * @classdesc Represents a Country.
+         * @implements ICountry
+         * @constructor
+         * @param {meta.ICountry=} [properties] Properties to set
+         */
+        function Country(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Country id.
+         * @member {number|Long} id
+         * @memberof meta.Country
+         * @instance
+         */
+        Country.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Country country_code.
+         * @member {string} country_code
+         * @memberof meta.Country
+         * @instance
+         */
+        Country.prototype.country_code = "";
+
+        /**
+         * Country prefix.
+         * @member {string} prefix
+         * @memberof meta.Country
+         * @instance
+         */
+        Country.prototype.prefix = "";
+
+        /**
+         * Country title_ru.
+         * @member {string} title_ru
+         * @memberof meta.Country
+         * @instance
+         */
+        Country.prototype.title_ru = "";
+
+        return Country;
+    })();
+
+    return meta;
 })();
 
 $root.mindbox = (function() {
