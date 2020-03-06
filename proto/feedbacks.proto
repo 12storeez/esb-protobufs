@@ -19,7 +19,6 @@ service Mobile {
     rpc ReasonsByStore (google.protobuf.Empty) returns (ResponseReasons) {
     }
 }
-
 message ResponseOk {
     bool ok = 1;
 }
@@ -30,7 +29,6 @@ message ParamsApp {
     string rate = 3;
     repeated int32 reasons = 4;
     string comment = 5;
-    string date = 6;
 }
 
 message ParamsStore {
@@ -39,7 +37,6 @@ message ParamsStore {
     repeated int32 reasons = 3;
     string comment = 4;
     string city = 5;
-    string date = 6;
 }
 
 message ParamsOrder {
