@@ -26,10 +26,6 @@ service Mobile {
     }
 }
 
-message PingResponse {
-    string response = 1;
-}
-
 message ParamsUser {
     string client_id = 1;
 }
@@ -51,8 +47,9 @@ message ResponseOrders {
     int32 total = 1;
     repeated Order result = 2;
 }
+
 message Order {
-    string id = 1;
+    reserved 1;
     string created_date = 2;
     string payment_type = 3;
     double discounted_total_price = 4;
