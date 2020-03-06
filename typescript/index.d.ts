@@ -409,14 +409,12 @@ export namespace Mobile {
 
 export class Stores extends $protobuf.rpc.Service {
     constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-    public all(request: google.protobuf.IEmpty, callback: Stores.AllCallback): void;
-    public all(request: google.protobuf.IEmpty): Promise<ResponseAllOfflineStoresInfo>;
+    public all(request: IparamsStores, callback: Stores.AllCallback): void;
+    public all(request: IparamsStores): Promise<ResponseAllOfflineStoresInfo>;
     public byID(request: IparamsOfflineStoreInfoByID, callback: Stores.ByIDCallback): void;
     public byID(request: IparamsOfflineStoreInfoByID): Promise<ResponseOfflineStoreInfoByID>;
     public cities(request: IparamsStoresCities, callback: Stores.CitiesCallback): void;
     public cities(request: IparamsStoresCities): Promise<ResponseStoresCities>;
-    public byCity(request: IparamsStoresByCity, callback: Stores.ByCityCallback): void;
-    public byCity(request: IparamsStoresByCity): Promise<responseStoresByCity>;
 }
 
 export namespace Stores {
@@ -579,6 +577,7 @@ export class paramsStoresCities implements IparamsStoresCities {
 export interface ICity {
     city_id?: (number|null);
     title?: (string|null);
+    stores_count?: (number|null);
 }
 
 export class City implements ICity {
@@ -596,14 +595,14 @@ export class ResponseStoresCities implements IResponseStoresCities {
     public cities: ICity[];
 }
 
-export interface IparamsStoresByCity {
+export interface IparamsStores {
     city_id?: (number|null);
     offset?: (number|null);
     limit?: (number|null);
 }
 
-export class paramsStoresByCity implements IparamsStoresByCity {
-    constructor(properties?: IparamsStoresByCity);
+export class paramsStoresByCity implements IparamsStores {
+    constructor(properties?: IparamsStores);
     public city_id: number;
     public offset: number;
     public limit: number;
