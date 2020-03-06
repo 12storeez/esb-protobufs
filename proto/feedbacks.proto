@@ -71,5 +71,5 @@ message ResponseCategories {
 }
 
 message ParamsReasonsByOrder {
-    string order = 1;
+    string order_id = 1;
 }
