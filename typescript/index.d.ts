@@ -173,43 +173,49 @@ export namespace google {
     }
 }
 
-export namespace health {
+export namespace grpc {
 
-    class Health extends $protobuf.rpc.Service {
-        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-        public check(request: health.IHealthCheckRequest, callback: health.Health.CheckCallback): void;
-        public check(request: health.IHealthCheckRequest): Promise<health.HealthCheckResponse>;
-    }
+    namespace health {
 
-    namespace Health {
+        namespace v1 {
 
-        type CheckCallback = (error: (Error|null), response?: health.HealthCheckResponse) => void;
-    }
+            class Health extends $protobuf.rpc.Service {
+                constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+                public check(request: grpc.health.v1.IHealthCheckRequest, callback: grpc.health.v1.Health.CheckCallback): void;
+                public check(request: grpc.health.v1.IHealthCheckRequest): Promise<grpc.health.v1.HealthCheckResponse>;
+            }
 
-    interface IHealthCheckRequest {
-        service?: (string|null);
-    }
+            namespace Health {
 
-    class HealthCheckRequest implements IHealthCheckRequest {
-        constructor(properties?: health.IHealthCheckRequest);
-        public service: string;
-    }
+                type CheckCallback = (error: (Error|null), response?: grpc.health.v1.HealthCheckResponse) => void;
+            }
 
-    interface IHealthCheckResponse {
-        status?: (health.HealthCheckResponse.ServingStatus|null);
-    }
+            interface IHealthCheckRequest {
+                service?: (string|null);
+            }
 
-    class HealthCheckResponse implements IHealthCheckResponse {
-        constructor(properties?: health.IHealthCheckResponse);
-        public status: health.HealthCheckResponse.ServingStatus;
-    }
+            class HealthCheckRequest implements IHealthCheckRequest {
+                constructor(properties?: grpc.health.v1.IHealthCheckRequest);
+                public service: string;
+            }
 
-    namespace HealthCheckResponse {
+            interface IHealthCheckResponse {
+                status?: (grpc.health.v1.HealthCheckResponse.ServingStatus|null);
+            }
 
-        enum ServingStatus {
-            UNKNOWN = 0,
-            SERVING = 1,
-            NOT_SERVING = 2
+            class HealthCheckResponse implements IHealthCheckResponse {
+                constructor(properties?: grpc.health.v1.IHealthCheckResponse);
+                public status: grpc.health.v1.HealthCheckResponse.ServingStatus;
+            }
+
+            namespace HealthCheckResponse {
+
+                enum ServingStatus {
+                    UNKNOWN = 0,
+                    SERVING = 1,
+                    NOT_SERVING = 2
+                }
+            }
         }
     }
 }
@@ -384,280 +390,282 @@ export namespace logistics {
     }
 }
 
-export class Mobile extends $protobuf.rpc.Service {
-    constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-    public contacts(request: google.protobuf.IEmpty, callback: Mobile.ContactsCallback): void;
-    public contacts(request: google.protobuf.IEmpty): Promise<ResponseMobileAPIContacts>;
-    public about(request: google.protobuf.IEmpty, callback: Mobile.AboutCallback): void;
-    public about(request: google.protobuf.IEmpty): Promise<ResponseMobileApiAbout>;
-    public faq(request: google.protobuf.IEmpty, callback: Mobile.FaqCallback): void;
-    public faq(request: google.protobuf.IEmpty): Promise<ResponseFaq>;
-    public countries(request: IParamsCountries, callback: Mobile.CountriesCallback): void;
-    public countries(request: IParamsCountries): Promise<ResponseCountries>;
-}
+export namespace meta {
 
-export namespace Mobile {
+    class Mobile extends $protobuf.rpc.Service {
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+        public contacts(request: google.protobuf.IEmpty, callback: meta.Mobile.ContactsCallback): void;
+        public contacts(request: google.protobuf.IEmpty): Promise<meta.ResponseMobileAPIContacts>;
+        public about(request: google.protobuf.IEmpty, callback: meta.Mobile.AboutCallback): void;
+        public about(request: google.protobuf.IEmpty): Promise<meta.ResponseMobileApiAbout>;
+        public faq(request: google.protobuf.IEmpty, callback: meta.Mobile.FaqCallback): void;
+        public faq(request: google.protobuf.IEmpty): Promise<meta.ResponseFaq>;
+        public countries(request: meta.IParamsCountries, callback: meta.Mobile.CountriesCallback): void;
+        public countries(request: meta.IParamsCountries): Promise<meta.ResponseCountries>;
+    }
 
-    type ContactsCallback = (error: (Error|null), response?: ResponseMobileAPIContacts) => void;
+    namespace Mobile {
 
-    type AboutCallback = (error: (Error|null), response?: ResponseMobileApiAbout) => void;
+        type ContactsCallback = (error: (Error|null), response?: meta.ResponseMobileAPIContacts) => void;
 
-    type FaqCallback = (error: (Error|null), response?: ResponseFaq) => void;
+        type AboutCallback = (error: (Error|null), response?: meta.ResponseMobileApiAbout) => void;
 
-    type CountriesCallback = (error: (Error|null), response?: ResponseCountries) => void;
-}
+        type FaqCallback = (error: (Error|null), response?: meta.ResponseFaq) => void;
 
-export class Stores extends $protobuf.rpc.Service {
-    constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-    public all(request: IparamsStores, callback: Stores.AllCallback): void;
-    public all(request: IparamsStores): Promise<ResponseAllOfflineStoresInfo>;
-    public byID(request: IparamsOfflineStoreInfoByID, callback: Stores.ByIDCallback): void;
-    public byID(request: IparamsOfflineStoreInfoByID): Promise<ResponseOfflineStoreInfoByID>;
-    public cities(request: IparamsStoresCities, callback: Stores.CitiesCallback): void;
-    public cities(request: IparamsStoresCities): Promise<ResponseStoresCities>;
-}
+        type CountriesCallback = (error: (Error|null), response?: meta.ResponseCountries) => void;
+    }
 
-export namespace Stores {
+    class Stores extends $protobuf.rpc.Service {
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+        public all(request: meta.IParamsStores, callback: meta.Stores.AllCallback): void;
+        public all(request: meta.IParamsStores): Promise<meta.ResponseAllOfflineStoresInfo>;
+        public byID(request: meta.IParamsOfflineStoreInfoByID, callback: meta.Stores.ByIDCallback): void;
+        public byID(request: meta.IParamsOfflineStoreInfoByID): Promise<meta.ResponseOfflineStoreInfoByID>;
+        public cities(request: meta.IParamsStoresCities, callback: meta.Stores.CitiesCallback): void;
+        public cities(request: meta.IParamsStoresCities): Promise<meta.ResponseStoresCities>;
+    }
 
-    type AllCallback = (error: (Error|null), response?: ResponseAllOfflineStoresInfo) => void;
+    namespace Stores {
 
-    type ByIDCallback = (error: (Error|null), response?: ResponseOfflineStoreInfoByID) => void;
+        type AllCallback = (error: (Error|null), response?: meta.ResponseAllOfflineStoresInfo) => void;
 
-    type CitiesCallback = (error: (Error|null), response?: ResponseStoresCities) => void;
+        type ByIDCallback = (error: (Error|null), response?: meta.ResponseOfflineStoreInfoByID) => void;
 
-    type ByCityCallback = (error: (Error|null), response?: responseStoresByCity) => void;
-}
+        type CitiesCallback = (error: (Error|null), response?: meta.ResponseStoresCities) => void;
+    }
 
-export interface IResponseAllOfflineStoresInfo {
-    stores?: (IOfflineStore[]|null);
-}
+    interface IResponseAllOfflineStoresInfo {
+        stores?: (meta.IOfflineStore[]|null);
+    }
 
-export class ResponseAllOfflineStoresInfo implements IResponseAllOfflineStoresInfo {
-    constructor(properties?: IResponseAllOfflineStoresInfo);
-    public stores: IOfflineStore[];
-}
+    class ResponseAllOfflineStoresInfo implements IResponseAllOfflineStoresInfo {
+        constructor(properties?: meta.IResponseAllOfflineStoresInfo);
+        public stores: meta.IOfflineStore[];
+    }
 
-export interface IOfflineStore {
-    store_id?: (number|null);
-    title?: (string|null);
-    address?: (string|null);
-    phone?: (string|null);
-    geo?: (string|null);
-    city?: (string|null);
-    country?: (string|null);
-    active?: (boolean|null);
-    picture_url?: (string|null);
-    schedule?: (string|null);
-    city_id?: (number|null);
-}
+    interface IOfflineStore {
+        store_id?: (number|null);
+        title?: (string|null);
+        address?: (string|null);
+        phone?: (string|null);
+        geo?: (string|null);
+        city?: (string|null);
+        country?: (string|null);
+        active?: (boolean|null);
+        picture_url?: (string|null);
+        schedule?: (string|null);
+        city_id?: (number|null);
+    }
 
-export class OfflineStore implements IOfflineStore {
-    constructor(properties?: IOfflineStore);
-    public store_id: number;
-    public title: string;
-    public address: string;
-    public phone: string;
-    public geo: string;
-    public city: string;
-    public country: string;
-    public active: boolean;
-    public picture_url: string;
-    public schedule: string;
-    public city_id: number;
-}
+    class OfflineStore implements IOfflineStore {
+        constructor(properties?: meta.IOfflineStore);
+        public store_id: number;
+        public title: string;
+        public address: string;
+        public phone: string;
+        public geo: string;
+        public city: string;
+        public country: string;
+        public active: boolean;
+        public picture_url: string;
+        public schedule: string;
+        public city_id: number;
+    }
 
-export interface IparamsOfflineStoreInfoByID {
-    store_id?: (number|null);
-}
+    interface IParamsOfflineStoreInfoByID {
+        store_id?: (number|null);
+    }
 
-export class paramsOfflineStoreInfoByID implements IparamsOfflineStoreInfoByID {
-    constructor(properties?: IparamsOfflineStoreInfoByID);
-    public store_id: number;
-}
+    class ParamsOfflineStoreInfoByID implements IParamsOfflineStoreInfoByID {
+        constructor(properties?: meta.IParamsOfflineStoreInfoByID);
+        public store_id: number;
+    }
 
-export interface IResponseOfflineStoreInfoByID {
-    store?: (IOfflineStore|null);
-}
+    interface IResponseOfflineStoreInfoByID {
+        store?: (meta.IOfflineStore|null);
+    }
 
-export class ResponseOfflineStoreInfoByID implements IResponseOfflineStoreInfoByID {
-    constructor(properties?: IResponseOfflineStoreInfoByID);
-    public store?: (IOfflineStore|null);
-}
+    class ResponseOfflineStoreInfoByID implements IResponseOfflineStoreInfoByID {
+        constructor(properties?: meta.IResponseOfflineStoreInfoByID);
+        public store?: (meta.IOfflineStore|null);
+    }
 
-export interface IResponseMobileAPIContacts {
-    contacts?: (IContact[]|null);
-}
+    interface IResponseMobileAPIContacts {
+        contacts?: (meta.IContact[]|null);
+    }
 
-export class ResponseMobileAPIContacts implements IResponseMobileAPIContacts {
-    constructor(properties?: IResponseMobileAPIContacts);
-    public contacts: IContact[];
-}
+    class ResponseMobileAPIContacts implements IResponseMobileAPIContacts {
+        constructor(properties?: meta.IResponseMobileAPIContacts);
+        public contacts: meta.IContact[];
+    }
 
-export interface IContact {
-    title?: (string|null);
-    subtitle?: (string|null);
-    text?: (string|null);
-}
+    interface IContact {
+        title?: (string|null);
+        subtitle?: (string|null);
+        text?: (string|null);
+    }
 
-export class Contact implements IContact {
-    constructor(properties?: IContact);
-    public title: string;
-    public subtitle: string;
-    public text: string;
-}
+    class Contact implements IContact {
+        constructor(properties?: meta.IContact);
+        public title: string;
+        public subtitle: string;
+        public text: string;
+    }
 
-export interface IResponseMobileApiAbout {
-    about?: (string|null);
-    mission?: (string|null);
-    blocks?: (IBlock[]|null);
-    image_url?: (string|null);
-}
+    interface IResponseMobileApiAbout {
+        about?: (string|null);
+        mission?: (string|null);
+        blocks?: (meta.IBlock[]|null);
+        image_url?: (string|null);
+    }
 
-export class ResponseMobileApiAbout implements IResponseMobileApiAbout {
-    constructor(properties?: IResponseMobileApiAbout);
-    public about: string;
-    public mission: string;
-    public blocks: IBlock[];
-    public image_url: string;
-}
+    class ResponseMobileApiAbout implements IResponseMobileApiAbout {
+        constructor(properties?: meta.IResponseMobileApiAbout);
+        public about: string;
+        public mission: string;
+        public blocks: meta.IBlock[];
+        public image_url: string;
+    }
 
-export interface IBlock {
-    title?: (string|null);
-    value?: (string|null);
-}
+    interface IBlock {
+        title?: (string|null);
+        value?: (string|null);
+    }
 
-export class Block implements IBlock {
-    constructor(properties?: IBlock);
-    public title: string;
-    public value: string;
-}
+    class Block implements IBlock {
+        constructor(properties?: meta.IBlock);
+        public title: string;
+        public value: string;
+    }
 
-export interface IResponseFaq {
-    result?: (IBlockFaq[]|null);
-}
+    interface IResponseFaq {
+        result?: (meta.IBlockFaq[]|null);
+    }
 
-export class ResponseFaq implements IResponseFaq {
-    constructor(properties?: IResponseFaq);
-    public result: IBlockFaq[];
-}
+    class ResponseFaq implements IResponseFaq {
+        constructor(properties?: meta.IResponseFaq);
+        public result: meta.IBlockFaq[];
+    }
 
-export interface IBlockFaq {
-    title?: (string|null);
-    content?: (ITextFaq[]|null);
-}
+    interface IBlockFaq {
+        title?: (string|null);
+        content?: (meta.ITextFaq[]|null);
+    }
 
-export class BlockFaq implements IBlockFaq {
-    constructor(properties?: IBlockFaq);
-    public title: string;
-    public content: ITextFaq[];
-}
+    class BlockFaq implements IBlockFaq {
+        constructor(properties?: meta.IBlockFaq);
+        public title: string;
+        public content: meta.ITextFaq[];
+    }
 
-export interface ITextFaq {
-    title?: (string|null);
-    answer?: (string|null);
-}
+    interface ITextFaq {
+        title?: (string|null);
+        answer?: (string|null);
+    }
 
-export class TextFaq implements ITextFaq {
-    constructor(properties?: ITextFaq);
-    public title: string;
-    public answer: string;
-}
+    class TextFaq implements ITextFaq {
+        constructor(properties?: meta.ITextFaq);
+        public title: string;
+        public answer: string;
+    }
 
-export interface IparamsStoresCities {
-    offset?: (number|null);
-    limit?: (number|null);
-}
+    interface IParamsStoresCities {
+        offset?: (number|null);
+        limit?: (number|null);
+    }
 
-export class paramsStoresCities implements IparamsStoresCities {
-    constructor(properties?: IparamsStoresCities);
-    public offset: number;
-    public limit: number;
-}
+    class ParamsStoresCities implements IParamsStoresCities {
+        constructor(properties?: meta.IParamsStoresCities);
+        public offset: number;
+        public limit: number;
+    }
 
-export interface ICity {
-    city_id?: (number|null);
-    title?: (string|null);
-    stores_count?: (number|null);
-}
+    interface ICity {
+        city_id?: (number|null);
+        title?: (string|null);
+        store?: (number|null);
+    }
 
-export class City implements ICity {
-    constructor(properties?: ICity);
-    public city_id: number;
-    public title: string;
-}
+    class City implements ICity {
+        constructor(properties?: meta.ICity);
+        public city_id: number;
+        public title: string;
+        public store: number;
+    }
 
-export interface IResponseStoresCities {
-    cities?: (ICity[]|null);
-}
+    interface IResponseStoresCities {
+        cities?: (meta.ICity[]|null);
+    }
 
-export class ResponseStoresCities implements IResponseStoresCities {
-    constructor(properties?: IResponseStoresCities);
-    public cities: ICity[];
-}
+    class ResponseStoresCities implements IResponseStoresCities {
+        constructor(properties?: meta.IResponseStoresCities);
+        public cities: meta.ICity[];
+    }
 
-export interface IparamsStores {
-    city_id?: (number|null);
-    offset?: (number|null);
-    limit?: (number|null);
-}
+    interface IParamsStores {
+        city_id?: (number|null);
+        offset?: (number|null);
+        limit?: (number|null);
+    }
 
-export class paramsStoresByCity implements IparamsStores {
-    constructor(properties?: IparamsStores);
-    public city_id: number;
-    public offset: number;
-    public limit: number;
-}
+    class ParamsStores implements IParamsStores {
+        constructor(properties?: meta.IParamsStores);
+        public city_id: number;
+        public offset: number;
+        public limit: number;
+    }
 
-export interface IresponseStoresByCity {
-    city_id?: (number|null);
-    title?: (string|null);
-    total?: (number|null);
-    stores?: (IOfflineStore[]|null);
-}
+    interface IresponseStoresByCity {
+        city_id?: (number|null);
+        title?: (string|null);
+        total?: (number|null);
+        stores?: (meta.IOfflineStore[]|null);
+    }
 
-export class responseStoresByCity implements IresponseStoresByCity {
-    constructor(properties?: IresponseStoresByCity);
-    public city_id: number;
-    public title: string;
-    public total: number;
-    public stores: IOfflineStore[];
-}
+    class responseStoresByCity implements IresponseStoresByCity {
+        constructor(properties?: meta.IresponseStoresByCity);
+        public city_id: number;
+        public title: string;
+        public total: number;
+        public stores: meta.IOfflineStore[];
+    }
 
-export interface IParamsCountries {
-    offset?: (number|null);
-    limit?: (number|null);
-}
+    interface IParamsCountries {
+        offset?: (number|null);
+        limit?: (number|null);
+    }
 
-export class ParamsCountries implements IParamsCountries {
-    constructor(properties?: IParamsCountries);
-    public offset: number;
-    public limit: number;
-}
+    class ParamsCountries implements IParamsCountries {
+        constructor(properties?: meta.IParamsCountries);
+        public offset: number;
+        public limit: number;
+    }
 
-export interface IResponseCountries {
-    total?: (number|null);
-    result?: (ICountry[]|null);
-}
+    interface IResponseCountries {
+        total?: (number|null);
+        result?: (meta.ICountry[]|null);
+    }
 
-export class ResponseCountries implements IResponseCountries {
-    constructor(properties?: IResponseCountries);
-    public total: number;
-    public result: ICountry[];
-}
+    class ResponseCountries implements IResponseCountries {
+        constructor(properties?: meta.IResponseCountries);
+        public total: number;
+        public result: meta.ICountry[];
+    }
 
-export interface ICountry {
-    id?: (number|Long|null);
-    country_code?: (string|null);
-    prefix?: (string|null);
-    title_ru?: (string|null);
-}
+    interface ICountry {
+        id?: (number|Long|null);
+        country_code?: (string|null);
+        prefix?: (string|null);
+        title_ru?: (string|null);
+    }
 
-export class Country implements ICountry {
-    constructor(properties?: ICountry);
-    public id: (number|Long);
-    public country_code: string;
-    public prefix: string;
-    public title_ru: string;
+    class Country implements ICountry {
+        constructor(properties?: meta.ICountry);
+        public id: (number|Long);
+        public country_code: string;
+        public prefix: string;
+        public title_ru: string;
+    }
 }
 
 export namespace mindbox {
