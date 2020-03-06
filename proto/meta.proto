@@ -27,7 +27,7 @@ service Stores {
 }
 
 message ResponseAllOfflineStoresInfo {
-    repeated OfflineStore stores = 1;
+    repeated OfflineStore result = 1;
 }
 
 message OfflineStore {
@@ -99,7 +99,7 @@ message City {
 }
 
 message ResponseStoresCities {
-    repeated City cities = 1;
+    repeated City result = 1;
 }
 
 message paramsStoresByCity {
