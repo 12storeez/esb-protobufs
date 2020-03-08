@@ -49,7 +49,7 @@ message ResponseOrders {
 }
 
 message Order {
-    reserved 1;
+    string order_id = 1;
     string created_date = 2;
     string payment_type = 3;
     double discounted_total_price = 4;
