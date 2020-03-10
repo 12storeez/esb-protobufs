@@ -94,7 +94,7 @@ message ParamsStoresCities {
 message City {
     int32 city_id = 1;
     string title = 2;
-    int32 store = 3;
+    int32 stores = 3;
 }
 
 message ResponseStoresCities {
