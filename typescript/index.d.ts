@@ -3,16 +3,18 @@ export namespace feedbacks {
 
     class Mobile extends $protobuf.rpc.Service {
         constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-        public app(request: feedbacks.IRequestApp, callback: feedbacks.Mobile.AppCallback): void;
-        public app(request: feedbacks.IRequestApp): Promise<feedbacks.ResponseOk>;
-        public store(request: feedbacks.IRequestStore, callback: feedbacks.Mobile.StoreCallback): void;
-        public store(request: feedbacks.IRequestStore): Promise<feedbacks.ResponseOk>;
-        public order(request: feedbacks.IRequestOrder, callback: feedbacks.Mobile.OrderCallback): void;
-        public order(request: feedbacks.IRequestOrder): Promise<feedbacks.ResponseOk>;
+        public app(request: feedbacks.IParamsApp, callback: feedbacks.Mobile.AppCallback): void;
+        public app(request: feedbacks.IParamsApp): Promise<feedbacks.ResponseOk>;
+        public store(request: feedbacks.IParamsStore, callback: feedbacks.Mobile.StoreCallback): void;
+        public store(request: feedbacks.IParamsStore): Promise<feedbacks.ResponseOk>;
+        public order(request: feedbacks.IParamsOrder, callback: feedbacks.Mobile.OrderCallback): void;
+        public order(request: feedbacks.IParamsOrder): Promise<feedbacks.ResponseOk>;
         public categories(request: google.protobuf.IEmpty, callback: feedbacks.Mobile.CategoriesCallback): void;
         public categories(request: google.protobuf.IEmpty): Promise<feedbacks.ResponseCategories>;
-        public choices(request: feedbacks.IRequestChoices, callback: feedbacks.Mobile.ChoicesCallback): void;
-        public choices(request: feedbacks.IRequestChoices): Promise<feedbacks.ResponseChoices>;
+        public reasonsByOrder(request: feedbacks.IParamsReasonsByOrder, callback: feedbacks.Mobile.ReasonsByOrderCallback): void;
+        public reasonsByOrder(request: feedbacks.IParamsReasonsByOrder): Promise<feedbacks.ResponseReasons>;
+        public reasonsByStore(request: google.protobuf.IEmpty, callback: feedbacks.Mobile.ReasonsByStoreCallback): void;
+        public reasonsByStore(request: google.protobuf.IEmpty): Promise<feedbacks.ResponseReasons>;
     }
 
     namespace Mobile {
@@ -25,7 +27,9 @@ export namespace feedbacks {
 
         type CategoriesCallback = (error: (Error|null), response?: feedbacks.ResponseCategories) => void;
 
-        type ChoicesCallback = (error: (Error|null), response?: feedbacks.ResponseChoices) => void;
+        type ReasonsByOrderCallback = (error: (Error|null), response?: feedbacks.ResponseReasons) => void;
+
+        type ReasonsByStoreCallback = (error: (Error|null), response?: feedbacks.ResponseReasons) => void;
     }
 
     interface IResponseOk {
@@ -37,85 +41,65 @@ export namespace feedbacks {
         public ok: boolean;
     }
 
-    interface IRequestApp {
+    interface IParamsApp {
         client_id?: (number|Long|null);
         app_version?: (string|null);
         rate?: (string|null);
-        reason?: (number[]|null);
+        reasons?: (number[]|null);
         comment?: (string|null);
-        date?: (string|null);
     }
 
-    class RequestApp implements IRequestApp {
-        constructor(properties?: feedbacks.IRequestApp);
+    class ParamsApp implements IParamsApp {
+        constructor(properties?: feedbacks.IParamsApp);
         public client_id: (number|Long);
         public app_version: string;
         public rate: string;
-        public reason: number[];
+        public reasons: number[];
         public comment: string;
-        public date: string;
     }
 
-    interface IRequestStore {
+    interface IParamsStore {
         client_id?: (number|Long|null);
         rate?: (string|null);
-        reason?: (number[]|null);
+        reasons?: (number[]|null);
         comment?: (string|null);
-        city?: (string|null);
-        date?: (string|null);
+        store_id?: (number|null);
     }
 
-    class RequestStore implements IRequestStore {
-        constructor(properties?: feedbacks.IRequestStore);
+    class ParamsStore implements IParamsStore {
+        constructor(properties?: feedbacks.IParamsStore);
         public client_id: (number|Long);
         public rate: string;
-        public reason: number[];
+        public reasons: number[];
         public comment: string;
-        public city: string;
-        public date: string;
+        public store_id: number;
     }
 
-    interface IRequestOrder {
+    interface IParamsOrder {
         order_id?: (string|null);
-        client_id?: (number|Long|null);
-        payment_type?: (string|null);
-        delivery_type?: (string|null);
         rate?: (string|null);
-        reason?: (number[]|null);
+        reasons?: (number[]|null);
         comment?: (string|null);
-        date_order?: (string|null);
-        date_rate?: (string|null);
-        store_name?: (string|null);
-        transport_company?: (string|null);
-        country?: (string|null);
-        city?: (string|null);
+        store_id?: (number|null);
     }
 
-    class RequestOrder implements IRequestOrder {
-        constructor(properties?: feedbacks.IRequestOrder);
+    class ParamsOrder implements IParamsOrder {
+        constructor(properties?: feedbacks.IParamsOrder);
         public order_id: string;
-        public client_id: (number|Long);
-        public payment_type: string;
-        public delivery_type: string;
         public rate: string;
-        public reason: number[];
+        public reasons: number[];
         public comment: string;
-        public date_order: string;
-        public date_rate: string;
-        public store_name: string;
-        public transport_company: string;
-        public country: string;
-        public city: string;
+        public store_id: number;
     }
 
-    interface IChoice {
+    interface IReason {
         id?: (number|null);
         title?: (string|null);
         category_id?: (number|null);
     }
 
-    class Choice implements IChoice {
-        constructor(properties?: feedbacks.IChoice);
+    class Reason implements IReason {
+        constructor(properties?: feedbacks.IReason);
         public id: number;
         public title: string;
         public category_id: number;
@@ -141,13 +125,13 @@ export namespace feedbacks {
         public category_id: number;
     }
 
-    interface IResponseChoices {
-        result?: (feedbacks.IChoice[]|null);
+    interface IResponseReasons {
+        result?: (feedbacks.IReason[]|null);
     }
 
-    class ResponseChoices implements IResponseChoices {
-        constructor(properties?: feedbacks.IResponseChoices);
-        public result: feedbacks.IChoice[];
+    class ResponseReasons implements IResponseReasons {
+        constructor(properties?: feedbacks.IResponseReasons);
+        public result: feedbacks.IReason[];
     }
 
     interface IResponseCategories {
@@ -157,6 +141,15 @@ export namespace feedbacks {
     class ResponseCategories implements IResponseCategories {
         constructor(properties?: feedbacks.IResponseCategories);
         public result: feedbacks.ICategory[];
+    }
+
+    interface IParamsReasonsByOrder {
+        order_id?: (string|null);
+    }
+
+    class ParamsReasonsByOrder implements IParamsReasonsByOrder {
+        constructor(properties?: feedbacks.IParamsReasonsByOrder);
+        public order_id: string;
     }
 }
 
@@ -435,12 +428,12 @@ export namespace meta {
     }
 
     interface IResponseAllOfflineStoresInfo {
-        stores?: (meta.IOfflineStore[]|null);
+        result?: (meta.IOfflineStore[]|null);
     }
 
     class ResponseAllOfflineStoresInfo implements IResponseAllOfflineStoresInfo {
         constructor(properties?: meta.IResponseAllOfflineStoresInfo);
-        public stores: meta.IOfflineStore[];
+        public result: meta.IOfflineStore[];
     }
 
     interface IOfflineStore {
@@ -583,23 +576,23 @@ export namespace meta {
     interface ICity {
         city_id?: (number|null);
         title?: (string|null);
-        store?: (number|null);
+        stores?: (number|null);
     }
 
     class City implements ICity {
         constructor(properties?: meta.ICity);
         public city_id: number;
         public title: string;
-        public store: number;
+        public stores: number;
     }
 
     interface IResponseStoresCities {
-        cities?: (meta.ICity[]|null);
+        result?: (meta.ICity[]|null);
     }
 
     class ResponseStoresCities implements IResponseStoresCities {
         constructor(properties?: meta.IResponseStoresCities);
-        public cities: meta.ICity[];
+        public result: meta.ICity[];
     }
 
     interface IParamsStores {
@@ -670,44 +663,62 @@ export namespace meta {
 
 export namespace mindbox {
 
-    class Mindbox extends $protobuf.rpc.Service {
+    class User extends $protobuf.rpc.Service {
         constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-        public ping(request: google.protobuf.IEmpty, callback: mindbox.Mindbox.PingCallback): void;
-        public ping(request: google.protobuf.IEmpty): Promise<mindbox.PingResponse>;
-        public userInformation(request: mindbox.IParamsUserInformation, callback: mindbox.Mindbox.UserInformationCallback): void;
-        public userInformation(request: mindbox.IParamsUserInformation): Promise<mindbox.ResponseUserInformation>;
-        public ordersHistory(request: mindbox.IParamsOrdersHistory, callback: mindbox.Mindbox.OrdersHistoryCallback): void;
-        public ordersHistory(request: mindbox.IParamsOrdersHistory): Promise<mindbox.ResponseOrdersHistory>;
+        public info(request: mindbox.IParamsUser, callback: mindbox.User.InfoCallback): void;
+        public info(request: mindbox.IParamsUser): Promise<mindbox.ResponseUser>;
+        public orders(request: mindbox.IParamsOrders, callback: mindbox.User.OrdersCallback): void;
+        public orders(request: mindbox.IParamsOrders): Promise<mindbox.ResponseOrders>;
     }
 
-    namespace Mindbox {
+    namespace User {
 
-        type PingCallback = (error: (Error|null), response?: mindbox.PingResponse) => void;
+        type InfoCallback = (error: (Error|null), response?: mindbox.ResponseUser) => void;
 
-        type UserInformationCallback = (error: (Error|null), response?: mindbox.ResponseUserInformation) => void;
-
-        type OrdersHistoryCallback = (error: (Error|null), response?: mindbox.ResponseOrdersHistory) => void;
+        type OrdersCallback = (error: (Error|null), response?: mindbox.ResponseOrders) => void;
     }
 
-    interface IPingResponse {
-        response?: (string|null);
+    class Mobile extends $protobuf.rpc.Service {
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+        public creation(request: mindbox.IParamsCreation, callback: mindbox.Mobile.CreationCallback): void;
+        public creation(request: mindbox.IParamsCreation): Promise<mindbox.ResponseCreation>;
+        public authorization(request: mindbox.IParamsAuthorization, callback: mindbox.Mobile.AuthorizationCallback): void;
+        public authorization(request: mindbox.IParamsAuthorization): Promise<mindbox.ResponseAuthorization>;
+        public registration(request: mindbox.IParamsRegistration, callback: mindbox.Mobile.RegistrationCallback): void;
+        public registration(request: mindbox.IParamsRegistration): Promise<mindbox.ResponseRegistration>;
+        public code(request: mindbox.IParamsCode, callback: mindbox.Mobile.CodeCallback): void;
+        public code(request: mindbox.IParamsCode): Promise<mindbox.ResponseCode>;
+        public checkCode(request: mindbox.IParamsCheckCode, callback: mindbox.Mobile.CheckCodeCallback): void;
+        public checkCode(request: mindbox.IParamsCheckCode): Promise<mindbox.ResponseCheckCode>;
+        public editUser(request: mindbox.IParamsEditUser, callback: mindbox.Mobile.EditUserCallback): void;
+        public editUser(request: mindbox.IParamsEditUser): Promise<mindbox.ResponseEditUser>;
     }
 
-    class PingResponse implements IPingResponse {
-        constructor(properties?: mindbox.IPingResponse);
-        public response: string;
+    namespace Mobile {
+
+        type CreationCallback = (error: (Error|null), response?: mindbox.ResponseCreation) => void;
+
+        type AuthorizationCallback = (error: (Error|null), response?: mindbox.ResponseAuthorization) => void;
+
+        type RegistrationCallback = (error: (Error|null), response?: mindbox.ResponseRegistration) => void;
+
+        type CodeCallback = (error: (Error|null), response?: mindbox.ResponseCode) => void;
+
+        type CheckCodeCallback = (error: (Error|null), response?: mindbox.ResponseCheckCode) => void;
+
+        type EditUserCallback = (error: (Error|null), response?: mindbox.ResponseEditUser) => void;
     }
 
-    interface IParamsUserInformation {
+    interface IParamsUser {
         client_id?: (string|null);
     }
 
-    class ParamsUserInformation implements IParamsUserInformation {
-        constructor(properties?: mindbox.IParamsUserInformation);
+    class ParamsUser implements IParamsUser {
+        constructor(properties?: mindbox.IParamsUser);
         public client_id: string;
     }
 
-    interface IResponseUserInformation {
+    interface IResponseUser {
         first_name?: (string|null);
         last_name?: (string|null);
         email?: (string|null);
@@ -718,8 +729,8 @@ export namespace mindbox {
         total_paid_amount?: (number|null);
     }
 
-    class ResponseUserInformation implements IResponseUserInformation {
-        constructor(properties?: mindbox.IResponseUserInformation);
+    class ResponseUser implements IResponseUser {
+        constructor(properties?: mindbox.IResponseUser);
         public first_name: string;
         public last_name: string;
         public email: string;
@@ -730,28 +741,28 @@ export namespace mindbox {
         public total_paid_amount: number;
     }
 
-    interface IParamsOrdersHistory {
+    interface IParamsOrders {
         client_id?: (string|null);
     }
 
-    class ParamsOrdersHistory implements IParamsOrdersHistory {
-        constructor(properties?: mindbox.IParamsOrdersHistory);
+    class ParamsOrders implements IParamsOrders {
+        constructor(properties?: mindbox.IParamsOrders);
         public client_id: string;
     }
 
-    interface IResponseOrdersHistory {
-        total_count?: (number|null);
-        orders?: (mindbox.Iorder[]|null);
+    interface IResponseOrders {
+        total?: (number|null);
+        result?: (mindbox.IOrder[]|null);
     }
 
-    class ResponseOrdersHistory implements IResponseOrdersHistory {
-        constructor(properties?: mindbox.IResponseOrdersHistory);
-        public total_count: number;
-        public orders: mindbox.Iorder[];
+    class ResponseOrders implements IResponseOrders {
+        constructor(properties?: mindbox.IResponseOrders);
+        public total: number;
+        public result: mindbox.IOrder[];
     }
 
-    interface Iorder {
-        id?: (string|null);
+    interface IOrder {
+        order_id?: (string|null);
         created_date?: (string|null);
         payment_type?: (string|null);
         discounted_total_price?: (number|null);
@@ -760,9 +771,9 @@ export namespace mindbox {
         acquired_balance_change?: (number|null);
     }
 
-    class order implements Iorder {
-        constructor(properties?: mindbox.Iorder);
-        public id: string;
+    class Order implements IOrder {
+        constructor(properties?: mindbox.IOrder);
+        public order_id: string;
         public created_date: string;
         public payment_type: string;
         public discounted_total_price: number;
@@ -770,36 +781,164 @@ export namespace mindbox {
         public applied_discount: number;
         public acquired_balance_change: number;
     }
+
+    interface IParamsAuthorization {
+        device_uuid?: (string|null);
+    }
+
+    class ParamsAuthorization implements IParamsAuthorization {
+        constructor(properties?: mindbox.IParamsAuthorization);
+        public device_uuid: string;
+    }
+
+    interface IResponseAuthorization {
+        ok?: (boolean|null);
+    }
+
+    class ResponseAuthorization implements IResponseAuthorization {
+        constructor(properties?: mindbox.IResponseAuthorization);
+        public ok: boolean;
+    }
+
+    interface IParamsRegistration {
+        device_uuid?: (string|null);
+        client_id?: (string|null);
+        email?: (string|null);
+        full_name?: (string|null);
+        mobile_phone?: (string|null);
+    }
+
+    class ParamsRegistration implements IParamsRegistration {
+        constructor(properties?: mindbox.IParamsRegistration);
+        public device_uuid: string;
+        public client_id: string;
+        public email: string;
+        public full_name: string;
+        public mobile_phone: string;
+    }
+
+    interface IResponseRegistration {
+        ok?: (boolean|null);
+    }
+
+    class ResponseRegistration implements IResponseRegistration {
+        constructor(properties?: mindbox.IResponseRegistration);
+        public ok: boolean;
+    }
+
+    interface IParamsCode {
+        mobile_phone?: (string|null);
+    }
+
+    class ParamsCode implements IParamsCode {
+        constructor(properties?: mindbox.IParamsCode);
+        public mobile_phone: string;
+    }
+
+    interface IResponseCode {
+        ok?: (boolean|null);
+    }
+
+    class ResponseCode implements IResponseCode {
+        constructor(properties?: mindbox.IResponseCode);
+        public ok: boolean;
+    }
+
+    interface IParamsCheckCode {
+        mobile_phone?: (string|null);
+        code?: (string|null);
+    }
+
+    class ParamsCheckCode implements IParamsCheckCode {
+        constructor(properties?: mindbox.IParamsCheckCode);
+        public mobile_phone: string;
+        public code: string;
+    }
+
+    interface IResponseCheckCode {
+        ok?: (boolean|null);
+        status?: (string|null);
+        client_id?: (string|null);
+        mindbox_id?: (number|Long|null);
+    }
+
+    class ResponseCheckCode implements IResponseCheckCode {
+        constructor(properties?: mindbox.IResponseCheckCode);
+        public ok: boolean;
+        public status: string;
+        public client_id: string;
+        public mindbox_id: (number|Long);
+    }
+
+    interface IParamsCreation {
+        device_uuid?: (string|null);
+        id?: (string|null);
+        vendor?: (string|null);
+        model?: (string|null);
+    }
+
+    class ParamsCreation implements IParamsCreation {
+        constructor(properties?: mindbox.IParamsCreation);
+        public device_uuid: string;
+        public id: string;
+        public vendor: string;
+        public model: string;
+    }
+
+    interface IResponseCreation {
+        ok?: (boolean|null);
+    }
+
+    class ResponseCreation implements IResponseCreation {
+        constructor(properties?: mindbox.IResponseCreation);
+        public ok: boolean;
+    }
+
+    interface IParamsEditUser {
+        device_uuid?: (string|null);
+        client_id?: (string|null);
+        mobile_phone?: (string|null);
+    }
+
+    class ParamsEditUser implements IParamsEditUser {
+        constructor(properties?: mindbox.IParamsEditUser);
+        public device_uuid: string;
+        public client_id: string;
+        public mobile_phone: string;
+    }
+
+    interface IResponseEditUser {
+        ok?: (boolean|null);
+    }
+
+    class ResponseEditUser implements IResponseEditUser {
+        constructor(properties?: mindbox.IResponseEditUser);
+        public ok: boolean;
+    }
 }
 
 export namespace orders {
 
-    class Orders extends $protobuf.rpc.Service {
+    class Offline extends $protobuf.rpc.Service {
         constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-        public ping(request: google.protobuf.IEmpty, callback: orders.Orders.PingCallback): void;
-        public ping(request: google.protobuf.IEmpty): Promise<orders.PingResponse>;
-        public offlineByClient(request: orders.IParamsOfflineByClient, callback: orders.Orders.OfflineByClientCallback): void;
-        public offlineByClient(request: orders.IParamsOfflineByClient): Promise<orders.ResponseOfflineByClient>;
-        public onlineByClient(request: orders.IParamsOnlineByClient, callback: orders.Orders.OnlineByClientCallback): void;
-        public onlineByClient(request: orders.IParamsOnlineByClient): Promise<orders.ResponseOnlineByClient>;
+        public byClient(request: orders.IParamsOfflineByClient, callback: orders.Offline.ByClientCallback): void;
+        public byClient(request: orders.IParamsOfflineByClient): Promise<orders.ResponseOfflineByClient>;
     }
 
-    namespace Orders {
+    namespace Offline {
 
-        type PingCallback = (error: (Error|null), response?: orders.PingResponse) => void;
-
-        type OfflineByClientCallback = (error: (Error|null), response?: orders.ResponseOfflineByClient) => void;
-
-        type OnlineByClientCallback = (error: (Error|null), response?: orders.ResponseOnlineByClient) => void;
+        type ByClientCallback = (error: (Error|null), response?: orders.ResponseOfflineByClient) => void;
     }
 
-    interface IPingResponse {
-        response?: (string|null);
+    class Online extends $protobuf.rpc.Service {
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+        public byClient(request: orders.IParamsOnlineByClient, callback: orders.Online.ByClientCallback): void;
+        public byClient(request: orders.IParamsOnlineByClient): Promise<orders.ResponseOnlineByClient>;
     }
 
-    class PingResponse implements IPingResponse {
-        constructor(properties?: orders.IPingResponse);
-        public response: string;
+    namespace Online {
+
+        type ByClientCallback = (error: (Error|null), response?: orders.ResponseOnlineByClient) => void;
     }
 
     interface IParamsOfflineByClient {

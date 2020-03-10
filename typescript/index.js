@@ -50,13 +50,13 @@ $root.feedbacks = (function() {
          * @function app
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestApp} request RequestApp message or plain object
+         * @param {feedbacks.IParamsApp} request ParamsApp message or plain object
          * @param {feedbacks.Mobile.AppCallback} callback Node-style callback called with the error, if any, and ResponseOk
          * @returns {undefined}
          * @variation 1
          */
         Object.defineProperty(Mobile.prototype.app = function app(request, callback) {
-            return this.rpcCall(app, $root.feedbacks.RequestApp, $root.feedbacks.ResponseOk, request, callback);
+            return this.rpcCall(app, $root.feedbacks.ParamsApp, $root.feedbacks.ResponseOk, request, callback);
         }, "name", { value: "App" });
 
         /**
@@ -64,7 +64,7 @@ $root.feedbacks = (function() {
          * @function app
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestApp} request RequestApp message or plain object
+         * @param {feedbacks.IParamsApp} request ParamsApp message or plain object
          * @returns {Promise<feedbacks.ResponseOk>} Promise
          * @variation 2
          */
@@ -83,13 +83,13 @@ $root.feedbacks = (function() {
          * @function store
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestStore} request RequestStore message or plain object
+         * @param {feedbacks.IParamsStore} request ParamsStore message or plain object
          * @param {feedbacks.Mobile.StoreCallback} callback Node-style callback called with the error, if any, and ResponseOk
          * @returns {undefined}
          * @variation 1
          */
         Object.defineProperty(Mobile.prototype.store = function store(request, callback) {
-            return this.rpcCall(store, $root.feedbacks.RequestStore, $root.feedbacks.ResponseOk, request, callback);
+            return this.rpcCall(store, $root.feedbacks.ParamsStore, $root.feedbacks.ResponseOk, request, callback);
         }, "name", { value: "Store" });
 
         /**
@@ -97,7 +97,7 @@ $root.feedbacks = (function() {
          * @function store
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestStore} request RequestStore message or plain object
+         * @param {feedbacks.IParamsStore} request ParamsStore message or plain object
          * @returns {Promise<feedbacks.ResponseOk>} Promise
          * @variation 2
          */
@@ -116,13 +116,13 @@ $root.feedbacks = (function() {
          * @function order
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestOrder} request RequestOrder message or plain object
+         * @param {feedbacks.IParamsOrder} request ParamsOrder message or plain object
          * @param {feedbacks.Mobile.OrderCallback} callback Node-style callback called with the error, if any, and ResponseOk
          * @returns {undefined}
          * @variation 1
          */
         Object.defineProperty(Mobile.prototype.order = function order(request, callback) {
-            return this.rpcCall(order, $root.feedbacks.RequestOrder, $root.feedbacks.ResponseOk, request, callback);
+            return this.rpcCall(order, $root.feedbacks.ParamsOrder, $root.feedbacks.ResponseOk, request, callback);
         }, "name", { value: "Order" });
 
         /**
@@ -130,7 +130,7 @@ $root.feedbacks = (function() {
          * @function order
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestOrder} request RequestOrder message or plain object
+         * @param {feedbacks.IParamsOrder} request ParamsOrder message or plain object
          * @returns {Promise<feedbacks.ResponseOk>} Promise
          * @variation 2
          */
@@ -169,35 +169,68 @@ $root.feedbacks = (function() {
          */
 
         /**
-         * Callback as used by {@link feedbacks.Mobile#choices}.
+         * Callback as used by {@link feedbacks.Mobile#reasonsByOrder}.
          * @memberof feedbacks.Mobile
-         * @typedef ChoicesCallback
+         * @typedef ReasonsByOrderCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {feedbacks.ResponseChoices} [response] ResponseChoices
+         * @param {feedbacks.ResponseReasons} [response] ResponseReasons
          */
 
         /**
-         * Calls Choices.
-         * @function choices
+         * Calls ReasonsByOrder.
+         * @function reasonsByOrder
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestChoices} request RequestChoices message or plain object
-         * @param {feedbacks.Mobile.ChoicesCallback} callback Node-style callback called with the error, if any, and ResponseChoices
+         * @param {feedbacks.IParamsReasonsByOrder} request ParamsReasonsByOrder message or plain object
+         * @param {feedbacks.Mobile.ReasonsByOrderCallback} callback Node-style callback called with the error, if any, and ResponseReasons
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Mobile.prototype.choices = function choices(request, callback) {
-            return this.rpcCall(choices, $root.feedbacks.RequestChoices, $root.feedbacks.ResponseChoices, request, callback);
-        }, "name", { value: "Choices" });
+        Object.defineProperty(Mobile.prototype.reasonsByOrder = function reasonsByOrder(request, callback) {
+            return this.rpcCall(reasonsByOrder, $root.feedbacks.ParamsReasonsByOrder, $root.feedbacks.ResponseReasons, request, callback);
+        }, "name", { value: "ReasonsByOrder" });
 
         /**
-         * Calls Choices.
-         * @function choices
+         * Calls ReasonsByOrder.
+         * @function reasonsByOrder
          * @memberof feedbacks.Mobile
          * @instance
-         * @param {feedbacks.IRequestChoices} request RequestChoices message or plain object
-         * @returns {Promise<feedbacks.ResponseChoices>} Promise
+         * @param {feedbacks.IParamsReasonsByOrder} request ParamsReasonsByOrder message or plain object
+         * @returns {Promise<feedbacks.ResponseReasons>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link feedbacks.Mobile#reasonsByStore}.
+         * @memberof feedbacks.Mobile
+         * @typedef ReasonsByStoreCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {feedbacks.ResponseReasons} [response] ResponseReasons
+         */
+
+        /**
+         * Calls ReasonsByStore.
+         * @function reasonsByStore
+         * @memberof feedbacks.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @param {feedbacks.Mobile.ReasonsByStoreCallback} callback Node-style callback called with the error, if any, and ResponseReasons
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.reasonsByStore = function reasonsByStore(request, callback) {
+            return this.rpcCall(reasonsByStore, $root.google.protobuf.Empty, $root.feedbacks.ResponseReasons, request, callback);
+        }, "name", { value: "ReasonsByStore" });
+
+        /**
+         * Calls ReasonsByStore.
+         * @function reasonsByStore
+         * @memberof feedbacks.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @returns {Promise<feedbacks.ResponseReasons>} Promise
          * @variation 2
          */
 
@@ -239,30 +272,29 @@ $root.feedbacks = (function() {
         return ResponseOk;
     })();
 
-    feedbacks.RequestApp = (function() {
+    feedbacks.ParamsApp = (function() {
 
         /**
-         * Properties of a RequestApp.
+         * Properties of a ParamsApp.
          * @memberof feedbacks
-         * @interface IRequestApp
-         * @property {number|Long|null} [client_id] RequestApp client_id
-         * @property {string|null} [app_version] RequestApp app_version
-         * @property {string|null} [rate] RequestApp rate
-         * @property {Array.<number>|null} [reason] RequestApp reason
-         * @property {string|null} [comment] RequestApp comment
-         * @property {string|null} [date] RequestApp date
+         * @interface IParamsApp
+         * @property {number|Long|null} [client_id] ParamsApp client_id
+         * @property {string|null} [app_version] ParamsApp app_version
+         * @property {string|null} [rate] ParamsApp rate
+         * @property {Array.<number>|null} [reasons] ParamsApp reasons
+         * @property {string|null} [comment] ParamsApp comment
          */
 
         /**
-         * Constructs a new RequestApp.
+         * Constructs a new ParamsApp.
          * @memberof feedbacks
-         * @classdesc Represents a RequestApp.
-         * @implements IRequestApp
+         * @classdesc Represents a ParamsApp.
+         * @implements IParamsApp
          * @constructor
-         * @param {feedbacks.IRequestApp=} [properties] Properties to set
+         * @param {feedbacks.IParamsApp=} [properties] Properties to set
          */
-        function RequestApp(properties) {
-            this.reason = [];
+        function ParamsApp(properties) {
+            this.reasons = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -270,80 +302,71 @@ $root.feedbacks = (function() {
         }
 
         /**
-         * RequestApp client_id.
+         * ParamsApp client_id.
          * @member {number|Long} client_id
-         * @memberof feedbacks.RequestApp
+         * @memberof feedbacks.ParamsApp
          * @instance
          */
-        RequestApp.prototype.client_id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+        ParamsApp.prototype.client_id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * RequestApp app_version.
+         * ParamsApp app_version.
          * @member {string} app_version
-         * @memberof feedbacks.RequestApp
+         * @memberof feedbacks.ParamsApp
          * @instance
          */
-        RequestApp.prototype.app_version = "";
+        ParamsApp.prototype.app_version = "";
 
         /**
-         * RequestApp rate.
+         * ParamsApp rate.
          * @member {string} rate
-         * @memberof feedbacks.RequestApp
+         * @memberof feedbacks.ParamsApp
          * @instance
          */
-        RequestApp.prototype.rate = "";
+        ParamsApp.prototype.rate = "";
 
         /**
-         * RequestApp reason.
-         * @member {Array.<number>} reason
-         * @memberof feedbacks.RequestApp
+         * ParamsApp reasons.
+         * @member {Array.<number>} reasons
+         * @memberof feedbacks.ParamsApp
          * @instance
          */
-        RequestApp.prototype.reason = $util.emptyArray;
+        ParamsApp.prototype.reasons = $util.emptyArray;
 
         /**
-         * RequestApp comment.
+         * ParamsApp comment.
          * @member {string} comment
-         * @memberof feedbacks.RequestApp
+         * @memberof feedbacks.ParamsApp
          * @instance
          */
-        RequestApp.prototype.comment = "";
+        ParamsApp.prototype.comment = "";
 
-        /**
-         * RequestApp date.
-         * @member {string} date
-         * @memberof feedbacks.RequestApp
-         * @instance
-         */
-        RequestApp.prototype.date = "";
-
-        return RequestApp;
+        return ParamsApp;
     })();
 
-    feedbacks.RequestStore = (function() {
+    feedbacks.ParamsStore = (function() {
 
         /**
-         * Properties of a RequestStore.
+         * Properties of a ParamsStore.
          * @memberof feedbacks
-         * @interface IRequestStore
-         * @property {number|Long|null} [client_id] RequestStore client_id
-         * @property {string|null} [rate] RequestStore rate
-         * @property {Array.<number>|null} [reason] RequestStore reason
-         * @property {string|null} [comment] RequestStore comment
-         * @property {string|null} [city] RequestStore city
-         * @property {string|null} [date] RequestStore date
+         * @interface IParamsStore
+         * @property {number|Long|null} [client_id] ParamsStore client_id
+         * @property {string|null} [rate] ParamsStore rate
+         * @property {Array.<number>|null} [reasons] ParamsStore reasons
+         * @property {string|null} [comment] ParamsStore comment
+         * @property {number|null} [store_id] ParamsStore store_id
          */
 
         /**
-         * Constructs a new RequestStore.
+         * Constructs a new ParamsStore.
          * @memberof feedbacks
-         * @classdesc Represents a RequestStore.
-         * @implements IRequestStore
+         * @classdesc Represents a ParamsStore.
+         * @implements IParamsStore
          * @constructor
-         * @param {feedbacks.IRequestStore=} [properties] Properties to set
+         * @param {feedbacks.IParamsStore=} [properties] Properties to set
          */
-        function RequestStore(properties) {
-            this.reason = [];
+        function ParamsStore(properties) {
+            this.reasons = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -351,87 +374,71 @@ $root.feedbacks = (function() {
         }
 
         /**
-         * RequestStore client_id.
+         * ParamsStore client_id.
          * @member {number|Long} client_id
-         * @memberof feedbacks.RequestStore
+         * @memberof feedbacks.ParamsStore
          * @instance
          */
-        RequestStore.prototype.client_id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+        ParamsStore.prototype.client_id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * RequestStore rate.
+         * ParamsStore rate.
          * @member {string} rate
-         * @memberof feedbacks.RequestStore
+         * @memberof feedbacks.ParamsStore
          * @instance
          */
-        RequestStore.prototype.rate = "";
+        ParamsStore.prototype.rate = "";
 
         /**
-         * RequestStore reason.
-         * @member {Array.<number>} reason
-         * @memberof feedbacks.RequestStore
+         * ParamsStore reasons.
+         * @member {Array.<number>} reasons
+         * @memberof feedbacks.ParamsStore
          * @instance
          */
-        RequestStore.prototype.reason = $util.emptyArray;
+        ParamsStore.prototype.reasons = $util.emptyArray;
 
         /**
-         * RequestStore comment.
+         * ParamsStore comment.
          * @member {string} comment
-         * @memberof feedbacks.RequestStore
+         * @memberof feedbacks.ParamsStore
          * @instance
          */
-        RequestStore.prototype.comment = "";
+        ParamsStore.prototype.comment = "";
 
         /**
-         * RequestStore city.
-         * @member {string} city
-         * @memberof feedbacks.RequestStore
+         * ParamsStore store_id.
+         * @member {number} store_id
+         * @memberof feedbacks.ParamsStore
          * @instance
          */
-        RequestStore.prototype.city = "";
+        ParamsStore.prototype.store_id = 0;
 
-        /**
-         * RequestStore date.
-         * @member {string} date
-         * @memberof feedbacks.RequestStore
-         * @instance
-         */
-        RequestStore.prototype.date = "";
-
-        return RequestStore;
+        return ParamsStore;
     })();
 
-    feedbacks.RequestOrder = (function() {
+    feedbacks.ParamsOrder = (function() {
 
         /**
-         * Properties of a RequestOrder.
+         * Properties of a ParamsOrder.
          * @memberof feedbacks
-         * @interface IRequestOrder
-         * @property {string|null} [order_id] RequestOrder order_id
-         * @property {number|Long|null} [client_id] RequestOrder client_id
-         * @property {string|null} [payment_type] RequestOrder payment_type
-         * @property {string|null} [delivery_type] RequestOrder delivery_type
-         * @property {string|null} [rate] RequestOrder rate
-         * @property {Array.<number>|null} [reason] RequestOrder reason
-         * @property {string|null} [comment] RequestOrder comment
-         * @property {string|null} [date_order] RequestOrder date_order
-         * @property {string|null} [date_rate] RequestOrder date_rate
-         * @property {string|null} [store_name] RequestOrder store_name
-         * @property {string|null} [transport_company] RequestOrder transport_company
-         * @property {string|null} [country] RequestOrder country
-         * @property {string|null} [city] RequestOrder city
+         * @interface IParamsOrder
+         * @property {string|null} [order_id] ParamsOrder order_id
+         * @property {string|null} [rate] ParamsOrder rate
+         * @property {Array.<number>|null} [reasons] ParamsOrder reasons
+         * @property {string|null} [comment] ParamsOrder comment
+         * @property {number|null} [store_id] ParamsOrder store_id
          */
 
         /**
-         * Constructs a new RequestOrder.
+         * Constructs a new ParamsOrder.
          * @memberof feedbacks
-         * @classdesc Represents a RequestOrder.
-         * @implements IRequestOrder
+         * @classdesc Represents a ParamsOrder.
+         * @implements IParamsOrder
          * @constructor
-         * @param {feedbacks.IRequestOrder=} [properties] Properties to set
+         * @param {feedbacks.IParamsOrder=} [properties] Properties to set
          */
-        function RequestOrder(properties) {
-            this.reason = [];
+        function ParamsOrder(properties) {
+            this.reasons = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -439,132 +446,68 @@ $root.feedbacks = (function() {
         }
 
         /**
-         * RequestOrder order_id.
+         * ParamsOrder order_id.
          * @member {string} order_id
-         * @memberof feedbacks.RequestOrder
+         * @memberof feedbacks.ParamsOrder
          * @instance
          */
-        RequestOrder.prototype.order_id = "";
+        ParamsOrder.prototype.order_id = "";
 
         /**
-         * RequestOrder client_id.
-         * @member {number|Long} client_id
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.client_id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-        /**
-         * RequestOrder payment_type.
-         * @member {string} payment_type
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.payment_type = "";
-
-        /**
-         * RequestOrder delivery_type.
-         * @member {string} delivery_type
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.delivery_type = "";
-
-        /**
-         * RequestOrder rate.
+         * ParamsOrder rate.
          * @member {string} rate
-         * @memberof feedbacks.RequestOrder
+         * @memberof feedbacks.ParamsOrder
          * @instance
          */
-        RequestOrder.prototype.rate = "";
+        ParamsOrder.prototype.rate = "";
 
         /**
-         * RequestOrder reason.
-         * @member {Array.<number>} reason
-         * @memberof feedbacks.RequestOrder
+         * ParamsOrder reasons.
+         * @member {Array.<number>} reasons
+         * @memberof feedbacks.ParamsOrder
          * @instance
          */
-        RequestOrder.prototype.reason = $util.emptyArray;
+        ParamsOrder.prototype.reasons = $util.emptyArray;
 
         /**
-         * RequestOrder comment.
+         * ParamsOrder comment.
          * @member {string} comment
-         * @memberof feedbacks.RequestOrder
+         * @memberof feedbacks.ParamsOrder
          * @instance
          */
-        RequestOrder.prototype.comment = "";
+        ParamsOrder.prototype.comment = "";
 
         /**
-         * RequestOrder date_order.
-         * @member {string} date_order
-         * @memberof feedbacks.RequestOrder
+         * ParamsOrder store_id.
+         * @member {number} store_id
+         * @memberof feedbacks.ParamsOrder
          * @instance
          */
-        RequestOrder.prototype.date_order = "";
+        ParamsOrder.prototype.store_id = 0;
 
-        /**
-         * RequestOrder date_rate.
-         * @member {string} date_rate
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.date_rate = "";
-
-        /**
-         * RequestOrder store_name.
-         * @member {string} store_name
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.store_name = "";
-
-        /**
-         * RequestOrder transport_company.
-         * @member {string} transport_company
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.transport_company = "";
-
-        /**
-         * RequestOrder country.
-         * @member {string} country
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.country = "";
-
-        /**
-         * RequestOrder city.
-         * @member {string} city
-         * @memberof feedbacks.RequestOrder
-         * @instance
-         */
-        RequestOrder.prototype.city = "";
-
-        return RequestOrder;
+        return ParamsOrder;
     })();
 
-    feedbacks.Choice = (function() {
+    feedbacks.Reason = (function() {
 
         /**
-         * Properties of a Choice.
+         * Properties of a Reason.
          * @memberof feedbacks
-         * @interface IChoice
-         * @property {number|null} [id] Choice id
-         * @property {string|null} [title] Choice title
-         * @property {number|null} [category_id] Choice category_id
+         * @interface IReason
+         * @property {number|null} [id] Reason id
+         * @property {string|null} [title] Reason title
+         * @property {number|null} [category_id] Reason category_id
          */
 
         /**
-         * Constructs a new Choice.
+         * Constructs a new Reason.
          * @memberof feedbacks
-         * @classdesc Represents a Choice.
-         * @implements IChoice
+         * @classdesc Represents a Reason.
+         * @implements IReason
          * @constructor
-         * @param {feedbacks.IChoice=} [properties] Properties to set
+         * @param {feedbacks.IReason=} [properties] Properties to set
          */
-        function Choice(properties) {
+        function Reason(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -572,30 +515,30 @@ $root.feedbacks = (function() {
         }
 
         /**
-         * Choice id.
+         * Reason id.
          * @member {number} id
-         * @memberof feedbacks.Choice
+         * @memberof feedbacks.Reason
          * @instance
          */
-        Choice.prototype.id = 0;
+        Reason.prototype.id = 0;
 
         /**
-         * Choice title.
+         * Reason title.
          * @member {string} title
-         * @memberof feedbacks.Choice
+         * @memberof feedbacks.Reason
          * @instance
          */
-        Choice.prototype.title = "";
+        Reason.prototype.title = "";
 
         /**
-         * Choice category_id.
+         * Reason category_id.
          * @member {number} category_id
-         * @memberof feedbacks.Choice
+         * @memberof feedbacks.Reason
          * @instance
          */
-        Choice.prototype.category_id = 0;
+        Reason.prototype.category_id = 0;
 
-        return Choice;
+        return Reason;
     })();
 
     feedbacks.Category = (function() {
@@ -677,24 +620,24 @@ $root.feedbacks = (function() {
         return RequestChoices;
     })();
 
-    feedbacks.ResponseChoices = (function() {
+    feedbacks.ResponseReasons = (function() {
 
         /**
-         * Properties of a ResponseChoices.
+         * Properties of a ResponseReasons.
          * @memberof feedbacks
-         * @interface IResponseChoices
-         * @property {Array.<feedbacks.IChoice>|null} [result] ResponseChoices result
+         * @interface IResponseReasons
+         * @property {Array.<feedbacks.IReason>|null} [result] ResponseReasons result
          */
 
         /**
-         * Constructs a new ResponseChoices.
+         * Constructs a new ResponseReasons.
          * @memberof feedbacks
-         * @classdesc Represents a ResponseChoices.
-         * @implements IResponseChoices
+         * @classdesc Represents a ResponseReasons.
+         * @implements IResponseReasons
          * @constructor
-         * @param {feedbacks.IResponseChoices=} [properties] Properties to set
+         * @param {feedbacks.IResponseReasons=} [properties] Properties to set
          */
-        function ResponseChoices(properties) {
+        function ResponseReasons(properties) {
             this.result = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -703,14 +646,14 @@ $root.feedbacks = (function() {
         }
 
         /**
-         * ResponseChoices result.
-         * @member {Array.<feedbacks.IChoice>} result
-         * @memberof feedbacks.ResponseChoices
+         * ResponseReasons result.
+         * @member {Array.<feedbacks.IReason>} result
+         * @memberof feedbacks.ResponseReasons
          * @instance
          */
-        ResponseChoices.prototype.result = $util.emptyArray;
+        ResponseReasons.prototype.result = $util.emptyArray;
 
-        return ResponseChoices;
+        return ResponseReasons;
     })();
 
     feedbacks.ResponseCategories = (function() {
@@ -747,6 +690,41 @@ $root.feedbacks = (function() {
         ResponseCategories.prototype.result = $util.emptyArray;
 
         return ResponseCategories;
+    })();
+
+    feedbacks.ParamsReasonsByOrder = (function() {
+
+        /**
+         * Properties of a ParamsReasonsByOrder.
+         * @memberof feedbacks
+         * @interface IParamsReasonsByOrder
+         * @property {string|null} [order_id] ParamsReasonsByOrder order_id
+         */
+
+        /**
+         * Constructs a new ParamsReasonsByOrder.
+         * @memberof feedbacks
+         * @classdesc Represents a ParamsReasonsByOrder.
+         * @implements IParamsReasonsByOrder
+         * @constructor
+         * @param {feedbacks.IParamsReasonsByOrder=} [properties] Properties to set
+         */
+        function ParamsReasonsByOrder(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsReasonsByOrder order_id.
+         * @member {string} order_id
+         * @memberof feedbacks.ParamsReasonsByOrder
+         * @instance
+         */
+        ParamsReasonsByOrder.prototype.order_id = "";
+
+        return ParamsReasonsByOrder;
     })();
 
     return feedbacks;
@@ -2044,7 +2022,7 @@ $root.meta = (function() {
          * Properties of a ResponseAllOfflineStoresInfo.
          * @memberof meta
          * @interface IResponseAllOfflineStoresInfo
-         * @property {Array.<meta.IOfflineStore>|null} [stores] ResponseAllOfflineStoresInfo stores
+         * @property {Array.<meta.IOfflineStore>|null} [result] ResponseAllOfflineStoresInfo result
          */
 
         /**
@@ -2056,7 +2034,7 @@ $root.meta = (function() {
          * @param {meta.IResponseAllOfflineStoresInfo=} [properties] Properties to set
          */
         function ResponseAllOfflineStoresInfo(properties) {
-            this.stores = [];
+            this.result = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2064,12 +2042,12 @@ $root.meta = (function() {
         }
 
         /**
-         * ResponseAllOfflineStoresInfo stores.
-         * @member {Array.<meta.IOfflineStore>} stores
+         * ResponseAllOfflineStoresInfo result.
+         * @member {Array.<meta.IOfflineStore>} result
          * @memberof meta.ResponseAllOfflineStoresInfo
          * @instance
          */
-        ResponseAllOfflineStoresInfo.prototype.stores = $util.emptyArray;
+        ResponseAllOfflineStoresInfo.prototype.result = $util.emptyArray;
 
         return ResponseAllOfflineStoresInfo;
     })();
@@ -2642,7 +2620,7 @@ $root.meta = (function() {
          * @interface ICity
          * @property {number|null} [city_id] City city_id
          * @property {string|null} [title] City title
-         * @property {number|null} [store] City store
+         * @property {number|null} [stores] City stores
          */
 
         /**
@@ -2677,12 +2655,12 @@ $root.meta = (function() {
         City.prototype.title = "";
 
         /**
-         * City store.
-         * @member {number} store
+         * City stores.
+         * @member {number} stores
          * @memberof meta.City
          * @instance
          */
-        City.prototype.store = 0;
+        City.prototype.stores = 0;
 
         return City;
     })();
@@ -2693,7 +2671,7 @@ $root.meta = (function() {
          * Properties of a ResponseStoresCities.
          * @memberof meta
          * @interface IResponseStoresCities
-         * @property {Array.<meta.ICity>|null} [cities] ResponseStoresCities cities
+         * @property {Array.<meta.ICity>|null} [result] ResponseStoresCities result
          */
 
         /**
@@ -2705,7 +2683,7 @@ $root.meta = (function() {
          * @param {meta.IResponseStoresCities=} [properties] Properties to set
          */
         function ResponseStoresCities(properties) {
-            this.cities = [];
+            this.result = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2713,12 +2691,12 @@ $root.meta = (function() {
         }
 
         /**
-         * ResponseStoresCities cities.
-         * @member {Array.<meta.ICity>} cities
+         * ResponseStoresCities result.
+         * @member {Array.<meta.ICity>} result
          * @memberof meta.ResponseStoresCities
          * @instance
          */
-        ResponseStoresCities.prototype.cities = $util.emptyArray;
+        ResponseStoresCities.prototype.result = $util.emptyArray;
 
         return ResponseStoresCities;
     })();
@@ -3002,144 +2980,330 @@ $root.mindbox = (function() {
      */
     var mindbox = {};
 
-    mindbox.Mindbox = (function() {
+    mindbox.User = (function() {
 
         /**
-         * Constructs a new Mindbox service.
+         * Constructs a new User service.
          * @memberof mindbox
-         * @classdesc Represents a Mindbox
+         * @classdesc Represents a User
          * @extends $protobuf.rpc.Service
          * @constructor
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-        function Mindbox(rpcImpl, requestDelimited, responseDelimited) {
+        function User(rpcImpl, requestDelimited, responseDelimited) {
             $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
         }
 
-        (Mindbox.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Mindbox;
+        (User.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = User;
 
         /**
-         * Callback as used by {@link mindbox.Mindbox#ping}.
-         * @memberof mindbox.Mindbox
-         * @typedef PingCallback
+         * Callback as used by {@link mindbox.User#info}.
+         * @memberof mindbox.User
+         * @typedef InfoCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {mindbox.PingResponse} [response] PingResponse
+         * @param {mindbox.ResponseUser} [response] ResponseUser
          */
 
         /**
-         * Calls Ping.
-         * @function ping
-         * @memberof mindbox.Mindbox
+         * Calls Info.
+         * @function info
+         * @memberof mindbox.User
          * @instance
-         * @param {google.protobuf.IEmpty} request Empty message or plain object
-         * @param {mindbox.Mindbox.PingCallback} callback Node-style callback called with the error, if any, and PingResponse
+         * @param {mindbox.IParamsUser} request ParamsUser message or plain object
+         * @param {mindbox.User.InfoCallback} callback Node-style callback called with the error, if any, and ResponseUser
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Mindbox.prototype.ping = function ping(request, callback) {
-            return this.rpcCall(ping, $root.google.protobuf.Empty, $root.mindbox.PingResponse, request, callback);
-        }, "name", { value: "Ping" });
+        Object.defineProperty(User.prototype.info = function info(request, callback) {
+            return this.rpcCall(info, $root.mindbox.ParamsUser, $root.mindbox.ResponseUser, request, callback);
+        }, "name", { value: "Info" });
 
         /**
-         * Calls Ping.
-         * @function ping
-         * @memberof mindbox.Mindbox
+         * Calls Info.
+         * @function info
+         * @memberof mindbox.User
          * @instance
-         * @param {google.protobuf.IEmpty} request Empty message or plain object
-         * @returns {Promise<mindbox.PingResponse>} Promise
+         * @param {mindbox.IParamsUser} request ParamsUser message or plain object
+         * @returns {Promise<mindbox.ResponseUser>} Promise
          * @variation 2
          */
 
         /**
-         * Callback as used by {@link mindbox.Mindbox#userInformation}.
-         * @memberof mindbox.Mindbox
-         * @typedef UserInformationCallback
+         * Callback as used by {@link mindbox.User#orders}.
+         * @memberof mindbox.User
+         * @typedef OrdersCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {mindbox.ResponseUserInformation} [response] ResponseUserInformation
+         * @param {mindbox.ResponseOrders} [response] ResponseOrders
          */
 
         /**
-         * Calls UserInformation.
-         * @function userInformation
-         * @memberof mindbox.Mindbox
+         * Calls Orders.
+         * @function orders
+         * @memberof mindbox.User
          * @instance
-         * @param {mindbox.IParamsUserInformation} request ParamsUserInformation message or plain object
-         * @param {mindbox.Mindbox.UserInformationCallback} callback Node-style callback called with the error, if any, and ResponseUserInformation
+         * @param {mindbox.IParamsOrders} request ParamsOrders message or plain object
+         * @param {mindbox.User.OrdersCallback} callback Node-style callback called with the error, if any, and ResponseOrders
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Mindbox.prototype.userInformation = function userInformation(request, callback) {
-            return this.rpcCall(userInformation, $root.mindbox.ParamsUserInformation, $root.mindbox.ResponseUserInformation, request, callback);
-        }, "name", { value: "UserInformation" });
+        Object.defineProperty(User.prototype.orders = function orders(request, callback) {
+            return this.rpcCall(orders, $root.mindbox.ParamsOrders, $root.mindbox.ResponseOrders, request, callback);
+        }, "name", { value: "Orders" });
 
         /**
-         * Calls UserInformation.
-         * @function userInformation
-         * @memberof mindbox.Mindbox
+         * Calls Orders.
+         * @function orders
+         * @memberof mindbox.User
          * @instance
-         * @param {mindbox.IParamsUserInformation} request ParamsUserInformation message or plain object
-         * @returns {Promise<mindbox.ResponseUserInformation>} Promise
+         * @param {mindbox.IParamsOrders} request ParamsOrders message or plain object
+         * @returns {Promise<mindbox.ResponseOrders>} Promise
          * @variation 2
          */
 
-        /**
-         * Callback as used by {@link mindbox.Mindbox#ordersHistory}.
-         * @memberof mindbox.Mindbox
-         * @typedef OrdersHistoryCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {mindbox.ResponseOrdersHistory} [response] ResponseOrdersHistory
-         */
-
-        /**
-         * Calls OrdersHistory.
-         * @function ordersHistory
-         * @memberof mindbox.Mindbox
-         * @instance
-         * @param {mindbox.IParamsOrdersHistory} request ParamsOrdersHistory message or plain object
-         * @param {mindbox.Mindbox.OrdersHistoryCallback} callback Node-style callback called with the error, if any, and ResponseOrdersHistory
-         * @returns {undefined}
-         * @variation 1
-         */
-        Object.defineProperty(Mindbox.prototype.ordersHistory = function ordersHistory(request, callback) {
-            return this.rpcCall(ordersHistory, $root.mindbox.ParamsOrdersHistory, $root.mindbox.ResponseOrdersHistory, request, callback);
-        }, "name", { value: "OrdersHistory" });
-
-        /**
-         * Calls OrdersHistory.
-         * @function ordersHistory
-         * @memberof mindbox.Mindbox
-         * @instance
-         * @param {mindbox.IParamsOrdersHistory} request ParamsOrdersHistory message or plain object
-         * @returns {Promise<mindbox.ResponseOrdersHistory>} Promise
-         * @variation 2
-         */
-
-        return Mindbox;
+        return User;
     })();
 
-    mindbox.PingResponse = (function() {
+    mindbox.Mobile = (function() {
 
         /**
-         * Properties of a PingResponse.
+         * Constructs a new Mobile service.
          * @memberof mindbox
-         * @interface IPingResponse
-         * @property {string|null} [response] PingResponse response
-         */
-
-        /**
-         * Constructs a new PingResponse.
-         * @memberof mindbox
-         * @classdesc Represents a PingResponse.
-         * @implements IPingResponse
+         * @classdesc Represents a Mobile
+         * @extends $protobuf.rpc.Service
          * @constructor
-         * @param {mindbox.IPingResponse=} [properties] Properties to set
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-        function PingResponse(properties) {
+        function Mobile(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (Mobile.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Mobile;
+
+        /**
+         * Callback as used by {@link mindbox.Mobile#creation}.
+         * @memberof mindbox.Mobile
+         * @typedef CreationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {mindbox.ResponseCreation} [response] ResponseCreation
+         */
+
+        /**
+         * Calls Creation.
+         * @function creation
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsCreation} request ParamsCreation message or plain object
+         * @param {mindbox.Mobile.CreationCallback} callback Node-style callback called with the error, if any, and ResponseCreation
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.creation = function creation(request, callback) {
+            return this.rpcCall(creation, $root.mindbox.ParamsCreation, $root.mindbox.ResponseCreation, request, callback);
+        }, "name", { value: "Creation" });
+
+        /**
+         * Calls Creation.
+         * @function creation
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsCreation} request ParamsCreation message or plain object
+         * @returns {Promise<mindbox.ResponseCreation>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link mindbox.Mobile#authorization}.
+         * @memberof mindbox.Mobile
+         * @typedef AuthorizationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {mindbox.ResponseAuthorization} [response] ResponseAuthorization
+         */
+
+        /**
+         * Calls Authorization.
+         * @function authorization
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsAuthorization} request ParamsAuthorization message or plain object
+         * @param {mindbox.Mobile.AuthorizationCallback} callback Node-style callback called with the error, if any, and ResponseAuthorization
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.authorization = function authorization(request, callback) {
+            return this.rpcCall(authorization, $root.mindbox.ParamsAuthorization, $root.mindbox.ResponseAuthorization, request, callback);
+        }, "name", { value: "Authorization" });
+
+        /**
+         * Calls Authorization.
+         * @function authorization
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsAuthorization} request ParamsAuthorization message or plain object
+         * @returns {Promise<mindbox.ResponseAuthorization>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link mindbox.Mobile#registration}.
+         * @memberof mindbox.Mobile
+         * @typedef RegistrationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {mindbox.ResponseRegistration} [response] ResponseRegistration
+         */
+
+        /**
+         * Calls Registration.
+         * @function registration
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsRegistration} request ParamsRegistration message or plain object
+         * @param {mindbox.Mobile.RegistrationCallback} callback Node-style callback called with the error, if any, and ResponseRegistration
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.registration = function registration(request, callback) {
+            return this.rpcCall(registration, $root.mindbox.ParamsRegistration, $root.mindbox.ResponseRegistration, request, callback);
+        }, "name", { value: "Registration" });
+
+        /**
+         * Calls Registration.
+         * @function registration
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsRegistration} request ParamsRegistration message or plain object
+         * @returns {Promise<mindbox.ResponseRegistration>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link mindbox.Mobile#code}.
+         * @memberof mindbox.Mobile
+         * @typedef CodeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {mindbox.ResponseCode} [response] ResponseCode
+         */
+
+        /**
+         * Calls Code.
+         * @function code
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsCode} request ParamsCode message or plain object
+         * @param {mindbox.Mobile.CodeCallback} callback Node-style callback called with the error, if any, and ResponseCode
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.code = function code(request, callback) {
+            return this.rpcCall(code, $root.mindbox.ParamsCode, $root.mindbox.ResponseCode, request, callback);
+        }, "name", { value: "Code" });
+
+        /**
+         * Calls Code.
+         * @function code
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsCode} request ParamsCode message or plain object
+         * @returns {Promise<mindbox.ResponseCode>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link mindbox.Mobile#checkCode}.
+         * @memberof mindbox.Mobile
+         * @typedef CheckCodeCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {mindbox.ResponseCheckCode} [response] ResponseCheckCode
+         */
+
+        /**
+         * Calls CheckCode.
+         * @function checkCode
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsCheckCode} request ParamsCheckCode message or plain object
+         * @param {mindbox.Mobile.CheckCodeCallback} callback Node-style callback called with the error, if any, and ResponseCheckCode
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.checkCode = function checkCode(request, callback) {
+            return this.rpcCall(checkCode, $root.mindbox.ParamsCheckCode, $root.mindbox.ResponseCheckCode, request, callback);
+        }, "name", { value: "CheckCode" });
+
+        /**
+         * Calls CheckCode.
+         * @function checkCode
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsCheckCode} request ParamsCheckCode message or plain object
+         * @returns {Promise<mindbox.ResponseCheckCode>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link mindbox.Mobile#editUser}.
+         * @memberof mindbox.Mobile
+         * @typedef EditUserCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {mindbox.ResponseEditUser} [response] ResponseEditUser
+         */
+
+        /**
+         * Calls EditUser.
+         * @function editUser
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsEditUser} request ParamsEditUser message or plain object
+         * @param {mindbox.Mobile.EditUserCallback} callback Node-style callback called with the error, if any, and ResponseEditUser
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.editUser = function editUser(request, callback) {
+            return this.rpcCall(editUser, $root.mindbox.ParamsEditUser, $root.mindbox.ResponseEditUser, request, callback);
+        }, "name", { value: "EditUser" });
+
+        /**
+         * Calls EditUser.
+         * @function editUser
+         * @memberof mindbox.Mobile
+         * @instance
+         * @param {mindbox.IParamsEditUser} request ParamsEditUser message or plain object
+         * @returns {Promise<mindbox.ResponseEditUser>} Promise
+         * @variation 2
+         */
+
+        return Mobile;
+    })();
+
+    mindbox.ParamsUser = (function() {
+
+        /**
+         * Properties of a ParamsUser.
+         * @memberof mindbox
+         * @interface IParamsUser
+         * @property {string|null} [client_id] ParamsUser client_id
+         */
+
+        /**
+         * Constructs a new ParamsUser.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsUser.
+         * @implements IParamsUser
+         * @constructor
+         * @param {mindbox.IParamsUser=} [properties] Properties to set
+         */
+        function ParamsUser(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3147,76 +3311,41 @@ $root.mindbox = (function() {
         }
 
         /**
-         * PingResponse response.
-         * @member {string} response
-         * @memberof mindbox.PingResponse
-         * @instance
-         */
-        PingResponse.prototype.response = "";
-
-        return PingResponse;
-    })();
-
-    mindbox.ParamsUserInformation = (function() {
-
-        /**
-         * Properties of a ParamsUserInformation.
-         * @memberof mindbox
-         * @interface IParamsUserInformation
-         * @property {string|null} [client_id] ParamsUserInformation client_id
-         */
-
-        /**
-         * Constructs a new ParamsUserInformation.
-         * @memberof mindbox
-         * @classdesc Represents a ParamsUserInformation.
-         * @implements IParamsUserInformation
-         * @constructor
-         * @param {mindbox.IParamsUserInformation=} [properties] Properties to set
-         */
-        function ParamsUserInformation(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * ParamsUserInformation client_id.
+         * ParamsUser client_id.
          * @member {string} client_id
-         * @memberof mindbox.ParamsUserInformation
+         * @memberof mindbox.ParamsUser
          * @instance
          */
-        ParamsUserInformation.prototype.client_id = "";
+        ParamsUser.prototype.client_id = "";
 
-        return ParamsUserInformation;
+        return ParamsUser;
     })();
 
-    mindbox.ResponseUserInformation = (function() {
+    mindbox.ResponseUser = (function() {
 
         /**
-         * Properties of a ResponseUserInformation.
+         * Properties of a ResponseUser.
          * @memberof mindbox
-         * @interface IResponseUserInformation
-         * @property {string|null} [first_name] ResponseUserInformation first_name
-         * @property {string|null} [last_name] ResponseUserInformation last_name
-         * @property {string|null} [email] ResponseUserInformation email
-         * @property {string|null} [phone] ResponseUserInformation phone
-         * @property {number|null} [bonus_total] ResponseUserInformation bonus_total
-         * @property {number|null} [bonus_available] ResponseUserInformation bonus_available
-         * @property {number|null} [bonus_blocked] ResponseUserInformation bonus_blocked
-         * @property {number|null} [total_paid_amount] ResponseUserInformation total_paid_amount
+         * @interface IResponseUser
+         * @property {string|null} [first_name] ResponseUser first_name
+         * @property {string|null} [last_name] ResponseUser last_name
+         * @property {string|null} [email] ResponseUser email
+         * @property {string|null} [phone] ResponseUser phone
+         * @property {number|null} [bonus_total] ResponseUser bonus_total
+         * @property {number|null} [bonus_available] ResponseUser bonus_available
+         * @property {number|null} [bonus_blocked] ResponseUser bonus_blocked
+         * @property {number|null} [total_paid_amount] ResponseUser total_paid_amount
          */
 
         /**
-         * Constructs a new ResponseUserInformation.
+         * Constructs a new ResponseUser.
          * @memberof mindbox
-         * @classdesc Represents a ResponseUserInformation.
-         * @implements IResponseUserInformation
+         * @classdesc Represents a ResponseUser.
+         * @implements IResponseUser
          * @constructor
-         * @param {mindbox.IResponseUserInformation=} [properties] Properties to set
+         * @param {mindbox.IResponseUser=} [properties] Properties to set
          */
-        function ResponseUserInformation(properties) {
+        function ResponseUser(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3224,90 +3353,90 @@ $root.mindbox = (function() {
         }
 
         /**
-         * ResponseUserInformation first_name.
+         * ResponseUser first_name.
          * @member {string} first_name
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.first_name = "";
+        ResponseUser.prototype.first_name = "";
 
         /**
-         * ResponseUserInformation last_name.
+         * ResponseUser last_name.
          * @member {string} last_name
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.last_name = "";
+        ResponseUser.prototype.last_name = "";
 
         /**
-         * ResponseUserInformation email.
+         * ResponseUser email.
          * @member {string} email
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.email = "";
+        ResponseUser.prototype.email = "";
 
         /**
-         * ResponseUserInformation phone.
+         * ResponseUser phone.
          * @member {string} phone
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.phone = "";
+        ResponseUser.prototype.phone = "";
 
         /**
-         * ResponseUserInformation bonus_total.
+         * ResponseUser bonus_total.
          * @member {number} bonus_total
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.bonus_total = 0;
+        ResponseUser.prototype.bonus_total = 0;
 
         /**
-         * ResponseUserInformation bonus_available.
+         * ResponseUser bonus_available.
          * @member {number} bonus_available
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.bonus_available = 0;
+        ResponseUser.prototype.bonus_available = 0;
 
         /**
-         * ResponseUserInformation bonus_blocked.
+         * ResponseUser bonus_blocked.
          * @member {number} bonus_blocked
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.bonus_blocked = 0;
+        ResponseUser.prototype.bonus_blocked = 0;
 
         /**
-         * ResponseUserInformation total_paid_amount.
+         * ResponseUser total_paid_amount.
          * @member {number} total_paid_amount
-         * @memberof mindbox.ResponseUserInformation
+         * @memberof mindbox.ResponseUser
          * @instance
          */
-        ResponseUserInformation.prototype.total_paid_amount = 0;
+        ResponseUser.prototype.total_paid_amount = 0;
 
-        return ResponseUserInformation;
+        return ResponseUser;
     })();
 
-    mindbox.ParamsOrdersHistory = (function() {
+    mindbox.ParamsOrders = (function() {
 
         /**
-         * Properties of a ParamsOrdersHistory.
+         * Properties of a ParamsOrders.
          * @memberof mindbox
-         * @interface IParamsOrdersHistory
-         * @property {string|null} [client_id] ParamsOrdersHistory client_id
+         * @interface IParamsOrders
+         * @property {string|null} [client_id] ParamsOrders client_id
          */
 
         /**
-         * Constructs a new ParamsOrdersHistory.
+         * Constructs a new ParamsOrders.
          * @memberof mindbox
-         * @classdesc Represents a ParamsOrdersHistory.
-         * @implements IParamsOrdersHistory
+         * @classdesc Represents a ParamsOrders.
+         * @implements IParamsOrders
          * @constructor
-         * @param {mindbox.IParamsOrdersHistory=} [properties] Properties to set
+         * @param {mindbox.IParamsOrders=} [properties] Properties to set
          */
-        function ParamsOrdersHistory(properties) {
+        function ParamsOrders(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3315,36 +3444,36 @@ $root.mindbox = (function() {
         }
 
         /**
-         * ParamsOrdersHistory client_id.
+         * ParamsOrders client_id.
          * @member {string} client_id
-         * @memberof mindbox.ParamsOrdersHistory
+         * @memberof mindbox.ParamsOrders
          * @instance
          */
-        ParamsOrdersHistory.prototype.client_id = "";
+        ParamsOrders.prototype.client_id = "";
 
-        return ParamsOrdersHistory;
+        return ParamsOrders;
     })();
 
-    mindbox.ResponseOrdersHistory = (function() {
+    mindbox.ResponseOrders = (function() {
 
         /**
-         * Properties of a ResponseOrdersHistory.
+         * Properties of a ResponseOrders.
          * @memberof mindbox
-         * @interface IResponseOrdersHistory
-         * @property {number|null} [total_count] ResponseOrdersHistory total_count
-         * @property {Array.<mindbox.Iorder>|null} [orders] ResponseOrdersHistory orders
+         * @interface IResponseOrders
+         * @property {number|null} [total] ResponseOrders total
+         * @property {Array.<mindbox.IOrder>|null} [result] ResponseOrders result
          */
 
         /**
-         * Constructs a new ResponseOrdersHistory.
+         * Constructs a new ResponseOrders.
          * @memberof mindbox
-         * @classdesc Represents a ResponseOrdersHistory.
-         * @implements IResponseOrdersHistory
+         * @classdesc Represents a ResponseOrders.
+         * @implements IResponseOrders
          * @constructor
-         * @param {mindbox.IResponseOrdersHistory=} [properties] Properties to set
+         * @param {mindbox.IResponseOrders=} [properties] Properties to set
          */
-        function ResponseOrdersHistory(properties) {
-            this.orders = [];
+        function ResponseOrders(properties) {
+            this.result = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3352,48 +3481,48 @@ $root.mindbox = (function() {
         }
 
         /**
-         * ResponseOrdersHistory total_count.
-         * @member {number} total_count
-         * @memberof mindbox.ResponseOrdersHistory
+         * ResponseOrders total.
+         * @member {number} total
+         * @memberof mindbox.ResponseOrders
          * @instance
          */
-        ResponseOrdersHistory.prototype.total_count = 0;
+        ResponseOrders.prototype.total = 0;
 
         /**
-         * ResponseOrdersHistory orders.
-         * @member {Array.<mindbox.Iorder>} orders
-         * @memberof mindbox.ResponseOrdersHistory
+         * ResponseOrders result.
+         * @member {Array.<mindbox.IOrder>} result
+         * @memberof mindbox.ResponseOrders
          * @instance
          */
-        ResponseOrdersHistory.prototype.orders = $util.emptyArray;
+        ResponseOrders.prototype.result = $util.emptyArray;
 
-        return ResponseOrdersHistory;
+        return ResponseOrders;
     })();
 
-    mindbox.order = (function() {
+    mindbox.Order = (function() {
 
         /**
-         * Properties of an order.
+         * Properties of an Order.
          * @memberof mindbox
-         * @interface Iorder
-         * @property {string|null} [id] order id
-         * @property {string|null} [created_date] order created_date
-         * @property {string|null} [payment_type] order payment_type
-         * @property {number|null} [discounted_total_price] order discounted_total_price
-         * @property {number|null} [payment_amount] order payment_amount
-         * @property {number|null} [applied_discount] order applied_discount
-         * @property {number|null} [acquired_balance_change] order acquired_balance_change
+         * @interface IOrder
+         * @property {string|null} [order_id] Order order_id
+         * @property {string|null} [created_date] Order created_date
+         * @property {string|null} [payment_type] Order payment_type
+         * @property {number|null} [discounted_total_price] Order discounted_total_price
+         * @property {number|null} [payment_amount] Order payment_amount
+         * @property {number|null} [applied_discount] Order applied_discount
+         * @property {number|null} [acquired_balance_change] Order acquired_balance_change
          */
 
         /**
-         * Constructs a new order.
+         * Constructs a new Order.
          * @memberof mindbox
-         * @classdesc Represents an order.
-         * @implements Iorder
+         * @classdesc Represents an Order.
+         * @implements IOrder
          * @constructor
-         * @param {mindbox.Iorder=} [properties] Properties to set
+         * @param {mindbox.IOrder=} [properties] Properties to set
          */
-        function order(properties) {
+        function Order(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3401,62 +3530,599 @@ $root.mindbox = (function() {
         }
 
         /**
-         * order id.
-         * @member {string} id
-         * @memberof mindbox.order
+         * Order order_id.
+         * @member {string} order_id
+         * @memberof mindbox.Order
          * @instance
          */
-        order.prototype.id = "";
+        Order.prototype.order_id = "";
 
         /**
-         * order created_date.
+         * Order created_date.
          * @member {string} created_date
-         * @memberof mindbox.order
+         * @memberof mindbox.Order
          * @instance
          */
-        order.prototype.created_date = "";
+        Order.prototype.created_date = "";
 
         /**
-         * order payment_type.
+         * Order payment_type.
          * @member {string} payment_type
-         * @memberof mindbox.order
+         * @memberof mindbox.Order
          * @instance
          */
-        order.prototype.payment_type = "";
+        Order.prototype.payment_type = "";
 
         /**
-         * order discounted_total_price.
+         * Order discounted_total_price.
          * @member {number} discounted_total_price
-         * @memberof mindbox.order
+         * @memberof mindbox.Order
          * @instance
          */
-        order.prototype.discounted_total_price = 0;
+        Order.prototype.discounted_total_price = 0;
 
         /**
-         * order payment_amount.
+         * Order payment_amount.
          * @member {number} payment_amount
-         * @memberof mindbox.order
+         * @memberof mindbox.Order
          * @instance
          */
-        order.prototype.payment_amount = 0;
+        Order.prototype.payment_amount = 0;
 
         /**
-         * order applied_discount.
+         * Order applied_discount.
          * @member {number} applied_discount
-         * @memberof mindbox.order
+         * @memberof mindbox.Order
          * @instance
          */
-        order.prototype.applied_discount = 0;
+        Order.prototype.applied_discount = 0;
 
         /**
-         * order acquired_balance_change.
+         * Order acquired_balance_change.
          * @member {number} acquired_balance_change
-         * @memberof mindbox.order
+         * @memberof mindbox.Order
          * @instance
          */
-        order.prototype.acquired_balance_change = 0;
+        Order.prototype.acquired_balance_change = 0;
 
-        return order;
+        return Order;
+    })();
+
+    mindbox.ParamsAuthorization = (function() {
+
+        /**
+         * Properties of a ParamsAuthorization.
+         * @memberof mindbox
+         * @interface IParamsAuthorization
+         * @property {string|null} [device_uuid] ParamsAuthorization device_uuid
+         */
+
+        /**
+         * Constructs a new ParamsAuthorization.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsAuthorization.
+         * @implements IParamsAuthorization
+         * @constructor
+         * @param {mindbox.IParamsAuthorization=} [properties] Properties to set
+         */
+        function ParamsAuthorization(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsAuthorization device_uuid.
+         * @member {string} device_uuid
+         * @memberof mindbox.ParamsAuthorization
+         * @instance
+         */
+        ParamsAuthorization.prototype.device_uuid = "";
+
+        return ParamsAuthorization;
+    })();
+
+    mindbox.ResponseAuthorization = (function() {
+
+        /**
+         * Properties of a ResponseAuthorization.
+         * @memberof mindbox
+         * @interface IResponseAuthorization
+         * @property {boolean|null} [ok] ResponseAuthorization ok
+         */
+
+        /**
+         * Constructs a new ResponseAuthorization.
+         * @memberof mindbox
+         * @classdesc Represents a ResponseAuthorization.
+         * @implements IResponseAuthorization
+         * @constructor
+         * @param {mindbox.IResponseAuthorization=} [properties] Properties to set
+         */
+        function ResponseAuthorization(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseAuthorization ok.
+         * @member {boolean} ok
+         * @memberof mindbox.ResponseAuthorization
+         * @instance
+         */
+        ResponseAuthorization.prototype.ok = false;
+
+        return ResponseAuthorization;
+    })();
+
+    mindbox.ParamsRegistration = (function() {
+
+        /**
+         * Properties of a ParamsRegistration.
+         * @memberof mindbox
+         * @interface IParamsRegistration
+         * @property {string|null} [device_uuid] ParamsRegistration device_uuid
+         * @property {string|null} [client_id] ParamsRegistration client_id
+         * @property {string|null} [email] ParamsRegistration email
+         * @property {string|null} [full_name] ParamsRegistration full_name
+         * @property {string|null} [mobile_phone] ParamsRegistration mobile_phone
+         */
+
+        /**
+         * Constructs a new ParamsRegistration.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsRegistration.
+         * @implements IParamsRegistration
+         * @constructor
+         * @param {mindbox.IParamsRegistration=} [properties] Properties to set
+         */
+        function ParamsRegistration(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsRegistration device_uuid.
+         * @member {string} device_uuid
+         * @memberof mindbox.ParamsRegistration
+         * @instance
+         */
+        ParamsRegistration.prototype.device_uuid = "";
+
+        /**
+         * ParamsRegistration client_id.
+         * @member {string} client_id
+         * @memberof mindbox.ParamsRegistration
+         * @instance
+         */
+        ParamsRegistration.prototype.client_id = "";
+
+        /**
+         * ParamsRegistration email.
+         * @member {string} email
+         * @memberof mindbox.ParamsRegistration
+         * @instance
+         */
+        ParamsRegistration.prototype.email = "";
+
+        /**
+         * ParamsRegistration full_name.
+         * @member {string} full_name
+         * @memberof mindbox.ParamsRegistration
+         * @instance
+         */
+        ParamsRegistration.prototype.full_name = "";
+
+        /**
+         * ParamsRegistration mobile_phone.
+         * @member {string} mobile_phone
+         * @memberof mindbox.ParamsRegistration
+         * @instance
+         */
+        ParamsRegistration.prototype.mobile_phone = "";
+
+        return ParamsRegistration;
+    })();
+
+    mindbox.ResponseRegistration = (function() {
+
+        /**
+         * Properties of a ResponseRegistration.
+         * @memberof mindbox
+         * @interface IResponseRegistration
+         * @property {boolean|null} [ok] ResponseRegistration ok
+         */
+
+        /**
+         * Constructs a new ResponseRegistration.
+         * @memberof mindbox
+         * @classdesc Represents a ResponseRegistration.
+         * @implements IResponseRegistration
+         * @constructor
+         * @param {mindbox.IResponseRegistration=} [properties] Properties to set
+         */
+        function ResponseRegistration(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseRegistration ok.
+         * @member {boolean} ok
+         * @memberof mindbox.ResponseRegistration
+         * @instance
+         */
+        ResponseRegistration.prototype.ok = false;
+
+        return ResponseRegistration;
+    })();
+
+    mindbox.ParamsCode = (function() {
+
+        /**
+         * Properties of a ParamsCode.
+         * @memberof mindbox
+         * @interface IParamsCode
+         * @property {string|null} [mobile_phone] ParamsCode mobile_phone
+         */
+
+        /**
+         * Constructs a new ParamsCode.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsCode.
+         * @implements IParamsCode
+         * @constructor
+         * @param {mindbox.IParamsCode=} [properties] Properties to set
+         */
+        function ParamsCode(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsCode mobile_phone.
+         * @member {string} mobile_phone
+         * @memberof mindbox.ParamsCode
+         * @instance
+         */
+        ParamsCode.prototype.mobile_phone = "";
+
+        return ParamsCode;
+    })();
+
+    mindbox.ResponseCode = (function() {
+
+        /**
+         * Properties of a ResponseCode.
+         * @memberof mindbox
+         * @interface IResponseCode
+         * @property {boolean|null} [ok] ResponseCode ok
+         */
+
+        /**
+         * Constructs a new ResponseCode.
+         * @memberof mindbox
+         * @classdesc Represents a ResponseCode.
+         * @implements IResponseCode
+         * @constructor
+         * @param {mindbox.IResponseCode=} [properties] Properties to set
+         */
+        function ResponseCode(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseCode ok.
+         * @member {boolean} ok
+         * @memberof mindbox.ResponseCode
+         * @instance
+         */
+        ResponseCode.prototype.ok = false;
+
+        return ResponseCode;
+    })();
+
+    mindbox.ParamsCheckCode = (function() {
+
+        /**
+         * Properties of a ParamsCheckCode.
+         * @memberof mindbox
+         * @interface IParamsCheckCode
+         * @property {string|null} [mobile_phone] ParamsCheckCode mobile_phone
+         * @property {string|null} [code] ParamsCheckCode code
+         */
+
+        /**
+         * Constructs a new ParamsCheckCode.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsCheckCode.
+         * @implements IParamsCheckCode
+         * @constructor
+         * @param {mindbox.IParamsCheckCode=} [properties] Properties to set
+         */
+        function ParamsCheckCode(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsCheckCode mobile_phone.
+         * @member {string} mobile_phone
+         * @memberof mindbox.ParamsCheckCode
+         * @instance
+         */
+        ParamsCheckCode.prototype.mobile_phone = "";
+
+        /**
+         * ParamsCheckCode code.
+         * @member {string} code
+         * @memberof mindbox.ParamsCheckCode
+         * @instance
+         */
+        ParamsCheckCode.prototype.code = "";
+
+        return ParamsCheckCode;
+    })();
+
+    mindbox.ResponseCheckCode = (function() {
+
+        /**
+         * Properties of a ResponseCheckCode.
+         * @memberof mindbox
+         * @interface IResponseCheckCode
+         * @property {boolean|null} [ok] ResponseCheckCode ok
+         * @property {string|null} [status] ResponseCheckCode status
+         * @property {string|null} [client_id] ResponseCheckCode client_id
+         * @property {number|Long|null} [mindbox_id] ResponseCheckCode mindbox_id
+         */
+
+        /**
+         * Constructs a new ResponseCheckCode.
+         * @memberof mindbox
+         * @classdesc Represents a ResponseCheckCode.
+         * @implements IResponseCheckCode
+         * @constructor
+         * @param {mindbox.IResponseCheckCode=} [properties] Properties to set
+         */
+        function ResponseCheckCode(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseCheckCode ok.
+         * @member {boolean} ok
+         * @memberof mindbox.ResponseCheckCode
+         * @instance
+         */
+        ResponseCheckCode.prototype.ok = false;
+
+        /**
+         * ResponseCheckCode status.
+         * @member {string} status
+         * @memberof mindbox.ResponseCheckCode
+         * @instance
+         */
+        ResponseCheckCode.prototype.status = "";
+
+        /**
+         * ResponseCheckCode client_id.
+         * @member {string} client_id
+         * @memberof mindbox.ResponseCheckCode
+         * @instance
+         */
+        ResponseCheckCode.prototype.client_id = "";
+
+        /**
+         * ResponseCheckCode mindbox_id.
+         * @member {number|Long} mindbox_id
+         * @memberof mindbox.ResponseCheckCode
+         * @instance
+         */
+        ResponseCheckCode.prototype.mindbox_id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        return ResponseCheckCode;
+    })();
+
+    mindbox.ParamsCreation = (function() {
+
+        /**
+         * Properties of a ParamsCreation.
+         * @memberof mindbox
+         * @interface IParamsCreation
+         * @property {string|null} [device_uuid] ParamsCreation device_uuid
+         * @property {string|null} [id] ParamsCreation id
+         * @property {string|null} [vendor] ParamsCreation vendor
+         * @property {string|null} [model] ParamsCreation model
+         */
+
+        /**
+         * Constructs a new ParamsCreation.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsCreation.
+         * @implements IParamsCreation
+         * @constructor
+         * @param {mindbox.IParamsCreation=} [properties] Properties to set
+         */
+        function ParamsCreation(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsCreation device_uuid.
+         * @member {string} device_uuid
+         * @memberof mindbox.ParamsCreation
+         * @instance
+         */
+        ParamsCreation.prototype.device_uuid = "";
+
+        /**
+         * ParamsCreation id.
+         * @member {string} id
+         * @memberof mindbox.ParamsCreation
+         * @instance
+         */
+        ParamsCreation.prototype.id = "";
+
+        /**
+         * ParamsCreation vendor.
+         * @member {string} vendor
+         * @memberof mindbox.ParamsCreation
+         * @instance
+         */
+        ParamsCreation.prototype.vendor = "";
+
+        /**
+         * ParamsCreation model.
+         * @member {string} model
+         * @memberof mindbox.ParamsCreation
+         * @instance
+         */
+        ParamsCreation.prototype.model = "";
+
+        return ParamsCreation;
+    })();
+
+    mindbox.ResponseCreation = (function() {
+
+        /**
+         * Properties of a ResponseCreation.
+         * @memberof mindbox
+         * @interface IResponseCreation
+         * @property {boolean|null} [ok] ResponseCreation ok
+         */
+
+        /**
+         * Constructs a new ResponseCreation.
+         * @memberof mindbox
+         * @classdesc Represents a ResponseCreation.
+         * @implements IResponseCreation
+         * @constructor
+         * @param {mindbox.IResponseCreation=} [properties] Properties to set
+         */
+        function ResponseCreation(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseCreation ok.
+         * @member {boolean} ok
+         * @memberof mindbox.ResponseCreation
+         * @instance
+         */
+        ResponseCreation.prototype.ok = false;
+
+        return ResponseCreation;
+    })();
+
+    mindbox.ParamsEditUser = (function() {
+
+        /**
+         * Properties of a ParamsEditUser.
+         * @memberof mindbox
+         * @interface IParamsEditUser
+         * @property {string|null} [device_uuid] ParamsEditUser device_uuid
+         * @property {string|null} [client_id] ParamsEditUser client_id
+         * @property {string|null} [mobile_phone] ParamsEditUser mobile_phone
+         */
+
+        /**
+         * Constructs a new ParamsEditUser.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsEditUser.
+         * @implements IParamsEditUser
+         * @constructor
+         * @param {mindbox.IParamsEditUser=} [properties] Properties to set
+         */
+        function ParamsEditUser(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsEditUser device_uuid.
+         * @member {string} device_uuid
+         * @memberof mindbox.ParamsEditUser
+         * @instance
+         */
+        ParamsEditUser.prototype.device_uuid = "";
+
+        /**
+         * ParamsEditUser client_id.
+         * @member {string} client_id
+         * @memberof mindbox.ParamsEditUser
+         * @instance
+         */
+        ParamsEditUser.prototype.client_id = "";
+
+        /**
+         * ParamsEditUser mobile_phone.
+         * @member {string} mobile_phone
+         * @memberof mindbox.ParamsEditUser
+         * @instance
+         */
+        ParamsEditUser.prototype.mobile_phone = "";
+
+        return ParamsEditUser;
+    })();
+
+    mindbox.ResponseEditUser = (function() {
+
+        /**
+         * Properties of a ResponseEditUser.
+         * @memberof mindbox
+         * @interface IResponseEditUser
+         * @property {boolean|null} [ok] ResponseEditUser ok
+         */
+
+        /**
+         * Constructs a new ResponseEditUser.
+         * @memberof mindbox
+         * @classdesc Represents a ResponseEditUser.
+         * @implements IResponseEditUser
+         * @constructor
+         * @param {mindbox.IResponseEditUser=} [properties] Properties to set
+         */
+        function ResponseEditUser(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseEditUser ok.
+         * @member {boolean} ok
+         * @memberof mindbox.ResponseEditUser
+         * @instance
+         */
+        ResponseEditUser.prototype.ok = false;
+
+        return ResponseEditUser;
     })();
 
     return mindbox;
@@ -3471,159 +4137,112 @@ $root.orders = (function() {
      */
     var orders = {};
 
-    orders.Orders = (function() {
+    orders.Offline = (function() {
 
         /**
-         * Constructs a new Orders service.
+         * Constructs a new Offline service.
          * @memberof orders
-         * @classdesc Represents an Orders
+         * @classdesc Represents an Offline
          * @extends $protobuf.rpc.Service
          * @constructor
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-        function Orders(rpcImpl, requestDelimited, responseDelimited) {
+        function Offline(rpcImpl, requestDelimited, responseDelimited) {
             $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
         }
 
-        (Orders.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Orders;
+        (Offline.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Offline;
 
         /**
-         * Callback as used by {@link orders.Orders#ping}.
-         * @memberof orders.Orders
-         * @typedef PingCallback
-         * @type {function}
-         * @param {Error|null} error Error, if any
-         * @param {orders.PingResponse} [response] PingResponse
-         */
-
-        /**
-         * Calls Ping.
-         * @function ping
-         * @memberof orders.Orders
-         * @instance
-         * @param {google.protobuf.IEmpty} request Empty message or plain object
-         * @param {orders.Orders.PingCallback} callback Node-style callback called with the error, if any, and PingResponse
-         * @returns {undefined}
-         * @variation 1
-         */
-        Object.defineProperty(Orders.prototype.ping = function ping(request, callback) {
-            return this.rpcCall(ping, $root.google.protobuf.Empty, $root.orders.PingResponse, request, callback);
-        }, "name", { value: "Ping" });
-
-        /**
-         * Calls Ping.
-         * @function ping
-         * @memberof orders.Orders
-         * @instance
-         * @param {google.protobuf.IEmpty} request Empty message or plain object
-         * @returns {Promise<orders.PingResponse>} Promise
-         * @variation 2
-         */
-
-        /**
-         * Callback as used by {@link orders.Orders#offlineByClient}.
-         * @memberof orders.Orders
-         * @typedef OfflineByClientCallback
+         * Callback as used by {@link orders.Offline#byClient}.
+         * @memberof orders.Offline
+         * @typedef ByClientCallback
          * @type {function}
          * @param {Error|null} error Error, if any
          * @param {orders.ResponseOfflineByClient} [response] ResponseOfflineByClient
          */
 
         /**
-         * Calls OfflineByClient.
-         * @function offlineByClient
-         * @memberof orders.Orders
+         * Calls ByClient.
+         * @function byClient
+         * @memberof orders.Offline
          * @instance
          * @param {orders.IParamsOfflineByClient} request ParamsOfflineByClient message or plain object
-         * @param {orders.Orders.OfflineByClientCallback} callback Node-style callback called with the error, if any, and ResponseOfflineByClient
+         * @param {orders.Offline.ByClientCallback} callback Node-style callback called with the error, if any, and ResponseOfflineByClient
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Orders.prototype.offlineByClient = function offlineByClient(request, callback) {
-            return this.rpcCall(offlineByClient, $root.orders.ParamsOfflineByClient, $root.orders.ResponseOfflineByClient, request, callback);
-        }, "name", { value: "OfflineByClient" });
+        Object.defineProperty(Offline.prototype.byClient = function byClient(request, callback) {
+            return this.rpcCall(byClient, $root.orders.ParamsOfflineByClient, $root.orders.ResponseOfflineByClient, request, callback);
+        }, "name", { value: "ByClient" });
 
         /**
-         * Calls OfflineByClient.
-         * @function offlineByClient
-         * @memberof orders.Orders
+         * Calls ByClient.
+         * @function byClient
+         * @memberof orders.Offline
          * @instance
          * @param {orders.IParamsOfflineByClient} request ParamsOfflineByClient message or plain object
          * @returns {Promise<orders.ResponseOfflineByClient>} Promise
          * @variation 2
          */
 
+        return Offline;
+    })();
+
+    orders.Online = (function() {
+
         /**
-         * Callback as used by {@link orders.Orders#onlineByClient}.
-         * @memberof orders.Orders
-         * @typedef OnlineByClientCallback
+         * Constructs a new Online service.
+         * @memberof orders
+         * @classdesc Represents an Online
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function Online(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (Online.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Online;
+
+        /**
+         * Callback as used by {@link orders.Online#byClient}.
+         * @memberof orders.Online
+         * @typedef ByClientCallback
          * @type {function}
          * @param {Error|null} error Error, if any
          * @param {orders.ResponseOnlineByClient} [response] ResponseOnlineByClient
          */
 
         /**
-         * Calls OnlineByClient.
-         * @function onlineByClient
-         * @memberof orders.Orders
+         * Calls ByClient.
+         * @function byClient
+         * @memberof orders.Online
          * @instance
          * @param {orders.IParamsOnlineByClient} request ParamsOnlineByClient message or plain object
-         * @param {orders.Orders.OnlineByClientCallback} callback Node-style callback called with the error, if any, and ResponseOnlineByClient
+         * @param {orders.Online.ByClientCallback} callback Node-style callback called with the error, if any, and ResponseOnlineByClient
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(Orders.prototype.onlineByClient = function onlineByClient(request, callback) {
-            return this.rpcCall(onlineByClient, $root.orders.ParamsOnlineByClient, $root.orders.ResponseOnlineByClient, request, callback);
-        }, "name", { value: "OnlineByClient" });
+        Object.defineProperty(Online.prototype.byClient = function byClient(request, callback) {
+            return this.rpcCall(byClient, $root.orders.ParamsOnlineByClient, $root.orders.ResponseOnlineByClient, request, callback);
+        }, "name", { value: "ByClient" });
 
         /**
-         * Calls OnlineByClient.
-         * @function onlineByClient
-         * @memberof orders.Orders
+         * Calls ByClient.
+         * @function byClient
+         * @memberof orders.Online
          * @instance
          * @param {orders.IParamsOnlineByClient} request ParamsOnlineByClient message or plain object
          * @returns {Promise<orders.ResponseOnlineByClient>} Promise
          * @variation 2
          */
 
-        return Orders;
-    })();
-
-    orders.PingResponse = (function() {
-
-        /**
-         * Properties of a PingResponse.
-         * @memberof orders
-         * @interface IPingResponse
-         * @property {string|null} [response] PingResponse response
-         */
-
-        /**
-         * Constructs a new PingResponse.
-         * @memberof orders
-         * @classdesc Represents a PingResponse.
-         * @implements IPingResponse
-         * @constructor
-         * @param {orders.IPingResponse=} [properties] Properties to set
-         */
-        function PingResponse(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * PingResponse response.
-         * @member {string} response
-         * @memberof orders.PingResponse
-         * @instance
-         */
-        PingResponse.prototype.response = "";
-
-        return PingResponse;
+        return Online;
     })();
 
     orders.ParamsOfflineByClient = (function() {
