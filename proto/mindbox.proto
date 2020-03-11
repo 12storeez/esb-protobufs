@@ -9,6 +9,8 @@ service User {
     }
     rpc Orders (ParamsOrders) returns (ResponseOrders) {
     }
+    rpc SendOSMICard (ParamsOSMICard) returns (ResponseOSMICard) {
+    }
 }
 
 service Mobile {
@@ -112,5 +114,13 @@ message ParamsEditUser {
 }
 
 message ResponseEditUser {
+    bool ok = 1;
+}
+
+message ParamsOSMICard {
+    string client_id = 1;
+}
+
+message ResponseOSMICard {
     bool ok = 1;
 }
