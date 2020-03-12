@@ -27,8 +27,7 @@ message ParamsApp {
     int64 client_id = 1;
     string app_version = 2;
     string rate = 3;
-    repeated int32 reasons = 4;
-    string comment = 5;
+    string comment = 4;
 }
 
 message ParamsStore {
