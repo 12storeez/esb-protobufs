@@ -45,7 +45,6 @@ export namespace feedbacks {
         client_id?: (number|Long|null);
         app_version?: (string|null);
         rate?: (string|null);
-        reasons?: (number[]|null);
         comment?: (string|null);
     }
 
@@ -54,7 +53,6 @@ export namespace feedbacks {
         public client_id: (number|Long);
         public app_version: string;
         public rate: string;
-        public reasons: number[];
         public comment: string;
     }
 
@@ -395,6 +393,8 @@ export namespace meta {
         public faq(request: google.protobuf.IEmpty): Promise<meta.ResponseFaq>;
         public countries(request: meta.IParamsCountries, callback: meta.Mobile.CountriesCallback): void;
         public countries(request: meta.IParamsCountries): Promise<meta.ResponseCountries>;
+        public socialNetworks(request: google.protobuf.IEmpty, callback: meta.Mobile.SocialNetworksCallback): void;
+        public socialNetworks(request: google.protobuf.IEmpty): Promise<meta.ResponseSocialNetworks>;
     }
 
     namespace Mobile {
@@ -406,6 +406,8 @@ export namespace meta {
         type FaqCallback = (error: (Error|null), response?: meta.ResponseFaq) => void;
 
         type CountriesCallback = (error: (Error|null), response?: meta.ResponseCountries) => void;
+
+        type SocialNetworksCallback = (error: (Error|null), response?: meta.ResponseSocialNetworks) => void;
     }
 
     class Stores extends $protobuf.rpc.Service {
@@ -659,6 +661,28 @@ export namespace meta {
         public prefix: string;
         public title_ru: string;
     }
+
+    interface ISocialNetwork {
+        icon?: (string|null);
+        name?: (string|null);
+        link?: (string|null);
+    }
+
+    class SocialNetwork implements ISocialNetwork {
+        constructor(properties?: meta.ISocialNetwork);
+        public icon: string;
+        public name: string;
+        public link: string;
+    }
+
+    interface IResponseSocialNetworks {
+        result?: (meta.ISocialNetwork[]|null);
+    }
+
+    class ResponseSocialNetworks implements IResponseSocialNetworks {
+        constructor(properties?: meta.IResponseSocialNetworks);
+        public result: meta.ISocialNetwork[];
+    }
 }
 
 export namespace mindbox {
@@ -669,6 +693,8 @@ export namespace mindbox {
         public info(request: mindbox.IParamsUser): Promise<mindbox.ResponseUser>;
         public orders(request: mindbox.IParamsOrders, callback: mindbox.User.OrdersCallback): void;
         public orders(request: mindbox.IParamsOrders): Promise<mindbox.ResponseOrders>;
+        public sendOSMICard(request: mindbox.IParamsOSMICard, callback: mindbox.User.SendOSMICardCallback): void;
+        public sendOSMICard(request: mindbox.IParamsOSMICard): Promise<mindbox.ResponseOSMICard>;
     }
 
     namespace User {
@@ -676,6 +702,8 @@ export namespace mindbox {
         type InfoCallback = (error: (Error|null), response?: mindbox.ResponseUser) => void;
 
         type OrdersCallback = (error: (Error|null), response?: mindbox.ResponseOrders) => void;
+
+        type SendOSMICardCallback = (error: (Error|null), response?: mindbox.ResponseOSMICard) => void;
     }
 
     class Mobile extends $protobuf.rpc.Service {
@@ -913,6 +941,24 @@ export namespace mindbox {
 
     class ResponseEditUser implements IResponseEditUser {
         constructor(properties?: mindbox.IResponseEditUser);
+        public ok: boolean;
+    }
+
+    interface IParamsOSMICard {
+        client_id?: (string|null);
+    }
+
+    class ParamsOSMICard implements IParamsOSMICard {
+        constructor(properties?: mindbox.IParamsOSMICard);
+        public client_id: string;
+    }
+
+    interface IResponseOSMICard {
+        ok?: (boolean|null);
+    }
+
+    class ResponseOSMICard implements IResponseOSMICard {
+        constructor(properties?: mindbox.IResponseOSMICard);
         public ok: boolean;
     }
 }

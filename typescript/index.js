@@ -281,7 +281,6 @@ $root.feedbacks = (function() {
          * @property {number|Long|null} [client_id] ParamsApp client_id
          * @property {string|null} [app_version] ParamsApp app_version
          * @property {string|null} [rate] ParamsApp rate
-         * @property {Array.<number>|null} [reasons] ParamsApp reasons
          * @property {string|null} [comment] ParamsApp comment
          */
 
@@ -294,7 +293,6 @@ $root.feedbacks = (function() {
          * @param {feedbacks.IParamsApp=} [properties] Properties to set
          */
         function ParamsApp(properties) {
-            this.reasons = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -324,14 +322,6 @@ $root.feedbacks = (function() {
          * @instance
          */
         ParamsApp.prototype.rate = "";
-
-        /**
-         * ParamsApp reasons.
-         * @member {Array.<number>} reasons
-         * @memberof feedbacks.ParamsApp
-         * @instance
-         */
-        ParamsApp.prototype.reasons = $util.emptyArray;
 
         /**
          * ParamsApp comment.
@@ -1893,6 +1883,39 @@ $root.meta = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link meta.Mobile#socialNetworks}.
+         * @memberof meta.Mobile
+         * @typedef SocialNetworksCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {meta.ResponseSocialNetworks} [response] ResponseSocialNetworks
+         */
+
+        /**
+         * Calls SocialNetworks.
+         * @function socialNetworks
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @param {meta.Mobile.SocialNetworksCallback} callback Node-style callback called with the error, if any, and ResponseSocialNetworks
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Mobile.prototype.socialNetworks = function socialNetworks(request, callback) {
+            return this.rpcCall(socialNetworks, $root.google.protobuf.Empty, $root.meta.ResponseSocialNetworks, request, callback);
+        }, "name", { value: "SocialNetworks" });
+
+        /**
+         * Calls SocialNetworks.
+         * @function socialNetworks
+         * @memberof meta.Mobile
+         * @instance
+         * @param {google.protobuf.IEmpty} request Empty message or plain object
+         * @returns {Promise<meta.ResponseSocialNetworks>} Promise
+         * @variation 2
+         */
+
         return Mobile;
     })();
 
@@ -2968,6 +2991,95 @@ $root.meta = (function() {
         return Country;
     })();
 
+    meta.SocialNetwork = (function() {
+
+        /**
+         * Properties of a SocialNetwork.
+         * @memberof meta
+         * @interface ISocialNetwork
+         * @property {string|null} [icon] SocialNetwork icon
+         * @property {string|null} [name] SocialNetwork name
+         * @property {string|null} [link] SocialNetwork link
+         */
+
+        /**
+         * Constructs a new SocialNetwork.
+         * @memberof meta
+         * @classdesc Represents a SocialNetwork.
+         * @implements ISocialNetwork
+         * @constructor
+         * @param {meta.ISocialNetwork=} [properties] Properties to set
+         */
+        function SocialNetwork(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SocialNetwork icon.
+         * @member {string} icon
+         * @memberof meta.SocialNetwork
+         * @instance
+         */
+        SocialNetwork.prototype.icon = "";
+
+        /**
+         * SocialNetwork name.
+         * @member {string} name
+         * @memberof meta.SocialNetwork
+         * @instance
+         */
+        SocialNetwork.prototype.name = "";
+
+        /**
+         * SocialNetwork link.
+         * @member {string} link
+         * @memberof meta.SocialNetwork
+         * @instance
+         */
+        SocialNetwork.prototype.link = "";
+
+        return SocialNetwork;
+    })();
+
+    meta.ResponseSocialNetworks = (function() {
+
+        /**
+         * Properties of a ResponseSocialNetworks.
+         * @memberof meta
+         * @interface IResponseSocialNetworks
+         * @property {Array.<meta.ISocialNetwork>|null} [result] ResponseSocialNetworks result
+         */
+
+        /**
+         * Constructs a new ResponseSocialNetworks.
+         * @memberof meta
+         * @classdesc Represents a ResponseSocialNetworks.
+         * @implements IResponseSocialNetworks
+         * @constructor
+         * @param {meta.IResponseSocialNetworks=} [properties] Properties to set
+         */
+        function ResponseSocialNetworks(properties) {
+            this.result = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseSocialNetworks result.
+         * @member {Array.<meta.ISocialNetwork>} result
+         * @memberof meta.ResponseSocialNetworks
+         * @instance
+         */
+        ResponseSocialNetworks.prototype.result = $util.emptyArray;
+
+        return ResponseSocialNetworks;
+    })();
+
     return meta;
 })();
 
@@ -3061,6 +3173,39 @@ $root.mindbox = (function() {
          * @instance
          * @param {mindbox.IParamsOrders} request ParamsOrders message or plain object
          * @returns {Promise<mindbox.ResponseOrders>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link mindbox.User#sendOSMICard}.
+         * @memberof mindbox.User
+         * @typedef SendOSMICardCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {mindbox.ResponseOSMICard} [response] ResponseOSMICard
+         */
+
+        /**
+         * Calls SendOSMICard.
+         * @function sendOSMICard
+         * @memberof mindbox.User
+         * @instance
+         * @param {mindbox.IParamsOSMICard} request ParamsOSMICard message or plain object
+         * @param {mindbox.User.SendOSMICardCallback} callback Node-style callback called with the error, if any, and ResponseOSMICard
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(User.prototype.sendOSMICard = function sendOSMICard(request, callback) {
+            return this.rpcCall(sendOSMICard, $root.mindbox.ParamsOSMICard, $root.mindbox.ResponseOSMICard, request, callback);
+        }, "name", { value: "SendOSMICard" });
+
+        /**
+         * Calls SendOSMICard.
+         * @function sendOSMICard
+         * @memberof mindbox.User
+         * @instance
+         * @param {mindbox.IParamsOSMICard} request ParamsOSMICard message or plain object
+         * @returns {Promise<mindbox.ResponseOSMICard>} Promise
          * @variation 2
          */
 
@@ -4123,6 +4268,76 @@ $root.mindbox = (function() {
         ResponseEditUser.prototype.ok = false;
 
         return ResponseEditUser;
+    })();
+
+    mindbox.ParamsOSMICard = (function() {
+
+        /**
+         * Properties of a ParamsOSMICard.
+         * @memberof mindbox
+         * @interface IParamsOSMICard
+         * @property {string|null} [client_id] ParamsOSMICard client_id
+         */
+
+        /**
+         * Constructs a new ParamsOSMICard.
+         * @memberof mindbox
+         * @classdesc Represents a ParamsOSMICard.
+         * @implements IParamsOSMICard
+         * @constructor
+         * @param {mindbox.IParamsOSMICard=} [properties] Properties to set
+         */
+        function ParamsOSMICard(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ParamsOSMICard client_id.
+         * @member {string} client_id
+         * @memberof mindbox.ParamsOSMICard
+         * @instance
+         */
+        ParamsOSMICard.prototype.client_id = "";
+
+        return ParamsOSMICard;
+    })();
+
+    mindbox.ResponseOSMICard = (function() {
+
+        /**
+         * Properties of a ResponseOSMICard.
+         * @memberof mindbox
+         * @interface IResponseOSMICard
+         * @property {boolean|null} [ok] ResponseOSMICard ok
+         */
+
+        /**
+         * Constructs a new ResponseOSMICard.
+         * @memberof mindbox
+         * @classdesc Represents a ResponseOSMICard.
+         * @implements IResponseOSMICard
+         * @constructor
+         * @param {mindbox.IResponseOSMICard=} [properties] Properties to set
+         */
+        function ResponseOSMICard(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ResponseOSMICard ok.
+         * @member {boolean} ok
+         * @memberof mindbox.ResponseOSMICard
+         * @instance
+         */
+        ResponseOSMICard.prototype.ok = false;
+
+        return ResponseOSMICard;
     })();
 
     return mindbox;
