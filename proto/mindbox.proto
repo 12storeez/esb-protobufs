@@ -58,6 +58,7 @@ message Order {
     double payment_amount = 5;
     double applied_discount = 6;
     double acquired_balance_change = 7;
+    int64 created_ts = 8;
 }
 
 message ParamsAuthorization {
