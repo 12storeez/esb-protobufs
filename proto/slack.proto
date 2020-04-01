@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "go/slack";
+
+package slack;
+
+service Tracker {
+    rpc StatusChangeTicket (StatusChangeTicketParams) returns (StatusChangeTicketResponse) {
+    }
+}
+
+message StatusChangeTicketParams {
+    string ticket_key = 1;
+    string slack_channel = 2;
+}
+
+message StatusChangeTicketResponse {
+    bool ok = 1;
+}
