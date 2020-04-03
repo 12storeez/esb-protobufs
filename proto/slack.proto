@@ -9,6 +9,11 @@ service Tracker {
     }
 }
 
+service Slack {
+    rpc Send (SendParams) returns (SendResponse) {
+    }
+}
+
 message StatusChangeTicketParams {
     string ticket_key = 1;
     string slack_channel = 2;
@@ -16,4 +21,18 @@ message StatusChangeTicketParams {
 
 message StatusChangeTicketResponse {
     bool ok = 1;
+}
+
+message SendParams {
+    string channel = 1;
+    string email = 2;
+    string message = 3;
+    string from = 4;
+    string thread_ts = 5;
+}
+
+message SendResponse {
+    bool ok = 1;
+    string resp_channel = 2;
+    string resp_timestamp = 3;
 }
