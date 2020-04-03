@@ -39,6 +39,7 @@ type MobileService interface {
 	About(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseMobileApiAbout, error)
 	Faq(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseFaq, error)
 	Countries(ctx context.Context, in *ParamsCountries, opts ...client.CallOption) (*ResponseCountries, error)
+	SocialNetworks(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseSocialNetworks, error)
 }
 
 type mobileService struct {
@@ -99,6 +100,16 @@ func (c *mobileService) Countries(ctx context.Context, in *ParamsCountries, opts
 	return out, nil
 }
 
+func (c *mobileService) SocialNetworks(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseSocialNetworks, error) {
+	req := c.c.NewRequest(c.name, "Mobile.SocialNetworks", in)
+	out := new(ResponseSocialNetworks)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Mobile service
 
 type MobileHandler interface {
@@ -106,6 +117,7 @@ type MobileHandler interface {
 	About(context.Context, *empty.Empty, *ResponseMobileApiAbout) error
 	Faq(context.Context, *empty.Empty, *ResponseFaq) error
 	Countries(context.Context, *ParamsCountries, *ResponseCountries) error
+	SocialNetworks(context.Context, *empty.Empty, *ResponseSocialNetworks) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -114,6 +126,7 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		About(ctx context.Context, in *empty.Empty, out *ResponseMobileApiAbout) error
 		Faq(ctx context.Context, in *empty.Empty, out *ResponseFaq) error
 		Countries(ctx context.Context, in *ParamsCountries, out *ResponseCountries) error
+		SocialNetworks(ctx context.Context, in *empty.Empty, out *ResponseSocialNetworks) error
 	}
 	type Mobile struct {
 		mobile
@@ -140,6 +153,10 @@ func (h *mobileHandler) Faq(ctx context.Context, in *empty.Empty, out *ResponseF
 
 func (h *mobileHandler) Countries(ctx context.Context, in *ParamsCountries, out *ResponseCountries) error {
 	return h.MobileHandler.Countries(ctx, in, out)
+}
+
+func (h *mobileHandler) SocialNetworks(ctx context.Context, in *empty.Empty, out *ResponseSocialNetworks) error {
+	return h.MobileHandler.SocialNetworks(ctx, in, out)
 }
 
 // Client API for Stores service

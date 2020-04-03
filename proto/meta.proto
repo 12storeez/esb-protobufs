@@ -13,6 +13,8 @@ service Mobile {
     }
     rpc Countries (ParamsCountries) returns (ResponseCountries) {
     }
+    rpc SocialNetworks (google.protobuf.Empty) returns (ResponseSocialNetworks) {
+    }
 }
 
 service Stores {
@@ -94,7 +96,8 @@ message ParamsStoresCities {
 message City {
     int32 city_id = 1;
     string title = 2;
-    int32 store = 3;
+    int32 stores = 3;
+    string country = 4;
 }
 
 message ResponseStoresCities {
@@ -129,4 +132,14 @@ message Country {
     string country_code = 2;
     string prefix = 3;
     string title_ru = 4;
+}
+
+message SocialNetwork {
+    string icon = 1;
+    string name = 2;
+    string link = 3;
+}
+
+message ResponseSocialNetworks {
+    repeated SocialNetwork result = 1;
 }

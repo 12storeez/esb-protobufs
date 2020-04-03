@@ -9,6 +9,8 @@ service User {
     }
     rpc Orders (ParamsOrders) returns (ResponseOrders) {
     }
+    rpc SendOSMICard (ParamsOSMICard) returns (ResponseOSMICard) {
+    }
 }
 
 service Mobile {
@@ -56,6 +58,7 @@ message Order {
     double payment_amount = 5;
     double applied_discount = 6;
     double acquired_balance_change = 7;
+    int64 created_ts = 8;
 }
 
 message ParamsAuthorization {
@@ -112,5 +115,13 @@ message ParamsEditUser {
 }
 
 message ResponseEditUser {
+    bool ok = 1;
+}
+
+message ParamsOSMICard {
+    string client_id = 1;
+}
+
+message ResponseOSMICard {
     bool ok = 1;
 }

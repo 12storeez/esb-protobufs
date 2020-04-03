@@ -36,6 +36,7 @@ var _ server.Option
 type UserService interface {
 	Info(ctx context.Context, in *ParamsUser, opts ...client.CallOption) (*ResponseUser, error)
 	Orders(ctx context.Context, in *ParamsOrders, opts ...client.CallOption) (*ResponseOrders, error)
+	SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts ...client.CallOption) (*ResponseOSMICard, error)
 }
 
 type userService struct {
@@ -76,17 +77,29 @@ func (c *userService) Orders(ctx context.Context, in *ParamsOrders, opts ...clie
 	return out, nil
 }
 
+func (c *userService) SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts ...client.CallOption) (*ResponseOSMICard, error) {
+	req := c.c.NewRequest(c.name, "User.SendOSMICard", in)
+	out := new(ResponseOSMICard)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for User service
 
 type UserHandler interface {
 	Info(context.Context, *ParamsUser, *ResponseUser) error
 	Orders(context.Context, *ParamsOrders, *ResponseOrders) error
+	SendOSMICard(context.Context, *ParamsOSMICard, *ResponseOSMICard) error
 }
 
 func RegisterUserHandler(s server.Server, hdlr UserHandler, opts ...server.HandlerOption) error {
 	type user interface {
 		Info(ctx context.Context, in *ParamsUser, out *ResponseUser) error
 		Orders(ctx context.Context, in *ParamsOrders, out *ResponseOrders) error
+		SendOSMICard(ctx context.Context, in *ParamsOSMICard, out *ResponseOSMICard) error
 	}
 	type User struct {
 		user
@@ -105,6 +118,10 @@ func (h *userHandler) Info(ctx context.Context, in *ParamsUser, out *ResponseUse
 
 func (h *userHandler) Orders(ctx context.Context, in *ParamsOrders, out *ResponseOrders) error {
 	return h.UserHandler.Orders(ctx, in, out)
+}
+
+func (h *userHandler) SendOSMICard(ctx context.Context, in *ParamsOSMICard, out *ResponseOSMICard) error {
+	return h.UserHandler.SendOSMICard(ctx, in, out)
 }
 
 // Client API for Mobile service
