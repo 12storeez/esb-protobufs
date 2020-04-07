@@ -42,6 +42,7 @@ message OfflineStore {
     string picture_url = 9;
     string schedule = 10;
     int32 city_id = 11;
+    string short_address = 12;
 }
 
 message ParamsOfflineStoreInfoByID {
