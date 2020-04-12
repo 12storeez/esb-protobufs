@@ -2,8 +2,6 @@ syntax = "proto3";
 
 option go_package = "go/mindbox";
 
-package mindbox;
-
 service User {
     rpc Info (ParamsUser) returns (ResponseUser) {
     }
@@ -14,11 +12,9 @@ service User {
 }
 
 service Mobile {
-    rpc Creation(ParamsCreation) returns (ResponseCreation) {
+    rpc InitDevice(InitDeviceParams) returns (InitDeviceResponse) {
     }
-    rpc Authorization (ParamsAuthorization) returns (ResponseAuthorization) {
-    }
-    rpc Registration (ParamsRegistration) returns (ResponseRegistration) {
+    rpc InitClient(InitClientParams) returns (InitClientResponse) {
     }
     rpc Code (ParamsCode) returns (ResponseCode) {
     }
@@ -26,6 +22,24 @@ service Mobile {
     }
     rpc EditUser (ParamsEditUser) returns (ResponseEditUser) {
     }
+}
+
+message InitDeviceParams {
+    string device_id = 1;
+    string apns_token = 2;
+}
+
+message InitDeviceResponse {
+    bool ok = 1;
+}
+
+message InitClientParams {
+    string device_id = 1;
+    string client_id = 2;
+}
+
+message InitClientResponse {
+    bool ok = 1;
 }
 
 message ParamsUser {
@@ -61,24 +75,6 @@ message Order {
     int64 created_ts = 8;
 }
 
-message ParamsAuthorization {
-    string device_uuid = 1;
-}
-message ResponseAuthorization {
-    bool ok = 1;
-}
-
-message ParamsRegistration {
-    string device_uuid = 1;
-    string client_id = 2;
-    string email = 3;
-    string full_name = 4;
-    string mobile_phone = 5;
-}
-message ResponseRegistration {
-    bool ok = 1;
-}
-
 message ParamsCode {
     string mobile_phone = 1;
 }
@@ -95,17 +91,6 @@ message ResponseCheckCode {
     string status = 2;
     string client_id = 3;
     int64 mindbox_id = 4;
-}
-
-message  ParamsCreation {
-    string device_uuid = 1;
-    string id = 2;
-    string vendor = 3;
-    string model = 4;
-}
-
-message ResponseCreation {
-    bool ok = 1;
 }
 
 message ParamsEditUser {

@@ -24,6 +24,178 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type InitDeviceParams struct {
+	DeviceId             string   `protobuf:"bytes,1,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`
+	ApnsToken            string   `protobuf:"bytes,2,opt,name=apns_token,json=apnsToken,proto3" json:"apns_token,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *InitDeviceParams) Reset()         { *m = InitDeviceParams{} }
+func (m *InitDeviceParams) String() string { return proto.CompactTextString(m) }
+func (*InitDeviceParams) ProtoMessage()    {}
+func (*InitDeviceParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{0}
+}
+
+func (m *InitDeviceParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitDeviceParams.Unmarshal(m, b)
+}
+func (m *InitDeviceParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitDeviceParams.Marshal(b, m, deterministic)
+}
+func (m *InitDeviceParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitDeviceParams.Merge(m, src)
+}
+func (m *InitDeviceParams) XXX_Size() int {
+	return xxx_messageInfo_InitDeviceParams.Size(m)
+}
+func (m *InitDeviceParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitDeviceParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitDeviceParams proto.InternalMessageInfo
+
+func (m *InitDeviceParams) GetDeviceId() string {
+	if m != nil {
+		return m.DeviceId
+	}
+	return ""
+}
+
+func (m *InitDeviceParams) GetApnsToken() string {
+	if m != nil {
+		return m.ApnsToken
+	}
+	return ""
+}
+
+type InitDeviceResponse struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *InitDeviceResponse) Reset()         { *m = InitDeviceResponse{} }
+func (m *InitDeviceResponse) String() string { return proto.CompactTextString(m) }
+func (*InitDeviceResponse) ProtoMessage()    {}
+func (*InitDeviceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{1}
+}
+
+func (m *InitDeviceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitDeviceResponse.Unmarshal(m, b)
+}
+func (m *InitDeviceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitDeviceResponse.Marshal(b, m, deterministic)
+}
+func (m *InitDeviceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitDeviceResponse.Merge(m, src)
+}
+func (m *InitDeviceResponse) XXX_Size() int {
+	return xxx_messageInfo_InitDeviceResponse.Size(m)
+}
+func (m *InitDeviceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitDeviceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitDeviceResponse proto.InternalMessageInfo
+
+func (m *InitDeviceResponse) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
+type InitClientParams struct {
+	DeviceId             string   `protobuf:"bytes,1,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`
+	ClientId             string   `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *InitClientParams) Reset()         { *m = InitClientParams{} }
+func (m *InitClientParams) String() string { return proto.CompactTextString(m) }
+func (*InitClientParams) ProtoMessage()    {}
+func (*InitClientParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{2}
+}
+
+func (m *InitClientParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitClientParams.Unmarshal(m, b)
+}
+func (m *InitClientParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitClientParams.Marshal(b, m, deterministic)
+}
+func (m *InitClientParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitClientParams.Merge(m, src)
+}
+func (m *InitClientParams) XXX_Size() int {
+	return xxx_messageInfo_InitClientParams.Size(m)
+}
+func (m *InitClientParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitClientParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitClientParams proto.InternalMessageInfo
+
+func (m *InitClientParams) GetDeviceId() string {
+	if m != nil {
+		return m.DeviceId
+	}
+	return ""
+}
+
+func (m *InitClientParams) GetClientId() string {
+	if m != nil {
+		return m.ClientId
+	}
+	return ""
+}
+
+type InitClientResponse struct {
+	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *InitClientResponse) Reset()         { *m = InitClientResponse{} }
+func (m *InitClientResponse) String() string { return proto.CompactTextString(m) }
+func (*InitClientResponse) ProtoMessage()    {}
+func (*InitClientResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c1ddbb12eed38be6, []int{3}
+}
+
+func (m *InitClientResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InitClientResponse.Unmarshal(m, b)
+}
+func (m *InitClientResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InitClientResponse.Marshal(b, m, deterministic)
+}
+func (m *InitClientResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InitClientResponse.Merge(m, src)
+}
+func (m *InitClientResponse) XXX_Size() int {
+	return xxx_messageInfo_InitClientResponse.Size(m)
+}
+func (m *InitClientResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_InitClientResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InitClientResponse proto.InternalMessageInfo
+
+func (m *InitClientResponse) GetOk() bool {
+	if m != nil {
+		return m.Ok
+	}
+	return false
+}
+
 type ParamsUser struct {
 	ClientId             string   `protobuf:"bytes,1,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -35,7 +207,7 @@ func (m *ParamsUser) Reset()         { *m = ParamsUser{} }
 func (m *ParamsUser) String() string { return proto.CompactTextString(m) }
 func (*ParamsUser) ProtoMessage()    {}
 func (*ParamsUser) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{0}
+	return fileDescriptor_c1ddbb12eed38be6, []int{4}
 }
 
 func (m *ParamsUser) XXX_Unmarshal(b []byte) error {
@@ -81,7 +253,7 @@ func (m *ResponseUser) Reset()         { *m = ResponseUser{} }
 func (m *ResponseUser) String() string { return proto.CompactTextString(m) }
 func (*ResponseUser) ProtoMessage()    {}
 func (*ResponseUser) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{1}
+	return fileDescriptor_c1ddbb12eed38be6, []int{5}
 }
 
 func (m *ResponseUser) XXX_Unmarshal(b []byte) error {
@@ -169,7 +341,7 @@ func (m *ParamsOrders) Reset()         { *m = ParamsOrders{} }
 func (m *ParamsOrders) String() string { return proto.CompactTextString(m) }
 func (*ParamsOrders) ProtoMessage()    {}
 func (*ParamsOrders) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{2}
+	return fileDescriptor_c1ddbb12eed38be6, []int{6}
 }
 
 func (m *ParamsOrders) XXX_Unmarshal(b []byte) error {
@@ -209,7 +381,7 @@ func (m *ResponseOrders) Reset()         { *m = ResponseOrders{} }
 func (m *ResponseOrders) String() string { return proto.CompactTextString(m) }
 func (*ResponseOrders) ProtoMessage()    {}
 func (*ResponseOrders) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{3}
+	return fileDescriptor_c1ddbb12eed38be6, []int{7}
 }
 
 func (m *ResponseOrders) XXX_Unmarshal(b []byte) error {
@@ -262,7 +434,7 @@ func (m *Order) Reset()         { *m = Order{} }
 func (m *Order) String() string { return proto.CompactTextString(m) }
 func (*Order) ProtoMessage()    {}
 func (*Order) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{4}
+	return fileDescriptor_c1ddbb12eed38be6, []int{8}
 }
 
 func (m *Order) XXX_Unmarshal(b []byte) error {
@@ -337,194 +509,6 @@ func (m *Order) GetCreatedTs() int64 {
 		return m.CreatedTs
 	}
 	return 0
-}
-
-type ParamsAuthorization struct {
-	DeviceUuid           string   `protobuf:"bytes,1,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ParamsAuthorization) Reset()         { *m = ParamsAuthorization{} }
-func (m *ParamsAuthorization) String() string { return proto.CompactTextString(m) }
-func (*ParamsAuthorization) ProtoMessage()    {}
-func (*ParamsAuthorization) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{5}
-}
-
-func (m *ParamsAuthorization) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ParamsAuthorization.Unmarshal(m, b)
-}
-func (m *ParamsAuthorization) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ParamsAuthorization.Marshal(b, m, deterministic)
-}
-func (m *ParamsAuthorization) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ParamsAuthorization.Merge(m, src)
-}
-func (m *ParamsAuthorization) XXX_Size() int {
-	return xxx_messageInfo_ParamsAuthorization.Size(m)
-}
-func (m *ParamsAuthorization) XXX_DiscardUnknown() {
-	xxx_messageInfo_ParamsAuthorization.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ParamsAuthorization proto.InternalMessageInfo
-
-func (m *ParamsAuthorization) GetDeviceUuid() string {
-	if m != nil {
-		return m.DeviceUuid
-	}
-	return ""
-}
-
-type ResponseAuthorization struct {
-	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ResponseAuthorization) Reset()         { *m = ResponseAuthorization{} }
-func (m *ResponseAuthorization) String() string { return proto.CompactTextString(m) }
-func (*ResponseAuthorization) ProtoMessage()    {}
-func (*ResponseAuthorization) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{6}
-}
-
-func (m *ResponseAuthorization) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseAuthorization.Unmarshal(m, b)
-}
-func (m *ResponseAuthorization) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseAuthorization.Marshal(b, m, deterministic)
-}
-func (m *ResponseAuthorization) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseAuthorization.Merge(m, src)
-}
-func (m *ResponseAuthorization) XXX_Size() int {
-	return xxx_messageInfo_ResponseAuthorization.Size(m)
-}
-func (m *ResponseAuthorization) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseAuthorization.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ResponseAuthorization proto.InternalMessageInfo
-
-func (m *ResponseAuthorization) GetOk() bool {
-	if m != nil {
-		return m.Ok
-	}
-	return false
-}
-
-type ParamsRegistration struct {
-	DeviceUuid           string   `protobuf:"bytes,1,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
-	ClientId             string   `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
-	Email                string   `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	FullName             string   `protobuf:"bytes,4,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
-	MobilePhone          string   `protobuf:"bytes,5,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ParamsRegistration) Reset()         { *m = ParamsRegistration{} }
-func (m *ParamsRegistration) String() string { return proto.CompactTextString(m) }
-func (*ParamsRegistration) ProtoMessage()    {}
-func (*ParamsRegistration) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{7}
-}
-
-func (m *ParamsRegistration) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ParamsRegistration.Unmarshal(m, b)
-}
-func (m *ParamsRegistration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ParamsRegistration.Marshal(b, m, deterministic)
-}
-func (m *ParamsRegistration) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ParamsRegistration.Merge(m, src)
-}
-func (m *ParamsRegistration) XXX_Size() int {
-	return xxx_messageInfo_ParamsRegistration.Size(m)
-}
-func (m *ParamsRegistration) XXX_DiscardUnknown() {
-	xxx_messageInfo_ParamsRegistration.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ParamsRegistration proto.InternalMessageInfo
-
-func (m *ParamsRegistration) GetDeviceUuid() string {
-	if m != nil {
-		return m.DeviceUuid
-	}
-	return ""
-}
-
-func (m *ParamsRegistration) GetClientId() string {
-	if m != nil {
-		return m.ClientId
-	}
-	return ""
-}
-
-func (m *ParamsRegistration) GetEmail() string {
-	if m != nil {
-		return m.Email
-	}
-	return ""
-}
-
-func (m *ParamsRegistration) GetFullName() string {
-	if m != nil {
-		return m.FullName
-	}
-	return ""
-}
-
-func (m *ParamsRegistration) GetMobilePhone() string {
-	if m != nil {
-		return m.MobilePhone
-	}
-	return ""
-}
-
-type ResponseRegistration struct {
-	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ResponseRegistration) Reset()         { *m = ResponseRegistration{} }
-func (m *ResponseRegistration) String() string { return proto.CompactTextString(m) }
-func (*ResponseRegistration) ProtoMessage()    {}
-func (*ResponseRegistration) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{8}
-}
-
-func (m *ResponseRegistration) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseRegistration.Unmarshal(m, b)
-}
-func (m *ResponseRegistration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseRegistration.Marshal(b, m, deterministic)
-}
-func (m *ResponseRegistration) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseRegistration.Merge(m, src)
-}
-func (m *ResponseRegistration) XXX_Size() int {
-	return xxx_messageInfo_ResponseRegistration.Size(m)
-}
-func (m *ResponseRegistration) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseRegistration.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ResponseRegistration proto.InternalMessageInfo
-
-func (m *ResponseRegistration) GetOk() bool {
-	if m != nil {
-		return m.Ok
-	}
-	return false
 }
 
 type ParamsCode struct {
@@ -715,108 +699,6 @@ func (m *ResponseCheckCode) GetMindboxId() int64 {
 	return 0
 }
 
-type ParamsCreation struct {
-	DeviceUuid           string   `protobuf:"bytes,1,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
-	Id                   string   `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	Vendor               string   `protobuf:"bytes,3,opt,name=vendor,proto3" json:"vendor,omitempty"`
-	Model                string   `protobuf:"bytes,4,opt,name=model,proto3" json:"model,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ParamsCreation) Reset()         { *m = ParamsCreation{} }
-func (m *ParamsCreation) String() string { return proto.CompactTextString(m) }
-func (*ParamsCreation) ProtoMessage()    {}
-func (*ParamsCreation) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{13}
-}
-
-func (m *ParamsCreation) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ParamsCreation.Unmarshal(m, b)
-}
-func (m *ParamsCreation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ParamsCreation.Marshal(b, m, deterministic)
-}
-func (m *ParamsCreation) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ParamsCreation.Merge(m, src)
-}
-func (m *ParamsCreation) XXX_Size() int {
-	return xxx_messageInfo_ParamsCreation.Size(m)
-}
-func (m *ParamsCreation) XXX_DiscardUnknown() {
-	xxx_messageInfo_ParamsCreation.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ParamsCreation proto.InternalMessageInfo
-
-func (m *ParamsCreation) GetDeviceUuid() string {
-	if m != nil {
-		return m.DeviceUuid
-	}
-	return ""
-}
-
-func (m *ParamsCreation) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *ParamsCreation) GetVendor() string {
-	if m != nil {
-		return m.Vendor
-	}
-	return ""
-}
-
-func (m *ParamsCreation) GetModel() string {
-	if m != nil {
-		return m.Model
-	}
-	return ""
-}
-
-type ResponseCreation struct {
-	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ResponseCreation) Reset()         { *m = ResponseCreation{} }
-func (m *ResponseCreation) String() string { return proto.CompactTextString(m) }
-func (*ResponseCreation) ProtoMessage()    {}
-func (*ResponseCreation) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{14}
-}
-
-func (m *ResponseCreation) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseCreation.Unmarshal(m, b)
-}
-func (m *ResponseCreation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseCreation.Marshal(b, m, deterministic)
-}
-func (m *ResponseCreation) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseCreation.Merge(m, src)
-}
-func (m *ResponseCreation) XXX_Size() int {
-	return xxx_messageInfo_ResponseCreation.Size(m)
-}
-func (m *ResponseCreation) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseCreation.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ResponseCreation proto.InternalMessageInfo
-
-func (m *ResponseCreation) GetOk() bool {
-	if m != nil {
-		return m.Ok
-	}
-	return false
-}
-
 type ParamsEditUser struct {
 	DeviceUuid           string   `protobuf:"bytes,1,opt,name=device_uuid,json=deviceUuid,proto3" json:"device_uuid,omitempty"`
 	ClientId             string   `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
@@ -830,7 +712,7 @@ func (m *ParamsEditUser) Reset()         { *m = ParamsEditUser{} }
 func (m *ParamsEditUser) String() string { return proto.CompactTextString(m) }
 func (*ParamsEditUser) ProtoMessage()    {}
 func (*ParamsEditUser) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{15}
+	return fileDescriptor_c1ddbb12eed38be6, []int{13}
 }
 
 func (m *ParamsEditUser) XXX_Unmarshal(b []byte) error {
@@ -883,7 +765,7 @@ func (m *ResponseEditUser) Reset()         { *m = ResponseEditUser{} }
 func (m *ResponseEditUser) String() string { return proto.CompactTextString(m) }
 func (*ResponseEditUser) ProtoMessage()    {}
 func (*ResponseEditUser) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{16}
+	return fileDescriptor_c1ddbb12eed38be6, []int{14}
 }
 
 func (m *ResponseEditUser) XXX_Unmarshal(b []byte) error {
@@ -922,7 +804,7 @@ func (m *ParamsOSMICard) Reset()         { *m = ParamsOSMICard{} }
 func (m *ParamsOSMICard) String() string { return proto.CompactTextString(m) }
 func (*ParamsOSMICard) ProtoMessage()    {}
 func (*ParamsOSMICard) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{17}
+	return fileDescriptor_c1ddbb12eed38be6, []int{15}
 }
 
 func (m *ParamsOSMICard) XXX_Unmarshal(b []byte) error {
@@ -961,7 +843,7 @@ func (m *ResponseOSMICard) Reset()         { *m = ResponseOSMICard{} }
 func (m *ResponseOSMICard) String() string { return proto.CompactTextString(m) }
 func (*ResponseOSMICard) ProtoMessage()    {}
 func (*ResponseOSMICard) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c1ddbb12eed38be6, []int{18}
+	return fileDescriptor_c1ddbb12eed38be6, []int{16}
 }
 
 func (m *ResponseOSMICard) XXX_Unmarshal(b []byte) error {
@@ -990,90 +872,83 @@ func (m *ResponseOSMICard) GetOk() bool {
 }
 
 func init() {
-	proto.RegisterType((*ParamsUser)(nil), "mindbox.ParamsUser")
-	proto.RegisterType((*ResponseUser)(nil), "mindbox.ResponseUser")
-	proto.RegisterType((*ParamsOrders)(nil), "mindbox.ParamsOrders")
-	proto.RegisterType((*ResponseOrders)(nil), "mindbox.ResponseOrders")
-	proto.RegisterType((*Order)(nil), "mindbox.Order")
-	proto.RegisterType((*ParamsAuthorization)(nil), "mindbox.ParamsAuthorization")
-	proto.RegisterType((*ResponseAuthorization)(nil), "mindbox.ResponseAuthorization")
-	proto.RegisterType((*ParamsRegistration)(nil), "mindbox.ParamsRegistration")
-	proto.RegisterType((*ResponseRegistration)(nil), "mindbox.ResponseRegistration")
-	proto.RegisterType((*ParamsCode)(nil), "mindbox.ParamsCode")
-	proto.RegisterType((*ResponseCode)(nil), "mindbox.ResponseCode")
-	proto.RegisterType((*ParamsCheckCode)(nil), "mindbox.ParamsCheckCode")
-	proto.RegisterType((*ResponseCheckCode)(nil), "mindbox.ResponseCheckCode")
-	proto.RegisterType((*ParamsCreation)(nil), "mindbox.ParamsCreation")
-	proto.RegisterType((*ResponseCreation)(nil), "mindbox.ResponseCreation")
-	proto.RegisterType((*ParamsEditUser)(nil), "mindbox.ParamsEditUser")
-	proto.RegisterType((*ResponseEditUser)(nil), "mindbox.ResponseEditUser")
-	proto.RegisterType((*ParamsOSMICard)(nil), "mindbox.ParamsOSMICard")
-	proto.RegisterType((*ResponseOSMICard)(nil), "mindbox.ResponseOSMICard")
+	proto.RegisterType((*InitDeviceParams)(nil), "InitDeviceParams")
+	proto.RegisterType((*InitDeviceResponse)(nil), "InitDeviceResponse")
+	proto.RegisterType((*InitClientParams)(nil), "InitClientParams")
+	proto.RegisterType((*InitClientResponse)(nil), "InitClientResponse")
+	proto.RegisterType((*ParamsUser)(nil), "ParamsUser")
+	proto.RegisterType((*ResponseUser)(nil), "ResponseUser")
+	proto.RegisterType((*ParamsOrders)(nil), "ParamsOrders")
+	proto.RegisterType((*ResponseOrders)(nil), "ResponseOrders")
+	proto.RegisterType((*Order)(nil), "Order")
+	proto.RegisterType((*ParamsCode)(nil), "ParamsCode")
+	proto.RegisterType((*ResponseCode)(nil), "ResponseCode")
+	proto.RegisterType((*ParamsCheckCode)(nil), "ParamsCheckCode")
+	proto.RegisterType((*ResponseCheckCode)(nil), "ResponseCheckCode")
+	proto.RegisterType((*ParamsEditUser)(nil), "ParamsEditUser")
+	proto.RegisterType((*ResponseEditUser)(nil), "ResponseEditUser")
+	proto.RegisterType((*ParamsOSMICard)(nil), "ParamsOSMICard")
+	proto.RegisterType((*ResponseOSMICard)(nil), "ResponseOSMICard")
 }
 
 func init() { proto.RegisterFile("proto/mindbox.proto", fileDescriptor_c1ddbb12eed38be6) }
 
 var fileDescriptor_c1ddbb12eed38be6 = []byte{
-	// 937 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x56, 0xdd, 0x6e, 0xdb, 0x36,
-	0x14, 0xb6, 0xe4, 0x9f, 0xd8, 0x27, 0x8e, 0xd3, 0x32, 0x49, 0xa3, 0x3a, 0x4b, 0x97, 0x72, 0x58,
-	0x9b, 0x6e, 0x58, 0x0b, 0x64, 0x45, 0x2f, 0x76, 0xb5, 0xfc, 0x0c, 0x98, 0x81, 0xb5, 0x09, 0xd4,
-	0xf4, 0x66, 0x37, 0x02, 0x2d, 0x32, 0x09, 0x11, 0x49, 0x54, 0x25, 0x2a, 0x5b, 0xf6, 0x16, 0x7b,
-	0x89, 0x61, 0x4f, 0xb1, 0xdb, 0xbd, 0xd6, 0xc0, 0x3f, 0xd9, 0x96, 0xb3, 0x22, 0x40, 0xef, 0xcc,
-	0xef, 0xe3, 0xf9, 0xce, 0xe1, 0xf9, 0xc8, 0x63, 0xc1, 0x46, 0x5e, 0x08, 0x29, 0x5e, 0xa5, 0x3c,
-	0xa3, 0x53, 0xf1, 0xfb, 0x4b, 0xbd, 0x42, 0x2b, 0x76, 0x89, 0x5f, 0x00, 0x9c, 0x91, 0x82, 0xa4,
-	0xe5, 0x87, 0x92, 0x15, 0x68, 0x07, 0x06, 0x71, 0xc2, 0x59, 0x26, 0x23, 0x4e, 0x03, 0x6f, 0xcf,
-	0xdb, 0x1f, 0x84, 0x7d, 0x03, 0x4c, 0x28, 0xfe, 0xd3, 0x87, 0x61, 0xc8, 0xca, 0x5c, 0x64, 0x25,
-	0xd3, 0xbb, 0x77, 0x01, 0x2e, 0x78, 0x51, 0xca, 0x28, 0x23, 0x29, 0xb3, 0xdb, 0x07, 0x1a, 0x79,
-	0x47, 0x52, 0xa6, 0xc4, 0x12, 0xe2, 0x58, 0xdf, 0x88, 0x29, 0x40, 0x93, 0x9b, 0xd0, 0x65, 0x29,
-	0xe1, 0x49, 0xd0, 0xd6, 0x84, 0x59, 0x28, 0x34, 0xbf, 0x12, 0x19, 0x0b, 0x3a, 0x06, 0xd5, 0x0b,
-	0xf4, 0x25, 0xac, 0x4e, 0x45, 0x56, 0x95, 0x91, 0x14, 0x92, 0x24, 0x41, 0x77, 0xcf, 0xdb, 0xef,
-	0x86, 0xa0, 0xa1, 0x73, 0x85, 0xa0, 0xe7, 0xb0, 0x6e, 0x36, 0x90, 0x1b, 0xc2, 0x13, 0x32, 0x4d,
-	0x58, 0xd0, 0xd3, 0x9b, 0x46, 0x1a, 0x3e, 0x74, 0x28, 0xfa, 0x0a, 0xd6, 0xcc, 0xc6, 0x69, 0x22,
-	0xe2, 0x6b, 0x46, 0x83, 0x15, 0xbd, 0x6d, 0xa8, 0xc1, 0x23, 0x83, 0xa1, 0x6f, 0xe0, 0xa1, 0x4e,
-	0x14, 0xe5, 0x84, 0xd3, 0x88, 0xa4, 0xa2, 0xca, 0x64, 0xd0, 0xdf, 0xf3, 0xf6, 0xbd, 0x70, 0x5d,
-	0x13, 0x67, 0x84, 0xd3, 0x43, 0x0d, 0xe3, 0x6f, 0x61, 0x68, 0xda, 0x77, 0x5a, 0x50, 0x56, 0x94,
-	0x9f, 0x6e, 0xe0, 0x3b, 0x18, 0xb9, 0xfe, 0xd9, 0xed, 0x9b, 0xd0, 0x35, 0x67, 0xf2, 0x74, 0x1d,
-	0x66, 0x81, 0x9e, 0x41, 0xaf, 0x60, 0x65, 0x95, 0xc8, 0xc0, 0xdf, 0x6b, 0xef, 0xaf, 0x1e, 0x8c,
-	0x5e, 0x3a, 0xf3, 0x74, 0x58, 0x68, 0x59, 0xfc, 0xaf, 0x0f, 0x5d, 0x8d, 0xa0, 0xc7, 0xd0, 0x17,
-	0xea, 0xc7, 0x2c, 0xeb, 0x8a, 0x5e, 0x4f, 0x28, 0x7a, 0x0a, 0xc3, 0xb8, 0x60, 0x44, 0x32, 0x1a,
-	0x51, 0x22, 0x9d, 0x11, 0xab, 0x16, 0x3b, 0x21, 0x92, 0xa9, 0x2d, 0x39, 0xb9, 0x4d, 0x55, 0xd5,
-	0xf2, 0x36, 0x67, 0xd6, 0x92, 0x55, 0x8b, 0x9d, 0xdf, 0xe6, 0x0c, 0xbd, 0x86, 0x47, 0x94, 0x97,
-	0xb1, 0x3a, 0x33, 0xa3, 0x91, 0x6d, 0x4f, 0xc1, 0x63, 0xe3, 0x94, 0x17, 0x6e, 0xce, 0x58, 0x6d,
-	0xc9, 0x99, 0xe2, 0xd0, 0xd7, 0x30, 0x72, 0xc2, 0xb6, 0x8d, 0x5d, 0xbd, 0x7b, 0xcd, 0xa2, 0xa6,
-	0x89, 0xe8, 0x05, 0x3c, 0x20, 0x79, 0x9e, 0x70, 0x55, 0xa2, 0x95, 0xd1, 0xfe, 0x79, 0xe1, 0xba,
-	0xc5, 0x4f, 0x2c, 0x8c, 0xde, 0xc0, 0x36, 0x89, 0x3f, 0x56, 0xbc, 0x60, 0x34, 0x9a, 0x92, 0x84,
-	0x64, 0x31, 0x8b, 0xe2, 0x2b, 0x92, 0x5d, 0x32, 0x6d, 0xa5, 0x17, 0x6e, 0x39, 0xfa, 0xc8, 0xb0,
-	0xc7, 0x9a, 0x54, 0x57, 0xd5, 0x75, 0x41, 0x96, 0xda, 0xcc, 0x76, 0x38, 0xb0, 0xc8, 0x79, 0x89,
-	0xdf, 0xc0, 0x86, 0xb1, 0xf1, 0xb0, 0x92, 0x57, 0xa2, 0xe0, 0x7f, 0x10, 0xc9, 0x45, 0xa6, 0x2e,
-	0x1e, 0x65, 0x37, 0x3c, 0x66, 0x51, 0x55, 0xd5, 0x9d, 0x05, 0x03, 0x7d, 0xa8, 0x38, 0xc5, 0xcf,
-	0x61, 0xcb, 0x39, 0xba, 0x18, 0x39, 0x02, 0x5f, 0x5c, 0xeb, 0x80, 0x7e, 0xe8, 0x8b, 0x6b, 0xfc,
-	0xb7, 0x07, 0xc8, 0x64, 0x08, 0xd9, 0x25, 0x2f, 0x65, 0x71, 0xbf, 0x04, 0x8b, 0xf7, 0xc9, 0x5f,
-	0xbc, 0x4f, 0xff, 0xf3, 0x86, 0x76, 0x60, 0x70, 0x51, 0x25, 0x89, 0x79, 0x76, 0xe6, 0x1d, 0xf5,
-	0x15, 0xa0, 0x9f, 0xdd, 0x53, 0x18, 0xa6, 0x62, 0xca, 0x13, 0x16, 0x99, 0x77, 0xd6, 0x35, 0x56,
-	0x1b, 0xec, 0x4c, 0x41, 0xf8, 0x19, 0x6c, 0xba, 0x33, 0x2d, 0xd4, 0xda, 0x3c, 0xd2, 0x2b, 0x37,
-	0x39, 0x8e, 0x05, 0x5d, 0x16, 0xf6, 0x96, 0x85, 0x9f, 0xcc, 0xc6, 0x87, 0x0e, 0x69, 0x0a, 0xfe,
-	0x0c, 0xeb, 0x56, 0xf0, 0x8a, 0xc5, 0xd7, 0xf7, 0x54, 0x45, 0x08, 0x3a, 0xb1, 0xa0, 0xee, 0x5e,
-	0xeb, 0xdf, 0xf8, 0x37, 0x78, 0x58, 0x67, 0xaa, 0xb5, 0x1a, 0xe9, 0xd0, 0x23, 0xe8, 0x95, 0x92,
-	0xc8, 0xaa, 0xb4, 0xa1, 0x76, 0xb5, 0xd8, 0xf2, 0x76, 0xa3, 0xe5, 0xbb, 0x00, 0xf6, 0x2d, 0x2a,
-	0xb6, 0x63, 0xee, 0x91, 0x45, 0x26, 0x14, 0x0b, 0x18, 0xd9, 0x23, 0xa8, 0xab, 0x75, 0x2f, 0x87,
-	0x47, 0xe0, 0xd7, 0xd6, 0xfa, 0x9c, 0xaa, 0xb2, 0x6e, 0x58, 0x46, 0x45, 0x61, 0x73, 0xdb, 0x95,
-	0x32, 0x3b, 0x15, 0x94, 0x25, 0x6e, 0x34, 0xea, 0x05, 0xc6, 0xf0, 0xa0, 0x3e, 0xa9, 0x4b, 0xd9,
-	0xec, 0xeb, 0x47, 0x57, 0xd4, 0x4f, 0x94, 0x4b, 0x3d, 0xb8, 0x3f, 0xef, 0xda, 0x35, 0x4d, 0x69,
-	0x2f, 0x5b, 0x3d, 0x57, 0x56, 0x9d, 0xb4, 0x59, 0xd6, 0x77, 0xae, 0xac, 0xd3, 0xf7, 0x6f, 0x27,
-	0xc7, 0xa4, 0xa0, 0x9f, 0x1e, 0x9e, 0x73, 0x92, 0x75, 0x40, 0x43, 0xf2, 0xe0, 0x1f, 0x0f, 0x3a,
-	0x3a, 0xd7, 0x6b, 0xe8, 0x4c, 0xb2, 0x0b, 0x81, 0x36, 0xea, 0xc9, 0x39, 0xfb, 0x93, 0x1b, 0x6f,
-	0xd5, 0xe0, 0xfc, 0xbf, 0x19, 0x6e, 0xa1, 0x1f, 0xa0, 0x67, 0xe7, 0xf2, 0x56, 0x23, 0xce, 0xc0,
-	0xe3, 0xed, 0xa5, 0x48, 0x43, 0xe0, 0x16, 0x3a, 0x81, 0xe1, 0x7b, 0x96, 0xd1, 0xba, 0xb4, 0xed,
-	0xa6, 0x82, 0x25, 0xc6, 0x8f, 0x97, 0x35, 0x2c, 0x85, 0x5b, 0x07, 0x7f, 0xb5, 0xa1, 0xf7, 0x56,
-	0xf7, 0x11, 0xfd, 0x08, 0xfd, 0xda, 0xd1, 0xa6, 0x98, 0x23, 0xee, 0x10, 0x73, 0x14, 0x6e, 0xa1,
-	0x53, 0x58, 0x5b, 0x1c, 0x4a, 0x5f, 0x34, 0x64, 0x16, 0xd8, 0xf1, 0x93, 0x25, 0xad, 0x05, 0x1e,
-	0xb7, 0xd0, 0x2f, 0xea, 0x01, 0xcf, 0x4d, 0x84, 0x9d, 0x86, 0xde, 0x3c, 0x39, 0xde, 0x5d, 0x92,
-	0x9b, 0xa7, 0x71, 0x4b, 0x79, 0xa4, 0xdf, 0x65, 0xd3, 0x23, 0x05, 0xde, 0xe1, 0x91, 0x82, 0x71,
-	0x0b, 0x1d, 0xc3, 0x60, 0xf6, 0xa4, 0x83, 0x66, 0xa8, 0x63, 0xc6, 0xe3, 0xe5, 0x78, 0xc7, 0xe1,
-	0x96, 0xea, 0x6d, 0x7d, 0x2d, 0x9b, 0xbd, 0x75, 0xc4, 0x1d, 0xbd, 0x75, 0x14, 0x6e, 0x1d, 0x0d,
-	0x7f, 0x85, 0xcb, 0xfa, 0x9b, 0x6a, 0xda, 0xd3, 0x1f, 0x55, 0xdf, 0xff, 0x17, 0x00, 0x00, 0xff,
-	0xff, 0xdb, 0x48, 0x8e, 0xb3, 0x6b, 0x09, 0x00, 0x00,
+	// 853 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x95, 0xdf, 0x6f, 0xdb, 0x36,
+	0x10, 0xc7, 0x2d, 0xff, 0xaa, 0x7d, 0x76, 0xec, 0x84, 0xcd, 0x3a, 0xcd, 0x45, 0xdb, 0x8c, 0xeb,
+	0xb0, 0xb4, 0xc3, 0xd4, 0x21, 0x2d, 0xfa, 0xde, 0x24, 0x1b, 0x66, 0x60, 0x6d, 0x03, 0x35, 0x7d,
+	0xd9, 0x8b, 0x40, 0x8b, 0x6c, 0x43, 0x58, 0x16, 0x55, 0x89, 0xee, 0x96, 0x3f, 0x60, 0xaf, 0x03,
+	0xf6, 0x57, 0xed, 0xdf, 0x1a, 0x78, 0x24, 0xfd, 0x43, 0x46, 0x83, 0xbc, 0xe9, 0x3e, 0x77, 0xbc,
+	0xa3, 0xbe, 0x77, 0x24, 0xe1, 0x6e, 0x51, 0x2a, 0xad, 0x9e, 0x2d, 0x64, 0xce, 0x67, 0xea, 0xaf,
+	0x08, 0x2d, 0xfa, 0x06, 0xf6, 0xa7, 0xb9, 0xd4, 0xe7, 0xe2, 0xb3, 0x4c, 0xc5, 0x05, 0x2b, 0xd9,
+	0xa2, 0x22, 0xf7, 0xa1, 0xcf, 0xd1, 0x4e, 0x24, 0x0f, 0x83, 0xa3, 0xe0, 0xb8, 0x1f, 0xf7, 0x2c,
+	0x98, 0x72, 0xf2, 0x00, 0x80, 0x15, 0x79, 0x95, 0x68, 0x35, 0x17, 0x79, 0xd8, 0x44, 0x6f, 0xdf,
+	0x90, 0x4b, 0x03, 0xe8, 0x63, 0x20, 0xeb, 0x7c, 0xb1, 0xa8, 0x0a, 0x95, 0x57, 0x82, 0x8c, 0xa0,
+	0xa9, 0xe6, 0x98, 0xaa, 0x17, 0x37, 0xd5, 0x9c, 0xfe, 0x6e, 0xab, 0x9e, 0x65, 0x52, 0xe4, 0xfa,
+	0x36, 0x55, 0xef, 0x43, 0x3f, 0xc5, 0x60, 0xe3, 0xb4, 0x45, 0x7b, 0x16, 0x4c, 0xb9, 0xaf, 0x69,
+	0xb3, 0x7d, 0xb1, 0xe6, 0x13, 0x00, 0x5b, 0xe9, 0x7d, 0x25, 0xca, 0xed, 0x84, 0x41, 0x2d, 0xe1,
+	0xbf, 0x4d, 0x18, 0xfa, 0x3c, 0x18, 0xfd, 0x00, 0xe0, 0x83, 0x2c, 0x2b, 0x9d, 0xe4, 0x6c, 0x21,
+	0x5c, 0x78, 0x1f, 0xc9, 0x1b, 0xb6, 0x10, 0x26, 0x59, 0xc6, 0xbc, 0xd7, 0xed, 0xce, 0x00, 0x74,
+	0x1e, 0x42, 0x47, 0x2c, 0x98, 0xcc, 0xc2, 0x16, 0x3a, 0xac, 0x61, 0x68, 0x71, 0xa5, 0x72, 0x11,
+	0xb6, 0x2d, 0x45, 0x83, 0x3c, 0x82, 0xc1, 0x4c, 0xe5, 0x4b, 0xa3, 0xae, 0x66, 0x59, 0xd8, 0x39,
+	0x0a, 0x8e, 0x3b, 0x31, 0x20, 0xba, 0x34, 0x84, 0xfc, 0x00, 0x63, 0x1b, 0xc0, 0x3e, 0x33, 0x99,
+	0xb1, 0x59, 0x26, 0xc2, 0x2e, 0x06, 0x8d, 0x10, 0xbf, 0xf2, 0x94, 0x7c, 0x07, 0x7b, 0x36, 0x70,
+	0x96, 0xa9, 0x74, 0x2e, 0x78, 0x78, 0x07, 0xc3, 0x86, 0x08, 0x4f, 0x2d, 0x23, 0x4f, 0xe1, 0x00,
+	0x0b, 0x25, 0x05, 0x93, 0x3c, 0x61, 0x0b, 0xb5, 0xcc, 0x75, 0xd8, 0x3b, 0x0a, 0x8e, 0x83, 0x78,
+	0x8c, 0x8e, 0x0b, 0x26, 0xf9, 0x2b, 0xc4, 0xf4, 0x47, 0x18, 0x5a, 0xf9, 0xde, 0x96, 0x5c, 0x94,
+	0xd5, 0xcd, 0x02, 0xfe, 0x0a, 0x23, 0xaf, 0x9f, 0x0b, 0x3f, 0x84, 0x8e, 0xfd, 0xa7, 0x00, 0xf7,
+	0x61, 0x0d, 0xf2, 0x10, 0xba, 0xa5, 0xa8, 0x96, 0x99, 0x0e, 0x9b, 0x47, 0xad, 0xe3, 0xc1, 0x49,
+	0x37, 0xc2, 0xf0, 0xd8, 0x51, 0xfa, 0x5f, 0x13, 0x3a, 0x48, 0xc8, 0x37, 0xd0, 0x53, 0xe6, 0x63,
+	0x5d, 0xed, 0x0e, 0xda, 0x53, 0x4e, 0xbe, 0x85, 0x61, 0x5a, 0x0a, 0xa6, 0x05, 0x4f, 0x38, 0xd3,
+	0xbe, 0x01, 0x03, 0xc7, 0xce, 0x99, 0x16, 0x26, 0xa4, 0x60, 0xd7, 0x0b, 0xb3, 0x5b, 0x7d, 0x5d,
+	0x08, 0xd7, 0x8a, 0x81, 0x63, 0x97, 0xd7, 0x85, 0x20, 0x2f, 0xe0, 0x1e, 0x97, 0x55, 0x6a, 0xfe,
+	0x55, 0xf0, 0xc4, 0xc9, 0x52, 0xca, 0xd4, 0x76, 0x28, 0x88, 0x0f, 0xd7, 0x5e, 0x6c, 0xc5, 0x85,
+	0xf1, 0x91, 0xef, 0x61, 0xe4, 0x13, 0x3b, 0xf9, 0x3a, 0x18, 0xbd, 0xe7, 0xa8, 0x15, 0x8f, 0x3c,
+	0x81, 0x7d, 0x56, 0x14, 0x99, 0x34, 0x5b, 0x74, 0x69, 0xb0, 0x6f, 0x41, 0x3c, 0x76, 0xfc, 0xdc,
+	0x61, 0xf2, 0x12, 0xbe, 0x66, 0xe9, 0xa7, 0xa5, 0x2c, 0x05, 0x4f, 0x66, 0x2c, 0x63, 0x79, 0x2a,
+	0x92, 0xf4, 0x8a, 0xe5, 0x1f, 0x05, 0xb6, 0x30, 0x88, 0xbf, 0xf2, 0xee, 0x53, 0xeb, 0x3d, 0x43,
+	0xa7, 0x19, 0x51, 0xaf, 0x82, 0xae, 0xb0, 0x89, 0xad, 0xb8, 0xef, 0xc8, 0x65, 0x45, 0x9f, 0xf9,
+	0xe9, 0x3f, 0x53, 0x1c, 0xf5, 0x58, 0xa8, 0x99, 0xcc, 0x44, 0x62, 0x87, 0xd0, 0x2a, 0x3a, 0xb0,
+	0xec, 0xc2, 0x20, 0xfa, 0x70, 0x7d, 0x04, 0x70, 0x49, 0xfd, 0x38, 0xfd, 0x06, 0x63, 0x97, 0xf0,
+	0x4a, 0xa4, 0xf3, 0x5b, 0x66, 0x25, 0x04, 0xda, 0xa9, 0xe2, 0xbe, 0x47, 0xf8, 0x4d, 0xff, 0x84,
+	0x83, 0x55, 0xa5, 0x55, 0xae, 0x5a, 0x39, 0x72, 0x0f, 0xba, 0x95, 0x66, 0x7a, 0x59, 0xb9, 0xa5,
+	0xce, 0xda, 0x1e, 0xc3, 0xd6, 0xf6, 0x18, 0x1a, 0x4d, 0xdc, 0x6d, 0x67, 0xbc, 0x6d, 0xab, 0x89,
+	0x23, 0x53, 0x4e, 0x3f, 0xc1, 0xc8, 0xfe, 0xc2, 0x2f, 0x5c, 0x6a, 0x3c, 0xe7, 0x8f, 0x60, 0xe0,
+	0xee, 0xa0, 0xe5, 0x72, 0x35, 0x68, 0x60, 0xd1, 0xfb, 0xa5, 0xbc, 0xf9, 0x1e, 0xda, 0xf9, 0xff,
+	0xd6, 0xae, 0xaa, 0x14, 0xf6, 0xfd, 0xbf, 0xae, 0x8a, 0xd6, 0x95, 0xfd, 0xc9, 0x6f, 0xeb, 0xed,
+	0xbb, 0xd7, 0xd3, 0x33, 0x56, 0xf2, 0x9b, 0xcf, 0xda, 0x46, 0xca, 0xd5, 0x82, 0x5a, 0xca, 0x93,
+	0x7f, 0x02, 0x68, 0x63, 0xad, 0xc7, 0xd0, 0x9e, 0xe6, 0x1f, 0x14, 0x19, 0x44, 0xeb, 0xbb, 0x70,
+	0xb2, 0x17, 0x6d, 0x5e, 0x76, 0xb4, 0x41, 0x9e, 0x42, 0xd7, 0x1d, 0xdb, 0xbd, 0x68, 0xf3, 0xd0,
+	0x4f, 0xc6, 0xd1, 0xf6, 0xb1, 0xa6, 0x0d, 0xf2, 0x02, 0x86, 0xef, 0x44, 0xce, 0x57, 0xa5, 0xc7,
+	0xd1, 0xf6, 0xe6, 0x27, 0x07, 0x51, 0x7d, 0x7b, 0xb4, 0x71, 0xf2, 0x77, 0x13, 0xba, 0xaf, 0x51,
+	0x17, 0xf2, 0x12, 0x60, 0xfd, 0x62, 0x90, 0x83, 0xa8, 0xfe, 0x1c, 0x4d, 0xee, 0x46, 0xbb, 0x2f,
+	0x0a, 0x6d, 0xf8, 0x75, 0xf6, 0xd6, 0x77, 0xeb, 0x36, 0x1f, 0x14, 0xb7, 0x6e, 0xfb, 0x55, 0xa0,
+	0x0d, 0x23, 0x01, 0x4e, 0x98, 0x97, 0xc0, 0x18, 0x1b, 0x12, 0x18, 0x93, 0x36, 0xc8, 0x73, 0xe8,
+	0xaf, 0x87, 0x71, 0x3f, 0xaa, 0x8d, 0xfa, 0x84, 0x44, 0x3b, 0x23, 0x4b, 0x1b, 0xe4, 0x67, 0xe8,
+	0xad, 0xba, 0xea, 0x75, 0xf0, 0x60, 0x43, 0x07, 0x8f, 0x68, 0xe3, 0x74, 0xf8, 0x07, 0x7c, 0x5c,
+	0x3d, 0xc9, 0xb3, 0x2e, 0xbe, 0xc9, 0xcf, 0xff, 0x0f, 0x00, 0x00, 0xff, 0xff, 0x01, 0xc8, 0x64,
+	0xd2, 0xaa, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1103,7 +978,7 @@ func NewUserClient(cc *grpc.ClientConn) UserClient {
 
 func (c *userClient) Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error) {
 	out := new(ResponseUser)
-	err := c.cc.Invoke(ctx, "/mindbox.User/Info", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/User/Info", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1112,7 +987,7 @@ func (c *userClient) Info(ctx context.Context, in *ParamsUser, opts ...grpc.Call
 
 func (c *userClient) Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.CallOption) (*ResponseOrders, error) {
 	out := new(ResponseOrders)
-	err := c.cc.Invoke(ctx, "/mindbox.User/Orders", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/User/Orders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1121,7 +996,7 @@ func (c *userClient) Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.
 
 func (c *userClient) SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts ...grpc.CallOption) (*ResponseOSMICard, error) {
 	out := new(ResponseOSMICard)
-	err := c.cc.Invoke(ctx, "/mindbox.User/SendOSMICard", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/User/SendOSMICard", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1163,7 +1038,7 @@ func _User_Info_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.User/Info",
+		FullMethod: "/User/Info",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).Info(ctx, req.(*ParamsUser))
@@ -1181,7 +1056,7 @@ func _User_Orders_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.User/Orders",
+		FullMethod: "/User/Orders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).Orders(ctx, req.(*ParamsOrders))
@@ -1199,7 +1074,7 @@ func _User_SendOSMICard_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.User/SendOSMICard",
+		FullMethod: "/User/SendOSMICard",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).SendOSMICard(ctx, req.(*ParamsOSMICard))
@@ -1208,7 +1083,7 @@ func _User_SendOSMICard_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 var _User_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "mindbox.User",
+	ServiceName: "User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1232,9 +1107,8 @@ var _User_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MobileClient interface {
-	Creation(ctx context.Context, in *ParamsCreation, opts ...grpc.CallOption) (*ResponseCreation, error)
-	Authorization(ctx context.Context, in *ParamsAuthorization, opts ...grpc.CallOption) (*ResponseAuthorization, error)
-	Registration(ctx context.Context, in *ParamsRegistration, opts ...grpc.CallOption) (*ResponseRegistration, error)
+	InitDevice(ctx context.Context, in *InitDeviceParams, opts ...grpc.CallOption) (*InitDeviceResponse, error)
+	InitClient(ctx context.Context, in *InitClientParams, opts ...grpc.CallOption) (*InitClientResponse, error)
 	Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error)
 	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error)
 	EditUser(ctx context.Context, in *ParamsEditUser, opts ...grpc.CallOption) (*ResponseEditUser, error)
@@ -1248,27 +1122,18 @@ func NewMobileClient(cc *grpc.ClientConn) MobileClient {
 	return &mobileClient{cc}
 }
 
-func (c *mobileClient) Creation(ctx context.Context, in *ParamsCreation, opts ...grpc.CallOption) (*ResponseCreation, error) {
-	out := new(ResponseCreation)
-	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Creation", in, out, opts...)
+func (c *mobileClient) InitDevice(ctx context.Context, in *InitDeviceParams, opts ...grpc.CallOption) (*InitDeviceResponse, error) {
+	out := new(InitDeviceResponse)
+	err := c.cc.Invoke(ctx, "/Mobile/InitDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mobileClient) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...grpc.CallOption) (*ResponseAuthorization, error) {
-	out := new(ResponseAuthorization)
-	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Authorization", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mobileClient) Registration(ctx context.Context, in *ParamsRegistration, opts ...grpc.CallOption) (*ResponseRegistration, error) {
-	out := new(ResponseRegistration)
-	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Registration", in, out, opts...)
+func (c *mobileClient) InitClient(ctx context.Context, in *InitClientParams, opts ...grpc.CallOption) (*InitClientResponse, error) {
+	out := new(InitClientResponse)
+	err := c.cc.Invoke(ctx, "/Mobile/InitClient", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1277,7 +1142,7 @@ func (c *mobileClient) Registration(ctx context.Context, in *ParamsRegistration,
 
 func (c *mobileClient) Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error) {
 	out := new(ResponseCode)
-	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Code", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/Mobile/Code", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1286,7 +1151,7 @@ func (c *mobileClient) Code(ctx context.Context, in *ParamsCode, opts ...grpc.Ca
 
 func (c *mobileClient) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error) {
 	out := new(ResponseCheckCode)
-	err := c.cc.Invoke(ctx, "/mindbox.Mobile/CheckCode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/Mobile/CheckCode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1295,7 +1160,7 @@ func (c *mobileClient) CheckCode(ctx context.Context, in *ParamsCheckCode, opts 
 
 func (c *mobileClient) EditUser(ctx context.Context, in *ParamsEditUser, opts ...grpc.CallOption) (*ResponseEditUser, error) {
 	out := new(ResponseEditUser)
-	err := c.cc.Invoke(ctx, "/mindbox.Mobile/EditUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/Mobile/EditUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1304,9 +1169,8 @@ func (c *mobileClient) EditUser(ctx context.Context, in *ParamsEditUser, opts ..
 
 // MobileServer is the server API for Mobile service.
 type MobileServer interface {
-	Creation(context.Context, *ParamsCreation) (*ResponseCreation, error)
-	Authorization(context.Context, *ParamsAuthorization) (*ResponseAuthorization, error)
-	Registration(context.Context, *ParamsRegistration) (*ResponseRegistration, error)
+	InitDevice(context.Context, *InitDeviceParams) (*InitDeviceResponse, error)
+	InitClient(context.Context, *InitClientParams) (*InitClientResponse, error)
 	Code(context.Context, *ParamsCode) (*ResponseCode, error)
 	CheckCode(context.Context, *ParamsCheckCode) (*ResponseCheckCode, error)
 	EditUser(context.Context, *ParamsEditUser) (*ResponseEditUser, error)
@@ -1316,14 +1180,11 @@ type MobileServer interface {
 type UnimplementedMobileServer struct {
 }
 
-func (*UnimplementedMobileServer) Creation(ctx context.Context, req *ParamsCreation) (*ResponseCreation, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Creation not implemented")
+func (*UnimplementedMobileServer) InitDevice(ctx context.Context, req *InitDeviceParams) (*InitDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitDevice not implemented")
 }
-func (*UnimplementedMobileServer) Authorization(ctx context.Context, req *ParamsAuthorization) (*ResponseAuthorization, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Authorization not implemented")
-}
-func (*UnimplementedMobileServer) Registration(ctx context.Context, req *ParamsRegistration) (*ResponseRegistration, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Registration not implemented")
+func (*UnimplementedMobileServer) InitClient(ctx context.Context, req *InitClientParams) (*InitClientResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitClient not implemented")
 }
 func (*UnimplementedMobileServer) Code(ctx context.Context, req *ParamsCode) (*ResponseCode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Code not implemented")
@@ -1339,56 +1200,38 @@ func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
 	s.RegisterService(&_Mobile_serviceDesc, srv)
 }
 
-func _Mobile_Creation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsCreation)
+func _Mobile_InitDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitDeviceParams)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileServer).Creation(ctx, in)
+		return srv.(MobileServer).InitDevice(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.Mobile/Creation",
+		FullMethod: "/Mobile/InitDevice",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Creation(ctx, req.(*ParamsCreation))
+		return srv.(MobileServer).InitDevice(ctx, req.(*InitDeviceParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Mobile_Authorization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsAuthorization)
+func _Mobile_InitClient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitClientParams)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MobileServer).Authorization(ctx, in)
+		return srv.(MobileServer).InitClient(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.Mobile/Authorization",
+		FullMethod: "/Mobile/InitClient",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Authorization(ctx, req.(*ParamsAuthorization))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Mobile_Registration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsRegistration)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MobileServer).Registration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/mindbox.Mobile/Registration",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Registration(ctx, req.(*ParamsRegistration))
+		return srv.(MobileServer).InitClient(ctx, req.(*InitClientParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1403,7 +1246,7 @@ func _Mobile_Code_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.Mobile/Code",
+		FullMethod: "/Mobile/Code",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).Code(ctx, req.(*ParamsCode))
@@ -1421,7 +1264,7 @@ func _Mobile_CheckCode_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.Mobile/CheckCode",
+		FullMethod: "/Mobile/CheckCode",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).CheckCode(ctx, req.(*ParamsCheckCode))
@@ -1439,7 +1282,7 @@ func _Mobile_EditUser_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mindbox.Mobile/EditUser",
+		FullMethod: "/Mobile/EditUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).EditUser(ctx, req.(*ParamsEditUser))
@@ -1448,20 +1291,16 @@ func _Mobile_EditUser_Handler(srv interface{}, ctx context.Context, dec func(int
 }
 
 var _Mobile_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "mindbox.Mobile",
+	ServiceName: "Mobile",
 	HandlerType: (*MobileServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Creation",
-			Handler:    _Mobile_Creation_Handler,
+			MethodName: "InitDevice",
+			Handler:    _Mobile_InitDevice_Handler,
 		},
 		{
-			MethodName: "Authorization",
-			Handler:    _Mobile_Authorization_Handler,
-		},
-		{
-			MethodName: "Registration",
-			Handler:    _Mobile_Registration_Handler,
+			MethodName: "InitClient",
+			Handler:    _Mobile_InitClient_Handler,
 		},
 		{
 			MethodName: "Code",
