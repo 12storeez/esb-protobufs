@@ -49,7 +49,7 @@ func NewUserService(name string, c client.Client) UserService {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
-		name = "user"
+		name = "mindbox"
 	}
 	return &userService{
 		c:    c,
@@ -144,7 +144,7 @@ func NewMobileService(name string, c client.Client) MobileService {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
-		name = "mobile"
+		name = "mindbox"
 	}
 	return &mobileService{
 		c:    c,
