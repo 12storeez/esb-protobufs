@@ -1,23 +1,16 @@
 syntax = "proto3";
 
 option go_package = "go/payments";
-import "google/protobuf/empty.proto";
 
 package payments;
 
 service Payments {
-    rpc Ping (google.protobuf.Empty) returns (PingResponse) {
-    }
     rpc GetCardsByUserID (ParamsGetCardByUserID) returns (ResponseGetCardByUserID) {
     }
     rpc SaveUserCard (UserCard) returns (ResponseSuccess) {
     }
     rpc DeleteCardByID (ParamsDeleteCardByID) returns (ResponseSuccess) {
     }
-}
-
-message PingResponse {
-    string response = 1;
 }
 
 message ParamsGetCardByUserID {
