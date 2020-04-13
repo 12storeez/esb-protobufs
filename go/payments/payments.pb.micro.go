@@ -6,7 +6,6 @@ package payments
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -35,7 +34,6 @@ var _ server.Option
 // Client API for Payments service
 
 type PaymentsService interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error)
 	GetCardsByUserID(ctx context.Context, in *ParamsGetCardByUserID, opts ...client.CallOption) (*ResponseGetCardByUserID, error)
 	SaveUserCard(ctx context.Context, in *UserCard, opts ...client.CallOption) (*ResponseSuccess, error)
 	DeleteCardByID(ctx context.Context, in *ParamsDeleteCardByID, opts ...client.CallOption) (*ResponseSuccess, error)
@@ -57,16 +55,6 @@ func NewPaymentsService(name string, c client.Client) PaymentsService {
 		c:    c,
 		name: name,
 	}
-}
-
-func (c *paymentsService) Ping(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*PingResponse, error) {
-	req := c.c.NewRequest(c.name, "Payments.Ping", in)
-	out := new(PingResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *paymentsService) GetCardsByUserID(ctx context.Context, in *ParamsGetCardByUserID, opts ...client.CallOption) (*ResponseGetCardByUserID, error) {
@@ -102,7 +90,6 @@ func (c *paymentsService) DeleteCardByID(ctx context.Context, in *ParamsDeleteCa
 // Server API for Payments service
 
 type PaymentsHandler interface {
-	Ping(context.Context, *empty.Empty, *PingResponse) error
 	GetCardsByUserID(context.Context, *ParamsGetCardByUserID, *ResponseGetCardByUserID) error
 	SaveUserCard(context.Context, *UserCard, *ResponseSuccess) error
 	DeleteCardByID(context.Context, *ParamsDeleteCardByID, *ResponseSuccess) error
@@ -110,7 +97,6 @@ type PaymentsHandler interface {
 
 func RegisterPaymentsHandler(s server.Server, hdlr PaymentsHandler, opts ...server.HandlerOption) error {
 	type payments interface {
-		Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error
 		GetCardsByUserID(ctx context.Context, in *ParamsGetCardByUserID, out *ResponseGetCardByUserID) error
 		SaveUserCard(ctx context.Context, in *UserCard, out *ResponseSuccess) error
 		DeleteCardByID(ctx context.Context, in *ParamsDeleteCardByID, out *ResponseSuccess) error
@@ -124,10 +110,6 @@ func RegisterPaymentsHandler(s server.Server, hdlr PaymentsHandler, opts ...serv
 
 type paymentsHandler struct {
 	PaymentsHandler
-}
-
-func (h *paymentsHandler) Ping(ctx context.Context, in *empty.Empty, out *PingResponse) error {
-	return h.PaymentsHandler.Ping(ctx, in, out)
 }
 
 func (h *paymentsHandler) GetCardsByUserID(ctx context.Context, in *ParamsGetCardByUserID, out *ResponseGetCardByUserID) error {
