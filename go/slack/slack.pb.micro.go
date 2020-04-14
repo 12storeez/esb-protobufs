@@ -89,3 +89,62 @@ type trackerHandler struct {
 func (h *trackerHandler) StatusChangeTicket(ctx context.Context, in *StatusChangeTicketParams, out *StatusChangeTicketResponse) error {
 	return h.TrackerHandler.StatusChangeTicket(ctx, in, out)
 }
+
+// Client API for Slack service
+
+type SlackService interface {
+	Send(ctx context.Context, in *SendParams, opts ...client.CallOption) (*SendResponse, error)
+}
+
+type slackService struct {
+	c    client.Client
+	name string
+}
+
+func NewSlackService(name string, c client.Client) SlackService {
+	if c == nil {
+		c = client.NewClient()
+	}
+	if len(name) == 0 {
+		name = "slack"
+	}
+	return &slackService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *slackService) Send(ctx context.Context, in *SendParams, opts ...client.CallOption) (*SendResponse, error) {
+	req := c.c.NewRequest(c.name, "Slack.Send", in)
+	out := new(SendResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Slack service
+
+type SlackHandler interface {
+	Send(context.Context, *SendParams, *SendResponse) error
+}
+
+func RegisterSlackHandler(s server.Server, hdlr SlackHandler, opts ...server.HandlerOption) error {
+	type slack interface {
+		Send(ctx context.Context, in *SendParams, out *SendResponse) error
+	}
+	type Slack struct {
+		slack
+	}
+	h := &slackHandler{hdlr}
+	return s.Handle(s.NewHandler(&Slack{h}, opts...))
+}
+
+type slackHandler struct {
+	SlackHandler
+}
+
+func (h *slackHandler) Send(ctx context.Context, in *SendParams, out *SendResponse) error {
+	return h.SlackHandler.Send(ctx, in, out)
+}

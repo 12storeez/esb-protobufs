@@ -127,9 +127,8 @@ func (h *userHandler) SendOSMICard(ctx context.Context, in *ParamsOSMICard, out 
 // Client API for Mobile service
 
 type MobileService interface {
-	Creation(ctx context.Context, in *ParamsCreation, opts ...client.CallOption) (*ResponseCreation, error)
-	Authorization(ctx context.Context, in *ParamsAuthorization, opts ...client.CallOption) (*ResponseAuthorization, error)
-	Registration(ctx context.Context, in *ParamsRegistration, opts ...client.CallOption) (*ResponseRegistration, error)
+	InitDevice(ctx context.Context, in *InitDeviceParams, opts ...client.CallOption) (*InitDeviceResponse, error)
+	InitClient(ctx context.Context, in *InitClientParams, opts ...client.CallOption) (*InitClientResponse, error)
 	Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error)
 	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error)
 	EditUser(ctx context.Context, in *ParamsEditUser, opts ...client.CallOption) (*ResponseEditUser, error)
@@ -153,9 +152,9 @@ func NewMobileService(name string, c client.Client) MobileService {
 	}
 }
 
-func (c *mobileService) Creation(ctx context.Context, in *ParamsCreation, opts ...client.CallOption) (*ResponseCreation, error) {
-	req := c.c.NewRequest(c.name, "Mobile.Creation", in)
-	out := new(ResponseCreation)
+func (c *mobileService) InitDevice(ctx context.Context, in *InitDeviceParams, opts ...client.CallOption) (*InitDeviceResponse, error) {
+	req := c.c.NewRequest(c.name, "Mobile.InitDevice", in)
+	out := new(InitDeviceResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -163,19 +162,9 @@ func (c *mobileService) Creation(ctx context.Context, in *ParamsCreation, opts .
 	return out, nil
 }
 
-func (c *mobileService) Authorization(ctx context.Context, in *ParamsAuthorization, opts ...client.CallOption) (*ResponseAuthorization, error) {
-	req := c.c.NewRequest(c.name, "Mobile.Authorization", in)
-	out := new(ResponseAuthorization)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mobileService) Registration(ctx context.Context, in *ParamsRegistration, opts ...client.CallOption) (*ResponseRegistration, error) {
-	req := c.c.NewRequest(c.name, "Mobile.Registration", in)
-	out := new(ResponseRegistration)
+func (c *mobileService) InitClient(ctx context.Context, in *InitClientParams, opts ...client.CallOption) (*InitClientResponse, error) {
+	req := c.c.NewRequest(c.name, "Mobile.InitClient", in)
+	out := new(InitClientResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -216,9 +205,8 @@ func (c *mobileService) EditUser(ctx context.Context, in *ParamsEditUser, opts .
 // Server API for Mobile service
 
 type MobileHandler interface {
-	Creation(context.Context, *ParamsCreation, *ResponseCreation) error
-	Authorization(context.Context, *ParamsAuthorization, *ResponseAuthorization) error
-	Registration(context.Context, *ParamsRegistration, *ResponseRegistration) error
+	InitDevice(context.Context, *InitDeviceParams, *InitDeviceResponse) error
+	InitClient(context.Context, *InitClientParams, *InitClientResponse) error
 	Code(context.Context, *ParamsCode, *ResponseCode) error
 	CheckCode(context.Context, *ParamsCheckCode, *ResponseCheckCode) error
 	EditUser(context.Context, *ParamsEditUser, *ResponseEditUser) error
@@ -226,9 +214,8 @@ type MobileHandler interface {
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
 	type mobile interface {
-		Creation(ctx context.Context, in *ParamsCreation, out *ResponseCreation) error
-		Authorization(ctx context.Context, in *ParamsAuthorization, out *ResponseAuthorization) error
-		Registration(ctx context.Context, in *ParamsRegistration, out *ResponseRegistration) error
+		InitDevice(ctx context.Context, in *InitDeviceParams, out *InitDeviceResponse) error
+		InitClient(ctx context.Context, in *InitClientParams, out *InitClientResponse) error
 		Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error
 		CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error
 		EditUser(ctx context.Context, in *ParamsEditUser, out *ResponseEditUser) error
@@ -244,16 +231,12 @@ type mobileHandler struct {
 	MobileHandler
 }
 
-func (h *mobileHandler) Creation(ctx context.Context, in *ParamsCreation, out *ResponseCreation) error {
-	return h.MobileHandler.Creation(ctx, in, out)
+func (h *mobileHandler) InitDevice(ctx context.Context, in *InitDeviceParams, out *InitDeviceResponse) error {
+	return h.MobileHandler.InitDevice(ctx, in, out)
 }
 
-func (h *mobileHandler) Authorization(ctx context.Context, in *ParamsAuthorization, out *ResponseAuthorization) error {
-	return h.MobileHandler.Authorization(ctx, in, out)
-}
-
-func (h *mobileHandler) Registration(ctx context.Context, in *ParamsRegistration, out *ResponseRegistration) error {
-	return h.MobileHandler.Registration(ctx, in, out)
+func (h *mobileHandler) InitClient(ctx context.Context, in *InitClientParams, out *InitClientResponse) error {
+	return h.MobileHandler.InitClient(ctx, in, out)
 }
 
 func (h *mobileHandler) Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error {
