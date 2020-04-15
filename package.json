@@ -1,9 +1,13 @@
 {
   "name": "esb-protobufs",
-  "version": "0.2.21",
+  "version": "0.2.25",
   "description": "protobuf for esb project",
   "types": "./typescript/index.d.ts",
   "main": "./typescript/index.js",
+  "files": [
+    "/typescript/*",
+    "/proto/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +28,11 @@
   },
   "homepage": "https://github.com/zhs/esb-protobufs#readme",
   "dependencies": {
+    "prettier": "^2.0.4",
+    "proto-parse": "0.0.5",
     "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {
+    "rxjs": "^6.5.5"
   }
 }
