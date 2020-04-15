@@ -69,7 +69,7 @@ export namespace mindbox {
 
   export interface ResponseOrders {
     total: number;
-    result: Order;
+    result: Order[];
   }
 
   export interface Order {
@@ -144,7 +144,7 @@ export namespace payments {
 
   export interface ResponseGetCardByUserID {
     total: number;
-    cards: UserCard;
+    cards: UserCard[];
   }
 
   export interface ResponseSuccess {
@@ -194,7 +194,7 @@ export namespace feedbacks {
   export interface ParamsStore {
     client_id: number;
     rate: string;
-    reasons: number;
+    reasons: number[];
     comment: string;
     store_id: number;
   }
@@ -202,7 +202,7 @@ export namespace feedbacks {
   export interface ParamsOrder {
     order_id: string;
     rate: string;
-    reasons: number;
+    reasons: number[];
     comment: string;
     store_id: number;
   }
@@ -223,11 +223,11 @@ export namespace feedbacks {
   }
 
   export interface ResponseReasons {
-    result: Reason;
+    result: Reason[];
   }
 
   export interface ResponseCategories {
-    result: Category;
+    result: Category[];
   }
 
   export interface ParamsReasonsByOrder {
@@ -291,7 +291,7 @@ export namespace meta {
   }
 
   export interface ResponseAllOfflineStoresInfo {
-    result: OfflineStore;
+    result: OfflineStore[];
   }
 
   export interface OfflineStore {
@@ -318,7 +318,7 @@ export namespace meta {
   }
 
   export interface ResponseMobileAPIContacts {
-    contacts: Contact;
+    contacts: Contact[];
   }
 
   export interface Contact {
@@ -330,7 +330,7 @@ export namespace meta {
   export interface ResponseMobileApiAbout {
     about: string;
     mission: string;
-    blocks: Block;
+    blocks: Block[];
     image_url: string;
   }
 
@@ -340,12 +340,12 @@ export namespace meta {
   }
 
   export interface ResponseFaq {
-    result: BlockFaq;
+    result: BlockFaq[];
   }
 
   export interface BlockFaq {
     title: string;
-    content: TextFaq;
+    content: TextFaq[];
   }
 
   export interface TextFaq {
@@ -366,7 +366,7 @@ export namespace meta {
   }
 
   export interface ResponseStoresCities {
-    result: City;
+    result: City[];
   }
 
   export interface ParamsStores {
@@ -379,7 +379,7 @@ export namespace meta {
     city_id: number;
     title: string;
     total: number;
-    stores: OfflineStore;
+    stores: OfflineStore[];
   }
 
   export interface ParamsCountries {
@@ -389,7 +389,7 @@ export namespace meta {
 
   export interface ResponseCountries {
     total: number;
-    result: Country;
+    result: Country[];
   }
 
   export interface Country {
@@ -406,7 +406,7 @@ export namespace meta {
   }
 
   export interface ResponseSocialNetworks {
-    result: SocialNetwork;
+    result: SocialNetwork[];
   }
 }
 
@@ -466,7 +466,7 @@ export namespace orders {
   }
 
   export interface ResponseOfflineByClient {
-    orders: OfflineOrder;
+    orders: OfflineOrder[];
   }
 
   export interface ParamsOnlineByClient {
@@ -474,7 +474,7 @@ export namespace orders {
   }
 
   export interface ResponseOnlineByClient {
-    order: number;
+    order: number[];
   }
 
   export interface OfflineOrder {
@@ -582,7 +582,7 @@ export namespace logistics {
   }
 
   export interface GetResponseOrderStatus {
-    statuses: status;
+    statuses: status[];
   }
 
   export interface status {
