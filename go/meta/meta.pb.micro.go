@@ -12,8 +12,9 @@ import (
 
 import (
 	context "context"
-	client "github.com/micro/go-micro/client"
-	server "github.com/micro/go-micro/server"
+	api "github.com/micro/go-micro/v2/api"
+	client "github.com/micro/go-micro/v2/client"
+	server "github.com/micro/go-micro/v2/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -28,9 +29,22 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Reference imports to suppress errors if they are not otherwise used.
+var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
+
+// Api Endpoints for Mobile service
+
+func NewMobileEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+	}
+}
 
 // Client API for Mobile service
 
@@ -48,12 +62,6 @@ type mobileService struct {
 }
 
 func NewMobileService(name string, c client.Client) MobileService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "meta"
-	}
 	return &mobileService{
 		c:    c,
 		name: name,
@@ -132,6 +140,11 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		mobile
 	}
 	h := &mobileHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Mobile{h}, opts...))
 }
 
@@ -159,6 +172,16 @@ func (h *mobileHandler) SocialNetworks(ctx context.Context, in *empty.Empty, out
 	return h.MobileHandler.SocialNetworks(ctx, in, out)
 }
 
+// Api Endpoints for Stores service
+
+func NewStoresEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+	}
+}
+
 // Client API for Stores service
 
 type StoresService interface {
@@ -173,12 +196,6 @@ type storesService struct {
 }
 
 func NewStoresService(name string, c client.Client) StoresService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "meta"
-	}
 	return &storesService{
 		c:    c,
 		name: name,
@@ -233,6 +250,9 @@ func RegisterStoresHandler(s server.Server, hdlr StoresHandler, opts ...server.H
 		stores
 	}
 	h := &storesHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Stores{h}, opts...))
 }
 
