@@ -18,6 +18,8 @@ service Mobile {
     }
     rpc InitClient(InitClientParams) returns (InitClientResponse) {
     }
+    rpc RemoveDevice(RemoveDeviceParams) returns (RemoveDeviceResponse) {
+    }
     rpc Code (ParamsCode) returns (ResponseCode) {
     }
     rpc CheckCode (ParamsCheckCode) returns (ResponseCheckCode) {
@@ -110,5 +112,13 @@ message ParamsOSMICard {
 }
 
 message ResponseOSMICard {
+    bool ok = 1;
+}
+
+message RemoveDeviceParams {
+    string device_id = 1;
+}
+
+message RemoveDeviceResponse {
     bool ok = 1;
 }
