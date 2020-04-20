@@ -4,8 +4,12 @@
 package mindbox
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -946,4 +950,372 @@ var fileDescriptor_c1ddbb12eed38be6 = []byte{
 	0xab, 0x27, 0x6e, 0xf0, 0xd5, 0x53, 0xb4, 0x71, 0x32, 0xfc, 0x03, 0xde, 0x57, 0xff, 0x11, 0x66,
 	0x5d, 0xfc, 0x93, 0xf0, 0xc3, 0xff, 0x01, 0x00, 0x00, 0xff, 0xff, 0x91, 0x57, 0x4f, 0x1c, 0x3b,
 	0x08, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// UserClient is the client API for User service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type UserClient interface {
+	Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error)
+	Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.CallOption) (*ResponseOrders, error)
+	SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts ...grpc.CallOption) (*ResponseOSMICard, error)
+}
+
+type userClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewUserClient(cc *grpc.ClientConn) UserClient {
+	return &userClient{cc}
+}
+
+func (c *userClient) Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error) {
+	out := new(ResponseUser)
+	err := c.cc.Invoke(ctx, "/mindbox.User/Info", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.CallOption) (*ResponseOrders, error) {
+	out := new(ResponseOrders)
+	err := c.cc.Invoke(ctx, "/mindbox.User/Orders", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts ...grpc.CallOption) (*ResponseOSMICard, error) {
+	out := new(ResponseOSMICard)
+	err := c.cc.Invoke(ctx, "/mindbox.User/SendOSMICard", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UserServer is the server API for User service.
+type UserServer interface {
+	Info(context.Context, *ParamsUser) (*ResponseUser, error)
+	Orders(context.Context, *ParamsOrders) (*ResponseOrders, error)
+	SendOSMICard(context.Context, *ParamsOSMICard) (*ResponseOSMICard, error)
+}
+
+// UnimplementedUserServer can be embedded to have forward compatible implementations.
+type UnimplementedUserServer struct {
+}
+
+func (*UnimplementedUserServer) Info(ctx context.Context, req *ParamsUser) (*ResponseUser, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
+}
+func (*UnimplementedUserServer) Orders(ctx context.Context, req *ParamsOrders) (*ResponseOrders, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Orders not implemented")
+}
+func (*UnimplementedUserServer) SendOSMICard(ctx context.Context, req *ParamsOSMICard) (*ResponseOSMICard, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendOSMICard not implemented")
+}
+
+func RegisterUserServer(s *grpc.Server, srv UserServer) {
+	s.RegisterService(&_User_serviceDesc, srv)
+}
+
+func _User_Info_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsUser)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Info(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.User/Info",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Info(ctx, req.(*ParamsUser))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Orders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsOrders)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Orders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.User/Orders",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Orders(ctx, req.(*ParamsOrders))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SendOSMICard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsOSMICard)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SendOSMICard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.User/SendOSMICard",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SendOSMICard(ctx, req.(*ParamsOSMICard))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _User_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.User",
+	HandlerType: (*UserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Info",
+			Handler:    _User_Info_Handler,
+		},
+		{
+			MethodName: "Orders",
+			Handler:    _User_Orders_Handler,
+		},
+		{
+			MethodName: "SendOSMICard",
+			Handler:    _User_SendOSMICard_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mindbox.proto",
+}
+
+// MobileClient is the client API for Mobile service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type MobileClient interface {
+	InitDevice(ctx context.Context, in *InitDeviceParams, opts ...grpc.CallOption) (*InitDeviceResponse, error)
+	InitClient(ctx context.Context, in *InitClientParams, opts ...grpc.CallOption) (*InitClientResponse, error)
+	Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error)
+	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error)
+	EditUser(ctx context.Context, in *ParamsEditUser, opts ...grpc.CallOption) (*ResponseEditUser, error)
+}
+
+type mobileClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewMobileClient(cc *grpc.ClientConn) MobileClient {
+	return &mobileClient{cc}
+}
+
+func (c *mobileClient) InitDevice(ctx context.Context, in *InitDeviceParams, opts ...grpc.CallOption) (*InitDeviceResponse, error) {
+	out := new(InitDeviceResponse)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/InitDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileClient) InitClient(ctx context.Context, in *InitClientParams, opts ...grpc.CallOption) (*InitClientResponse, error) {
+	out := new(InitClientResponse)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/InitClient", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileClient) Code(ctx context.Context, in *ParamsCode, opts ...grpc.CallOption) (*ResponseCode, error) {
+	out := new(ResponseCode)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/Code", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileClient) CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...grpc.CallOption) (*ResponseCheckCode, error) {
+	out := new(ResponseCheckCode)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/CheckCode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileClient) EditUser(ctx context.Context, in *ParamsEditUser, opts ...grpc.CallOption) (*ResponseEditUser, error) {
+	out := new(ResponseEditUser)
+	err := c.cc.Invoke(ctx, "/mindbox.Mobile/EditUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MobileServer is the server API for Mobile service.
+type MobileServer interface {
+	InitDevice(context.Context, *InitDeviceParams) (*InitDeviceResponse, error)
+	InitClient(context.Context, *InitClientParams) (*InitClientResponse, error)
+	Code(context.Context, *ParamsCode) (*ResponseCode, error)
+	CheckCode(context.Context, *ParamsCheckCode) (*ResponseCheckCode, error)
+	EditUser(context.Context, *ParamsEditUser) (*ResponseEditUser, error)
+}
+
+// UnimplementedMobileServer can be embedded to have forward compatible implementations.
+type UnimplementedMobileServer struct {
+}
+
+func (*UnimplementedMobileServer) InitDevice(ctx context.Context, req *InitDeviceParams) (*InitDeviceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitDevice not implemented")
+}
+func (*UnimplementedMobileServer) InitClient(ctx context.Context, req *InitClientParams) (*InitClientResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitClient not implemented")
+}
+func (*UnimplementedMobileServer) Code(ctx context.Context, req *ParamsCode) (*ResponseCode, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Code not implemented")
+}
+func (*UnimplementedMobileServer) CheckCode(ctx context.Context, req *ParamsCheckCode) (*ResponseCheckCode, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckCode not implemented")
+}
+func (*UnimplementedMobileServer) EditUser(ctx context.Context, req *ParamsEditUser) (*ResponseEditUser, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditUser not implemented")
+}
+
+func RegisterMobileServer(s *grpc.Server, srv MobileServer) {
+	s.RegisterService(&_Mobile_serviceDesc, srv)
+}
+
+func _Mobile_InitDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitDeviceParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).InitDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.Mobile/InitDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).InitDevice(ctx, req.(*InitDeviceParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mobile_InitClient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitClientParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).InitClient(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.Mobile/InitClient",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).InitClient(ctx, req.(*InitClientParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mobile_Code_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsCode)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).Code(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.Mobile/Code",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).Code(ctx, req.(*ParamsCode))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mobile_CheckCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsCheckCode)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).CheckCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.Mobile/CheckCode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).CheckCode(ctx, req.(*ParamsCheckCode))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mobile_EditUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsEditUser)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MobileServer).EditUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mindbox.Mobile/EditUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MobileServer).EditUser(ctx, req.(*ParamsEditUser))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Mobile_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.Mobile",
+	HandlerType: (*MobileServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "InitDevice",
+			Handler:    _Mobile_InitDevice_Handler,
+		},
+		{
+			MethodName: "InitClient",
+			Handler:    _Mobile_InitClient_Handler,
+		},
+		{
+			MethodName: "Code",
+			Handler:    _Mobile_Code_Handler,
+		},
+		{
+			MethodName: "CheckCode",
+			Handler:    _Mobile_CheckCode_Handler,
+		},
+		{
+			MethodName: "EditUser",
+			Handler:    _Mobile_EditUser_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mindbox.proto",
 }
