@@ -19,6 +19,10 @@ export namespace mindbox {
       request: InitClientParams,
       metadata?: any
     ): Observable<InitClientResponse>;
+    removeDevice(
+      request: RemoveDeviceParams,
+      metadata?: any
+    ): Observable<RemoveDeviceResponse>;
     code(request: ParamsCode, metadata?: any): Observable<ResponseCode>;
     checkCode(
       request: ParamsCheckCode,
@@ -118,6 +122,14 @@ export namespace mindbox {
   }
 
   export interface ResponseOSMICard {
+    ok: boolean;
+  }
+
+  export interface RemoveDeviceParams {
+    device_id: string;
+  }
+
+  export interface RemoveDeviceResponse {
     ok: boolean;
   }
 }
@@ -232,28 +244,6 @@ export namespace feedbacks {
 
   export interface ParamsReasonsByOrder {
     order_id: string;
-  }
-}
-
-export namespace grpc.health.v1 {
-  export interface Health {
-    check(
-      request: HealthCheckRequest,
-      metadata?: any
-    ): Observable<HealthCheckResponse>;
-  }
-
-  export interface HealthCheckRequest {
-    service: string;
-  }
-
-  export interface HealthCheckResponse {
-    status: ServingStatus;
-  }
-  enum ServingStatus {
-    UNKNOWN,
-    SERVING,
-    NOT_SERVING,
   }
 }
 
