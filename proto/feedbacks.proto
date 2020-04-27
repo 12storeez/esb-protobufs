@@ -25,9 +25,12 @@ message ResponseOk {
 
 message ParamsApp {
     int64 client_id = 1;
-    string app_version = 2;
-    string rate = 3;
-    string comment = 4;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string app_version = 5;
+    string rate = 6;
+    string comment = 7;
 }
 
 message ParamsStore {
