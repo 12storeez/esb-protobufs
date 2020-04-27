@@ -29,6 +29,7 @@ message SendParams {
     string message = 3;
     string from = 4;
     string thread_ts = 5;
+    string type = 6;
 }
 
 message SendResponse {
