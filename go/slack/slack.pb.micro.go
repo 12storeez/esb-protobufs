@@ -36,9 +36,7 @@ var _ server.Option
 // Api Endpoints for Tracker service
 
 func NewTrackerEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Tracker service
@@ -83,7 +81,6 @@ func RegisterTrackerHandler(s server.Server, hdlr TrackerHandler, opts ...server
 		tracker
 	}
 	h := &trackerHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Tracker{h}, opts...))
 }
 
@@ -98,9 +95,7 @@ func (h *trackerHandler) StatusChangeTicket(ctx context.Context, in *StatusChang
 // Api Endpoints for Slack service
 
 func NewSlackEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Slack service
@@ -145,7 +140,6 @@ func RegisterSlackHandler(s server.Server, hdlr SlackHandler, opts ...server.Han
 		slack
 	}
 	h := &slackHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Slack{h}, opts...))
 }
 

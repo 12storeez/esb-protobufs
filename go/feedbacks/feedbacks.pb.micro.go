@@ -37,14 +37,7 @@ var _ server.Option
 // Api Endpoints for Mobile service
 
 func NewMobileEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Mobile service
@@ -154,12 +147,6 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		mobile
 	}
 	h := &mobileHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Mobile{h}, opts...))
 }
 
