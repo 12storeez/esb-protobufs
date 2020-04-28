@@ -198,6 +198,9 @@ export namespace feedbacks {
 
   export interface ParamsApp {
     client_id: number;
+    name: string;
+    email: string;
+    phone: string;
     app_version: string;
     rate: string;
     comment: string;
@@ -427,6 +430,7 @@ export namespace slack {
     message: string;
     from: string;
     thread_ts: string;
+    type: string;
   }
 
   export interface SendResponse {
