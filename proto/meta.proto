@@ -28,6 +28,7 @@ service Stores {
 
 message ResponseAllOfflineStoresInfo {
     repeated OfflineStore result = 1;
+    int64 total = 2;
 }
 
 message OfflineStore {
