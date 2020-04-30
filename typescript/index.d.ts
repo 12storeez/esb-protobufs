@@ -285,6 +285,7 @@ export namespace meta {
 
   export interface ResponseAllOfflineStoresInfo {
     result: OfflineStore[];
+    total: number;
   }
 
   export interface OfflineStore {
