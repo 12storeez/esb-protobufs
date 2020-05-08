@@ -28,7 +28,7 @@ service Stores {
 
 message ResponseAllOfflineStoresInfo {
     repeated OfflineStore result = 1;
-    int64 total = 2;
+    int32 total = 2;
 }
 
 message OfflineStore {
@@ -130,7 +130,7 @@ message ResponseCountries {
 }
 
 message Country {
-    int64 id = 1;
+    int32 id = 1;
     string country_code = 2;
     string prefix = 3;
     string title_ru = 4;
