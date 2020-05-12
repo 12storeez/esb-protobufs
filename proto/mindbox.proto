@@ -76,7 +76,7 @@ message Order {
     double payment_amount = 5;
     double applied_discount = 6;
     double acquired_balance_change = 7;
-    int64 created_ts = 8;
+    int32 created_ts = 8;
 }
 
 message ParamsCode {
@@ -94,7 +94,7 @@ message ResponseCheckCode {
     bool ok = 1;
     string status = 2;
     string client_id = 3;
-    int64 mindbox_id = 4;
+    int32 mindbox_id = 4;
 }
 
 message ParamsEditUser {
