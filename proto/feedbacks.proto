@@ -31,6 +31,7 @@ message ParamsApp {
     string app_version = 5;
     string rate = 6;
     string comment = 7;
+    string device_id = 8;
 }
 
 message ParamsStore {
@@ -39,6 +40,7 @@ message ParamsStore {
     repeated int32 reasons = 3;
     string comment = 4;
     int32 store_id = 5;
+    string device_id = 6;
 }
 
 message ParamsOrder {
@@ -47,6 +49,7 @@ message ParamsOrder {
     repeated int32 reasons = 3;
     string comment = 4;
     int32 store_id = 5;
+    string device_id = 6;
 }
 
 message Reason {
