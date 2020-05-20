@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option go_package = "go/mercaux";
+
+package mercaux;
+
+service Stocks {
+    rpc Get (StocksGetParams) returns (StocksGetResponse) {
+    }
+}
+
+message StocksGetParams {
+    int32 page = 1;
+}
+
+message StocksGetResponse {
+    int32 pages = 1;
+    int32 page = 2;
+    repeated Stock stocks = 3;
+}
+
+message Stock {
+    string barcode = 1;
+    string category = 2;
+    string family = 3;
+    string product_name = 4;
+    string product_name_en = 5;
+    string picture = 6;
+    string url = 7;
+    bool is_active = 9;
+    int32 price = 10;
+    string article = 11;
+    string size = 12;
+    string color = 13;
+    string fabric = 14;
+    string model = 15;
+    string gender = 16;
+    repeated string sizes = 17;
+    repeated string barcode_alt = 18;
+    int32 discount = 19;
+    repeated string total_look = 20;
+    string description = 21;
+    repeated string images = 22;
+    repeated string site_category = 23;
+    string size_description = 24;
+    repeated string recommendations = 25;
+    repeated string alternatives = 26;
+    string video = 27;
+    repeated string instashop = 28;
+    string country = 29;
+    repeated Quantity quantity = 30;
+}
+
+message Quantity {
+    int32 store_id = 1;
+    int32 available = 2;
+    int32 reserved = 3;
+    int32 discount = 4;
+}

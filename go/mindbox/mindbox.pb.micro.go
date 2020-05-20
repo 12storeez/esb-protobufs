@@ -36,7 +36,11 @@ var _ server.Option
 // Api Endpoints for User service
 
 func NewUserEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{}
+	return []*api.Endpoint{
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+	}
 }
 
 // Client API for User service
@@ -107,6 +111,9 @@ func RegisterUserHandler(s server.Server, hdlr UserHandler, opts ...server.Handl
 		user
 	}
 	h := &userHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&User{h}, opts...))
 }
 
@@ -129,7 +136,14 @@ func (h *userHandler) SendOSMICard(ctx context.Context, in *ParamsOSMICard, out 
 // Api Endpoints for Mobile service
 
 func NewMobileEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{}
+	return []*api.Endpoint{
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+	}
 }
 
 // Client API for Mobile service
@@ -239,6 +253,12 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		mobile
 	}
 	h := &mobileHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Mobile{h}, opts...))
 }
 
