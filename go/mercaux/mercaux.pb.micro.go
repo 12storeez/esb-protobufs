@@ -6,6 +6,7 @@ package mercaux
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -93,4 +94,66 @@ type stocksHandler struct {
 
 func (h *stocksHandler) Get(ctx context.Context, in *StocksGetParams, out *StocksGetResponse) error {
 	return h.StocksHandler.Get(ctx, in, out)
+}
+
+// Api Endpoints for Stores service
+
+func NewStoresEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{
+		&api.Endpoint{},
+	}
+}
+
+// Client API for Stores service
+
+type StoresService interface {
+	Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*StoresGetResponse, error)
+}
+
+type storesService struct {
+	c    client.Client
+	name string
+}
+
+func NewStoresService(name string, c client.Client) StoresService {
+	return &storesService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *storesService) Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*StoresGetResponse, error) {
+	req := c.c.NewRequest(c.name, "Stores.Get", in)
+	out := new(StoresGetResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Stores service
+
+type StoresHandler interface {
+	Get(context.Context, *empty.Empty, *StoresGetResponse) error
+}
+
+func RegisterStoresHandler(s server.Server, hdlr StoresHandler, opts ...server.HandlerOption) error {
+	type stores interface {
+		Get(ctx context.Context, in *empty.Empty, out *StoresGetResponse) error
+	}
+	type Stores struct {
+		stores
+	}
+	h := &storesHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	return s.Handle(s.NewHandler(&Stores{h}, opts...))
+}
+
+type storesHandler struct {
+	StoresHandler
+}
+
+func (h *storesHandler) Get(ctx context.Context, in *empty.Empty, out *StoresGetResponse) error {
+	return h.StoresHandler.Get(ctx, in, out)
 }

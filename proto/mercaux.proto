@@ -1,11 +1,16 @@
 syntax = "proto3";
 
 option go_package = "go/mercaux";
-
+import "google/protobuf/empty.proto";
 package mercaux;
 
 service Stocks {
     rpc Get (StocksGetParams) returns (StocksGetResponse) {
+    }
+}
+
+service Stores {
+    rpc Get (google.protobuf.Empty) returns (StoresGetResponse) {
     }
 }
 
@@ -56,4 +61,18 @@ message Quantity {
     int32 available = 2;
     int32 reserved = 3;
     int32 discount = 4;
+}
+message StoresGetResponse {
+    repeated Store stores = 3;
+}
+
+message Store {
+    int32 store_id = 1;
+    string short_title = 2;
+    string address = 3;
+    string phone = 4;
+    string geo = 5;
+    string city = 6;
+    string country = 7;
+    bool active = 8;
 }
