@@ -38,10 +38,10 @@ message NewParams {
 
 message NewResponse {
     int32 id = 1;
-    repeated Improvements improvements = 2;
+    repeated Improvement improvements = 2;
 }
 
-message Improvements {
+message Improvement {
     int32 id = 1;
     string title = 2;
 }
