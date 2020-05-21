@@ -177,3 +177,96 @@ func (h *mobileHandler) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByO
 func (h *mobileHandler) ReasonsByStore(ctx context.Context, in *empty.Empty, out *ResponseReasons) error {
 	return h.MobileHandler.ReasonsByStore(ctx, in, out)
 }
+
+// Api Endpoints for Store service
+
+func NewStoreEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
+// Client API for Store service
+
+type StoreService interface {
+	New(ctx context.Context, in *NewParams, opts ...client.CallOption) (*NewResponse, error)
+	Improvements(ctx context.Context, in *ImprovementsParams, opts ...client.CallOption) (*ResponseOk, error)
+	Contacts(ctx context.Context, in *ContactsParams, opts ...client.CallOption) (*ResponseOk, error)
+}
+
+type storeService struct {
+	c    client.Client
+	name string
+}
+
+func NewStoreService(name string, c client.Client) StoreService {
+	return &storeService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *storeService) New(ctx context.Context, in *NewParams, opts ...client.CallOption) (*NewResponse, error) {
+	req := c.c.NewRequest(c.name, "Store.New", in)
+	out := new(NewResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storeService) Improvements(ctx context.Context, in *ImprovementsParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "Store.Improvements", in)
+	out := new(ResponseOk)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storeService) Contacts(ctx context.Context, in *ContactsParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "Store.Contacts", in)
+	out := new(ResponseOk)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Store service
+
+type StoreHandler interface {
+	New(context.Context, *NewParams, *NewResponse) error
+	Improvements(context.Context, *ImprovementsParams, *ResponseOk) error
+	Contacts(context.Context, *ContactsParams, *ResponseOk) error
+}
+
+func RegisterStoreHandler(s server.Server, hdlr StoreHandler, opts ...server.HandlerOption) error {
+	type store interface {
+		New(ctx context.Context, in *NewParams, out *NewResponse) error
+		Improvements(ctx context.Context, in *ImprovementsParams, out *ResponseOk) error
+		Contacts(ctx context.Context, in *ContactsParams, out *ResponseOk) error
+	}
+	type Store struct {
+		store
+	}
+	h := &storeHandler{hdlr}
+	return s.Handle(s.NewHandler(&Store{h}, opts...))
+}
+
+type storeHandler struct {
+	StoreHandler
+}
+
+func (h *storeHandler) New(ctx context.Context, in *NewParams, out *NewResponse) error {
+	return h.StoreHandler.New(ctx, in, out)
+}
+
+func (h *storeHandler) Improvements(ctx context.Context, in *ImprovementsParams, out *ResponseOk) error {
+	return h.StoreHandler.Improvements(ctx, in, out)
+}
+
+func (h *storeHandler) Contacts(ctx context.Context, in *ContactsParams, out *ResponseOk) error {
+	return h.StoreHandler.Contacts(ctx, in, out)
+}

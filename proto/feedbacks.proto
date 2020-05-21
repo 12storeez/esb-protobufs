@@ -19,6 +19,44 @@ service Mobile {
     rpc ReasonsByStore (google.protobuf.Empty) returns (ResponseReasons) {
     }
 }
+
+service Store {
+    rpc New (NewParams) returns (NewResponse) {
+    }
+    rpc Improvements (ImprovementsParams) returns (ResponseOk) {
+    }
+    rpc Contacts (ContactsParams) returns (ResponseOk) {
+    }
+}
+
+message NewParams {
+    int32 store_id = 1;
+    int32 location = 2;
+    int32 type = 3;
+    int32 rate = 4;
+}
+
+message NewResponse {
+    int32 id = 1;
+    repeated Improvement improvements = 2;
+}
+
+message Improvement {
+    int32 id = 1;
+    string title = 2;
+}
+
+message ImprovementsParams {
+    int32 id = 1;
+    repeated int32 improvements = 2;
+}
+
+message ContactsParams {
+    int32 id = 1;
+    string comment = 2;
+    string contact = 3;
+}
+
 message ResponseOk {
     bool ok = 1;
 }
