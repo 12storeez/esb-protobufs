@@ -157,3 +157,65 @@ type storesHandler struct {
 func (h *storesHandler) Get(ctx context.Context, in *empty.Empty, out *StoresGetResponse) error {
 	return h.StoresHandler.Get(ctx, in, out)
 }
+
+// Api Endpoints for Sellers service
+
+func NewSellersEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{
+		&api.Endpoint{},
+	}
+}
+
+// Client API for Sellers service
+
+type SellersService interface {
+	Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*SellersGetResponse, error)
+}
+
+type sellersService struct {
+	c    client.Client
+	name string
+}
+
+func NewSellersService(name string, c client.Client) SellersService {
+	return &sellersService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *sellersService) Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*SellersGetResponse, error) {
+	req := c.c.NewRequest(c.name, "Sellers.Get", in)
+	out := new(SellersGetResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Sellers service
+
+type SellersHandler interface {
+	Get(context.Context, *empty.Empty, *SellersGetResponse) error
+}
+
+func RegisterSellersHandler(s server.Server, hdlr SellersHandler, opts ...server.HandlerOption) error {
+	type sellers interface {
+		Get(ctx context.Context, in *empty.Empty, out *SellersGetResponse) error
+	}
+	type Sellers struct {
+		sellers
+	}
+	h := &sellersHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	return s.Handle(s.NewHandler(&Sellers{h}, opts...))
+}
+
+type sellersHandler struct {
+	SellersHandler
+}
+
+func (h *sellersHandler) Get(ctx context.Context, in *empty.Empty, out *SellersGetResponse) error {
+	return h.SellersHandler.Get(ctx, in, out)
+}

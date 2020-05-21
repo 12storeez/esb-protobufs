@@ -14,6 +14,11 @@ service Stores {
     }
 }
 
+service Sellers {
+    rpc Get (google.protobuf.Empty) returns (SellersGetResponse) {
+    }
+}
+
 message StocksGetParams {
     int32 page = 1;
 }
@@ -75,4 +80,14 @@ message Store {
     string city = 6;
     string country = 7;
     bool active = 8;
+}
+
+message SellersGetResponse {
+    repeated Seller sellers = 1;
+}
+
+message Seller {
+    int32 store_id = 1;
+    string seller_id = 2;
+    string seller_name = 3;
 }
