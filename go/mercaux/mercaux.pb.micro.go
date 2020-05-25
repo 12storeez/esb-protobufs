@@ -219,3 +219,65 @@ type sellersHandler struct {
 func (h *sellersHandler) Get(ctx context.Context, in *empty.Empty, out *SellersGetResponse) error {
 	return h.SellersHandler.Get(ctx, in, out)
 }
+
+// Api Endpoints for Orders service
+
+func NewOrdersEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{
+		&api.Endpoint{},
+	}
+}
+
+// Client API for Orders service
+
+type OrdersService interface {
+	New(ctx context.Context, in *OrdersNewParams, opts ...client.CallOption) (*OrdersNewResponse, error)
+}
+
+type ordersService struct {
+	c    client.Client
+	name string
+}
+
+func NewOrdersService(name string, c client.Client) OrdersService {
+	return &ordersService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *ordersService) New(ctx context.Context, in *OrdersNewParams, opts ...client.CallOption) (*OrdersNewResponse, error) {
+	req := c.c.NewRequest(c.name, "Orders.New", in)
+	out := new(OrdersNewResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Orders service
+
+type OrdersHandler interface {
+	New(context.Context, *OrdersNewParams, *OrdersNewResponse) error
+}
+
+func RegisterOrdersHandler(s server.Server, hdlr OrdersHandler, opts ...server.HandlerOption) error {
+	type orders interface {
+		New(ctx context.Context, in *OrdersNewParams, out *OrdersNewResponse) error
+	}
+	type Orders struct {
+		orders
+	}
+	h := &ordersHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	return s.Handle(s.NewHandler(&Orders{h}, opts...))
+}
+
+type ordersHandler struct {
+	OrdersHandler
+}
+
+func (h *ordersHandler) New(ctx context.Context, in *OrdersNewParams, out *OrdersNewResponse) error {
+	return h.OrdersHandler.New(ctx, in, out)
+}
