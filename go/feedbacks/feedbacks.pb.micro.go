@@ -194,7 +194,11 @@ func (h *mobileHandler) ReasonsByStore(ctx context.Context, in *empty.Empty, out
 // Api Endpoints for Store service
 
 func NewStoreEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{}
+	return []*api.Endpoint{
+		&api.Endpoint{},
+		&api.Endpoint{},
+		&api.Endpoint{},
+	}
 }
 
 // Client API for Store service
@@ -265,6 +269,9 @@ func RegisterStoreHandler(s server.Server, hdlr StoreHandler, opts ...server.Han
 		store
 	}
 	h := &storeHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Store{h}, opts...))
 }
 
