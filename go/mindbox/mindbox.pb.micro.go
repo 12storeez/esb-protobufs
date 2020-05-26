@@ -141,7 +141,7 @@ type MobileService interface {
 	Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error)
 	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error)
 	EditUser(ctx context.Context, in *ParamsEditUser, opts ...client.CallOption) (*ResponseEditUser, error)
-	IsExistUser(ctx context.Context, in *IsExistUserParams, opts ...client.CallOption) (*IsExistUserResponse, error)
+	IsUserExist(ctx context.Context, in *IsUserExistParams, opts ...client.CallOption) (*IsUserExistResponse, error)
 }
 
 type mobileService struct {
@@ -216,9 +216,9 @@ func (c *mobileService) EditUser(ctx context.Context, in *ParamsEditUser, opts .
 	return out, nil
 }
 
-func (c *mobileService) IsExistUser(ctx context.Context, in *IsExistUserParams, opts ...client.CallOption) (*IsExistUserResponse, error) {
-	req := c.c.NewRequest(c.name, "Mobile.IsExistUser", in)
-	out := new(IsExistUserResponse)
+func (c *mobileService) IsUserExist(ctx context.Context, in *IsUserExistParams, opts ...client.CallOption) (*IsUserExistResponse, error) {
+	req := c.c.NewRequest(c.name, "Mobile.IsUserExist", in)
+	out := new(IsUserExistResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -235,7 +235,7 @@ type MobileHandler interface {
 	Code(context.Context, *ParamsCode, *ResponseCode) error
 	CheckCode(context.Context, *ParamsCheckCode, *ResponseCheckCode) error
 	EditUser(context.Context, *ParamsEditUser, *ResponseEditUser) error
-	IsExistUser(context.Context, *IsExistUserParams, *IsExistUserResponse) error
+	IsUserExist(context.Context, *IsUserExistParams, *IsUserExistResponse) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -246,7 +246,7 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error
 		CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error
 		EditUser(ctx context.Context, in *ParamsEditUser, out *ResponseEditUser) error
-		IsExistUser(ctx context.Context, in *IsExistUserParams, out *IsExistUserResponse) error
+		IsUserExist(ctx context.Context, in *IsUserExistParams, out *IsUserExistResponse) error
 	}
 	type Mobile struct {
 		mobile
@@ -283,6 +283,6 @@ func (h *mobileHandler) EditUser(ctx context.Context, in *ParamsEditUser, out *R
 	return h.MobileHandler.EditUser(ctx, in, out)
 }
 
-func (h *mobileHandler) IsExistUser(ctx context.Context, in *IsExistUserParams, out *IsExistUserResponse) error {
-	return h.MobileHandler.IsExistUser(ctx, in, out)
+func (h *mobileHandler) IsUserExist(ctx context.Context, in *IsUserExistParams, out *IsUserExistResponse) error {
+	return h.MobileHandler.IsUserExist(ctx, in, out)
 }
