@@ -26,6 +26,17 @@ service Mobile {
     }
     rpc EditUser (ParamsEditUser) returns (ResponseEditUser) {
     }
+    rpc IsExistUser (IsExistUserParams) returns (IsExistUserResponse) {
+    }
+}
+
+message IsExistUserParams {
+    string mobile_phone = 1;
+}
+
+message IsExistUserResponse {
+    bool ok = 1;
+    string client_id = 2;
 }
 
 message InitDeviceParams {
