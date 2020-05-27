@@ -497,13 +497,22 @@ export namespace meta {
   }
 
   export interface ResponseMobileAPIContacts {
-    contacts: Contact[];
+    email: string;
+    partnership: string;
+    phone: Phone;
+    quality: string;
+    social: Social;
   }
 
-  export interface Contact {
-    title: string;
+  export interface Social {
+    telegram: string;
+    whatsapp: string;
+  }
+
+  export interface Phone {
     subtitle: string;
-    text: string;
+    title: string;
+    numbers: string[];
   }
 
   export interface ResponseMobileApiAbout {
