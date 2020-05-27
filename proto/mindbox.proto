@@ -85,7 +85,7 @@ message Order {
     string payment_type = 3;
     double discounted_total_price = 4;
     double payment_amount = 5;
-    double applied_discount = 6;
+    int32 applied_discount = 6;
     double acquired_balance_change = 7;
     int32 created_ts = 8;
 }
