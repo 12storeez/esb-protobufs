@@ -55,13 +55,22 @@ message ResponseOfflineStoreInfoByID {
 }
 
 message ResponseMobileAPIContacts {
-    repeated Contact contacts = 1;
+    string email = 1;
+    string partnership = 2;
+    Phone phone = 3;
+    string quality = 4;
+    Social social = 5;
 }
 
-message Contact {
-    string title = 1;
-    string subtitle = 2;
-    string text = 3;
+message Social {
+    string telegram = 1;
+    string whatsapp = 2;
+}
+
+message Phone {
+    string subtitle = 1;
+    string title = 2;
+    repeated string numbers = 3;
 }
 
 message ResponseMobileApiAbout {
