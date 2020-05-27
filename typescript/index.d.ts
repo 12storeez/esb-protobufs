@@ -32,6 +32,19 @@ export namespace mindbox {
       request: ParamsEditUser,
       metadata?: any
     ): Observable<ResponseEditUser>;
+    isUserExist(
+      request: IsUserExistParams,
+      metadata?: any
+    ): Observable<IsUserExistResponse>;
+  }
+
+  export interface IsUserExistParams {
+    mobile_phone: string;
+  }
+
+  export interface IsUserExistResponse {
+    ok: boolean;
+    client_id: string;
   }
 
   export interface InitDeviceParams {
@@ -134,6 +147,138 @@ export namespace mindbox {
   }
 }
 
+export namespace mercaux {
+  export interface Stocks {
+    get(
+      request: StocksGetParams,
+      metadata?: any
+    ): Observable<StocksGetResponse>;
+  }
+
+  export interface Stores {
+    get(request: any, metadata?: any): Observable<StoresGetResponse>;
+  }
+
+  export interface Sellers {
+    get(request: any, metadata?: any): Observable<SellersGetResponse>;
+  }
+
+  export interface Orders {
+    new (request: OrdersNewParams, metadata?: any): Observable<
+      OrdersNewResponse
+    >;
+  }
+
+  export interface StocksGetParams {
+    page: number;
+  }
+
+  export interface StocksGetResponse {
+    pages: number;
+    page: number;
+    stocks: Stock[];
+  }
+
+  export interface Stock {
+    barcode: string;
+    category: string;
+    family: string;
+    product_name: string;
+    product_name_en: string;
+    picture: string;
+    url: string;
+    is_active: boolean;
+    price: number;
+    article: string;
+    size: string;
+    color: string;
+    fabric: string;
+    model: string;
+    gender: string;
+    sizes: string[];
+    barcode_alt: string[];
+    discount: number;
+    total_look: string[];
+    description: string;
+    images: string[];
+    site_category: string[];
+    size_description: string;
+    recommendations: string[];
+    alternatives: string[];
+    video: string;
+    instashop: string[];
+    country: string;
+    quantity: Quantity[];
+  }
+
+  export interface Quantity {
+    store_id: number;
+    available: number;
+    reserved: number;
+    discount: number;
+  }
+
+  export interface StoresGetResponse {
+    stores: Store[];
+  }
+
+  export interface Store {
+    store_id: number;
+    short_title: string;
+    address: string;
+    phone: string;
+    geo: string;
+    city: string;
+    country: string;
+    active: boolean;
+  }
+
+  export interface SellersGetResponse {
+    sellers: Seller[];
+  }
+
+  export interface Seller {
+    store_id: number;
+    seller_id: string;
+    seller_name: string;
+  }
+
+  export interface OrdersNewParams {
+    order: Order;
+    source: string;
+    seller_id: string;
+  }
+
+  export interface Order {
+    last_name: string;
+    first_name: string;
+    phone: string;
+    email: string;
+    store_id: number;
+    items: OrderItem[];
+  }
+
+  export interface OrderItem {
+    id: string;
+    quantity: number;
+    price: float;
+  }
+
+  export interface OrdersNewResponse {
+    ok: boolean;
+    order_id: string;
+    errors: OrderError[];
+  }
+
+  export interface OrderError {
+    code: number;
+    message: string;
+    price: string;
+    available_quantity: number;
+    barcode: number;
+  }
+}
+
 export namespace payments {
   export interface Payments {
     getCardsByUserID(
@@ -192,6 +337,43 @@ export namespace feedbacks {
     reasonsByStore(request: any, metadata?: any): Observable<ResponseReasons>;
   }
 
+  export interface Store {
+    new (request: NewParams, metadata?: any): Observable<NewResponse>;
+    improvements(
+      request: ImprovementsParams,
+      metadata?: any
+    ): Observable<ResponseOk>;
+    contacts(request: ContactsParams, metadata?: any): Observable<ResponseOk>;
+  }
+
+  export interface NewParams {
+    store_id: number;
+    location: number;
+    type: number;
+    rate: number;
+  }
+
+  export interface NewResponse {
+    id: number;
+    improvements: Improvement[];
+  }
+
+  export interface Improvement {
+    id: number;
+    title: string;
+  }
+
+  export interface ImprovementsParams {
+    id: number;
+    improvements: number[];
+  }
+
+  export interface ContactsParams {
+    id: number;
+    comment: string;
+    contact: string;
+  }
+
   export interface ResponseOk {
     ok: boolean;
   }
@@ -204,6 +386,7 @@ export namespace feedbacks {
     app_version: string;
     rate: string;
     comment: string;
+    device_id: string;
   }
 
   export interface ParamsStore {
@@ -212,6 +395,7 @@ export namespace feedbacks {
     reasons: number[];
     comment: string;
     store_id: number;
+    device_id: string;
   }
 
   export interface ParamsOrder {
@@ -220,6 +404,7 @@ export namespace feedbacks {
     reasons: number[];
     comment: string;
     store_id: number;
+    device_id: string;
   }
 
   export interface Reason {
