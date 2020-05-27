@@ -261,7 +261,7 @@ export namespace mercaux {
   export interface OrderItem {
     id: string;
     quantity: number;
-    price: float;
+    price: number;
   }
 
   export interface OrdersNewResponse {

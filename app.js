@@ -86,7 +86,7 @@ function addAfterObjectLines() {
 }
 
 function convertType(typeName) {
-  if ("int32" === typeName || "double" === typeName || "int64" === typeName) {
+  if ("int32" === typeName || "double" === typeName || "int64" === typeName || "float" === typeName) {
     return "number";
   } else if ("bool" === typeName) {
     return "boolean";
