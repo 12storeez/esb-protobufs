@@ -37,14 +37,7 @@ var _ server.Option
 // Api Endpoints for Mobile service
 
 func NewMobileEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Mobile service
@@ -154,12 +147,6 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		mobile
 	}
 	h := &mobileHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Mobile{h}, opts...))
 }
 
@@ -194,19 +181,14 @@ func (h *mobileHandler) ReasonsByStore(ctx context.Context, in *empty.Empty, out
 // Api Endpoints for Store service
 
 func NewStoreEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-		&api.Endpoint{},
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Store service
 
 type StoreService interface {
 	New(ctx context.Context, in *NewParams, opts ...client.CallOption) (*NewResponse, error)
-	Improvements(ctx context.Context, in *ImprovementsParams, opts ...client.CallOption) (*ResponseOk, error)
-	Contacts(ctx context.Context, in *ContactsParams, opts ...client.CallOption) (*ResponseOk, error)
+	Patch(ctx context.Context, in *PatchParams, opts ...client.CallOption) (*ResponseOk, error)
 }
 
 type storeService struct {
@@ -231,18 +213,8 @@ func (c *storeService) New(ctx context.Context, in *NewParams, opts ...client.Ca
 	return out, nil
 }
 
-func (c *storeService) Improvements(ctx context.Context, in *ImprovementsParams, opts ...client.CallOption) (*ResponseOk, error) {
-	req := c.c.NewRequest(c.name, "Store.Improvements", in)
-	out := new(ResponseOk)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *storeService) Contacts(ctx context.Context, in *ContactsParams, opts ...client.CallOption) (*ResponseOk, error) {
-	req := c.c.NewRequest(c.name, "Store.Contacts", in)
+func (c *storeService) Patch(ctx context.Context, in *PatchParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "Store.Patch", in)
 	out := new(ResponseOk)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -255,23 +227,18 @@ func (c *storeService) Contacts(ctx context.Context, in *ContactsParams, opts ..
 
 type StoreHandler interface {
 	New(context.Context, *NewParams, *NewResponse) error
-	Improvements(context.Context, *ImprovementsParams, *ResponseOk) error
-	Contacts(context.Context, *ContactsParams, *ResponseOk) error
+	Patch(context.Context, *PatchParams, *ResponseOk) error
 }
 
 func RegisterStoreHandler(s server.Server, hdlr StoreHandler, opts ...server.HandlerOption) error {
 	type store interface {
 		New(ctx context.Context, in *NewParams, out *NewResponse) error
-		Improvements(ctx context.Context, in *ImprovementsParams, out *ResponseOk) error
-		Contacts(ctx context.Context, in *ContactsParams, out *ResponseOk) error
+		Patch(ctx context.Context, in *PatchParams, out *ResponseOk) error
 	}
 	type Store struct {
 		store
 	}
 	h := &storeHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Store{h}, opts...))
 }
 
@@ -283,10 +250,6 @@ func (h *storeHandler) New(ctx context.Context, in *NewParams, out *NewResponse)
 	return h.StoreHandler.New(ctx, in, out)
 }
 
-func (h *storeHandler) Improvements(ctx context.Context, in *ImprovementsParams, out *ResponseOk) error {
-	return h.StoreHandler.Improvements(ctx, in, out)
-}
-
-func (h *storeHandler) Contacts(ctx context.Context, in *ContactsParams, out *ResponseOk) error {
-	return h.StoreHandler.Contacts(ctx, in, out)
+func (h *storeHandler) Patch(ctx context.Context, in *PatchParams, out *ResponseOk) error {
+	return h.StoreHandler.Patch(ctx, in, out)
 }
