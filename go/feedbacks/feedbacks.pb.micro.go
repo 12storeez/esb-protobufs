@@ -49,6 +49,7 @@ type MobileService interface {
 	Categories(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseCategories, error)
 	ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, opts ...client.CallOption) (*ResponseReasons, error)
 	ReasonsByStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseReasons, error)
+	CanBeSaved(ctx context.Context, in *CanBeSavedParams, opts ...client.CallOption) (*ResponseOk, error)
 }
 
 type mobileService struct {
@@ -123,6 +124,16 @@ func (c *mobileService) ReasonsByStore(ctx context.Context, in *empty.Empty, opt
 	return out, nil
 }
 
+func (c *mobileService) CanBeSaved(ctx context.Context, in *CanBeSavedParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "Mobile.CanBeSaved", in)
+	out := new(ResponseOk)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Mobile service
 
 type MobileHandler interface {
@@ -132,6 +143,7 @@ type MobileHandler interface {
 	Categories(context.Context, *empty.Empty, *ResponseCategories) error
 	ReasonsByOrder(context.Context, *ParamsReasonsByOrder, *ResponseReasons) error
 	ReasonsByStore(context.Context, *empty.Empty, *ResponseReasons) error
+	CanBeSaved(context.Context, *CanBeSavedParams, *ResponseOk) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -142,6 +154,7 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		Categories(ctx context.Context, in *empty.Empty, out *ResponseCategories) error
 		ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, out *ResponseReasons) error
 		ReasonsByStore(ctx context.Context, in *empty.Empty, out *ResponseReasons) error
+		CanBeSaved(ctx context.Context, in *CanBeSavedParams, out *ResponseOk) error
 	}
 	type Mobile struct {
 		mobile
@@ -176,6 +189,10 @@ func (h *mobileHandler) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByO
 
 func (h *mobileHandler) ReasonsByStore(ctx context.Context, in *empty.Empty, out *ResponseReasons) error {
 	return h.MobileHandler.ReasonsByStore(ctx, in, out)
+}
+
+func (h *mobileHandler) CanBeSaved(ctx context.Context, in *CanBeSavedParams, out *ResponseOk) error {
+	return h.MobileHandler.CanBeSaved(ctx, in, out)
 }
 
 // Api Endpoints for Store service

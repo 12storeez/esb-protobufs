@@ -18,6 +18,8 @@ service Mobile {
     }
     rpc ReasonsByStore (google.protobuf.Empty) returns (ResponseReasons) {
     }
+    rpc CanBeSaved (CanBeSavedParams) returns (ResponseOk) {
+    }
 }
 
 service Store {
@@ -25,6 +27,10 @@ service Store {
     }
     rpc Patch (PatchParams) returns (ResponseOk) {
     }
+}
+
+message CanBeSavedParams {
+    string order_id = 1;
 }
 
 message PatchParams {
