@@ -335,15 +335,30 @@ export namespace feedbacks {
       metadata?: any
     ): Observable<ResponseReasons>;
     reasonsByStore(request: any, metadata?: any): Observable<ResponseReasons>;
+    canBeSaved(
+      request: CanBeSavedParams,
+      metadata?: any
+    ): Observable<ResponseOk>;
   }
 
   export interface Store {
     new (request: NewParams, metadata?: any): Observable<NewResponse>;
-    improvements(
-      request: ImprovementsParams,
-      metadata?: any
-    ): Observable<ResponseOk>;
-    contacts(request: ContactsParams, metadata?: any): Observable<ResponseOk>;
+    patch(request: PatchParams, metadata?: any): Observable<ResponseOk>;
+  }
+
+  export interface CanBeSavedParams {
+    order_id: string;
+  }
+
+  export interface PatchParams {
+    id: number;
+    store_id: number;
+    location: number;
+    type: number;
+    rate: number;
+    improvements: number[];
+    comment: string;
+    contact: string;
   }
 
   export interface NewParams {
@@ -361,17 +376,6 @@ export namespace feedbacks {
   export interface Improvement {
     id: number;
     title: string;
-  }
-
-  export interface ImprovementsParams {
-    id: number;
-    improvements: number[];
-  }
-
-  export interface ContactsParams {
-    id: number;
-    comment: string;
-    contact: string;
   }
 
   export interface ResponseOk {
