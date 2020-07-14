@@ -92,6 +92,7 @@ message Order {
 
 message ParamsCode {
     string mobile_phone = 1;
+    string device_id = 2;
 }
 message ResponseCode {
     bool ok = 1;
