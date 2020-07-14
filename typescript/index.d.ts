@@ -102,6 +102,7 @@ export namespace mindbox {
 
   export interface ParamsCode {
     mobile_phone: string;
+    device_id: string;
   }
 
   export interface ResponseCode {
