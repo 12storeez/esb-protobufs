@@ -113,6 +113,7 @@ message City {
 
 message ResponseStoresCities {
     repeated City result = 1;
+    int32 total = 2;
 }
 
 message ParamsStores {
