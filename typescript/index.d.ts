@@ -560,6 +560,7 @@ export namespace meta {
 
   export interface ResponseStoresCities {
     result: City[];
+    total: number;
   }
 
   export interface ParamsStores {
