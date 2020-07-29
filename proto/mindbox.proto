@@ -18,12 +18,25 @@ service Mobile {
     }
     rpc InitClient(InitClientParams) returns (InitClientResponse) {
     }
+    rpc RemoveDevice(RemoveDeviceParams) returns (RemoveDeviceResponse) {
+    }
     rpc Code (ParamsCode) returns (ResponseCode) {
     }
     rpc CheckCode (ParamsCheckCode) returns (ResponseCheckCode) {
     }
     rpc EditUser (ParamsEditUser) returns (ResponseEditUser) {
     }
+    rpc IsUserExist (IsUserExistParams) returns (IsUserExistResponse) {
+    }
+}
+
+message IsUserExistParams {
+    string mobile_phone = 1;
+}
+
+message IsUserExistResponse {
+    bool ok = 1;
+    string client_id = 2;
 }
 
 message InitDeviceParams {
@@ -72,13 +85,14 @@ message Order {
     string payment_type = 3;
     double discounted_total_price = 4;
     double payment_amount = 5;
-    double applied_discount = 6;
+    int32 applied_discount = 6;
     double acquired_balance_change = 7;
-    int64 created_ts = 8;
+    int32 created_ts = 8;
 }
 
 message ParamsCode {
     string mobile_phone = 1;
+    string device_id = 2;
 }
 message ResponseCode {
     bool ok = 1;
@@ -92,7 +106,7 @@ message ResponseCheckCode {
     bool ok = 1;
     string status = 2;
     string client_id = 3;
-    int64 mindbox_id = 4;
+    int32 mindbox_id = 4;
 }
 
 message ParamsEditUser {
@@ -110,5 +124,13 @@ message ParamsOSMICard {
 }
 
 message ResponseOSMICard {
+    bool ok = 1;
+}
+
+message RemoveDeviceParams {
+    string device_id = 1;
+}
+
+message RemoveDeviceResponse {
     bool ok = 1;
 }

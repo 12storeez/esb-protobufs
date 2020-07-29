@@ -28,6 +28,7 @@ service Stores {
 
 message ResponseAllOfflineStoresInfo {
     repeated OfflineStore result = 1;
+    int32 total = 2;
 }
 
 message OfflineStore {
@@ -54,13 +55,22 @@ message ResponseOfflineStoreInfoByID {
 }
 
 message ResponseMobileAPIContacts {
-    repeated Contact contacts = 1;
+    string email = 1;
+    string partnership = 2;
+    Phone phone = 3;
+    string quality = 4;
+    Social social = 5;
 }
 
-message Contact {
-    string title = 1;
-    string subtitle = 2;
-    string text = 3;
+message Social {
+    string telegram = 1;
+    string whatsapp = 2;
+}
+
+message Phone {
+    string subtitle = 1;
+    string title = 2;
+    repeated string numbers = 3;
 }
 
 message ResponseMobileApiAbout {
@@ -103,6 +113,7 @@ message City {
 
 message ResponseStoresCities {
     repeated City result = 1;
+    int32 total = 2;
 }
 
 message ParamsStores {
@@ -129,7 +140,7 @@ message ResponseCountries {
 }
 
 message Country {
-    int64 id = 1;
+    int32 id = 1;
     string country_code = 2;
     string prefix = 3;
     string title_ru = 4;

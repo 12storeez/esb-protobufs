@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+option go_package = "go/mercaux";
+import "google/protobuf/empty.proto";
+package mercaux;
+
+service Stocks {
+    rpc Get (StocksGetParams) returns (StocksGetResponse) {
+    }
+}
+
+service Stores {
+    rpc Get (google.protobuf.Empty) returns (StoresGetResponse) {
+    }
+}
+
+service Sellers {
+    rpc Get (google.protobuf.Empty) returns (SellersGetResponse) {
+    }
+}
+
+service Orders {
+    rpc New (OrdersNewParams) returns (OrdersNewResponse) {
+    }
+}
+
+message StocksGetParams {
+    int32 page = 1;
+}
+
+message StocksGetResponse {
+    int32 pages = 1;
+    int32 page = 2;
+    repeated Stock stocks = 3;
+}
+
+message Stock {
+    string barcode = 1;
+    string category = 2;
+    string family = 3;
+    string product_name = 4;
+    string product_name_en = 5;
+    string picture = 6;
+    string url = 7;
+    bool is_active = 9;
+    int32 price = 10;
+    string article = 11;
+    string size = 12;
+    string color = 13;
+    string fabric = 14;
+    string model = 15;
+    string gender = 16;
+    repeated string sizes = 17;
+    repeated string barcode_alt = 18;
+    int32 discount = 19;
+    repeated string total_look = 20;
+    string description = 21;
+    repeated string images = 22;
+    repeated string site_category = 23;
+    string size_description = 24;
+    repeated string recommendations = 25;
+    repeated string alternatives = 26;
+    string video = 27;
+    repeated string instashop = 28;
+    string country = 29;
+    repeated Quantity quantity = 30;
+}
+
+message Quantity {
+    int32 store_id = 1;
+    int32 available = 2;
+    int32 reserved = 3;
+    int32 discount = 4;
+}
+message StoresGetResponse {
+    repeated Store stores = 3;
+}
+
+message Store {
+    int32 store_id = 1;
+    string short_title = 2;
+    string address = 3;
+    string phone = 4;
+    string geo = 5;
+    string city = 6;
+    string country = 7;
+    bool active = 8;
+}
+
+message SellersGetResponse {
+    repeated Seller sellers = 1;
+}
+
+message Seller {
+    int32 store_id = 1;
+    string seller_id = 2;
+    string seller_name = 3;
+}
+
+message OrdersNewParams {
+    Order order = 1;
+    string source = 2;
+    string seller_id = 3;
+}
+
+message Order {
+    string last_name = 1;
+    string first_name = 2;
+    string phone = 3;
+    string email = 4;
+    int32 store_id = 5;
+    repeated OrderItem items = 6;
+}
+
+message OrderItem {
+    string id = 1;
+    int32 quantity = 2;
+    float price = 3;
+}
+
+message OrdersNewResponse {
+    bool ok = 1;
+    string order_id = 2;
+    repeated OrderError errors = 3;
+}
+
+message OrderError {
+    int32 code = 1;
+    string message = 2;
+    string price = 3;
+    int32 available_quantity = 4;
+    int64 barcode = 5;
+}

@@ -59,13 +59,20 @@ function setMethod(obj) {
 function setField(obj) {
   if ("field" === obj.type) {
     const typeName = convertType(obj.typename);
-    addLine("" + obj.name + ": " + typeName + ";");
+    addLine("" + obj.name + ": " + typeName + makeArr(obj.repeated) + ";");
   } else if ("enum" === obj.type) {
     insertAfterObject.push(obj.type + " " + obj.name + "{\n");
     obj.content.forEach((enumElem) => setEnumField(enumElem));
     insertAfterObject.push("}");
   } else {
     console.error(obj.type + " - !field type is not unknown");
+  }
+}
+function makeArr(repeated) {
+  if (repeated) {
+    return "[]";
+  } else {
+    return "";
   }
 }
 function setEnumField(obj) {
@@ -79,7 +86,7 @@ function addAfterObjectLines() {
 }
 
 function convertType(typeName) {
-  if ("int32" === typeName || "double" === typeName || "int64" === typeName) {
+  if ("int32" === typeName || "double" === typeName || "int64" === typeName || "float" === typeName) {
     return "number";
   } else if ("bool" === typeName) {
     return "boolean";

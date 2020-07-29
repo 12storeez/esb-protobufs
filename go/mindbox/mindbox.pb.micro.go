@@ -11,8 +11,9 @@ import (
 
 import (
 	context "context"
-	client "github.com/micro/go-micro/client"
-	server "github.com/micro/go-micro/server"
+	api "github.com/micro/go-micro/v2/api"
+	client "github.com/micro/go-micro/v2/client"
+	server "github.com/micro/go-micro/v2/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -27,9 +28,16 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Reference imports to suppress errors if they are not otherwise used.
+var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
+
+// Api Endpoints for User service
+
+func NewUserEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
 
 // Client API for User service
 
@@ -45,12 +53,6 @@ type userService struct {
 }
 
 func NewUserService(name string, c client.Client) UserService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "mindbox"
-	}
 	return &userService{
 		c:    c,
 		name: name,
@@ -124,14 +126,22 @@ func (h *userHandler) SendOSMICard(ctx context.Context, in *ParamsOSMICard, out 
 	return h.UserHandler.SendOSMICard(ctx, in, out)
 }
 
+// Api Endpoints for Mobile service
+
+func NewMobileEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
 // Client API for Mobile service
 
 type MobileService interface {
 	InitDevice(ctx context.Context, in *InitDeviceParams, opts ...client.CallOption) (*InitDeviceResponse, error)
 	InitClient(ctx context.Context, in *InitClientParams, opts ...client.CallOption) (*InitClientResponse, error)
+	RemoveDevice(ctx context.Context, in *RemoveDeviceParams, opts ...client.CallOption) (*RemoveDeviceResponse, error)
 	Code(ctx context.Context, in *ParamsCode, opts ...client.CallOption) (*ResponseCode, error)
 	CheckCode(ctx context.Context, in *ParamsCheckCode, opts ...client.CallOption) (*ResponseCheckCode, error)
 	EditUser(ctx context.Context, in *ParamsEditUser, opts ...client.CallOption) (*ResponseEditUser, error)
+	IsUserExist(ctx context.Context, in *IsUserExistParams, opts ...client.CallOption) (*IsUserExistResponse, error)
 }
 
 type mobileService struct {
@@ -140,12 +150,6 @@ type mobileService struct {
 }
 
 func NewMobileService(name string, c client.Client) MobileService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "mindbox"
-	}
 	return &mobileService{
 		c:    c,
 		name: name,
@@ -165,6 +169,16 @@ func (c *mobileService) InitDevice(ctx context.Context, in *InitDeviceParams, op
 func (c *mobileService) InitClient(ctx context.Context, in *InitClientParams, opts ...client.CallOption) (*InitClientResponse, error) {
 	req := c.c.NewRequest(c.name, "Mobile.InitClient", in)
 	out := new(InitClientResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mobileService) RemoveDevice(ctx context.Context, in *RemoveDeviceParams, opts ...client.CallOption) (*RemoveDeviceResponse, error) {
+	req := c.c.NewRequest(c.name, "Mobile.RemoveDevice", in)
+	out := new(RemoveDeviceResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -202,23 +216,37 @@ func (c *mobileService) EditUser(ctx context.Context, in *ParamsEditUser, opts .
 	return out, nil
 }
 
+func (c *mobileService) IsUserExist(ctx context.Context, in *IsUserExistParams, opts ...client.CallOption) (*IsUserExistResponse, error) {
+	req := c.c.NewRequest(c.name, "Mobile.IsUserExist", in)
+	out := new(IsUserExistResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Mobile service
 
 type MobileHandler interface {
 	InitDevice(context.Context, *InitDeviceParams, *InitDeviceResponse) error
 	InitClient(context.Context, *InitClientParams, *InitClientResponse) error
+	RemoveDevice(context.Context, *RemoveDeviceParams, *RemoveDeviceResponse) error
 	Code(context.Context, *ParamsCode, *ResponseCode) error
 	CheckCode(context.Context, *ParamsCheckCode, *ResponseCheckCode) error
 	EditUser(context.Context, *ParamsEditUser, *ResponseEditUser) error
+	IsUserExist(context.Context, *IsUserExistParams, *IsUserExistResponse) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
 	type mobile interface {
 		InitDevice(ctx context.Context, in *InitDeviceParams, out *InitDeviceResponse) error
 		InitClient(ctx context.Context, in *InitClientParams, out *InitClientResponse) error
+		RemoveDevice(ctx context.Context, in *RemoveDeviceParams, out *RemoveDeviceResponse) error
 		Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error
 		CheckCode(ctx context.Context, in *ParamsCheckCode, out *ResponseCheckCode) error
 		EditUser(ctx context.Context, in *ParamsEditUser, out *ResponseEditUser) error
+		IsUserExist(ctx context.Context, in *IsUserExistParams, out *IsUserExistResponse) error
 	}
 	type Mobile struct {
 		mobile
@@ -239,6 +267,10 @@ func (h *mobileHandler) InitClient(ctx context.Context, in *InitClientParams, ou
 	return h.MobileHandler.InitClient(ctx, in, out)
 }
 
+func (h *mobileHandler) RemoveDevice(ctx context.Context, in *RemoveDeviceParams, out *RemoveDeviceResponse) error {
+	return h.MobileHandler.RemoveDevice(ctx, in, out)
+}
+
 func (h *mobileHandler) Code(ctx context.Context, in *ParamsCode, out *ResponseCode) error {
 	return h.MobileHandler.Code(ctx, in, out)
 }
@@ -249,4 +281,8 @@ func (h *mobileHandler) CheckCode(ctx context.Context, in *ParamsCheckCode, out 
 
 func (h *mobileHandler) EditUser(ctx context.Context, in *ParamsEditUser, out *ResponseEditUser) error {
 	return h.MobileHandler.EditUser(ctx, in, out)
+}
+
+func (h *mobileHandler) IsUserExist(ctx context.Context, in *IsUserExistParams, out *IsUserExistResponse) error {
+	return h.MobileHandler.IsUserExist(ctx, in, out)
 }

@@ -12,8 +12,9 @@ import (
 
 import (
 	context "context"
-	client "github.com/micro/go-micro/client"
-	server "github.com/micro/go-micro/server"
+	api "github.com/micro/go-micro/v2/api"
+	client "github.com/micro/go-micro/v2/client"
+	server "github.com/micro/go-micro/v2/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -28,9 +29,16 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Reference imports to suppress errors if they are not otherwise used.
+var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
+
+// Api Endpoints for Mobile service
+
+func NewMobileEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
 
 // Client API for Mobile service
 
@@ -41,6 +49,7 @@ type MobileService interface {
 	Categories(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseCategories, error)
 	ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, opts ...client.CallOption) (*ResponseReasons, error)
 	ReasonsByStore(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*ResponseReasons, error)
+	CanBeSaved(ctx context.Context, in *CanBeSavedParams, opts ...client.CallOption) (*ResponseOk, error)
 }
 
 type mobileService struct {
@@ -49,12 +58,6 @@ type mobileService struct {
 }
 
 func NewMobileService(name string, c client.Client) MobileService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "feedbacks"
-	}
 	return &mobileService{
 		c:    c,
 		name: name,
@@ -121,6 +124,16 @@ func (c *mobileService) ReasonsByStore(ctx context.Context, in *empty.Empty, opt
 	return out, nil
 }
 
+func (c *mobileService) CanBeSaved(ctx context.Context, in *CanBeSavedParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "Mobile.CanBeSaved", in)
+	out := new(ResponseOk)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Mobile service
 
 type MobileHandler interface {
@@ -130,6 +143,7 @@ type MobileHandler interface {
 	Categories(context.Context, *empty.Empty, *ResponseCategories) error
 	ReasonsByOrder(context.Context, *ParamsReasonsByOrder, *ResponseReasons) error
 	ReasonsByStore(context.Context, *empty.Empty, *ResponseReasons) error
+	CanBeSaved(context.Context, *CanBeSavedParams, *ResponseOk) error
 }
 
 func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.HandlerOption) error {
@@ -140,6 +154,7 @@ func RegisterMobileHandler(s server.Server, hdlr MobileHandler, opts ...server.H
 		Categories(ctx context.Context, in *empty.Empty, out *ResponseCategories) error
 		ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, out *ResponseReasons) error
 		ReasonsByStore(ctx context.Context, in *empty.Empty, out *ResponseReasons) error
+		CanBeSaved(ctx context.Context, in *CanBeSavedParams, out *ResponseOk) error
 	}
 	type Mobile struct {
 		mobile
@@ -174,4 +189,84 @@ func (h *mobileHandler) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByO
 
 func (h *mobileHandler) ReasonsByStore(ctx context.Context, in *empty.Empty, out *ResponseReasons) error {
 	return h.MobileHandler.ReasonsByStore(ctx, in, out)
+}
+
+func (h *mobileHandler) CanBeSaved(ctx context.Context, in *CanBeSavedParams, out *ResponseOk) error {
+	return h.MobileHandler.CanBeSaved(ctx, in, out)
+}
+
+// Api Endpoints for Store service
+
+func NewStoreEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
+// Client API for Store service
+
+type StoreService interface {
+	New(ctx context.Context, in *NewParams, opts ...client.CallOption) (*NewResponse, error)
+	Patch(ctx context.Context, in *PatchParams, opts ...client.CallOption) (*ResponseOk, error)
+}
+
+type storeService struct {
+	c    client.Client
+	name string
+}
+
+func NewStoreService(name string, c client.Client) StoreService {
+	return &storeService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *storeService) New(ctx context.Context, in *NewParams, opts ...client.CallOption) (*NewResponse, error) {
+	req := c.c.NewRequest(c.name, "Store.New", in)
+	out := new(NewResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storeService) Patch(ctx context.Context, in *PatchParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "Store.Patch", in)
+	out := new(ResponseOk)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Store service
+
+type StoreHandler interface {
+	New(context.Context, *NewParams, *NewResponse) error
+	Patch(context.Context, *PatchParams, *ResponseOk) error
+}
+
+func RegisterStoreHandler(s server.Server, hdlr StoreHandler, opts ...server.HandlerOption) error {
+	type store interface {
+		New(ctx context.Context, in *NewParams, out *NewResponse) error
+		Patch(ctx context.Context, in *PatchParams, out *ResponseOk) error
+	}
+	type Store struct {
+		store
+	}
+	h := &storeHandler{hdlr}
+	return s.Handle(s.NewHandler(&Store{h}, opts...))
+}
+
+type storeHandler struct {
+	StoreHandler
+}
+
+func (h *storeHandler) New(ctx context.Context, in *NewParams, out *NewResponse) error {
+	return h.StoreHandler.New(ctx, in, out)
+}
+
+func (h *storeHandler) Patch(ctx context.Context, in *PatchParams, out *ResponseOk) error {
+	return h.StoreHandler.Patch(ctx, in, out)
 }

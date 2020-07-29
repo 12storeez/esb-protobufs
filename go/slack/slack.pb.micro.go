@@ -11,8 +11,9 @@ import (
 
 import (
 	context "context"
-	client "github.com/micro/go-micro/client"
-	server "github.com/micro/go-micro/server"
+	api "github.com/micro/go-micro/v2/api"
+	client "github.com/micro/go-micro/v2/client"
+	server "github.com/micro/go-micro/v2/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -27,9 +28,18 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Reference imports to suppress errors if they are not otherwise used.
+var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
+
+// Api Endpoints for Tracker service
+
+func NewTrackerEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{
+		&api.Endpoint{},
+	}
+}
 
 // Client API for Tracker service
 
@@ -43,12 +53,6 @@ type trackerService struct {
 }
 
 func NewTrackerService(name string, c client.Client) TrackerService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "slack"
-	}
 	return &trackerService{
 		c:    c,
 		name: name,
@@ -79,6 +83,7 @@ func RegisterTrackerHandler(s server.Server, hdlr TrackerHandler, opts ...server
 		tracker
 	}
 	h := &trackerHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Tracker{h}, opts...))
 }
 
@@ -88,6 +93,14 @@ type trackerHandler struct {
 
 func (h *trackerHandler) StatusChangeTicket(ctx context.Context, in *StatusChangeTicketParams, out *StatusChangeTicketResponse) error {
 	return h.TrackerHandler.StatusChangeTicket(ctx, in, out)
+}
+
+// Api Endpoints for Slack service
+
+func NewSlackEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{
+		&api.Endpoint{},
+	}
 }
 
 // Client API for Slack service
@@ -102,12 +115,6 @@ type slackService struct {
 }
 
 func NewSlackService(name string, c client.Client) SlackService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "slack"
-	}
 	return &slackService{
 		c:    c,
 		name: name,
@@ -138,6 +145,7 @@ func RegisterSlackHandler(s server.Server, hdlr SlackHandler, opts ...server.Han
 		slack
 	}
 	h := &slackHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Slack{h}, opts...))
 }
 
