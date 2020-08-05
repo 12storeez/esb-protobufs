@@ -68,7 +68,7 @@ message ResponseUser {
     int32 bonus_total = 5;
     int32 bonus_available = 6;
     int32 bonus_blocked = 7;
-    double total_paid_amount = 8;
+    int32 total_paid_amount = 8;
 }
 
 message ParamsOrders {
@@ -83,10 +83,10 @@ message Order {
     string order_id = 1;
     string created_date = 2;
     string payment_type = 3;
-    double discounted_total_price = 4;
-    double payment_amount = 5;
+    int32 discounted_total_price = 4;
+    int32 payment_amount = 5;
     int32 applied_discount = 6;
-    double acquired_balance_change = 7;
+    int32 acquired_balance_change = 7;
     int32 created_ts = 8;
 }
 
