@@ -233,39 +233,61 @@ message ZonePaymentMethodModel {
 }
 
 service WinnersCompanies {
-    rpc Winners (WinnersParams) returns (WinnersResponse) {
-    }
+    rpc Winners (WinnersParams) returns (WinnersResponse);
 }
 
 message WinnersParams {
-    string fias_id = 1;
-    string index_source = 2;
-    string index_dest = 3;
-    string country_source = 4;
-    string country_dest = 5;
-    string city_dest = 6;
-    float order_price = 7;
+    string geo_id = 1;
+    
+    int32 order_price = 2;
+    // enum idType {
+    //     FIAS = 0;
+    //     GEO_NAMES = 1;
+    // }
+    int32 geo_type = 3;
+    // в рублях
+    string locale = 4;
 }
 
 message WinnersResponse {
-    repeated winn winners = 1;
+    repeated winner result = 1;
 }
 
-message winn {
-    int32 delivery_id = 1;
-    string delivery_title = 2;
-    company winner_company = 3;
-    repeated payment payments = 4;
-    int32 transfer_date = 5;
+enum DELIVERY_TYPE {
+    courier = 0;
+    courier_fast = 1;
+    courier_fitting = 2;
+    pickup_shop = 3;
+    pickup_boxberry = 4;
 }
 
-message company {
-    int32 id = 1;
+message winner {
+    DELIVERY_TYPE delivery_type_id = 1;
+    string delivery_type_title = 2;
+    deliveryCompany winner_company = 3;
+    repeated paymentType payments = 4;
+    // 'YYYY-MM-DD'
+    repeated deliveryTime delivery_date = 6;
+}
+
+message deliveryCompany {
+    string code = 1;
     string title = 2;
 }
 
-message payment {
-    int32 id = 1;
+message paymentType {
+    string code = 1;
     string title = 2;
-    float price = 3;
+    int32 delivery_price = 3;
+}
+
+message deliveryTime {
+    string date = 1;
+    repeated Interval intervals = 2;
+}
+
+message Interval {
+    // 10:30 for example
+    string time_from = 1;
+    string time_to = 2;
 }
