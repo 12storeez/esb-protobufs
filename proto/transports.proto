@@ -1,0 +1,293 @@
+syntax = "proto3";
+
+option go_package = "go/transport";
+
+service Zones {
+    rpc GetIdByFias (Fias) returns (ZoneID) {
+    }
+    rpc GetIdByFiases (GetIdByFiasesParams) returns (ZoneID) {
+    }
+    rpc GetZoneById (GetZoneByIdParams) returns (Zone) {
+    }
+    rpc Create (CreateParams) returns (ZoneID) {
+    }
+    rpc AddFiasToZone (AddFiasToZoneParams) returns (OkResponse) {
+    }
+    rpc All (AllParams) returns (AllResponse) {
+    }
+    rpc Update (Zone) returns (OkResponse) {
+    }
+    rpc Delete (ZoneID) returns (OkResponse) {
+    }
+}
+
+//Service ZONE
+message Fias {
+    string fias = 1;
+}
+
+message ZoneID {
+    int32 zone_id = 1;
+}
+
+message GetIdByFiasesParams {
+    repeated string fias = 1;
+}
+
+message Zone {
+    int32 id = 1;
+    string name = 2;
+    bool active = 3;
+    int32 created = 4;
+    int32 updated = 5;
+}
+
+message GetZoneByIdParams {
+    int32 id = 1;
+}
+
+message CreateParams {
+    string zone_name = 1;
+}
+
+message AddFiasToZoneParams {
+    int32 zone_id = 1;
+    repeated string fias = 2;
+}
+
+message OkResponse {
+    bool ok = 1;
+}
+
+message AllParams {
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message AllResponse {
+    int32 total = 1;
+    repeated Zone zones = 2;
+}
+
+// service ZoneManualPriority
+service ZoneManualPriority {
+    rpc Add (AddManualPriorityParams) returns (OkResponse) {
+    }
+    rpc Get (ZoneID) returns (ManualPriorityList) {
+    }
+    rpc Update (ManualPriorityParams) returns (OkResponse) {
+    }
+    rpc Delete (ZoneDeliveryManualPriorityID) returns (OkResponse) {
+    }
+}
+
+message AddManualPriorityParams {
+    int32 zone_id = 1;
+    int32 tk_id = 2;
+    int32 delivery_id = 3;
+    float value = 4;
+    float max_days = 5;
+    float tariff = 6;
+    bool active = 7;
+}
+
+message ManualPriorityParams {
+    int32 id = 1;
+    int32 zone_id = 2;
+    int32 tk_id = 3;
+    int32 delivery_id = 4;
+    float value = 5;
+    float max_days = 6;
+    float tariff = 7;
+    bool active = 8;
+    int32 created = 9;
+    int32 updated = 10;
+}
+
+message ManualPriorityList {
+    repeated ManualPriorityParams list = 1;
+}
+
+message ZoneDeliveryManualPriorityID {
+    int32 id = 1;
+}
+
+// service DeliveryMethod
+service DeliveryMethod {
+    rpc Add (AddDeliveryMethodParams) returns (OkResponse) {
+    }
+    rpc Get (GetDeliveryMethodParams) returns (GetDeliveryMethodResponse) {
+    }
+    rpc Update (GetDeliveryMethodResponse) returns (OkResponse) {
+    }
+    rpc Delete (GetDeliveryMethodParams) returns (OkResponse) {
+    }
+}
+
+message AddDeliveryMethodParams {
+    string title = 1;
+}
+
+message GetDeliveryMethodParams {
+    int32 id = 1;
+}
+
+message GetDeliveryMethodResponse {
+    int32 id = 1;
+    string title = 2;
+    bool active = 3;
+    int32 created = 4;
+    int32 updated = 5;
+}
+
+// service PaymentMethod
+service PaymentMethod {
+    rpc Add (AddDeliveryMethodParams) returns (OkResponse) {
+    }
+    rpc Get (GetDeliveryMethodParams) returns (GetDeliveryMethodResponse) {
+    }
+    rpc Update (GetDeliveryMethodResponse) returns (OkResponse) {
+    }
+    rpc Delete (GetDeliveryMethodParams) returns (OkResponse) {
+    }
+}
+
+// service ZoneDeliveryMatrix
+service ZoneDeliveryMatrix {
+    rpc Add (AddZoneDeliveryMatrixParams) returns (OkResponse) {
+    }
+    rpc Get (GetDeliveryMethodParams) returns (ZoneDeliveryMatrixModel) {
+    }
+    rpc Update (ZoneDeliveryMatrixModel) returns (OkResponse) {
+    }
+    rpc Delete (ZoneDeliveryMatrixModel) returns (OkResponse) {
+    }
+}
+
+message AddZoneDeliveryMatrixParams {
+    int32 zone_id = 1;
+    string cutoff_time = 2;
+    int32 gap_days = 3;
+    int32 consolidation_days = 4;
+    int32 delivery_id = 5;
+    string work_days = 6;
+    string weekends = 7;
+    string saturday = 8;
+    string sunday = 9;
+    float total_less = 10;
+    float total_more = 11;
+    float total = 12;
+    int32 delivery_min_days = 13;
+    bool active = 14;
+}
+
+message ZoneDeliveryMatrixModel {
+    int32 id = 1;
+    int32 zone_id = 2;
+    string cutoff_time = 3;
+    int32 gap_days = 4;
+    int32 consolidation_days = 5;
+    int32 delivery_id = 6;
+    string work_days = 7;
+    string weekends = 8;
+    string saturday = 9;
+    string sunday = 10;
+    float total_less = 11;
+    float total_more = 12;
+    float total = 13;
+    int32 delivery_min_days = 14;
+    bool active = 15;
+    int32 created = 16;
+    int32 updated = 17;
+}
+
+// service ZonePaymentMethod
+service ZonePaymentMethod {
+    rpc Add (AddZonePaymentMethodParams) returns (OkResponse) {
+    }
+    rpc Get (GetDeliveryMethodParams) returns (ZonePaymentMethodModel) {
+    }
+    rpc Update (ZonePaymentMethodModel) returns (OkResponse) {
+    }
+    rpc Delete (ZonePaymentMethodModel) returns (OkResponse) {
+    }
+}
+
+message AddZonePaymentMethodParams {
+    int32 zone_id = 1;
+    int32 delivery_id = 2;
+    int32 payment_id = 3;
+    int32 tk_id = 4;
+    bool active = 5;
+}
+
+message ZonePaymentMethodModel {
+    int32 id = 1;
+    int32 zone_id = 2;
+    int32 delivery_id = 3;
+    int32 payment_id = 4;
+    int32 tk_id = 5;
+    bool active = 6;
+    int32 created = 7;
+    int32 updated = 8;
+}
+
+service WinnersCompanies {
+    rpc Winners (WinnersParams) returns (WinnersResponse);
+}
+
+message WinnersParams {
+    string geo_id = 1;
+    
+    int32 order_price = 2;
+    // enum idType {
+    //     FIAS = 0;
+    //     GEO_NAMES = 1;
+    // }
+    int32 geo_type = 3;
+    // в рублях
+    string locale = 4;
+}
+
+message WinnersResponse {
+    repeated winner result = 1;
+}
+
+enum DELIVERY_TYPE {
+    courier = 0;
+    courier_fast = 1;
+    courier_fitting = 2;
+    pickup_shop = 3;
+    pickup_boxberry = 4;
+}
+
+message winner {
+    DELIVERY_TYPE delivery_type_id = 1;
+    string delivery_type_title = 2;
+    deliveryCompany winner_company = 3;
+    repeated paymentType payments = 4;
+    // 'YYYY-MM-DD'
+    repeated deliveryTime delivery_date = 6;
+}
+
+message deliveryCompany {
+    string code = 1;
+    string title = 2;
+}
+
+message paymentType {
+    string code = 1;
+    string title = 2;
+    int32 delivery_price = 3;
+}
+
+message deliveryTime {
+    string date = 1;
+    repeated Interval intervals = 2;
+}
+
+message Interval {
+    // 10:30 for example
+    string time_from = 1;
+    string time_to = 2;
+}
