@@ -42,13 +42,12 @@ func NewZonesEndpoints() []*api.Endpoint {
 // Client API for Zones service
 
 type ZonesService interface {
-	GetIdByFias(ctx context.Context, in *Fias, opts ...client.CallOption) (*ZoneID, error)
-	GetIdByFiases(ctx context.Context, in *GetIdByFiasesParams, opts ...client.CallOption) (*ZoneID, error)
-	GetZoneById(ctx context.Context, in *GetZoneByIdParams, opts ...client.CallOption) (*Zone, error)
+	GetByDadataID(ctx context.Context, in *Dadata, opts ...client.CallOption) (*Zone, error)
+	GetByGeonameID(ctx context.Context, in *Geoname, opts ...client.CallOption) (*Zone, error)
+	GetByZoneID(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*Zone, error)
 	Create(ctx context.Context, in *CreateParams, opts ...client.CallOption) (*ZoneID, error)
-	AddFiasToZone(ctx context.Context, in *AddFiasToZoneParams, opts ...client.CallOption) (*OkResponse, error)
-	All(ctx context.Context, in *AllParams, opts ...client.CallOption) (*AllResponse, error)
-	Update(ctx context.Context, in *Zone, opts ...client.CallOption) (*OkResponse, error)
+	GetAll(ctx context.Context, in *GetAllParams, opts ...client.CallOption) (*GetAllResponse, error)
+	Update(ctx context.Context, in *UpdateParams, opts ...client.CallOption) (*OkResponse, error)
 	Delete(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*OkResponse, error)
 }
 
@@ -64,9 +63,9 @@ func NewZonesService(name string, c client.Client) ZonesService {
 	}
 }
 
-func (c *zonesService) GetIdByFias(ctx context.Context, in *Fias, opts ...client.CallOption) (*ZoneID, error) {
-	req := c.c.NewRequest(c.name, "Zones.GetIdByFias", in)
-	out := new(ZoneID)
+func (c *zonesService) GetByDadataID(ctx context.Context, in *Dadata, opts ...client.CallOption) (*Zone, error) {
+	req := c.c.NewRequest(c.name, "Zones.GetByDadataID", in)
+	out := new(Zone)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,9 +73,9 @@ func (c *zonesService) GetIdByFias(ctx context.Context, in *Fias, opts ...client
 	return out, nil
 }
 
-func (c *zonesService) GetIdByFiases(ctx context.Context, in *GetIdByFiasesParams, opts ...client.CallOption) (*ZoneID, error) {
-	req := c.c.NewRequest(c.name, "Zones.GetIdByFiases", in)
-	out := new(ZoneID)
+func (c *zonesService) GetByGeonameID(ctx context.Context, in *Geoname, opts ...client.CallOption) (*Zone, error) {
+	req := c.c.NewRequest(c.name, "Zones.GetByGeonameID", in)
+	out := new(Zone)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -84,8 +83,8 @@ func (c *zonesService) GetIdByFiases(ctx context.Context, in *GetIdByFiasesParam
 	return out, nil
 }
 
-func (c *zonesService) GetZoneById(ctx context.Context, in *GetZoneByIdParams, opts ...client.CallOption) (*Zone, error) {
-	req := c.c.NewRequest(c.name, "Zones.GetZoneById", in)
+func (c *zonesService) GetByZoneID(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*Zone, error) {
+	req := c.c.NewRequest(c.name, "Zones.GetByZoneID", in)
 	out := new(Zone)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -104,9 +103,9 @@ func (c *zonesService) Create(ctx context.Context, in *CreateParams, opts ...cli
 	return out, nil
 }
 
-func (c *zonesService) AddFiasToZone(ctx context.Context, in *AddFiasToZoneParams, opts ...client.CallOption) (*OkResponse, error) {
-	req := c.c.NewRequest(c.name, "Zones.AddFiasToZone", in)
-	out := new(OkResponse)
+func (c *zonesService) GetAll(ctx context.Context, in *GetAllParams, opts ...client.CallOption) (*GetAllResponse, error) {
+	req := c.c.NewRequest(c.name, "Zones.GetAll", in)
+	out := new(GetAllResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -114,17 +113,7 @@ func (c *zonesService) AddFiasToZone(ctx context.Context, in *AddFiasToZoneParam
 	return out, nil
 }
 
-func (c *zonesService) All(ctx context.Context, in *AllParams, opts ...client.CallOption) (*AllResponse, error) {
-	req := c.c.NewRequest(c.name, "Zones.All", in)
-	out := new(AllResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *zonesService) Update(ctx context.Context, in *Zone, opts ...client.CallOption) (*OkResponse, error) {
+func (c *zonesService) Update(ctx context.Context, in *UpdateParams, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "Zones.Update", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -147,25 +136,23 @@ func (c *zonesService) Delete(ctx context.Context, in *ZoneID, opts ...client.Ca
 // Server API for Zones service
 
 type ZonesHandler interface {
-	GetIdByFias(context.Context, *Fias, *ZoneID) error
-	GetIdByFiases(context.Context, *GetIdByFiasesParams, *ZoneID) error
-	GetZoneById(context.Context, *GetZoneByIdParams, *Zone) error
+	GetByDadataID(context.Context, *Dadata, *Zone) error
+	GetByGeonameID(context.Context, *Geoname, *Zone) error
+	GetByZoneID(context.Context, *ZoneID, *Zone) error
 	Create(context.Context, *CreateParams, *ZoneID) error
-	AddFiasToZone(context.Context, *AddFiasToZoneParams, *OkResponse) error
-	All(context.Context, *AllParams, *AllResponse) error
-	Update(context.Context, *Zone, *OkResponse) error
+	GetAll(context.Context, *GetAllParams, *GetAllResponse) error
+	Update(context.Context, *UpdateParams, *OkResponse) error
 	Delete(context.Context, *ZoneID, *OkResponse) error
 }
 
 func RegisterZonesHandler(s server.Server, hdlr ZonesHandler, opts ...server.HandlerOption) error {
 	type zones interface {
-		GetIdByFias(ctx context.Context, in *Fias, out *ZoneID) error
-		GetIdByFiases(ctx context.Context, in *GetIdByFiasesParams, out *ZoneID) error
-		GetZoneById(ctx context.Context, in *GetZoneByIdParams, out *Zone) error
+		GetByDadataID(ctx context.Context, in *Dadata, out *Zone) error
+		GetByGeonameID(ctx context.Context, in *Geoname, out *Zone) error
+		GetByZoneID(ctx context.Context, in *ZoneID, out *Zone) error
 		Create(ctx context.Context, in *CreateParams, out *ZoneID) error
-		AddFiasToZone(ctx context.Context, in *AddFiasToZoneParams, out *OkResponse) error
-		All(ctx context.Context, in *AllParams, out *AllResponse) error
-		Update(ctx context.Context, in *Zone, out *OkResponse) error
+		GetAll(ctx context.Context, in *GetAllParams, out *GetAllResponse) error
+		Update(ctx context.Context, in *UpdateParams, out *OkResponse) error
 		Delete(ctx context.Context, in *ZoneID, out *OkResponse) error
 	}
 	type Zones struct {
@@ -179,31 +166,27 @@ type zonesHandler struct {
 	ZonesHandler
 }
 
-func (h *zonesHandler) GetIdByFias(ctx context.Context, in *Fias, out *ZoneID) error {
-	return h.ZonesHandler.GetIdByFias(ctx, in, out)
+func (h *zonesHandler) GetByDadataID(ctx context.Context, in *Dadata, out *Zone) error {
+	return h.ZonesHandler.GetByDadataID(ctx, in, out)
 }
 
-func (h *zonesHandler) GetIdByFiases(ctx context.Context, in *GetIdByFiasesParams, out *ZoneID) error {
-	return h.ZonesHandler.GetIdByFiases(ctx, in, out)
+func (h *zonesHandler) GetByGeonameID(ctx context.Context, in *Geoname, out *Zone) error {
+	return h.ZonesHandler.GetByGeonameID(ctx, in, out)
 }
 
-func (h *zonesHandler) GetZoneById(ctx context.Context, in *GetZoneByIdParams, out *Zone) error {
-	return h.ZonesHandler.GetZoneById(ctx, in, out)
+func (h *zonesHandler) GetByZoneID(ctx context.Context, in *ZoneID, out *Zone) error {
+	return h.ZonesHandler.GetByZoneID(ctx, in, out)
 }
 
 func (h *zonesHandler) Create(ctx context.Context, in *CreateParams, out *ZoneID) error {
 	return h.ZonesHandler.Create(ctx, in, out)
 }
 
-func (h *zonesHandler) AddFiasToZone(ctx context.Context, in *AddFiasToZoneParams, out *OkResponse) error {
-	return h.ZonesHandler.AddFiasToZone(ctx, in, out)
+func (h *zonesHandler) GetAll(ctx context.Context, in *GetAllParams, out *GetAllResponse) error {
+	return h.ZonesHandler.GetAll(ctx, in, out)
 }
 
-func (h *zonesHandler) All(ctx context.Context, in *AllParams, out *AllResponse) error {
-	return h.ZonesHandler.All(ctx, in, out)
-}
-
-func (h *zonesHandler) Update(ctx context.Context, in *Zone, out *OkResponse) error {
+func (h *zonesHandler) Update(ctx context.Context, in *UpdateParams, out *OkResponse) error {
 	return h.ZonesHandler.Update(ctx, in, out)
 }
 
@@ -223,7 +206,7 @@ type ZoneManualPriorityService interface {
 	Add(ctx context.Context, in *AddManualPriorityParams, opts ...client.CallOption) (*OkResponse, error)
 	Get(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*ManualPriorityList, error)
 	Update(ctx context.Context, in *ManualPriorityParams, opts ...client.CallOption) (*OkResponse, error)
-	Delete(ctx context.Context, in *ZoneDeliveryManualPriorityID, opts ...client.CallOption) (*OkResponse, error)
+	Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error)
 }
 
 type zoneManualPriorityService struct {
@@ -268,7 +251,7 @@ func (c *zoneManualPriorityService) Update(ctx context.Context, in *ManualPriori
 	return out, nil
 }
 
-func (c *zoneManualPriorityService) Delete(ctx context.Context, in *ZoneDeliveryManualPriorityID, opts ...client.CallOption) (*OkResponse, error) {
+func (c *zoneManualPriorityService) Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "ZoneManualPriority.Delete", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -284,7 +267,7 @@ type ZoneManualPriorityHandler interface {
 	Add(context.Context, *AddManualPriorityParams, *OkResponse) error
 	Get(context.Context, *ZoneID, *ManualPriorityList) error
 	Update(context.Context, *ManualPriorityParams, *OkResponse) error
-	Delete(context.Context, *ZoneDeliveryManualPriorityID, *OkResponse) error
+	Delete(context.Context, *ID, *OkResponse) error
 }
 
 func RegisterZoneManualPriorityHandler(s server.Server, hdlr ZoneManualPriorityHandler, opts ...server.HandlerOption) error {
@@ -292,7 +275,7 @@ func RegisterZoneManualPriorityHandler(s server.Server, hdlr ZoneManualPriorityH
 		Add(ctx context.Context, in *AddManualPriorityParams, out *OkResponse) error
 		Get(ctx context.Context, in *ZoneID, out *ManualPriorityList) error
 		Update(ctx context.Context, in *ManualPriorityParams, out *OkResponse) error
-		Delete(ctx context.Context, in *ZoneDeliveryManualPriorityID, out *OkResponse) error
+		Delete(ctx context.Context, in *ID, out *OkResponse) error
 	}
 	type ZoneManualPriority struct {
 		zoneManualPriority
@@ -317,7 +300,7 @@ func (h *zoneManualPriorityHandler) Update(ctx context.Context, in *ManualPriori
 	return h.ZoneManualPriorityHandler.Update(ctx, in, out)
 }
 
-func (h *zoneManualPriorityHandler) Delete(ctx context.Context, in *ZoneDeliveryManualPriorityID, out *OkResponse) error {
+func (h *zoneManualPriorityHandler) Delete(ctx context.Context, in *ID, out *OkResponse) error {
 	return h.ZoneManualPriorityHandler.Delete(ctx, in, out)
 }
 
@@ -331,9 +314,9 @@ func NewDeliveryMethodEndpoints() []*api.Endpoint {
 
 type DeliveryMethodService interface {
 	Add(ctx context.Context, in *AddDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error)
-	Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*GetDeliveryMethodResponse, error)
-	Update(ctx context.Context, in *GetDeliveryMethodResponse, opts ...client.CallOption) (*OkResponse, error)
-	Delete(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error)
+	Get(ctx context.Context, in *ID, opts ...client.CallOption) (*GetDeliveryMethodResponse, error)
+	Update(ctx context.Context, in *UpdateDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error)
+	Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error)
 }
 
 type deliveryMethodService struct {
@@ -358,7 +341,7 @@ func (c *deliveryMethodService) Add(ctx context.Context, in *AddDeliveryMethodPa
 	return out, nil
 }
 
-func (c *deliveryMethodService) Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*GetDeliveryMethodResponse, error) {
+func (c *deliveryMethodService) Get(ctx context.Context, in *ID, opts ...client.CallOption) (*GetDeliveryMethodResponse, error) {
 	req := c.c.NewRequest(c.name, "DeliveryMethod.Get", in)
 	out := new(GetDeliveryMethodResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -368,7 +351,7 @@ func (c *deliveryMethodService) Get(ctx context.Context, in *GetDeliveryMethodPa
 	return out, nil
 }
 
-func (c *deliveryMethodService) Update(ctx context.Context, in *GetDeliveryMethodResponse, opts ...client.CallOption) (*OkResponse, error) {
+func (c *deliveryMethodService) Update(ctx context.Context, in *UpdateDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "DeliveryMethod.Update", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -378,7 +361,7 @@ func (c *deliveryMethodService) Update(ctx context.Context, in *GetDeliveryMetho
 	return out, nil
 }
 
-func (c *deliveryMethodService) Delete(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error) {
+func (c *deliveryMethodService) Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "DeliveryMethod.Delete", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -392,17 +375,17 @@ func (c *deliveryMethodService) Delete(ctx context.Context, in *GetDeliveryMetho
 
 type DeliveryMethodHandler interface {
 	Add(context.Context, *AddDeliveryMethodParams, *OkResponse) error
-	Get(context.Context, *GetDeliveryMethodParams, *GetDeliveryMethodResponse) error
-	Update(context.Context, *GetDeliveryMethodResponse, *OkResponse) error
-	Delete(context.Context, *GetDeliveryMethodParams, *OkResponse) error
+	Get(context.Context, *ID, *GetDeliveryMethodResponse) error
+	Update(context.Context, *UpdateDeliveryMethodParams, *OkResponse) error
+	Delete(context.Context, *ID, *OkResponse) error
 }
 
 func RegisterDeliveryMethodHandler(s server.Server, hdlr DeliveryMethodHandler, opts ...server.HandlerOption) error {
 	type deliveryMethod interface {
 		Add(ctx context.Context, in *AddDeliveryMethodParams, out *OkResponse) error
-		Get(ctx context.Context, in *GetDeliveryMethodParams, out *GetDeliveryMethodResponse) error
-		Update(ctx context.Context, in *GetDeliveryMethodResponse, out *OkResponse) error
-		Delete(ctx context.Context, in *GetDeliveryMethodParams, out *OkResponse) error
+		Get(ctx context.Context, in *ID, out *GetDeliveryMethodResponse) error
+		Update(ctx context.Context, in *UpdateDeliveryMethodParams, out *OkResponse) error
+		Delete(ctx context.Context, in *ID, out *OkResponse) error
 	}
 	type DeliveryMethod struct {
 		deliveryMethod
@@ -419,15 +402,15 @@ func (h *deliveryMethodHandler) Add(ctx context.Context, in *AddDeliveryMethodPa
 	return h.DeliveryMethodHandler.Add(ctx, in, out)
 }
 
-func (h *deliveryMethodHandler) Get(ctx context.Context, in *GetDeliveryMethodParams, out *GetDeliveryMethodResponse) error {
+func (h *deliveryMethodHandler) Get(ctx context.Context, in *ID, out *GetDeliveryMethodResponse) error {
 	return h.DeliveryMethodHandler.Get(ctx, in, out)
 }
 
-func (h *deliveryMethodHandler) Update(ctx context.Context, in *GetDeliveryMethodResponse, out *OkResponse) error {
+func (h *deliveryMethodHandler) Update(ctx context.Context, in *UpdateDeliveryMethodParams, out *OkResponse) error {
 	return h.DeliveryMethodHandler.Update(ctx, in, out)
 }
 
-func (h *deliveryMethodHandler) Delete(ctx context.Context, in *GetDeliveryMethodParams, out *OkResponse) error {
+func (h *deliveryMethodHandler) Delete(ctx context.Context, in *ID, out *OkResponse) error {
 	return h.DeliveryMethodHandler.Delete(ctx, in, out)
 }
 
@@ -440,10 +423,10 @@ func NewPaymentMethodEndpoints() []*api.Endpoint {
 // Client API for PaymentMethod service
 
 type PaymentMethodService interface {
-	Add(ctx context.Context, in *AddDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error)
-	Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*GetDeliveryMethodResponse, error)
-	Update(ctx context.Context, in *GetDeliveryMethodResponse, opts ...client.CallOption) (*OkResponse, error)
-	Delete(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error)
+	Add(ctx context.Context, in *AddPaymentMethodParams, opts ...client.CallOption) (*OkResponse, error)
+	Get(ctx context.Context, in *ID, opts ...client.CallOption) (*GetPaymentMethodResponse, error)
+	Update(ctx context.Context, in *UpdatePaymentMethodParams, opts ...client.CallOption) (*OkResponse, error)
+	Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error)
 }
 
 type paymentMethodService struct {
@@ -458,7 +441,7 @@ func NewPaymentMethodService(name string, c client.Client) PaymentMethodService 
 	}
 }
 
-func (c *paymentMethodService) Add(ctx context.Context, in *AddDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error) {
+func (c *paymentMethodService) Add(ctx context.Context, in *AddPaymentMethodParams, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "PaymentMethod.Add", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -468,9 +451,9 @@ func (c *paymentMethodService) Add(ctx context.Context, in *AddDeliveryMethodPar
 	return out, nil
 }
 
-func (c *paymentMethodService) Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*GetDeliveryMethodResponse, error) {
+func (c *paymentMethodService) Get(ctx context.Context, in *ID, opts ...client.CallOption) (*GetPaymentMethodResponse, error) {
 	req := c.c.NewRequest(c.name, "PaymentMethod.Get", in)
-	out := new(GetDeliveryMethodResponse)
+	out := new(GetPaymentMethodResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -478,7 +461,7 @@ func (c *paymentMethodService) Get(ctx context.Context, in *GetDeliveryMethodPar
 	return out, nil
 }
 
-func (c *paymentMethodService) Update(ctx context.Context, in *GetDeliveryMethodResponse, opts ...client.CallOption) (*OkResponse, error) {
+func (c *paymentMethodService) Update(ctx context.Context, in *UpdatePaymentMethodParams, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "PaymentMethod.Update", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -488,7 +471,7 @@ func (c *paymentMethodService) Update(ctx context.Context, in *GetDeliveryMethod
 	return out, nil
 }
 
-func (c *paymentMethodService) Delete(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*OkResponse, error) {
+func (c *paymentMethodService) Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "PaymentMethod.Delete", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -501,18 +484,18 @@ func (c *paymentMethodService) Delete(ctx context.Context, in *GetDeliveryMethod
 // Server API for PaymentMethod service
 
 type PaymentMethodHandler interface {
-	Add(context.Context, *AddDeliveryMethodParams, *OkResponse) error
-	Get(context.Context, *GetDeliveryMethodParams, *GetDeliveryMethodResponse) error
-	Update(context.Context, *GetDeliveryMethodResponse, *OkResponse) error
-	Delete(context.Context, *GetDeliveryMethodParams, *OkResponse) error
+	Add(context.Context, *AddPaymentMethodParams, *OkResponse) error
+	Get(context.Context, *ID, *GetPaymentMethodResponse) error
+	Update(context.Context, *UpdatePaymentMethodParams, *OkResponse) error
+	Delete(context.Context, *ID, *OkResponse) error
 }
 
 func RegisterPaymentMethodHandler(s server.Server, hdlr PaymentMethodHandler, opts ...server.HandlerOption) error {
 	type paymentMethod interface {
-		Add(ctx context.Context, in *AddDeliveryMethodParams, out *OkResponse) error
-		Get(ctx context.Context, in *GetDeliveryMethodParams, out *GetDeliveryMethodResponse) error
-		Update(ctx context.Context, in *GetDeliveryMethodResponse, out *OkResponse) error
-		Delete(ctx context.Context, in *GetDeliveryMethodParams, out *OkResponse) error
+		Add(ctx context.Context, in *AddPaymentMethodParams, out *OkResponse) error
+		Get(ctx context.Context, in *ID, out *GetPaymentMethodResponse) error
+		Update(ctx context.Context, in *UpdatePaymentMethodParams, out *OkResponse) error
+		Delete(ctx context.Context, in *ID, out *OkResponse) error
 	}
 	type PaymentMethod struct {
 		paymentMethod
@@ -525,19 +508,19 @@ type paymentMethodHandler struct {
 	PaymentMethodHandler
 }
 
-func (h *paymentMethodHandler) Add(ctx context.Context, in *AddDeliveryMethodParams, out *OkResponse) error {
+func (h *paymentMethodHandler) Add(ctx context.Context, in *AddPaymentMethodParams, out *OkResponse) error {
 	return h.PaymentMethodHandler.Add(ctx, in, out)
 }
 
-func (h *paymentMethodHandler) Get(ctx context.Context, in *GetDeliveryMethodParams, out *GetDeliveryMethodResponse) error {
+func (h *paymentMethodHandler) Get(ctx context.Context, in *ID, out *GetPaymentMethodResponse) error {
 	return h.PaymentMethodHandler.Get(ctx, in, out)
 }
 
-func (h *paymentMethodHandler) Update(ctx context.Context, in *GetDeliveryMethodResponse, out *OkResponse) error {
+func (h *paymentMethodHandler) Update(ctx context.Context, in *UpdatePaymentMethodParams, out *OkResponse) error {
 	return h.PaymentMethodHandler.Update(ctx, in, out)
 }
 
-func (h *paymentMethodHandler) Delete(ctx context.Context, in *GetDeliveryMethodParams, out *OkResponse) error {
+func (h *paymentMethodHandler) Delete(ctx context.Context, in *ID, out *OkResponse) error {
 	return h.PaymentMethodHandler.Delete(ctx, in, out)
 }
 
@@ -551,9 +534,9 @@ func NewZoneDeliveryMatrixEndpoints() []*api.Endpoint {
 
 type ZoneDeliveryMatrixService interface {
 	Add(ctx context.Context, in *AddZoneDeliveryMatrixParams, opts ...client.CallOption) (*OkResponse, error)
-	Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*ZoneDeliveryMatrixModel, error)
+	Get(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*GetDeliveryMatrixResponse, error)
 	Update(ctx context.Context, in *ZoneDeliveryMatrixModel, opts ...client.CallOption) (*OkResponse, error)
-	Delete(ctx context.Context, in *ZoneDeliveryMatrixModel, opts ...client.CallOption) (*OkResponse, error)
+	Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error)
 }
 
 type zoneDeliveryMatrixService struct {
@@ -578,9 +561,9 @@ func (c *zoneDeliveryMatrixService) Add(ctx context.Context, in *AddZoneDelivery
 	return out, nil
 }
 
-func (c *zoneDeliveryMatrixService) Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*ZoneDeliveryMatrixModel, error) {
+func (c *zoneDeliveryMatrixService) Get(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*GetDeliveryMatrixResponse, error) {
 	req := c.c.NewRequest(c.name, "ZoneDeliveryMatrix.Get", in)
-	out := new(ZoneDeliveryMatrixModel)
+	out := new(GetDeliveryMatrixResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -598,7 +581,7 @@ func (c *zoneDeliveryMatrixService) Update(ctx context.Context, in *ZoneDelivery
 	return out, nil
 }
 
-func (c *zoneDeliveryMatrixService) Delete(ctx context.Context, in *ZoneDeliveryMatrixModel, opts ...client.CallOption) (*OkResponse, error) {
+func (c *zoneDeliveryMatrixService) Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "ZoneDeliveryMatrix.Delete", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -612,17 +595,17 @@ func (c *zoneDeliveryMatrixService) Delete(ctx context.Context, in *ZoneDelivery
 
 type ZoneDeliveryMatrixHandler interface {
 	Add(context.Context, *AddZoneDeliveryMatrixParams, *OkResponse) error
-	Get(context.Context, *GetDeliveryMethodParams, *ZoneDeliveryMatrixModel) error
+	Get(context.Context, *ZoneID, *GetDeliveryMatrixResponse) error
 	Update(context.Context, *ZoneDeliveryMatrixModel, *OkResponse) error
-	Delete(context.Context, *ZoneDeliveryMatrixModel, *OkResponse) error
+	Delete(context.Context, *ID, *OkResponse) error
 }
 
 func RegisterZoneDeliveryMatrixHandler(s server.Server, hdlr ZoneDeliveryMatrixHandler, opts ...server.HandlerOption) error {
 	type zoneDeliveryMatrix interface {
 		Add(ctx context.Context, in *AddZoneDeliveryMatrixParams, out *OkResponse) error
-		Get(ctx context.Context, in *GetDeliveryMethodParams, out *ZoneDeliveryMatrixModel) error
+		Get(ctx context.Context, in *ZoneID, out *GetDeliveryMatrixResponse) error
 		Update(ctx context.Context, in *ZoneDeliveryMatrixModel, out *OkResponse) error
-		Delete(ctx context.Context, in *ZoneDeliveryMatrixModel, out *OkResponse) error
+		Delete(ctx context.Context, in *ID, out *OkResponse) error
 	}
 	type ZoneDeliveryMatrix struct {
 		zoneDeliveryMatrix
@@ -639,7 +622,7 @@ func (h *zoneDeliveryMatrixHandler) Add(ctx context.Context, in *AddZoneDelivery
 	return h.ZoneDeliveryMatrixHandler.Add(ctx, in, out)
 }
 
-func (h *zoneDeliveryMatrixHandler) Get(ctx context.Context, in *GetDeliveryMethodParams, out *ZoneDeliveryMatrixModel) error {
+func (h *zoneDeliveryMatrixHandler) Get(ctx context.Context, in *ZoneID, out *GetDeliveryMatrixResponse) error {
 	return h.ZoneDeliveryMatrixHandler.Get(ctx, in, out)
 }
 
@@ -647,7 +630,7 @@ func (h *zoneDeliveryMatrixHandler) Update(ctx context.Context, in *ZoneDelivery
 	return h.ZoneDeliveryMatrixHandler.Update(ctx, in, out)
 }
 
-func (h *zoneDeliveryMatrixHandler) Delete(ctx context.Context, in *ZoneDeliveryMatrixModel, out *OkResponse) error {
+func (h *zoneDeliveryMatrixHandler) Delete(ctx context.Context, in *ID, out *OkResponse) error {
 	return h.ZoneDeliveryMatrixHandler.Delete(ctx, in, out)
 }
 
@@ -661,9 +644,9 @@ func NewZonePaymentMethodEndpoints() []*api.Endpoint {
 
 type ZonePaymentMethodService interface {
 	Add(ctx context.Context, in *AddZonePaymentMethodParams, opts ...client.CallOption) (*OkResponse, error)
-	Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*ZonePaymentMethodModel, error)
-	Update(ctx context.Context, in *ZonePaymentMethodModel, opts ...client.CallOption) (*OkResponse, error)
-	Delete(ctx context.Context, in *ZonePaymentMethodModel, opts ...client.CallOption) (*OkResponse, error)
+	Get(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*ZonePaymentMethodResponse, error)
+	Update(ctx context.Context, in *UpdateZonePaymentMethodParams, opts ...client.CallOption) (*OkResponse, error)
+	Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error)
 }
 
 type zonePaymentMethodService struct {
@@ -688,9 +671,9 @@ func (c *zonePaymentMethodService) Add(ctx context.Context, in *AddZonePaymentMe
 	return out, nil
 }
 
-func (c *zonePaymentMethodService) Get(ctx context.Context, in *GetDeliveryMethodParams, opts ...client.CallOption) (*ZonePaymentMethodModel, error) {
+func (c *zonePaymentMethodService) Get(ctx context.Context, in *ZoneID, opts ...client.CallOption) (*ZonePaymentMethodResponse, error) {
 	req := c.c.NewRequest(c.name, "ZonePaymentMethod.Get", in)
-	out := new(ZonePaymentMethodModel)
+	out := new(ZonePaymentMethodResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -698,7 +681,7 @@ func (c *zonePaymentMethodService) Get(ctx context.Context, in *GetDeliveryMetho
 	return out, nil
 }
 
-func (c *zonePaymentMethodService) Update(ctx context.Context, in *ZonePaymentMethodModel, opts ...client.CallOption) (*OkResponse, error) {
+func (c *zonePaymentMethodService) Update(ctx context.Context, in *UpdateZonePaymentMethodParams, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "ZonePaymentMethod.Update", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -708,7 +691,7 @@ func (c *zonePaymentMethodService) Update(ctx context.Context, in *ZonePaymentMe
 	return out, nil
 }
 
-func (c *zonePaymentMethodService) Delete(ctx context.Context, in *ZonePaymentMethodModel, opts ...client.CallOption) (*OkResponse, error) {
+func (c *zonePaymentMethodService) Delete(ctx context.Context, in *ID, opts ...client.CallOption) (*OkResponse, error) {
 	req := c.c.NewRequest(c.name, "ZonePaymentMethod.Delete", in)
 	out := new(OkResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -722,17 +705,17 @@ func (c *zonePaymentMethodService) Delete(ctx context.Context, in *ZonePaymentMe
 
 type ZonePaymentMethodHandler interface {
 	Add(context.Context, *AddZonePaymentMethodParams, *OkResponse) error
-	Get(context.Context, *GetDeliveryMethodParams, *ZonePaymentMethodModel) error
-	Update(context.Context, *ZonePaymentMethodModel, *OkResponse) error
-	Delete(context.Context, *ZonePaymentMethodModel, *OkResponse) error
+	Get(context.Context, *ZoneID, *ZonePaymentMethodResponse) error
+	Update(context.Context, *UpdateZonePaymentMethodParams, *OkResponse) error
+	Delete(context.Context, *ID, *OkResponse) error
 }
 
 func RegisterZonePaymentMethodHandler(s server.Server, hdlr ZonePaymentMethodHandler, opts ...server.HandlerOption) error {
 	type zonePaymentMethod interface {
 		Add(ctx context.Context, in *AddZonePaymentMethodParams, out *OkResponse) error
-		Get(ctx context.Context, in *GetDeliveryMethodParams, out *ZonePaymentMethodModel) error
-		Update(ctx context.Context, in *ZonePaymentMethodModel, out *OkResponse) error
-		Delete(ctx context.Context, in *ZonePaymentMethodModel, out *OkResponse) error
+		Get(ctx context.Context, in *ZoneID, out *ZonePaymentMethodResponse) error
+		Update(ctx context.Context, in *UpdateZonePaymentMethodParams, out *OkResponse) error
+		Delete(ctx context.Context, in *ID, out *OkResponse) error
 	}
 	type ZonePaymentMethod struct {
 		zonePaymentMethod
@@ -749,15 +732,15 @@ func (h *zonePaymentMethodHandler) Add(ctx context.Context, in *AddZonePaymentMe
 	return h.ZonePaymentMethodHandler.Add(ctx, in, out)
 }
 
-func (h *zonePaymentMethodHandler) Get(ctx context.Context, in *GetDeliveryMethodParams, out *ZonePaymentMethodModel) error {
+func (h *zonePaymentMethodHandler) Get(ctx context.Context, in *ZoneID, out *ZonePaymentMethodResponse) error {
 	return h.ZonePaymentMethodHandler.Get(ctx, in, out)
 }
 
-func (h *zonePaymentMethodHandler) Update(ctx context.Context, in *ZonePaymentMethodModel, out *OkResponse) error {
+func (h *zonePaymentMethodHandler) Update(ctx context.Context, in *UpdateZonePaymentMethodParams, out *OkResponse) error {
 	return h.ZonePaymentMethodHandler.Update(ctx, in, out)
 }
 
-func (h *zonePaymentMethodHandler) Delete(ctx context.Context, in *ZonePaymentMethodModel, out *OkResponse) error {
+func (h *zonePaymentMethodHandler) Delete(ctx context.Context, in *ID, out *OkResponse) error {
 	return h.ZonePaymentMethodHandler.Delete(ctx, in, out)
 }
 

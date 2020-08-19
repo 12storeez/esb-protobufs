@@ -5,73 +5,66 @@ option go_package = "go/transport";
 package transport;
 
 service Zones {
-    rpc GetIdByFias (Fias) returns (ZoneID) {
+    rpc GetByDadataID (Dadata) returns (Zone) {
     }
-    rpc GetIdByFiases (GetIdByFiasesParams) returns (ZoneID) {
+    rpc GetByGeonameID (Geoname) returns (Zone) {
     }
-    rpc GetZoneById (GetZoneByIdParams) returns (Zone) {
+    rpc GetByZoneID (ZoneID) returns (Zone) {
     }
     rpc Create (CreateParams) returns (ZoneID) {
     }
-    rpc AddFiasToZone (AddFiasToZoneParams) returns (OkResponse) {
+    rpc GetAll (GetAllParams) returns (GetAllResponse) {
     }
-    rpc All (AllParams) returns (AllResponse) {
-    }
-    rpc Update (Zone) returns (OkResponse) {
+    rpc Update (UpdateParams) returns (OkResponse) {
     }
     rpc Delete (ZoneID) returns (OkResponse) {
     }
 }
 
-//Service ZONE
-message Fias {
-    string fias = 1;
+message Dadata {
+    string fias_id = 1;
+}
+
+message Geoname {
+    string geoname_id = 1;
 }
 
 message ZoneID {
     int32 zone_id = 1;
 }
 
-message GetIdByFiasesParams {
-    repeated string fias = 1;
-}
-
 message Zone {
     int32 id = 1;
     string name = 2;
     bool active = 3;
-    int32 created = 4;
-    int32 updated = 5;
+    string created = 4;
+    string updated = 5;
 }
 
-message GetZoneByIdParams {
+message UpdateParams {
     int32 id = 1;
+    string name = 2;
+    bool active = 3;
 }
 
 message CreateParams {
     string zone_name = 1;
 }
 
-message AddFiasToZoneParams {
-    int32 zone_id = 1;
-    repeated string fias = 2;
-}
-
 message OkResponse {
     bool ok = 1;
 }
 
-message AllParams {
+message GetAllParams {
     int32 limit = 1;
     int32 offset = 2;
 }
 
-message AllResponse {
+message GetAllResponse {
     int32 total = 1;
     repeated Zone zones = 2;
 }
 
-// service ZoneManualPriority
 service ZoneManualPriority {
     rpc Add (AddManualPriorityParams) returns (OkResponse) {
     }
@@ -79,7 +72,7 @@ service ZoneManualPriority {
     }
     rpc Update (ManualPriorityParams) returns (OkResponse) {
     }
-    rpc Delete (ZoneDeliveryManualPriorityID) returns (OkResponse) {
+    rpc Delete (ID) returns (OkResponse) {
     }
 }
 
@@ -102,8 +95,6 @@ message ManualPriorityParams {
     float max_days = 6;
     float tariff = 7;
     bool active = 8;
-    int32 created = 9;
-    int32 updated = 10;
 }
 
 message ManualPriorityList {
@@ -114,15 +105,14 @@ message ZoneDeliveryManualPriorityID {
     int32 id = 1;
 }
 
-// service DeliveryMethod
 service DeliveryMethod {
     rpc Add (AddDeliveryMethodParams) returns (OkResponse) {
     }
-    rpc Get (GetDeliveryMethodParams) returns (GetDeliveryMethodResponse) {
+    rpc Get (ID) returns (GetDeliveryMethodResponse) {
     }
-    rpc Update (GetDeliveryMethodResponse) returns (OkResponse) {
+    rpc Update (UpdateDeliveryMethodParams) returns (OkResponse) {
     }
-    rpc Delete (GetDeliveryMethodParams) returns (OkResponse) {
+    rpc Delete (ID) returns (OkResponse) {
     }
 }
 
@@ -130,39 +120,63 @@ message AddDeliveryMethodParams {
     string title = 1;
 }
 
-message GetDeliveryMethodParams {
-    int32 id = 1;
-}
-
 message GetDeliveryMethodResponse {
     int32 id = 1;
     string title = 2;
-    bool active = 3;
-    int32 created = 4;
-    int32 updated = 5;
+    DELIVERY_TYPE type = 3;
+    bool active = 4;
+    string created = 5;
+    string updated = 6;
 }
 
-// service PaymentMethod
+message UpdateDeliveryMethodParams {
+    int32 id = 1;
+    string title = 2;
+    DELIVERY_TYPE type = 3;
+    bool active = 4;
+}
+
 service PaymentMethod {
-    rpc Add (AddDeliveryMethodParams) returns (OkResponse) {
+    rpc Add (AddPaymentMethodParams) returns (OkResponse) {
     }
-    rpc Get (GetDeliveryMethodParams) returns (GetDeliveryMethodResponse) {
+    rpc Get (ID) returns (GetPaymentMethodResponse) {
     }
-    rpc Update (GetDeliveryMethodResponse) returns (OkResponse) {
+    rpc Update (UpdatePaymentMethodParams) returns (OkResponse) {
     }
-    rpc Delete (GetDeliveryMethodParams) returns (OkResponse) {
+    rpc Delete (ID) returns (OkResponse) {
     }
 }
 
-// service ZoneDeliveryMatrix
+message GetPaymentMethodResponse {
+    int32 id = 1;
+    string title = 2;
+    bool is_active = 3;
+    string created = 4;
+    string updated = 5;
+}
+
+message ID {
+    int32 id = 1;
+}
+
+message AddPaymentMethodParams {
+    string title = 1;
+}
+
+message UpdatePaymentMethodParams {
+    int32 id = 1;
+    string title = 2;
+    bool active = 3;
+}
+
 service ZoneDeliveryMatrix {
     rpc Add (AddZoneDeliveryMatrixParams) returns (OkResponse) {
     }
-    rpc Get (GetDeliveryMethodParams) returns (ZoneDeliveryMatrixModel) {
+    rpc Get (ZoneID) returns (GetDeliveryMatrixResponse) {
     }
     rpc Update (ZoneDeliveryMatrixModel) returns (OkResponse) {
     }
-    rpc Delete (ZoneDeliveryMatrixModel) returns (OkResponse) {
+    rpc Delete (ID) returns (OkResponse) {
     }
 }
 
@@ -172,15 +186,16 @@ message AddZoneDeliveryMatrixParams {
     int32 gap_days = 3;
     int32 consolidation_days = 4;
     int32 delivery_id = 5;
-    string work_days = 6;
-    string weekends = 7;
-    string saturday = 8;
-    string sunday = 9;
-    float total_less = 10;
-    float total_more = 11;
-    float total = 12;
-    int32 delivery_min_days = 13;
-    bool active = 14;
+    int32 payment_id = 6;
+    float total_less = 7;
+    float total_more = 8;
+    float total = 9;
+    int32 delivery_min_days = 10;
+    bool active = 11;
+}
+
+message GetDeliveryMatrixResponse {
+    repeated ZoneDeliveryMatrixModel list = 1;
 }
 
 message ZoneDeliveryMatrixModel {
@@ -190,29 +205,27 @@ message ZoneDeliveryMatrixModel {
     int32 gap_days = 4;
     int32 consolidation_days = 5;
     int32 delivery_id = 6;
-    string work_days = 7;
-    string weekends = 8;
-    string saturday = 9;
-    string sunday = 10;
-    float total_less = 11;
-    float total_more = 12;
-    float total = 13;
-    int32 delivery_min_days = 14;
-    bool active = 15;
-    int32 created = 16;
-    int32 updated = 17;
+    int32 payment_id = 7;
+    float total_less = 8;
+    float total_more = 9;
+    float total = 10;
+    int32 delivery_min_days = 11;
+    bool active = 12;
 }
 
-// service ZonePaymentMethod
 service ZonePaymentMethod {
     rpc Add (AddZonePaymentMethodParams) returns (OkResponse) {
     }
-    rpc Get (GetDeliveryMethodParams) returns (ZonePaymentMethodModel) {
+    rpc Get (ZoneID) returns (ZonePaymentMethodResponse) {
     }
-    rpc Update (ZonePaymentMethodModel) returns (OkResponse) {
+    rpc Update (UpdateZonePaymentMethodParams) returns (OkResponse) {
     }
-    rpc Delete (ZonePaymentMethodModel) returns (OkResponse) {
+    rpc Delete (ID) returns (OkResponse) {
     }
+}
+
+message ZonePaymentMethodResponse {
+    repeated ZonePaymentMethodModel list = 1;
 }
 
 message AddZonePaymentMethodParams {
@@ -230,23 +243,32 @@ message ZonePaymentMethodModel {
     int32 payment_id = 4;
     int32 tk_id = 5;
     bool active = 6;
-    int32 created = 7;
-    int32 updated = 8;
+    string created = 7;
+    string updated = 8;
+}
+
+message UpdateZonePaymentMethodParams {
+    int32 id = 1;
+    int32 zone_id = 2;
+    int32 delivery_id = 3;
+    int32 payment_id = 4;
+    int32 tk_id = 5;
+    bool active = 6;
 }
 
 service WinnersCompanies {
     rpc Winners (WinnersParams) returns (WinnersResponse);
 }
 
+enum GEO_TYPE {
+    DADATA = 0;
+    GEONAME = 1;
+}
+
 message WinnersParams {
     string geo_id = 1;
-    
-    int32 order_price = 2;
-    // enum idType {
-    //     FIAS = 0;
-    //     GEO_NAMES = 1;
-    // }
-    int32 geo_type = 3;
+    GEO_TYPE geo_type = 2;
+    int32 order_price = 3;
     // в рублях
     string locale = 4;
 }
@@ -256,11 +278,11 @@ message WinnersResponse {
 }
 
 enum DELIVERY_TYPE {
-    courier = 0;
-    courier_fast = 1;
-    courier_fitting = 2;
-    pickup_shop = 3;
-    pickup_boxberry = 4;
+    COURIER = 0;
+    COURIER_FAST = 1;
+    COURIER_FITTING = 2;
+    PICKUP_SHOP = 3;
+    PICKUP_BOXBERRY = 4;
 }
 
 message winner {
@@ -285,10 +307,10 @@ message paymentType {
 
 message deliveryTime {
     string date = 1;
-    repeated Interval intervals = 2;
+    repeated interval intervals = 2;
 }
 
-message Interval {
+message interval {
     // 10:30 for example
     string time_from = 1;
     string time_to = 2;
