@@ -1,6 +1,6 @@
 {
   "name": "esb-protobufs",
-  "version": "0.2.39",
+  "version": "0.2.40",
   "description": "protobuf for esb project",
   "types": "./typescript/index.d.ts",
   "main": "./typescript/index.js",
@@ -9,7 +9,8 @@
     "/proto/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "proto": "protoc --plugin=protoc-gen-ng=./node_modules/.bin/protoc-gen-ng --ng_out=./angular -I ./proto $(find ./proto -iname \"*.proto\")"
   },
   "repository": {
     "type": "git",
@@ -27,11 +28,17 @@
     "url": "https://github.com/zhs/esb-protobufs/issues"
   },
   "homepage": "https://github.com/zhs/esb-protobufs#readme",
-  "dependencies": {},
   "devDependencies": {
-    "rxjs": "^6.5.5",
+    "@ngx-grpc/common": "^1.0.1",
+    "@ngx-grpc/core": "^1.0.1",
+    "@ngx-grpc/grpc-web-client": "^1.0.1",
+    "google-protobuf": "^3.13.0",
+    "grpc-web": "^1.2.1",
+    "@ngx-grpc/protoc-gen-ng": "^1.0.1",
+    "@types/google-protobuf": "^3.7.3",
     "prettier": "^2.0.4",
     "proto-parse": "0.0.5",
-    "protobufjs": "^6.8.8"
+    "protobufjs": "^6.8.8",
+    "rxjs": "^6.5.5"
   }
 }
