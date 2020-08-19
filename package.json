@@ -6,7 +6,8 @@
   "main": "./typescript/index.js",
   "files": [
     "/typescript/*",
-    "/proto/*"
+    "/proto/*",
+    "/angular/*"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
