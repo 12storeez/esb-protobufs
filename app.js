@@ -32,17 +32,36 @@ function readeProtoFile(filePath) {
 
 //3. process data
 function convertToLineAndAddToList(obj) {
-  if ("package" === obj.type) {
-    addLine("export namespace " + obj.package + " {", true);
-  } else if ("service" === obj.type) {
-    addLine("export interface " + obj.name + " {", true);
-    obj.content.forEach((method) => setMethod(method));
-    addLine("}");
-  } else if ("message" === obj.type) {
-    addLine("export interface " + obj.name + " {", true);
-    obj.content.forEach((method) => setField(method));
-    addLine("}");
-    addAfterObjectLines();
+  const ignore_types = ["import", "option"];
+
+  if (ignore_types.includes(obj.type)) {
+    return null;
+  }
+
+  switch (obj.type) {
+    case "package":
+      addLine("export namespace " + obj.package + " {", true);
+      break;
+    case "service":
+      addLine("export interface " + obj.name + " {", true);
+      obj.content.forEach((method) => setMethod(method));
+      addLine("}");
+      break;
+    case "message":
+      addLine("export interface " + obj.name + " {", true);
+      obj.content.forEach((method) => setField(method));
+      addLine("}");
+      addAfterObjectLines();
+      break;
+    case "enum":
+      addLine("export enum " + obj.name + " {", true);
+      obj.content.forEach((field) =>
+        addLine(`${field.name} = ${field.val},`)
+      );
+      addLine("}");
+      break;
+    default:
+      console.log(`operation for ${obj.type} not defined`);
   }
 }
 function setMethod(obj) {
@@ -86,7 +105,12 @@ function addAfterObjectLines() {
 }
 
 function convertType(typeName) {
-  if ("int32" === typeName || "double" === typeName || "int64" === typeName || "float" === typeName) {
+  if (
+    "int32" === typeName ||
+    "double" === typeName ||
+    "int64" === typeName ||
+    "float" === typeName
+  ) {
     return "number";
   } else if ("bool" === typeName) {
     return "boolean";

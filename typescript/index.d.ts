@@ -641,6 +641,322 @@ export namespace slack {
   }
 }
 
+export namespace transport {
+  export interface Zones {
+    getIdByFias(request: Fias, metadata?: any): Observable<ZoneID>;
+    getIdByFiases(
+      request: GetIdByFiasesParams,
+      metadata?: any
+    ): Observable<ZoneID>;
+    getZoneById(request: GetZoneByIdParams, metadata?: any): Observable<Zone>;
+    create(request: CreateParams, metadata?: any): Observable<ZoneID>;
+    addFiasToZone(
+      request: AddFiasToZoneParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+    all(request: AllParams, metadata?: any): Observable<AllResponse>;
+    update(request: Zone, metadata?: any): Observable<OkResponse>;
+    delete(request: ZoneID, metadata?: any): Observable<OkResponse>;
+  }
+
+  export interface Fias {
+    fias: string;
+  }
+
+  export interface ZoneID {
+    zone_id: number;
+  }
+
+  export interface GetIdByFiasesParams {
+    fias: string[];
+  }
+
+  export interface Zone {
+    id: number;
+    name: string;
+    active: boolean;
+    created: number;
+    updated: number;
+  }
+
+  export interface GetZoneByIdParams {
+    id: number;
+  }
+
+  export interface CreateParams {
+    zone_name: string;
+  }
+
+  export interface AddFiasToZoneParams {
+    zone_id: number;
+    fias: string[];
+  }
+
+  export interface OkResponse {
+    ok: boolean;
+  }
+
+  export interface AllParams {
+    limit: number;
+    offset: number;
+  }
+
+  export interface AllResponse {
+    total: number;
+    zones: Zone[];
+  }
+
+  export interface ZoneManualPriority {
+    add(
+      request: AddManualPriorityParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+    get(request: ZoneID, metadata?: any): Observable<ManualPriorityList>;
+    update(
+      request: ManualPriorityParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+    delete(
+      request: ZoneDeliveryManualPriorityID,
+      metadata?: any
+    ): Observable<OkResponse>;
+  }
+
+  export interface AddManualPriorityParams {
+    zone_id: number;
+    tk_id: number;
+    delivery_id: number;
+    value: number;
+    max_days: number;
+    tariff: number;
+    active: boolean;
+  }
+
+  export interface ManualPriorityParams {
+    id: number;
+    zone_id: number;
+    tk_id: number;
+    delivery_id: number;
+    value: number;
+    max_days: number;
+    tariff: number;
+    active: boolean;
+    created: number;
+    updated: number;
+  }
+
+  export interface ManualPriorityList {
+    list: ManualPriorityParams[];
+  }
+
+  export interface ZoneDeliveryManualPriorityID {
+    id: number;
+  }
+
+  export interface DeliveryMethod {
+    add(
+      request: AddDeliveryMethodParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+    get(
+      request: GetDeliveryMethodParams,
+      metadata?: any
+    ): Observable<GetDeliveryMethodResponse>;
+    update(
+      request: GetDeliveryMethodResponse,
+      metadata?: any
+    ): Observable<OkResponse>;
+    delete(
+      request: GetDeliveryMethodParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+  }
+
+  export interface AddDeliveryMethodParams {
+    title: string;
+  }
+
+  export interface GetDeliveryMethodParams {
+    id: number;
+  }
+
+  export interface GetDeliveryMethodResponse {
+    id: number;
+    title: string;
+    active: boolean;
+    created: number;
+    updated: number;
+  }
+
+  export interface PaymentMethod {
+    add(
+      request: AddDeliveryMethodParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+    get(
+      request: GetDeliveryMethodParams,
+      metadata?: any
+    ): Observable<GetDeliveryMethodResponse>;
+    update(
+      request: GetDeliveryMethodResponse,
+      metadata?: any
+    ): Observable<OkResponse>;
+    delete(
+      request: GetDeliveryMethodParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+  }
+
+  export interface ZoneDeliveryMatrix {
+    add(
+      request: AddZoneDeliveryMatrixParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+    get(
+      request: GetDeliveryMethodParams,
+      metadata?: any
+    ): Observable<ZoneDeliveryMatrixModel>;
+    update(
+      request: ZoneDeliveryMatrixModel,
+      metadata?: any
+    ): Observable<OkResponse>;
+    delete(
+      request: ZoneDeliveryMatrixModel,
+      metadata?: any
+    ): Observable<OkResponse>;
+  }
+
+  export interface AddZoneDeliveryMatrixParams {
+    zone_id: number;
+    cutoff_time: string;
+    gap_days: number;
+    consolidation_days: number;
+    delivery_id: number;
+    work_days: string;
+    weekends: string;
+    saturday: string;
+    sunday: string;
+    total_less: number;
+    total_more: number;
+    total: number;
+    delivery_min_days: number;
+    active: boolean;
+  }
+
+  export interface ZoneDeliveryMatrixModel {
+    id: number;
+    zone_id: number;
+    cutoff_time: string;
+    gap_days: number;
+    consolidation_days: number;
+    delivery_id: number;
+    work_days: string;
+    weekends: string;
+    saturday: string;
+    sunday: string;
+    total_less: number;
+    total_more: number;
+    total: number;
+    delivery_min_days: number;
+    active: boolean;
+    created: number;
+    updated: number;
+  }
+
+  export interface ZonePaymentMethod {
+    add(
+      request: AddZonePaymentMethodParams,
+      metadata?: any
+    ): Observable<OkResponse>;
+    get(
+      request: GetDeliveryMethodParams,
+      metadata?: any
+    ): Observable<ZonePaymentMethodModel>;
+    update(
+      request: ZonePaymentMethodModel,
+      metadata?: any
+    ): Observable<OkResponse>;
+    delete(
+      request: ZonePaymentMethodModel,
+      metadata?: any
+    ): Observable<OkResponse>;
+  }
+
+  export interface AddZonePaymentMethodParams {
+    zone_id: number;
+    delivery_id: number;
+    payment_id: number;
+    tk_id: number;
+    active: boolean;
+  }
+
+  export interface ZonePaymentMethodModel {
+    id: number;
+    zone_id: number;
+    delivery_id: number;
+    payment_id: number;
+    tk_id: number;
+    active: boolean;
+    created: number;
+    updated: number;
+  }
+
+  export interface WinnersCompanies {
+    winners(
+      request: WinnersParams,
+      metadata?: any
+    ): Observable<WinnersResponse>;
+  }
+
+  export interface WinnersParams {
+    geo_id: string;
+    order_price: number;
+    geo_type: number;
+    locale: string;
+  }
+
+  export interface WinnersResponse {
+    result: winner[];
+  }
+
+  export enum DELIVERY_TYPE {
+    courier = 0,
+    courier_fast = 1,
+    courier_fitting = 2,
+    pickup_shop = 3,
+    pickup_boxberry = 4,
+  }
+
+  export interface winner {
+    delivery_type_id: DELIVERY_TYPE;
+    delivery_type_title: string;
+    winner_company: deliveryCompany;
+    payments: paymentType[];
+    delivery_date: deliveryTime[];
+  }
+
+  export interface deliveryCompany {
+    code: string;
+    title: string;
+  }
+
+  export interface paymentType {
+    code: string;
+    title: string;
+    delivery_price: number;
+  }
+
+  export interface deliveryTime {
+    date: string;
+    intervals: Interval[];
+  }
+
+  export interface Interval {
+    time_from: string;
+    time_to: string;
+  }
+}
+
 export namespace orders {
   export interface Offline {
     byClient(
