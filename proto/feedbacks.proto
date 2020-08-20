@@ -129,6 +129,7 @@ message NewOrderParams {
     int32 store_id = 1;
     string order_date = 2;
     string order_id = 3;
+    int32 rate = 4;
 }
 
 message NewOrderResponse {
