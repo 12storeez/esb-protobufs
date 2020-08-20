@@ -27,6 +27,10 @@ service Store {
     }
     rpc Patch (PatchParams) returns (ResponseOk) {
     }
+    rpc NewOrder (NewOrderParams) returns (NewOrderResponse) {
+    }
+    rpc PatchOrder (PatchOrderParams) returns (ResponseOk) {
+    }
 }
 
 message CanBeSavedParams {
@@ -119,4 +123,27 @@ message ResponseCategories {
 
 message ParamsReasonsByOrder {
     string order_id = 1;
+}
+
+message NewOrderParams {
+    int32 store_id = 1;
+    string order_date = 2;
+    string order_id = 3;
+    int32 rate = 4;
+}
+
+message NewOrderResponse {
+    int32 id = 1;
+    repeated Improvement improvements = 2;
+}
+
+message PatchOrderParams {
+    int32 id = 1;
+    int32 store_id = 2;
+    string order_date = 3;
+    string order_id = 4;
+    int32 rate = 5;
+    repeated int32 improvements = 6;
+    string comment = 7;
+    string contact = 8;
 }

@@ -206,6 +206,8 @@ func NewStoreEndpoints() []*api.Endpoint {
 type StoreService interface {
 	New(ctx context.Context, in *NewParams, opts ...client.CallOption) (*NewResponse, error)
 	Patch(ctx context.Context, in *PatchParams, opts ...client.CallOption) (*ResponseOk, error)
+	NewOrder(ctx context.Context, in *NewOrderParams, opts ...client.CallOption) (*NewOrderResponse, error)
+	PatchOrder(ctx context.Context, in *PatchOrderParams, opts ...client.CallOption) (*ResponseOk, error)
 }
 
 type storeService struct {
@@ -240,17 +242,41 @@ func (c *storeService) Patch(ctx context.Context, in *PatchParams, opts ...clien
 	return out, nil
 }
 
+func (c *storeService) NewOrder(ctx context.Context, in *NewOrderParams, opts ...client.CallOption) (*NewOrderResponse, error) {
+	req := c.c.NewRequest(c.name, "Store.NewOrder", in)
+	out := new(NewOrderResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storeService) PatchOrder(ctx context.Context, in *PatchOrderParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "Store.PatchOrder", in)
+	out := new(ResponseOk)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Store service
 
 type StoreHandler interface {
 	New(context.Context, *NewParams, *NewResponse) error
 	Patch(context.Context, *PatchParams, *ResponseOk) error
+	NewOrder(context.Context, *NewOrderParams, *NewOrderResponse) error
+	PatchOrder(context.Context, *PatchOrderParams, *ResponseOk) error
 }
 
 func RegisterStoreHandler(s server.Server, hdlr StoreHandler, opts ...server.HandlerOption) error {
 	type store interface {
 		New(ctx context.Context, in *NewParams, out *NewResponse) error
 		Patch(ctx context.Context, in *PatchParams, out *ResponseOk) error
+		NewOrder(ctx context.Context, in *NewOrderParams, out *NewOrderResponse) error
+		PatchOrder(ctx context.Context, in *PatchOrderParams, out *ResponseOk) error
 	}
 	type Store struct {
 		store
@@ -269,4 +295,12 @@ func (h *storeHandler) New(ctx context.Context, in *NewParams, out *NewResponse)
 
 func (h *storeHandler) Patch(ctx context.Context, in *PatchParams, out *ResponseOk) error {
 	return h.StoreHandler.Patch(ctx, in, out)
+}
+
+func (h *storeHandler) NewOrder(ctx context.Context, in *NewOrderParams, out *NewOrderResponse) error {
+	return h.StoreHandler.NewOrder(ctx, in, out)
+}
+
+func (h *storeHandler) PatchOrder(ctx context.Context, in *PatchOrderParams, out *ResponseOk) error {
+	return h.StoreHandler.PatchOrder(ctx, in, out)
 }
