@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option go_package = "go/transport";
+
+import "proto/transport_delivery_method.proto";
+
+package transport;
+
+service WinnersCompanies {
+  rpc Winners (WinnersParams) returns (WinnersResponse);
+}
+
+enum GeoType {
+  dadata = 0;
+  geonames = 1;
+}
+
+message WinnersParams {
+  string geo_id = 1;
+  GeoType geo_type_id = 2;
+  int32 order_price = 3;
+  // в рублях
+  string locale = 4;
+}
+
+message WinnersResponse {
+  repeated winner result = 1;
+}
+
+message winner {
+  DeliveryType delivery_type_id = 1;
+  string delivery_type_title = 2;
+  deliveryCompany winner_company = 3;
+  repeated paymentType payments = 4;
+  // 'YYYY-MM-DD'
+  repeated deliveryTime delivery_date = 6;
+}
+
+message deliveryCompany {
+  string code = 1;
+  string title = 2;
+}
+
+message paymentType {
+  string code = 1;
+  string title = 2;
+  int32 delivery_price = 3;
+}
+
+message deliveryTime {
+  string date = 1;
+  repeated interval intervals = 2;
+}
+
+message interval {
+  // 10:30 for example
+  string time_from = 1;
+  string time_to = 2;
+}

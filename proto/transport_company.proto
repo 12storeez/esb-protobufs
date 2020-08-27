@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option go_package = "go/transport";
+
+package transport;
+
+service TransportCompany {
+  rpc Add (TransportCompanyAddParams) returns (TransportCompanyID) {
+  }
+  rpc Get (TransportCompanyID) returns (TransportCompanyGetResponse) {
+  }
+  rpc Update (TransportCompanyUpdateParams) returns (TransportCompanyOkResponse) {
+  }
+  rpc Delete (TransportCompanyID) returns (TransportCompanyOkResponse) {
+  }
+}
+
+enum TransportCompanyType {
+  boxberry = 0;
+  cdek = 1;
+  pochta = 2;
+  ups = 3;
+  dpd = 4;
+  dhl = 5;
+  redexpress = 6;
+}
+
+message TransportCompanyGetResponse {
+  int32 id = 1;
+  string title = 2;
+  TransportCompanyType type = 3;
+  bool is_active = 4;
+  string created = 5;
+  string updated = 6;
+}
+
+message TransportCompanyID {
+  int32 id = 1;
+}
+
+message TransportCompanyAddParams {
+  string title = 1;
+  TransportCompanyType type = 2;
+}
+
+message TransportCompanyUpdateParams {
+  int32 id = 1;
+  string title = 2;
+  TransportCompanyType type = 3;
+  bool is_active = 4;
+}
+
+message TransportCompanyOkResponse {
+  bool ok = 1;
+}

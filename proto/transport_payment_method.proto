@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option go_package = "go/transport";
+
+package transport;
+
+service PaymentMethod {
+    rpc Add (PaymentMethodAddParams) returns (PaymentMethodID) {
+    }
+    rpc Get (PaymentMethodID) returns (PaymentMethodGetResponse) {
+    }
+    rpc Update (PaymentMethodUpdateParams) returns (PaymentMethodOkResponse) {
+    }
+    rpc Delete (PaymentMethodID) returns (PaymentMethodOkResponse) {
+    }
+}
+
+message PaymentMethodGetResponse {
+    int32 id = 1;
+    string title = 2;
+    bool is_active = 3;
+    string created = 4;
+    string updated = 5;
+}
+
+message PaymentMethodID {
+    int32 id = 1;
+}
+
+message PaymentMethodAddParams {
+    string title = 1;
+}
+
+message PaymentMethodUpdateParams {
+    int32 id = 1;
+    string title = 2;
+    bool active = 3;
+}
+
+message PaymentMethodOkResponse {
+    bool ok = 1;
+}
