@@ -149,6 +149,7 @@ type Stock struct {
 	Instashop            []string    `protobuf:"bytes,28,rep,name=instashop,proto3" json:"instashop,omitempty"`
 	Country              string      `protobuf:"bytes,29,opt,name=country,proto3" json:"country,omitempty"`
 	Quantity             []*Quantity `protobuf:"bytes,30,rep,name=quantity,proto3" json:"quantity,omitempty"`
+	Preview              string      `protobuf:"bytes,31,opt,name=preview,proto3" json:"preview,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
 	XXX_sizecache        int32       `json:"-"`

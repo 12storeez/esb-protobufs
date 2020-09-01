@@ -64,6 +64,7 @@ message Stock {
     repeated string instashop = 28;
     string country = 29;
     repeated Quantity quantity = 30;
+    string preview = 31;
 }
 
 message Quantity {
