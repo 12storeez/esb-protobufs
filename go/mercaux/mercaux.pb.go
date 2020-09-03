@@ -128,7 +128,7 @@ type Stock struct {
 	IsActive             bool        `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	Price                int32       `protobuf:"varint,10,opt,name=price,proto3" json:"price,omitempty"`
 	Article              string      `protobuf:"bytes,11,opt,name=article,proto3" json:"article,omitempty"`
-	Size_                string      `protobuf:"bytes,12,opt,name=size,proto3" json:"size,omitempty"`
+	Size                 string      `protobuf:"bytes,12,opt,name=size,proto3" json:"size,omitempty"`
 	Color                string      `protobuf:"bytes,13,opt,name=color,proto3" json:"color,omitempty"`
 	Fabric               string      `protobuf:"bytes,14,opt,name=fabric,proto3" json:"fabric,omitempty"`
 	Model                string      `protobuf:"bytes,15,opt,name=model,proto3" json:"model,omitempty"`
@@ -247,9 +247,9 @@ func (m *Stock) GetArticle() string {
 	return ""
 }
 
-func (m *Stock) GetSize_() string {
+func (m *Stock) GetSize() string {
 	if m != nil {
-		return m.Size_
+		return m.Size
 	}
 	return ""
 }
