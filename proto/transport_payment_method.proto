@@ -5,7 +5,7 @@ option go_package = "go/transport";
 package transport;
 
 service PaymentMethod {
-    rpc Add (PaymentMethodAddParams) returns (PaymentMethodID) {
+    rpc Create (PaymentMethodAddParams) returns (PaymentMethodID) {
     }
     rpc Get (PaymentMethodID) returns (PaymentMethodGetResponse) {
     }
@@ -13,6 +13,13 @@ service PaymentMethod {
     }
     rpc Delete (PaymentMethodID) returns (PaymentMethodOkResponse) {
     }
+    rpc Toggle (PaymentMethodToggleParams) returns (PaymentMethodOkResponse) {
+    }
+}
+
+message PaymentMethodToggleParams {
+    int32 id = 1;
+    bool is_active = 2;
 }
 
 message PaymentMethodGetResponse {
@@ -34,7 +41,6 @@ message PaymentMethodAddParams {
 message PaymentMethodUpdateParams {
     int32 id = 1;
     string title = 2;
-    bool active = 3;
 }
 
 message PaymentMethodOkResponse {

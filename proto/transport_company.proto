@@ -5,7 +5,7 @@ option go_package = "go/transport";
 package transport;
 
 service TransportCompany {
-  rpc Add (TransportCompanyAddParams) returns (TransportCompanyID) {
+  rpc Create (TransportCompanyAddParams) returns (TransportCompanyID) {
   }
   rpc Get (TransportCompanyID) returns (TransportCompanyGetResponse) {
   }
@@ -13,6 +13,13 @@ service TransportCompany {
   }
   rpc Delete (TransportCompanyID) returns (TransportCompanyOkResponse) {
   }
+  rpc Toggle (TransportCompanyToggleParams) returns (TransportCompanyOkResponse) {
+  }
+}
+
+message TransportCompanyToggleParams {
+  int32 id = 1;
+  bool is_active = 2;
 }
 
 enum TransportCompanyType {
@@ -47,7 +54,6 @@ message TransportCompanyUpdateParams {
   int32 id = 1;
   string title = 2;
   TransportCompanyType type = 3;
-  bool is_active = 4;
 }
 
 message TransportCompanyOkResponse {

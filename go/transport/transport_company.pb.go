@@ -64,6 +64,53 @@ func (TransportCompanyType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_64d0e24739b69be1, []int{0}
 }
 
+type TransportCompanyToggleParams struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	IsActive             bool     `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TransportCompanyToggleParams) Reset()         { *m = TransportCompanyToggleParams{} }
+func (m *TransportCompanyToggleParams) String() string { return proto.CompactTextString(m) }
+func (*TransportCompanyToggleParams) ProtoMessage()    {}
+func (*TransportCompanyToggleParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_64d0e24739b69be1, []int{0}
+}
+
+func (m *TransportCompanyToggleParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TransportCompanyToggleParams.Unmarshal(m, b)
+}
+func (m *TransportCompanyToggleParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TransportCompanyToggleParams.Marshal(b, m, deterministic)
+}
+func (m *TransportCompanyToggleParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TransportCompanyToggleParams.Merge(m, src)
+}
+func (m *TransportCompanyToggleParams) XXX_Size() int {
+	return xxx_messageInfo_TransportCompanyToggleParams.Size(m)
+}
+func (m *TransportCompanyToggleParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_TransportCompanyToggleParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TransportCompanyToggleParams proto.InternalMessageInfo
+
+func (m *TransportCompanyToggleParams) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *TransportCompanyToggleParams) GetIsActive() bool {
+	if m != nil {
+		return m.IsActive
+	}
+	return false
+}
+
 type TransportCompanyGetResponse struct {
 	Id                   int32                `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string               `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
@@ -80,7 +127,7 @@ func (m *TransportCompanyGetResponse) Reset()         { *m = TransportCompanyGet
 func (m *TransportCompanyGetResponse) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyGetResponse) ProtoMessage()    {}
 func (*TransportCompanyGetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{0}
+	return fileDescriptor_64d0e24739b69be1, []int{1}
 }
 
 func (m *TransportCompanyGetResponse) XXX_Unmarshal(b []byte) error {
@@ -154,7 +201,7 @@ func (m *TransportCompanyID) Reset()         { *m = TransportCompanyID{} }
 func (m *TransportCompanyID) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyID) ProtoMessage()    {}
 func (*TransportCompanyID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{1}
+	return fileDescriptor_64d0e24739b69be1, []int{2}
 }
 
 func (m *TransportCompanyID) XXX_Unmarshal(b []byte) error {
@@ -194,7 +241,7 @@ func (m *TransportCompanyAddParams) Reset()         { *m = TransportCompanyAddPa
 func (m *TransportCompanyAddParams) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyAddParams) ProtoMessage()    {}
 func (*TransportCompanyAddParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{2}
+	return fileDescriptor_64d0e24739b69be1, []int{3}
 }
 
 func (m *TransportCompanyAddParams) XXX_Unmarshal(b []byte) error {
@@ -233,7 +280,6 @@ type TransportCompanyUpdateParams struct {
 	Id                   int32                `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string               `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Type                 TransportCompanyType `protobuf:"varint,3,opt,name=type,proto3,enum=transport.TransportCompanyType" json:"type,omitempty"`
-	IsActive             bool                 `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -243,7 +289,7 @@ func (m *TransportCompanyUpdateParams) Reset()         { *m = TransportCompanyUp
 func (m *TransportCompanyUpdateParams) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyUpdateParams) ProtoMessage()    {}
 func (*TransportCompanyUpdateParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{3}
+	return fileDescriptor_64d0e24739b69be1, []int{4}
 }
 
 func (m *TransportCompanyUpdateParams) XXX_Unmarshal(b []byte) error {
@@ -285,13 +331,6 @@ func (m *TransportCompanyUpdateParams) GetType() TransportCompanyType {
 	return TransportCompanyType_boxberry
 }
 
-func (m *TransportCompanyUpdateParams) GetIsActive() bool {
-	if m != nil {
-		return m.IsActive
-	}
-	return false
-}
-
 type TransportCompanyOkResponse struct {
 	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -303,7 +342,7 @@ func (m *TransportCompanyOkResponse) Reset()         { *m = TransportCompanyOkRe
 func (m *TransportCompanyOkResponse) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyOkResponse) ProtoMessage()    {}
 func (*TransportCompanyOkResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{4}
+	return fileDescriptor_64d0e24739b69be1, []int{5}
 }
 
 func (m *TransportCompanyOkResponse) XXX_Unmarshal(b []byte) error {
@@ -333,6 +372,7 @@ func (m *TransportCompanyOkResponse) GetOk() bool {
 
 func init() {
 	proto.RegisterEnum("transport.TransportCompanyType", TransportCompanyType_name, TransportCompanyType_value)
+	proto.RegisterType((*TransportCompanyToggleParams)(nil), "transport.TransportCompanyToggleParams")
 	proto.RegisterType((*TransportCompanyGetResponse)(nil), "transport.TransportCompanyGetResponse")
 	proto.RegisterType((*TransportCompanyID)(nil), "transport.TransportCompanyID")
 	proto.RegisterType((*TransportCompanyAddParams)(nil), "transport.TransportCompanyAddParams")
@@ -343,34 +383,35 @@ func init() {
 func init() { proto.RegisterFile("proto/transport_company.proto", fileDescriptor_64d0e24739b69be1) }
 
 var fileDescriptor_64d0e24739b69be1 = []byte{
-	// 419 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x54, 0xd1, 0x6a, 0xdb, 0x30,
-	0x14, 0x8d, 0xec, 0xc4, 0x75, 0x2e, 0x25, 0x88, 0x4b, 0x1f, 0xbc, 0x74, 0x65, 0x41, 0x74, 0x9b,
-	0x19, 0x23, 0x83, 0xf6, 0x0b, 0xb2, 0x05, 0x4a, 0x61, 0x6c, 0xc5, 0x74, 0x2f, 0x7d, 0x29, 0x8e,
-	0x75, 0xb7, 0x1a, 0xa7, 0x91, 0x90, 0xd4, 0x51, 0xff, 0xc8, 0xfe, 0x69, 0x3f, 0xb1, 0x6f, 0x19,
-	0x95, 0xdb, 0xd4, 0x98, 0xe2, 0x6d, 0x4f, 0x7b, 0xd3, 0xc9, 0x39, 0xba, 0xe7, 0x9e, 0x1c, 0x2c,
-	0x38, 0xd0, 0x46, 0x39, 0xf5, 0xce, 0x99, 0x7c, 0x63, 0xb5, 0x32, 0xee, 0xb2, 0x50, 0xd7, 0x3a,
-	0xdf, 0xd4, 0x73, 0xff, 0x3b, 0x8e, 0xb7, 0x84, 0xf8, 0xc9, 0x60, 0xff, 0xfc, 0x01, 0x7d, 0x68,
-	0x54, 0x27, 0xe4, 0x32, 0xb2, 0x5a, 0x6d, 0x2c, 0xe1, 0x04, 0x82, 0x52, 0x26, 0x6c, 0xc6, 0xd2,
-	0x51, 0x16, 0x94, 0x12, 0xf7, 0x60, 0xe4, 0x4a, 0xb7, 0xa6, 0x24, 0x98, 0xb1, 0x74, 0x9c, 0x35,
-	0x00, 0x8f, 0x61, 0xe8, 0x6a, 0x4d, 0x49, 0x38, 0x63, 0xe9, 0xe4, 0xe8, 0xc5, 0x7c, 0x3b, 0x7f,
-	0xde, 0x9d, 0x7d, 0x5e, 0x6b, 0xca, 0xbc, 0x18, 0xf7, 0x61, 0x5c, 0xda, 0xcb, 0xbc, 0x70, 0xe5,
-	0x77, 0x4a, 0x86, 0x33, 0x96, 0xc6, 0x59, 0x5c, 0xda, 0x85, 0xc7, 0x98, 0xc0, 0x4e, 0x61, 0x28,
-	0x77, 0x24, 0x93, 0x91, 0x77, 0x7a, 0x80, 0x77, 0xcc, 0x8d, 0x96, 0x9e, 0x89, 0x1a, 0xe6, 0x1e,
-	0x8a, 0x43, 0xc0, 0xae, 0xdd, 0xe9, 0xb2, 0x9b, 0x40, 0x7c, 0x85, 0x67, 0x5d, 0xd5, 0x42, 0xca,
-	0xb3, 0xdc, 0xe4, 0xd7, 0xf6, 0x31, 0x1e, 0x7b, 0x2a, 0x5e, 0xf0, 0x0f, 0xf1, 0xc4, 0x0f, 0x06,
-	0xcf, 0xbb, 0xf4, 0x17, 0xbf, 0xe9, 0xbd, 0xd7, 0x7f, 0xfa, 0x6b, 0xc5, 0x5b, 0x98, 0x76, 0xaf,
-	0x7e, 0xae, 0xda, 0x85, 0xab, 0xca, 0x6f, 0x15, 0x67, 0x81, 0xaa, 0xde, 0x10, 0xec, 0x3d, 0x65,
-	0x84, 0xbb, 0x10, 0xaf, 0xd4, 0xed, 0x8a, 0x8c, 0xa9, 0xf9, 0x00, 0x63, 0x18, 0x16, 0x92, 0x2a,
-	0xce, 0x10, 0x20, 0xd2, 0xaa, 0xb8, 0x72, 0x39, 0x0f, 0x70, 0x07, 0xc2, 0x1b, 0x6d, 0x79, 0x78,
-	0x77, 0x90, 0x5a, 0xf2, 0xa1, 0x3f, 0x5c, 0xad, 0xf9, 0x08, 0x27, 0x00, 0x86, 0x24, 0xdd, 0x6a,
-	0x43, 0xd6, 0xf2, 0xe8, 0xe8, 0x57, 0x00, 0xbc, 0xeb, 0x83, 0x1f, 0x21, 0x5c, 0x48, 0x89, 0x87,
-	0x3d, 0xa1, 0xb7, 0xd5, 0x4d, 0x0f, 0x7a, 0x54, 0xa7, 0x4b, 0x31, 0xc0, 0x4f, 0x10, 0x9e, 0x90,
-	0xc3, 0x7e, 0xdd, 0xf4, 0x55, 0x0f, 0xdd, 0xfa, 0x30, 0xc4, 0x00, 0x2f, 0x20, 0x6a, 0xfa, 0xc4,
-	0xd7, 0x3d, 0x77, 0xda, 0x95, 0x4f, 0x5f, 0xf6, 0x08, 0x1f, 0x3b, 0x10, 0x03, 0x3c, 0x83, 0x68,
-	0x49, 0x6b, 0x72, 0xf4, 0xa7, 0x75, 0xff, 0x76, 0xe2, 0xfb, 0xc9, 0xc5, 0xee, 0xb7, 0xd6, 0x8b,
-	0xb0, 0x8a, 0xfc, 0x53, 0x70, 0xfc, 0x3b, 0x00, 0x00, 0xff, 0xff, 0x39, 0xb1, 0xcb, 0x8f, 0x2b,
-	0x04, 0x00, 0x00,
+	// 445 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xd1, 0x6a, 0xdb, 0x30,
+	0x14, 0x8d, 0xed, 0xc4, 0x75, 0x2e, 0x25, 0x88, 0x4b, 0x1f, 0xbc, 0x74, 0x65, 0x41, 0x74, 0x5b,
+	0x18, 0x23, 0x83, 0xf6, 0x0b, 0xba, 0x06, 0x4a, 0x19, 0xac, 0xc5, 0x74, 0x2f, 0x79, 0x29, 0x8e,
+	0x75, 0x97, 0x9a, 0xa4, 0x91, 0x90, 0xd4, 0x51, 0x7f, 0xdc, 0x3e, 0x60, 0x7f, 0x35, 0x2a, 0xb7,
+	0x9e, 0xeb, 0x74, 0x5e, 0x07, 0x7d, 0xd3, 0xf5, 0x39, 0x3e, 0xf7, 0x5c, 0x1d, 0x71, 0x61, 0x4f,
+	0x69, 0x69, 0xe5, 0x27, 0xab, 0xd3, 0xb5, 0x51, 0x52, 0xdb, 0xcb, 0x4c, 0x5e, 0xab, 0x74, 0x5d,
+	0x4c, 0xdc, 0x77, 0xec, 0x57, 0x00, 0xff, 0x02, 0xaf, 0x2f, 0x1e, 0x8a, 0xe3, 0x92, 0x74, 0x21,
+	0x17, 0x8b, 0x15, 0x9d, 0xa7, 0x3a, 0xbd, 0x36, 0x38, 0x00, 0x3f, 0x17, 0xb1, 0x37, 0xf2, 0xc6,
+	0xbd, 0xc4, 0xcf, 0x05, 0xee, 0x42, 0x3f, 0x37, 0x97, 0x69, 0x66, 0xf3, 0x1f, 0x14, 0xfb, 0x23,
+	0x6f, 0x1c, 0x25, 0x51, 0x6e, 0x8e, 0x5c, 0xcd, 0x7f, 0x79, 0xb0, 0xdb, 0x54, 0x3b, 0x21, 0x9b,
+	0x90, 0x51, 0x72, 0x6d, 0x68, 0x43, 0x6c, 0x07, 0x7a, 0x36, 0xb7, 0xab, 0x52, 0xa8, 0x9f, 0x94,
+	0x05, 0x1e, 0x42, 0xd7, 0x16, 0x8a, 0xe2, 0x60, 0xe4, 0x8d, 0x07, 0x07, 0x6f, 0x26, 0x95, 0xd9,
+	0xc9, 0x86, 0xd3, 0x42, 0x51, 0xe2, 0xc8, 0x8f, 0x7d, 0x75, 0x1f, 0xfb, 0xc2, 0x18, 0xb6, 0x32,
+	0x4d, 0xa9, 0x25, 0x11, 0xf7, 0x5c, 0xa7, 0x87, 0xf2, 0x0e, 0xb9, 0x51, 0xc2, 0x21, 0x61, 0x89,
+	0xdc, 0x97, 0x7c, 0x1f, 0xb0, 0xd9, 0xee, 0x74, 0xda, 0x9c, 0x80, 0x7f, 0x87, 0x57, 0x4d, 0xd6,
+	0x91, 0x10, 0xf7, 0x77, 0x57, 0x8d, 0xe7, 0x3d, 0x35, 0x9e, 0xff, 0x1f, 0xe3, 0xf1, 0x62, 0x33,
+	0xa6, 0x6f, 0xce, 0xe8, 0x5f, 0x62, 0x7a, 0xb9, 0x9b, 0xe5, 0x1f, 0x61, 0xd8, 0x44, 0xcf, 0x96,
+	0xf5, 0x48, 0xe5, 0xd2, 0x35, 0x8e, 0x12, 0x5f, 0x2e, 0x3f, 0x10, 0xec, 0x3c, 0xa5, 0x85, 0xdb,
+	0x10, 0xcd, 0xe5, 0xed, 0x9c, 0xb4, 0x2e, 0x58, 0x07, 0x23, 0xe8, 0x66, 0x82, 0x96, 0xcc, 0x43,
+	0x80, 0x50, 0xc9, 0xec, 0xca, 0xa6, 0xcc, 0xc7, 0x2d, 0x08, 0x6e, 0x94, 0x61, 0xc1, 0xdd, 0x41,
+	0x28, 0xc1, 0xba, 0xee, 0x70, 0xb5, 0x62, 0x3d, 0x1c, 0x00, 0x68, 0x12, 0x74, 0xab, 0x34, 0x19,
+	0xc3, 0xc2, 0x83, 0x9f, 0x01, 0xb0, 0x66, 0x1f, 0x3c, 0x83, 0xf0, 0xd8, 0xe5, 0x8a, 0xfb, 0x2d,
+	0xa3, 0x55, 0xf9, 0x0c, 0xf7, 0x5a, 0x58, 0xa7, 0x53, 0xde, 0xc1, 0xaf, 0x10, 0x9c, 0x90, 0xc5,
+	0x76, 0xde, 0xf0, 0x5d, 0x0b, 0x5c, 0x7b, 0xfd, 0xbc, 0x83, 0x33, 0x08, 0xcb, 0xd4, 0xf0, 0x7d,
+	0xcb, 0x3f, 0xf5, 0x60, 0x87, 0x6f, 0x5b, 0x88, 0x7f, 0x62, 0xe0, 0x1d, 0x3c, 0x87, 0x70, 0x4a,
+	0x2b, 0xb2, 0xf4, 0x2f, 0xbb, 0xcf, 0x56, 0x9c, 0x41, 0x58, 0xae, 0x82, 0x56, 0xb7, 0xf5, 0x6d,
+	0xf1, 0x6c, 0xed, 0xcf, 0x83, 0xd9, 0xf6, 0xa2, 0xb6, 0x9f, 0xe6, 0xa1, 0x5b, 0x4c, 0x87, 0xbf,
+	0x03, 0x00, 0x00, 0xff, 0xff, 0xdc, 0x40, 0xf4, 0x1c, 0xb9, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -385,10 +426,11 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type TransportCompanyClient interface {
-	Add(ctx context.Context, in *TransportCompanyAddParams, opts ...grpc.CallOption) (*TransportCompanyID, error)
+	Create(ctx context.Context, in *TransportCompanyAddParams, opts ...grpc.CallOption) (*TransportCompanyID, error)
 	Get(ctx context.Context, in *TransportCompanyID, opts ...grpc.CallOption) (*TransportCompanyGetResponse, error)
 	Update(ctx context.Context, in *TransportCompanyUpdateParams, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error)
 	Delete(ctx context.Context, in *TransportCompanyID, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error)
+	Toggle(ctx context.Context, in *TransportCompanyToggleParams, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error)
 }
 
 type transportCompanyClient struct {
@@ -399,9 +441,9 @@ func NewTransportCompanyClient(cc *grpc.ClientConn) TransportCompanyClient {
 	return &transportCompanyClient{cc}
 }
 
-func (c *transportCompanyClient) Add(ctx context.Context, in *TransportCompanyAddParams, opts ...grpc.CallOption) (*TransportCompanyID, error) {
+func (c *transportCompanyClient) Create(ctx context.Context, in *TransportCompanyAddParams, opts ...grpc.CallOption) (*TransportCompanyID, error) {
 	out := new(TransportCompanyID)
-	err := c.cc.Invoke(ctx, "/transport.TransportCompany/Add", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/transport.TransportCompany/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -435,20 +477,30 @@ func (c *transportCompanyClient) Delete(ctx context.Context, in *TransportCompan
 	return out, nil
 }
 
+func (c *transportCompanyClient) Toggle(ctx context.Context, in *TransportCompanyToggleParams, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error) {
+	out := new(TransportCompanyOkResponse)
+	err := c.cc.Invoke(ctx, "/transport.TransportCompany/Toggle", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransportCompanyServer is the server API for TransportCompany service.
 type TransportCompanyServer interface {
-	Add(context.Context, *TransportCompanyAddParams) (*TransportCompanyID, error)
+	Create(context.Context, *TransportCompanyAddParams) (*TransportCompanyID, error)
 	Get(context.Context, *TransportCompanyID) (*TransportCompanyGetResponse, error)
 	Update(context.Context, *TransportCompanyUpdateParams) (*TransportCompanyOkResponse, error)
 	Delete(context.Context, *TransportCompanyID) (*TransportCompanyOkResponse, error)
+	Toggle(context.Context, *TransportCompanyToggleParams) (*TransportCompanyOkResponse, error)
 }
 
 // UnimplementedTransportCompanyServer can be embedded to have forward compatible implementations.
 type UnimplementedTransportCompanyServer struct {
 }
 
-func (*UnimplementedTransportCompanyServer) Add(ctx context.Context, req *TransportCompanyAddParams) (*TransportCompanyID, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+func (*UnimplementedTransportCompanyServer) Create(ctx context.Context, req *TransportCompanyAddParams) (*TransportCompanyID, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (*UnimplementedTransportCompanyServer) Get(ctx context.Context, req *TransportCompanyID) (*TransportCompanyGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -459,25 +511,28 @@ func (*UnimplementedTransportCompanyServer) Update(ctx context.Context, req *Tra
 func (*UnimplementedTransportCompanyServer) Delete(ctx context.Context, req *TransportCompanyID) (*TransportCompanyOkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (*UnimplementedTransportCompanyServer) Toggle(ctx context.Context, req *TransportCompanyToggleParams) (*TransportCompanyOkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Toggle not implemented")
+}
 
 func RegisterTransportCompanyServer(s *grpc.Server, srv TransportCompanyServer) {
 	s.RegisterService(&_TransportCompany_serviceDesc, srv)
 }
 
-func _TransportCompany_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransportCompany_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TransportCompanyAddParams)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransportCompanyServer).Add(ctx, in)
+		return srv.(TransportCompanyServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/transport.TransportCompany/Add",
+		FullMethod: "/transport.TransportCompany/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransportCompanyServer).Add(ctx, req.(*TransportCompanyAddParams))
+		return srv.(TransportCompanyServer).Create(ctx, req.(*TransportCompanyAddParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -536,13 +591,31 @@ func _TransportCompany_Delete_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransportCompany_Toggle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyToggleParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyServer).Toggle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/transport.TransportCompany/Toggle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyServer).Toggle(ctx, req.(*TransportCompanyToggleParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _TransportCompany_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "transport.TransportCompany",
 	HandlerType: (*TransportCompanyServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Add",
-			Handler:    _TransportCompany_Add_Handler,
+			MethodName: "Create",
+			Handler:    _TransportCompany_Create_Handler,
 		},
 		{
 			MethodName: "Get",
@@ -555,6 +628,10 @@ var _TransportCompany_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _TransportCompany_Delete_Handler,
+		},
+		{
+			MethodName: "Toggle",
+			Handler:    _TransportCompany_Toggle_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

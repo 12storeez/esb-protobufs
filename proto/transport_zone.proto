@@ -7,6 +7,8 @@ import "proto/transport_company.proto";
 package transport;
 
 service Zones {
+  rpc Toggle (ZonesToggleParams) returns (ZonesOkResponse) {
+  }
   rpc Create (ZonesCreateParams) returns (ZonesID) {
   }
   rpc GetByZoneID (ZonesZoneID) returns (ZonesZone) {
@@ -49,6 +51,11 @@ service Zones {
   }
 }
 
+message ZonesToggleParams {
+  int32 id = 1;
+  bool is_active = 2;
+}
+
 message ZonesDadata {
   string fias_id = 1;
 }
@@ -72,7 +79,6 @@ message ZonesZone {
 message ZonesUpdateParams {
   int32 id = 1;
   string name = 2;
-  bool active = 3;
 }
 
 message ZonesCreateParams {

@@ -24,6 +24,53 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type PaymentMethodToggleParams struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	IsActive             bool     `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PaymentMethodToggleParams) Reset()         { *m = PaymentMethodToggleParams{} }
+func (m *PaymentMethodToggleParams) String() string { return proto.CompactTextString(m) }
+func (*PaymentMethodToggleParams) ProtoMessage()    {}
+func (*PaymentMethodToggleParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_49f7564abc93e2ca, []int{0}
+}
+
+func (m *PaymentMethodToggleParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PaymentMethodToggleParams.Unmarshal(m, b)
+}
+func (m *PaymentMethodToggleParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PaymentMethodToggleParams.Marshal(b, m, deterministic)
+}
+func (m *PaymentMethodToggleParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PaymentMethodToggleParams.Merge(m, src)
+}
+func (m *PaymentMethodToggleParams) XXX_Size() int {
+	return xxx_messageInfo_PaymentMethodToggleParams.Size(m)
+}
+func (m *PaymentMethodToggleParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_PaymentMethodToggleParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PaymentMethodToggleParams proto.InternalMessageInfo
+
+func (m *PaymentMethodToggleParams) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *PaymentMethodToggleParams) GetIsActive() bool {
+	if m != nil {
+		return m.IsActive
+	}
+	return false
+}
+
 type PaymentMethodGetResponse struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
@@ -39,7 +86,7 @@ func (m *PaymentMethodGetResponse) Reset()         { *m = PaymentMethodGetRespon
 func (m *PaymentMethodGetResponse) String() string { return proto.CompactTextString(m) }
 func (*PaymentMethodGetResponse) ProtoMessage()    {}
 func (*PaymentMethodGetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_49f7564abc93e2ca, []int{0}
+	return fileDescriptor_49f7564abc93e2ca, []int{1}
 }
 
 func (m *PaymentMethodGetResponse) XXX_Unmarshal(b []byte) error {
@@ -106,7 +153,7 @@ func (m *PaymentMethodID) Reset()         { *m = PaymentMethodID{} }
 func (m *PaymentMethodID) String() string { return proto.CompactTextString(m) }
 func (*PaymentMethodID) ProtoMessage()    {}
 func (*PaymentMethodID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_49f7564abc93e2ca, []int{1}
+	return fileDescriptor_49f7564abc93e2ca, []int{2}
 }
 
 func (m *PaymentMethodID) XXX_Unmarshal(b []byte) error {
@@ -145,7 +192,7 @@ func (m *PaymentMethodAddParams) Reset()         { *m = PaymentMethodAddParams{}
 func (m *PaymentMethodAddParams) String() string { return proto.CompactTextString(m) }
 func (*PaymentMethodAddParams) ProtoMessage()    {}
 func (*PaymentMethodAddParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_49f7564abc93e2ca, []int{2}
+	return fileDescriptor_49f7564abc93e2ca, []int{3}
 }
 
 func (m *PaymentMethodAddParams) XXX_Unmarshal(b []byte) error {
@@ -176,7 +223,6 @@ func (m *PaymentMethodAddParams) GetTitle() string {
 type PaymentMethodUpdateParams struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Active               bool     `protobuf:"varint,3,opt,name=active,proto3" json:"active,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -186,7 +232,7 @@ func (m *PaymentMethodUpdateParams) Reset()         { *m = PaymentMethodUpdatePa
 func (m *PaymentMethodUpdateParams) String() string { return proto.CompactTextString(m) }
 func (*PaymentMethodUpdateParams) ProtoMessage()    {}
 func (*PaymentMethodUpdateParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_49f7564abc93e2ca, []int{3}
+	return fileDescriptor_49f7564abc93e2ca, []int{4}
 }
 
 func (m *PaymentMethodUpdateParams) XXX_Unmarshal(b []byte) error {
@@ -221,13 +267,6 @@ func (m *PaymentMethodUpdateParams) GetTitle() string {
 	return ""
 }
 
-func (m *PaymentMethodUpdateParams) GetActive() bool {
-	if m != nil {
-		return m.Active
-	}
-	return false
-}
-
 type PaymentMethodOkResponse struct {
 	Ok                   bool     `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -239,7 +278,7 @@ func (m *PaymentMethodOkResponse) Reset()         { *m = PaymentMethodOkResponse
 func (m *PaymentMethodOkResponse) String() string { return proto.CompactTextString(m) }
 func (*PaymentMethodOkResponse) ProtoMessage()    {}
 func (*PaymentMethodOkResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_49f7564abc93e2ca, []int{4}
+	return fileDescriptor_49f7564abc93e2ca, []int{5}
 }
 
 func (m *PaymentMethodOkResponse) XXX_Unmarshal(b []byte) error {
@@ -268,6 +307,7 @@ func (m *PaymentMethodOkResponse) GetOk() bool {
 }
 
 func init() {
+	proto.RegisterType((*PaymentMethodToggleParams)(nil), "transport.PaymentMethodToggleParams")
 	proto.RegisterType((*PaymentMethodGetResponse)(nil), "transport.PaymentMethodGetResponse")
 	proto.RegisterType((*PaymentMethodID)(nil), "transport.PaymentMethodID")
 	proto.RegisterType((*PaymentMethodAddParams)(nil), "transport.PaymentMethodAddParams")
@@ -280,28 +320,30 @@ func init() {
 }
 
 var fileDescriptor_49f7564abc93e2ca = []byte{
-	// 335 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xdf, 0x4a, 0xf3, 0x40,
-	0x10, 0xc5, 0x9b, 0xf4, 0x6b, 0xbe, 0x76, 0xd0, 0x0a, 0x83, 0xd4, 0x18, 0x6f, 0xda, 0xb5, 0x17,
-	0xf5, 0x26, 0x82, 0x3e, 0x41, 0xa5, 0x58, 0x2b, 0x88, 0x25, 0xe8, 0x85, 0xde, 0x94, 0xd8, 0x1d,
-	0x34, 0xf4, 0xcf, 0x86, 0x64, 0x14, 0x7c, 0x0c, 0x9f, 0xc9, 0x17, 0x13, 0x37, 0xb1, 0xcd, 0x8a,
-	0x29, 0xbd, 0x3c, 0x9c, 0xdf, 0xcc, 0x9e, 0x99, 0x1d, 0xe8, 0xc6, 0x89, 0x62, 0x75, 0xca, 0x49,
-	0xb8, 0x4c, 0x63, 0x95, 0xf0, 0x24, 0x0e, 0xdf, 0x17, 0xb4, 0xe4, 0xc9, 0x82, 0xf8, 0x45, 0x49,
-	0x5f, 0xdb, 0xd8, 0x58, 0xf9, 0xe2, 0xc3, 0x02, 0x77, 0x9c, 0x31, 0x37, 0x1a, 0x19, 0x12, 0x07,
-	0x94, 0xc6, 0x6a, 0x99, 0x12, 0x36, 0xc1, 0x8e, 0xa4, 0x6b, 0xb5, 0xad, 0x5e, 0x2d, 0xb0, 0x23,
-	0x89, 0xfb, 0x50, 0xe3, 0x88, 0xe7, 0xe4, 0xda, 0x6d, 0xab, 0xd7, 0x08, 0x32, 0x81, 0x47, 0xd0,
-	0x88, 0xd2, 0x49, 0x38, 0xe5, 0xe8, 0x8d, 0xdc, 0x6a, 0xdb, 0xea, 0xd5, 0x83, 0x7a, 0x94, 0xf6,
-	0xb5, 0x46, 0x17, 0xfe, 0x4f, 0x13, 0x0a, 0x99, 0xa4, 0xfb, 0x4f, 0x17, 0xfd, 0xc8, 0x6f, 0xe7,
-	0x35, 0x96, 0xda, 0xa9, 0x65, 0x4e, 0x2e, 0x45, 0x07, 0xf6, 0x8c, 0x48, 0xa3, 0xc1, 0xef, 0x24,
-	0xc2, 0x87, 0x96, 0x81, 0xf4, 0xa5, 0x1c, 0x87, 0x49, 0xb8, 0x48, 0xd7, 0x19, 0xad, 0x42, 0x46,
-	0xf1, 0x00, 0x87, 0x06, 0x7f, 0xaf, 0x9f, 0xca, 0x4b, 0xb6, 0x1b, 0xb3, 0x05, 0x8e, 0x31, 0x63,
-	0xae, 0xc4, 0x09, 0x1c, 0x18, 0xad, 0x6f, 0x67, 0xc5, 0xfd, 0xa9, 0x99, 0x6e, 0x5c, 0x0f, 0x6c,
-	0x35, 0x3b, 0xfb, 0xb4, 0x61, 0xd7, 0x60, 0xf1, 0x12, 0xaa, 0x7d, 0x29, 0xb1, 0xe3, 0xaf, 0x7e,
-	0xc4, 0xff, 0x7b, 0x2e, 0xcf, 0x2b, 0x43, 0x46, 0x03, 0x51, 0xc1, 0x2b, 0xa8, 0x0e, 0x89, 0x71,
-	0x03, 0xe4, 0x1d, 0x97, 0x79, 0x85, 0x1f, 0x17, 0x15, 0xbc, 0x03, 0x27, 0x5b, 0x0e, 0x76, 0xcb,
-	0x0a, 0x8a, 0xcb, 0xf3, 0x44, 0x19, 0xb5, 0xde, 0x83, 0xa8, 0xe0, 0x35, 0x38, 0x03, 0x9a, 0x13,
-	0xd3, 0xc6, 0x88, 0x5b, 0xf5, 0xba, 0x68, 0x3e, 0xee, 0x3c, 0x17, 0x4e, 0xfc, 0xc9, 0xd1, 0x47,
-	0x7d, 0xfe, 0x15, 0x00, 0x00, 0xff, 0xff, 0x11, 0xcc, 0xbb, 0x8b, 0xfc, 0x02, 0x00, 0x00,
+	// 354 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0x4f, 0x4f, 0xc2, 0x40,
+	0x10, 0xc5, 0x69, 0x91, 0x0a, 0x13, 0xc5, 0x64, 0x63, 0xb4, 0xd6, 0x0b, 0xac, 0x1c, 0xf0, 0x52,
+	0x13, 0xfd, 0x04, 0x28, 0x09, 0x60, 0x62, 0x24, 0x0d, 0x5e, 0xbc, 0x90, 0xca, 0x4e, 0xb0, 0xe1,
+	0xcf, 0x36, 0xed, 0x68, 0xe2, 0xc7, 0xf0, 0xee, 0x87, 0x35, 0x6e, 0xb1, 0x76, 0x91, 0x25, 0x1c,
+	0x27, 0xef, 0xf5, 0xd7, 0x37, 0x6f, 0x77, 0xa1, 0x15, 0x27, 0x92, 0xe4, 0x15, 0x25, 0xe1, 0x32,
+	0x8d, 0x65, 0x42, 0xe3, 0x38, 0xfc, 0x58, 0xe0, 0x92, 0xc6, 0x0b, 0xa4, 0x57, 0x29, 0x7c, 0x25,
+	0xb3, 0x5a, 0xae, 0xf3, 0x3e, 0x9c, 0x0d, 0x33, 0xcb, 0x83, 0x72, 0x8c, 0xe4, 0x74, 0x3a, 0xc7,
+	0x61, 0x98, 0x84, 0x8b, 0x94, 0xd5, 0xc1, 0x8e, 0x84, 0x6b, 0x35, 0xac, 0x76, 0x25, 0xb0, 0x23,
+	0xc1, 0xce, 0xa1, 0x16, 0xa5, 0xe3, 0x70, 0x42, 0xd1, 0x3b, 0xba, 0x76, 0xc3, 0x6a, 0x57, 0x83,
+	0x6a, 0x94, 0x76, 0xd4, 0xcc, 0x3f, 0x2d, 0x70, 0x35, 0x54, 0x0f, 0x29, 0xc0, 0x34, 0x96, 0xcb,
+	0x14, 0xff, 0x91, 0x8e, 0xa1, 0x42, 0x11, 0xcd, 0x33, 0x4a, 0x2d, 0xc8, 0x06, 0x9d, 0x5f, 0xd6,
+	0xf9, 0xcc, 0x85, 0xfd, 0x49, 0x82, 0x21, 0xa1, 0x70, 0xf7, 0xd4, 0x47, 0xbf, 0xe3, 0x8f, 0xf2,
+	0x16, 0x0b, 0xa5, 0x54, 0x32, 0x65, 0x35, 0xf2, 0x26, 0x1c, 0x69, 0x91, 0x06, 0xdd, 0xf5, 0x24,
+	0xdc, 0x87, 0x13, 0xcd, 0xd2, 0x11, 0x62, 0xb5, 0x7d, 0x9e, 0xd1, 0x2a, 0x64, 0xe4, 0x9d, 0xb5,
+	0xc2, 0x9e, 0xd4, 0xaf, 0x0c, 0x85, 0x6d, 0x5c, 0x93, 0x5f, 0xc2, 0xa9, 0x86, 0x78, 0x9c, 0x15,
+	0x7b, 0x92, 0x33, 0x05, 0xa8, 0x06, 0xb6, 0x9c, 0x5d, 0x7f, 0x95, 0xe1, 0x50, 0xf3, 0xb2, 0x01,
+	0x38, 0x77, 0x6a, 0x6f, 0xd6, 0xf4, 0xf3, 0x63, 0xf4, 0x37, 0xaf, 0xe0, 0x79, 0x26, 0xcb, 0xa0,
+	0xcb, 0x4b, 0xac, 0x0f, 0xe5, 0x1e, 0x12, 0xdb, 0x62, 0xf2, 0x2e, 0x4c, 0x5a, 0xe1, 0x70, 0x79,
+	0x89, 0x8d, 0xc0, 0xc9, 0x7a, 0x60, 0x2d, 0xd3, 0x07, 0xc5, 0x9e, 0x3c, 0x6e, 0x72, 0xfd, 0x55,
+	0xc1, 0x4b, 0xec, 0x1e, 0x9c, 0x2e, 0xce, 0x91, 0x70, 0x6b, 0xc4, 0xdd, 0x58, 0x23, 0x70, 0xb2,
+	0xab, 0x6d, 0x4e, 0x58, 0xbc, 0xfa, 0xbb, 0x51, 0x6f, 0xeb, 0xcf, 0x07, 0xd3, 0xc2, 0x6b, 0x7b,
+	0x71, 0xd4, 0xfb, 0xba, 0xf9, 0x0e, 0x00, 0x00, 0xff, 0xff, 0x82, 0xdb, 0x08, 0x78, 0x87, 0x03,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -316,10 +358,11 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PaymentMethodClient interface {
-	Add(ctx context.Context, in *PaymentMethodAddParams, opts ...grpc.CallOption) (*PaymentMethodID, error)
+	Create(ctx context.Context, in *PaymentMethodAddParams, opts ...grpc.CallOption) (*PaymentMethodID, error)
 	Get(ctx context.Context, in *PaymentMethodID, opts ...grpc.CallOption) (*PaymentMethodGetResponse, error)
 	Update(ctx context.Context, in *PaymentMethodUpdateParams, opts ...grpc.CallOption) (*PaymentMethodOkResponse, error)
 	Delete(ctx context.Context, in *PaymentMethodID, opts ...grpc.CallOption) (*PaymentMethodOkResponse, error)
+	Toggle(ctx context.Context, in *PaymentMethodToggleParams, opts ...grpc.CallOption) (*PaymentMethodOkResponse, error)
 }
 
 type paymentMethodClient struct {
@@ -330,9 +373,9 @@ func NewPaymentMethodClient(cc *grpc.ClientConn) PaymentMethodClient {
 	return &paymentMethodClient{cc}
 }
 
-func (c *paymentMethodClient) Add(ctx context.Context, in *PaymentMethodAddParams, opts ...grpc.CallOption) (*PaymentMethodID, error) {
+func (c *paymentMethodClient) Create(ctx context.Context, in *PaymentMethodAddParams, opts ...grpc.CallOption) (*PaymentMethodID, error) {
 	out := new(PaymentMethodID)
-	err := c.cc.Invoke(ctx, "/transport.PaymentMethod/Add", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/transport.PaymentMethod/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -366,20 +409,30 @@ func (c *paymentMethodClient) Delete(ctx context.Context, in *PaymentMethodID, o
 	return out, nil
 }
 
+func (c *paymentMethodClient) Toggle(ctx context.Context, in *PaymentMethodToggleParams, opts ...grpc.CallOption) (*PaymentMethodOkResponse, error) {
+	out := new(PaymentMethodOkResponse)
+	err := c.cc.Invoke(ctx, "/transport.PaymentMethod/Toggle", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PaymentMethodServer is the server API for PaymentMethod service.
 type PaymentMethodServer interface {
-	Add(context.Context, *PaymentMethodAddParams) (*PaymentMethodID, error)
+	Create(context.Context, *PaymentMethodAddParams) (*PaymentMethodID, error)
 	Get(context.Context, *PaymentMethodID) (*PaymentMethodGetResponse, error)
 	Update(context.Context, *PaymentMethodUpdateParams) (*PaymentMethodOkResponse, error)
 	Delete(context.Context, *PaymentMethodID) (*PaymentMethodOkResponse, error)
+	Toggle(context.Context, *PaymentMethodToggleParams) (*PaymentMethodOkResponse, error)
 }
 
 // UnimplementedPaymentMethodServer can be embedded to have forward compatible implementations.
 type UnimplementedPaymentMethodServer struct {
 }
 
-func (*UnimplementedPaymentMethodServer) Add(ctx context.Context, req *PaymentMethodAddParams) (*PaymentMethodID, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+func (*UnimplementedPaymentMethodServer) Create(ctx context.Context, req *PaymentMethodAddParams) (*PaymentMethodID, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (*UnimplementedPaymentMethodServer) Get(ctx context.Context, req *PaymentMethodID) (*PaymentMethodGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -390,25 +443,28 @@ func (*UnimplementedPaymentMethodServer) Update(ctx context.Context, req *Paymen
 func (*UnimplementedPaymentMethodServer) Delete(ctx context.Context, req *PaymentMethodID) (*PaymentMethodOkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (*UnimplementedPaymentMethodServer) Toggle(ctx context.Context, req *PaymentMethodToggleParams) (*PaymentMethodOkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Toggle not implemented")
+}
 
 func RegisterPaymentMethodServer(s *grpc.Server, srv PaymentMethodServer) {
 	s.RegisterService(&_PaymentMethod_serviceDesc, srv)
 }
 
-func _PaymentMethod_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PaymentMethod_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PaymentMethodAddParams)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentMethodServer).Add(ctx, in)
+		return srv.(PaymentMethodServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/transport.PaymentMethod/Add",
+		FullMethod: "/transport.PaymentMethod/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentMethodServer).Add(ctx, req.(*PaymentMethodAddParams))
+		return srv.(PaymentMethodServer).Create(ctx, req.(*PaymentMethodAddParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -467,13 +523,31 @@ func _PaymentMethod_Delete_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentMethod_Toggle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentMethodToggleParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentMethodServer).Toggle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/transport.PaymentMethod/Toggle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentMethodServer).Toggle(ctx, req.(*PaymentMethodToggleParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _PaymentMethod_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "transport.PaymentMethod",
 	HandlerType: (*PaymentMethodServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Add",
-			Handler:    _PaymentMethod_Add_Handler,
+			MethodName: "Create",
+			Handler:    _PaymentMethod_Create_Handler,
 		},
 		{
 			MethodName: "Get",
@@ -486,6 +560,10 @@ var _PaymentMethod_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _PaymentMethod_Delete_Handler,
+		},
+		{
+			MethodName: "Toggle",
+			Handler:    _PaymentMethod_Toggle_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
