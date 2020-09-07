@@ -42,10 +42,11 @@ func NewPaymentMethodEndpoints() []*api.Endpoint {
 // Client API for PaymentMethod service
 
 type PaymentMethodService interface {
-	Add(ctx context.Context, in *PaymentMethodAddParams, opts ...client.CallOption) (*PaymentMethodID, error)
+	Create(ctx context.Context, in *PaymentMethodAddParams, opts ...client.CallOption) (*PaymentMethodID, error)
 	Get(ctx context.Context, in *PaymentMethodID, opts ...client.CallOption) (*PaymentMethodGetResponse, error)
 	Update(ctx context.Context, in *PaymentMethodUpdateParams, opts ...client.CallOption) (*PaymentMethodOkResponse, error)
 	Delete(ctx context.Context, in *PaymentMethodID, opts ...client.CallOption) (*PaymentMethodOkResponse, error)
+	Toggle(ctx context.Context, in *PaymentMethodToggleParams, opts ...client.CallOption) (*PaymentMethodOkResponse, error)
 }
 
 type paymentMethodService struct {
@@ -60,8 +61,8 @@ func NewPaymentMethodService(name string, c client.Client) PaymentMethodService 
 	}
 }
 
-func (c *paymentMethodService) Add(ctx context.Context, in *PaymentMethodAddParams, opts ...client.CallOption) (*PaymentMethodID, error) {
-	req := c.c.NewRequest(c.name, "PaymentMethod.Add", in)
+func (c *paymentMethodService) Create(ctx context.Context, in *PaymentMethodAddParams, opts ...client.CallOption) (*PaymentMethodID, error) {
+	req := c.c.NewRequest(c.name, "PaymentMethod.Create", in)
 	out := new(PaymentMethodID)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -100,21 +101,33 @@ func (c *paymentMethodService) Delete(ctx context.Context, in *PaymentMethodID, 
 	return out, nil
 }
 
+func (c *paymentMethodService) Toggle(ctx context.Context, in *PaymentMethodToggleParams, opts ...client.CallOption) (*PaymentMethodOkResponse, error) {
+	req := c.c.NewRequest(c.name, "PaymentMethod.Toggle", in)
+	out := new(PaymentMethodOkResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for PaymentMethod service
 
 type PaymentMethodHandler interface {
-	Add(context.Context, *PaymentMethodAddParams, *PaymentMethodID) error
+	Create(context.Context, *PaymentMethodAddParams, *PaymentMethodID) error
 	Get(context.Context, *PaymentMethodID, *PaymentMethodGetResponse) error
 	Update(context.Context, *PaymentMethodUpdateParams, *PaymentMethodOkResponse) error
 	Delete(context.Context, *PaymentMethodID, *PaymentMethodOkResponse) error
+	Toggle(context.Context, *PaymentMethodToggleParams, *PaymentMethodOkResponse) error
 }
 
 func RegisterPaymentMethodHandler(s server.Server, hdlr PaymentMethodHandler, opts ...server.HandlerOption) error {
 	type paymentMethod interface {
-		Add(ctx context.Context, in *PaymentMethodAddParams, out *PaymentMethodID) error
+		Create(ctx context.Context, in *PaymentMethodAddParams, out *PaymentMethodID) error
 		Get(ctx context.Context, in *PaymentMethodID, out *PaymentMethodGetResponse) error
 		Update(ctx context.Context, in *PaymentMethodUpdateParams, out *PaymentMethodOkResponse) error
 		Delete(ctx context.Context, in *PaymentMethodID, out *PaymentMethodOkResponse) error
+		Toggle(ctx context.Context, in *PaymentMethodToggleParams, out *PaymentMethodOkResponse) error
 	}
 	type PaymentMethod struct {
 		paymentMethod
@@ -127,8 +140,8 @@ type paymentMethodHandler struct {
 	PaymentMethodHandler
 }
 
-func (h *paymentMethodHandler) Add(ctx context.Context, in *PaymentMethodAddParams, out *PaymentMethodID) error {
-	return h.PaymentMethodHandler.Add(ctx, in, out)
+func (h *paymentMethodHandler) Create(ctx context.Context, in *PaymentMethodAddParams, out *PaymentMethodID) error {
+	return h.PaymentMethodHandler.Create(ctx, in, out)
 }
 
 func (h *paymentMethodHandler) Get(ctx context.Context, in *PaymentMethodID, out *PaymentMethodGetResponse) error {
@@ -141,4 +154,8 @@ func (h *paymentMethodHandler) Update(ctx context.Context, in *PaymentMethodUpda
 
 func (h *paymentMethodHandler) Delete(ctx context.Context, in *PaymentMethodID, out *PaymentMethodOkResponse) error {
 	return h.PaymentMethodHandler.Delete(ctx, in, out)
+}
+
+func (h *paymentMethodHandler) Toggle(ctx context.Context, in *PaymentMethodToggleParams, out *PaymentMethodOkResponse) error {
+	return h.PaymentMethodHandler.Toggle(ctx, in, out)
 }

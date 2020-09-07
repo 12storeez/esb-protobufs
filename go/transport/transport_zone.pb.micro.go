@@ -42,6 +42,7 @@ func NewZonesEndpoints() []*api.Endpoint {
 // Client API for Zones service
 
 type ZonesService interface {
+	Toggle(ctx context.Context, in *ZonesToggleParams, opts ...client.CallOption) (*ZonesOkResponse, error)
 	Create(ctx context.Context, in *ZonesCreateParams, opts ...client.CallOption) (*ZonesID, error)
 	GetByZoneID(ctx context.Context, in *ZonesZoneID, opts ...client.CallOption) (*ZonesZone, error)
 	GetAll(ctx context.Context, in *ZonesGetAllParams, opts ...client.CallOption) (*ZonesGetAllResponse, error)
@@ -74,6 +75,16 @@ func NewZonesService(name string, c client.Client) ZonesService {
 		c:    c,
 		name: name,
 	}
+}
+
+func (c *zonesService) Toggle(ctx context.Context, in *ZonesToggleParams, opts ...client.CallOption) (*ZonesOkResponse, error) {
+	req := c.c.NewRequest(c.name, "Zones.Toggle", in)
+	out := new(ZonesOkResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *zonesService) Create(ctx context.Context, in *ZonesCreateParams, opts ...client.CallOption) (*ZonesID, error) {
@@ -279,6 +290,7 @@ func (c *zonesService) DeletePaymentMethod(ctx context.Context, in *ZonesID, opt
 // Server API for Zones service
 
 type ZonesHandler interface {
+	Toggle(context.Context, *ZonesToggleParams, *ZonesOkResponse) error
 	Create(context.Context, *ZonesCreateParams, *ZonesID) error
 	GetByZoneID(context.Context, *ZonesZoneID, *ZonesZone) error
 	GetAll(context.Context, *ZonesGetAllParams, *ZonesGetAllResponse) error
@@ -303,6 +315,7 @@ type ZonesHandler interface {
 
 func RegisterZonesHandler(s server.Server, hdlr ZonesHandler, opts ...server.HandlerOption) error {
 	type zones interface {
+		Toggle(ctx context.Context, in *ZonesToggleParams, out *ZonesOkResponse) error
 		Create(ctx context.Context, in *ZonesCreateParams, out *ZonesID) error
 		GetByZoneID(ctx context.Context, in *ZonesZoneID, out *ZonesZone) error
 		GetAll(ctx context.Context, in *ZonesGetAllParams, out *ZonesGetAllResponse) error
@@ -333,6 +346,10 @@ func RegisterZonesHandler(s server.Server, hdlr ZonesHandler, opts ...server.Han
 
 type zonesHandler struct {
 	ZonesHandler
+}
+
+func (h *zonesHandler) Toggle(ctx context.Context, in *ZonesToggleParams, out *ZonesOkResponse) error {
+	return h.ZonesHandler.Toggle(ctx, in, out)
 }
 
 func (h *zonesHandler) Create(ctx context.Context, in *ZonesCreateParams, out *ZonesID) error {

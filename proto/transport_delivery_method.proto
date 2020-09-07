@@ -5,7 +5,7 @@ option go_package = "go/transport";
 package transport;
 
 service DeliveryMethod {
-    rpc Add (DeliveryMethodAddParams) returns (DeliveryMethodID) {
+    rpc Create (DeliveryMethodAddParams) returns (DeliveryMethodID) {
     }
     rpc Get (DeliveryMethodID) returns (DeliveryMethodGetResponse) {
     }
@@ -13,6 +13,13 @@ service DeliveryMethod {
     }
     rpc Delete (DeliveryMethodID) returns (DeliveryMethodOkResponse) {
     }
+    rpc Toggle (DeliveryMethodToggleParams) returns (DeliveryMethodOkResponse) {
+    }
+}
+
+message DeliveryMethodToggleParams {
+    int32 id = 1;
+    bool is_active = 2;
 }
 
 enum DeliveryType {
@@ -45,7 +52,6 @@ message DeliveryMethodUpdateParams {
     int32 id = 1;
     string title = 2;
     DeliveryType type = 3;
-    bool is_active = 4;
 }
 
 message DeliveryMethodOkResponse {

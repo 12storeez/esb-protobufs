@@ -42,10 +42,11 @@ func NewDeliveryMethodEndpoints() []*api.Endpoint {
 // Client API for DeliveryMethod service
 
 type DeliveryMethodService interface {
-	Add(ctx context.Context, in *DeliveryMethodAddParams, opts ...client.CallOption) (*DeliveryMethodID, error)
+	Create(ctx context.Context, in *DeliveryMethodAddParams, opts ...client.CallOption) (*DeliveryMethodID, error)
 	Get(ctx context.Context, in *DeliveryMethodID, opts ...client.CallOption) (*DeliveryMethodGetResponse, error)
 	Update(ctx context.Context, in *DeliveryMethodUpdateParams, opts ...client.CallOption) (*DeliveryMethodOkResponse, error)
 	Delete(ctx context.Context, in *DeliveryMethodID, opts ...client.CallOption) (*DeliveryMethodOkResponse, error)
+	Toggle(ctx context.Context, in *DeliveryMethodToggleParams, opts ...client.CallOption) (*DeliveryMethodOkResponse, error)
 }
 
 type deliveryMethodService struct {
@@ -60,8 +61,8 @@ func NewDeliveryMethodService(name string, c client.Client) DeliveryMethodServic
 	}
 }
 
-func (c *deliveryMethodService) Add(ctx context.Context, in *DeliveryMethodAddParams, opts ...client.CallOption) (*DeliveryMethodID, error) {
-	req := c.c.NewRequest(c.name, "DeliveryMethod.Add", in)
+func (c *deliveryMethodService) Create(ctx context.Context, in *DeliveryMethodAddParams, opts ...client.CallOption) (*DeliveryMethodID, error) {
+	req := c.c.NewRequest(c.name, "DeliveryMethod.Create", in)
 	out := new(DeliveryMethodID)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -100,21 +101,33 @@ func (c *deliveryMethodService) Delete(ctx context.Context, in *DeliveryMethodID
 	return out, nil
 }
 
+func (c *deliveryMethodService) Toggle(ctx context.Context, in *DeliveryMethodToggleParams, opts ...client.CallOption) (*DeliveryMethodOkResponse, error) {
+	req := c.c.NewRequest(c.name, "DeliveryMethod.Toggle", in)
+	out := new(DeliveryMethodOkResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for DeliveryMethod service
 
 type DeliveryMethodHandler interface {
-	Add(context.Context, *DeliveryMethodAddParams, *DeliveryMethodID) error
+	Create(context.Context, *DeliveryMethodAddParams, *DeliveryMethodID) error
 	Get(context.Context, *DeliveryMethodID, *DeliveryMethodGetResponse) error
 	Update(context.Context, *DeliveryMethodUpdateParams, *DeliveryMethodOkResponse) error
 	Delete(context.Context, *DeliveryMethodID, *DeliveryMethodOkResponse) error
+	Toggle(context.Context, *DeliveryMethodToggleParams, *DeliveryMethodOkResponse) error
 }
 
 func RegisterDeliveryMethodHandler(s server.Server, hdlr DeliveryMethodHandler, opts ...server.HandlerOption) error {
 	type deliveryMethod interface {
-		Add(ctx context.Context, in *DeliveryMethodAddParams, out *DeliveryMethodID) error
+		Create(ctx context.Context, in *DeliveryMethodAddParams, out *DeliveryMethodID) error
 		Get(ctx context.Context, in *DeliveryMethodID, out *DeliveryMethodGetResponse) error
 		Update(ctx context.Context, in *DeliveryMethodUpdateParams, out *DeliveryMethodOkResponse) error
 		Delete(ctx context.Context, in *DeliveryMethodID, out *DeliveryMethodOkResponse) error
+		Toggle(ctx context.Context, in *DeliveryMethodToggleParams, out *DeliveryMethodOkResponse) error
 	}
 	type DeliveryMethod struct {
 		deliveryMethod
@@ -127,8 +140,8 @@ type deliveryMethodHandler struct {
 	DeliveryMethodHandler
 }
 
-func (h *deliveryMethodHandler) Add(ctx context.Context, in *DeliveryMethodAddParams, out *DeliveryMethodID) error {
-	return h.DeliveryMethodHandler.Add(ctx, in, out)
+func (h *deliveryMethodHandler) Create(ctx context.Context, in *DeliveryMethodAddParams, out *DeliveryMethodID) error {
+	return h.DeliveryMethodHandler.Create(ctx, in, out)
 }
 
 func (h *deliveryMethodHandler) Get(ctx context.Context, in *DeliveryMethodID, out *DeliveryMethodGetResponse) error {
@@ -141,4 +154,8 @@ func (h *deliveryMethodHandler) Update(ctx context.Context, in *DeliveryMethodUp
 
 func (h *deliveryMethodHandler) Delete(ctx context.Context, in *DeliveryMethodID, out *DeliveryMethodOkResponse) error {
 	return h.DeliveryMethodHandler.Delete(ctx, in, out)
+}
+
+func (h *deliveryMethodHandler) Toggle(ctx context.Context, in *DeliveryMethodToggleParams, out *DeliveryMethodOkResponse) error {
+	return h.DeliveryMethodHandler.Toggle(ctx, in, out)
 }
