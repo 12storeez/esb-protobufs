@@ -47,6 +47,8 @@ type TransportCompanyService interface {
 	Update(ctx context.Context, in *TransportCompanyUpdateParams, opts ...client.CallOption) (*TransportCompanyOkResponse, error)
 	Delete(ctx context.Context, in *TransportCompanyID, opts ...client.CallOption) (*TransportCompanyOkResponse, error)
 	Toggle(ctx context.Context, in *TransportCompanyToggleParams, opts ...client.CallOption) (*TransportCompanyOkResponse, error)
+	AddDelivery(ctx context.Context, in *TransportCompanyAddDeliveryParams, opts ...client.CallOption) (*TransportCompanyAddDeliveryResponse, error)
+	ToggleDelivery(ctx context.Context, in *TransportCompanyToggleDeliveryParams, opts ...client.CallOption) (*TransportCompanyOkResponse, error)
 }
 
 type transportCompanyService struct {
@@ -111,6 +113,26 @@ func (c *transportCompanyService) Toggle(ctx context.Context, in *TransportCompa
 	return out, nil
 }
 
+func (c *transportCompanyService) AddDelivery(ctx context.Context, in *TransportCompanyAddDeliveryParams, opts ...client.CallOption) (*TransportCompanyAddDeliveryResponse, error) {
+	req := c.c.NewRequest(c.name, "TransportCompany.AddDelivery", in)
+	out := new(TransportCompanyAddDeliveryResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportCompanyService) ToggleDelivery(ctx context.Context, in *TransportCompanyToggleDeliveryParams, opts ...client.CallOption) (*TransportCompanyOkResponse, error) {
+	req := c.c.NewRequest(c.name, "TransportCompany.ToggleDelivery", in)
+	out := new(TransportCompanyOkResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for TransportCompany service
 
 type TransportCompanyHandler interface {
@@ -119,6 +141,8 @@ type TransportCompanyHandler interface {
 	Update(context.Context, *TransportCompanyUpdateParams, *TransportCompanyOkResponse) error
 	Delete(context.Context, *TransportCompanyID, *TransportCompanyOkResponse) error
 	Toggle(context.Context, *TransportCompanyToggleParams, *TransportCompanyOkResponse) error
+	AddDelivery(context.Context, *TransportCompanyAddDeliveryParams, *TransportCompanyAddDeliveryResponse) error
+	ToggleDelivery(context.Context, *TransportCompanyToggleDeliveryParams, *TransportCompanyOkResponse) error
 }
 
 func RegisterTransportCompanyHandler(s server.Server, hdlr TransportCompanyHandler, opts ...server.HandlerOption) error {
@@ -128,6 +152,8 @@ func RegisterTransportCompanyHandler(s server.Server, hdlr TransportCompanyHandl
 		Update(ctx context.Context, in *TransportCompanyUpdateParams, out *TransportCompanyOkResponse) error
 		Delete(ctx context.Context, in *TransportCompanyID, out *TransportCompanyOkResponse) error
 		Toggle(ctx context.Context, in *TransportCompanyToggleParams, out *TransportCompanyOkResponse) error
+		AddDelivery(ctx context.Context, in *TransportCompanyAddDeliveryParams, out *TransportCompanyAddDeliveryResponse) error
+		ToggleDelivery(ctx context.Context, in *TransportCompanyToggleDeliveryParams, out *TransportCompanyOkResponse) error
 	}
 	type TransportCompany struct {
 		transportCompany
@@ -158,4 +184,12 @@ func (h *transportCompanyHandler) Delete(ctx context.Context, in *TransportCompa
 
 func (h *transportCompanyHandler) Toggle(ctx context.Context, in *TransportCompanyToggleParams, out *TransportCompanyOkResponse) error {
 	return h.TransportCompanyHandler.Toggle(ctx, in, out)
+}
+
+func (h *transportCompanyHandler) AddDelivery(ctx context.Context, in *TransportCompanyAddDeliveryParams, out *TransportCompanyAddDeliveryResponse) error {
+	return h.TransportCompanyHandler.AddDelivery(ctx, in, out)
+}
+
+func (h *transportCompanyHandler) ToggleDelivery(ctx context.Context, in *TransportCompanyToggleDeliveryParams, out *TransportCompanyOkResponse) error {
+	return h.TransportCompanyHandler.ToggleDelivery(ctx, in, out)
 }

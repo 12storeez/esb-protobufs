@@ -64,6 +64,163 @@ func (TransportCompanyType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_64d0e24739b69be1, []int{0}
 }
 
+type TransportCompanyAddDeliveryParams struct {
+	TransportCompanyId   int32    `protobuf:"varint,1,opt,name=transport_company_id,json=transportCompanyId,proto3" json:"transport_company_id,omitempty"`
+	DeliveryId           int32    `protobuf:"varint,2,opt,name=delivery_id,json=deliveryId,proto3" json:"delivery_id,omitempty"`
+	OriginZip            string   `protobuf:"bytes,3,opt,name=origin_zip,json=originZip,proto3" json:"origin_zip,omitempty"`
+	CountryIsoCode       string   `protobuf:"bytes,4,opt,name=country_iso_code,json=countryIsoCode,proto3" json:"country_iso_code,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TransportCompanyAddDeliveryParams) Reset()         { *m = TransportCompanyAddDeliveryParams{} }
+func (m *TransportCompanyAddDeliveryParams) String() string { return proto.CompactTextString(m) }
+func (*TransportCompanyAddDeliveryParams) ProtoMessage()    {}
+func (*TransportCompanyAddDeliveryParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_64d0e24739b69be1, []int{0}
+}
+
+func (m *TransportCompanyAddDeliveryParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TransportCompanyAddDeliveryParams.Unmarshal(m, b)
+}
+func (m *TransportCompanyAddDeliveryParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TransportCompanyAddDeliveryParams.Marshal(b, m, deterministic)
+}
+func (m *TransportCompanyAddDeliveryParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TransportCompanyAddDeliveryParams.Merge(m, src)
+}
+func (m *TransportCompanyAddDeliveryParams) XXX_Size() int {
+	return xxx_messageInfo_TransportCompanyAddDeliveryParams.Size(m)
+}
+func (m *TransportCompanyAddDeliveryParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_TransportCompanyAddDeliveryParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TransportCompanyAddDeliveryParams proto.InternalMessageInfo
+
+func (m *TransportCompanyAddDeliveryParams) GetTransportCompanyId() int32 {
+	if m != nil {
+		return m.TransportCompanyId
+	}
+	return 0
+}
+
+func (m *TransportCompanyAddDeliveryParams) GetDeliveryId() int32 {
+	if m != nil {
+		return m.DeliveryId
+	}
+	return 0
+}
+
+func (m *TransportCompanyAddDeliveryParams) GetOriginZip() string {
+	if m != nil {
+		return m.OriginZip
+	}
+	return ""
+}
+
+func (m *TransportCompanyAddDeliveryParams) GetCountryIsoCode() string {
+	if m != nil {
+		return m.CountryIsoCode
+	}
+	return ""
+}
+
+type TransportCompanyAddDeliveryResponse struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TransportCompanyAddDeliveryResponse) Reset()         { *m = TransportCompanyAddDeliveryResponse{} }
+func (m *TransportCompanyAddDeliveryResponse) String() string { return proto.CompactTextString(m) }
+func (*TransportCompanyAddDeliveryResponse) ProtoMessage()    {}
+func (*TransportCompanyAddDeliveryResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_64d0e24739b69be1, []int{1}
+}
+
+func (m *TransportCompanyAddDeliveryResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TransportCompanyAddDeliveryResponse.Unmarshal(m, b)
+}
+func (m *TransportCompanyAddDeliveryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TransportCompanyAddDeliveryResponse.Marshal(b, m, deterministic)
+}
+func (m *TransportCompanyAddDeliveryResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TransportCompanyAddDeliveryResponse.Merge(m, src)
+}
+func (m *TransportCompanyAddDeliveryResponse) XXX_Size() int {
+	return xxx_messageInfo_TransportCompanyAddDeliveryResponse.Size(m)
+}
+func (m *TransportCompanyAddDeliveryResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_TransportCompanyAddDeliveryResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TransportCompanyAddDeliveryResponse proto.InternalMessageInfo
+
+func (m *TransportCompanyAddDeliveryResponse) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type TransportCompanyToggleDeliveryParams struct {
+	TransportCompanyId   int32    `protobuf:"varint,1,opt,name=transport_company_id,json=transportCompanyId,proto3" json:"transport_company_id,omitempty"`
+	DeliveryId           int32    `protobuf:"varint,2,opt,name=delivery_id,json=deliveryId,proto3" json:"delivery_id,omitempty"`
+	IsActive             bool     `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TransportCompanyToggleDeliveryParams) Reset()         { *m = TransportCompanyToggleDeliveryParams{} }
+func (m *TransportCompanyToggleDeliveryParams) String() string { return proto.CompactTextString(m) }
+func (*TransportCompanyToggleDeliveryParams) ProtoMessage()    {}
+func (*TransportCompanyToggleDeliveryParams) Descriptor() ([]byte, []int) {
+	return fileDescriptor_64d0e24739b69be1, []int{2}
+}
+
+func (m *TransportCompanyToggleDeliveryParams) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TransportCompanyToggleDeliveryParams.Unmarshal(m, b)
+}
+func (m *TransportCompanyToggleDeliveryParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TransportCompanyToggleDeliveryParams.Marshal(b, m, deterministic)
+}
+func (m *TransportCompanyToggleDeliveryParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TransportCompanyToggleDeliveryParams.Merge(m, src)
+}
+func (m *TransportCompanyToggleDeliveryParams) XXX_Size() int {
+	return xxx_messageInfo_TransportCompanyToggleDeliveryParams.Size(m)
+}
+func (m *TransportCompanyToggleDeliveryParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_TransportCompanyToggleDeliveryParams.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TransportCompanyToggleDeliveryParams proto.InternalMessageInfo
+
+func (m *TransportCompanyToggleDeliveryParams) GetTransportCompanyId() int32 {
+	if m != nil {
+		return m.TransportCompanyId
+	}
+	return 0
+}
+
+func (m *TransportCompanyToggleDeliveryParams) GetDeliveryId() int32 {
+	if m != nil {
+		return m.DeliveryId
+	}
+	return 0
+}
+
+func (m *TransportCompanyToggleDeliveryParams) GetIsActive() bool {
+	if m != nil {
+		return m.IsActive
+	}
+	return false
+}
+
 type TransportCompanyToggleParams struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	IsActive             bool     `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
@@ -76,7 +233,7 @@ func (m *TransportCompanyToggleParams) Reset()         { *m = TransportCompanyTo
 func (m *TransportCompanyToggleParams) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyToggleParams) ProtoMessage()    {}
 func (*TransportCompanyToggleParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{0}
+	return fileDescriptor_64d0e24739b69be1, []int{3}
 }
 
 func (m *TransportCompanyToggleParams) XXX_Unmarshal(b []byte) error {
@@ -127,7 +284,7 @@ func (m *TransportCompanyGetResponse) Reset()         { *m = TransportCompanyGet
 func (m *TransportCompanyGetResponse) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyGetResponse) ProtoMessage()    {}
 func (*TransportCompanyGetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{1}
+	return fileDescriptor_64d0e24739b69be1, []int{4}
 }
 
 func (m *TransportCompanyGetResponse) XXX_Unmarshal(b []byte) error {
@@ -201,7 +358,7 @@ func (m *TransportCompanyID) Reset()         { *m = TransportCompanyID{} }
 func (m *TransportCompanyID) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyID) ProtoMessage()    {}
 func (*TransportCompanyID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{2}
+	return fileDescriptor_64d0e24739b69be1, []int{5}
 }
 
 func (m *TransportCompanyID) XXX_Unmarshal(b []byte) error {
@@ -241,7 +398,7 @@ func (m *TransportCompanyAddParams) Reset()         { *m = TransportCompanyAddPa
 func (m *TransportCompanyAddParams) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyAddParams) ProtoMessage()    {}
 func (*TransportCompanyAddParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{3}
+	return fileDescriptor_64d0e24739b69be1, []int{6}
 }
 
 func (m *TransportCompanyAddParams) XXX_Unmarshal(b []byte) error {
@@ -289,7 +446,7 @@ func (m *TransportCompanyUpdateParams) Reset()         { *m = TransportCompanyUp
 func (m *TransportCompanyUpdateParams) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyUpdateParams) ProtoMessage()    {}
 func (*TransportCompanyUpdateParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{4}
+	return fileDescriptor_64d0e24739b69be1, []int{7}
 }
 
 func (m *TransportCompanyUpdateParams) XXX_Unmarshal(b []byte) error {
@@ -342,7 +499,7 @@ func (m *TransportCompanyOkResponse) Reset()         { *m = TransportCompanyOkRe
 func (m *TransportCompanyOkResponse) String() string { return proto.CompactTextString(m) }
 func (*TransportCompanyOkResponse) ProtoMessage()    {}
 func (*TransportCompanyOkResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_64d0e24739b69be1, []int{5}
+	return fileDescriptor_64d0e24739b69be1, []int{8}
 }
 
 func (m *TransportCompanyOkResponse) XXX_Unmarshal(b []byte) error {
@@ -372,6 +529,9 @@ func (m *TransportCompanyOkResponse) GetOk() bool {
 
 func init() {
 	proto.RegisterEnum("transport.TransportCompanyType", TransportCompanyType_name, TransportCompanyType_value)
+	proto.RegisterType((*TransportCompanyAddDeliveryParams)(nil), "transport.TransportCompanyAddDeliveryParams")
+	proto.RegisterType((*TransportCompanyAddDeliveryResponse)(nil), "transport.TransportCompanyAddDeliveryResponse")
+	proto.RegisterType((*TransportCompanyToggleDeliveryParams)(nil), "transport.TransportCompanyToggleDeliveryParams")
 	proto.RegisterType((*TransportCompanyToggleParams)(nil), "transport.TransportCompanyToggleParams")
 	proto.RegisterType((*TransportCompanyGetResponse)(nil), "transport.TransportCompanyGetResponse")
 	proto.RegisterType((*TransportCompanyID)(nil), "transport.TransportCompanyID")
@@ -383,35 +543,44 @@ func init() {
 func init() { proto.RegisterFile("proto/transport_company.proto", fileDescriptor_64d0e24739b69be1) }
 
 var fileDescriptor_64d0e24739b69be1 = []byte{
-	// 445 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xd1, 0x6a, 0xdb, 0x30,
-	0x14, 0x8d, 0xed, 0xc4, 0x75, 0x2e, 0x25, 0x88, 0x4b, 0x1f, 0xbc, 0x74, 0x65, 0x41, 0x74, 0x5b,
-	0x18, 0x23, 0x83, 0xf6, 0x0b, 0xba, 0x06, 0x4a, 0x19, 0xac, 0xc5, 0x74, 0x2f, 0x79, 0x29, 0x8e,
-	0x75, 0x97, 0x9a, 0xa4, 0x91, 0x90, 0xd4, 0x51, 0x7f, 0xdc, 0x3e, 0x60, 0x7f, 0x35, 0x2a, 0xb7,
-	0x9e, 0xeb, 0x74, 0x5e, 0x07, 0x7d, 0xd3, 0xf5, 0x39, 0x3e, 0xf7, 0x5c, 0x1d, 0x71, 0x61, 0x4f,
-	0x69, 0x69, 0xe5, 0x27, 0xab, 0xd3, 0xb5, 0x51, 0x52, 0xdb, 0xcb, 0x4c, 0x5e, 0xab, 0x74, 0x5d,
-	0x4c, 0xdc, 0x77, 0xec, 0x57, 0x00, 0xff, 0x02, 0xaf, 0x2f, 0x1e, 0x8a, 0xe3, 0x92, 0x74, 0x21,
-	0x17, 0x8b, 0x15, 0x9d, 0xa7, 0x3a, 0xbd, 0x36, 0x38, 0x00, 0x3f, 0x17, 0xb1, 0x37, 0xf2, 0xc6,
-	0xbd, 0xc4, 0xcf, 0x05, 0xee, 0x42, 0x3f, 0x37, 0x97, 0x69, 0x66, 0xf3, 0x1f, 0x14, 0xfb, 0x23,
-	0x6f, 0x1c, 0x25, 0x51, 0x6e, 0x8e, 0x5c, 0xcd, 0x7f, 0x79, 0xb0, 0xdb, 0x54, 0x3b, 0x21, 0x9b,
-	0x90, 0x51, 0x72, 0x6d, 0x68, 0x43, 0x6c, 0x07, 0x7a, 0x36, 0xb7, 0xab, 0x52, 0xa8, 0x9f, 0x94,
-	0x05, 0x1e, 0x42, 0xd7, 0x16, 0x8a, 0xe2, 0x60, 0xe4, 0x8d, 0x07, 0x07, 0x6f, 0x26, 0x95, 0xd9,
-	0xc9, 0x86, 0xd3, 0x42, 0x51, 0xe2, 0xc8, 0x8f, 0x7d, 0x75, 0x1f, 0xfb, 0xc2, 0x18, 0xb6, 0x32,
-	0x4d, 0xa9, 0x25, 0x11, 0xf7, 0x5c, 0xa7, 0x87, 0xf2, 0x0e, 0xb9, 0x51, 0xc2, 0x21, 0x61, 0x89,
-	0xdc, 0x97, 0x7c, 0x1f, 0xb0, 0xd9, 0xee, 0x74, 0xda, 0x9c, 0x80, 0x7f, 0x87, 0x57, 0x4d, 0xd6,
-	0x91, 0x10, 0xf7, 0x77, 0x57, 0x8d, 0xe7, 0x3d, 0x35, 0x9e, 0xff, 0x1f, 0xe3, 0xf1, 0x62, 0x33,
-	0xa6, 0x6f, 0xce, 0xe8, 0x5f, 0x62, 0x7a, 0xb9, 0x9b, 0xe5, 0x1f, 0x61, 0xd8, 0x44, 0xcf, 0x96,
-	0xf5, 0x48, 0xe5, 0xd2, 0x35, 0x8e, 0x12, 0x5f, 0x2e, 0x3f, 0x10, 0xec, 0x3c, 0xa5, 0x85, 0xdb,
-	0x10, 0xcd, 0xe5, 0xed, 0x9c, 0xb4, 0x2e, 0x58, 0x07, 0x23, 0xe8, 0x66, 0x82, 0x96, 0xcc, 0x43,
-	0x80, 0x50, 0xc9, 0xec, 0xca, 0xa6, 0xcc, 0xc7, 0x2d, 0x08, 0x6e, 0x94, 0x61, 0xc1, 0xdd, 0x41,
-	0x28, 0xc1, 0xba, 0xee, 0x70, 0xb5, 0x62, 0x3d, 0x1c, 0x00, 0x68, 0x12, 0x74, 0xab, 0x34, 0x19,
-	0xc3, 0xc2, 0x83, 0x9f, 0x01, 0xb0, 0x66, 0x1f, 0x3c, 0x83, 0xf0, 0xd8, 0xe5, 0x8a, 0xfb, 0x2d,
-	0xa3, 0x55, 0xf9, 0x0c, 0xf7, 0x5a, 0x58, 0xa7, 0x53, 0xde, 0xc1, 0xaf, 0x10, 0x9c, 0x90, 0xc5,
-	0x76, 0xde, 0xf0, 0x5d, 0x0b, 0x5c, 0x7b, 0xfd, 0xbc, 0x83, 0x33, 0x08, 0xcb, 0xd4, 0xf0, 0x7d,
-	0xcb, 0x3f, 0xf5, 0x60, 0x87, 0x6f, 0x5b, 0x88, 0x7f, 0x62, 0xe0, 0x1d, 0x3c, 0x87, 0x70, 0x4a,
-	0x2b, 0xb2, 0xf4, 0x2f, 0xbb, 0xcf, 0x56, 0x9c, 0x41, 0x58, 0xae, 0x82, 0x56, 0xb7, 0xf5, 0x6d,
-	0xf1, 0x6c, 0xed, 0xcf, 0x83, 0xd9, 0xf6, 0xa2, 0xb6, 0x9f, 0xe6, 0xa1, 0x5b, 0x4c, 0x87, 0xbf,
-	0x03, 0x00, 0x00, 0xff, 0xff, 0xdc, 0x40, 0xf4, 0x1c, 0xb9, 0x04, 0x00, 0x00,
+	// 584 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x55, 0x4d, 0x6f, 0xda, 0x40,
+	0x10, 0xc5, 0x06, 0x1c, 0x98, 0x44, 0x96, 0x35, 0xca, 0x81, 0x92, 0x46, 0x49, 0xdd, 0xb4, 0x45,
+	0x55, 0x44, 0xaa, 0x44, 0xfd, 0x01, 0x29, 0x48, 0x11, 0xaa, 0xd4, 0x44, 0x56, 0x7a, 0xe1, 0x82,
+	0x8c, 0x77, 0x4a, 0x5c, 0x3e, 0x76, 0xe5, 0x5d, 0xa2, 0xb8, 0x3f, 0xa4, 0xea, 0xbf, 0xe9, 0xb9,
+	0xff, 0xaa, 0x62, 0x0d, 0xd4, 0x18, 0xe2, 0x50, 0xa9, 0xbd, 0x79, 0x76, 0x9e, 0xdf, 0xbc, 0xb7,
+	0xcf, 0x1a, 0xc3, 0xa1, 0x88, 0xb8, 0xe2, 0x67, 0x2a, 0xf2, 0x27, 0x52, 0xf0, 0x48, 0xf5, 0x02,
+	0x3e, 0x16, 0xfe, 0x24, 0x6e, 0xea, 0x73, 0xac, 0x2e, 0x1b, 0xee, 0x4f, 0x03, 0x5e, 0xdc, 0x2e,
+	0xaa, 0x56, 0x82, 0xba, 0x64, 0xac, 0x4d, 0xa3, 0xf0, 0x9e, 0xa2, 0xf8, 0xc6, 0x8f, 0xfc, 0xb1,
+	0xc4, 0x77, 0xb0, 0xbf, 0xc6, 0xd5, 0x0b, 0x59, 0xcd, 0x38, 0x36, 0x1a, 0x65, 0x0f, 0x55, 0x86,
+	0xa0, 0xc3, 0xf0, 0x08, 0x76, 0xd9, 0x9c, 0x63, 0x06, 0x34, 0x35, 0x10, 0x16, 0x47, 0x1d, 0x86,
+	0x87, 0x00, 0x3c, 0x0a, 0x07, 0xe1, 0xa4, 0xf7, 0x2d, 0x14, 0xb5, 0xe2, 0xb1, 0xd1, 0xa8, 0x7a,
+	0xd5, 0xe4, 0xa4, 0x1b, 0x0a, 0x6c, 0x80, 0x13, 0xf0, 0xe9, 0x44, 0xcd, 0x5e, 0x97, 0xbc, 0x17,
+	0x70, 0x46, 0xb5, 0x92, 0x06, 0xd9, 0xf3, 0xf3, 0x8e, 0xe4, 0x2d, 0xce, 0xc8, 0x7d, 0x0f, 0x2f,
+	0x73, 0x0c, 0x78, 0x24, 0x05, 0x9f, 0x48, 0x42, 0x1b, 0xcc, 0xa5, 0x60, 0x33, 0x64, 0xee, 0x77,
+	0x03, 0x4e, 0xb2, 0xef, 0xdd, 0xf2, 0xc1, 0x60, 0x44, 0xff, 0xdf, 0xfb, 0x01, 0x54, 0x43, 0xd9,
+	0xf3, 0x03, 0x15, 0xde, 0x93, 0xb6, 0x5e, 0xf1, 0x2a, 0xa1, 0xbc, 0xd4, 0xb5, 0xfb, 0x11, 0x9e,
+	0x6f, 0xd6, 0x35, 0xd7, 0x93, 0x31, 0xb2, 0x4a, 0x66, 0x66, 0xc8, 0x7e, 0x19, 0x70, 0x90, 0x65,
+	0xbb, 0x22, 0xf5, 0xd8, 0xad, 0xe0, 0x3e, 0x94, 0x55, 0xa8, 0x46, 0x09, 0x51, 0xd5, 0x4b, 0x0a,
+	0xbc, 0x80, 0x92, 0x8a, 0x45, 0x22, 0xd5, 0x3e, 0x3f, 0x6a, 0x2e, 0x3d, 0x37, 0xd7, 0x94, 0xc6,
+	0x82, 0x3c, 0x0d, 0x5e, 0xd5, 0x55, 0x5a, 0xd5, 0x85, 0x35, 0xd8, 0x09, 0x22, 0xf2, 0x15, 0xb1,
+	0x5a, 0x59, 0x4f, 0x5a, 0x94, 0xb3, 0xce, 0x54, 0x30, 0xdd, 0xb1, 0x92, 0xce, 0xbc, 0x74, 0x4f,
+	0x00, 0xb3, 0xe3, 0x3a, 0xed, 0xb5, 0x5c, 0xbf, 0xc0, 0xb3, 0x0d, 0x9f, 0xc3, 0xfc, 0xee, 0x96,
+	0xf6, 0x8c, 0x4d, 0xf6, 0xcc, 0xbf, 0xb0, 0xe7, 0xc6, 0xeb, 0x31, 0x7d, 0xd6, 0x42, 0x1f, 0x89,
+	0xe9, 0xdf, 0xdd, 0xac, 0x7b, 0x0a, 0xf5, 0x6c, 0xf7, 0x7a, 0x98, 0x8e, 0x94, 0x0f, 0xf5, 0xe0,
+	0x8a, 0x67, 0xf2, 0xe1, 0x5b, 0x82, 0xfd, 0x4d, 0x5c, 0xb8, 0x07, 0x95, 0x3e, 0x7f, 0xe8, 0x53,
+	0x14, 0xc5, 0x4e, 0x01, 0x2b, 0x50, 0x0a, 0x18, 0x0d, 0x1d, 0x03, 0x01, 0x2c, 0xc1, 0x83, 0x3b,
+	0xe5, 0x3b, 0x26, 0xee, 0x40, 0x71, 0x2a, 0xa4, 0x53, 0x9c, 0x3d, 0x30, 0xc1, 0x9c, 0x92, 0x7e,
+	0xb8, 0x1b, 0x39, 0x65, 0xb4, 0x01, 0x22, 0x62, 0xf4, 0x20, 0x22, 0x92, 0xd2, 0xb1, 0xce, 0x7f,
+	0x94, 0xc1, 0xc9, 0xce, 0xc1, 0x6b, 0xb0, 0x5a, 0x3a, 0x57, 0x3c, 0xc9, 0xb1, 0xb6, 0xcc, 0xa7,
+	0x7e, 0x98, 0x83, 0xea, 0xb4, 0xdd, 0x02, 0x7e, 0x82, 0xe2, 0x15, 0x29, 0xcc, 0xc7, 0xd5, 0x5f,
+	0xe7, 0xb4, 0x53, 0x5f, 0xbf, 0x5b, 0xc0, 0x2e, 0x58, 0x49, 0x6a, 0xf8, 0x26, 0xe7, 0x9d, 0x74,
+	0xb0, 0xf5, 0x57, 0x39, 0xc0, 0x3f, 0x31, 0xb8, 0x05, 0xbc, 0x01, 0xab, 0x4d, 0x23, 0x52, 0xf4,
+	0x94, 0xdc, 0xad, 0x19, 0xbb, 0x60, 0x25, 0xab, 0x20, 0x57, 0x6d, 0x7a, 0x5b, 0x6c, 0xcf, 0x3d,
+	0x86, 0xdd, 0xd4, 0xda, 0xc4, 0xd3, 0xfc, 0xbc, 0x56, 0x77, 0x64, 0xbd, 0xb9, 0x1d, 0x3a, 0x35,
+	0xee, 0x2b, 0xd8, 0xab, 0xdb, 0x16, 0xcf, 0x9e, 0xb4, 0x94, 0x19, 0xba, 0xad, 0xb5, 0x0f, 0x76,
+	0x77, 0x6f, 0x90, 0xfa, 0x19, 0xf6, 0x2d, 0xfd, 0x17, 0xbc, 0xf8, 0x1d, 0x00, 0x00, 0xff, 0xff,
+	0x49, 0xd9, 0xe8, 0xca, 0x26, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -431,6 +600,8 @@ type TransportCompanyClient interface {
 	Update(ctx context.Context, in *TransportCompanyUpdateParams, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error)
 	Delete(ctx context.Context, in *TransportCompanyID, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error)
 	Toggle(ctx context.Context, in *TransportCompanyToggleParams, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error)
+	AddDelivery(ctx context.Context, in *TransportCompanyAddDeliveryParams, opts ...grpc.CallOption) (*TransportCompanyAddDeliveryResponse, error)
+	ToggleDelivery(ctx context.Context, in *TransportCompanyToggleDeliveryParams, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error)
 }
 
 type transportCompanyClient struct {
@@ -486,6 +657,24 @@ func (c *transportCompanyClient) Toggle(ctx context.Context, in *TransportCompan
 	return out, nil
 }
 
+func (c *transportCompanyClient) AddDelivery(ctx context.Context, in *TransportCompanyAddDeliveryParams, opts ...grpc.CallOption) (*TransportCompanyAddDeliveryResponse, error) {
+	out := new(TransportCompanyAddDeliveryResponse)
+	err := c.cc.Invoke(ctx, "/transport.TransportCompany/AddDelivery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportCompanyClient) ToggleDelivery(ctx context.Context, in *TransportCompanyToggleDeliveryParams, opts ...grpc.CallOption) (*TransportCompanyOkResponse, error) {
+	out := new(TransportCompanyOkResponse)
+	err := c.cc.Invoke(ctx, "/transport.TransportCompany/ToggleDelivery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransportCompanyServer is the server API for TransportCompany service.
 type TransportCompanyServer interface {
 	Create(context.Context, *TransportCompanyAddParams) (*TransportCompanyID, error)
@@ -493,6 +682,8 @@ type TransportCompanyServer interface {
 	Update(context.Context, *TransportCompanyUpdateParams) (*TransportCompanyOkResponse, error)
 	Delete(context.Context, *TransportCompanyID) (*TransportCompanyOkResponse, error)
 	Toggle(context.Context, *TransportCompanyToggleParams) (*TransportCompanyOkResponse, error)
+	AddDelivery(context.Context, *TransportCompanyAddDeliveryParams) (*TransportCompanyAddDeliveryResponse, error)
+	ToggleDelivery(context.Context, *TransportCompanyToggleDeliveryParams) (*TransportCompanyOkResponse, error)
 }
 
 // UnimplementedTransportCompanyServer can be embedded to have forward compatible implementations.
@@ -513,6 +704,12 @@ func (*UnimplementedTransportCompanyServer) Delete(ctx context.Context, req *Tra
 }
 func (*UnimplementedTransportCompanyServer) Toggle(ctx context.Context, req *TransportCompanyToggleParams) (*TransportCompanyOkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Toggle not implemented")
+}
+func (*UnimplementedTransportCompanyServer) AddDelivery(ctx context.Context, req *TransportCompanyAddDeliveryParams) (*TransportCompanyAddDeliveryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddDelivery not implemented")
+}
+func (*UnimplementedTransportCompanyServer) ToggleDelivery(ctx context.Context, req *TransportCompanyToggleDeliveryParams) (*TransportCompanyOkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ToggleDelivery not implemented")
 }
 
 func RegisterTransportCompanyServer(s *grpc.Server, srv TransportCompanyServer) {
@@ -609,6 +806,42 @@ func _TransportCompany_Toggle_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransportCompany_AddDelivery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyAddDeliveryParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyServer).AddDelivery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/transport.TransportCompany/AddDelivery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyServer).AddDelivery(ctx, req.(*TransportCompanyAddDeliveryParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportCompany_ToggleDelivery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyToggleDeliveryParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyServer).ToggleDelivery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/transport.TransportCompany/ToggleDelivery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyServer).ToggleDelivery(ctx, req.(*TransportCompanyToggleDeliveryParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _TransportCompany_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "transport.TransportCompany",
 	HandlerType: (*TransportCompanyServer)(nil),
@@ -632,6 +865,14 @@ var _TransportCompany_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Toggle",
 			Handler:    _TransportCompany_Toggle_Handler,
+		},
+		{
+			MethodName: "AddDelivery",
+			Handler:    _TransportCompany_AddDelivery_Handler,
+		},
+		{
+			MethodName: "ToggleDelivery",
+			Handler:    _TransportCompany_ToggleDelivery_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
