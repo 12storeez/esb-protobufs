@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+option go_package = "go/products";
+package products;
+
+
+message ColorModel {
+    int32 article = 1; // article
+    string name = 2;
+    // price before discount
+    Price price = 3;
+    Description description = 4;
+    Color primary_color = 5;
+    Color secondary_color = 6; // null
+    repeated Size sizes = 7;
+}
+
+message Color {
+    int32 id = 1;
+    string bitrix_id = 2; // null
+    string name = 3;
+    string border_hex = 4; // null || #fff 
+    string hex = 5;
+    string image = 6; // jpeg
+}
+
+message Description {
+    string material = 1;
+    repeated string images = 2; 
+    string gender = 3; // m, f, u
+    string family_id = 4; // bitrix_id
+    string family = 5; // юбка, плать, верх, низ
+}
+
+message Price {
+    float base_price = 1;
+    float discount_price = 2;
+}
+
+message Size {
+    int64 barcode = 1; // barcode
+    string name = 2; // XS, S, L, M
+    repeated Stock stocks = 3;
+}
+
+message SuperModel {
+    string id = 1;
+    string name = 2;
+    repeated ColorModel articles = 3;
+}
+
+message Stock {
+    int64 barcode = 1;
+    int32 store_id = 2;
+    int32 amount = 3;
+}
+
+message Response {
+    bool success = 1;
+    google.protobuf.Any result = 2;
+} 
+
+message Filter {
+    string id = 1;
+    string name = 2;
+    string size = 3;
+}
+
+message ID {
+    string id = 1;
+}
+
+service Catalog {
+    rpc Get (Filter) returns (Response);
+    rpc GetByID (ID) returns (Response);
+    rpc Create (ID) returns (Response);
+    rpc Update (ID) returns (Response);
+    rpc Delete (ID) returns (Response);
+}
