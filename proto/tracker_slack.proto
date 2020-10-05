@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "go/tracker";
+package tracker;
+
+service TrackerSlack {
+    rpc SendTicket (SendTicketParams) returns (SendTicketResponse) {
+    }
+}
+
+message SendTicketParams {
+    string ticket_id = 1;
+}
+
+message SendTicketResponse {
+    bool success = 1;
+}

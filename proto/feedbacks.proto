@@ -4,7 +4,6 @@ option go_package = "go/feedbacks";
 import "google/protobuf/empty.proto";
 package feedbacks;
 
-
 service Mobile {
     rpc App (ParamsApp) returns (ResponseOk) {
     }
@@ -134,6 +133,7 @@ message NewOrderParams {
     string company = 6;
     string source = 7;
     string type = 8;
+    string nps_id = 9;
 }
 
 message NewOrderResponse {
