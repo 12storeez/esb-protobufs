@@ -130,6 +130,10 @@ message NewOrderParams {
     string order_date = 2;
     string order_id = 3;
     int32 rate = 4;
+    string channel = 5;
+    string company = 6;
+    string source = 7;
+    string type = 8;
 }
 
 message NewOrderResponse {
