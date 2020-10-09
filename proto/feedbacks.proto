@@ -133,6 +133,7 @@ message NewOrderParams {
     string company = 6;
     string source = 7;
     string type = 8;
+    string template = 9;
 }
 
 message NewOrderResponse {
