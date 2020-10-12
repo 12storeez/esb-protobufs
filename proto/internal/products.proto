@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+option go_package = "go/products";
+package products;
+
+
+message Product {
+    int32 id = 1;
+    UUID guid = 2;
+    int32 article = 3;
+    bool is_active = 4;
+    string category = 5;
+    string gender = 6;
+    string url = 7;
+    Description fabric = 8;
+    Description family = 9;
+    Description super_model = 10;
+    Description color_model = 11;
+    Color color = 12;
+    Price price = 13;
+    repeated Size sizes = 14;
+}
+
+message Description {
+    UUID guid = 1;
+    string title_ru = 2;
+    string title_en = 3;
+}
+
+message Color {
+    UUID guid = 1;
+    int32 code = 2;
+    string title_ru = 3;
+    string title_en = 4;
+}
+
+message Price {
+    float  price = 1;
+    float  price_before_discount = 2;
+    int32  currency_code = 3;
+    string currency_iso = 4;
+}
+
+message Size {
+    UUID  guid = 1;
+    int64 barcode = 2;
+    string title_ru = 3;
+    string title_en = 4;
+    repeated Stock stocks = 5;
+}
+
+message Stock {
+    int64 barcode = 1;
+    int32 store_code = 2;
+    int32 quantity = 3;
+    int32 available = 4;
+    int32 reserved = 5;
+}
+
+message GetResponse {
+    bool success = 1;
+    repeated Product products = 2;
+}
+
+message GetByArticleResponse {
+    bool success = 1;
+    Product products = 2;
+}
+
+message UUID {
+    string uuid = 1;
+}
+
+message Request {}
+
+message Article {
+    int32 article = 1;
+}
+
+service Catalog {
+    rpc Get (google.protobuf.Empty) returns (GetResponse);
+    rpc GetByArticle (Article) returns (GetByArticleResponse);
+}
