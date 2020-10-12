@@ -1,45 +1,28 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
 option go_package = "go/products";
 package products;
 
 
 message Product {
-    int64 id = 1;
+    int32 id = 1;
     UUID guid = 2;
     int32 article = 3;
     bool is_active = 4;
     string category = 5;
     string gender = 6;
     string url = 7;
-    Fabric fabric = 8;
-    Family family = 9;
-    SuperModel super_model = 10;
-    ColorModel color_model = 11;
+    Description fabric = 8;
+    Description family = 9;
+    Description super_model = 10;
+    Description color_model = 11;
     Color color = 12;
     Price price = 13;
     repeated Size sizes = 14;
 }
 
-message Fabric {
-    UUID guid = 1;
-    string title_ru = 2;
-    string title_en = 3;
-}
-
-message Family {
-    UUID guid = 1;
-    string title_ru = 2;
-    string title_en = 3;
-}
-
-message SuperModel {
-    UUID guid = 1;
-    string title_ru = 2;
-    string title_en = 3;
-}
-
-message ColorModel {
+message Description {
     UUID guid = 1;
     string title_ru = 2;
     string title_en = 3;
@@ -75,16 +58,14 @@ message Stock {
     int32 reserved = 5;
 }
 
-message Response {
+message GetResponse {
     bool success = 1;
     repeated Product products = 2;
-    string error = 3;
 }
 
-message ProductByArticleResponse {
+message GetByArticleResponse {
     bool success = 1;
     Product products = 2;
-    string error = 3;
 }
 
 message UUID {
@@ -98,6 +79,6 @@ message Article {
 }
 
 service Catalog {
-    rpc Get (Request) returns (Response);
-    rpc GetByArticle (Article) returns (ProductByArticleResponse);
+    rpc Get (google.protobuf.Empty) returns (GetResponse);
+    rpc GetByArticle (Article) returns (GetByArticleResponse);
 }

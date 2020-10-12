@@ -6,6 +6,7 @@ package products
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -42,8 +43,8 @@ func NewCatalogEndpoints() []*api.Endpoint {
 // Client API for Catalog service
 
 type CatalogService interface {
-	Get(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error)
-	GetByArticle(ctx context.Context, in *Article, opts ...client.CallOption) (*SingleProductResponse, error)
+	Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*GetResponse, error)
+	GetByArticle(ctx context.Context, in *Article, opts ...client.CallOption) (*GetByArticleResponse, error)
 }
 
 type catalogService struct {
@@ -58,9 +59,9 @@ func NewCatalogService(name string, c client.Client) CatalogService {
 	}
 }
 
-func (c *catalogService) Get(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
+func (c *catalogService) Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*GetResponse, error) {
 	req := c.c.NewRequest(c.name, "Catalog.Get", in)
-	out := new(Response)
+	out := new(GetResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,9 +69,9 @@ func (c *catalogService) Get(ctx context.Context, in *Request, opts ...client.Ca
 	return out, nil
 }
 
-func (c *catalogService) GetByArticle(ctx context.Context, in *Article, opts ...client.CallOption) (*SingleProductResponse, error) {
+func (c *catalogService) GetByArticle(ctx context.Context, in *Article, opts ...client.CallOption) (*GetByArticleResponse, error) {
 	req := c.c.NewRequest(c.name, "Catalog.GetByArticle", in)
-	out := new(SingleProductResponse)
+	out := new(GetByArticleResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -81,14 +82,14 @@ func (c *catalogService) GetByArticle(ctx context.Context, in *Article, opts ...
 // Server API for Catalog service
 
 type CatalogHandler interface {
-	Get(context.Context, *Request, *Response) error
-	GetByArticle(context.Context, *Article, *SingleProductResponse) error
+	Get(context.Context, *empty.Empty, *GetResponse) error
+	GetByArticle(context.Context, *Article, *GetByArticleResponse) error
 }
 
 func RegisterCatalogHandler(s server.Server, hdlr CatalogHandler, opts ...server.HandlerOption) error {
 	type catalog interface {
-		Get(ctx context.Context, in *Request, out *Response) error
-		GetByArticle(ctx context.Context, in *Article, out *SingleProductResponse) error
+		Get(ctx context.Context, in *empty.Empty, out *GetResponse) error
+		GetByArticle(ctx context.Context, in *Article, out *GetByArticleResponse) error
 	}
 	type Catalog struct {
 		catalog
@@ -101,10 +102,10 @@ type catalogHandler struct {
 	CatalogHandler
 }
 
-func (h *catalogHandler) Get(ctx context.Context, in *Request, out *Response) error {
+func (h *catalogHandler) Get(ctx context.Context, in *empty.Empty, out *GetResponse) error {
 	return h.CatalogHandler.Get(ctx, in, out)
 }
 
-func (h *catalogHandler) GetByArticle(ctx context.Context, in *Article, out *SingleProductResponse) error {
+func (h *catalogHandler) GetByArticle(ctx context.Context, in *Article, out *GetByArticleResponse) error {
 	return h.CatalogHandler.GetByArticle(ctx, in, out)
 }
