@@ -47,7 +47,7 @@ message Size {
     string title_ru = 3;
     string title_en = 4;
     repeated Stock stocks = 5;
-    repeated Price price = 6;
+    repeated Price prices = 6;
 }
 
 message Stock {
