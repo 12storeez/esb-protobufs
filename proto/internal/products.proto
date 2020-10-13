@@ -18,8 +18,7 @@ message Product {
     Description super_model = 10;
     Description color_model = 11;
     Color color = 12;
-    Price price = 13;
-    repeated Size sizes = 14;
+    repeated Size sizes = 13;
 }
 
 message Description {
@@ -48,6 +47,7 @@ message Size {
     string title_ru = 3;
     string title_en = 4;
     repeated Stock stocks = 5;
+    repeated Price prices = 6;
 }
 
 message Stock {
