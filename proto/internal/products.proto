@@ -60,6 +60,7 @@ message Stock {
 message GetResponse {
     bool success = 1;
     repeated Product products = 2;
+    int32 total = 3;
 }
 
 message GetByArticleResponse {
