@@ -36,7 +36,9 @@ var _ server.Option
 // Api Endpoints for Offline service
 
 func NewOfflineEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{}
+	return []*api.Endpoint{
+		&api.Endpoint{},
+	}
 }
 
 // Client API for Offline service
@@ -81,6 +83,7 @@ func RegisterOfflineHandler(s server.Server, hdlr OfflineHandler, opts ...server
 		offline
 	}
 	h := &offlineHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Offline{h}, opts...))
 }
 
@@ -95,7 +98,9 @@ func (h *offlineHandler) ByClient(ctx context.Context, in *ParamsOfflineByClient
 // Api Endpoints for Online service
 
 func NewOnlineEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{}
+	return []*api.Endpoint{
+		&api.Endpoint{},
+	}
 }
 
 // Client API for Online service
@@ -140,6 +145,7 @@ func RegisterOnlineHandler(s server.Server, hdlr OnlineHandler, opts ...server.H
 		online
 	}
 	h := &onlineHandler{hdlr}
+	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Online{h}, opts...))
 }
 
