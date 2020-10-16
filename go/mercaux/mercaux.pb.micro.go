@@ -37,9 +37,7 @@ var _ server.Option
 // Api Endpoints for Stocks service
 
 func NewStocksEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Stocks service
@@ -84,7 +82,6 @@ func RegisterStocksHandler(s server.Server, hdlr StocksHandler, opts ...server.H
 		stocks
 	}
 	h := &stocksHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Stocks{h}, opts...))
 }
 
@@ -99,9 +96,7 @@ func (h *stocksHandler) Get(ctx context.Context, in *StocksGetParams, out *Stock
 // Api Endpoints for Stores service
 
 func NewStoresEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Stores service
@@ -146,7 +141,6 @@ func RegisterStoresHandler(s server.Server, hdlr StoresHandler, opts ...server.H
 		stores
 	}
 	h := &storesHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Stores{h}, opts...))
 }
 
@@ -161,9 +155,7 @@ func (h *storesHandler) Get(ctx context.Context, in *empty.Empty, out *StoresGet
 // Api Endpoints for Sellers service
 
 func NewSellersEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Sellers service
@@ -208,7 +200,6 @@ func RegisterSellersHandler(s server.Server, hdlr SellersHandler, opts ...server
 		sellers
 	}
 	h := &sellersHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Sellers{h}, opts...))
 }
 
@@ -223,9 +214,7 @@ func (h *sellersHandler) Get(ctx context.Context, in *empty.Empty, out *SellersG
 // Api Endpoints for Orders service
 
 func NewOrdersEndpoints() []*api.Endpoint {
-	return []*api.Endpoint{
-		&api.Endpoint{},
-	}
+	return []*api.Endpoint{}
 }
 
 // Client API for Orders service
@@ -270,7 +259,6 @@ func RegisterOrdersHandler(s server.Server, hdlr OrdersHandler, opts ...server.H
 		orders
 	}
 	h := &ordersHandler{hdlr}
-	opts = append(opts, api.WithEndpoint(&api.Endpoint{}))
 	return s.Handle(s.NewHandler(&Orders{h}, opts...))
 }
 

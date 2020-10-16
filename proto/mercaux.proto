@@ -38,10 +38,11 @@ message Stock {
     string barcode = 1;
     string category = 2;
     string family = 3;
-    string product_name = 4;
-    string product_name_en = 5;
-    string picture = 6;
-    string url = 7;
+    string family_id = 4;
+    string product_name = 5;
+    string product_name_en = 6;
+    string picture = 7;
+    string url = 8;
     bool is_active = 9;
     int32 price = 10;
     string article = 11;
@@ -49,22 +50,25 @@ message Stock {
     string color = 13;
     string fabric = 14;
     string model = 15;
-    string gender = 16;
-    repeated string sizes = 17;
-    repeated string barcode_alt = 18;
-    int32 discount = 19;
-    repeated string total_look = 20;
-    string description = 21;
-    repeated string images = 22;
-    repeated string site_category = 23;
-    string size_description = 24;
-    repeated string recommendations = 25;
-    repeated string alternatives = 26;
-    string video = 27;
-    repeated string instashop = 28;
-    string country = 29;
-    repeated Quantity quantity = 30;
-    string preview = 31;
+    string super_model_id = 16;
+    string super_model_name = 17;
+    string super_model_name_en = 18;
+    string gender = 19;
+    repeated string sizes = 20;
+    repeated string barcode_alt = 21;
+    int32 discount = 22;
+    repeated string total_look = 23;
+    string description = 24;
+    repeated string images = 25;
+    repeated string site_category = 26;
+    string size_description = 27;
+    repeated string recommendations = 28;
+    repeated string alternatives = 29;
+    string video = 30;
+    repeated string instashop = 31;
+    string country = 32;
+    repeated Quantity quantity = 33;
+    string preview = 34;
 }
 
 message Quantity {
@@ -72,7 +76,10 @@ message Quantity {
     int32 available = 2;
     int32 reserved = 3;
     int32 discount = 4;
+    int32 price = 5;
+    int32 price_before_discount = 6;
 }
+
 message StoresGetResponse {
     repeated Store stores = 3;
 }
