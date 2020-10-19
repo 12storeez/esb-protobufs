@@ -122,6 +122,7 @@ message ResponseCategories {
 
 message ParamsReasonsByOrder {
     string order_id = 1;
+    int32 store_code = 2;
 }
 
 message NewOrderParams {
