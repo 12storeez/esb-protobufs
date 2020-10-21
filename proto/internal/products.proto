@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
 option go_package = "go/products";
 package products;
 
@@ -61,6 +60,7 @@ message Stock {
 message GetResponse {
     bool success = 1;
     repeated Product products = 2;
+    int32 total = 3;
 }
 
 message GetByArticleResponse {
@@ -72,13 +72,16 @@ message UUID {
     string uuid = 1;
 }
 
-message Request {}
+message Request {
+    int32 limit = 1;
+    int32 offset = 2;
+}
 
 message Article {
     int32 article = 1;
 }
 
 service Catalog {
-    rpc Get (google.protobuf.Empty) returns (GetResponse);
+    rpc Get (Request) returns (GetResponse);
     rpc GetByArticle (Article) returns (GetByArticleResponse);
 }

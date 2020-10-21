@@ -6,7 +6,6 @@ package products
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	math "math"
 )
 
@@ -43,7 +42,7 @@ func NewCatalogEndpoints() []*api.Endpoint {
 // Client API for Catalog service
 
 type CatalogService interface {
-	Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*GetResponse, error)
+	Get(ctx context.Context, in *Request, opts ...client.CallOption) (*GetResponse, error)
 	GetByArticle(ctx context.Context, in *Article, opts ...client.CallOption) (*GetByArticleResponse, error)
 }
 
@@ -59,7 +58,7 @@ func NewCatalogService(name string, c client.Client) CatalogService {
 	}
 }
 
-func (c *catalogService) Get(ctx context.Context, in *empty.Empty, opts ...client.CallOption) (*GetResponse, error) {
+func (c *catalogService) Get(ctx context.Context, in *Request, opts ...client.CallOption) (*GetResponse, error) {
 	req := c.c.NewRequest(c.name, "Catalog.Get", in)
 	out := new(GetResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -82,13 +81,13 @@ func (c *catalogService) GetByArticle(ctx context.Context, in *Article, opts ...
 // Server API for Catalog service
 
 type CatalogHandler interface {
-	Get(context.Context, *empty.Empty, *GetResponse) error
+	Get(context.Context, *Request, *GetResponse) error
 	GetByArticle(context.Context, *Article, *GetByArticleResponse) error
 }
 
 func RegisterCatalogHandler(s server.Server, hdlr CatalogHandler, opts ...server.HandlerOption) error {
 	type catalog interface {
-		Get(ctx context.Context, in *empty.Empty, out *GetResponse) error
+		Get(ctx context.Context, in *Request, out *GetResponse) error
 		GetByArticle(ctx context.Context, in *Article, out *GetByArticleResponse) error
 	}
 	type Catalog struct {
@@ -102,7 +101,7 @@ type catalogHandler struct {
 	CatalogHandler
 }
 
-func (h *catalogHandler) Get(ctx context.Context, in *empty.Empty, out *GetResponse) error {
+func (h *catalogHandler) Get(ctx context.Context, in *Request, out *GetResponse) error {
 	return h.CatalogHandler.Get(ctx, in, out)
 }
 

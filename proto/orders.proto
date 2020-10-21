@@ -16,10 +16,13 @@ service Online {
 
 message ParamsOfflineByClient {
     int32 clientId = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message ResponseOfflineByClient {
     repeated OfflineOrder orders = 1;
+    int32 total = 2;
 }
 
 message ParamsOnlineByClient {
