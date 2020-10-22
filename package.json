@@ -1,6 +1,6 @@
 {
   "name": "esb-protobufs",
-  "version": "0.2.41",
+  "version": "0.2.44",
   "description": "protobuf for esb project",
   "types": "./typescript/index.d.ts",
   "main": "./typescript/index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhs/esb-protobufs.git"
+    "url": "git+https://github.com/12storeez/esb-protobufs.git"
   },
   "keywords": [
     "esb",
@@ -26,9 +26,9 @@
   "author": "r.zhuba@12storeez.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhs/esb-protobufs/issues"
+    "url": "https://github.com/12storeez/esb-protobufs/issues"
   },
-  "homepage": "https://github.com/zhs/esb-protobufs#readme",
+  "homepage": "https://github.com/12storeez/esb-protobufs/issues#readme",
   "devDependencies": {
     "@ngx-grpc/common": "^1.0.1",
     "@ngx-grpc/core": "^1.0.1",
