@@ -20,7 +20,7 @@ service Sellers {
 }
 
 service Orders {
-    rpc New (OrdersNewParams) returns (OrdersNewResponse) {
+    rpc NewOrder (OrdersNewParams) returns (OrdersNewResponse) {
     }
 }
 
@@ -29,9 +29,10 @@ message StocksGetParams {
 }
 
 message StocksGetResponse {
-    int32 pages = 1;
-    int32 page = 2;
-    repeated Stock stocks = 3;
+    bool ok = 1;
+    int32 pages = 2;
+    int32 page = 3;
+    repeated Stock stocks = 4;
 }
 
 message Stock {
@@ -81,7 +82,8 @@ message Quantity {
 }
 
 message StoresGetResponse {
-    repeated Store stores = 3;
+    bool ok = 1;
+    repeated Store stores = 2;
 }
 
 message Store {
@@ -96,7 +98,8 @@ message Store {
 }
 
 message SellersGetResponse {
-    repeated Seller sellers = 1;
+    bool ok = 1;
+    repeated Seller sellers = 2;
 }
 
 message Seller {
