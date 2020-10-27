@@ -220,7 +220,7 @@ func NewOrdersEndpoints() []*api.Endpoint {
 // Client API for Orders service
 
 type OrdersService interface {
-	New(ctx context.Context, in *OrdersNewParams, opts ...client.CallOption) (*OrdersNewResponse, error)
+	NewOrder(ctx context.Context, in *OrdersNewParams, opts ...client.CallOption) (*OrdersNewResponse, error)
 }
 
 type ordersService struct {
@@ -235,8 +235,8 @@ func NewOrdersService(name string, c client.Client) OrdersService {
 	}
 }
 
-func (c *ordersService) New(ctx context.Context, in *OrdersNewParams, opts ...client.CallOption) (*OrdersNewResponse, error) {
-	req := c.c.NewRequest(c.name, "Orders.New", in)
+func (c *ordersService) NewOrder(ctx context.Context, in *OrdersNewParams, opts ...client.CallOption) (*OrdersNewResponse, error) {
+	req := c.c.NewRequest(c.name, "Orders.NewOrder", in)
 	out := new(OrdersNewResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -248,12 +248,12 @@ func (c *ordersService) New(ctx context.Context, in *OrdersNewParams, opts ...cl
 // Server API for Orders service
 
 type OrdersHandler interface {
-	New(context.Context, *OrdersNewParams, *OrdersNewResponse) error
+	NewOrder(context.Context, *OrdersNewParams, *OrdersNewResponse) error
 }
 
 func RegisterOrdersHandler(s server.Server, hdlr OrdersHandler, opts ...server.HandlerOption) error {
 	type orders interface {
-		New(ctx context.Context, in *OrdersNewParams, out *OrdersNewResponse) error
+		NewOrder(ctx context.Context, in *OrdersNewParams, out *OrdersNewResponse) error
 	}
 	type Orders struct {
 		orders
@@ -266,6 +266,6 @@ type ordersHandler struct {
 	OrdersHandler
 }
 
-func (h *ordersHandler) New(ctx context.Context, in *OrdersNewParams, out *OrdersNewResponse) error {
-	return h.OrdersHandler.New(ctx, in, out)
+func (h *ordersHandler) NewOrder(ctx context.Context, in *OrdersNewParams, out *OrdersNewResponse) error {
+	return h.OrdersHandler.NewOrder(ctx, in, out)
 }
