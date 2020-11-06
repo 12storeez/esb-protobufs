@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+option go_package = "go/release";
+
+package release;
+
+service ArticlesRelease {
+
+    rpc Create (ParamsCreateArticle) returns (ArticleReleaseActionResponse) {
+    }
+    rpc Get (ParamsGetArticleRelease) returns (ArticleReleaseList) {
+    }
+    rpc GetById (ArticlesReleaseId) returns (ArticleRelease) {
+    }
+    rpc Update (ParamsCreateArticle) returns (ArticleReleaseActionResponse) {
+    }
+    rpc Delete (ArticlesReleaseId) returns (ArticleReleaseActionResponse) {
+    }
+}
+
+enum ArticleReleaseType {
+    site = 0;
+    mercaux = 1;
+}
+
+message ParamsCreateArticle {
+    string article = 1;
+    string trigger_time = 2;
+    ArticleReleaseType type = 3;
+}
+
+message ArticleReleaseActionResponse {
+    bool ok = 1;
+    int32 id = 2;
+}
+
+message ParamsGetArticleRelease {
+    int32 limit = 1;
+    int32 offset = 2;
+    ArticleReleaseType type = 3;
+    bool is_deleted = 4;
+    bool is_active = 5;
+}
+
+message ArticleReleaseList {
+    bool ok = 1;
+    int32 total = 2;
+    repeated ArticleRelease article = 3;
+}
+
+
+message ArticleRelease {
+    int32 id = 1;
+    string article = 2;
+    string trigger_time = 3;
+    ArticleReleaseType type = 4;
+    bool is_deleted = 5;
+    bool is_active = 6;
+}
+
+message ArticlesReleaseId {
+    int32 id = 1;
+}
+
