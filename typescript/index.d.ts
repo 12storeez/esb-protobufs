@@ -165,9 +165,10 @@ export namespace mercaux {
   }
 
   export interface Orders {
-    new (request: OrdersNewParams, metadata?: any): Observable<
-      OrdersNewResponse
-    >;
+    newOrder(
+      request: OrdersNewParams,
+      metadata?: any
+    ): Observable<OrdersNewResponse>;
   }
 
   export interface StocksGetParams {
@@ -175,6 +176,7 @@ export namespace mercaux {
   }
 
   export interface StocksGetResponse {
+    ok: boolean;
     pages: number;
     page: number;
     stocks: Stock[];
@@ -227,6 +229,7 @@ export namespace mercaux {
   }
 
   export interface StoresGetResponse {
+    ok: boolean;
     stores: Store[];
   }
 
@@ -242,6 +245,7 @@ export namespace mercaux {
   }
 
   export interface SellersGetResponse {
+    ok: boolean;
     sellers: Seller[];
   }
 
