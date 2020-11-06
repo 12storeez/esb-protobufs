@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "go/catalog";
+option go_package = "go/release";
 
-package catalog;
+package release;
 
 service ArticlesRelease {
 
