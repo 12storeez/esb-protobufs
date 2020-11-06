@@ -738,6 +738,30 @@ export namespace transport {
   }
 }
 
+export namespace usedesk {
+  export interface CSI {
+    save(request: saveParams, metadata?: any): Observable<saveResponse>;
+  }
+
+  export interface saveParams {
+    id: number;
+    user_id: number;
+    client_id: number;
+    ticket_id: number;
+    rating: number;
+    company_id: number;
+    ticket_comment_id: number;
+    channel_id: number;
+    comment: string;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface saveResponse {
+    ok: boolean;
+  }
+}
+
 export namespace payments {
   export interface Payments {
     getCardsByUserID(
