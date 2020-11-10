@@ -32,6 +32,36 @@ service Store {
     }
 }
 
+service NPS {
+    rpc New (NewNPSParams) returns (NewNpsResponse) {
+    }
+    rpc Update(UpdateNPSParams) returns (ResponseOk) {
+    }
+}
+
+message UpdateNPSParams {
+    int32 id = 1;
+    int32 rate = 2;
+    int32 store_code = 3;
+    string order_date = 4;
+    string order_id = 5;
+    string comment = 6;
+    string source = 7;
+}
+
+message NewNPSParams {
+    int32 rate = 1;
+    int32 store_code = 2;
+    string order_date = 3;
+    string order_id = 4;
+    string comment = 5;
+    string source = 6;
+}
+
+message NewNpsResponse {
+    int32 id = 1;
+}
+
 message CanBeSavedParams {
     string order_id = 1;
 }
