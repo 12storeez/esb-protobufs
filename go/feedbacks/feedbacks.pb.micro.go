@@ -304,3 +304,79 @@ func (h *storeHandler) NewOrder(ctx context.Context, in *NewOrderParams, out *Ne
 func (h *storeHandler) PatchOrder(ctx context.Context, in *PatchOrderParams, out *ResponseOk) error {
 	return h.StoreHandler.PatchOrder(ctx, in, out)
 }
+
+// Api Endpoints for NPS service
+
+func NewNPSEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
+// Client API for NPS service
+
+type NPSService interface {
+	New(ctx context.Context, in *NewNPSParams, opts ...client.CallOption) (*NewNpsResponse, error)
+	Update(ctx context.Context, in *UpdateNPSParams, opts ...client.CallOption) (*ResponseOk, error)
+}
+
+type nPSService struct {
+	c    client.Client
+	name string
+}
+
+func NewNPSService(name string, c client.Client) NPSService {
+	return &nPSService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *nPSService) New(ctx context.Context, in *NewNPSParams, opts ...client.CallOption) (*NewNpsResponse, error) {
+	req := c.c.NewRequest(c.name, "NPS.New", in)
+	out := new(NewNpsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nPSService) Update(ctx context.Context, in *UpdateNPSParams, opts ...client.CallOption) (*ResponseOk, error) {
+	req := c.c.NewRequest(c.name, "NPS.Update", in)
+	out := new(ResponseOk)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for NPS service
+
+type NPSHandler interface {
+	New(context.Context, *NewNPSParams, *NewNpsResponse) error
+	Update(context.Context, *UpdateNPSParams, *ResponseOk) error
+}
+
+func RegisterNPSHandler(s server.Server, hdlr NPSHandler, opts ...server.HandlerOption) error {
+	type nPS interface {
+		New(ctx context.Context, in *NewNPSParams, out *NewNpsResponse) error
+		Update(ctx context.Context, in *UpdateNPSParams, out *ResponseOk) error
+	}
+	type NPS struct {
+		nPS
+	}
+	h := &nPSHandler{hdlr}
+	return s.Handle(s.NewHandler(&NPS{h}, opts...))
+}
+
+type nPSHandler struct {
+	NPSHandler
+}
+
+func (h *nPSHandler) New(ctx context.Context, in *NewNPSParams, out *NewNpsResponse) error {
+	return h.NPSHandler.New(ctx, in, out)
+}
+
+func (h *nPSHandler) Update(ctx context.Context, in *UpdateNPSParams, out *ResponseOk) error {
+	return h.NPSHandler.Update(ctx, in, out)
+}
