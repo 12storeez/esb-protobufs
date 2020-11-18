@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "go/errors";
+package products;
+
+message Error {
+    string source = 1;
+    string type = 2;
+    string message = 3;
+}
+
+message CreateResponse {
+    bool ok = 1;
+}
+
+service Errors {
+    rpc Create (Error) returns (CreateResponse);
+}
