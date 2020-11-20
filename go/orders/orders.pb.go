@@ -24,6 +24,69 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type ParamsGetAll struct {
+	Limit                int32    `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset               int32    `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	CreateDateFrom       int32    `protobuf:"varint,3,opt,name=create_date_from,json=createDateFrom,proto3" json:"create_date_from,omitempty"`
+	CreateDateTo         int32    `protobuf:"varint,4,opt,name=create_date_to,json=createDateTo,proto3" json:"create_date_to,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ParamsGetAll) Reset()         { *m = ParamsGetAll{} }
+func (m *ParamsGetAll) String() string { return proto.CompactTextString(m) }
+func (*ParamsGetAll) ProtoMessage()    {}
+func (*ParamsGetAll) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2db5eaa0f165ca68, []int{0}
+}
+
+func (m *ParamsGetAll) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ParamsGetAll.Unmarshal(m, b)
+}
+func (m *ParamsGetAll) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ParamsGetAll.Marshal(b, m, deterministic)
+}
+func (m *ParamsGetAll) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ParamsGetAll.Merge(m, src)
+}
+func (m *ParamsGetAll) XXX_Size() int {
+	return xxx_messageInfo_ParamsGetAll.Size(m)
+}
+func (m *ParamsGetAll) XXX_DiscardUnknown() {
+	xxx_messageInfo_ParamsGetAll.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ParamsGetAll proto.InternalMessageInfo
+
+func (m *ParamsGetAll) GetLimit() int32 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+func (m *ParamsGetAll) GetOffset() int32 {
+	if m != nil {
+		return m.Offset
+	}
+	return 0
+}
+
+func (m *ParamsGetAll) GetCreateDateFrom() int32 {
+	if m != nil {
+		return m.CreateDateFrom
+	}
+	return 0
+}
+
+func (m *ParamsGetAll) GetCreateDateTo() int32 {
+	if m != nil {
+		return m.CreateDateTo
+	}
+	return 0
+}
+
 type ParamsOfflineByClient struct {
 	ClientId             int32    `protobuf:"varint,1,opt,name=clientId,proto3" json:"clientId,omitempty"`
 	Limit                int32    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -37,7 +100,7 @@ func (m *ParamsOfflineByClient) Reset()         { *m = ParamsOfflineByClient{} }
 func (m *ParamsOfflineByClient) String() string { return proto.CompactTextString(m) }
 func (*ParamsOfflineByClient) ProtoMessage()    {}
 func (*ParamsOfflineByClient) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2db5eaa0f165ca68, []int{0}
+	return fileDescriptor_2db5eaa0f165ca68, []int{1}
 }
 
 func (m *ParamsOfflineByClient) XXX_Unmarshal(b []byte) error {
@@ -79,47 +142,47 @@ func (m *ParamsOfflineByClient) GetOffset() int32 {
 	return 0
 }
 
-type ResponseOfflineByClient struct {
-	Orders               []*OfflineOrder `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
-	Total                int32           `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+type ResponseOffline struct {
+	Orders               []*OfflineOrderPosition `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
+	Total                int32                   `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
+	XXX_unrecognized     []byte                  `json:"-"`
+	XXX_sizecache        int32                   `json:"-"`
 }
 
-func (m *ResponseOfflineByClient) Reset()         { *m = ResponseOfflineByClient{} }
-func (m *ResponseOfflineByClient) String() string { return proto.CompactTextString(m) }
-func (*ResponseOfflineByClient) ProtoMessage()    {}
-func (*ResponseOfflineByClient) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2db5eaa0f165ca68, []int{1}
+func (m *ResponseOffline) Reset()         { *m = ResponseOffline{} }
+func (m *ResponseOffline) String() string { return proto.CompactTextString(m) }
+func (*ResponseOffline) ProtoMessage()    {}
+func (*ResponseOffline) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2db5eaa0f165ca68, []int{2}
 }
 
-func (m *ResponseOfflineByClient) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ResponseOfflineByClient.Unmarshal(m, b)
+func (m *ResponseOffline) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ResponseOffline.Unmarshal(m, b)
 }
-func (m *ResponseOfflineByClient) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ResponseOfflineByClient.Marshal(b, m, deterministic)
+func (m *ResponseOffline) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ResponseOffline.Marshal(b, m, deterministic)
 }
-func (m *ResponseOfflineByClient) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseOfflineByClient.Merge(m, src)
+func (m *ResponseOffline) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResponseOffline.Merge(m, src)
 }
-func (m *ResponseOfflineByClient) XXX_Size() int {
-	return xxx_messageInfo_ResponseOfflineByClient.Size(m)
+func (m *ResponseOffline) XXX_Size() int {
+	return xxx_messageInfo_ResponseOffline.Size(m)
 }
-func (m *ResponseOfflineByClient) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseOfflineByClient.DiscardUnknown(m)
+func (m *ResponseOffline) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResponseOffline.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResponseOfflineByClient proto.InternalMessageInfo
+var xxx_messageInfo_ResponseOffline proto.InternalMessageInfo
 
-func (m *ResponseOfflineByClient) GetOrders() []*OfflineOrder {
+func (m *ResponseOffline) GetOrders() []*OfflineOrderPosition {
 	if m != nil {
 		return m.Orders
 	}
 	return nil
 }
 
-func (m *ResponseOfflineByClient) GetTotal() int32 {
+func (m *ResponseOffline) GetTotal() int32 {
 	if m != nil {
 		return m.Total
 	}
@@ -137,7 +200,7 @@ func (m *ParamsOnlineByClient) Reset()         { *m = ParamsOnlineByClient{} }
 func (m *ParamsOnlineByClient) String() string { return proto.CompactTextString(m) }
 func (*ParamsOnlineByClient) ProtoMessage()    {}
 func (*ParamsOnlineByClient) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2db5eaa0f165ca68, []int{2}
+	return fileDescriptor_2db5eaa0f165ca68, []int{3}
 }
 
 func (m *ParamsOnlineByClient) XXX_Unmarshal(b []byte) error {
@@ -176,7 +239,7 @@ func (m *ResponseOnlineByClient) Reset()         { *m = ResponseOnlineByClient{}
 func (m *ResponseOnlineByClient) String() string { return proto.CompactTextString(m) }
 func (*ResponseOnlineByClient) ProtoMessage()    {}
 func (*ResponseOnlineByClient) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2db5eaa0f165ca68, []int{3}
+	return fileDescriptor_2db5eaa0f165ca68, []int{4}
 }
 
 func (m *ResponseOnlineByClient) XXX_Unmarshal(b []byte) error {
@@ -204,7 +267,7 @@ func (m *ResponseOnlineByClient) GetOrder() []int32 {
 	return nil
 }
 
-type OfflineOrder struct {
+type OfflineOrderPosition struct {
 	StoreName            string   `protobuf:"bytes,1,opt,name=store_name,json=storeName,proto3" json:"store_name,omitempty"`
 	StoreId              int32    `protobuf:"varint,2,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
 	CashboxId            int32    `protobuf:"varint,3,opt,name=cashbox_id,json=cashboxId,proto3" json:"cashbox_id,omitempty"`
@@ -233,186 +296,186 @@ type OfflineOrder struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *OfflineOrder) Reset()         { *m = OfflineOrder{} }
-func (m *OfflineOrder) String() string { return proto.CompactTextString(m) }
-func (*OfflineOrder) ProtoMessage()    {}
-func (*OfflineOrder) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2db5eaa0f165ca68, []int{4}
+func (m *OfflineOrderPosition) Reset()         { *m = OfflineOrderPosition{} }
+func (m *OfflineOrderPosition) String() string { return proto.CompactTextString(m) }
+func (*OfflineOrderPosition) ProtoMessage()    {}
+func (*OfflineOrderPosition) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2db5eaa0f165ca68, []int{5}
 }
 
-func (m *OfflineOrder) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_OfflineOrder.Unmarshal(m, b)
+func (m *OfflineOrderPosition) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OfflineOrderPosition.Unmarshal(m, b)
 }
-func (m *OfflineOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_OfflineOrder.Marshal(b, m, deterministic)
+func (m *OfflineOrderPosition) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OfflineOrderPosition.Marshal(b, m, deterministic)
 }
-func (m *OfflineOrder) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OfflineOrder.Merge(m, src)
+func (m *OfflineOrderPosition) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OfflineOrderPosition.Merge(m, src)
 }
-func (m *OfflineOrder) XXX_Size() int {
-	return xxx_messageInfo_OfflineOrder.Size(m)
+func (m *OfflineOrderPosition) XXX_Size() int {
+	return xxx_messageInfo_OfflineOrderPosition.Size(m)
 }
-func (m *OfflineOrder) XXX_DiscardUnknown() {
-	xxx_messageInfo_OfflineOrder.DiscardUnknown(m)
+func (m *OfflineOrderPosition) XXX_DiscardUnknown() {
+	xxx_messageInfo_OfflineOrderPosition.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_OfflineOrder proto.InternalMessageInfo
+var xxx_messageInfo_OfflineOrderPosition proto.InternalMessageInfo
 
-func (m *OfflineOrder) GetStoreName() string {
+func (m *OfflineOrderPosition) GetStoreName() string {
 	if m != nil {
 		return m.StoreName
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetStoreId() int32 {
+func (m *OfflineOrderPosition) GetStoreId() int32 {
 	if m != nil {
 		return m.StoreId
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetCashboxId() int32 {
+func (m *OfflineOrderPosition) GetCashboxId() int32 {
 	if m != nil {
 		return m.CashboxId
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetOrderId() string {
+func (m *OfflineOrderPosition) GetOrderId() string {
 	if m != nil {
 		return m.OrderId
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetRowReceipt() int32 {
+func (m *OfflineOrderPosition) GetRowReceipt() int32 {
 	if m != nil {
 		return m.RowReceipt
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetDate() string {
+func (m *OfflineOrderPosition) GetDate() string {
 	if m != nil {
 		return m.Date
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetTime() string {
+func (m *OfflineOrderPosition) GetTime() string {
 	if m != nil {
 		return m.Time
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetArticle() string {
+func (m *OfflineOrderPosition) GetArticle() string {
 	if m != nil {
 		return m.Article
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetTitle() string {
+func (m *OfflineOrderPosition) GetTitle() string {
 	if m != nil {
 		return m.Title
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetColor() string {
+func (m *OfflineOrderPosition) GetColor() string {
 	if m != nil {
 		return m.Color
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetSize() string {
+func (m *OfflineOrderPosition) GetSize() string {
 	if m != nil {
 		return m.Size
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetBarcode() string {
+func (m *OfflineOrderPosition) GetBarcode() string {
 	if m != nil {
 		return m.Barcode
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetQty() int32 {
+func (m *OfflineOrderPosition) GetQty() int32 {
 	if m != nil {
 		return m.Qty
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetTotalGross() int32 {
+func (m *OfflineOrderPosition) GetTotalGross() int32 {
 	if m != nil {
 		return m.TotalGross
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetDiscount() int32 {
+func (m *OfflineOrderPosition) GetDiscount() int32 {
 	if m != nil {
 		return m.Discount
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetTotal() int32 {
+func (m *OfflineOrderPosition) GetTotal() int32 {
 	if m != nil {
 		return m.Total
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetClientId() int32 {
+func (m *OfflineOrderPosition) GetClientId() int32 {
 	if m != nil {
 		return m.ClientId
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetSeller() string {
+func (m *OfflineOrderPosition) GetSeller() string {
 	if m != nil {
 		return m.Seller
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetFamily() string {
+func (m *OfflineOrderPosition) GetFamily() string {
 	if m != nil {
 		return m.Family
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetOperation() int32 {
+func (m *OfflineOrderPosition) GetOperation() int32 {
 	if m != nil {
 		return m.Operation
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetSource() string {
+func (m *OfflineOrderPosition) GetSource() string {
 	if m != nil {
 		return m.Source
 	}
 	return ""
 }
 
-func (m *OfflineOrder) GetBonusesWasted() int32 {
+func (m *OfflineOrderPosition) GetBonusesWasted() int32 {
 	if m != nil {
 		return m.BonusesWasted
 	}
 	return 0
 }
 
-func (m *OfflineOrder) GetBonusesAccrued() int32 {
+func (m *OfflineOrderPosition) GetBonusesAccrued() int32 {
 	if m != nil {
 		return m.BonusesAccrued
 	}
@@ -420,53 +483,59 @@ func (m *OfflineOrder) GetBonusesAccrued() int32 {
 }
 
 func init() {
+	proto.RegisterType((*ParamsGetAll)(nil), "orders.ParamsGetAll")
 	proto.RegisterType((*ParamsOfflineByClient)(nil), "orders.ParamsOfflineByClient")
-	proto.RegisterType((*ResponseOfflineByClient)(nil), "orders.ResponseOfflineByClient")
+	proto.RegisterType((*ResponseOffline)(nil), "orders.ResponseOffline")
 	proto.RegisterType((*ParamsOnlineByClient)(nil), "orders.ParamsOnlineByClient")
 	proto.RegisterType((*ResponseOnlineByClient)(nil), "orders.ResponseOnlineByClient")
-	proto.RegisterType((*OfflineOrder)(nil), "orders.OfflineOrder")
+	proto.RegisterType((*OfflineOrderPosition)(nil), "orders.OfflineOrderPosition")
 }
 
 func init() { proto.RegisterFile("proto/orders.proto", fileDescriptor_2db5eaa0f165ca68) }
 
 var fileDescriptor_2db5eaa0f165ca68 = []byte{
-	// 562 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0x6f, 0x8b, 0x13, 0x3f,
-	0x10, 0xfe, 0xf5, 0xd7, 0x76, 0xdb, 0x9d, 0xde, 0x3f, 0x63, 0xaf, 0x17, 0xeb, 0x9d, 0x77, 0x2c,
-	0x88, 0xf7, 0x42, 0x2a, 0xd4, 0x4f, 0xe0, 0xf9, 0x42, 0x2a, 0xe2, 0xc9, 0x22, 0x1c, 0x08, 0x52,
-	0xd2, 0xdd, 0xe9, 0x19, 0xd8, 0xdd, 0xd4, 0x24, 0xa5, 0xd6, 0x2f, 0xee, 0x5b, 0xc9, 0x24, 0x5b,
-	0xdb, 0xaa, 0xe0, 0xbb, 0x79, 0x9e, 0xc9, 0x3c, 0x33, 0xc9, 0xcc, 0x04, 0xd8, 0x42, 0x2b, 0xab,
-	0x5e, 0x28, 0x9d, 0xa3, 0x36, 0x23, 0x02, 0x2c, 0xf2, 0x28, 0x11, 0x70, 0xfa, 0x41, 0x68, 0x51,
-	0x9a, 0xdb, 0xf9, 0xbc, 0x90, 0x15, 0xde, 0xac, 0x5f, 0x17, 0x12, 0x2b, 0xcb, 0x86, 0xd0, 0xcd,
-	0xc8, 0x9a, 0xe4, 0xbc, 0x71, 0xd5, 0xb8, 0x6e, 0xa7, 0x1b, 0xcc, 0xfa, 0xd0, 0x2e, 0x64, 0x29,
-	0x2d, 0xff, 0x9f, 0x1c, 0x1e, 0xb0, 0x01, 0x44, 0x6a, 0x3e, 0x37, 0x68, 0x79, 0x93, 0xe8, 0x80,
-	0x92, 0xcf, 0x70, 0x96, 0xa2, 0x59, 0xa8, 0xca, 0xe0, 0x7e, 0x92, 0xe7, 0x10, 0xea, 0xe0, 0x8d,
-	0xab, 0xe6, 0x75, 0x6f, 0xdc, 0x1f, 0x85, 0x22, 0xc3, 0xc1, 0x5b, 0x87, 0xd2, 0x70, 0xc6, 0xa5,
-	0xb5, 0xca, 0x8a, 0xa2, 0x4e, 0x4b, 0x20, 0x19, 0x43, 0x3f, 0xdc, 0xa0, 0xfa, 0xd7, 0x0b, 0x24,
-	0x23, 0x18, 0x6c, 0x4a, 0xda, 0x8d, 0xea, 0x43, 0x9b, 0xb2, 0x51, 0x41, 0xed, 0xd4, 0x83, 0xe4,
-	0x47, 0x0b, 0x0e, 0xb6, 0x4b, 0x62, 0x17, 0x00, 0xc6, 0x2a, 0x8d, 0xd3, 0x4a, 0x94, 0x48, 0xf2,
-	0x71, 0x1a, 0x13, 0xf3, 0x5e, 0x94, 0xc8, 0x1e, 0x41, 0xd7, 0xbb, 0x65, 0x1e, 0x8a, 0xed, 0x10,
-	0x9e, 0xe4, 0x2e, 0x32, 0x13, 0xe6, 0xcb, 0x4c, 0x7d, 0x73, 0x4e, 0xff, 0x52, 0x71, 0x60, 0x26,
-	0xb9, 0x8b, 0xa4, 0x94, 0xce, 0xd9, 0x22, 0xd9, 0x0e, 0xe1, 0x49, 0xce, 0x2e, 0xa1, 0xa7, 0xd5,
-	0x6a, 0xaa, 0x31, 0x43, 0xb9, 0xb0, 0xbc, 0x4d, 0xa1, 0xa0, 0xd5, 0x2a, 0xf5, 0x0c, 0x63, 0xd0,
-	0xca, 0x85, 0x45, 0x1e, 0x51, 0x1c, 0xd9, 0x8e, 0xb3, 0xb2, 0x44, 0xde, 0xf1, 0x9c, 0xb3, 0x19,
-	0x87, 0x8e, 0xd0, 0x56, 0x66, 0x05, 0xf2, 0xae, 0x4f, 0x11, 0x20, 0xbd, 0xb0, 0xb4, 0x05, 0xf2,
-	0x98, 0x78, 0x0f, 0x1c, 0x9b, 0xa9, 0x42, 0x69, 0x0e, 0x9e, 0x25, 0xe0, 0x94, 0x8d, 0xfc, 0x8e,
-	0xbc, 0xe7, 0x95, 0x9d, 0xed, 0x94, 0x67, 0x42, 0x67, 0x2a, 0x47, 0x7e, 0xe0, 0x95, 0x03, 0x64,
-	0x27, 0xd0, 0xfc, 0x6a, 0xd7, 0xfc, 0x90, 0x8a, 0x76, 0xa6, 0xbb, 0x0e, 0x35, 0x70, 0x7a, 0xaf,
-	0x95, 0x31, 0xfc, 0xc8, 0x5f, 0x87, 0xa8, 0x37, 0x8e, 0x71, 0x0d, 0xcc, 0xa5, 0xc9, 0xd4, 0xb2,
-	0xb2, 0xfc, 0xd8, 0x37, 0xb0, 0xc6, 0xbf, 0x46, 0xe1, 0x64, 0x6b, 0x14, 0xd8, 0x63, 0x88, 0x7d,
-	0x8b, 0xdd, 0xeb, 0x3d, 0xd8, 0x1b, 0xda, 0x01, 0x44, 0x06, 0x8b, 0x02, 0x35, 0x67, 0x54, 0x5a,
-	0x40, 0x8e, 0x9f, 0x8b, 0x52, 0x16, 0x6b, 0xfe, 0xd0, 0xf3, 0x1e, 0xb1, 0x73, 0x88, 0xd5, 0x02,
-	0xb5, 0xb0, 0x52, 0x55, 0xbc, 0xef, 0xfb, 0xb4, 0x21, 0x48, 0x4d, 0x2d, 0x75, 0x86, 0xfc, 0x34,
-	0xa8, 0x11, 0x62, 0x4f, 0xe1, 0x68, 0xa6, 0xaa, 0xa5, 0x41, 0x33, 0x5d, 0x09, 0x63, 0x31, 0xe7,
-	0x03, 0x0a, 0x3d, 0x0c, 0xec, 0x1d, 0x91, 0xec, 0x19, 0x1c, 0xd7, 0xc7, 0x44, 0x96, 0xe9, 0x25,
-	0xe6, 0xfc, 0x8c, 0xce, 0xd5, 0xd1, 0xaf, 0x3c, 0x3b, 0xbe, 0x83, 0x4e, 0x18, 0x3c, 0xf6, 0x0e,
-	0xba, 0x9b, 0x31, 0xbd, 0xa8, 0x17, 0xe5, 0x8f, 0xcb, 0x3b, 0xbc, 0xac, 0xdd, 0x7f, 0x59, 0xbc,
-	0xe4, 0xbf, 0xf1, 0x47, 0x88, 0xfc, 0xe8, 0xb3, 0xb7, 0x5b, 0xba, 0xe7, 0x7b, 0xba, 0x3b, 0xcb,
-	0x31, 0x7c, 0xf2, 0x9b, 0x6c, 0xb5, 0xab, 0x7a, 0xd3, 0xfb, 0x14, 0xdf, 0xd7, 0x3f, 0xcd, 0x2c,
-	0xa2, 0xaf, 0xe6, 0xe5, 0xcf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x1a, 0x44, 0x0d, 0xa5, 0x80, 0x04,
-	0x00, 0x00,
+	// 641 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0x5f, 0x4f, 0x13, 0x4f,
+	0x14, 0xa5, 0xb4, 0xdd, 0x76, 0x6f, 0xa1, 0xf0, 0x9b, 0x5f, 0x29, 0x23, 0x82, 0x92, 0x8d, 0x46,
+	0x9e, 0x30, 0xa9, 0xbe, 0xf8, 0x08, 0x12, 0x49, 0x7d, 0x10, 0xd2, 0x90, 0x98, 0x98, 0x98, 0x66,
+	0xba, 0x7b, 0x8b, 0x93, 0xec, 0xee, 0xd4, 0x99, 0x69, 0x10, 0x3f, 0x82, 0xf1, 0x3b, 0x6b, 0xe6,
+	0xce, 0x6c, 0x69, 0x91, 0x18, 0x5f, 0x36, 0x73, 0xce, 0xfd, 0x77, 0xe6, 0xde, 0xb9, 0x0b, 0x6c,
+	0xa6, 0x95, 0x55, 0x2f, 0x95, 0xce, 0x50, 0x9b, 0x63, 0x02, 0x2c, 0xf2, 0x28, 0xf9, 0x59, 0x83,
+	0x8d, 0x4b, 0xa1, 0x45, 0x61, 0xce, 0xd1, 0x9e, 0xe4, 0x39, 0xeb, 0x41, 0x33, 0x97, 0x85, 0xb4,
+	0xbc, 0x76, 0x58, 0x3b, 0x6a, 0x8e, 0x3c, 0x60, 0x7d, 0x88, 0xd4, 0x74, 0x6a, 0xd0, 0xf2, 0x75,
+	0xa2, 0x03, 0x62, 0x47, 0xb0, 0x9d, 0x6a, 0x14, 0x16, 0xc7, 0x99, 0xfb, 0x4c, 0xb5, 0x2a, 0x78,
+	0x9d, 0x3c, 0xba, 0x9e, 0x3f, 0x13, 0x16, 0xdf, 0x69, 0x55, 0xb0, 0x67, 0xd0, 0x5d, 0xf6, 0xb4,
+	0x8a, 0x37, 0xc8, 0x6f, 0xe3, 0xce, 0xef, 0x4a, 0x25, 0x02, 0x76, 0xbc, 0x9a, 0x8b, 0xe9, 0x34,
+	0x97, 0x25, 0x9e, 0xde, 0xbe, 0xcd, 0x25, 0x96, 0x96, 0xed, 0x41, 0x3b, 0xa5, 0xd3, 0x30, 0x0b,
+	0xca, 0x16, 0xf8, 0x4e, 0xf2, 0xfa, 0xc3, 0x92, 0xeb, 0xcb, 0x92, 0x93, 0xcf, 0xb0, 0x35, 0x42,
+	0x33, 0x53, 0xa5, 0xc1, 0x50, 0x84, 0xbd, 0x86, 0xd0, 0x0e, 0x5e, 0x3b, 0xac, 0x1f, 0x75, 0x06,
+	0xfb, 0xc7, 0xa1, 0x57, 0xc1, 0xe1, 0xc2, 0xa1, 0x4b, 0x65, 0xa4, 0x95, 0xaa, 0x1c, 0x05, 0x5f,
+	0x57, 0xd6, 0x2a, 0x2b, 0xf2, 0xaa, 0x2c, 0x81, 0x64, 0x00, 0xbd, 0x70, 0x83, 0xf2, 0x5f, 0x2f,
+	0x90, 0x1c, 0x43, 0x7f, 0x21, 0x69, 0x35, 0xaa, 0x07, 0x4d, 0xaa, 0x46, 0xc2, 0x9a, 0x23, 0x0f,
+	0x92, 0x5f, 0x0d, 0xe8, 0x3d, 0x24, 0x8d, 0x1d, 0x00, 0x18, 0xab, 0x34, 0x8e, 0x4b, 0x51, 0x20,
+	0x95, 0x89, 0x47, 0x31, 0x31, 0x1f, 0x44, 0x81, 0xec, 0x11, 0xb4, 0xbd, 0x59, 0x66, 0x41, 0x74,
+	0x8b, 0xf0, 0x30, 0x73, 0x91, 0xa9, 0x30, 0x5f, 0x26, 0xea, 0x9b, 0x33, 0xfa, 0x8e, 0xc5, 0x81,
+	0x19, 0x66, 0x2e, 0x92, 0x4a, 0x3b, 0x63, 0x83, 0xd2, 0xb6, 0x08, 0x0f, 0x33, 0xf6, 0x14, 0x3a,
+	0x5a, 0xdd, 0x8c, 0x35, 0xa6, 0x28, 0x67, 0x96, 0x37, 0x29, 0x14, 0xb4, 0xba, 0x19, 0x79, 0x86,
+	0x31, 0x68, 0xb8, 0x91, 0xf3, 0x88, 0xe2, 0xe8, 0xec, 0x38, 0x2b, 0x0b, 0xe4, 0x2d, 0xcf, 0xb9,
+	0x33, 0xe3, 0xd0, 0x12, 0xda, 0xca, 0x34, 0x47, 0xde, 0xf6, 0x25, 0x02, 0xa4, 0x4e, 0x4b, 0x9b,
+	0x23, 0x8f, 0x89, 0xf7, 0xc0, 0xb1, 0xa9, 0xca, 0x95, 0xe6, 0xe0, 0x59, 0x02, 0x2e, 0xb3, 0x91,
+	0xdf, 0x91, 0x77, 0x7c, 0x66, 0x77, 0x76, 0x99, 0x27, 0x42, 0xa7, 0x2a, 0x43, 0xbe, 0xe1, 0x33,
+	0x07, 0xc8, 0xb6, 0xa1, 0xfe, 0xd5, 0xde, 0xf2, 0x4d, 0x12, 0xed, 0x8e, 0xee, 0x3a, 0x34, 0xc8,
+	0xf1, 0xb5, 0x56, 0xc6, 0xf0, 0xae, 0xbf, 0x0e, 0x51, 0xe7, 0x8e, 0x71, 0x83, 0xcc, 0xa4, 0x49,
+	0xd5, 0xbc, 0xb4, 0x7c, 0xcb, 0x0f, 0xb2, 0xc2, 0x77, 0x4f, 0x62, 0x7b, 0xe9, 0x49, 0xb0, 0xc7,
+	0x10, 0xfb, 0x51, 0xbb, 0xee, 0xfd, 0x77, 0xef, 0xf1, 0xf6, 0x21, 0x32, 0x98, 0xe7, 0xa8, 0x39,
+	0x23, 0x69, 0x01, 0x39, 0x7e, 0x2a, 0x0a, 0x99, 0xdf, 0xf2, 0xff, 0x3d, 0xef, 0x11, 0xdb, 0x87,
+	0x58, 0xcd, 0x50, 0x0b, 0x37, 0x6f, 0xde, 0xf3, 0x73, 0x5a, 0x10, 0x94, 0x4d, 0xcd, 0x75, 0x8a,
+	0x7c, 0x27, 0x64, 0x23, 0xc4, 0x9e, 0x43, 0x77, 0xa2, 0xca, 0xb9, 0x41, 0x33, 0xbe, 0x11, 0xc6,
+	0x62, 0xc6, 0xfb, 0x14, 0xba, 0x19, 0xd8, 0x8f, 0x44, 0xb2, 0x17, 0xb0, 0x55, 0xb9, 0x89, 0x34,
+	0xd5, 0x73, 0xcc, 0xf8, 0xae, 0xdf, 0xe6, 0x40, 0x9f, 0x78, 0x76, 0xf0, 0xa3, 0x06, 0xad, 0x6a,
+	0x7b, 0xce, 0xa0, 0xbd, 0x78, 0xaf, 0x07, 0xd5, 0xe6, 0x3c, 0xb8, 0xc5, 0x7b, 0xbb, 0x95, 0xf9,
+	0xde, 0x06, 0x26, 0x6b, 0xec, 0x0d, 0x44, 0xd5, 0x1f, 0x68, 0x35, 0x87, 0x67, 0xff, 0x12, 0x3a,
+	0xb8, 0x82, 0xc8, 0xaf, 0x0d, 0x7b, 0xbf, 0x24, 0x65, 0xff, 0x9e, 0x94, 0x95, 0xc5, 0xda, 0x7b,
+	0xf2, 0x47, 0xba, 0x15, 0x7b, 0xb2, 0x76, 0xda, 0xf9, 0x14, 0x5f, 0x57, 0x3f, 0xcd, 0x49, 0x44,
+	0x7f, 0xcd, 0x57, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0xe4, 0x30, 0x4e, 0x45, 0x4b, 0x05, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -481,7 +550,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type OfflineClient interface {
-	ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...grpc.CallOption) (*ResponseOfflineByClient, error)
+	ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...grpc.CallOption) (*ResponseOffline, error)
+	GetAll(ctx context.Context, in *ParamsGetAll, opts ...grpc.CallOption) (*ResponseOffline, error)
 }
 
 type offlineClient struct {
@@ -492,9 +562,18 @@ func NewOfflineClient(cc *grpc.ClientConn) OfflineClient {
 	return &offlineClient{cc}
 }
 
-func (c *offlineClient) ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...grpc.CallOption) (*ResponseOfflineByClient, error) {
-	out := new(ResponseOfflineByClient)
+func (c *offlineClient) ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...grpc.CallOption) (*ResponseOffline, error) {
+	out := new(ResponseOffline)
 	err := c.cc.Invoke(ctx, "/orders.Offline/ByClient", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *offlineClient) GetAll(ctx context.Context, in *ParamsGetAll, opts ...grpc.CallOption) (*ResponseOffline, error) {
+	out := new(ResponseOffline)
+	err := c.cc.Invoke(ctx, "/orders.Offline/GetAll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -503,15 +582,19 @@ func (c *offlineClient) ByClient(ctx context.Context, in *ParamsOfflineByClient,
 
 // OfflineServer is the server API for Offline service.
 type OfflineServer interface {
-	ByClient(context.Context, *ParamsOfflineByClient) (*ResponseOfflineByClient, error)
+	ByClient(context.Context, *ParamsOfflineByClient) (*ResponseOffline, error)
+	GetAll(context.Context, *ParamsGetAll) (*ResponseOffline, error)
 }
 
 // UnimplementedOfflineServer can be embedded to have forward compatible implementations.
 type UnimplementedOfflineServer struct {
 }
 
-func (*UnimplementedOfflineServer) ByClient(ctx context.Context, req *ParamsOfflineByClient) (*ResponseOfflineByClient, error) {
+func (*UnimplementedOfflineServer) ByClient(ctx context.Context, req *ParamsOfflineByClient) (*ResponseOffline, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ByClient not implemented")
+}
+func (*UnimplementedOfflineServer) GetAll(ctx context.Context, req *ParamsGetAll) (*ResponseOffline, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
 }
 
 func RegisterOfflineServer(s *grpc.Server, srv OfflineServer) {
@@ -536,6 +619,24 @@ func _Offline_ByClient_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Offline_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsGetAll)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OfflineServer).GetAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/orders.Offline/GetAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OfflineServer).GetAll(ctx, req.(*ParamsGetAll))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Offline_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "orders.Offline",
 	HandlerType: (*OfflineServer)(nil),
@@ -543,6 +644,10 @@ var _Offline_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ByClient",
 			Handler:    _Offline_ByClient_Handler,
+		},
+		{
+			MethodName: "GetAll",
+			Handler:    _Offline_GetAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

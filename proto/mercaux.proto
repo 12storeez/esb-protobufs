@@ -61,15 +61,22 @@ message Stock {
     repeated string total_look = 23;
     string description = 24;
     repeated string images = 25;
-    repeated string site_category = 26;
-    string size_description = 27;
-    repeated string recommendations = 28;
-    repeated string alternatives = 29;
-    string video = 30;
-    repeated string instashop = 31;
-    string country = 32;
-    repeated Quantity quantity = 33;
-    string preview = 34;
+    Category main_category = 26;
+    repeated Category site_category = 27;
+    string size_description = 28;
+    repeated string recommendations = 29;
+    repeated string alternatives = 30;
+    string video = 31;
+    repeated string instashop = 32;
+    string country = 33;
+    repeated Quantity quantity = 34;
+    string preview = 35;
+}
+
+message Category {
+    int32 id = 1;
+    string slug = 2;
+    string title = 3;
 }
 
 message Quantity {
