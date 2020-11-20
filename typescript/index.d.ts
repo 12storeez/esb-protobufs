@@ -208,7 +208,8 @@ export namespace mercaux {
     total_look: string[];
     description: string;
     images: string[];
-    site_category: string[];
+    main_category: Category;
+    site_category: Category[];
     size_description: string;
     recommendations: string[];
     alternatives: string[];
@@ -217,6 +218,12 @@ export namespace mercaux {
     country: string;
     quantity: Quantity[];
     preview: string;
+  }
+
+  export interface Category {
+    id: number;
+    slug: string;
+    title: string;
   }
 
   export interface Quantity {
@@ -837,6 +844,34 @@ export namespace feedbacks {
     ): Observable<ResponseOk>;
   }
 
+  export interface NPS {
+    new (request: NewNPSParams, metadata?: any): Observable<NewNpsResponse>;
+    update(request: UpdateNPSParams, metadata?: any): Observable<ResponseOk>;
+  }
+
+  export interface UpdateNPSParams {
+    id: number;
+    rate: number;
+    store_code: number;
+    order_date: string;
+    order_id: string;
+    comment: string;
+    source: string;
+  }
+
+  export interface NewNPSParams {
+    rate: number;
+    store_code: number;
+    order_date: string;
+    order_id: string;
+    comment: string;
+    source: string;
+  }
+
+  export interface NewNpsResponse {
+    id: number;
+  }
+
   export interface CanBeSavedParams {
     order_id: string;
   }
@@ -1237,7 +1272,15 @@ export namespace orders {
     byClient(
       request: ParamsOfflineByClient,
       metadata?: any
-    ): Observable<ResponseOfflineByClient>;
+    ): Observable<ResponseOffline>;
+    getAll(request: ParamsGetAll, metadata?: any): Observable<ResponseOffline>;
+  }
+
+  export interface ParamsGetAll {
+    limit: number;
+    offset: number;
+    create_date_from: number;
+    create_date_to: number;
   }
 
   export interface Online {
@@ -1253,8 +1296,8 @@ export namespace orders {
     offset: number;
   }
 
-  export interface ResponseOfflineByClient {
-    orders: OfflineOrder[];
+  export interface ResponseOffline {
+    orders: OfflineOrderPosition[];
     total: number;
   }
 
@@ -1266,7 +1309,7 @@ export namespace orders {
     order: number[];
   }
 
-  export interface OfflineOrder {
+  export interface OfflineOrderPosition {
     store_name: string;
     store_id: number;
     cashbox_id: number;
@@ -1401,6 +1444,74 @@ export namespace logistics {
   }
 }
 
+export namespace release {
+  export interface ArticlesRelease {
+    create(
+      request: ParamsCreateArticle,
+      metadata?: any
+    ): Observable<ArticleReleaseActionResponse>;
+    get(
+      request: ParamsGetArticleRelease,
+      metadata?: any
+    ): Observable<ArticleReleaseList>;
+    getById(
+      request: ArticlesReleaseId,
+      metadata?: any
+    ): Observable<ArticleRelease>;
+    update(
+      request: ParamsCreateArticle,
+      metadata?: any
+    ): Observable<ArticleReleaseActionResponse>;
+    delete(
+      request: ArticlesReleaseId,
+      metadata?: any
+    ): Observable<ArticleReleaseActionResponse>;
+  }
+
+  export enum ArticleReleaseType {
+    site = 0,
+    mercaux = 1,
+  }
+
+  export interface ParamsCreateArticle {
+    article: string;
+    trigger_time: string;
+    type: ArticleReleaseType;
+  }
+
+  export interface ArticleReleaseActionResponse {
+    ok: boolean;
+    id: number;
+  }
+
+  export interface ParamsGetArticleRelease {
+    limit: number;
+    offset: number;
+    type: ArticleReleaseType;
+    is_deleted: boolean;
+    is_active: boolean;
+  }
+
+  export interface ArticleReleaseList {
+    ok: boolean;
+    total: number;
+    article: ArticleRelease[];
+  }
+
+  export interface ArticleRelease {
+    id: number;
+    article: string;
+    trigger_time: string;
+    type: ArticleReleaseType;
+    is_deleted: boolean;
+    is_active: boolean;
+  }
+
+  export interface ArticlesReleaseId {
+    id: number;
+  }
+}
+
 export namespace products {
   export interface Product {
     id: number;
@@ -1485,5 +1596,60 @@ export namespace products {
       request: Article,
       metadata?: any
     ): Observable<GetByArticleResponse>;
+  }
+}
+
+export namespace products {
+  export interface Error {
+    source: string;
+    type: string;
+    message: string;
+  }
+
+  export interface CreateResponse {
+    ok: boolean;
+  }
+
+  export interface Errors {
+    create(request: Error, metadata?: any): Observable<CreateResponse>;
+  }
+}
+
+export namespace stocks {
+  export interface Stocks {
+    upsert(request: ListStocks, metadata?: any): Observable<SuccessResponse>;
+    get(request: GetParams, metadata?: any): Observable<ListStocks>;
+    getPagination(request: Request, metadata?: any): Observable<Response>;
+  }
+
+  export interface GetParams {
+    enabled_buffer_site: boolean;
+  }
+
+  export interface Request {
+    limit: number;
+    offset: number;
+    enabled_buffer_site: boolean;
+  }
+
+  export interface Response {
+    total: number;
+    stocks: Stock[];
+  }
+
+  export interface SuccessResponse {
+    success: boolean;
+  }
+
+  export interface ListStocks {
+    stocks: Stock[];
+  }
+
+  export interface Stock {
+    barcode: number;
+    store_code: number;
+    quantity: number;
+    available: number;
+    reserved: number;
   }
 }
