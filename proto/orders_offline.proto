@@ -4,7 +4,7 @@ option go_package = "go/orders";
 
 package orders;
 
-service Offline {
+service Orders {
     rpc ByClient (ParamsOfflineByClient) returns (ResponseOffline) {
     }
 }
@@ -30,7 +30,8 @@ message Order {
     int32 operation = 7;
     int32 bonuses_wasted = 8;
     int32 bonuses_accrued = 9;
-    repeated Position positions = 10;
+    string source = 10; //online or offline
+    repeated Position positions = 11;
 }
 
 message Position {
