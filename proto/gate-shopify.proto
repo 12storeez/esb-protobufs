@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "go/gate/shopify";
+package gate;
+
+service Shopify {
+    rpc TakeEvent (EventData) returns (Result) {
+    }
+}
+
+message EventData {
+    string topic = 1;
+    string shop_domain = 2;
+    // Data of payload relation to
+    // https://shopify.dev/docs/admin-api/rest/reference/events/webhook
+    string payload = 3;
+}
+
+message Result {
+    bool success = 1;
+}
