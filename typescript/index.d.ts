@@ -459,7 +459,7 @@ export namespace transport {
 
 export namespace gate {
   export interface Shopify {
-    takeEvent(request: EventData, metadata?: any): Observable<Result>;
+    emit(request: EventData, metadata?: any): Observable<Result>;
   }
 
   export interface EventData {

@@ -4,7 +4,7 @@ option go_package = "go/gate/shopify";
 package gate;
 
 service Shopify {
-    rpc TakeEvent (EventData) returns (Result) {
+    rpc Emit (EventData) returns (Result) {
     }
 }
 
