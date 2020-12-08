@@ -457,6 +457,22 @@ export namespace transport {
   }
 }
 
+export namespace gate {
+  export interface Shopify {
+    emit(request: EventData, metadata?: any): Observable<Result>;
+  }
+
+  export interface EventData {
+    topic: string;
+    shop_domain: string;
+    payload: string;
+  }
+
+  export interface Result {
+    success: boolean;
+  }
+}
+
 export namespace transport {
   export interface WinnersCompanies {
     winners(
