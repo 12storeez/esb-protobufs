@@ -43,7 +43,6 @@ func NewOfflineEndpoints() []*api.Endpoint {
 
 type OfflineService interface {
 	ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...client.CallOption) (*ResponseOffline, error)
-	GetAll(ctx context.Context, in *ParamsGetAll, opts ...client.CallOption) (*ResponseOffline, error)
 }
 
 type offlineService struct {
@@ -68,27 +67,15 @@ func (c *offlineService) ByClient(ctx context.Context, in *ParamsOfflineByClient
 	return out, nil
 }
 
-func (c *offlineService) GetAll(ctx context.Context, in *ParamsGetAll, opts ...client.CallOption) (*ResponseOffline, error) {
-	req := c.c.NewRequest(c.name, "Offline.GetAll", in)
-	out := new(ResponseOffline)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Offline service
 
 type OfflineHandler interface {
 	ByClient(context.Context, *ParamsOfflineByClient, *ResponseOffline) error
-	GetAll(context.Context, *ParamsGetAll, *ResponseOffline) error
 }
 
 func RegisterOfflineHandler(s server.Server, hdlr OfflineHandler, opts ...server.HandlerOption) error {
 	type offline interface {
 		ByClient(ctx context.Context, in *ParamsOfflineByClient, out *ResponseOffline) error
-		GetAll(ctx context.Context, in *ParamsGetAll, out *ResponseOffline) error
 	}
 	type Offline struct {
 		offline
@@ -103,10 +90,6 @@ type offlineHandler struct {
 
 func (h *offlineHandler) ByClient(ctx context.Context, in *ParamsOfflineByClient, out *ResponseOffline) error {
 	return h.OfflineHandler.ByClient(ctx, in, out)
-}
-
-func (h *offlineHandler) GetAll(ctx context.Context, in *ParamsGetAll, out *ResponseOffline) error {
-	return h.OfflineHandler.GetAll(ctx, in, out)
 }
 
 // Api Endpoints for Online service
