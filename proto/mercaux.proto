@@ -71,6 +71,13 @@ message Stock {
     string country = 33;
     repeated Quantity quantity = 34;
     string preview = 35;
+    Capsules capsules = 36;
+}
+
+message Capsules {
+    string id = 1;
+    string title = 2;
+    string parent_season = 3;
 }
 
 message Category {
