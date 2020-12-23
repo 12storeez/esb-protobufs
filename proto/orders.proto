@@ -31,7 +31,8 @@ message Order {
     int32 operation = 8;
     int32 bonuses_wasted = 9;
     int32 bonuses_accrued = 10;
-    repeated Position positions = 11;
+    int32 sum = 11;
+    repeated Position positions = 12;
 }
 
 message Position {
@@ -42,10 +43,9 @@ message Position {
     string color = 5;
     string size = 6;
     int32 qty = 7;
-    int32 total_gross = 8;
+    int32 sum = 8;
     int32 discount = 9;
-    int32 total = 10;
-    string family = 11;
+    string family = 10;
 }
 
 service Online {
