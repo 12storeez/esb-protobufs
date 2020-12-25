@@ -218,6 +218,13 @@ export namespace mercaux {
     country: string;
     quantity: Quantity[];
     preview: string;
+    capsules: Capsules;
+  }
+
+  export interface Capsules {
+    id: string;
+    title: string;
+    parent_season: string;
   }
 
   export interface Category {
@@ -1289,14 +1296,45 @@ export namespace orders {
       request: ParamsOfflineByClient,
       metadata?: any
     ): Observable<ResponseOffline>;
-    getAll(request: ParamsGetAll, metadata?: any): Observable<ResponseOffline>;
   }
 
-  export interface ParamsGetAll {
+  export interface ParamsOfflineByClient {
+    client_id: number;
     limit: number;
     offset: number;
-    create_date_from: number;
-    create_date_to: number;
+  }
+
+  export interface ResponseOffline {
+    result: Order[];
+    total: number;
+  }
+
+  export interface Order {
+    id: number;
+    store_code: number;
+    order_number: string;
+    order_id: string;
+    date: string;
+    client_id: number;
+    seller: string;
+    operation: number;
+    bonuses_wasted: number;
+    bonuses_accrued: number;
+    sum: number;
+    positions: Position[];
+  }
+
+  export interface Position {
+    id: number;
+    article: number;
+    barcode: number;
+    title: string;
+    color: string;
+    size: string;
+    qty: number;
+    sum: number;
+    discount: number;
+    family: string;
   }
 
   export interface Online {
@@ -1306,19 +1344,8 @@ export namespace orders {
     ): Observable<ResponseOnlineByClient>;
   }
 
-  export interface ParamsOfflineByClient {
-    clientId: number;
-    limit: number;
-    offset: number;
-  }
-
-  export interface ResponseOffline {
-    orders: OfflineOrderPosition[];
-    total: number;
-  }
-
   export interface ParamsOnlineByClient {
-    clientId: number;
+    client_id: number;
   }
 
   export interface ResponseOnlineByClient {
