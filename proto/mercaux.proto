@@ -152,7 +152,7 @@ message OrdersNewResponse {
 message OrderError {
     int32 code = 1;
     string message = 2;
-    string price = 3;
+    int64 price = 3;
     int32 available_quantity = 4;
     int64 barcode = 5;
 }
