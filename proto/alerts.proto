@@ -3,8 +3,13 @@ syntax = "proto3";
 option go_package = "go/alerts";
 package alerts;
 
+import "google/api/annotations.proto";
+
 service Slack {
   rpc Send (SlackSendParams) returns (SlackSendResponse) {
+    option (google.api.http) = {
+      get: "/v1/slack/send"
+    };
   }
 }
 
