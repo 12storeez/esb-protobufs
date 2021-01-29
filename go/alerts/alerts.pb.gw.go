@@ -73,7 +73,7 @@ func local_request_Slack_Send_0(ctx context.Context, marshaler runtime.Marshaler
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSlackHandlerFromEndpoint instead.
 func RegisterSlackHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SlackServer) error {
 
-	mux.Handle("GET", pattern_Slack_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Slack_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -137,7 +137,7 @@ func RegisterSlackHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc
 // "SlackClient" to call the correct interceptors.
 func RegisterSlackHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SlackClient) error {
 
-	mux.Handle("GET", pattern_Slack_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Slack_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
