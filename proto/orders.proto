@@ -23,16 +23,18 @@ message ResponseOffline {
 message Order {
     int32 id = 1;
     int32 store_code = 2;
-    string order_number = 3;
-    string order_id = 4;
-    string date = 5;
-    int32 client_id = 6;
-    string seller = 7;
-    int32 operation = 8;
-    int32 bonuses_wasted = 9;
-    int32 bonuses_accrued = 10;
-    int32 sum = 11;
-    repeated Position positions = 12;
+    string store_name = 3;
+    string order_number = 4;
+    string order_id = 5;
+    string date = 6;
+    int32 client_id = 7;
+    string seller = 8;
+    int32 operation = 9;
+    int32 bonuses_wasted = 10;
+    int32 bonuses_accrued = 11;
+    int32 sum = 12;
+    bool is_rated = 13;
+    repeated Position positions = 14;
 }
 
 message Position {
