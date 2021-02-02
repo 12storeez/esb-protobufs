@@ -299,9 +299,9 @@ export namespace mercaux {
   export interface OrderError {
     code: number;
     message: string;
-    price: string;
+    price: number;
     available_quantity: number;
-    barcode: number;
+    barcode: string;
   }
 }
 
@@ -461,6 +461,127 @@ export namespace transport {
 
   export interface TransportCompanyOkResponse {
     ok: boolean;
+  }
+}
+
+export namespace alerts {
+  export interface Slack {
+    send(
+      request: SlackSendParams,
+      metadata?: any
+    ): Observable<SlackSendResponse>;
+  }
+
+  export interface SlackSendParams {
+    channel_id: string;
+    thread_ts: string;
+    text: string;
+    attachments: Attachment[];
+    blocks: Block[];
+  }
+
+  export interface Attachment {
+    color: string;
+    fallback: string;
+    callback_id: string;
+    id: number;
+    author_id: string;
+    author_name: string;
+    author_sub_name: string;
+    author_link: string;
+    author_icon: string;
+    title: string;
+    title_link: string;
+    pre_text: string;
+    text: string;
+    image_url: string;
+    thumb_url: string;
+    fields: AttachmentField[];
+    actions: AttachmentAction[];
+    footer: string;
+    footer_icon: string;
+  }
+
+  export interface AttachmentField {
+    title: string;
+    value: string;
+    short: boolean;
+  }
+
+  export interface AttachmentAction {
+    name: string;
+    text: string;
+    style: string;
+    type: string;
+    value: string;
+    data_source: string;
+    url: string;
+    options: AttachmentActionOption[];
+    selected_options: AttachmentActionOption[];
+    option_groups: AttachmentActionOptionGroup[];
+    confirm: AttachmentConfirm;
+  }
+
+  export interface AttachmentActionOption {
+    text: string;
+    value: string;
+    description: string;
+  }
+
+  export interface AttachmentActionOptionGroup {
+    text: string;
+    options: AttachmentActionOption[];
+  }
+
+  export interface AttachmentConfirm {
+    title: string;
+    text: string;
+    ok_text: string;
+    dissmiss_text: string;
+  }
+
+  export interface Block {
+    action_id: string;
+    block_id: string;
+    type: string;
+    text: BlockText;
+    value: string;
+    action_ts: string;
+    selected_option: BlockOption;
+    selected_options: BlockOption[];
+    selected_user: string;
+    selected_users: string[];
+    selected_channel: string;
+    selected_channels: string[];
+    selected_conversation: string;
+    selected_conversations: string[];
+    selected_date: string;
+    selected_time: string;
+    initial_option: BlockOption;
+    initial_user: string;
+    initial_channel: string;
+    initial_conversation: string;
+    initial_date: string;
+  }
+
+  export interface BlockText {
+    type: string;
+    text: string;
+    emoji: boolean;
+    verbatim: boolean;
+  }
+
+  export interface BlockOption {
+    text: BlockText;
+    value: string;
+    description: BlockText;
+    url: string;
+  }
+
+  export interface SlackSendResponse {
+    ok: boolean;
+    channel: string;
+    ts: string;
   }
 }
 
@@ -1312,6 +1433,7 @@ export namespace orders {
   export interface Order {
     id: number;
     store_code: number;
+    store_name: string;
     order_number: string;
     order_id: string;
     date: string;
@@ -1321,6 +1443,7 @@ export namespace orders {
     bonuses_wasted: number;
     bonuses_accrued: number;
     sum: number;
+    is_rated: boolean;
     positions: Position[];
   }
 
