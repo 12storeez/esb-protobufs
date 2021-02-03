@@ -6,7 +6,7 @@ Package notifications is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package notifications
+package slack
 
 import (
 	"context"

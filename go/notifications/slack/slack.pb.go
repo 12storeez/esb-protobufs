@@ -4,7 +4,7 @@
 // 	protoc        v3.14.0
 // source: proto/notifications/slack.proto
 
-package notifications
+package slack
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"

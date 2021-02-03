@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "go/notifications";
+option go_package = "go/notifications/slack";
 package notifications;
 
 import "google/api/annotations.proto";
