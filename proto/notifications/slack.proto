@@ -23,7 +23,7 @@ message SlackSendParams {
   // https://api.slack.com/methods/chat.postMessage#arg_blocks
   // https://api.slack.com/reference/block-kit/blocks
   // https://api.slack.com/messaging/composing/layouts
-  google.protobuf.Any blocks = 5;
+  repeated google.protobuf.Any blocks = 5;
 }
 
 // attachments (https://api.slack.com/methods/chat.postMessage#arg_attachments)
