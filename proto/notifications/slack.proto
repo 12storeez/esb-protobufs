@@ -19,7 +19,10 @@ message SlackSendParams {
   string thread_ts = 2;
   string text = 3;
   repeated Attachment attachments = 4;
-  repeated Block blocks = 5;
+  // https://api.slack.com/methods/chat.postMessage#arg_blocks
+  // https://api.slack.com/reference/block-kit/blocks
+  // https://api.slack.com/messaging/composing/layouts
+  string blocks = 5;
 }
 
 // attachments (https://api.slack.com/methods/chat.postMessage#arg_attachments)
@@ -81,48 +84,6 @@ message AttachmentConfirm {
   string text = 2;
   string ok_text = 3;
   string dissmiss_text = 4;
-}
-
-// blocks
-// https://api.slack.com/methods/chat.postMessage#arg_blocks
-// https://api.slack.com/reference/block-kit/blocks
-// https://api.slack.com/messaging/composing/layouts
-message Block {
-  string action_id = 1;
-  string block_id = 2;
-  string type = 3;
-  BlockText text = 4;
-  string value = 5;
-  string action_ts = 6;
-  BlockOption selected_option = 7;
-  repeated BlockOption selected_options = 8;
-  string selected_user = 9;
-  repeated string selected_users = 10;
-  string selected_channel = 11;
-  repeated string selected_channels = 12;
-  string selected_conversation = 13;
-  repeated string selected_conversations = 14;
-  string selected_date = 15;
-  string selected_time = 16;
-  BlockOption initial_option = 17;
-  string initial_user = 18;
-  string initial_channel = 19;
-  string initial_conversation = 20;
-  string initial_date = 21;
-}
-
-message BlockText {
-  string type = 1;
-  string text = 2;
-  bool emoji = 3;
-  bool verbatim = 4;
-}
-
-message BlockOption {
-  BlockText text = 1;
-  string value = 2;
-  BlockText description = 3;
-  string url = 4;
 }
 
 message SlackSendResponse {
