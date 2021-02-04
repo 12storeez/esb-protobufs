@@ -4,6 +4,7 @@ option go_package = "go/notifications/slack";
 package notifications;
 
 import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
 
 service Slack {
   rpc Send (SlackSendParams) returns (SlackSendResponse) {
@@ -22,7 +23,7 @@ message SlackSendParams {
   // https://api.slack.com/methods/chat.postMessage#arg_blocks
   // https://api.slack.com/reference/block-kit/blocks
   // https://api.slack.com/messaging/composing/layouts
-  string blocks = 5;
+  repeated google.protobuf.Any blocks = 5;
 }
 
 // attachments (https://api.slack.com/methods/chat.postMessage#arg_attachments)
