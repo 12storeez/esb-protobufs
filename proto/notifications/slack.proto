@@ -9,6 +9,7 @@ service Slack {
   rpc Send (SlackSendParams) returns (SlackSendResponse) {
     option (google.api.http) = {
       post: "/v1/slack/send"
+      body: "*"
     };
   }
 }
