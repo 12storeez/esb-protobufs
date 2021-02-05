@@ -1433,7 +1433,6 @@ export namespace orders {
   export interface Order {
     id: number;
     store_code: number;
-    store_name: string;
     order_number: string;
     order_id: string;
     date: string;
@@ -1443,8 +1442,9 @@ export namespace orders {
     bonuses_wasted: number;
     bonuses_accrued: number;
     sum: number;
-    is_rated: boolean;
     positions: Position[];
+    store_name: string;
+    is_rated: boolean;
   }
 
   export interface Position {
