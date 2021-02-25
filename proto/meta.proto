@@ -109,6 +109,7 @@ message City {
     string title = 2;
     int32 stores = 3;
     string country = 4;
+    string country_name = 5;
 }
 
 message ResponseStoresCities {
