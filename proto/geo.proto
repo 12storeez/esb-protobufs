@@ -1,0 +1,177 @@
+syntax = "proto3";
+
+option go_package = "go/geo";
+
+package geo;
+
+service geo {
+  rpc CountryByCode(CountryByCodeParams) returns (Country) {
+  }
+  rpc SuggestCountry(SuggestCountryParams) returns (SuggestCountryResponse) {
+  }
+  rpc SuggestCity(SuggestCityParams) returns (SuggestCityResponse) {
+  }
+  rpc CityByID(CityByIDParams) returns (City) {
+  }
+  rpc CityByIP(CityByIPParams) returns (CityByIPResponse) {
+  }
+  rpc SuggestAddress(SuggestAddressParams) returns (SuggestAddressResponse) {
+  }
+  rpc AddressDetails(AddressDetailsParams) returns (Address) {
+  }
+}
+
+enum LanguageType {
+  ru = 0;
+  en = 1;
+}
+
+// Country ...
+message CountryByCodeParams {
+  LanguageType language = 1;
+  string iso_code = 2;
+  int32 limit = 3;
+}
+
+message Country {
+  string iso_code = 1;
+  string name = 2;
+  Continent continent = 3;
+  Capital capital = 4;
+  string postal_code_format = 5;
+  string currency_code = 6;
+  string phone_prefix = 7;
+  repeated string phone_masks = 8;
+}
+
+message Continent {
+  string code = 1;
+  string name = 2;
+}
+
+message Capital {
+  string name = 1;
+  Location location = 2;
+  string postal_code = 3;
+}
+
+message SuggestCountryParams {
+  LanguageType language = 1;
+  string name = 2;
+  int32 limit = 3;
+}
+
+message SuggestCountryResponse {
+  repeated Country results = 1;
+  int32 total = 2;
+}
+
+// City ...
+message SuggestCityParams {
+  LanguageType language = 1;
+  string country_iso_code = 2;
+  string city_name = 3;
+  int32 limit = 4;
+}
+
+message SuggestCityResponse {
+  repeated SuggestCity results = 1;
+  int32 total = 2;
+}
+
+message SuggestCity {
+  string id = 1;
+  string suggest = 2;
+  string name = 3;
+  string subtitle = 4;
+  string origin = 5;
+  string type = 6;
+}
+
+message CityByIDParams {
+  LanguageType language = 1;
+  string country_iso_code = 2;
+  string city_id = 3;
+}
+
+message City {
+  string id = 1;
+  string name = 2;
+  string kladr_id = 3;
+  string country_iso_code = 4;
+  string postal_code = 5;
+  Region region = 6;
+  Location location = 7;
+}
+
+message Region {
+  string id = 1;
+  string name = 2;
+  string iso_code = 3;
+  string kladr_id = 4;
+  string type = 5;
+}
+
+message Location  {
+  double latitude = 1;
+  double longitude = 2;
+}
+
+message CityByIPParams {
+  LanguageType language = 1;
+  string ip = 2;
+}
+
+message CityByIPResponse {
+  string name = 1;
+  Continent continent = 2;
+  Country country = 3;
+  Location location = 4;
+}
+
+// Address ...
+message SuggestAddressParams {
+  LanguageType language = 1;
+  string       country_iso_code = 2;
+  string       city_id = 3;
+  string       address = 4;
+  int32        limit = 5;
+}
+
+message SuggestAddressResponse {
+  repeated SuggestAddress results = 1;
+  int32 total = 2;
+}
+
+message SuggestAddress {
+  string id = 1;
+  string suggest = 2;
+  Region region = 3;
+  string city = 6;
+  string city_id = 7;
+  Country country = 8;
+}
+
+message AddressDetailsParams {
+  LanguageType language = 1;
+  string country_iso_code = 2;
+  string query = 3;
+}
+
+message Address {
+  // fias_id for dadata and place_id for google
+  string id = 1;
+  Country country = 2;
+  Region region = 3;
+  string city = 4;
+  string street_type = 5;
+  string street = 6;
+  string house_type = 7;
+  string house = 8;
+  string block_type = 9;
+  string block = 10;
+  string postal_code = 11;
+  Location location = 12;
+  // fias_level for dadata
+  string level = 13;
+}
