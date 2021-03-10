@@ -30,7 +30,6 @@ enum LanguageType {
 message CountryByCodeParams {
   LanguageType language = 1;
   string iso_code = 2;
-  int32 limit = 3;
 }
 
 message Country {
@@ -40,8 +39,7 @@ message Country {
   Capital capital = 4;
   string postal_code_format = 5;
   string currency_code = 6;
-  string phone_prefix = 7;
-  repeated string phone_masks = 8;
+  repeated string phone_masks = 7;
 }
 
 message Continent {
@@ -62,8 +60,14 @@ message SuggestCountryParams {
 }
 
 message SuggestCountryResponse {
-  repeated Country results = 1;
+  repeated SuggestCountry results = 1;
   int32 total = 2;
+}
+
+message SuggestCountry {
+  string iso_code = 1;
+  string name = 2;
+  Continent continent = 3;
 }
 
 // City ...
