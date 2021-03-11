@@ -5,13 +5,13 @@ option go_package = "go/geo";
 package geo;
 
 service geo {
-  rpc CountryByCode(CountryByCodeParams) returns (Country) {
+  rpc CountryDetails(CountryDetailsParams) returns (Country) {
   }
   rpc SuggestCountry(SuggestCountryParams) returns (SuggestCountryResponse) {
   }
   rpc SuggestCity(SuggestCityParams) returns (SuggestCityResponse) {
   }
-  rpc CityByID(CityByIDParams) returns (City) {
+  rpc CityDetails(CityDetailsParams) returns (City) {
   }
   rpc CityByIP(CityByIPParams) returns (CityByIPResponse) {
   }
@@ -27,7 +27,7 @@ enum LanguageType {
 }
 
 // Country ...
-message CountryByCodeParams {
+message CountryDetailsParams {
   LanguageType language = 1;
   string iso_code = 2;
 }
@@ -92,10 +92,13 @@ message SuggestCity {
   string type = 6;
 }
 
-message CityByIDParams {
+message CityDetailsParams {
   LanguageType language = 1;
   string country_iso_code = 2;
-  string city_id = 3;
+
+  // для России передавать полученный suggest
+  // для остальных передавать id
+  string query = 3;
 }
 
 message City {
@@ -104,8 +107,15 @@ message City {
   string kladr_id = 3;
   string country_iso_code = 4;
   string postal_code = 5;
-  Region region = 6;
-  Location location = 7;
+  string type = 6;
+  Region region = 7;
+  State state = 8;
+  Location location = 9;
+}
+
+message State {
+  string name = 1;
+  string iso_code = 2;
 }
 
 message Region {

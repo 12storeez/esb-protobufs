@@ -17,10 +17,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GeoClient interface {
-	CountryByCode(ctx context.Context, in *CountryByCodeParams, opts ...grpc.CallOption) (*Country, error)
+	CountryDetails(ctx context.Context, in *CountryDetailsParams, opts ...grpc.CallOption) (*Country, error)
 	SuggestCountry(ctx context.Context, in *SuggestCountryParams, opts ...grpc.CallOption) (*SuggestCountryResponse, error)
 	SuggestCity(ctx context.Context, in *SuggestCityParams, opts ...grpc.CallOption) (*SuggestCityResponse, error)
-	CityByID(ctx context.Context, in *CityByIDParams, opts ...grpc.CallOption) (*City, error)
+	CityDetails(ctx context.Context, in *CityDetailsParams, opts ...grpc.CallOption) (*City, error)
 	CityByIP(ctx context.Context, in *CityByIPParams, opts ...grpc.CallOption) (*CityByIPResponse, error)
 	SuggestAddress(ctx context.Context, in *SuggestAddressParams, opts ...grpc.CallOption) (*SuggestAddressResponse, error)
 	AddressDetails(ctx context.Context, in *AddressDetailsParams, opts ...grpc.CallOption) (*Address, error)
@@ -34,9 +34,9 @@ func NewGeoClient(cc grpc.ClientConnInterface) GeoClient {
 	return &geoClient{cc}
 }
 
-func (c *geoClient) CountryByCode(ctx context.Context, in *CountryByCodeParams, opts ...grpc.CallOption) (*Country, error) {
+func (c *geoClient) CountryDetails(ctx context.Context, in *CountryDetailsParams, opts ...grpc.CallOption) (*Country, error) {
 	out := new(Country)
-	err := c.cc.Invoke(ctx, "/geo.geo/CountryByCode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/geo.geo/CountryDetails", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,9 +61,9 @@ func (c *geoClient) SuggestCity(ctx context.Context, in *SuggestCityParams, opts
 	return out, nil
 }
 
-func (c *geoClient) CityByID(ctx context.Context, in *CityByIDParams, opts ...grpc.CallOption) (*City, error) {
+func (c *geoClient) CityDetails(ctx context.Context, in *CityDetailsParams, opts ...grpc.CallOption) (*City, error) {
 	out := new(City)
-	err := c.cc.Invoke(ctx, "/geo.geo/CityByID", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/geo.geo/CityDetails", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,10 +101,10 @@ func (c *geoClient) AddressDetails(ctx context.Context, in *AddressDetailsParams
 // All implementations must embed UnimplementedGeoServer
 // for forward compatibility
 type GeoServer interface {
-	CountryByCode(context.Context, *CountryByCodeParams) (*Country, error)
+	CountryDetails(context.Context, *CountryDetailsParams) (*Country, error)
 	SuggestCountry(context.Context, *SuggestCountryParams) (*SuggestCountryResponse, error)
 	SuggestCity(context.Context, *SuggestCityParams) (*SuggestCityResponse, error)
-	CityByID(context.Context, *CityByIDParams) (*City, error)
+	CityDetails(context.Context, *CityDetailsParams) (*City, error)
 	CityByIP(context.Context, *CityByIPParams) (*CityByIPResponse, error)
 	SuggestAddress(context.Context, *SuggestAddressParams) (*SuggestAddressResponse, error)
 	AddressDetails(context.Context, *AddressDetailsParams) (*Address, error)
@@ -115,8 +115,8 @@ type GeoServer interface {
 type UnimplementedGeoServer struct {
 }
 
-func (UnimplementedGeoServer) CountryByCode(context.Context, *CountryByCodeParams) (*Country, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CountryByCode not implemented")
+func (UnimplementedGeoServer) CountryDetails(context.Context, *CountryDetailsParams) (*Country, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountryDetails not implemented")
 }
 func (UnimplementedGeoServer) SuggestCountry(context.Context, *SuggestCountryParams) (*SuggestCountryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuggestCountry not implemented")
@@ -124,8 +124,8 @@ func (UnimplementedGeoServer) SuggestCountry(context.Context, *SuggestCountryPar
 func (UnimplementedGeoServer) SuggestCity(context.Context, *SuggestCityParams) (*SuggestCityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuggestCity not implemented")
 }
-func (UnimplementedGeoServer) CityByID(context.Context, *CityByIDParams) (*City, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CityByID not implemented")
+func (UnimplementedGeoServer) CityDetails(context.Context, *CityDetailsParams) (*City, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CityDetails not implemented")
 }
 func (UnimplementedGeoServer) CityByIP(context.Context, *CityByIPParams) (*CityByIPResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CityByIP not implemented")
@@ -149,20 +149,20 @@ func RegisterGeoServer(s grpc.ServiceRegistrar, srv GeoServer) {
 	s.RegisterService(&_Geo_serviceDesc, srv)
 }
 
-func _Geo_CountryByCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CountryByCodeParams)
+func _Geo_CountryDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountryDetailsParams)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GeoServer).CountryByCode(ctx, in)
+		return srv.(GeoServer).CountryDetails(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/geo.geo/CountryByCode",
+		FullMethod: "/geo.geo/CountryDetails",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeoServer).CountryByCode(ctx, req.(*CountryByCodeParams))
+		return srv.(GeoServer).CountryDetails(ctx, req.(*CountryDetailsParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -203,20 +203,20 @@ func _Geo_SuggestCity_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Geo_CityByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CityByIDParams)
+func _Geo_CityDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CityDetailsParams)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GeoServer).CityByID(ctx, in)
+		return srv.(GeoServer).CityDetails(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/geo.geo/CityByID",
+		FullMethod: "/geo.geo/CityDetails",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeoServer).CityByID(ctx, req.(*CityByIDParams))
+		return srv.(GeoServer).CityDetails(ctx, req.(*CityDetailsParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -280,8 +280,8 @@ var _Geo_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*GeoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CountryByCode",
-			Handler:    _Geo_CountryByCode_Handler,
+			MethodName: "CountryDetails",
+			Handler:    _Geo_CountryDetails_Handler,
 		},
 		{
 			MethodName: "SuggestCountry",
@@ -292,8 +292,8 @@ var _Geo_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Geo_SuggestCity_Handler,
 		},
 		{
-			MethodName: "CityByID",
-			Handler:    _Geo_CityByID_Handler,
+			MethodName: "CityDetails",
+			Handler:    _Geo_CityDetails_Handler,
 		},
 		{
 			MethodName: "CityByIP",
