@@ -28,6 +28,17 @@ service Mobile {
     }
     rpc IsUserExist (IsUserExistParams) returns (IsUserExistResponse) {
     }
+    rpc PushClick(PushClickParams) returns (PushClickResponse) {
+    }
+}
+
+message PushClickParams {
+    string message_unique_key = 1;
+    string button_unique_key = 2;
+}
+
+message PushClickResponse {
+    bool ok = 1;
 }
 
 message IsUserExistParams {
