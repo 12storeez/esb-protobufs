@@ -36,6 +36,19 @@ export namespace mindbox {
       request: IsUserExistParams,
       metadata?: any
     ): Observable<IsUserExistResponse>;
+    pushClick(
+      request: PushClickParams,
+      metadata?: any
+    ): Observable<PushClickResponse>;
+  }
+
+  export interface PushClickParams {
+    message_unique_key: string;
+    button_unique_key: string;
+  }
+
+  export interface PushClickResponse {
+    ok: boolean;
   }
 
   export interface IsUserExistParams {
@@ -464,127 +477,6 @@ export namespace transport {
   }
 }
 
-export namespace alerts {
-  export interface Slack {
-    send(
-      request: SlackSendParams,
-      metadata?: any
-    ): Observable<SlackSendResponse>;
-  }
-
-  export interface SlackSendParams {
-    channel_id: string;
-    thread_ts: string;
-    text: string;
-    attachments: Attachment[];
-    blocks: Block[];
-  }
-
-  export interface Attachment {
-    color: string;
-    fallback: string;
-    callback_id: string;
-    id: number;
-    author_id: string;
-    author_name: string;
-    author_sub_name: string;
-    author_link: string;
-    author_icon: string;
-    title: string;
-    title_link: string;
-    pre_text: string;
-    text: string;
-    image_url: string;
-    thumb_url: string;
-    fields: AttachmentField[];
-    actions: AttachmentAction[];
-    footer: string;
-    footer_icon: string;
-  }
-
-  export interface AttachmentField {
-    title: string;
-    value: string;
-    short: boolean;
-  }
-
-  export interface AttachmentAction {
-    name: string;
-    text: string;
-    style: string;
-    type: string;
-    value: string;
-    data_source: string;
-    url: string;
-    options: AttachmentActionOption[];
-    selected_options: AttachmentActionOption[];
-    option_groups: AttachmentActionOptionGroup[];
-    confirm: AttachmentConfirm;
-  }
-
-  export interface AttachmentActionOption {
-    text: string;
-    value: string;
-    description: string;
-  }
-
-  export interface AttachmentActionOptionGroup {
-    text: string;
-    options: AttachmentActionOption[];
-  }
-
-  export interface AttachmentConfirm {
-    title: string;
-    text: string;
-    ok_text: string;
-    dissmiss_text: string;
-  }
-
-  export interface Block {
-    action_id: string;
-    block_id: string;
-    type: string;
-    text: BlockText;
-    value: string;
-    action_ts: string;
-    selected_option: BlockOption;
-    selected_options: BlockOption[];
-    selected_user: string;
-    selected_users: string[];
-    selected_channel: string;
-    selected_channels: string[];
-    selected_conversation: string;
-    selected_conversations: string[];
-    selected_date: string;
-    selected_time: string;
-    initial_option: BlockOption;
-    initial_user: string;
-    initial_channel: string;
-    initial_conversation: string;
-    initial_date: string;
-  }
-
-  export interface BlockText {
-    type: string;
-    text: string;
-    emoji: boolean;
-    verbatim: boolean;
-  }
-
-  export interface BlockOption {
-    text: BlockText;
-    value: string;
-    description: BlockText;
-    url: string;
-  }
-
-  export interface SlackSendResponse {
-    ok: boolean;
-    channel: string;
-    ts: string;
-  }
-}
-
 export namespace gate {
   export interface Shopify {
     emit(request: EventData, metadata?: any): Observable<Result>;
@@ -598,6 +490,197 @@ export namespace gate {
 
   export interface Result {
     success: boolean;
+  }
+}
+
+export namespace geo {
+  export interface geo {
+    countryDetails(
+      request: CountryDetailsParams,
+      metadata?: any
+    ): Observable<Country>;
+    suggestCountry(
+      request: SuggestCountryParams,
+      metadata?: any
+    ): Observable<SuggestCountryResponse>;
+    suggestCity(
+      request: SuggestCityParams,
+      metadata?: any
+    ): Observable<SuggestCityResponse>;
+    cityDetails(request: CityDetailsParams, metadata?: any): Observable<City>;
+    cityByIP(
+      request: CityByIPParams,
+      metadata?: any
+    ): Observable<CityByIPResponse>;
+    suggestAddress(
+      request: SuggestAddressParams,
+      metadata?: any
+    ): Observable<SuggestAddressResponse>;
+    addressDetails(
+      request: AddressDetailsParams,
+      metadata?: any
+    ): Observable<Address>;
+  }
+
+  export enum LanguageType {
+    ru = 0,
+    en = 1,
+  }
+
+  export interface CountryDetailsParams {
+    language: LanguageType;
+    iso_code: string;
+  }
+
+  export interface Country {
+    iso_code: string;
+    name: string;
+    continent: Continent;
+    capital: Capital;
+    postal_code_format: string;
+    currency_code: string;
+    phone_masks: string[];
+  }
+
+  export interface Continent {
+    code: string;
+    name: string;
+  }
+
+  export interface Capital {
+    name: string;
+    location: Location;
+    postal_code: string;
+  }
+
+  export interface SuggestCountryParams {
+    language: LanguageType;
+    name: string;
+    limit: number;
+  }
+
+  export interface SuggestCountryResponse {
+    results: SuggestCountry[];
+    total: number;
+  }
+
+  export interface SuggestCountry {
+    iso_code: string;
+    name: string;
+    continent: Continent;
+  }
+
+  export interface SuggestCityParams {
+    language: LanguageType;
+    country_iso_code: string;
+    city_name: string;
+    limit: number;
+  }
+
+  export interface SuggestCityResponse {
+    results: SuggestCity[];
+    total: number;
+  }
+
+  export interface SuggestCity {
+    id: string;
+    suggest: string;
+    name: string;
+    subtitle: string;
+    origin: string;
+    type: string;
+  }
+
+  export interface CityDetailsParams {
+    language: LanguageType;
+    country_iso_code: string;
+    query: string;
+  }
+
+  export interface City {
+    id: string;
+    name: string;
+    kladr_id: string;
+    country_iso_code: string;
+    postal_code: string;
+    type: string;
+    region: Region;
+    state: State;
+    location: Location;
+  }
+
+  export interface State {
+    name: string;
+    iso_code: string;
+  }
+
+  export interface Region {
+    id: string;
+    name: string;
+    iso_code: string;
+    kladr_id: string;
+    type: string;
+  }
+
+  export interface Location {
+    latitude: number;
+    longitude: number;
+  }
+
+  export interface CityByIPParams {
+    language: LanguageType;
+    ip: string;
+  }
+
+  export interface CityByIPResponse {
+    name: string;
+    continent: Continent;
+    country: Country;
+    location: Location;
+  }
+
+  export interface SuggestAddressParams {
+    language: LanguageType;
+    country_iso_code: string;
+    city_id: string;
+    address: string;
+    limit: number;
+  }
+
+  export interface SuggestAddressResponse {
+    results: SuggestAddress[];
+    total: number;
+  }
+
+  export interface SuggestAddress {
+    id: string;
+    suggest: string;
+    region: Region;
+    city: string;
+    city_id: string;
+    country: Country;
+  }
+
+  export interface AddressDetailsParams {
+    language: LanguageType;
+    country_iso_code: string;
+    query: string;
+  }
+
+  export interface Address {
+    id: string;
+    country: Country;
+    region: Region;
+    city: string;
+    street_type: string;
+    street: string;
+    house_type: string;
+    house: string;
+    block_type: string;
+    block: string;
+    postal_code: string;
+    location: Location;
+    level: string;
   }
 }
 
@@ -1271,6 +1354,7 @@ export namespace meta {
     title: string;
     stores: number;
     country: string;
+    country_name: string;
   }
 
   export interface ResponseStoresCities {
@@ -1817,5 +1901,88 @@ export namespace stocks {
     quantity: number;
     available: number;
     reserved: number;
+  }
+}
+
+export namespace notifications {
+  export interface Slack {
+    send(
+      request: SlackSendParams,
+      metadata?: any
+    ): Observable<SlackSendResponse>;
+  }
+
+  export interface SlackSendParams {
+    channel_id: string;
+    thread_ts: string;
+    text: string;
+    attachments: Attachment[];
+    blocks: string;
+  }
+
+  export interface Attachment {
+    color: string;
+    fallback: string;
+    callback_id: string;
+    id: number;
+    author_id: string;
+    author_name: string;
+    author_sub_name: string;
+    author_link: string;
+    author_icon: string;
+    title: string;
+    title_link: string;
+    pre_text: string;
+    text: string;
+    image_url: string;
+    thumb_url: string;
+    fields: AttachmentField[];
+    actions: AttachmentAction[];
+    footer: string;
+    footer_icon: string;
+  }
+
+  export interface AttachmentField {
+    title: string;
+    value: string;
+    short: boolean;
+  }
+
+  export interface AttachmentAction {
+    name: string;
+    text: string;
+    style: string;
+    type: string;
+    value: string;
+    data_source: string;
+    url: string;
+    options: AttachmentActionOption[];
+    selected_options: AttachmentActionOption[];
+    option_groups: AttachmentActionOptionGroup[];
+    confirm: AttachmentConfirm;
+  }
+
+  export interface AttachmentActionOption {
+    text: string;
+    value: string;
+    description: string;
+  }
+
+  export interface AttachmentActionOptionGroup {
+    text: string;
+    options: AttachmentActionOption[];
+  }
+
+  export interface AttachmentConfirm {
+    title: string;
+    text: string;
+    ok_text: string;
+    dissmiss_text: string;
+  }
+
+  export interface SlackSendResponse {
+    ok: boolean;
+    channel: string;
+    ts: string;
   }
 }
