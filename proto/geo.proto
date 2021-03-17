@@ -88,8 +88,8 @@ message SuggestCity {
   string suggest = 2;
   string name = 3;
   string subtitle = 4;
-  string origin = 5;
-  string type = 6;
+  string type = 5;
+  string query_for_details = 6;
 }
 
 message CityDetailsParams {
@@ -104,13 +104,13 @@ message CityDetailsParams {
 message City {
   string id = 1;
   string name = 2;
-  string kladr_id = 3;
-  string country_iso_code = 4;
-  string postal_code = 5;
-  string type = 6;
-  Region region = 7;
-  State state = 8;
-  Location location = 9;
+  string country_iso_code = 3;
+  string postal_code = 4;
+  string type = 5;
+  Region region = 6;
+  State state = 7;
+  Location location = 8;
+  CityAdditional additional = 9;
 }
 
 message State {
@@ -122,7 +122,6 @@ message Region {
   string id = 1;
   string name = 2;
   string iso_code = 3;
-  string kladr_id = 4;
   string type = 5;
 }
 
@@ -160,10 +159,9 @@ message SuggestAddressResponse {
 message SuggestAddress {
   string id = 1;
   string suggest = 2;
-  Region region = 3;
-  string city = 6;
-  string city_id = 7;
-  Country country = 8;
+  string title = 3;
+  string subtitle = 4;
+  string query_for_details = 5;
 }
 
 message AddressDetailsParams {
@@ -175,17 +173,26 @@ message AddressDetailsParams {
 message Address {
   // fias_id for dadata and place_id for google
   string id = 1;
-  Country country = 2;
+  string country_iso_code = 2;
   Region region = 3;
-  string city = 4;
-  string street_type = 5;
+  State state = 4;
+  string city = 5;
   string street = 6;
-  string house_type = 7;
-  string house = 8;
-  string block_type = 9;
-  string block = 10;
-  string postal_code = 11;
-  Location location = 12;
+  string house = 7;
+  string block = 8;
+  string postal_code = 9;
+  Location location = 10;
   // fias_level for dadata
-  string level = 13;
+  AddressAdditional additional = 11;
+}
+
+message AddressAdditional {
+  bool is_in_mkad = 1;
+  bool is_in_kad = 2;
+  string fias_level = 3;
+}
+
+message CityAdditional {
+  string kladr_id = 1;
+  bool is_crimea = 2;
 }
