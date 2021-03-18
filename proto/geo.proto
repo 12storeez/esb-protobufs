@@ -137,9 +137,8 @@ message CityByIPParams {
 
 message CityByIPResponse {
   string name = 1;
-  Continent continent = 2;
-  Country country = 3;
-  Location location = 4;
+  Country country = 2;
+  Location location = 3;
 }
 
 // Address ...
