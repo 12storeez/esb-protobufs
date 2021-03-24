@@ -140,7 +140,7 @@ function convertToLineAndAddToList(obj) {
             FileWriter.addLine("}");
             break;
         default:
-            console.log(`operation for ${obj.type} not defined`);
+            console.log(`operation for ${obj.type} not defined!`);
     }
 }
 
