@@ -30,7 +30,7 @@ func NewCustomizationClient(cc grpc.ClientConnInterface) CustomizationClient {
 
 func (c *customizationClient) GetZones(ctx context.Context, in *GetZonesParams, opts ...grpc.CallOption) (*GetZonesResponse, error) {
 	out := new(GetZonesResponse)
-	err := c.cc.Invoke(ctx, "/logistics.customization/GetZones", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Customization/GetZones", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,7 +75,7 @@ func _Customization_GetZones_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.customization/GetZones",
+		FullMethod: "/logistics.Customization/GetZones",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CustomizationServer).GetZones(ctx, req.(*GetZonesParams))
@@ -84,7 +84,7 @@ func _Customization_GetZones_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 var _Customization_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "logistics.customization",
+	ServiceName: "logistics.Customization",
 	HandlerType: (*CustomizationServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -93,5 +93,5 @@ var _Customization_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/logistics_customization.proto",
+	Metadata: "proto/logistics/customization.proto",
 }
