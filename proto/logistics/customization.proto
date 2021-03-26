@@ -4,8 +4,13 @@ option go_package = "go/logistics";
 
 package logistics;
 
-service customization {
+import "google/api/annotations.proto";
+
+service Customization {
   rpc GetZones(GetZonesParams) returns (GetZonesResponse) {
+    option (google.api.http) = {
+      get: "/v1/logistics/zones"
+    };
   }
 }
 
@@ -20,9 +25,9 @@ message GetZonesResponse {
 }
 
 message Zone {
-    int32 id = 1;
-    string name = 2;
-    bool is_active = 3;
-    string created = 4;
-    string updated = 5;
+  int32 id = 1;
+  string name = 2;
+  bool is_active = 3;
+  string created = 4;
+  string updated = 5;
 }
