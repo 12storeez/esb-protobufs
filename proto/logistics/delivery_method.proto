@@ -8,33 +8,33 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 service DeliveryMethods {
-  rpc CreateDeliveryMethod(CreateDeliveryMethodRequest) returns (CreateDeliveryMethodResponse) {
+  rpc Create(CreateDeliveryMethodRequest) returns (CreateDeliveryMethodResponse) {
     option (google.api.http) = {
       post: "/v1/delivery_methods"
       body: "delivery_method"
     };
   }
 
-  rpc GetDeliveryMethod(GetDeliveryMethodRequest) returns (DeliveryMethod) {
+  rpc Get(GetDeliveryMethodRequest) returns (DeliveryMethod) {
     option (google.api.http) = {
       get: "/v1/delivery_methods/{id}"
     };
   }
 
-  rpc ListDeliveryMethods(ListDeliveryMethodsRequest) returns (ListDeliveryMethodsResponse) {
+  rpc List(ListDeliveryMethodsRequest) returns (ListDeliveryMethodsResponse) {
     option (google.api.http) = {
       get: "/v1/delivery_methods"
     };
   }
 
-  rpc UpdateDeliveryMethod (UpdateDeliveryMethodRequest) returns (DeliveryMethod) {
+  rpc Update(UpdateDeliveryMethodRequest) returns (DeliveryMethod) {
     option (google.api.http) = {
       patch: "/v1/delivery_methods/{delivery_method_id}"
       body: "delivery_method"
     };
   }
 
-  rpc DeleteDeliveryMethod (DeliveryMethodRequest) returns (google.protobuf.Empty) {
+  rpc Delete(DeliveryMethodRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/delivery_methods/{delivery_method_id}"
     };

@@ -18,11 +18,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ZonesClient interface {
-	CreateZone(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error)
-	GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*Zone, error)
-	ListZones(ctx context.Context, in *ListZonesRequest, opts ...grpc.CallOption) (*ListZonesResponse, error)
-	UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*Zone, error)
-	DeleteZone(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Create(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error)
+	Get(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*Zone, error)
+	List(ctx context.Context, in *ListZonesRequest, opts ...grpc.CallOption) (*ListZonesResponse, error)
+	Update(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*Zone, error)
+	Delete(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type zonesClient struct {
@@ -33,45 +33,45 @@ func NewZonesClient(cc grpc.ClientConnInterface) ZonesClient {
 	return &zonesClient{cc}
 }
 
-func (c *zonesClient) CreateZone(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error) {
+func (c *zonesClient) Create(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error) {
 	out := new(CreateZoneResponse)
-	err := c.cc.Invoke(ctx, "/logistics.Zones/CreateZone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Zones/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *zonesClient) GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*Zone, error) {
+func (c *zonesClient) Get(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*Zone, error) {
 	out := new(Zone)
-	err := c.cc.Invoke(ctx, "/logistics.Zones/GetZone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Zones/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *zonesClient) ListZones(ctx context.Context, in *ListZonesRequest, opts ...grpc.CallOption) (*ListZonesResponse, error) {
+func (c *zonesClient) List(ctx context.Context, in *ListZonesRequest, opts ...grpc.CallOption) (*ListZonesResponse, error) {
 	out := new(ListZonesResponse)
-	err := c.cc.Invoke(ctx, "/logistics.Zones/ListZones", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Zones/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *zonesClient) UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*Zone, error) {
+func (c *zonesClient) Update(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*Zone, error) {
 	out := new(Zone)
-	err := c.cc.Invoke(ctx, "/logistics.Zones/UpdateZone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Zones/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *zonesClient) DeleteZone(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *zonesClient) Delete(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/logistics.Zones/DeleteZone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Zones/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,11 +82,11 @@ func (c *zonesClient) DeleteZone(ctx context.Context, in *DeleteZoneRequest, opt
 // All implementations must embed UnimplementedZonesServer
 // for forward compatibility
 type ZonesServer interface {
-	CreateZone(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error)
-	GetZone(context.Context, *GetZoneRequest) (*Zone, error)
-	ListZones(context.Context, *ListZonesRequest) (*ListZonesResponse, error)
-	UpdateZone(context.Context, *UpdateZoneRequest) (*Zone, error)
-	DeleteZone(context.Context, *DeleteZoneRequest) (*emptypb.Empty, error)
+	Create(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error)
+	Get(context.Context, *GetZoneRequest) (*Zone, error)
+	List(context.Context, *ListZonesRequest) (*ListZonesResponse, error)
+	Update(context.Context, *UpdateZoneRequest) (*Zone, error)
+	Delete(context.Context, *DeleteZoneRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedZonesServer()
 }
 
@@ -94,20 +94,20 @@ type ZonesServer interface {
 type UnimplementedZonesServer struct {
 }
 
-func (UnimplementedZonesServer) CreateZone(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateZone not implemented")
+func (UnimplementedZonesServer) Create(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedZonesServer) GetZone(context.Context, *GetZoneRequest) (*Zone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetZone not implemented")
+func (UnimplementedZonesServer) Get(context.Context, *GetZoneRequest) (*Zone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedZonesServer) ListZones(context.Context, *ListZonesRequest) (*ListZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListZones not implemented")
+func (UnimplementedZonesServer) List(context.Context, *ListZonesRequest) (*ListZonesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedZonesServer) UpdateZone(context.Context, *UpdateZoneRequest) (*Zone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateZone not implemented")
+func (UnimplementedZonesServer) Update(context.Context, *UpdateZoneRequest) (*Zone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedZonesServer) DeleteZone(context.Context, *DeleteZoneRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteZone not implemented")
+func (UnimplementedZonesServer) Delete(context.Context, *DeleteZoneRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedZonesServer) mustEmbedUnimplementedZonesServer() {}
 
@@ -122,92 +122,92 @@ func RegisterZonesServer(s grpc.ServiceRegistrar, srv ZonesServer) {
 	s.RegisterService(&_Zones_serviceDesc, srv)
 }
 
-func _Zones_CreateZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Zones_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateZoneRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ZonesServer).CreateZone(ctx, in)
+		return srv.(ZonesServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Zones/CreateZone",
+		FullMethod: "/logistics.Zones/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).CreateZone(ctx, req.(*CreateZoneRequest))
+		return srv.(ZonesServer).Create(ctx, req.(*CreateZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Zones_GetZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Zones_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetZoneRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ZonesServer).GetZone(ctx, in)
+		return srv.(ZonesServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Zones/GetZone",
+		FullMethod: "/logistics.Zones/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).GetZone(ctx, req.(*GetZoneRequest))
+		return srv.(ZonesServer).Get(ctx, req.(*GetZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Zones_ListZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Zones_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListZonesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ZonesServer).ListZones(ctx, in)
+		return srv.(ZonesServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Zones/ListZones",
+		FullMethod: "/logistics.Zones/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).ListZones(ctx, req.(*ListZonesRequest))
+		return srv.(ZonesServer).List(ctx, req.(*ListZonesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Zones_UpdateZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Zones_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateZoneRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ZonesServer).UpdateZone(ctx, in)
+		return srv.(ZonesServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Zones/UpdateZone",
+		FullMethod: "/logistics.Zones/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).UpdateZone(ctx, req.(*UpdateZoneRequest))
+		return srv.(ZonesServer).Update(ctx, req.(*UpdateZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Zones_DeleteZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Zones_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteZoneRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ZonesServer).DeleteZone(ctx, in)
+		return srv.(ZonesServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Zones/DeleteZone",
+		FullMethod: "/logistics.Zones/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).DeleteZone(ctx, req.(*DeleteZoneRequest))
+		return srv.(ZonesServer).Delete(ctx, req.(*DeleteZoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -217,24 +217,24 @@ var _Zones_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ZonesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateZone",
-			Handler:    _Zones_CreateZone_Handler,
+			MethodName: "Create",
+			Handler:    _Zones_Create_Handler,
 		},
 		{
-			MethodName: "GetZone",
-			Handler:    _Zones_GetZone_Handler,
+			MethodName: "Get",
+			Handler:    _Zones_Get_Handler,
 		},
 		{
-			MethodName: "ListZones",
-			Handler:    _Zones_ListZones_Handler,
+			MethodName: "List",
+			Handler:    _Zones_List_Handler,
 		},
 		{
-			MethodName: "UpdateZone",
-			Handler:    _Zones_UpdateZone_Handler,
+			MethodName: "Update",
+			Handler:    _Zones_Update_Handler,
 		},
 		{
-			MethodName: "DeleteZone",
-			Handler:    _Zones_DeleteZone_Handler,
+			MethodName: "Delete",
+			Handler:    _Zones_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

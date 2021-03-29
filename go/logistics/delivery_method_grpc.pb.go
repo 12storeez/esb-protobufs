@@ -18,11 +18,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeliveryMethodsClient interface {
-	CreateDeliveryMethod(ctx context.Context, in *CreateDeliveryMethodRequest, opts ...grpc.CallOption) (*CreateDeliveryMethodResponse, error)
-	GetDeliveryMethod(ctx context.Context, in *GetDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error)
-	ListDeliveryMethods(ctx context.Context, in *ListDeliveryMethodsRequest, opts ...grpc.CallOption) (*ListDeliveryMethodsResponse, error)
-	UpdateDeliveryMethod(ctx context.Context, in *UpdateDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error)
-	DeleteDeliveryMethod(ctx context.Context, in *DeliveryMethodRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Create(ctx context.Context, in *CreateDeliveryMethodRequest, opts ...grpc.CallOption) (*CreateDeliveryMethodResponse, error)
+	Get(ctx context.Context, in *GetDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error)
+	List(ctx context.Context, in *ListDeliveryMethodsRequest, opts ...grpc.CallOption) (*ListDeliveryMethodsResponse, error)
+	Update(ctx context.Context, in *UpdateDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error)
+	Delete(ctx context.Context, in *DeliveryMethodRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deliveryMethodsClient struct {
@@ -33,45 +33,45 @@ func NewDeliveryMethodsClient(cc grpc.ClientConnInterface) DeliveryMethodsClient
 	return &deliveryMethodsClient{cc}
 }
 
-func (c *deliveryMethodsClient) CreateDeliveryMethod(ctx context.Context, in *CreateDeliveryMethodRequest, opts ...grpc.CallOption) (*CreateDeliveryMethodResponse, error) {
+func (c *deliveryMethodsClient) Create(ctx context.Context, in *CreateDeliveryMethodRequest, opts ...grpc.CallOption) (*CreateDeliveryMethodResponse, error) {
 	out := new(CreateDeliveryMethodResponse)
-	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/CreateDeliveryMethod", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryMethodsClient) GetDeliveryMethod(ctx context.Context, in *GetDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error) {
+func (c *deliveryMethodsClient) Get(ctx context.Context, in *GetDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error) {
 	out := new(DeliveryMethod)
-	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/GetDeliveryMethod", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryMethodsClient) ListDeliveryMethods(ctx context.Context, in *ListDeliveryMethodsRequest, opts ...grpc.CallOption) (*ListDeliveryMethodsResponse, error) {
+func (c *deliveryMethodsClient) List(ctx context.Context, in *ListDeliveryMethodsRequest, opts ...grpc.CallOption) (*ListDeliveryMethodsResponse, error) {
 	out := new(ListDeliveryMethodsResponse)
-	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/ListDeliveryMethods", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryMethodsClient) UpdateDeliveryMethod(ctx context.Context, in *UpdateDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error) {
+func (c *deliveryMethodsClient) Update(ctx context.Context, in *UpdateDeliveryMethodRequest, opts ...grpc.CallOption) (*DeliveryMethod, error) {
 	out := new(DeliveryMethod)
-	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/UpdateDeliveryMethod", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryMethodsClient) DeleteDeliveryMethod(ctx context.Context, in *DeliveryMethodRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deliveryMethodsClient) Delete(ctx context.Context, in *DeliveryMethodRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/DeleteDeliveryMethod", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethods/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,11 +82,11 @@ func (c *deliveryMethodsClient) DeleteDeliveryMethod(ctx context.Context, in *De
 // All implementations must embed UnimplementedDeliveryMethodsServer
 // for forward compatibility
 type DeliveryMethodsServer interface {
-	CreateDeliveryMethod(context.Context, *CreateDeliveryMethodRequest) (*CreateDeliveryMethodResponse, error)
-	GetDeliveryMethod(context.Context, *GetDeliveryMethodRequest) (*DeliveryMethod, error)
-	ListDeliveryMethods(context.Context, *ListDeliveryMethodsRequest) (*ListDeliveryMethodsResponse, error)
-	UpdateDeliveryMethod(context.Context, *UpdateDeliveryMethodRequest) (*DeliveryMethod, error)
-	DeleteDeliveryMethod(context.Context, *DeliveryMethodRequest) (*emptypb.Empty, error)
+	Create(context.Context, *CreateDeliveryMethodRequest) (*CreateDeliveryMethodResponse, error)
+	Get(context.Context, *GetDeliveryMethodRequest) (*DeliveryMethod, error)
+	List(context.Context, *ListDeliveryMethodsRequest) (*ListDeliveryMethodsResponse, error)
+	Update(context.Context, *UpdateDeliveryMethodRequest) (*DeliveryMethod, error)
+	Delete(context.Context, *DeliveryMethodRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeliveryMethodsServer()
 }
 
@@ -94,20 +94,20 @@ type DeliveryMethodsServer interface {
 type UnimplementedDeliveryMethodsServer struct {
 }
 
-func (UnimplementedDeliveryMethodsServer) CreateDeliveryMethod(context.Context, *CreateDeliveryMethodRequest) (*CreateDeliveryMethodResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDeliveryMethod not implemented")
+func (UnimplementedDeliveryMethodsServer) Create(context.Context, *CreateDeliveryMethodRequest) (*CreateDeliveryMethodResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedDeliveryMethodsServer) GetDeliveryMethod(context.Context, *GetDeliveryMethodRequest) (*DeliveryMethod, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDeliveryMethod not implemented")
+func (UnimplementedDeliveryMethodsServer) Get(context.Context, *GetDeliveryMethodRequest) (*DeliveryMethod, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedDeliveryMethodsServer) ListDeliveryMethods(context.Context, *ListDeliveryMethodsRequest) (*ListDeliveryMethodsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDeliveryMethods not implemented")
+func (UnimplementedDeliveryMethodsServer) List(context.Context, *ListDeliveryMethodsRequest) (*ListDeliveryMethodsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedDeliveryMethodsServer) UpdateDeliveryMethod(context.Context, *UpdateDeliveryMethodRequest) (*DeliveryMethod, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeliveryMethod not implemented")
+func (UnimplementedDeliveryMethodsServer) Update(context.Context, *UpdateDeliveryMethodRequest) (*DeliveryMethod, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedDeliveryMethodsServer) DeleteDeliveryMethod(context.Context, *DeliveryMethodRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeliveryMethod not implemented")
+func (UnimplementedDeliveryMethodsServer) Delete(context.Context, *DeliveryMethodRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedDeliveryMethodsServer) mustEmbedUnimplementedDeliveryMethodsServer() {}
 
@@ -122,92 +122,92 @@ func RegisterDeliveryMethodsServer(s grpc.ServiceRegistrar, srv DeliveryMethodsS
 	s.RegisterService(&_DeliveryMethods_serviceDesc, srv)
 }
 
-func _DeliveryMethods_CreateDeliveryMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeliveryMethods_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateDeliveryMethodRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryMethodsServer).CreateDeliveryMethod(ctx, in)
+		return srv.(DeliveryMethodsServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.DeliveryMethods/CreateDeliveryMethod",
+		FullMethod: "/logistics.DeliveryMethods/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryMethodsServer).CreateDeliveryMethod(ctx, req.(*CreateDeliveryMethodRequest))
+		return srv.(DeliveryMethodsServer).Create(ctx, req.(*CreateDeliveryMethodRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeliveryMethods_GetDeliveryMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeliveryMethods_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDeliveryMethodRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryMethodsServer).GetDeliveryMethod(ctx, in)
+		return srv.(DeliveryMethodsServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.DeliveryMethods/GetDeliveryMethod",
+		FullMethod: "/logistics.DeliveryMethods/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryMethodsServer).GetDeliveryMethod(ctx, req.(*GetDeliveryMethodRequest))
+		return srv.(DeliveryMethodsServer).Get(ctx, req.(*GetDeliveryMethodRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeliveryMethods_ListDeliveryMethods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeliveryMethods_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListDeliveryMethodsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryMethodsServer).ListDeliveryMethods(ctx, in)
+		return srv.(DeliveryMethodsServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.DeliveryMethods/ListDeliveryMethods",
+		FullMethod: "/logistics.DeliveryMethods/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryMethodsServer).ListDeliveryMethods(ctx, req.(*ListDeliveryMethodsRequest))
+		return srv.(DeliveryMethodsServer).List(ctx, req.(*ListDeliveryMethodsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeliveryMethods_UpdateDeliveryMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeliveryMethods_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateDeliveryMethodRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryMethodsServer).UpdateDeliveryMethod(ctx, in)
+		return srv.(DeliveryMethodsServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.DeliveryMethods/UpdateDeliveryMethod",
+		FullMethod: "/logistics.DeliveryMethods/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryMethodsServer).UpdateDeliveryMethod(ctx, req.(*UpdateDeliveryMethodRequest))
+		return srv.(DeliveryMethodsServer).Update(ctx, req.(*UpdateDeliveryMethodRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeliveryMethods_DeleteDeliveryMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeliveryMethods_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryMethodRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryMethodsServer).DeleteDeliveryMethod(ctx, in)
+		return srv.(DeliveryMethodsServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.DeliveryMethods/DeleteDeliveryMethod",
+		FullMethod: "/logistics.DeliveryMethods/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryMethodsServer).DeleteDeliveryMethod(ctx, req.(*DeliveryMethodRequest))
+		return srv.(DeliveryMethodsServer).Delete(ctx, req.(*DeliveryMethodRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -217,24 +217,24 @@ var _DeliveryMethods_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*DeliveryMethodsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateDeliveryMethod",
-			Handler:    _DeliveryMethods_CreateDeliveryMethod_Handler,
+			MethodName: "Create",
+			Handler:    _DeliveryMethods_Create_Handler,
 		},
 		{
-			MethodName: "GetDeliveryMethod",
-			Handler:    _DeliveryMethods_GetDeliveryMethod_Handler,
+			MethodName: "Get",
+			Handler:    _DeliveryMethods_Get_Handler,
 		},
 		{
-			MethodName: "ListDeliveryMethods",
-			Handler:    _DeliveryMethods_ListDeliveryMethods_Handler,
+			MethodName: "List",
+			Handler:    _DeliveryMethods_List_Handler,
 		},
 		{
-			MethodName: "UpdateDeliveryMethod",
-			Handler:    _DeliveryMethods_UpdateDeliveryMethod_Handler,
+			MethodName: "Update",
+			Handler:    _DeliveryMethods_Update_Handler,
 		},
 		{
-			MethodName: "DeleteDeliveryMethod",
-			Handler:    _DeliveryMethods_DeleteDeliveryMethod_Handler,
+			MethodName: "Delete",
+			Handler:    _DeliveryMethods_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

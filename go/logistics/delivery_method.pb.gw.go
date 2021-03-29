@@ -31,7 +31,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_DeliveryMethods_CreateDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_DeliveryMethods_Create_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateDeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -43,12 +43,12 @@ func request_DeliveryMethods_CreateDeliveryMethod_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.CreateDeliveryMethod(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Create(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_DeliveryMethods_CreateDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_DeliveryMethods_Create_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateDeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -60,12 +60,12 @@ func local_request_DeliveryMethods_CreateDeliveryMethod_0(ctx context.Context, m
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.CreateDeliveryMethod(ctx, &protoReq)
+	msg, err := server.Create(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_DeliveryMethods_GetDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_DeliveryMethods_Get_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetDeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -86,12 +86,12 @@ func request_DeliveryMethods_GetDeliveryMethod_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := client.GetDeliveryMethod(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Get(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_DeliveryMethods_GetDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_DeliveryMethods_Get_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetDeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -112,48 +112,48 @@ func local_request_DeliveryMethods_GetDeliveryMethod_0(ctx context.Context, mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := server.GetDeliveryMethod(ctx, &protoReq)
+	msg, err := server.Get(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_DeliveryMethods_ListDeliveryMethods_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_DeliveryMethods_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_DeliveryMethods_ListDeliveryMethods_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_DeliveryMethods_List_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListDeliveryMethodsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DeliveryMethods_ListDeliveryMethods_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DeliveryMethods_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListDeliveryMethods(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.List(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_DeliveryMethods_ListDeliveryMethods_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_DeliveryMethods_List_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListDeliveryMethodsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DeliveryMethods_ListDeliveryMethods_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DeliveryMethods_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListDeliveryMethods(ctx, &protoReq)
+	msg, err := server.List(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_DeliveryMethods_UpdateDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_DeliveryMethods_Update_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateDeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -182,12 +182,12 @@ func request_DeliveryMethods_UpdateDeliveryMethod_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "delivery_method_id", err)
 	}
 
-	msg, err := client.UpdateDeliveryMethod(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Update(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_DeliveryMethods_UpdateDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_DeliveryMethods_Update_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateDeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -216,12 +216,12 @@ func local_request_DeliveryMethods_UpdateDeliveryMethod_0(ctx context.Context, m
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "delivery_method_id", err)
 	}
 
-	msg, err := server.UpdateDeliveryMethod(ctx, &protoReq)
+	msg, err := server.Update(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_DeliveryMethods_DeleteDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_DeliveryMethods_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -242,12 +242,12 @@ func request_DeliveryMethods_DeleteDeliveryMethod_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "delivery_method_id", err)
 	}
 
-	msg, err := client.DeleteDeliveryMethod(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Delete(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_DeliveryMethods_DeleteDeliveryMethod_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_DeliveryMethods_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryMethodRequest
 	var metadata runtime.ServerMetadata
 
@@ -268,7 +268,7 @@ func local_request_DeliveryMethods_DeleteDeliveryMethod_0(ctx context.Context, m
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "delivery_method_id", err)
 	}
 
-	msg, err := server.DeleteDeliveryMethod(ctx, &protoReq)
+	msg, err := server.Delete(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -279,18 +279,18 @@ func local_request_DeliveryMethods_DeleteDeliveryMethod_0(ctx context.Context, m
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDeliveryMethodsHandlerFromEndpoint instead.
 func RegisterDeliveryMethodsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DeliveryMethodsServer) error {
 
-	mux.Handle("POST", pattern_DeliveryMethods_CreateDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DeliveryMethods_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/CreateDeliveryMethod")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_DeliveryMethods_CreateDeliveryMethod_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_DeliveryMethods_Create_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -298,22 +298,22 @@ func RegisterDeliveryMethodsHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_DeliveryMethods_CreateDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_DeliveryMethods_GetDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_DeliveryMethods_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/GetDeliveryMethod")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_DeliveryMethods_GetDeliveryMethod_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_DeliveryMethods_Get_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -321,22 +321,22 @@ func RegisterDeliveryMethodsHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_DeliveryMethods_GetDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_DeliveryMethods_ListDeliveryMethods_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_DeliveryMethods_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/ListDeliveryMethods")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_DeliveryMethods_ListDeliveryMethods_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_DeliveryMethods_List_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -344,22 +344,22 @@ func RegisterDeliveryMethodsHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_DeliveryMethods_ListDeliveryMethods_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_DeliveryMethods_UpdateDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_DeliveryMethods_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/UpdateDeliveryMethod")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_DeliveryMethods_UpdateDeliveryMethod_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_DeliveryMethods_Update_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -367,22 +367,22 @@ func RegisterDeliveryMethodsHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_DeliveryMethods_UpdateDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_DeliveryMethods_DeleteDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_DeliveryMethods_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/DeleteDeliveryMethod")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.DeliveryMethods/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_DeliveryMethods_DeleteDeliveryMethod_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_DeliveryMethods_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -390,7 +390,7 @@ func RegisterDeliveryMethodsHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_DeliveryMethods_DeleteDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -435,103 +435,103 @@ func RegisterDeliveryMethodsHandler(ctx context.Context, mux *runtime.ServeMux, 
 // "DeliveryMethodsClient" to call the correct interceptors.
 func RegisterDeliveryMethodsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DeliveryMethodsClient) error {
 
-	mux.Handle("POST", pattern_DeliveryMethods_CreateDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DeliveryMethods_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/CreateDeliveryMethod")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DeliveryMethods_CreateDeliveryMethod_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DeliveryMethods_Create_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_DeliveryMethods_CreateDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_DeliveryMethods_GetDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_DeliveryMethods_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/GetDeliveryMethod")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DeliveryMethods_GetDeliveryMethod_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DeliveryMethods_Get_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_DeliveryMethods_GetDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_DeliveryMethods_ListDeliveryMethods_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_DeliveryMethods_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/ListDeliveryMethods")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DeliveryMethods_ListDeliveryMethods_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DeliveryMethods_List_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_DeliveryMethods_ListDeliveryMethods_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_DeliveryMethods_UpdateDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_DeliveryMethods_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/UpdateDeliveryMethod")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DeliveryMethods_UpdateDeliveryMethod_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DeliveryMethods_Update_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_DeliveryMethods_UpdateDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_DeliveryMethods_DeleteDeliveryMethod_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_DeliveryMethods_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/DeleteDeliveryMethod")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.DeliveryMethods/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_DeliveryMethods_DeleteDeliveryMethod_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_DeliveryMethods_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_DeliveryMethods_DeleteDeliveryMethod_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_DeliveryMethods_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -539,25 +539,25 @@ func RegisterDeliveryMethodsHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_DeliveryMethods_CreateDeliveryMethod_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery_methods"}, ""))
+	pattern_DeliveryMethods_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery_methods"}, ""))
 
-	pattern_DeliveryMethods_GetDeliveryMethod_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "id"}, ""))
+	pattern_DeliveryMethods_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "id"}, ""))
 
-	pattern_DeliveryMethods_ListDeliveryMethods_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery_methods"}, ""))
+	pattern_DeliveryMethods_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery_methods"}, ""))
 
-	pattern_DeliveryMethods_UpdateDeliveryMethod_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "delivery_method_id"}, ""))
+	pattern_DeliveryMethods_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "delivery_method_id"}, ""))
 
-	pattern_DeliveryMethods_DeleteDeliveryMethod_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "delivery_method_id"}, ""))
+	pattern_DeliveryMethods_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "delivery_method_id"}, ""))
 )
 
 var (
-	forward_DeliveryMethods_CreateDeliveryMethod_0 = runtime.ForwardResponseMessage
+	forward_DeliveryMethods_Create_0 = runtime.ForwardResponseMessage
 
-	forward_DeliveryMethods_GetDeliveryMethod_0 = runtime.ForwardResponseMessage
+	forward_DeliveryMethods_Get_0 = runtime.ForwardResponseMessage
 
-	forward_DeliveryMethods_ListDeliveryMethods_0 = runtime.ForwardResponseMessage
+	forward_DeliveryMethods_List_0 = runtime.ForwardResponseMessage
 
-	forward_DeliveryMethods_UpdateDeliveryMethod_0 = runtime.ForwardResponseMessage
+	forward_DeliveryMethods_Update_0 = runtime.ForwardResponseMessage
 
-	forward_DeliveryMethods_DeleteDeliveryMethod_0 = runtime.ForwardResponseMessage
+	forward_DeliveryMethods_Delete_0 = runtime.ForwardResponseMessage
 )
