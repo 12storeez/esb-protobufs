@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service Zones {
+  rpc CreateZone(CreateZoneRequest) returns (CreateZoneResponse) {
+    option (google.api.http) = {
+      post: "/v1/zones"
+      body: "zone"
+    };
+  }
+
+  rpc GetZone(GetZoneRequest) returns (Zone) {
+    option (google.api.http) = {
+      get: "/v1/zones/{id}"
+    };
+  }
+
+  rpc ListZones(ListZonesRequest) returns (ListZonesResponse) {
+    option (google.api.http) = {
+      get: "/v1/zones"
+    };
+  }
+
+  rpc UpdateZone (UpdateZoneRequest) returns (Zone) {
+    option (google.api.http) = {
+      patch: "/v1/zones/{zone_id}"
+      body: "zone"
+    };
+  }
+
+  rpc DeleteZone (DeleteZoneRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/zones/{zone_id}"
+    };
+  }
+}
+
+message DeleteZoneRequest {
+  int32 zone_id = 1;
+}
+
+message UpdateZoneRequest {
+  int32 zone_id = 1;
+  Zone zone = 2;
+}
+
+message CreateZoneRequest {
+  Zone zone = 1;
+}
+
+message CreateZoneResponse {
+  int32 id = 1;
+}
+
+message ListZonesRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message ListZonesResponse {
+  repeated Zone results = 1;
+  int32 total = 2;
+}
+
+message GetZoneRequest {
+  int32 id = 1;
+}
+
+message Zone {
+  int32 id = 1;
+  string name = 2;
+  bool is_active = 3;
+  string created = 4;
+  string updated = 5;
+}
