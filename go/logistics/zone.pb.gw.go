@@ -31,7 +31,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Zones_CreateZone_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Zones_Create_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -43,12 +43,12 @@ func request_Zones_CreateZone_0(ctx context.Context, marshaler runtime.Marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.CreateZone(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Create(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Zones_CreateZone_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Zones_Create_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -60,12 +60,12 @@ func local_request_Zones_CreateZone_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.CreateZone(ctx, &protoReq)
+	msg, err := server.Create(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_Zones_GetZone_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Zones_Get_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -86,12 +86,12 @@ func request_Zones_GetZone_0(ctx context.Context, marshaler runtime.Marshaler, c
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := client.GetZone(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Get(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Zones_GetZone_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Zones_Get_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -112,48 +112,48 @@ func local_request_Zones_GetZone_0(ctx context.Context, marshaler runtime.Marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := server.GetZone(ctx, &protoReq)
+	msg, err := server.Get(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_Zones_ListZones_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_Zones_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_Zones_ListZones_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Zones_List_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListZonesRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Zones_ListZones_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Zones_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListZones(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.List(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Zones_ListZones_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Zones_List_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListZonesRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Zones_ListZones_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Zones_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListZones(ctx, &protoReq)
+	msg, err := server.List(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_Zones_UpdateZone_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Zones_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -182,12 +182,12 @@ func request_Zones_UpdateZone_0(ctx context.Context, marshaler runtime.Marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
 	}
 
-	msg, err := client.UpdateZone(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Update(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Zones_UpdateZone_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Zones_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -216,12 +216,12 @@ func local_request_Zones_UpdateZone_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
 	}
 
-	msg, err := server.UpdateZone(ctx, &protoReq)
+	msg, err := server.Update(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_Zones_DeleteZone_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Zones_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -242,12 +242,12 @@ func request_Zones_DeleteZone_0(ctx context.Context, marshaler runtime.Marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
 	}
 
-	msg, err := client.DeleteZone(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Delete(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Zones_DeleteZone_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Zones_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteZoneRequest
 	var metadata runtime.ServerMetadata
 
@@ -268,7 +268,7 @@ func local_request_Zones_DeleteZone_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
 	}
 
-	msg, err := server.DeleteZone(ctx, &protoReq)
+	msg, err := server.Delete(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -279,18 +279,18 @@ func local_request_Zones_DeleteZone_0(ctx context.Context, marshaler runtime.Mar
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterZonesHandlerFromEndpoint instead.
 func RegisterZonesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ZonesServer) error {
 
-	mux.Handle("POST", pattern_Zones_CreateZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Zones_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/CreateZone")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Zones_CreateZone_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Zones_Create_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -298,22 +298,22 @@ func RegisterZonesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			return
 		}
 
-		forward_Zones_CreateZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Zones_GetZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Zones_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/GetZone")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Zones_GetZone_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Zones_Get_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -321,22 +321,22 @@ func RegisterZonesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			return
 		}
 
-		forward_Zones_GetZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Zones_ListZones_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Zones_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/ListZones")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Zones_ListZones_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Zones_List_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -344,22 +344,22 @@ func RegisterZonesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			return
 		}
 
-		forward_Zones_ListZones_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_Zones_UpdateZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_Zones_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/UpdateZone")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Zones_UpdateZone_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Zones_Update_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -367,22 +367,22 @@ func RegisterZonesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			return
 		}
 
-		forward_Zones_UpdateZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_Zones_DeleteZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Zones_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/DeleteZone")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Zones/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Zones_DeleteZone_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Zones_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -390,7 +390,7 @@ func RegisterZonesHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			return
 		}
 
-		forward_Zones_DeleteZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -435,103 +435,103 @@ func RegisterZonesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc
 // "ZonesClient" to call the correct interceptors.
 func RegisterZonesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ZonesClient) error {
 
-	mux.Handle("POST", pattern_Zones_CreateZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Zones_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/CreateZone")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Zones_CreateZone_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Zones_Create_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Zones_CreateZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Zones_GetZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Zones_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/GetZone")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Zones_GetZone_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Zones_Get_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Zones_GetZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Zones_ListZones_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Zones_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/ListZones")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Zones_ListZones_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Zones_List_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Zones_ListZones_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_Zones_UpdateZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_Zones_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/UpdateZone")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Zones_UpdateZone_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Zones_Update_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Zones_UpdateZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_Zones_DeleteZone_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Zones_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/DeleteZone")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Zones/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Zones_DeleteZone_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Zones_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Zones_DeleteZone_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Zones_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -539,25 +539,25 @@ func RegisterZonesHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Zones_CreateZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "zones"}, ""))
+	pattern_Zones_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "zones"}, ""))
 
-	pattern_Zones_GetZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "id"}, ""))
+	pattern_Zones_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "id"}, ""))
 
-	pattern_Zones_ListZones_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "zones"}, ""))
+	pattern_Zones_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "zones"}, ""))
 
-	pattern_Zones_UpdateZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "zone_id"}, ""))
+	pattern_Zones_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "zone_id"}, ""))
 
-	pattern_Zones_DeleteZone_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "zone_id"}, ""))
+	pattern_Zones_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "zone_id"}, ""))
 )
 
 var (
-	forward_Zones_CreateZone_0 = runtime.ForwardResponseMessage
+	forward_Zones_Create_0 = runtime.ForwardResponseMessage
 
-	forward_Zones_GetZone_0 = runtime.ForwardResponseMessage
+	forward_Zones_Get_0 = runtime.ForwardResponseMessage
 
-	forward_Zones_ListZones_0 = runtime.ForwardResponseMessage
+	forward_Zones_List_0 = runtime.ForwardResponseMessage
 
-	forward_Zones_UpdateZone_0 = runtime.ForwardResponseMessage
+	forward_Zones_Update_0 = runtime.ForwardResponseMessage
 
-	forward_Zones_DeleteZone_0 = runtime.ForwardResponseMessage
+	forward_Zones_Delete_0 = runtime.ForwardResponseMessage
 )
