@@ -11,7 +11,7 @@ service Zones {
   rpc Create(CreateZoneRequest) returns (CreateZoneResponse) {
     option (google.api.http) = {
       post: "/v1/zones"
-      body: "zone"
+      body: "*"
     };
   }
 
@@ -30,7 +30,7 @@ service Zones {
   rpc Update(UpdateZoneRequest) returns (Zone) {
     option (google.api.http) = {
       patch: "/v1/zones/{zone_id}"
-      body: "zone"
+      body: "*"
     };
   }
 
@@ -47,11 +47,11 @@ message DeleteZoneRequest {
 
 message UpdateZoneRequest {
   int32 zone_id = 1;
-  Zone zone = 2;
+  string name = 2;
 }
 
 message CreateZoneRequest {
-  Zone zone = 1;
+  string name = 1;
 }
 
 message CreateZoneResponse {

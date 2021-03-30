@@ -11,7 +11,7 @@ service DeliveryMethods {
   rpc Create(CreateDeliveryMethodRequest) returns (CreateDeliveryMethodResponse) {
     option (google.api.http) = {
       post: "/v1/delivery_methods"
-      body: "delivery_method"
+      body: "*"
     };
   }
 
@@ -30,7 +30,7 @@ service DeliveryMethods {
   rpc Update(UpdateDeliveryMethodRequest) returns (DeliveryMethod) {
     option (google.api.http) = {
       patch: "/v1/delivery_methods/{delivery_method_id}"
-      body: "delivery_method"
+      body: "*"
     };
   }
 
@@ -50,7 +50,7 @@ message GetDeliveryMethodRequest {
 }
 
 message CreateDeliveryMethodRequest {
-  DeliveryMethod delivery_method = 1;
+  string name = 1;
 }
 
 message CreateDeliveryMethodResponse {
@@ -63,7 +63,7 @@ message GetDeliveryMethod {
 
 message UpdateDeliveryMethodRequest {
   int32 delivery_method_id = 1;
-  DeliveryMethod delivery_method = 2;
+  string name = 2;
 }
 
 message ListDeliveryMethodsRequest {
@@ -78,9 +78,8 @@ message ListDeliveryMethodsResponse {
 
 message DeliveryMethod {
   int32 id = 1;
-  string title = 2;
-  string type = 3;
-  bool is_active = 4;
-  string created = 5;
-  string updated = 6;
+  string name = 2;
+  bool is_active = 3;
+  string created = 4;
+  string updated = 5;
 }
