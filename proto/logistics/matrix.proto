@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "proto/logistics/zone.proto";
+import "proto/logistics/delivery_method.proto";
+import "proto/logistics/payment_method.proto";
+
+service Matrices {
+
+  rpc Get(GetMatrixRequest) returns (Matrix) {
+    option (google.api.http) = {
+      get: "/v1/matrices/{id}"
+    };
+  }
+
+  rpc List(ListMatrixRequest) returns (ListMatrixResponse) {
+    option (google.api.http) = {
+      get: "/v1/matrices"
+    };
+  }
+
+}
+
+message ListMatrixRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message ListMatrixResponse {
+  repeated Matrix results = 1;
+  int32 total = 2;
+}
+
+message GetMatrixRequest {
+  int32 id = 1;
+}
+
+message Matrix {
+  int32 id = 1;
+  Zone zone = 2;
+  string cutoff_time = 3;
+  int32 gap_days = 4;
+  int32 consolidation_days = 5;
+  DeliveryMethod delivery_method = 6;
+  PaymentMethod payment_method = 7;
+  double total_less = 8;
+  double total_more = 9;
+  double total = 10;
+  int32 delivery_min_days = 11;
+  string created = 12;
+  string updated = 13;
+}
