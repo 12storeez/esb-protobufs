@@ -539,15 +539,15 @@ func RegisterPaymentMethodsHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_PaymentMethods_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "payment_methods"}, ""))
+	pattern_PaymentMethods_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "payment-methods"}, ""))
 
-	pattern_PaymentMethods_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "payment_methods", "id"}, ""))
+	pattern_PaymentMethods_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "payment-methods", "id"}, ""))
 
-	pattern_PaymentMethods_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "payment_methods"}, ""))
+	pattern_PaymentMethods_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "payment-methods"}, ""))
 
-	pattern_PaymentMethods_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "payment_methods", "payment_method_id"}, ""))
+	pattern_PaymentMethods_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "payment-methods", "payment_method_id"}, ""))
 
-	pattern_PaymentMethods_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "payment_methods", "payment_method_id"}, ""))
+	pattern_PaymentMethods_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "payment-methods", "payment_method_id"}, ""))
 )
 
 var (

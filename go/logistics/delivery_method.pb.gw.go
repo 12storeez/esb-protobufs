@@ -539,15 +539,15 @@ func RegisterDeliveryMethodsHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_DeliveryMethods_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery_methods"}, ""))
+	pattern_DeliveryMethods_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery-methods"}, ""))
 
-	pattern_DeliveryMethods_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "id"}, ""))
+	pattern_DeliveryMethods_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery-methods", "id"}, ""))
 
-	pattern_DeliveryMethods_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery_methods"}, ""))
+	pattern_DeliveryMethods_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery-methods"}, ""))
 
-	pattern_DeliveryMethods_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "delivery_method_id"}, ""))
+	pattern_DeliveryMethods_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery-methods", "delivery_method_id"}, ""))
 
-	pattern_DeliveryMethods_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery_methods", "delivery_method_id"}, ""))
+	pattern_DeliveryMethods_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery-methods", "delivery_method_id"}, ""))
 )
 
 var (

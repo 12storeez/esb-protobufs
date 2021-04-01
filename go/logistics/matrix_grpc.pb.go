@@ -7,6 +7,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -17,8 +18,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MatricesClient interface {
+	Create(ctx context.Context, in *CreateMatrixRequest, opts ...grpc.CallOption) (*CreateMatrixResponse, error)
 	Get(ctx context.Context, in *GetMatrixRequest, opts ...grpc.CallOption) (*Matrix, error)
 	List(ctx context.Context, in *ListMatrixRequest, opts ...grpc.CallOption) (*ListMatrixResponse, error)
+	Update(ctx context.Context, in *UpdateMatrixRequest, opts ...grpc.CallOption) (*Matrix, error)
+	Delete(ctx context.Context, in *DeleteMatrixRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddDeliveryIntervals(ctx context.Context, in *AddDeliveryIntervalsRequest, opts ...grpc.CallOption) (*AddDeliveryIntervalsResponse, error)
+	DeleteDeliveryIntervals(ctx context.Context, in *DeleteDeliveryIntervalsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type matricesClient struct {
@@ -27,6 +33,15 @@ type matricesClient struct {
 
 func NewMatricesClient(cc grpc.ClientConnInterface) MatricesClient {
 	return &matricesClient{cc}
+}
+
+func (c *matricesClient) Create(ctx context.Context, in *CreateMatrixRequest, opts ...grpc.CallOption) (*CreateMatrixResponse, error) {
+	out := new(CreateMatrixResponse)
+	err := c.cc.Invoke(ctx, "/logistics.Matrices/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *matricesClient) Get(ctx context.Context, in *GetMatrixRequest, opts ...grpc.CallOption) (*Matrix, error) {
@@ -47,12 +62,53 @@ func (c *matricesClient) List(ctx context.Context, in *ListMatrixRequest, opts .
 	return out, nil
 }
 
+func (c *matricesClient) Update(ctx context.Context, in *UpdateMatrixRequest, opts ...grpc.CallOption) (*Matrix, error) {
+	out := new(Matrix)
+	err := c.cc.Invoke(ctx, "/logistics.Matrices/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *matricesClient) Delete(ctx context.Context, in *DeleteMatrixRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/logistics.Matrices/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *matricesClient) AddDeliveryIntervals(ctx context.Context, in *AddDeliveryIntervalsRequest, opts ...grpc.CallOption) (*AddDeliveryIntervalsResponse, error) {
+	out := new(AddDeliveryIntervalsResponse)
+	err := c.cc.Invoke(ctx, "/logistics.Matrices/AddDeliveryIntervals", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *matricesClient) DeleteDeliveryIntervals(ctx context.Context, in *DeleteDeliveryIntervalsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/logistics.Matrices/DeleteDeliveryIntervals", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MatricesServer is the server API for Matrices service.
 // All implementations must embed UnimplementedMatricesServer
 // for forward compatibility
 type MatricesServer interface {
+	Create(context.Context, *CreateMatrixRequest) (*CreateMatrixResponse, error)
 	Get(context.Context, *GetMatrixRequest) (*Matrix, error)
 	List(context.Context, *ListMatrixRequest) (*ListMatrixResponse, error)
+	Update(context.Context, *UpdateMatrixRequest) (*Matrix, error)
+	Delete(context.Context, *DeleteMatrixRequest) (*emptypb.Empty, error)
+	AddDeliveryIntervals(context.Context, *AddDeliveryIntervalsRequest) (*AddDeliveryIntervalsResponse, error)
+	DeleteDeliveryIntervals(context.Context, *DeleteDeliveryIntervalsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedMatricesServer()
 }
 
@@ -60,11 +116,26 @@ type MatricesServer interface {
 type UnimplementedMatricesServer struct {
 }
 
+func (UnimplementedMatricesServer) Create(context.Context, *CreateMatrixRequest) (*CreateMatrixResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
 func (UnimplementedMatricesServer) Get(context.Context, *GetMatrixRequest) (*Matrix, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedMatricesServer) List(context.Context, *ListMatrixRequest) (*ListMatrixResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedMatricesServer) Update(context.Context, *UpdateMatrixRequest) (*Matrix, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedMatricesServer) Delete(context.Context, *DeleteMatrixRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedMatricesServer) AddDeliveryIntervals(context.Context, *AddDeliveryIntervalsRequest) (*AddDeliveryIntervalsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddDeliveryIntervals not implemented")
+}
+func (UnimplementedMatricesServer) DeleteDeliveryIntervals(context.Context, *DeleteDeliveryIntervalsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeliveryIntervals not implemented")
 }
 func (UnimplementedMatricesServer) mustEmbedUnimplementedMatricesServer() {}
 
@@ -77,6 +148,24 @@ type UnsafeMatricesServer interface {
 
 func RegisterMatricesServer(s grpc.ServiceRegistrar, srv MatricesServer) {
 	s.RegisterService(&_Matrices_serviceDesc, srv)
+}
+
+func _Matrices_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateMatrixRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MatricesServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.Matrices/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MatricesServer).Create(ctx, req.(*CreateMatrixRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Matrices_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -115,10 +204,86 @@ func _Matrices_List_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Matrices_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMatrixRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MatricesServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.Matrices/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MatricesServer).Update(ctx, req.(*UpdateMatrixRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Matrices_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteMatrixRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MatricesServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.Matrices/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MatricesServer).Delete(ctx, req.(*DeleteMatrixRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Matrices_AddDeliveryIntervals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddDeliveryIntervalsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MatricesServer).AddDeliveryIntervals(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.Matrices/AddDeliveryIntervals",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MatricesServer).AddDeliveryIntervals(ctx, req.(*AddDeliveryIntervalsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Matrices_DeleteDeliveryIntervals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDeliveryIntervalsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MatricesServer).DeleteDeliveryIntervals(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.Matrices/DeleteDeliveryIntervals",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MatricesServer).DeleteDeliveryIntervals(ctx, req.(*DeleteDeliveryIntervalsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Matrices_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.Matrices",
 	HandlerType: (*MatricesServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Matrices_Create_Handler,
+		},
 		{
 			MethodName: "Get",
 			Handler:    _Matrices_Get_Handler,
@@ -126,6 +291,22 @@ var _Matrices_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _Matrices_List_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Matrices_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Matrices_Delete_Handler,
+		},
+		{
+			MethodName: "AddDeliveryIntervals",
+			Handler:    _Matrices_AddDeliveryIntervals_Handler,
+		},
+		{
+			MethodName: "DeleteDeliveryIntervals",
+			Handler:    _Matrices_DeleteDeliveryIntervals_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

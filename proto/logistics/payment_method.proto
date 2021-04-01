@@ -10,33 +10,33 @@ import "google/protobuf/empty.proto";
 service PaymentMethods {
   rpc Create(CreatePaymentMethodRequest) returns (CreatePaymentMethodResponse) {
     option (google.api.http) = {
-      post: "/v1/payment_methods"
+      post: "/v1/payment-methods"
       body: "*"
     };
   }
 
   rpc Get(GetPaymentMethodRequest) returns (PaymentMethod) {
     option (google.api.http) = {
-      get: "/v1/payment_methods/{id}"
+      get: "/v1/payment-methods/{id}"
     };
   }
 
   rpc List(ListPaymentMethodsRequest) returns (ListPaymentMethodsResponse) {
     option (google.api.http) = {
-      get: "/v1/payment_methods"
+      get: "/v1/payment-methods"
     };
   }
 
   rpc Update(UpdatePaymentMethodRequest) returns (PaymentMethod) {
     option (google.api.http) = {
-      patch: "/v1/payment_methods/{payment_method_id}"
+      patch: "/v1/payment-methods/{payment_method_id}"
       body: "*"
     };
   }
 
   rpc Delete(PaymentMethodRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/payment_methods/{payment_method_id}"
+      delete: "/v1/payment-methods/{payment_method_id}"
     };
   }
 }
