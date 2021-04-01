@@ -52,6 +52,7 @@ message UpdateZoneRequest {
 
 message CreateZoneRequest {
   string name = 1;
+  string country_iso_code = 2;
 }
 
 message CreateZoneResponse {
@@ -75,7 +76,8 @@ message GetZoneRequest {
 message Zone {
   int32 id = 1;
   string name = 2;
-  bool is_active = 3;
-  string created = 4;
-  string updated = 5;
+  string country_iso_code  = 3;
+  bool is_active = 4;
+  string created = 5;
+  string updated = 6;
 }

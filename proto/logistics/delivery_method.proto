@@ -10,33 +10,33 @@ import "google/protobuf/empty.proto";
 service DeliveryMethods {
   rpc Create(CreateDeliveryMethodRequest) returns (CreateDeliveryMethodResponse) {
     option (google.api.http) = {
-      post: "/v1/delivery_methods"
+      post: "/v1/delivery-methods"
       body: "*"
     };
   }
 
   rpc Get(GetDeliveryMethodRequest) returns (DeliveryMethod) {
     option (google.api.http) = {
-      get: "/v1/delivery_methods/{id}"
+      get: "/v1/delivery-methods/{id}"
     };
   }
 
   rpc List(ListDeliveryMethodsRequest) returns (ListDeliveryMethodsResponse) {
     option (google.api.http) = {
-      get: "/v1/delivery_methods"
+      get: "/v1/delivery-methods"
     };
   }
 
   rpc Update(UpdateDeliveryMethodRequest) returns (DeliveryMethod) {
     option (google.api.http) = {
-      patch: "/v1/delivery_methods/{delivery_method_id}"
+      patch: "/v1/delivery-methods/{delivery_method_id}"
       body: "*"
     };
   }
 
   rpc Delete(DeliveryMethodRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/delivery_methods/{delivery_method_id}"
+      delete: "/v1/delivery-methods/{delivery_method_id}"
     };
   }
 }
