@@ -80,4 +80,5 @@ message Zone {
   bool is_active = 4;
   string created = 5;
   string updated = 6;
+  repeated string regions_guids = 7;
 }
