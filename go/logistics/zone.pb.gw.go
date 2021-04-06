@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_Zones_Create_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateZoneRequest
+	var protoReq Zone
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,7 +49,7 @@ func request_Zones_Create_0(ctx context.Context, marshaler runtime.Marshaler, cl
 }
 
 func local_request_Zones_Create_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateZoneRequest
+	var protoReq Zone
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,7 +66,7 @@ func local_request_Zones_Create_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func request_Zones_Get_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetZoneRequest
+	var protoReq ZoneId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -76,14 +76,14 @@ func request_Zones_Get_0(ctx context.Context, marshaler runtime.Marshaler, clien
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["zone_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "zone_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.ZoneId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
 	}
 
 	msg, err := client.Get(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -92,7 +92,7 @@ func request_Zones_Get_0(ctx context.Context, marshaler runtime.Marshaler, clien
 }
 
 func local_request_Zones_Get_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetZoneRequest
+	var protoReq ZoneId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -102,14 +102,14 @@ func local_request_Zones_Get_0(ctx context.Context, marshaler runtime.Marshaler,
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["zone_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "zone_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.ZoneId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
 	}
 
 	msg, err := server.Get(ctx, &protoReq)
@@ -154,7 +154,7 @@ func local_request_Zones_List_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func request_Zones_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateZoneRequest
+	var protoReq Zone
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -188,7 +188,7 @@ func request_Zones_Update_0(ctx context.Context, marshaler runtime.Marshaler, cl
 }
 
 func local_request_Zones_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateZoneRequest
+	var protoReq Zone
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -222,7 +222,7 @@ func local_request_Zones_Update_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func request_Zones_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteZoneRequest
+	var protoReq ZoneId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -248,7 +248,7 @@ func request_Zones_Delete_0(ctx context.Context, marshaler runtime.Marshaler, cl
 }
 
 func local_request_Zones_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteZoneRequest
+	var protoReq ZoneId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -541,7 +541,7 @@ func RegisterZonesHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 var (
 	pattern_Zones_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "zones"}, ""))
 
-	pattern_Zones_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "id"}, ""))
+	pattern_Zones_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones", "zone_id"}, ""))
 
 	pattern_Zones_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "zones"}, ""))
 

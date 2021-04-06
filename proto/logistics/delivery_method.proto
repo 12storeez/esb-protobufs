@@ -8,16 +8,16 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 service DeliveryMethods {
-  rpc Create(CreateDeliveryMethodRequest) returns (CreateDeliveryMethodResponse) {
+  rpc Create(DeliveryMethod) returns (DeliveryMethodId) {
     option (google.api.http) = {
       post: "/v1/delivery-methods"
       body: "*"
     };
   }
 
-  rpc Get(GetDeliveryMethodRequest) returns (DeliveryMethod) {
+  rpc Get(DeliveryMethodId) returns (DeliveryMethod) {
     option (google.api.http) = {
-      get: "/v1/delivery-methods/{id}"
+      get: "/v1/delivery-methods/{delivery_method_id}"
     };
   }
 
@@ -27,43 +27,18 @@ service DeliveryMethods {
     };
   }
 
-  rpc Update(UpdateDeliveryMethodRequest) returns (DeliveryMethod) {
+  rpc Update(DeliveryMethod) returns (DeliveryMethod) {
     option (google.api.http) = {
       patch: "/v1/delivery-methods/{delivery_method_id}"
       body: "*"
     };
   }
 
-  rpc Delete(DeliveryMethodRequest) returns (google.protobuf.Empty) {
+  rpc Delete(DeliveryMethodId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/delivery-methods/{delivery_method_id}"
     };
   }
-}
-
-message DeliveryMethodRequest {
-  int32 delivery_method_id = 1;
-}
-
-message GetDeliveryMethodRequest {
-  int32 id = 1;
-}
-
-message CreateDeliveryMethodRequest {
-  string name = 1;
-}
-
-message CreateDeliveryMethodResponse {
-  int32 id = 1;
-}
-
-message GetDeliveryMethod {
-  int32 id = 1;
-}
-
-message UpdateDeliveryMethodRequest {
-  int32 delivery_method_id = 1;
-  string name = 2;
 }
 
 message ListDeliveryMethodsRequest {
@@ -77,9 +52,13 @@ message ListDeliveryMethodsResponse {
 }
 
 message DeliveryMethod {
-  int32 id = 1;
+  int32 delivery_method_id = 1;
   string name = 2;
   bool is_active = 3;
   string created = 4;
   string updated = 5;
+}
+
+message DeliveryMethodId {
+  int32 delivery_method_id = 1;
 }

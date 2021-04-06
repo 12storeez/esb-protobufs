@@ -8,16 +8,16 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 service PaymentMethods {
-  rpc Create(CreatePaymentMethodRequest) returns (CreatePaymentMethodResponse) {
+  rpc Create(PaymentMethod) returns (PaymentMethodId) {
     option (google.api.http) = {
       post: "/v1/payment-methods"
       body: "*"
     };
   }
 
-  rpc Get(GetPaymentMethodRequest) returns (PaymentMethod) {
+  rpc Get(PaymentMethodId) returns (PaymentMethod) {
     option (google.api.http) = {
-      get: "/v1/payment-methods/{id}"
+      get: "/v1/payment-methods/{payment_method_id}"
     };
   }
 
@@ -27,39 +27,18 @@ service PaymentMethods {
     };
   }
 
-  rpc Update(UpdatePaymentMethodRequest) returns (PaymentMethod) {
+  rpc Update(PaymentMethod) returns (PaymentMethod) {
     option (google.api.http) = {
       patch: "/v1/payment-methods/{payment_method_id}"
       body: "*"
     };
   }
 
-  rpc Delete(PaymentMethodRequest) returns (google.protobuf.Empty) {
+  rpc Delete(PaymentMethodId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/payment-methods/{payment_method_id}"
     };
   }
-}
-
-message PaymentMethodRequest {
-  int32 payment_method_id = 1;
-}
-
-message GetPaymentMethodRequest {
-  int32 id = 1;
-}
-
-message CreatePaymentMethodRequest {
-  string name = 1;
-}
-
-message CreatePaymentMethodResponse {
-  int32 id = 1;
-}
-
-message UpdatePaymentMethodRequest {
-  int32 payment_method_id = 1;
-  string name = 2;
 }
 
 message ListPaymentMethodsRequest {
@@ -73,9 +52,13 @@ message ListPaymentMethodsResponse {
 }
 
 message PaymentMethod {
-  int32 id = 1;
+  int32 payment_method_id = 1;
   string name = 2;
   bool is_active = 3;
   string created = 4;
   string updated = 5;
+}
+
+message PaymentMethodId {
+  int32 payment_method_id = 1;
 }

@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_DeliveryMethods_Create_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDeliveryMethodRequest
+	var protoReq DeliveryMethod
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,7 +49,7 @@ func request_DeliveryMethods_Create_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func local_request_DeliveryMethods_Create_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDeliveryMethodRequest
+	var protoReq DeliveryMethod
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,7 +66,7 @@ func local_request_DeliveryMethods_Create_0(ctx context.Context, marshaler runti
 }
 
 func request_DeliveryMethods_Get_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDeliveryMethodRequest
+	var protoReq DeliveryMethodId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -76,14 +76,14 @@ func request_DeliveryMethods_Get_0(ctx context.Context, marshaler runtime.Marsha
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["delivery_method_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "delivery_method_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.DeliveryMethodId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "delivery_method_id", err)
 	}
 
 	msg, err := client.Get(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -92,7 +92,7 @@ func request_DeliveryMethods_Get_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func local_request_DeliveryMethods_Get_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDeliveryMethodRequest
+	var protoReq DeliveryMethodId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -102,14 +102,14 @@ func local_request_DeliveryMethods_Get_0(ctx context.Context, marshaler runtime.
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["delivery_method_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "delivery_method_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.DeliveryMethodId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "delivery_method_id", err)
 	}
 
 	msg, err := server.Get(ctx, &protoReq)
@@ -154,7 +154,7 @@ func local_request_DeliveryMethods_List_0(ctx context.Context, marshaler runtime
 }
 
 func request_DeliveryMethods_Update_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateDeliveryMethodRequest
+	var protoReq DeliveryMethod
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -188,7 +188,7 @@ func request_DeliveryMethods_Update_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func local_request_DeliveryMethods_Update_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateDeliveryMethodRequest
+	var protoReq DeliveryMethod
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -222,7 +222,7 @@ func local_request_DeliveryMethods_Update_0(ctx context.Context, marshaler runti
 }
 
 func request_DeliveryMethods_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryMethodsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeliveryMethodRequest
+	var protoReq DeliveryMethodId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -248,7 +248,7 @@ func request_DeliveryMethods_Delete_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func local_request_DeliveryMethods_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryMethodsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeliveryMethodRequest
+	var protoReq DeliveryMethodId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -541,7 +541,7 @@ func RegisterDeliveryMethodsHandlerClient(ctx context.Context, mux *runtime.Serv
 var (
 	pattern_DeliveryMethods_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery-methods"}, ""))
 
-	pattern_DeliveryMethods_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery-methods", "id"}, ""))
+	pattern_DeliveryMethods_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery-methods", "delivery_method_id"}, ""))
 
 	pattern_DeliveryMethods_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery-methods"}, ""))
 

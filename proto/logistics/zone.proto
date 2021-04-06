@@ -8,16 +8,16 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 service Zones {
-  rpc Create(CreateZoneRequest) returns (CreateZoneResponse) {
+  rpc Create(Zone) returns (ZoneId) {
     option (google.api.http) = {
       post: "/v1/zones"
       body: "*"
     };
   }
 
-  rpc Get(GetZoneRequest) returns (Zone) {
+  rpc Get(ZoneId) returns (Zone) {
     option (google.api.http) = {
-      get: "/v1/zones/{id}"
+      get: "/v1/zones/{zone_id}"
     };
   }
 
@@ -27,36 +27,18 @@ service Zones {
     };
   }
 
-  rpc Update(UpdateZoneRequest) returns (Zone) {
+  rpc Update(Zone) returns (Zone) {
     option (google.api.http) = {
       patch: "/v1/zones/{zone_id}"
       body: "*"
     };
   }
 
-  rpc Delete(DeleteZoneRequest) returns (google.protobuf.Empty) {
+  rpc Delete(ZoneId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/zones/{zone_id}"
     };
   }
-}
-
-message DeleteZoneRequest {
-  int32 zone_id = 1;
-}
-
-message UpdateZoneRequest {
-  int32 zone_id = 1;
-  string name = 2;
-}
-
-message CreateZoneRequest {
-  string name = 1;
-  string country_iso_code = 2;
-}
-
-message CreateZoneResponse {
-  int32 id = 1;
 }
 
 message ListZonesRequest {
@@ -69,16 +51,16 @@ message ListZonesResponse {
   int32 total = 2;
 }
 
-message GetZoneRequest {
-  int32 id = 1;
-}
-
 message Zone {
-  int32 id = 1;
+  int32 zone_id = 1;
   string name = 2;
   string country_iso_code  = 3;
   bool is_active = 4;
   string created = 5;
   string updated = 6;
   repeated string regions_guids = 7;
+}
+
+message ZoneId {
+  int32 zone_id = 1;
 }

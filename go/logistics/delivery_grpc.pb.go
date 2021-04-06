@@ -14,299 +14,299 @@ import (
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion7
 
-// DeliveryClient is the client API for Delivery service.
+// DeliveriesClient is the client API for Deliveries service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DeliveryClient interface {
-	Create(ctx context.Context, in *CreateDeliveryRequest, opts ...grpc.CallOption) (*DeliveryId, error)
-	Get(ctx context.Context, in *DeliveryId, opts ...grpc.CallOption) (*DeliveryResponse, error)
+type DeliveriesClient interface {
+	Create(ctx context.Context, in *Delivery, opts ...grpc.CallOption) (*DeliveryId, error)
+	Get(ctx context.Context, in *DeliveryId, opts ...grpc.CallOption) (*Delivery, error)
 	List(ctx context.Context, in *ListDeliveryRequest, opts ...grpc.CallOption) (*ListDeliveryResponse, error)
-	Update(ctx context.Context, in *UpdateDeliveryRequest, opts ...grpc.CallOption) (*DeliveryResponse, error)
+	Update(ctx context.Context, in *Delivery, opts ...grpc.CallOption) (*Delivery, error)
 	Delete(ctx context.Context, in *DeliveryId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddInterval(ctx context.Context, in *DeliveryInterval, opts ...grpc.CallOption) (*DeliveryInterval, error)
 	DeleteInterval(ctx context.Context, in *DeliveryInterval, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type deliveryClient struct {
+type deliveriesClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewDeliveryClient(cc grpc.ClientConnInterface) DeliveryClient {
-	return &deliveryClient{cc}
+func NewDeliveriesClient(cc grpc.ClientConnInterface) DeliveriesClient {
+	return &deliveriesClient{cc}
 }
 
-func (c *deliveryClient) Create(ctx context.Context, in *CreateDeliveryRequest, opts ...grpc.CallOption) (*DeliveryId, error) {
+func (c *deliveriesClient) Create(ctx context.Context, in *Delivery, opts ...grpc.CallOption) (*DeliveryId, error) {
 	out := new(DeliveryId)
-	err := c.cc.Invoke(ctx, "/logistics.Delivery/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Deliveries/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryClient) Get(ctx context.Context, in *DeliveryId, opts ...grpc.CallOption) (*DeliveryResponse, error) {
-	out := new(DeliveryResponse)
-	err := c.cc.Invoke(ctx, "/logistics.Delivery/Get", in, out, opts...)
+func (c *deliveriesClient) Get(ctx context.Context, in *DeliveryId, opts ...grpc.CallOption) (*Delivery, error) {
+	out := new(Delivery)
+	err := c.cc.Invoke(ctx, "/logistics.Deliveries/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryClient) List(ctx context.Context, in *ListDeliveryRequest, opts ...grpc.CallOption) (*ListDeliveryResponse, error) {
+func (c *deliveriesClient) List(ctx context.Context, in *ListDeliveryRequest, opts ...grpc.CallOption) (*ListDeliveryResponse, error) {
 	out := new(ListDeliveryResponse)
-	err := c.cc.Invoke(ctx, "/logistics.Delivery/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Deliveries/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryClient) Update(ctx context.Context, in *UpdateDeliveryRequest, opts ...grpc.CallOption) (*DeliveryResponse, error) {
-	out := new(DeliveryResponse)
-	err := c.cc.Invoke(ctx, "/logistics.Delivery/Update", in, out, opts...)
+func (c *deliveriesClient) Update(ctx context.Context, in *Delivery, opts ...grpc.CallOption) (*Delivery, error) {
+	out := new(Delivery)
+	err := c.cc.Invoke(ctx, "/logistics.Deliveries/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryClient) Delete(ctx context.Context, in *DeliveryId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deliveriesClient) Delete(ctx context.Context, in *DeliveryId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/logistics.Delivery/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Deliveries/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryClient) AddInterval(ctx context.Context, in *DeliveryInterval, opts ...grpc.CallOption) (*DeliveryInterval, error) {
+func (c *deliveriesClient) AddInterval(ctx context.Context, in *DeliveryInterval, opts ...grpc.CallOption) (*DeliveryInterval, error) {
 	out := new(DeliveryInterval)
-	err := c.cc.Invoke(ctx, "/logistics.Delivery/AddInterval", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Deliveries/AddInterval", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *deliveryClient) DeleteInterval(ctx context.Context, in *DeliveryInterval, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deliveriesClient) DeleteInterval(ctx context.Context, in *DeliveryInterval, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/logistics.Delivery/DeleteInterval", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/logistics.Deliveries/DeleteInterval", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// DeliveryServer is the server API for Delivery service.
-// All implementations must embed UnimplementedDeliveryServer
+// DeliveriesServer is the server API for Deliveries service.
+// All implementations must embed UnimplementedDeliveriesServer
 // for forward compatibility
-type DeliveryServer interface {
-	Create(context.Context, *CreateDeliveryRequest) (*DeliveryId, error)
-	Get(context.Context, *DeliveryId) (*DeliveryResponse, error)
+type DeliveriesServer interface {
+	Create(context.Context, *Delivery) (*DeliveryId, error)
+	Get(context.Context, *DeliveryId) (*Delivery, error)
 	List(context.Context, *ListDeliveryRequest) (*ListDeliveryResponse, error)
-	Update(context.Context, *UpdateDeliveryRequest) (*DeliveryResponse, error)
+	Update(context.Context, *Delivery) (*Delivery, error)
 	Delete(context.Context, *DeliveryId) (*emptypb.Empty, error)
 	AddInterval(context.Context, *DeliveryInterval) (*DeliveryInterval, error)
 	DeleteInterval(context.Context, *DeliveryInterval) (*emptypb.Empty, error)
-	mustEmbedUnimplementedDeliveryServer()
+	mustEmbedUnimplementedDeliveriesServer()
 }
 
-// UnimplementedDeliveryServer must be embedded to have forward compatible implementations.
-type UnimplementedDeliveryServer struct {
+// UnimplementedDeliveriesServer must be embedded to have forward compatible implementations.
+type UnimplementedDeliveriesServer struct {
 }
 
-func (UnimplementedDeliveryServer) Create(context.Context, *CreateDeliveryRequest) (*DeliveryId, error) {
+func (UnimplementedDeliveriesServer) Create(context.Context, *Delivery) (*DeliveryId, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedDeliveryServer) Get(context.Context, *DeliveryId) (*DeliveryResponse, error) {
+func (UnimplementedDeliveriesServer) Get(context.Context, *DeliveryId) (*Delivery, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedDeliveryServer) List(context.Context, *ListDeliveryRequest) (*ListDeliveryResponse, error) {
+func (UnimplementedDeliveriesServer) List(context.Context, *ListDeliveryRequest) (*ListDeliveryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedDeliveryServer) Update(context.Context, *UpdateDeliveryRequest) (*DeliveryResponse, error) {
+func (UnimplementedDeliveriesServer) Update(context.Context, *Delivery) (*Delivery, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedDeliveryServer) Delete(context.Context, *DeliveryId) (*emptypb.Empty, error) {
+func (UnimplementedDeliveriesServer) Delete(context.Context, *DeliveryId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedDeliveryServer) AddInterval(context.Context, *DeliveryInterval) (*DeliveryInterval, error) {
+func (UnimplementedDeliveriesServer) AddInterval(context.Context, *DeliveryInterval) (*DeliveryInterval, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddInterval not implemented")
 }
-func (UnimplementedDeliveryServer) DeleteInterval(context.Context, *DeliveryInterval) (*emptypb.Empty, error) {
+func (UnimplementedDeliveriesServer) DeleteInterval(context.Context, *DeliveryInterval) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteInterval not implemented")
 }
-func (UnimplementedDeliveryServer) mustEmbedUnimplementedDeliveryServer() {}
+func (UnimplementedDeliveriesServer) mustEmbedUnimplementedDeliveriesServer() {}
 
-// UnsafeDeliveryServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DeliveryServer will
+// UnsafeDeliveriesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DeliveriesServer will
 // result in compilation errors.
-type UnsafeDeliveryServer interface {
-	mustEmbedUnimplementedDeliveryServer()
+type UnsafeDeliveriesServer interface {
+	mustEmbedUnimplementedDeliveriesServer()
 }
 
-func RegisterDeliveryServer(s grpc.ServiceRegistrar, srv DeliveryServer) {
-	s.RegisterService(&_Delivery_serviceDesc, srv)
+func RegisterDeliveriesServer(s grpc.ServiceRegistrar, srv DeliveriesServer) {
+	s.RegisterService(&_Deliveries_serviceDesc, srv)
 }
 
-func _Delivery_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDeliveryRequest)
+func _Deliveries_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Delivery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryServer).Create(ctx, in)
+		return srv.(DeliveriesServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Delivery/Create",
+		FullMethod: "/logistics.Deliveries/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).Create(ctx, req.(*CreateDeliveryRequest))
+		return srv.(DeliveriesServer).Create(ctx, req.(*Delivery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Delivery_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Deliveries_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryServer).Get(ctx, in)
+		return srv.(DeliveriesServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Delivery/Get",
+		FullMethod: "/logistics.Deliveries/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).Get(ctx, req.(*DeliveryId))
+		return srv.(DeliveriesServer).Get(ctx, req.(*DeliveryId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Delivery_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Deliveries_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListDeliveryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryServer).List(ctx, in)
+		return srv.(DeliveriesServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Delivery/List",
+		FullMethod: "/logistics.Deliveries/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).List(ctx, req.(*ListDeliveryRequest))
+		return srv.(DeliveriesServer).List(ctx, req.(*ListDeliveryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Delivery_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateDeliveryRequest)
+func _Deliveries_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Delivery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryServer).Update(ctx, in)
+		return srv.(DeliveriesServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Delivery/Update",
+		FullMethod: "/logistics.Deliveries/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).Update(ctx, req.(*UpdateDeliveryRequest))
+		return srv.(DeliveriesServer).Update(ctx, req.(*Delivery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Delivery_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Deliveries_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryServer).Delete(ctx, in)
+		return srv.(DeliveriesServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Delivery/Delete",
+		FullMethod: "/logistics.Deliveries/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).Delete(ctx, req.(*DeliveryId))
+		return srv.(DeliveriesServer).Delete(ctx, req.(*DeliveryId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Delivery_AddInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Deliveries_AddInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryInterval)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryServer).AddInterval(ctx, in)
+		return srv.(DeliveriesServer).AddInterval(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Delivery/AddInterval",
+		FullMethod: "/logistics.Deliveries/AddInterval",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).AddInterval(ctx, req.(*DeliveryInterval))
+		return srv.(DeliveriesServer).AddInterval(ctx, req.(*DeliveryInterval))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Delivery_DeleteInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Deliveries_DeleteInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryInterval)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeliveryServer).DeleteInterval(ctx, in)
+		return srv.(DeliveriesServer).DeleteInterval(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.Delivery/DeleteInterval",
+		FullMethod: "/logistics.Deliveries/DeleteInterval",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).DeleteInterval(ctx, req.(*DeliveryInterval))
+		return srv.(DeliveriesServer).DeleteInterval(ctx, req.(*DeliveryInterval))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Delivery_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "logistics.Delivery",
-	HandlerType: (*DeliveryServer)(nil),
+var _Deliveries_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "logistics.Deliveries",
+	HandlerType: (*DeliveriesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
-			Handler:    _Delivery_Create_Handler,
+			Handler:    _Deliveries_Create_Handler,
 		},
 		{
 			MethodName: "Get",
-			Handler:    _Delivery_Get_Handler,
+			Handler:    _Deliveries_Get_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _Delivery_List_Handler,
+			Handler:    _Deliveries_List_Handler,
 		},
 		{
 			MethodName: "Update",
-			Handler:    _Delivery_Update_Handler,
+			Handler:    _Deliveries_Update_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _Delivery_Delete_Handler,
+			Handler:    _Deliveries_Delete_Handler,
 		},
 		{
 			MethodName: "AddInterval",
-			Handler:    _Delivery_AddInterval_Handler,
+			Handler:    _Deliveries_AddInterval_Handler,
 		},
 		{
 			MethodName: "DeleteInterval",
-			Handler:    _Delivery_DeleteInterval_Handler,
+			Handler:    _Deliveries_DeleteInterval_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -31,8 +31,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Delivery_Create_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDeliveryRequest
+func request_Deliveries_Create_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Delivery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -48,8 +48,8 @@ func request_Delivery_Create_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Delivery_Create_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDeliveryRequest
+func local_request_Deliveries_Create_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveriesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Delivery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -65,7 +65,7 @@ func local_request_Delivery_Create_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Delivery_Get_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Deliveries_Get_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryId
 	var metadata runtime.ServerMetadata
 
@@ -91,7 +91,7 @@ func request_Delivery_Get_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Delivery_Get_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Deliveries_Get_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveriesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryId
 	var metadata runtime.ServerMetadata
 
@@ -118,17 +118,17 @@ func local_request_Delivery_Get_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 var (
-	filter_Delivery_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_Deliveries_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_Delivery_List_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Deliveries_List_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListDeliveryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Delivery_List_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Deliveries_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -137,14 +137,14 @@ func request_Delivery_List_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Delivery_List_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Deliveries_List_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveriesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListDeliveryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Delivery_List_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Deliveries_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -153,8 +153,8 @@ func local_request_Delivery_List_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Delivery_Update_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateDeliveryRequest
+func request_Deliveries_Update_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Delivery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -187,8 +187,8 @@ func request_Delivery_Update_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Delivery_Update_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateDeliveryRequest
+func local_request_Deliveries_Update_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveriesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Delivery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -221,7 +221,7 @@ func local_request_Delivery_Update_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Delivery_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Deliveries_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryId
 	var metadata runtime.ServerMetadata
 
@@ -247,7 +247,7 @@ func request_Delivery_Delete_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Delivery_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Deliveries_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveriesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryId
 	var metadata runtime.ServerMetadata
 
@@ -273,7 +273,7 @@ func local_request_Delivery_Delete_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Delivery_AddInterval_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Deliveries_AddInterval_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryInterval
 	var metadata runtime.ServerMetadata
 
@@ -307,7 +307,7 @@ func request_Delivery_AddInterval_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_Delivery_AddInterval_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Deliveries_AddInterval_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveriesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryInterval
 	var metadata runtime.ServerMetadata
 
@@ -341,7 +341,7 @@ func local_request_Delivery_AddInterval_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_Delivery_DeleteInterval_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Deliveries_DeleteInterval_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryInterval
 	var metadata runtime.ServerMetadata
 
@@ -377,7 +377,7 @@ func request_Delivery_DeleteInterval_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_Delivery_DeleteInterval_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Deliveries_DeleteInterval_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveriesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryInterval
 	var metadata runtime.ServerMetadata
 
@@ -413,24 +413,24 @@ func local_request_Delivery_DeleteInterval_0(ctx context.Context, marshaler runt
 
 }
 
-// RegisterDeliveryHandlerServer registers the http handlers for service Delivery to "mux".
-// UnaryRPC     :call DeliveryServer directly.
+// RegisterDeliveriesHandlerServer registers the http handlers for service Deliveries to "mux".
+// UnaryRPC     :call DeliveriesServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDeliveryHandlerFromEndpoint instead.
-func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DeliveryServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDeliveriesHandlerFromEndpoint instead.
+func RegisterDeliveriesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DeliveriesServer) error {
 
-	mux.Handle("POST", pattern_Delivery_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Deliveries_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Delivery/Create")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Deliveries/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Delivery_Create_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Deliveries_Create_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -438,22 +438,22 @@ func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_Delivery_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Delivery_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Deliveries_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Delivery/Get")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Deliveries/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Delivery_Get_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Deliveries_Get_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -461,22 +461,22 @@ func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_Delivery_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Delivery_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Deliveries_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Delivery/List")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Deliveries/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Delivery_List_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Deliveries_List_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -484,22 +484,22 @@ func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_Delivery_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_Delivery_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_Deliveries_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Delivery/Update")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Deliveries/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Delivery_Update_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Deliveries_Update_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -507,22 +507,22 @@ func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_Delivery_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_Delivery_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Deliveries_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Delivery/Delete")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Deliveries/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Delivery_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Deliveries_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -530,22 +530,22 @@ func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_Delivery_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_Delivery_AddInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Deliveries_AddInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Delivery/AddInterval")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Deliveries/AddInterval")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Delivery_AddInterval_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Deliveries_AddInterval_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -553,22 +553,22 @@ func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_Delivery_AddInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_AddInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_Delivery_DeleteInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Deliveries_DeleteInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Delivery/DeleteInterval")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.Deliveries/DeleteInterval")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Delivery_DeleteInterval_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Deliveries_DeleteInterval_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -576,16 +576,16 @@ func RegisterDeliveryHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_Delivery_DeleteInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_DeleteInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterDeliveryHandlerFromEndpoint is same as RegisterDeliveryHandler but
+// RegisterDeliveriesHandlerFromEndpoint is same as RegisterDeliveriesHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterDeliveryHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterDeliveriesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -605,159 +605,159 @@ func RegisterDeliveryHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 		}()
 	}()
 
-	return RegisterDeliveryHandler(ctx, mux, conn)
+	return RegisterDeliveriesHandler(ctx, mux, conn)
 }
 
-// RegisterDeliveryHandler registers the http handlers for service Delivery to "mux".
+// RegisterDeliveriesHandler registers the http handlers for service Deliveries to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterDeliveryHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterDeliveryHandlerClient(ctx, mux, NewDeliveryClient(conn))
+func RegisterDeliveriesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterDeliveriesHandlerClient(ctx, mux, NewDeliveriesClient(conn))
 }
 
-// RegisterDeliveryHandlerClient registers the http handlers for service Delivery
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "DeliveryClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "DeliveryClient"
+// RegisterDeliveriesHandlerClient registers the http handlers for service Deliveries
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "DeliveriesClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "DeliveriesClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "DeliveryClient" to call the correct interceptors.
-func RegisterDeliveryHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DeliveryClient) error {
+// "DeliveriesClient" to call the correct interceptors.
+func RegisterDeliveriesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DeliveriesClient) error {
 
-	mux.Handle("POST", pattern_Delivery_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Deliveries_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Delivery/Create")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Deliveries/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Delivery_Create_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Deliveries_Create_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Delivery_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Delivery_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Deliveries_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Delivery/Get")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Deliveries/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Delivery_Get_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Deliveries_Get_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Delivery_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_Delivery_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Deliveries_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Delivery/List")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Deliveries/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Delivery_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Deliveries_List_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Delivery_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_Delivery_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_Deliveries_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Delivery/Update")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Deliveries/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Delivery_Update_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Deliveries_Update_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Delivery_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_Delivery_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Deliveries_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Delivery/Delete")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Deliveries/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Delivery_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Deliveries_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Delivery_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_Delivery_AddInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Deliveries_AddInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Delivery/AddInterval")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Deliveries/AddInterval")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Delivery_AddInterval_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Deliveries_AddInterval_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Delivery_AddInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_AddInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_Delivery_DeleteInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_Deliveries_DeleteInterval_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Delivery/DeleteInterval")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.Deliveries/DeleteInterval")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Delivery_DeleteInterval_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Deliveries_DeleteInterval_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Delivery_DeleteInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Deliveries_DeleteInterval_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -765,33 +765,33 @@ func RegisterDeliveryHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_Delivery_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery"}, ""))
+	pattern_Deliveries_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "deliveries"}, ""))
 
-	pattern_Delivery_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery", "delivery_id"}, ""))
+	pattern_Deliveries_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "deliveries", "delivery_id"}, ""))
 
-	pattern_Delivery_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "delivery"}, ""))
+	pattern_Deliveries_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "deliveries"}, ""))
 
-	pattern_Delivery_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery", "delivery_id"}, ""))
+	pattern_Deliveries_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "deliveries", "delivery_id"}, ""))
 
-	pattern_Delivery_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "delivery", "delivery_id"}, ""))
+	pattern_Deliveries_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "deliveries", "delivery_id"}, ""))
 
-	pattern_Delivery_AddInterval_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "delivery", "delivery_id", "intervals"}, ""))
+	pattern_Deliveries_AddInterval_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "deliveries", "delivery_id", "intervals"}, ""))
 
-	pattern_Delivery_DeleteInterval_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "delivery", "delivery_id", "intervals", "interval_id"}, ""))
+	pattern_Deliveries_DeleteInterval_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "deliveries", "delivery_id", "intervals", "interval_id"}, ""))
 )
 
 var (
-	forward_Delivery_Create_0 = runtime.ForwardResponseMessage
+	forward_Deliveries_Create_0 = runtime.ForwardResponseMessage
 
-	forward_Delivery_Get_0 = runtime.ForwardResponseMessage
+	forward_Deliveries_Get_0 = runtime.ForwardResponseMessage
 
-	forward_Delivery_List_0 = runtime.ForwardResponseMessage
+	forward_Deliveries_List_0 = runtime.ForwardResponseMessage
 
-	forward_Delivery_Update_0 = runtime.ForwardResponseMessage
+	forward_Deliveries_Update_0 = runtime.ForwardResponseMessage
 
-	forward_Delivery_Delete_0 = runtime.ForwardResponseMessage
+	forward_Deliveries_Delete_0 = runtime.ForwardResponseMessage
 
-	forward_Delivery_AddInterval_0 = runtime.ForwardResponseMessage
+	forward_Deliveries_AddInterval_0 = runtime.ForwardResponseMessage
 
-	forward_Delivery_DeleteInterval_0 = runtime.ForwardResponseMessage
+	forward_Deliveries_DeleteInterval_0 = runtime.ForwardResponseMessage
 )
