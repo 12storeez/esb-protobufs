@@ -9,16 +9,16 @@ import "google/protobuf/empty.proto";
 
 service Intervals {
 
-  rpc Create(CreateIntervalsRequest) returns (CreateIntervalsResponse) {
+  rpc Create(Interval) returns (IntervalId) {
     option (google.api.http) = {
       post: "/v1/intervals"
       body: "*"
     };
   }
 
-  rpc Get(GetIntervalsRequest) returns (Interval) {
+  rpc Get(IntervalId) returns (Interval) {
     option (google.api.http) = {
-      get: "/v1/intervals/{id}"
+      get: "/v1/intervals/{interval_id}"
     };
   }
 
@@ -28,30 +28,24 @@ service Intervals {
     };
   }
 
-  rpc Update(UpdateIntervalsRequest) returns (Interval) {
+  rpc Update(Interval) returns (Interval) {
     option (google.api.http) = {
       patch: "/v1/intervals/{interval_id}"
       body: "*"
     };
   }
 
-  rpc Delete(GetIntervalsRequest) returns (google.protobuf.Empty) {
+  rpc Delete(IntervalId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/intervals/{id}"
+      delete: "/v1/intervals/{interval_id}"
     };
   }
 }
 
-message UpdateIntervalsRequest {
-  int32 interval_id = 1;
-  IntervalType type = 2;
-  string time_from = 3;
-  string time_to = 4;
-}
-
-message ListIntervalsResponse {
-  repeated Interval results = 1;
-  int32 total = 2;
+enum IntervalType {
+  weekday = 0;
+  saturday = 1;
+  sunday = 2;
 }
 
 message ListIntervalsRequest {
@@ -59,31 +53,20 @@ message ListIntervalsRequest {
   int32 offset = 2;
 }
 
-message GetIntervalsRequest {
-  int32 id = 1;
-}
-
-message CreateIntervalsResponse {
-  int32 interval_id = 1;
-}
-
-message CreateIntervalsRequest {
-  IntervalType type = 1;
-  string time_from = 2;
-  string time_to = 3;
-}
-
-enum IntervalType {
-  working = 0;
-  saturday = 1;
-  sunday = 2;
+message ListIntervalsResponse {
+  repeated Interval results = 1;
+  int32 total = 2;
 }
 
 message Interval  {
-  int32 id = 1;
+  int32 interval_id = 1;
   IntervalType type = 2;
   string time_from = 3;
   string time_to = 4;
   string created = 5;
   string updated = 6;
+}
+
+message IntervalId {
+  int32 interval_id = 1;
 }

@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_Intervals_Create_0(ctx context.Context, marshaler runtime.Marshaler, client IntervalsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateIntervalsRequest
+	var protoReq Interval
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,7 +49,7 @@ func request_Intervals_Create_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func local_request_Intervals_Create_0(ctx context.Context, marshaler runtime.Marshaler, server IntervalsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateIntervalsRequest
+	var protoReq Interval
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,7 +66,7 @@ func local_request_Intervals_Create_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func request_Intervals_Get_0(ctx context.Context, marshaler runtime.Marshaler, client IntervalsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetIntervalsRequest
+	var protoReq IntervalId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -76,14 +76,14 @@ func request_Intervals_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["interval_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "interval_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.IntervalId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "interval_id", err)
 	}
 
 	msg, err := client.Get(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -92,7 +92,7 @@ func request_Intervals_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 }
 
 func local_request_Intervals_Get_0(ctx context.Context, marshaler runtime.Marshaler, server IntervalsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetIntervalsRequest
+	var protoReq IntervalId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -102,14 +102,14 @@ func local_request_Intervals_Get_0(ctx context.Context, marshaler runtime.Marsha
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["interval_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "interval_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.IntervalId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "interval_id", err)
 	}
 
 	msg, err := server.Get(ctx, &protoReq)
@@ -154,7 +154,7 @@ func local_request_Intervals_List_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func request_Intervals_Update_0(ctx context.Context, marshaler runtime.Marshaler, client IntervalsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateIntervalsRequest
+	var protoReq Interval
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -188,7 +188,7 @@ func request_Intervals_Update_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func local_request_Intervals_Update_0(ctx context.Context, marshaler runtime.Marshaler, server IntervalsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateIntervalsRequest
+	var protoReq Interval
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -222,7 +222,7 @@ func local_request_Intervals_Update_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func request_Intervals_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client IntervalsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetIntervalsRequest
+	var protoReq IntervalId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -232,14 +232,14 @@ func request_Intervals_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["interval_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "interval_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.IntervalId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "interval_id", err)
 	}
 
 	msg, err := client.Delete(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -248,7 +248,7 @@ func request_Intervals_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func local_request_Intervals_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server IntervalsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetIntervalsRequest
+	var protoReq IntervalId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -258,14 +258,14 @@ func local_request_Intervals_Delete_0(ctx context.Context, marshaler runtime.Mar
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["interval_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "interval_id")
 	}
 
-	protoReq.Id, err = runtime.Int32(val)
+	protoReq.IntervalId, err = runtime.Int32(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "interval_id", err)
 	}
 
 	msg, err := server.Delete(ctx, &protoReq)
@@ -541,13 +541,13 @@ func RegisterIntervalsHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 var (
 	pattern_Intervals_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "intervals"}, ""))
 
-	pattern_Intervals_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "intervals", "id"}, ""))
+	pattern_Intervals_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "intervals", "interval_id"}, ""))
 
 	pattern_Intervals_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "intervals"}, ""))
 
 	pattern_Intervals_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "intervals", "interval_id"}, ""))
 
-	pattern_Intervals_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "intervals", "id"}, ""))
+	pattern_Intervals_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "intervals", "interval_id"}, ""))
 )
 
 var (

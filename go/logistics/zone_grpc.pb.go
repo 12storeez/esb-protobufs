@@ -18,11 +18,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ZonesClient interface {
-	Create(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error)
-	Get(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*Zone, error)
+	Create(ctx context.Context, in *Zone, opts ...grpc.CallOption) (*ZoneId, error)
+	Get(ctx context.Context, in *ZoneId, opts ...grpc.CallOption) (*Zone, error)
 	List(ctx context.Context, in *ListZonesRequest, opts ...grpc.CallOption) (*ListZonesResponse, error)
-	Update(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*Zone, error)
-	Delete(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Update(ctx context.Context, in *Zone, opts ...grpc.CallOption) (*Zone, error)
+	Delete(ctx context.Context, in *ZoneId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type zonesClient struct {
@@ -33,8 +33,8 @@ func NewZonesClient(cc grpc.ClientConnInterface) ZonesClient {
 	return &zonesClient{cc}
 }
 
-func (c *zonesClient) Create(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error) {
-	out := new(CreateZoneResponse)
+func (c *zonesClient) Create(ctx context.Context, in *Zone, opts ...grpc.CallOption) (*ZoneId, error) {
+	out := new(ZoneId)
 	err := c.cc.Invoke(ctx, "/logistics.Zones/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (c *zonesClient) Create(ctx context.Context, in *CreateZoneRequest, opts ..
 	return out, nil
 }
 
-func (c *zonesClient) Get(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*Zone, error) {
+func (c *zonesClient) Get(ctx context.Context, in *ZoneId, opts ...grpc.CallOption) (*Zone, error) {
 	out := new(Zone)
 	err := c.cc.Invoke(ctx, "/logistics.Zones/Get", in, out, opts...)
 	if err != nil {
@@ -60,7 +60,7 @@ func (c *zonesClient) List(ctx context.Context, in *ListZonesRequest, opts ...gr
 	return out, nil
 }
 
-func (c *zonesClient) Update(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*Zone, error) {
+func (c *zonesClient) Update(ctx context.Context, in *Zone, opts ...grpc.CallOption) (*Zone, error) {
 	out := new(Zone)
 	err := c.cc.Invoke(ctx, "/logistics.Zones/Update", in, out, opts...)
 	if err != nil {
@@ -69,7 +69,7 @@ func (c *zonesClient) Update(ctx context.Context, in *UpdateZoneRequest, opts ..
 	return out, nil
 }
 
-func (c *zonesClient) Delete(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *zonesClient) Delete(ctx context.Context, in *ZoneId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/logistics.Zones/Delete", in, out, opts...)
 	if err != nil {
@@ -82,11 +82,11 @@ func (c *zonesClient) Delete(ctx context.Context, in *DeleteZoneRequest, opts ..
 // All implementations must embed UnimplementedZonesServer
 // for forward compatibility
 type ZonesServer interface {
-	Create(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error)
-	Get(context.Context, *GetZoneRequest) (*Zone, error)
+	Create(context.Context, *Zone) (*ZoneId, error)
+	Get(context.Context, *ZoneId) (*Zone, error)
 	List(context.Context, *ListZonesRequest) (*ListZonesResponse, error)
-	Update(context.Context, *UpdateZoneRequest) (*Zone, error)
-	Delete(context.Context, *DeleteZoneRequest) (*emptypb.Empty, error)
+	Update(context.Context, *Zone) (*Zone, error)
+	Delete(context.Context, *ZoneId) (*emptypb.Empty, error)
 	mustEmbedUnimplementedZonesServer()
 }
 
@@ -94,19 +94,19 @@ type ZonesServer interface {
 type UnimplementedZonesServer struct {
 }
 
-func (UnimplementedZonesServer) Create(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error) {
+func (UnimplementedZonesServer) Create(context.Context, *Zone) (*ZoneId, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedZonesServer) Get(context.Context, *GetZoneRequest) (*Zone, error) {
+func (UnimplementedZonesServer) Get(context.Context, *ZoneId) (*Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedZonesServer) List(context.Context, *ListZonesRequest) (*ListZonesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedZonesServer) Update(context.Context, *UpdateZoneRequest) (*Zone, error) {
+func (UnimplementedZonesServer) Update(context.Context, *Zone) (*Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedZonesServer) Delete(context.Context, *DeleteZoneRequest) (*emptypb.Empty, error) {
+func (UnimplementedZonesServer) Delete(context.Context, *ZoneId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedZonesServer) mustEmbedUnimplementedZonesServer() {}
@@ -123,7 +123,7 @@ func RegisterZonesServer(s grpc.ServiceRegistrar, srv ZonesServer) {
 }
 
 func _Zones_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateZoneRequest)
+	in := new(Zone)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -135,13 +135,13 @@ func _Zones_Create_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/logistics.Zones/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).Create(ctx, req.(*CreateZoneRequest))
+		return srv.(ZonesServer).Create(ctx, req.(*Zone))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Zones_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetZoneRequest)
+	in := new(ZoneId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -153,7 +153,7 @@ func _Zones_Get_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: "/logistics.Zones/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).Get(ctx, req.(*GetZoneRequest))
+		return srv.(ZonesServer).Get(ctx, req.(*ZoneId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -177,7 +177,7 @@ func _Zones_List_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Zones_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateZoneRequest)
+	in := new(Zone)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -189,13 +189,13 @@ func _Zones_Update_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/logistics.Zones/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).Update(ctx, req.(*UpdateZoneRequest))
+		return srv.(ZonesServer).Update(ctx, req.(*Zone))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Zones_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteZoneRequest)
+	in := new(ZoneId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -207,7 +207,7 @@ func _Zones_Delete_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/logistics.Zones/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesServer).Delete(ctx, req.(*DeleteZoneRequest))
+		return srv.(ZonesServer).Delete(ctx, req.(*ZoneId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
