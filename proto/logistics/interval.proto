@@ -43,7 +43,7 @@ service Intervals {
 }
 
 enum IntervalType {
-  weekday = 0;
+  weekdays = 0;
   saturday = 1;
   sunday = 2;
 }
