@@ -39,7 +39,12 @@ message Country {
   Capital capital = 4;
   string postal_code_format = 5;
   string currency_code = 6;
-  repeated string phone_masks = 7;
+  Phone phone = 7;
+}
+
+message Phone  {
+  int32 prefix= 1;
+  repeated string masks = 2;
 }
 
 message Continent {
