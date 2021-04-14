@@ -539,7 +539,12 @@ export namespace geo {
     capital: Capital;
     postal_code_format: string;
     currency_code: string;
-    phone_masks: string[];
+    phone: Phone;
+  }
+
+  export interface Phone {
+    prefix: number;
+    masks: string[];
   }
 
   export interface Continent {
@@ -587,8 +592,8 @@ export namespace geo {
     suggest: string;
     name: string;
     subtitle: string;
-    origin: string;
     type: string;
+    query_for_details: string;
   }
 
   export interface CityDetailsParams {
@@ -600,13 +605,13 @@ export namespace geo {
   export interface City {
     id: string;
     name: string;
-    kladr_id: string;
     country_iso_code: string;
     postal_code: string;
     type: string;
     region: Region;
     state: State;
     location: Location;
+    additional: CityAdditional;
   }
 
   export interface State {
@@ -618,7 +623,6 @@ export namespace geo {
     id: string;
     name: string;
     iso_code: string;
-    kladr_id: string;
     type: string;
   }
 
@@ -634,8 +638,8 @@ export namespace geo {
 
   export interface CityByIPResponse {
     name: string;
-    continent: Continent;
-    country: Country;
+    country_iso_code: string;
+    country_name: string;
     location: Location;
   }
 
@@ -655,10 +659,9 @@ export namespace geo {
   export interface SuggestAddress {
     id: string;
     suggest: string;
-    region: Region;
-    city: string;
-    city_id: string;
-    country: Country;
+    title: string;
+    subtitle: string;
+    query_for_details: string;
   }
 
   export interface AddressDetailsParams {
@@ -669,18 +672,27 @@ export namespace geo {
 
   export interface Address {
     id: string;
-    country: Country;
+    country_iso_code: string;
     region: Region;
+    state: State;
     city: string;
-    street_type: string;
     street: string;
-    house_type: string;
     house: string;
-    block_type: string;
     block: string;
     postal_code: string;
     location: Location;
-    level: string;
+    additional: AddressAdditional;
+  }
+
+  export interface AddressAdditional {
+    is_in_mkad: boolean;
+    is_in_kad: boolean;
+    fias_level: string;
+  }
+
+  export interface CityAdditional {
+    kladr_id: string;
+    is_crimea: boolean;
   }
 }
 
@@ -1606,92 +1618,8 @@ export namespace transport {
   }
 }
 
-export namespace logistics {
-  export interface Logistics {
-    ping(request: any, metadata?: any): Observable<PingResponse>;
-    uPSDuration(
-      request: GetParamsUPS,
-      metadata?: any
-    ): Observable<GetResponseUPS>;
-    boxberryDuration(
-      request: GetParamsBoxberry,
-      metadata?: any
-    ): Observable<GetResponseBoxberry>;
-    boxberryDurationByCity(
-      request: GetParamsBoxberryDurationByCity,
-      metadata?: any
-    ): Observable<GetResponseBoxberryDurationByCity>;
-    boxberryPointInformation(
-      request: GetParamsPointInformation,
-      metadata?: any
-    ): Observable<GetResponsePointInformation>;
-    boxberryOrderStatus(
-      request: GetParamsOrderStatus,
-      metadata?: any
-    ): Observable<GetResponseOrderStatus>;
-  }
-
-  export interface PingResponse {
-    response: string;
-  }
-
-  export interface GetParamsUPS {
-    originCountryCode: string;
-    originPostalCode: string;
-    destinationCountryCode: string;
-    destinationPostalCode: string;
-    shipDate: string;
-    shipTime: string;
-  }
-
-  export interface GetResponseUPS {
-    deliveryDate: string;
-    deliveryTime: string;
-  }
-
-  export interface GetParamsBoxberry {
-    originCode: string;
-    destionationCode: string;
-  }
-
-  export interface GetResponseBoxberry {
-    price: number;
-    deliveryPeriod: number;
-  }
-
-  export interface GetParamsBoxberryDurationByCity {
-    originCode: string;
-    cityName: string;
-  }
-
-  export interface GetResponseBoxberryDurationByCity {
-    price: number;
-    deliveryPeriod: number;
-  }
-
-  export interface GetParamsPointInformation {
-    point_code: string;
-  }
-
-  export interface GetResponsePointInformation {
-    work_schedule: string;
-    address: string;
-    metro: string;
-  }
-
-  export interface GetParamsOrderStatus {
-    order_id: string;
-  }
-
-  export interface GetResponseOrderStatus {
-    statuses: status[];
-  }
-
-  export interface status {
-    date: string;
-    name: string;
-    comment: string;
-  }
+export namespace google.protobuf {
+  export interface Empty {}
 }
 
 export namespace release {
@@ -1901,6 +1829,415 @@ export namespace stocks {
     quantity: number;
     available: number;
     reserved: number;
+  }
+}
+
+export namespace logistics {
+  export interface Warehouses {
+    create(request: Warehouse, metadata?: any): Observable<WarehouseId>;
+    get(request: WarehouseId, metadata?: any): Observable<Warehouse>;
+    list(
+      request: ListWarehousesRequest,
+      metadata?: any
+    ): Observable<ListWarehousesResponse>;
+    update(request: Warehouse, metadata?: any): Observable<Warehouse>;
+    delete(
+      request: WarehouseId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface WarehouseId {
+    warehouse_id: number;
+  }
+
+  export interface Warehouse {
+    warehouse_id: number;
+    name: string;
+    postal_code: string;
+    country_iso_code: string;
+    is_active: boolean;
+    created: string;
+    updated: string;
+  }
+
+  export interface ListWarehousesRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListWarehousesResponse {
+    results: Warehouse[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface Zones {
+    create(request: Zone, metadata?: any): Observable<ZoneId>;
+    get(request: ZoneId, metadata?: any): Observable<Zone>;
+    list(
+      request: ListZonesRequest,
+      metadata?: any
+    ): Observable<ListZonesResponse>;
+    update(request: Zone, metadata?: any): Observable<Zone>;
+    delete(request: ZoneId, metadata?: any): Observable<google.protobuf.Empty>;
+  }
+
+  export interface ListZonesRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListZonesResponse {
+    results: Zone[];
+    total: number;
+  }
+
+  export interface Zone {
+    zone_id: number;
+    name: string;
+    country_iso_code: string;
+    is_active: boolean;
+    created: string;
+    updated: string;
+    regions_guids: string[];
+  }
+
+  export interface ZoneId {
+    zone_id: number;
+  }
+}
+
+export namespace logistics {
+  export interface TransportCompanies {
+    create(
+      request: TransportCompany,
+      metadata?: any
+    ): Observable<TransportCompanyId>;
+    get(
+      request: TransportCompanyId,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    list(
+      request: ListTransportCompanyRequest,
+      metadata?: any
+    ): Observable<ListTransportCompanyResponse>;
+    update(
+      request: TransportCompany,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    delete(
+      request: TransportCompanyId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface TransportCompanyId {
+    transport_company_id: number;
+  }
+
+  export interface TransportCompany {
+    transport_company_id: number;
+    name: string;
+    is_active: boolean;
+    created: string;
+    updated: string;
+    transport_company_settings_ids: number[];
+  }
+
+  export interface ListTransportCompanyRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListTransportCompanyResponse {
+    results: TransportCompany[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface PaymentMethods {
+    create(request: PaymentMethod, metadata?: any): Observable<PaymentMethodId>;
+    get(request: PaymentMethodId, metadata?: any): Observable<PaymentMethod>;
+    list(
+      request: ListPaymentMethodsRequest,
+      metadata?: any
+    ): Observable<ListPaymentMethodsResponse>;
+    update(request: PaymentMethod, metadata?: any): Observable<PaymentMethod>;
+    delete(
+      request: PaymentMethodId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface ListPaymentMethodsRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListPaymentMethodsResponse {
+    results: PaymentMethod[];
+    total: number;
+  }
+
+  export interface PaymentMethod {
+    payment_method_id: number;
+    name: string;
+    is_active: boolean;
+    created: string;
+    updated: string;
+  }
+
+  export interface PaymentMethodId {
+    payment_method_id: number;
+  }
+}
+
+export namespace logistics {
+  export interface TransportCompaniesSettings {
+    create(
+      request: TransportCompanySettings,
+      metadata?: any
+    ): Observable<TransportCompanySettingsId>;
+    get(
+      request: TransportCompanySettingsId,
+      metadata?: any
+    ): Observable<TransportCompanySettings>;
+    list(
+      request: ListTransportCompanySettingsRequest,
+      metadata?: any
+    ): Observable<ListTransportCompanySettingsResponse>;
+    update(
+      request: TransportCompanySettings,
+      metadata?: any
+    ): Observable<TransportCompanySettings>;
+    delete(
+      request: TransportCompanySettingsId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface TransportCompanySettingsId {
+    transport_company_settings_id: number;
+  }
+
+  export interface ListTransportCompanySettingsRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListTransportCompanySettingsResponse {
+    results: TransportCompanySettings[];
+    total: number;
+  }
+
+  export interface TransportCompanySettings {
+    transport_company_settings_id: number;
+    transport_company_id: number;
+    delivery_method_id: number;
+    warehouse_id: number;
+    is_active: boolean;
+    created: string;
+    updated: string;
+  }
+}
+
+export namespace logistics {
+  export interface DeliveriesManualPriorities {
+    create(
+      request: DeliveryManualPriority,
+      metadata?: any
+    ): Observable<DeliveryManualPriorityId>;
+    get(
+      request: DeliveryManualPriorityId,
+      metadata?: any
+    ): Observable<DeliveryManualPriority>;
+    list(
+      request: ListDeliveriesManualPrioritiesRequest,
+      metadata?: any
+    ): Observable<ListDeliveriesManualPrioritiesResponse>;
+    update(
+      request: DeliveryManualPriority,
+      metadata?: any
+    ): Observable<DeliveryManualPriority>;
+    delete(
+      request: DeliveryManualPriorityId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface DeliveryManualPriorityId {
+    delivery_manual_priority_id: number;
+  }
+
+  export interface DeliveryManualPriority {
+    delivery_manual_priority_id: number;
+    zone_id: number;
+    transport_company_id: number;
+    delivery_method_id: number;
+    value: number;
+    max_days: number;
+    tariff: number;
+    created: string;
+    updated: string;
+  }
+
+  export interface ListDeliveriesManualPrioritiesRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListDeliveriesManualPrioritiesResponse {
+    results: DeliveryManualPriority[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface Deliveries {
+    create(request: Delivery, metadata?: any): Observable<DeliveryId>;
+    get(request: DeliveryId, metadata?: any): Observable<Delivery>;
+    list(
+      request: ListDeliveryRequest,
+      metadata?: any
+    ): Observable<ListDeliveryResponse>;
+    update(request: Delivery, metadata?: any): Observable<Delivery>;
+    delete(
+      request: DeliveryId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    addInterval(
+      request: DeliveryInterval,
+      metadata?: any
+    ): Observable<DeliveryInterval>;
+    deleteInterval(
+      request: DeliveryInterval,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface DeliveryInterval {
+    delivery_id: number;
+    interval_id: number;
+  }
+
+  export interface DeliveryId {
+    delivery_id: number;
+  }
+
+  export interface ListDeliveryRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListDeliveryResponse {
+    results: Delivery[];
+    total: number;
+  }
+
+  export interface Delivery {
+    delivery_id: number;
+    zone_id: number;
+    cutoff_time: string;
+    gap_days: number;
+    consolidation_days: number;
+    delivery_method_id: number;
+    payment_method_id: number;
+    total_less: number;
+    total_more: number;
+    total: number;
+    delivery_min_days: number;
+    created: string;
+    updated: string;
+    intervals_ids: number[];
+  }
+}
+
+export namespace logistics {
+  export interface DeliveryMethods {
+    create(
+      request: DeliveryMethod,
+      metadata?: any
+    ): Observable<DeliveryMethodId>;
+    get(request: DeliveryMethodId, metadata?: any): Observable<DeliveryMethod>;
+    list(
+      request: ListDeliveryMethodsRequest,
+      metadata?: any
+    ): Observable<ListDeliveryMethodsResponse>;
+    update(request: DeliveryMethod, metadata?: any): Observable<DeliveryMethod>;
+    delete(
+      request: DeliveryMethodId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface ListDeliveryMethodsRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListDeliveryMethodsResponse {
+    results: DeliveryMethod[];
+    total: number;
+  }
+
+  export interface DeliveryMethod {
+    delivery_method_id: number;
+    name: string;
+    is_active: boolean;
+    created: string;
+    updated: string;
+  }
+
+  export interface DeliveryMethodId {
+    delivery_method_id: number;
+  }
+}
+
+export namespace logistics {
+  export interface Intervals {
+    create(request: Interval, metadata?: any): Observable<IntervalId>;
+    get(request: IntervalId, metadata?: any): Observable<Interval>;
+    list(
+      request: ListIntervalsRequest,
+      metadata?: any
+    ): Observable<ListIntervalsResponse>;
+    update(request: Interval, metadata?: any): Observable<Interval>;
+    delete(
+      request: IntervalId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export enum IntervalType {
+    weekdays = 0,
+    saturday = 1,
+    sunday = 2,
+  }
+
+  export interface ListIntervalsRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListIntervalsResponse {
+    results: Interval[];
+    total: number;
+  }
+
+  export interface Interval {
+    interval_id: number;
+    type: IntervalType;
+    time_from: string;
+    time_to: string;
+    created: string;
+    updated: string;
+  }
+
+  export interface IntervalId {
+    interval_id: number;
   }
 }
 

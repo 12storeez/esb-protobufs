@@ -103,8 +103,12 @@ async function run(path) {
 
 //2. reade file using proto-parse
 function readeProtoFile(filePath) {
-    console.log(filePath);
-    const objectList = parse(fs.readFileSync(filePath).toString());
+    let file = fs.readFileSync(filePath).toString();
+    const regex = /\s+(option \(.+\).+(\n.+)+};)\s+/gm
+    if (regex.test(file)) {
+        file = file.replace(regex, '');
+    }
+    const objectList = parse(file);
     objectList.content.forEach((obj) => convertToLineAndAddToList(obj));
     FileWriter.addLine("}");
 }
