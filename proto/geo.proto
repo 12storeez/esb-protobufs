@@ -73,6 +73,7 @@ message SuggestCountry {
   string iso_code = 1;
   string name = 2;
   Continent continent = 3;
+  Phone phone = 4;
 }
 
 // City ...
