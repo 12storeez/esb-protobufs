@@ -573,6 +573,7 @@ export namespace geo {
     iso_code: string;
     name: string;
     continent: Continent;
+    phone: Phone;
   }
 
   export interface SuggestCityParams {
