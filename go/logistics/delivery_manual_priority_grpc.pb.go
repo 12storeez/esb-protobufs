@@ -23,6 +23,8 @@ type DeliveriesManualPrioritiesClient interface {
 	List(ctx context.Context, in *ListDeliveriesManualPrioritiesRequest, opts ...grpc.CallOption) (*ListDeliveriesManualPrioritiesResponse, error)
 	Update(ctx context.Context, in *DeliveryManualPriority, opts ...grpc.CallOption) (*DeliveryManualPriority, error)
 	Delete(ctx context.Context, in *DeliveryManualPriorityId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddTransportCompany(ctx context.Context, in *DeliveryManualToTransportCompany, opts ...grpc.CallOption) (*DeliveryManualToTransportCompany, error)
+	DeleteTransportCompany(ctx context.Context, in *DeliveryManualToTransportCompany, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type deliveriesManualPrioritiesClient struct {
@@ -78,6 +80,24 @@ func (c *deliveriesManualPrioritiesClient) Delete(ctx context.Context, in *Deliv
 	return out, nil
 }
 
+func (c *deliveriesManualPrioritiesClient) AddTransportCompany(ctx context.Context, in *DeliveryManualToTransportCompany, opts ...grpc.CallOption) (*DeliveryManualToTransportCompany, error) {
+	out := new(DeliveryManualToTransportCompany)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveriesManualPriorities/AddTransportCompany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deliveriesManualPrioritiesClient) DeleteTransportCompany(ctx context.Context, in *DeliveryManualToTransportCompany, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveriesManualPriorities/DeleteTransportCompany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeliveriesManualPrioritiesServer is the server API for DeliveriesManualPriorities service.
 // All implementations must embed UnimplementedDeliveriesManualPrioritiesServer
 // for forward compatibility
@@ -87,6 +107,8 @@ type DeliveriesManualPrioritiesServer interface {
 	List(context.Context, *ListDeliveriesManualPrioritiesRequest) (*ListDeliveriesManualPrioritiesResponse, error)
 	Update(context.Context, *DeliveryManualPriority) (*DeliveryManualPriority, error)
 	Delete(context.Context, *DeliveryManualPriorityId) (*emptypb.Empty, error)
+	AddTransportCompany(context.Context, *DeliveryManualToTransportCompany) (*DeliveryManualToTransportCompany, error)
+	DeleteTransportCompany(context.Context, *DeliveryManualToTransportCompany) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeliveriesManualPrioritiesServer()
 }
 
@@ -108,6 +130,12 @@ func (UnimplementedDeliveriesManualPrioritiesServer) Update(context.Context, *De
 }
 func (UnimplementedDeliveriesManualPrioritiesServer) Delete(context.Context, *DeliveryManualPriorityId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedDeliveriesManualPrioritiesServer) AddTransportCompany(context.Context, *DeliveryManualToTransportCompany) (*DeliveryManualToTransportCompany, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTransportCompany not implemented")
+}
+func (UnimplementedDeliveriesManualPrioritiesServer) DeleteTransportCompany(context.Context, *DeliveryManualToTransportCompany) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTransportCompany not implemented")
 }
 func (UnimplementedDeliveriesManualPrioritiesServer) mustEmbedUnimplementedDeliveriesManualPrioritiesServer() {
 }
@@ -213,6 +241,42 @@ func _DeliveriesManualPriorities_Delete_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeliveriesManualPriorities_AddTransportCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeliveryManualToTransportCompany)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeliveriesManualPrioritiesServer).AddTransportCompany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.DeliveriesManualPriorities/AddTransportCompany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeliveriesManualPrioritiesServer).AddTransportCompany(ctx, req.(*DeliveryManualToTransportCompany))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeliveriesManualPriorities_DeleteTransportCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeliveryManualToTransportCompany)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeliveriesManualPrioritiesServer).DeleteTransportCompany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.DeliveriesManualPriorities/DeleteTransportCompany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeliveriesManualPrioritiesServer).DeleteTransportCompany(ctx, req.(*DeliveryManualToTransportCompany))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DeliveriesManualPriorities_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.DeliveriesManualPriorities",
 	HandlerType: (*DeliveriesManualPrioritiesServer)(nil),
@@ -236,6 +300,14 @@ var _DeliveriesManualPriorities_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _DeliveriesManualPriorities_Delete_Handler,
+		},
+		{
+			MethodName: "AddTransportCompany",
+			Handler:    _DeliveriesManualPriorities_AddTransportCompany_Handler,
+		},
+		{
+			MethodName: "DeleteTransportCompany",
+			Handler:    _DeliveriesManualPriorities_DeleteTransportCompany_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
