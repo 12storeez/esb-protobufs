@@ -562,6 +562,7 @@ export namespace geo {
     language: LanguageType;
     name: string;
     limit: number;
+    offset: number;
   }
 
   export interface SuggestCountryResponse {
@@ -2067,6 +2068,19 @@ export namespace logistics {
       request: DeliveryManualPriorityId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    addTransportCompany(
+      request: DeliveryManualToTransportCompany,
+      metadata?: any
+    ): Observable<DeliveryManualToTransportCompany>;
+    deleteTransportCompany(
+      request: DeliveryManualToTransportCompany,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface DeliveryManualToTransportCompany {
+    delivery_manual_priority_id: number;
+    transport_company_id: number;
   }
 
   export interface DeliveryManualPriorityId {
@@ -2076,13 +2090,13 @@ export namespace logistics {
   export interface DeliveryManualPriority {
     delivery_manual_priority_id: number;
     zone_id: number;
-    transport_company_id: number;
     delivery_method_id: number;
     value: number;
     max_days: number;
     tariff: number;
     created: string;
     updated: string;
+    transport_companies_ids: number[];
   }
 
   export interface ListDeliveriesManualPrioritiesRequest {
