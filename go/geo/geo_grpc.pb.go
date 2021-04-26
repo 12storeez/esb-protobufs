@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // GeoClient is the client API for Geo service.
@@ -146,7 +147,7 @@ type UnsafeGeoServer interface {
 }
 
 func RegisterGeoServer(s grpc.ServiceRegistrar, srv GeoServer) {
-	s.RegisterService(&_Geo_serviceDesc, srv)
+	s.RegisterService(&Geo_ServiceDesc, srv)
 }
 
 func _Geo_CountryDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -275,7 +276,10 @@ func _Geo_AddressDetails_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Geo_serviceDesc = grpc.ServiceDesc{
+// Geo_ServiceDesc is the grpc.ServiceDesc for Geo service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Geo_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "geo.geo",
 	HandlerType: (*GeoServer)(nil),
 	Methods: []grpc.MethodDesc{
