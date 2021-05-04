@@ -341,6 +341,10 @@ func local_request_DeliveriesManualPriorities_AddTransportCompany_0(ctx context.
 
 }
 
+var (
+	filter_DeliveriesManualPriorities_DeleteTransportCompany_0 = &utilities.DoubleArray{Encoding: map[string]int{"delivery_manual_priority_id": 0, "transport_company_id": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+)
+
 func request_DeliveriesManualPriorities_DeleteTransportCompany_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveriesManualPrioritiesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeliveryManualToTransportCompany
 	var metadata runtime.ServerMetadata
@@ -370,6 +374,13 @@ func request_DeliveriesManualPriorities_DeleteTransportCompany_0(ctx context.Con
 	protoReq.TransportCompanyId, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transport_company_id", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DeliveriesManualPriorities_DeleteTransportCompany_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.DeleteTransportCompany(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -406,6 +417,13 @@ func local_request_DeliveriesManualPriorities_DeleteTransportCompany_0(ctx conte
 	protoReq.TransportCompanyId, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transport_company_id", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DeliveriesManualPriorities_DeleteTransportCompany_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.DeleteTransportCompany(ctx, &protoReq)
