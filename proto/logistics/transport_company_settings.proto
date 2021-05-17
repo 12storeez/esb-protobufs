@@ -63,4 +63,5 @@ message TransportCompanySettings {
   bool is_active = 5;
   string created = 6;
   string updated = 7;
+  int32 delivery_days = 8;
 }
