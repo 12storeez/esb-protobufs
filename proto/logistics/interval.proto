@@ -16,6 +16,13 @@ service Intervals {
     };
   }
 
+  rpc CreateMany(CreateManyIntervalRequest) returns (CreateManyIntervalResponse) {
+    option (google.api.http) = {
+      post: "/v1/intervals/create_many"
+      body: "*"
+    };
+  }
+
   rpc Get(IntervalId) returns (Interval) {
     option (google.api.http) = {
       get: "/v1/intervals/{interval_id}"
@@ -69,4 +76,12 @@ message Interval  {
 
 message IntervalId {
   int32 interval_id = 1;
+}
+
+message CreateManyIntervalRequest {
+  repeated Interval intervals = 1;
+}
+
+message CreateManyIntervalResponse {
+  repeated int32 interval_id = 1;
 }

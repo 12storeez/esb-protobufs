@@ -2043,6 +2043,7 @@ export namespace logistics {
     is_active: boolean;
     created: string;
     updated: string;
+    delivery_days: number;
   }
 }
 
@@ -2068,6 +2069,10 @@ export namespace logistics {
       request: DeliveryManualPriorityId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    createOrUpdate(
+      request: DeliveryManualPriority,
+      metadata?: any
+    ): Observable<DeliveryManualPriority>;
     addTransportCompany(
       request: DeliveryManualToTransportCompany,
       metadata?: any
@@ -2081,6 +2086,7 @@ export namespace logistics {
   export interface DeliveryManualToTransportCompany {
     delivery_manual_priority_id: number;
     transport_company_id: number;
+    value: number;
   }
 
   export interface DeliveryManualPriorityId {
@@ -2091,12 +2097,16 @@ export namespace logistics {
     delivery_manual_priority_id: number;
     zone_id: number;
     delivery_method_id: number;
-    value: number;
     max_days: number;
     tariff: number;
     created: string;
     updated: string;
-    transport_companies_ids: number[];
+    transport_companies_values: TransportCompanyValue[];
+  }
+
+  export interface TransportCompanyValue {
+    transport_company_id: number;
+    value: number;
   }
 
   export interface ListDeliveriesManualPrioritiesRequest {
@@ -2214,6 +2224,10 @@ export namespace logistics {
 export namespace logistics {
   export interface Intervals {
     create(request: Interval, metadata?: any): Observable<IntervalId>;
+    createMany(
+      request: CreateManyIntervalRequest,
+      metadata?: any
+    ): Observable<CreateManyIntervalResponse>;
     get(request: IntervalId, metadata?: any): Observable<Interval>;
     list(
       request: ListIntervalsRequest,
@@ -2253,6 +2267,14 @@ export namespace logistics {
 
   export interface IntervalId {
     interval_id: number;
+  }
+
+  export interface CreateManyIntervalRequest {
+    intervals: Interval[];
+  }
+
+  export interface CreateManyIntervalResponse {
+    interval_id: number[];
   }
 }
 

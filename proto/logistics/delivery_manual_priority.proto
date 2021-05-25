@@ -41,6 +41,13 @@ service DeliveriesManualPriorities {
     };
   }
 
+  rpc CreateOrUpdate(DeliveryManualPriority) returns (DeliveryManualPriority) {
+    option (google.api.http) = {
+      put: "/v1/deliveries/manual-priorities/{delivery_manual_priority_id}"
+      body: "*"
+    };
+  }
+
   rpc AddTransportCompany(DeliveryManualToTransportCompany) returns (DeliveryManualToTransportCompany) {
     option (google.api.http) = {
       post: "/v1/deliveries/manual-priorities/{delivery_manual_priority_id}/transport-companies"

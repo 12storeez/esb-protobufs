@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // DeliveriesManualPrioritiesClient is the client API for DeliveriesManualPriorities service.
@@ -23,6 +24,7 @@ type DeliveriesManualPrioritiesClient interface {
 	List(ctx context.Context, in *ListDeliveriesManualPrioritiesRequest, opts ...grpc.CallOption) (*ListDeliveriesManualPrioritiesResponse, error)
 	Update(ctx context.Context, in *DeliveryManualPriority, opts ...grpc.CallOption) (*DeliveryManualPriority, error)
 	Delete(ctx context.Context, in *DeliveryManualPriorityId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateOrUpdate(ctx context.Context, in *DeliveryManualPriority, opts ...grpc.CallOption) (*DeliveryManualPriority, error)
 	AddTransportCompany(ctx context.Context, in *DeliveryManualToTransportCompany, opts ...grpc.CallOption) (*DeliveryManualToTransportCompany, error)
 	DeleteTransportCompany(ctx context.Context, in *DeliveryManualToTransportCompany, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -80,6 +82,15 @@ func (c *deliveriesManualPrioritiesClient) Delete(ctx context.Context, in *Deliv
 	return out, nil
 }
 
+func (c *deliveriesManualPrioritiesClient) CreateOrUpdate(ctx context.Context, in *DeliveryManualPriority, opts ...grpc.CallOption) (*DeliveryManualPriority, error) {
+	out := new(DeliveryManualPriority)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveriesManualPriorities/CreateOrUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deliveriesManualPrioritiesClient) AddTransportCompany(ctx context.Context, in *DeliveryManualToTransportCompany, opts ...grpc.CallOption) (*DeliveryManualToTransportCompany, error) {
 	out := new(DeliveryManualToTransportCompany)
 	err := c.cc.Invoke(ctx, "/logistics.DeliveriesManualPriorities/AddTransportCompany", in, out, opts...)
@@ -107,6 +118,7 @@ type DeliveriesManualPrioritiesServer interface {
 	List(context.Context, *ListDeliveriesManualPrioritiesRequest) (*ListDeliveriesManualPrioritiesResponse, error)
 	Update(context.Context, *DeliveryManualPriority) (*DeliveryManualPriority, error)
 	Delete(context.Context, *DeliveryManualPriorityId) (*emptypb.Empty, error)
+	CreateOrUpdate(context.Context, *DeliveryManualPriority) (*DeliveryManualPriority, error)
 	AddTransportCompany(context.Context, *DeliveryManualToTransportCompany) (*DeliveryManualToTransportCompany, error)
 	DeleteTransportCompany(context.Context, *DeliveryManualToTransportCompany) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDeliveriesManualPrioritiesServer()
@@ -131,6 +143,9 @@ func (UnimplementedDeliveriesManualPrioritiesServer) Update(context.Context, *De
 func (UnimplementedDeliveriesManualPrioritiesServer) Delete(context.Context, *DeliveryManualPriorityId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedDeliveriesManualPrioritiesServer) CreateOrUpdate(context.Context, *DeliveryManualPriority) (*DeliveryManualPriority, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrUpdate not implemented")
+}
 func (UnimplementedDeliveriesManualPrioritiesServer) AddTransportCompany(context.Context, *DeliveryManualToTransportCompany) (*DeliveryManualToTransportCompany, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTransportCompany not implemented")
 }
@@ -148,7 +163,7 @@ type UnsafeDeliveriesManualPrioritiesServer interface {
 }
 
 func RegisterDeliveriesManualPrioritiesServer(s grpc.ServiceRegistrar, srv DeliveriesManualPrioritiesServer) {
-	s.RegisterService(&_DeliveriesManualPriorities_serviceDesc, srv)
+	s.RegisterService(&DeliveriesManualPriorities_ServiceDesc, srv)
 }
 
 func _DeliveriesManualPriorities_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -241,6 +256,24 @@ func _DeliveriesManualPriorities_Delete_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeliveriesManualPriorities_CreateOrUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeliveryManualPriority)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeliveriesManualPrioritiesServer).CreateOrUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.DeliveriesManualPriorities/CreateOrUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeliveriesManualPrioritiesServer).CreateOrUpdate(ctx, req.(*DeliveryManualPriority))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeliveriesManualPriorities_AddTransportCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryManualToTransportCompany)
 	if err := dec(in); err != nil {
@@ -277,7 +310,10 @@ func _DeliveriesManualPriorities_DeleteTransportCompany_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-var _DeliveriesManualPriorities_serviceDesc = grpc.ServiceDesc{
+// DeliveriesManualPriorities_ServiceDesc is the grpc.ServiceDesc for DeliveriesManualPriorities service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DeliveriesManualPriorities_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.DeliveriesManualPriorities",
 	HandlerType: (*DeliveriesManualPrioritiesServer)(nil),
 	Methods: []grpc.MethodDesc{
@@ -300,6 +336,10 @@ var _DeliveriesManualPriorities_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _DeliveriesManualPriorities_Delete_Handler,
+		},
+		{
+			MethodName: "CreateOrUpdate",
+			Handler:    _DeliveriesManualPriorities_CreateOrUpdate_Handler,
 		},
 		{
 			MethodName: "AddTransportCompany",

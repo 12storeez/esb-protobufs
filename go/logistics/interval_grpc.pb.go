@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // IntervalsClient is the client API for Intervals service.
@@ -19,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IntervalsClient interface {
 	Create(ctx context.Context, in *Interval, opts ...grpc.CallOption) (*IntervalId, error)
+	CreateMany(ctx context.Context, in *CreateManyIntervalRequest, opts ...grpc.CallOption) (*CreateManyIntervalResponse, error)
 	Get(ctx context.Context, in *IntervalId, opts ...grpc.CallOption) (*Interval, error)
 	List(ctx context.Context, in *ListIntervalsRequest, opts ...grpc.CallOption) (*ListIntervalsResponse, error)
 	Update(ctx context.Context, in *Interval, opts ...grpc.CallOption) (*Interval, error)
@@ -36,6 +38,15 @@ func NewIntervalsClient(cc grpc.ClientConnInterface) IntervalsClient {
 func (c *intervalsClient) Create(ctx context.Context, in *Interval, opts ...grpc.CallOption) (*IntervalId, error) {
 	out := new(IntervalId)
 	err := c.cc.Invoke(ctx, "/logistics.Intervals/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *intervalsClient) CreateMany(ctx context.Context, in *CreateManyIntervalRequest, opts ...grpc.CallOption) (*CreateManyIntervalResponse, error) {
+	out := new(CreateManyIntervalResponse)
+	err := c.cc.Invoke(ctx, "/logistics.Intervals/CreateMany", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,6 +94,7 @@ func (c *intervalsClient) Delete(ctx context.Context, in *IntervalId, opts ...gr
 // for forward compatibility
 type IntervalsServer interface {
 	Create(context.Context, *Interval) (*IntervalId, error)
+	CreateMany(context.Context, *CreateManyIntervalRequest) (*CreateManyIntervalResponse, error)
 	Get(context.Context, *IntervalId) (*Interval, error)
 	List(context.Context, *ListIntervalsRequest) (*ListIntervalsResponse, error)
 	Update(context.Context, *Interval) (*Interval, error)
@@ -96,6 +108,9 @@ type UnimplementedIntervalsServer struct {
 
 func (UnimplementedIntervalsServer) Create(context.Context, *Interval) (*IntervalId, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedIntervalsServer) CreateMany(context.Context, *CreateManyIntervalRequest) (*CreateManyIntervalResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMany not implemented")
 }
 func (UnimplementedIntervalsServer) Get(context.Context, *IntervalId) (*Interval, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -119,7 +134,7 @@ type UnsafeIntervalsServer interface {
 }
 
 func RegisterIntervalsServer(s grpc.ServiceRegistrar, srv IntervalsServer) {
-	s.RegisterService(&_Intervals_serviceDesc, srv)
+	s.RegisterService(&Intervals_ServiceDesc, srv)
 }
 
 func _Intervals_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -136,6 +151,24 @@ func _Intervals_Create_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(IntervalsServer).Create(ctx, req.(*Interval))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Intervals_CreateMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateManyIntervalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IntervalsServer).CreateMany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.Intervals/CreateMany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IntervalsServer).CreateMany(ctx, req.(*CreateManyIntervalRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -212,13 +245,20 @@ func _Intervals_Delete_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Intervals_serviceDesc = grpc.ServiceDesc{
+// Intervals_ServiceDesc is the grpc.ServiceDesc for Intervals service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Intervals_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.Intervals",
 	HandlerType: (*IntervalsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
 			Handler:    _Intervals_Create_Handler,
+		},
+		{
+			MethodName: "CreateMany",
+			Handler:    _Intervals_CreateMany_Handler,
 		},
 		{
 			MethodName: "Get",
