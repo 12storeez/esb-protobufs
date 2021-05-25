@@ -45,6 +45,7 @@ message Country {
 message Phone  {
   int32 prefix= 1;
   repeated string masks = 2;
+  string primary_mask = 3;
 }
 
 message Continent {

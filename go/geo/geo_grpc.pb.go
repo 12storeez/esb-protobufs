@@ -99,7 +99,7 @@ func (c *geoClient) AddressDetails(ctx context.Context, in *AddressDetailsParams
 }
 
 // GeoServer is the server API for Geo service.
-// All implementations must embed UnimplementedGeoServer
+// All implementations should embed UnimplementedGeoServer
 // for forward compatibility
 type GeoServer interface {
 	CountryDetails(context.Context, *CountryDetailsParams) (*Country, error)
@@ -109,10 +109,9 @@ type GeoServer interface {
 	CityByIP(context.Context, *CityByIPParams) (*CityByIPResponse, error)
 	SuggestAddress(context.Context, *SuggestAddressParams) (*SuggestAddressResponse, error)
 	AddressDetails(context.Context, *AddressDetailsParams) (*Address, error)
-	mustEmbedUnimplementedGeoServer()
 }
 
-// UnimplementedGeoServer must be embedded to have forward compatible implementations.
+// UnimplementedGeoServer should be embedded to have forward compatible implementations.
 type UnimplementedGeoServer struct {
 }
 
@@ -137,7 +136,6 @@ func (UnimplementedGeoServer) SuggestAddress(context.Context, *SuggestAddressPar
 func (UnimplementedGeoServer) AddressDetails(context.Context, *AddressDetailsParams) (*Address, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddressDetails not implemented")
 }
-func (UnimplementedGeoServer) mustEmbedUnimplementedGeoServer() {}
 
 // UnsafeGeoServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to GeoServer will
