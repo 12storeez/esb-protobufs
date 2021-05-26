@@ -545,6 +545,7 @@ export namespace geo {
   export interface Phone {
     prefix: number;
     masks: string[];
+    primary_mask: string;
   }
 
   export interface Continent {
