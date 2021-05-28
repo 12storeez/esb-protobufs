@@ -54,6 +54,12 @@ service Messages {
   }
 }
 
+enum BorderType {
+  less = 0;
+  none = 1;
+  greater = 2;
+}
+
 message MessageToTransportCompany {
   int32 message_id = 1;
   int32 transport_company_id = 2;
@@ -69,8 +75,8 @@ message Message {
   int32 zone_id = 2;
   int32 delivery_method_id = 3;
   int32 payment_method_id = 4;
-  int32 price_border = 5;
-  int32 product_quantity_border = 6;
+  BorderType price_border = 5;
+  BorderType product_quantity_border = 6;
   string created = 7;
   string updated = 8;
   repeated TransportCompanyValue transport_companies_values = 9;

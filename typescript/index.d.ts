@@ -2245,6 +2245,12 @@ export namespace logistics {
     ): Observable<google.protobuf.Empty>;
   }
 
+  export enum BorderType {
+    less = 0,
+    none = 1,
+    greater = 2,
+  }
+
   export interface MessageToTransportCompany {
     message_id: number;
     transport_company_id: number;
@@ -2260,8 +2266,8 @@ export namespace logistics {
     zone_id: number;
     delivery_method_id: number;
     payment_method_id: number;
-    price_border: number;
-    product_quantity_border: number;
+    price_border: BorderType;
+    product_quantity_border: BorderType;
     created: string;
     updated: string;
     transport_companies_values: TransportCompanyValue[];
