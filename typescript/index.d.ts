@@ -2223,6 +2223,67 @@ export namespace logistics {
 }
 
 export namespace logistics {
+  export interface Messages {
+    create(request: Message, metadata?: any): Observable<MessageId>;
+    get(request: MessageId, metadata?: any): Observable<Message>;
+    list(
+      request: ListMessagesRequest,
+      metadata?: any
+    ): Observable<ListMessagesResponse>;
+    update(request: Message, metadata?: any): Observable<Message>;
+    delete(
+      request: MessageId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    addTransportCompany(
+      request: MessageToTransportCompany,
+      metadata?: any
+    ): Observable<MessageToTransportCompany>;
+    deleteTransportCompany(
+      request: MessageToTransportCompany,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface MessageToTransportCompany {
+    message_id: number;
+    transport_company_id: number;
+    value: string;
+  }
+
+  export interface MessageId {
+    message_id: number;
+  }
+
+  export interface Message {
+    message_id: number;
+    zone_id: number;
+    delivery_method_id: number;
+    payment_method_id: number;
+    price_border: number;
+    product_quantity_border: number;
+    created: string;
+    updated: string;
+    transport_companies_values: TransportCompanyValue[];
+  }
+
+  export interface TransportCompanyValue {
+    transport_company_id: number;
+    value: string;
+  }
+
+  export interface ListMessagesRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListMessagesResponse {
+    results: Message[];
+    total: number;
+  }
+}
+
+export namespace logistics {
   export interface Intervals {
     create(request: Interval, metadata?: any): Observable<IntervalId>;
     createMany(
