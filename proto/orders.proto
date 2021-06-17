@@ -6,9 +6,7 @@ package orders;
 
 service Offline {
     rpc ByClient (ParamsOfflineByClient) returns (ResponseOffline) {
-    };
-    rpc ByClientId (ParamsOfflineById) returns (ResponseOfflineById){
-    };
+    }
 }
 
 message ParamsOfflineByClient {
@@ -17,17 +15,7 @@ message ParamsOfflineByClient {
     int32 offset = 3;
 }
 
-message ParamsOfflineById {
-    int32 client_id = 1;
-    int32 order_id = 2;
-}
-
 message ResponseOffline {
-    repeated Order result = 1;
-    int32 total = 2;
-}
-
-message ResponseOfflineById {
     repeated Order result = 1;
     int32 total = 2;
 }
