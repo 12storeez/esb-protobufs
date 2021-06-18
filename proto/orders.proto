@@ -7,7 +7,7 @@ package orders;
 service Offline {
     rpc ByClient (ParamsOfflineByClient) returns (ResponseOffline) {
     }
-    rpc GetById (ParamsOfflineOrderById) returns (ResponseOfflineById) {
+    rpc GetById (ParamsOrderById) returns (ResponseOfflineById) {
     }
 }
 
@@ -22,7 +22,7 @@ message ResponseOffline {
     int32 total = 2;
 }
 
-message ParamsOfflineOrderById {
+message ParamsOrderById {
     int32 id = 1;
 }
 
