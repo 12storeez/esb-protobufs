@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OfflineClient interface {
 	ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...grpc.CallOption) (*ResponseOffline, error)
-	GetById(ctx context.Context, in *OfflineId, opts ...grpc.CallOption) (*ResponseOfflineById, error)
+	GetById(ctx context.Context, in *ParamsOfflineOrderById, opts ...grpc.CallOption) (*ResponseOfflineById, error)
 }
 
 type offlineClient struct {
@@ -43,7 +43,7 @@ func (c *offlineClient) ByClient(ctx context.Context, in *ParamsOfflineByClient,
 	return out, nil
 }
 
-func (c *offlineClient) GetById(ctx context.Context, in *OfflineId, opts ...grpc.CallOption) (*ResponseOfflineById, error) {
+func (c *offlineClient) GetById(ctx context.Context, in *ParamsOfflineOrderById, opts ...grpc.CallOption) (*ResponseOfflineById, error) {
 	out := new(ResponseOfflineById)
 	err := c.cc.Invoke(ctx, "/orders.Offline/GetById", in, out, opts...)
 	if err != nil {
@@ -57,7 +57,7 @@ func (c *offlineClient) GetById(ctx context.Context, in *OfflineId, opts ...grpc
 // for forward compatibility
 type OfflineServer interface {
 	ByClient(context.Context, *ParamsOfflineByClient) (*ResponseOffline, error)
-	GetById(context.Context, *OfflineId) (*ResponseOfflineById, error)
+	GetById(context.Context, *ParamsOfflineOrderById) (*ResponseOfflineById, error)
 	mustEmbedUnimplementedOfflineServer()
 }
 
@@ -68,7 +68,7 @@ type UnimplementedOfflineServer struct {
 func (UnimplementedOfflineServer) ByClient(context.Context, *ParamsOfflineByClient) (*ResponseOffline, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ByClient not implemented")
 }
-func (UnimplementedOfflineServer) GetById(context.Context, *OfflineId) (*ResponseOfflineById, error) {
+func (UnimplementedOfflineServer) GetById(context.Context, *ParamsOfflineOrderById) (*ResponseOfflineById, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
 func (UnimplementedOfflineServer) mustEmbedUnimplementedOfflineServer() {}
@@ -103,7 +103,7 @@ func _Offline_ByClient_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _Offline_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OfflineId)
+	in := new(ParamsOfflineOrderById)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -115,7 +115,7 @@ func _Offline_GetById_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: "/orders.Offline/GetById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OfflineServer).GetById(ctx, req.(*OfflineId))
+		return srv.(OfflineServer).GetById(ctx, req.(*ParamsOfflineOrderById))
 	}
 	return interceptor(ctx, in, info, handler)
 }
