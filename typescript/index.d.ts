@@ -315,10 +315,10 @@ export namespace orders {
       request: ParamsOfflineByClient,
       metadata?: any
     ): Observable<ResponseOffline>;
-    byOfflineOrderId(
-      request: ParamsOfflineOrderById,
+    getById(
+      request: OfflineId,
       metadata?: any
-    ): Observable<ResponseOfflineOrderById>;
+    ): Observable<ResponseOfflineById>;
   }
 
   export interface ParamsOfflineByClient {
@@ -332,11 +332,11 @@ export namespace orders {
     total: number;
   }
 
-  export interface ParamsOfflineOrderById {
+  export interface OfflineId {
     id: number;
   }
 
-  export interface ResponseOfflineOrderById {
+  export interface ResponseOfflineById {
     result: Order;
   }
 
