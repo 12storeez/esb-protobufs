@@ -66,7 +66,7 @@ func local_request_Offline_ByClient_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func request_Offline_GetById_0(ctx context.Context, marshaler runtime.Marshaler, client OfflineClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ParamsOfflineOrderById
+	var protoReq ParamsOrderById
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,7 +83,7 @@ func request_Offline_GetById_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_Offline_GetById_0(ctx context.Context, marshaler runtime.Marshaler, server OfflineServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ParamsOfflineOrderById
+	var protoReq ParamsOrderById
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
