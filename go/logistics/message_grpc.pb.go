@@ -23,6 +23,7 @@ type MessagesClient interface {
 	Get(ctx context.Context, in *MessageId, opts ...grpc.CallOption) (*Message, error)
 	List(ctx context.Context, in *ListMessagesRequest, opts ...grpc.CallOption) (*ListMessagesResponse, error)
 	Update(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
+	Upsert(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	Delete(ctx context.Context, in *MessageId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddTransportCompany(ctx context.Context, in *MessageToTransportCompany, opts ...grpc.CallOption) (*MessageToTransportCompany, error)
 	DeleteTransportCompany(ctx context.Context, in *MessageToTransportCompany, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -72,6 +73,15 @@ func (c *messagesClient) Update(ctx context.Context, in *Message, opts ...grpc.C
 	return out, nil
 }
 
+func (c *messagesClient) Upsert(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
+	out := new(Message)
+	err := c.cc.Invoke(ctx, "/logistics.Messages/Upsert", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *messagesClient) Delete(ctx context.Context, in *MessageId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/logistics.Messages/Delete", in, out, opts...)
@@ -107,6 +117,7 @@ type MessagesServer interface {
 	Get(context.Context, *MessageId) (*Message, error)
 	List(context.Context, *ListMessagesRequest) (*ListMessagesResponse, error)
 	Update(context.Context, *Message) (*Message, error)
+	Upsert(context.Context, *Message) (*Message, error)
 	Delete(context.Context, *MessageId) (*emptypb.Empty, error)
 	AddTransportCompany(context.Context, *MessageToTransportCompany) (*MessageToTransportCompany, error)
 	DeleteTransportCompany(context.Context, *MessageToTransportCompany) (*emptypb.Empty, error)
@@ -128,6 +139,9 @@ func (UnimplementedMessagesServer) List(context.Context, *ListMessagesRequest) (
 }
 func (UnimplementedMessagesServer) Update(context.Context, *Message) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedMessagesServer) Upsert(context.Context, *Message) (*Message, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Upsert not implemented")
 }
 func (UnimplementedMessagesServer) Delete(context.Context, *MessageId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -223,6 +237,24 @@ func _Messages_Update_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Messages_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Message)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessagesServer).Upsert(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.Messages/Upsert",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessagesServer).Upsert(ctx, req.(*Message))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Messages_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MessageId)
 	if err := dec(in); err != nil {
@@ -299,6 +331,10 @@ var Messages_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _Messages_Update_Handler,
+		},
+		{
+			MethodName: "Upsert",
+			Handler:    _Messages_Upsert_Handler,
 		},
 		{
 			MethodName: "Delete",

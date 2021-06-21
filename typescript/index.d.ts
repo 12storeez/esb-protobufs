@@ -2231,6 +2231,7 @@ export namespace logistics {
       metadata?: any
     ): Observable<ListMessagesResponse>;
     update(request: Message, metadata?: any): Observable<Message>;
+    upsert(request: Message, metadata?: any): Observable<Message>;
     delete(
       request: MessageId,
       metadata?: any
@@ -2270,10 +2271,10 @@ export namespace logistics {
     product_quantity_border: BorderType;
     created: string;
     updated: string;
-    transport_companies_values: TransportCompanyValue[];
+    transport_companies_values: MessageTransportCompanyValue[];
   }
 
-  export interface TransportCompanyValue {
+  export interface MessageTransportCompanyValue {
     transport_company_id: number;
     value: string;
   }
