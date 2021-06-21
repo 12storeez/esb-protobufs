@@ -34,6 +34,13 @@ service Messages {
     };
   }
 
+  rpc Upsert (Message) returns (Message) {
+    option (google.api.http) = {
+      put: "/v1/messages"
+      body: "*"
+    };
+  }
+
   rpc Delete (MessageId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/messages/{message_id}"
@@ -79,10 +86,10 @@ message Message {
   BorderType product_quantity_border = 6;
   string created = 7;
   string updated = 8;
-  repeated TransportCompanyValue transport_companies_values = 9;
+  repeated MessageTransportCompanyValue transport_companies_values = 9;
 }
 
-message TransportCompanyValue {
+message MessageTransportCompanyValue {
   int32 transport_company_id = 1;
   string value = 2;
 }
