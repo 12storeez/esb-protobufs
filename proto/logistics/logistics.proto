@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+
+service Logistics {
+  rpc CalculateWinners(WinnersParams) returns (WinnersResponse) {
+    option (google.api.http) = {
+      post: "/v1/calculate-winners"
+      body: "*"
+    };
+  }
+}
+
+message WinnersParams {
+  string country_iso_code = 1;
+  string geo_id = 2;
+  int32 order_price = 3;
+}
+
+message WinnersResponse {
+  repeated Winner results = 1;
+}
+
+message Winner {
+  int32 delivery_type_id = 1;
+  string DeliveryTypeTitle = 2;
+  DeliveryCompany winner_company = 3;
+  repeated PaymentType payments = 4;
+  repeated DeliveryDate delivery_date = 6;
+}
+
+message DeliveryCompany {
+  string code = 1;
+  string title = 2;
+}
+
+message PaymentType {
+  string code = 1;
+  string title = 2;
+  int32 delivery_price = 3;
+}
+
+message DeliveryDate {
+  string date = 1;
+  repeated Interval intervals = 2;
+}
+
+message Interval {
+  string time_from = 1;
+  string time_to = 2;
+}
