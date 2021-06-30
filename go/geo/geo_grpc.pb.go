@@ -25,6 +25,7 @@ type GeoClient interface {
 	CityByIP(ctx context.Context, in *CityByIPParams, opts ...grpc.CallOption) (*CityByIPResponse, error)
 	SuggestAddress(ctx context.Context, in *SuggestAddressParams, opts ...grpc.CallOption) (*SuggestAddressResponse, error)
 	AddressDetails(ctx context.Context, in *AddressDetailsParams, opts ...grpc.CallOption) (*Address, error)
+	AddressZones(ctx context.Context, in *AddressZonesParams, opts ...grpc.CallOption) (*AddressZonesResponse, error)
 }
 
 type geoClient struct {
@@ -98,6 +99,15 @@ func (c *geoClient) AddressDetails(ctx context.Context, in *AddressDetailsParams
 	return out, nil
 }
 
+func (c *geoClient) AddressZones(ctx context.Context, in *AddressZonesParams, opts ...grpc.CallOption) (*AddressZonesResponse, error) {
+	out := new(AddressZonesResponse)
+	err := c.cc.Invoke(ctx, "/geo.geo/AddressZones", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GeoServer is the server API for Geo service.
 // All implementations should embed UnimplementedGeoServer
 // for forward compatibility
@@ -109,6 +119,7 @@ type GeoServer interface {
 	CityByIP(context.Context, *CityByIPParams) (*CityByIPResponse, error)
 	SuggestAddress(context.Context, *SuggestAddressParams) (*SuggestAddressResponse, error)
 	AddressDetails(context.Context, *AddressDetailsParams) (*Address, error)
+	AddressZones(context.Context, *AddressZonesParams) (*AddressZonesResponse, error)
 }
 
 // UnimplementedGeoServer should be embedded to have forward compatible implementations.
@@ -135,6 +146,9 @@ func (UnimplementedGeoServer) SuggestAddress(context.Context, *SuggestAddressPar
 }
 func (UnimplementedGeoServer) AddressDetails(context.Context, *AddressDetailsParams) (*Address, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddressDetails not implemented")
+}
+func (UnimplementedGeoServer) AddressZones(context.Context, *AddressZonesParams) (*AddressZonesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddressZones not implemented")
 }
 
 // UnsafeGeoServer may be embedded to opt out of forward compatibility for this service.
@@ -274,6 +288,24 @@ func _Geo_AddressDetails_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Geo_AddressZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddressZonesParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeoServer).AddressZones(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/geo.geo/AddressZones",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeoServer).AddressZones(ctx, req.(*AddressZonesParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Geo_ServiceDesc is the grpc.ServiceDesc for Geo service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -308,6 +340,10 @@ var Geo_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddressDetails",
 			Handler:    _Geo_AddressDetails_Handler,
+		},
+		{
+			MethodName: "AddressZones",
+			Handler:    _Geo_AddressZones_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
