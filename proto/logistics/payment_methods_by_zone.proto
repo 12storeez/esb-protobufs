@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service PaymentMethodsByZone {
+  rpc Create(PaymentMethodByZone) returns (PaymentMethodByZoneId) {
+    option (google.api.http) = {
+      post: "/v1/payment-methods-by-zone"
+      body: "*"
+    };
+  }
+
+  rpc Get (PaymentMethodByZoneId) returns (PaymentMethodByZone) {
+    option (google.api.http) = {
+      get: "/v1/payment-methods-by-zone/{payment_method_by_zone_id}"
+    };
+  }
+
+  rpc List (ListPaymentMethodsByZoneRequest) returns (ListPaymentMethodsByZoneResponse) {
+    option (google.api.http) = {
+      get: "/v1/payment-methods-by-zone"
+    };
+  }
+
+  rpc Update (PaymentMethodByZone) returns (PaymentMethodByZone) {
+    option (google.api.http) = {
+      patch: "/v1/payment-methods-by-zone/{payment_method_by_zone_id}"
+      body: "*"
+    };
+  }
+
+  rpc Upsert (PaymentMethodByZone) returns (PaymentMethodByZone) {
+    option (google.api.http) = {
+      put: "/v1/payment-methods-by-zone"
+      body: "*"
+    };
+  }
+
+  rpc Delete (PaymentMethodByZoneId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/payment-methods-by-zone/{payment_method_by_zone_id}"
+    };
+  }
+}
+
+message PaymentMethodByZone {
+  int32 payment_method_by_zone_id = 1;
+  int32 zone_id = 2;
+  int32 delivery_method_id = 3;
+  int32 payment_method_id = 4;
+  string created = 5;
+  string updated = 6;
+  repeated PaymentMethodByZoneToTransportCompany transport_companies = 7;
+}
+
+message PaymentMethodByZoneToTransportCompany {
+  int32 payment_method_by_zone_id = 1;
+  int32 transport_company_id = 2;
+}
+
+message PaymentMethodByZoneId {
+  int32 payment_method_by_zone_id = 1;
+}
+
+message ListPaymentMethodsByZoneRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message ListPaymentMethodsByZoneResponse {
+  repeated PaymentMethodByZone results = 1;
+  int32 total = 2;
+}
