@@ -46,10 +46,10 @@ message PaymentType {
 
 message DeliveryDate {
   string date = 1;
-  repeated Interval intervals = 2;
+  repeated DeliveryInterval intervals = 2;
 }
 
-message Interval {
+message DeliveryInterval {
   string time_from = 1;
   string time_to = 2;
 }
