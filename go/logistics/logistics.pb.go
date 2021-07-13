@@ -333,8 +333,8 @@ type DeliveryDate struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Date      string      `protobuf:"bytes,1,opt,name=date,proto3" json:"date,omitempty"`
-	Intervals []*Interval `protobuf:"bytes,2,rep,name=intervals,proto3" json:"intervals,omitempty"`
+	Date      string              `protobuf:"bytes,1,opt,name=date,proto3" json:"date,omitempty"`
+	Intervals []*DeliveryInterval `protobuf:"bytes,2,rep,name=intervals,proto3" json:"intervals,omitempty"`
 }
 
 func (x *DeliveryDate) Reset() {
@@ -376,14 +376,14 @@ func (x *DeliveryDate) GetDate() string {
 	return ""
 }
 
-func (x *DeliveryDate) GetIntervals() []*Interval {
+func (x *DeliveryDate) GetIntervals() []*DeliveryInterval {
 	if x != nil {
 		return x.Intervals
 	}
 	return nil
 }
 
-type Interval struct {
+type DeliveryInterval struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -392,8 +392,8 @@ type Interval struct {
 	TimeTo   string `protobuf:"bytes,2,opt,name=time_to,json=timeTo,proto3" json:"time_to,omitempty"`
 }
 
-func (x *Interval) Reset() {
-	*x = Interval{}
+func (x *DeliveryInterval) Reset() {
+	*x = DeliveryInterval{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_logistics_logistics_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -401,13 +401,13 @@ func (x *Interval) Reset() {
 	}
 }
 
-func (x *Interval) String() string {
+func (x *DeliveryInterval) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Interval) ProtoMessage() {}
+func (*DeliveryInterval) ProtoMessage() {}
 
-func (x *Interval) ProtoReflect() protoreflect.Message {
+func (x *DeliveryInterval) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_logistics_logistics_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -419,19 +419,19 @@ func (x *Interval) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Interval.ProtoReflect.Descriptor instead.
-func (*Interval) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeliveryInterval.ProtoReflect.Descriptor instead.
+func (*DeliveryInterval) Descriptor() ([]byte, []int) {
 	return file_proto_logistics_logistics_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *Interval) GetTimeFrom() string {
+func (x *DeliveryInterval) GetTimeFrom() string {
 	if x != nil {
 		return x.TimeFrom
 	}
 	return ""
 }
 
-func (x *Interval) GetTimeTo() string {
+func (x *DeliveryInterval) GetTimeTo() string {
 	if x != nil {
 		return x.TimeTo
 	}
@@ -484,12 +484,13 @@ var file_proto_logistics_logistics_proto_rawDesc = []byte{
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x25, 0x0a, 0x0e, 0x64,
 	0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x5f, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x03, 0x20,
 	0x01, 0x28, 0x05, 0x52, 0x0d, 0x64, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x50, 0x72, 0x69,
-	0x63, 0x65, 0x22, 0x55, 0x0a, 0x0c, 0x44, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x44, 0x61,
+	0x63, 0x65, 0x22, 0x5d, 0x0a, 0x0c, 0x44, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x44, 0x61,
 	0x74, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x12, 0x31, 0x0a, 0x09, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x76,
-	0x61, 0x6c, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6c, 0x6f, 0x67, 0x69,
-	0x73, 0x74, 0x69, 0x63, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61, 0x6c, 0x52, 0x09,
-	0x69, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61, 0x6c, 0x73, 0x22, 0x40, 0x0a, 0x08, 0x49, 0x6e, 0x74,
+	0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x12, 0x39, 0x0a, 0x09, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x76,
+	0x61, 0x6c, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x6c, 0x6f, 0x67, 0x69,
+	0x73, 0x74, 0x69, 0x63, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x49, 0x6e,
+	0x74, 0x65, 0x72, 0x76, 0x61, 0x6c, 0x52, 0x09, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x76, 0x61, 0x6c,
+	0x73, 0x22, 0x48, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x49, 0x6e, 0x74,
 	0x65, 0x72, 0x76, 0x61, 0x6c, 0x12, 0x1b, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x66, 0x72,
 	0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x74, 0x69, 0x6d, 0x65, 0x46, 0x72,
 	0x6f, 0x6d, 0x12, 0x17, 0x0a, 0x07, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x74, 0x6f, 0x18, 0x02, 0x20,
@@ -519,20 +520,20 @@ func file_proto_logistics_logistics_proto_rawDescGZIP() []byte {
 
 var file_proto_logistics_logistics_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_proto_logistics_logistics_proto_goTypes = []interface{}{
-	(*WinnersParams)(nil),   // 0: logistics.WinnersParams
-	(*WinnersResponse)(nil), // 1: logistics.WinnersResponse
-	(*Winner)(nil),          // 2: logistics.Winner
-	(*DeliveryCompany)(nil), // 3: logistics.DeliveryCompany
-	(*PaymentType)(nil),     // 4: logistics.PaymentType
-	(*DeliveryDate)(nil),    // 5: logistics.DeliveryDate
-	(*Interval)(nil),        // 6: logistics.Interval
+	(*WinnersParams)(nil),    // 0: logistics.WinnersParams
+	(*WinnersResponse)(nil),  // 1: logistics.WinnersResponse
+	(*Winner)(nil),           // 2: logistics.Winner
+	(*DeliveryCompany)(nil),  // 3: logistics.DeliveryCompany
+	(*PaymentType)(nil),      // 4: logistics.PaymentType
+	(*DeliveryDate)(nil),     // 5: logistics.DeliveryDate
+	(*DeliveryInterval)(nil), // 6: logistics.DeliveryInterval
 }
 var file_proto_logistics_logistics_proto_depIdxs = []int32{
 	2, // 0: logistics.WinnersResponse.results:type_name -> logistics.Winner
 	3, // 1: logistics.Winner.winner_company:type_name -> logistics.DeliveryCompany
 	4, // 2: logistics.Winner.payments:type_name -> logistics.PaymentType
 	5, // 3: logistics.Winner.delivery_date:type_name -> logistics.DeliveryDate
-	6, // 4: logistics.DeliveryDate.intervals:type_name -> logistics.Interval
+	6, // 4: logistics.DeliveryDate.intervals:type_name -> logistics.DeliveryInterval
 	0, // 5: logistics.Logistics.CalculateWinners:input_type -> logistics.WinnersParams
 	1, // 6: logistics.Logistics.CalculateWinners:output_type -> logistics.WinnersResponse
 	6, // [6:7] is the sub-list for method output_type
@@ -621,7 +622,7 @@ func file_proto_logistics_logistics_proto_init() {
 			}
 		}
 		file_proto_logistics_logistics_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Interval); i {
+			switch v := v.(*DeliveryInterval); i {
 			case 0:
 				return &v.state
 			case 1:
