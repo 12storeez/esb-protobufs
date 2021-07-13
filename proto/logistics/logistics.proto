@@ -28,28 +28,28 @@ message WinnersResponse {
 message Winner {
   int32 delivery_type_id = 1;
   string DeliveryTypeTitle = 2;
-  DeliveryCompany winner_company = 3;
-  repeated PaymentType payments = 4;
-  repeated DeliveryDate delivery_date = 6;
+  WinnerDeliveryCompany winner_company = 3;
+  repeated WinnerPaymentType payments = 4;
+  repeated WinnerDeliveryDate delivery_date = 6;
 }
 
-message DeliveryCompany {
+message WinnerDeliveryCompany {
   string code = 1;
   string title = 2;
 }
 
-message PaymentType {
+message WinnerPaymentType {
   string code = 1;
   string title = 2;
   int32 delivery_price = 3;
 }
 
-message DeliveryDate {
+message WinnerDeliveryDate {
   string date = 1;
-  repeated DeliveryInterval intervals = 2;
+  repeated WinnerDeliveryInterval intervals = 2;
 }
 
-message DeliveryInterval {
+message WinnerDeliveryInterval {
   string time_from = 1;
   string time_to = 2;
 }
