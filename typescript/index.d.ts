@@ -2032,6 +2032,53 @@ export namespace logistics {
 }
 
 export namespace logistics {
+  export interface ZonesToRegions {
+    create(request: ZoneToRegion, metadata?: any): Observable<ZoneToRegionId>;
+    createMany(
+      request: CreateManyZoneToRegionRequest,
+      metadata?: any
+    ): Observable<CreateManyZoneToRegionResponse>;
+    get(request: ZoneToRegionId, metadata?: any): Observable<ZoneToRegion>;
+    list(
+      request: ListZonesToRegionsRequest,
+      metadata?: any
+    ): Observable<ListZonesToRegionsResponse>;
+    update(request: ZoneToRegion, metadata?: any): Observable<ZoneToRegion>;
+    delete(
+      request: ZoneToRegionId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface ZoneToRegion {
+    zone_id: number;
+    region_id: string;
+  }
+
+  export interface ZoneToRegionId {
+    zone_id: number;
+  }
+
+  export interface ListZonesToRegionsRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListZonesToRegionsResponse {
+    results: ZoneToRegion[];
+    total: number;
+  }
+
+  export interface CreateManyZoneToRegionRequest {
+    zones_to_regions: ZoneToRegion[];
+  }
+
+  export interface CreateManyZoneToRegionResponse {
+    zone_to_region_id: number[];
+  }
+}
+
+export namespace logistics {
   export interface TransportCompaniesSettings {
     create(
       request: TransportCompanySettings,
@@ -2459,28 +2506,28 @@ export namespace logistics {
   export interface Winner {
     delivery_type_id: number;
     DeliveryTypeTitle: string;
-    winner_company: DeliveryCompany;
-    payments: PaymentType[];
-    delivery_date: DeliveryDate[];
+    winner_company: WinnerDeliveryCompany;
+    payments: WinnerPaymentType[];
+    delivery_date: WinnerDeliveryDate[];
   }
 
-  export interface DeliveryCompany {
+  export interface WinnerDeliveryCompany {
     code: string;
     title: string;
   }
 
-  export interface PaymentType {
+  export interface WinnerPaymentType {
     code: string;
     title: string;
     delivery_price: number;
   }
 
-  export interface DeliveryDate {
+  export interface WinnerDeliveryDate {
     date: string;
-    intervals: Interval[];
+    intervals: WinnerDeliveryInterval[];
   }
 
-  export interface Interval {
+  export interface WinnerDeliveryInterval {
     time_from: string;
     time_to: string;
   }
