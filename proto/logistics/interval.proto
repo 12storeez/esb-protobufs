@@ -72,6 +72,7 @@ message Interval  {
   string time_to = 4;
   string created = 5;
   string updated = 6;
+  int32 id = 7;
 }
 
 message IntervalId {

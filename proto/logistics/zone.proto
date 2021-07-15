@@ -59,6 +59,7 @@ message Zone {
   string created = 5;
   string updated = 6;
   repeated string regions_guids = 7;
+  int32 id = 8;
 }
 
 message ZoneId {

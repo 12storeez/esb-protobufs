@@ -89,4 +89,5 @@ message Delivery {
   string created = 12;
   string updated = 13;
   repeated int32 intervals_ids = 14;
+  int32 id = 15;
 }

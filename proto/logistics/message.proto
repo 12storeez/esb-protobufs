@@ -87,6 +87,7 @@ message Message {
   string created = 7;
   string updated = 8;
   repeated MessageTransportCompanyValue transport_companies_values = 9;
+  int32 id = 10;
 }
 
 message MessageTransportCompanyValue {

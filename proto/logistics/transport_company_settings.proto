@@ -64,4 +64,5 @@ message TransportCompanySettings {
   string created = 6;
   string updated = 7;
   int32 delivery_days = 8;
+  int32 id = 9;
 }

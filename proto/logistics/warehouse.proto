@@ -53,6 +53,7 @@ message Warehouse {
   bool is_active = 5;
   string created = 6;
   string updated = 7;
+  int32 id = 8;
 }
 
 message ListWarehousesRequest {
