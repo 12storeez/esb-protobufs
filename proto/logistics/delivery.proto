@@ -75,7 +75,7 @@ message ListDeliveryResponse {
 }
 
 message Delivery {
-  int32 delivery_id = 1;
+  int32 id = 1;
   int32 zone_id = 2;
   string cutoff_time = 3;
   int32 gap_days = 4;
@@ -89,5 +89,4 @@ message Delivery {
   string created = 12;
   string updated = 13;
   repeated int32 intervals_ids = 14;
-  int32 id = 15;
 }

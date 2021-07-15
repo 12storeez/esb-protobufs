@@ -52,12 +52,11 @@ message ListPaymentMethodsResponse {
 }
 
 message PaymentMethod {
-  int32 payment_method_id = 1;
+  int32 id = 1;
   string name = 2;
   bool is_active = 3;
   string created = 4;
   string updated = 5;
-  int32 id = 6;
 }
 
 message PaymentMethodId {

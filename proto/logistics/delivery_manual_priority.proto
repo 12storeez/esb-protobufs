@@ -73,7 +73,7 @@ message DeliveryManualPriorityId {
 }
 
 message DeliveryManualPriority {
-  int32 delivery_manual_priority_id = 1;
+  int32 id = 1;
   int32 zone_id = 2;
   int32 delivery_method_id = 3;
   double max_days = 4;
@@ -81,7 +81,6 @@ message DeliveryManualPriority {
   string created = 6;
   string updated = 7;
   repeated TransportCompanyValue transport_companies_values = 8;
-  int32 id = 15;
 }
 
 message TransportCompanyValue {

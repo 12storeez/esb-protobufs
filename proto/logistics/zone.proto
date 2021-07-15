@@ -52,14 +52,13 @@ message ListZonesResponse {
 }
 
 message Zone {
-  int32 zone_id = 1;
+  int32 id = 1;
   string name = 2;
   string country_iso_code  = 3;
   bool is_active = 4;
   string created = 5;
   string updated = 6;
   repeated string regions_guids = 7;
-  int32 id = 8;
 }
 
 message ZoneId {
