@@ -22,7 +22,7 @@ service ZonesToRegions {
     };
   }
 
-  rpc Get(ZoneToRegionId) returns (ZoneToRegion) {
+  rpc Get(ZoneToRegionId) returns (ListZonesToRegionsResponse) {
     option (google.api.http) = {
       get: "/v1/zones_to_regions/{zone_id}"
     };

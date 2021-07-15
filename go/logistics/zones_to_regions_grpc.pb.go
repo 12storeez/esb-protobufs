@@ -21,7 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type ZonesToRegionsClient interface {
 	Create(ctx context.Context, in *ZoneToRegion, opts ...grpc.CallOption) (*ZoneToRegionId, error)
 	CreateMany(ctx context.Context, in *CreateManyZoneToRegionRequest, opts ...grpc.CallOption) (*CreateManyZoneToRegionResponse, error)
-	Get(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*ZoneToRegion, error)
+	Get(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*ListZonesToRegionsResponse, error)
 	List(ctx context.Context, in *ListZonesToRegionsRequest, opts ...grpc.CallOption) (*ListZonesToRegionsResponse, error)
 	Update(ctx context.Context, in *ZoneToRegion, opts ...grpc.CallOption) (*ZoneToRegion, error)
 	Delete(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -53,8 +53,8 @@ func (c *zonesToRegionsClient) CreateMany(ctx context.Context, in *CreateManyZon
 	return out, nil
 }
 
-func (c *zonesToRegionsClient) Get(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*ZoneToRegion, error) {
-	out := new(ZoneToRegion)
+func (c *zonesToRegionsClient) Get(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*ListZonesToRegionsResponse, error) {
+	out := new(ListZonesToRegionsResponse)
 	err := c.cc.Invoke(ctx, "/logistics.ZonesToRegions/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -95,7 +95,7 @@ func (c *zonesToRegionsClient) Delete(ctx context.Context, in *ZoneToRegionId, o
 type ZonesToRegionsServer interface {
 	Create(context.Context, *ZoneToRegion) (*ZoneToRegionId, error)
 	CreateMany(context.Context, *CreateManyZoneToRegionRequest) (*CreateManyZoneToRegionResponse, error)
-	Get(context.Context, *ZoneToRegionId) (*ZoneToRegion, error)
+	Get(context.Context, *ZoneToRegionId) (*ListZonesToRegionsResponse, error)
 	List(context.Context, *ListZonesToRegionsRequest) (*ListZonesToRegionsResponse, error)
 	Update(context.Context, *ZoneToRegion) (*ZoneToRegion, error)
 	Delete(context.Context, *ZoneToRegionId) (*emptypb.Empty, error)
@@ -112,7 +112,7 @@ func (UnimplementedZonesToRegionsServer) Create(context.Context, *ZoneToRegion) 
 func (UnimplementedZonesToRegionsServer) CreateMany(context.Context, *CreateManyZoneToRegionRequest) (*CreateManyZoneToRegionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMany not implemented")
 }
-func (UnimplementedZonesToRegionsServer) Get(context.Context, *ZoneToRegionId) (*ZoneToRegion, error) {
+func (UnimplementedZonesToRegionsServer) Get(context.Context, *ZoneToRegionId) (*ListZonesToRegionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedZonesToRegionsServer) List(context.Context, *ListZonesToRegionsRequest) (*ListZonesToRegionsResponse, error) {
