@@ -47,13 +47,12 @@ message TransportCompanyId {
 }
 
 message TransportCompany {
-  int32 transport_company_id = 1;
+  int32 id = 1;
   string name = 2;
   bool is_active = 3;
   string created = 4;
   string updated = 5;
   repeated int32 transport_company_settings_ids = 6;
-  int32 id = 7;
 }
 
 message ListTransportCompanyRequest {
