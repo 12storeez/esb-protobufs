@@ -81,6 +81,7 @@ message DeliveryManualPriority {
   string created = 6;
   string updated = 7;
   repeated TransportCompanyValue transport_companies_values = 8;
+  int32 id = 15;
 }
 
 message TransportCompanyValue {

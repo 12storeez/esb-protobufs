@@ -57,6 +57,7 @@ message PaymentMethod {
   bool is_active = 3;
   string created = 4;
   string updated = 5;
+  int32 id = 6;
 }
 
 message PaymentMethodId {

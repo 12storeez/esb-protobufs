@@ -53,6 +53,7 @@ message TransportCompany {
   string created = 4;
   string updated = 5;
   repeated int32 transport_company_settings_ids = 6;
+  int32 id = 7;
 }
 
 message ListTransportCompanyRequest {
