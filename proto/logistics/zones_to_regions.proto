@@ -34,16 +34,16 @@ service ZonesToRegions {
     };
   }
 
-  rpc Update(ZoneToRegion) returns (ZoneToRegion) {
+  rpc Update(ZoneToRegions) returns (ZoneToRegions) {
     option (google.api.http) = {
       patch: "/v1/zones_to_regions/{zone_id}"
       body: "*"
     };
   }
 
-  rpc Delete(ZoneToRegionId) returns (google.protobuf.Empty) {
+  rpc Delete(ZoneToRegion) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/zones_to_regions/{zone_id}"
+      delete: "/v1/zones_to_regions/{zone_id}/{region_id}"
     };
   }
 }
@@ -73,4 +73,9 @@ message CreateManyZoneToRegionRequest {
 
 message CreateManyZoneToRegionResponse {
   repeated int32 zone_to_region_id = 1;
+}
+
+message ZoneToRegions {
+  int32 zone_id = 1;
+  repeated string region_id = 2;
 }

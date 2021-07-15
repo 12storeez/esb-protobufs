@@ -188,7 +188,7 @@ func local_request_ZonesToRegions_List_0(ctx context.Context, marshaler runtime.
 }
 
 func request_ZonesToRegions_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesToRegionsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneToRegion
+	var protoReq ZoneToRegions
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -222,7 +222,7 @@ func request_ZonesToRegions_Update_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_ZonesToRegions_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesToRegionsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneToRegion
+	var protoReq ZoneToRegions
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -256,7 +256,7 @@ func local_request_ZonesToRegions_Update_0(ctx context.Context, marshaler runtim
 }
 
 func request_ZonesToRegions_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client ZonesToRegionsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneToRegionId
+	var protoReq ZoneToRegion
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -274,6 +274,16 @@ func request_ZonesToRegions_Delete_0(ctx context.Context, marshaler runtime.Mars
 	protoReq.ZoneId, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
+	}
+
+	val, ok = pathParams["region_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "region_id")
+	}
+
+	protoReq.RegionId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "region_id", err)
 	}
 
 	msg, err := client.Delete(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -282,7 +292,7 @@ func request_ZonesToRegions_Delete_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_ZonesToRegions_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server ZonesToRegionsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneToRegionId
+	var protoReq ZoneToRegion
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -300,6 +310,16 @@ func local_request_ZonesToRegions_Delete_0(ctx context.Context, marshaler runtim
 	protoReq.ZoneId, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "zone_id", err)
+	}
+
+	val, ok = pathParams["region_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "region_id")
+	}
+
+	protoReq.RegionId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "region_id", err)
 	}
 
 	msg, err := server.Delete(ctx, &protoReq)
@@ -626,7 +646,7 @@ var (
 
 	pattern_ZonesToRegions_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones_to_regions", "zone_id"}, ""))
 
-	pattern_ZonesToRegions_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "zones_to_regions", "zone_id"}, ""))
+	pattern_ZonesToRegions_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "zones_to_regions", "zone_id", "region_id"}, ""))
 )
 
 var (

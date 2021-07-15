@@ -2046,9 +2046,9 @@ export namespace logistics {
       request: ListZonesToRegionsRequest,
       metadata?: any
     ): Observable<ListZonesToRegionsResponse>;
-    update(request: ZoneToRegion, metadata?: any): Observable<ZoneToRegion>;
+    update(request: ZoneToRegions, metadata?: any): Observable<ZoneToRegions>;
     delete(
-      request: ZoneToRegionId,
+      request: ZoneToRegion,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
   }
@@ -2078,6 +2078,11 @@ export namespace logistics {
 
   export interface CreateManyZoneToRegionResponse {
     zone_to_region_id: number[];
+  }
+
+  export interface ZoneToRegions {
+    zone_id: number;
+    region_id: string[];
   }
 }
 
