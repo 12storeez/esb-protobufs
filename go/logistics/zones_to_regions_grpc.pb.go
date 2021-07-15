@@ -23,8 +23,8 @@ type ZonesToRegionsClient interface {
 	CreateMany(ctx context.Context, in *CreateManyZoneToRegionRequest, opts ...grpc.CallOption) (*CreateManyZoneToRegionResponse, error)
 	Get(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*ListZonesToRegionsResponse, error)
 	List(ctx context.Context, in *ListZonesToRegionsRequest, opts ...grpc.CallOption) (*ListZonesToRegionsResponse, error)
-	Update(ctx context.Context, in *ZoneToRegion, opts ...grpc.CallOption) (*ZoneToRegion, error)
-	Delete(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Update(ctx context.Context, in *ZoneToRegions, opts ...grpc.CallOption) (*ZoneToRegions, error)
+	Delete(ctx context.Context, in *ZoneToRegion, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type zonesToRegionsClient struct {
@@ -71,8 +71,8 @@ func (c *zonesToRegionsClient) List(ctx context.Context, in *ListZonesToRegionsR
 	return out, nil
 }
 
-func (c *zonesToRegionsClient) Update(ctx context.Context, in *ZoneToRegion, opts ...grpc.CallOption) (*ZoneToRegion, error) {
-	out := new(ZoneToRegion)
+func (c *zonesToRegionsClient) Update(ctx context.Context, in *ZoneToRegions, opts ...grpc.CallOption) (*ZoneToRegions, error) {
+	out := new(ZoneToRegions)
 	err := c.cc.Invoke(ctx, "/logistics.ZonesToRegions/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,7 +80,7 @@ func (c *zonesToRegionsClient) Update(ctx context.Context, in *ZoneToRegion, opt
 	return out, nil
 }
 
-func (c *zonesToRegionsClient) Delete(ctx context.Context, in *ZoneToRegionId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *zonesToRegionsClient) Delete(ctx context.Context, in *ZoneToRegion, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/logistics.ZonesToRegions/Delete", in, out, opts...)
 	if err != nil {
@@ -97,8 +97,8 @@ type ZonesToRegionsServer interface {
 	CreateMany(context.Context, *CreateManyZoneToRegionRequest) (*CreateManyZoneToRegionResponse, error)
 	Get(context.Context, *ZoneToRegionId) (*ListZonesToRegionsResponse, error)
 	List(context.Context, *ListZonesToRegionsRequest) (*ListZonesToRegionsResponse, error)
-	Update(context.Context, *ZoneToRegion) (*ZoneToRegion, error)
-	Delete(context.Context, *ZoneToRegionId) (*emptypb.Empty, error)
+	Update(context.Context, *ZoneToRegions) (*ZoneToRegions, error)
+	Delete(context.Context, *ZoneToRegion) (*emptypb.Empty, error)
 	mustEmbedUnimplementedZonesToRegionsServer()
 }
 
@@ -118,10 +118,10 @@ func (UnimplementedZonesToRegionsServer) Get(context.Context, *ZoneToRegionId) (
 func (UnimplementedZonesToRegionsServer) List(context.Context, *ListZonesToRegionsRequest) (*ListZonesToRegionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedZonesToRegionsServer) Update(context.Context, *ZoneToRegion) (*ZoneToRegion, error) {
+func (UnimplementedZonesToRegionsServer) Update(context.Context, *ZoneToRegions) (*ZoneToRegions, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedZonesToRegionsServer) Delete(context.Context, *ZoneToRegionId) (*emptypb.Empty, error) {
+func (UnimplementedZonesToRegionsServer) Delete(context.Context, *ZoneToRegion) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedZonesToRegionsServer) mustEmbedUnimplementedZonesToRegionsServer() {}
@@ -210,7 +210,7 @@ func _ZonesToRegions_List_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _ZonesToRegions_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ZoneToRegion)
+	in := new(ZoneToRegions)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -222,13 +222,13 @@ func _ZonesToRegions_Update_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/logistics.ZonesToRegions/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesToRegionsServer).Update(ctx, req.(*ZoneToRegion))
+		return srv.(ZonesToRegionsServer).Update(ctx, req.(*ZoneToRegions))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ZonesToRegions_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ZoneToRegionId)
+	in := new(ZoneToRegion)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -240,7 +240,7 @@ func _ZonesToRegions_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/logistics.ZonesToRegions/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZonesToRegionsServer).Delete(ctx, req.(*ZoneToRegionId))
+		return srv.(ZonesToRegionsServer).Delete(ctx, req.(*ZoneToRegion))
 	}
 	return interceptor(ctx, in, info, handler)
 }
