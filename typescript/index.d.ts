@@ -2038,7 +2038,10 @@ export namespace logistics {
       request: CreateManyZoneToRegionRequest,
       metadata?: any
     ): Observable<CreateManyZoneToRegionResponse>;
-    get(request: ZoneToRegionId, metadata?: any): Observable<ZoneToRegion>;
+    get(
+      request: ZoneToRegionId,
+      metadata?: any
+    ): Observable<ListZonesToRegionsResponse>;
     list(
       request: ListZonesToRegionsRequest,
       metadata?: any
