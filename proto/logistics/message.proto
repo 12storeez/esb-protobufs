@@ -78,7 +78,7 @@ message MessageId {
 }
 
 message Message {
-  int32 message_id = 1;
+  int32 id = 1;
   int32 zone_id = 2;
   int32 delivery_method_id = 3;
   int32 payment_method_id = 4;

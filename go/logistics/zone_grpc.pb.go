@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // ZonesClient is the client API for Zones service.
@@ -119,7 +120,7 @@ type UnsafeZonesServer interface {
 }
 
 func RegisterZonesServer(s grpc.ServiceRegistrar, srv ZonesServer) {
-	s.RegisterService(&_Zones_serviceDesc, srv)
+	s.RegisterService(&Zones_ServiceDesc, srv)
 }
 
 func _Zones_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -212,7 +213,10 @@ func _Zones_Delete_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Zones_serviceDesc = grpc.ServiceDesc{
+// Zones_ServiceDesc is the grpc.ServiceDesc for Zones service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Zones_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.Zones",
 	HandlerType: (*ZonesServer)(nil),
 	Methods: []grpc.MethodDesc{

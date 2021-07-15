@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // DeliveriesManualPrioritiesClient is the client API for DeliveriesManualPriorities service.
@@ -162,7 +163,7 @@ type UnsafeDeliveriesManualPrioritiesServer interface {
 }
 
 func RegisterDeliveriesManualPrioritiesServer(s grpc.ServiceRegistrar, srv DeliveriesManualPrioritiesServer) {
-	s.RegisterService(&_DeliveriesManualPriorities_serviceDesc, srv)
+	s.RegisterService(&DeliveriesManualPriorities_ServiceDesc, srv)
 }
 
 func _DeliveriesManualPriorities_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -309,7 +310,10 @@ func _DeliveriesManualPriorities_DeleteTransportCompany_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-var _DeliveriesManualPriorities_serviceDesc = grpc.ServiceDesc{
+// DeliveriesManualPriorities_ServiceDesc is the grpc.ServiceDesc for DeliveriesManualPriorities service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DeliveriesManualPriorities_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.DeliveriesManualPriorities",
 	HandlerType: (*DeliveriesManualPrioritiesServer)(nil),
 	Methods: []grpc.MethodDesc{
