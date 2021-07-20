@@ -35,6 +35,13 @@ service TransportCompanies {
     };
   }
 
+  rpc Upsert(TransportCompany) returns (TransportCompany) {
+    option (google.api.http) = {
+      put: "/v1/transport-companies"
+      body: "*"
+    };
+  }
+
   rpc Delete(TransportCompanyId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       delete: "/v1/transport-companies/{transport_company_id}"
