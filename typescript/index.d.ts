@@ -1963,6 +1963,10 @@ export namespace logistics {
       request: TransportCompany,
       metadata?: any
     ): Observable<TransportCompany>;
+    upsert(
+      request: TransportCompany,
+      metadata?: any
+    ): Observable<TransportCompany>;
     delete(
       request: TransportCompanyId,
       metadata?: any
