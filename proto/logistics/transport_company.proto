@@ -60,6 +60,10 @@ message TransportCompany {
   string created = 4;
   string updated = 5;
   repeated int32 transport_company_settings_ids = 6;
+  double price_border = 7;
+  int32 product_quantity_border = 8;
+  int32 available_delivery_days = 9;
+  string track_url = 10;
 }
 
 message ListTransportCompanyRequest {

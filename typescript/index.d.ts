@@ -1984,6 +1984,10 @@ export namespace logistics {
     created: string;
     updated: string;
     transport_company_settings_ids: number[];
+    price_border: number;
+    product_quantity_border: number;
+    available_delivery_days: number;
+    track_url: string;
   }
 
   export interface ListTransportCompanyRequest {
