@@ -6,7 +6,7 @@ package logistics;
 
 import "google/api/annotations.proto";
 
-service Logistics {
+service Winners {
   rpc CalculateWinners(WinnersParams) returns (WinnersResponse) {
     option (google.api.http) = {
       post: "/v1/calculate-winners"
