@@ -1,0 +1,329 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/logistics/zones_to_regions.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/zones_to_regions": {
+      "get": {
+        "operationId": "ZonesToRegions_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListZonesToRegionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ZonesToRegions"
+        ]
+      },
+      "post": {
+        "operationId": "ZonesToRegions_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsZoneToRegionId"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsZoneToRegion"
+            }
+          }
+        ],
+        "tags": [
+          "ZonesToRegions"
+        ]
+      }
+    },
+    "/v1/zones_to_regions/create_many": {
+      "post": {
+        "operationId": "ZonesToRegions_CreateMany",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsCreateManyZoneToRegionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCreateManyZoneToRegionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZonesToRegions"
+        ]
+      }
+    },
+    "/v1/zones_to_regions/{zone_id}": {
+      "get": {
+        "operationId": "ZonesToRegions_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListZonesToRegionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ZonesToRegions"
+        ]
+      },
+      "patch": {
+        "operationId": "ZonesToRegions_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsZoneToRegions"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsZoneToRegions"
+            }
+          }
+        ],
+        "tags": [
+          "ZonesToRegions"
+        ]
+      }
+    },
+    "/v1/zones_to_regions/{zone_id}/{region_id}": {
+      "delete": {
+        "operationId": "ZonesToRegions_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zone_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "region_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ZonesToRegions"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "logisticsCreateManyZoneToRegionRequest": {
+      "type": "object",
+      "properties": {
+        "zones_to_regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsZoneToRegion"
+          }
+        }
+      }
+    },
+    "logisticsCreateManyZoneToRegionResponse": {
+      "type": "object",
+      "properties": {
+        "zone_to_region_id": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "logisticsListZonesToRegionsResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsZoneToRegion"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsZoneToRegion": {
+      "type": "object",
+      "properties": {
+        "zone_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "region_id": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsZoneToRegionId": {
+      "type": "object",
+      "properties": {
+        "zone_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsZoneToRegions": {
+      "type": "object",
+      "properties": {
+        "zone_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "region_id": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
