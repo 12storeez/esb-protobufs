@@ -17,7 +17,7 @@ service Zones {
 
   rpc Get(ZoneId) returns (Zone) {
     option (google.api.http) = {
-      get: "/v1/zones/{zone_id}"
+      get: "/v1/zones/{id}"
     };
   }
 
@@ -29,14 +29,14 @@ service Zones {
 
   rpc Update(Zone) returns (Zone) {
     option (google.api.http) = {
-      patch: "/v1/zones/{zone_id}"
+      patch: "/v1/zones/{id}"
       body: "*"
     };
   }
 
   rpc Delete(ZoneId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/zones/{zone_id}"
+      delete: "/v1/zones/{id}"
     };
   }
 }
@@ -62,5 +62,5 @@ message Zone {
 }
 
 message ZoneId {
-  int32 zone_id = 1;
+  int32 id = 1;
 }

@@ -17,7 +17,7 @@ service DeliveryMethods {
 
   rpc Get(DeliveryMethodId) returns (DeliveryMethod) {
     option (google.api.http) = {
-      get: "/v1/delivery-methods/{delivery_method_id}"
+      get: "/v1/delivery-methods/{id}"
     };
   }
 
@@ -29,14 +29,14 @@ service DeliveryMethods {
 
   rpc Update(DeliveryMethod) returns (DeliveryMethod) {
     option (google.api.http) = {
-      patch: "/v1/delivery-methods/{delivery_method_id}"
+      patch: "/v1/delivery-methods/{id}"
       body: "*"
     };
   }
 
   rpc Delete(DeliveryMethodId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/delivery-methods/{delivery_method_id}"
+      delete: "/v1/delivery-methods/{id}"
     };
   }
 }
@@ -60,5 +60,5 @@ message DeliveryMethod {
 }
 
 message DeliveryMethodId {
-  int32 delivery_method_id = 1;
+  int32 id = 1;
 }
