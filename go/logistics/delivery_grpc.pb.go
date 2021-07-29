@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // DeliveriesClient is the client API for Deliveries service.
@@ -147,7 +148,7 @@ type UnsafeDeliveriesServer interface {
 }
 
 func RegisterDeliveriesServer(s grpc.ServiceRegistrar, srv DeliveriesServer) {
-	s.RegisterService(&_Deliveries_serviceDesc, srv)
+	s.RegisterService(&Deliveries_ServiceDesc, srv)
 }
 
 func _Deliveries_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -276,7 +277,10 @@ func _Deliveries_DeleteInterval_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Deliveries_serviceDesc = grpc.ServiceDesc{
+// Deliveries_ServiceDesc is the grpc.ServiceDesc for Deliveries service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Deliveries_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.Deliveries",
 	HandlerType: (*DeliveriesServer)(nil),
 	Methods: []grpc.MethodDesc{

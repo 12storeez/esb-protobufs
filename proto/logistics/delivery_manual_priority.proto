@@ -73,7 +73,7 @@ message DeliveryManualPriorityId {
 }
 
 message DeliveryManualPriority {
-  int32 delivery_manual_priority_id = 1;
+  int32 id = 1;
   int32 zone_id = 2;
   int32 delivery_method_id = 3;
   double max_days = 4;

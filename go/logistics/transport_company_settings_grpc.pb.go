@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // TransportCompaniesSettingsClient is the client API for TransportCompaniesSettings service.
@@ -120,7 +121,7 @@ type UnsafeTransportCompaniesSettingsServer interface {
 }
 
 func RegisterTransportCompaniesSettingsServer(s grpc.ServiceRegistrar, srv TransportCompaniesSettingsServer) {
-	s.RegisterService(&_TransportCompaniesSettings_serviceDesc, srv)
+	s.RegisterService(&TransportCompaniesSettings_ServiceDesc, srv)
 }
 
 func _TransportCompaniesSettings_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -213,7 +214,10 @@ func _TransportCompaniesSettings_Delete_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-var _TransportCompaniesSettings_serviceDesc = grpc.ServiceDesc{
+// TransportCompaniesSettings_ServiceDesc is the grpc.ServiceDesc for TransportCompaniesSettings service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TransportCompaniesSettings_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "logistics.TransportCompaniesSettings",
 	HandlerType: (*TransportCompaniesSettingsServer)(nil),
 	Methods: []grpc.MethodDesc{

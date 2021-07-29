@@ -46,7 +46,7 @@ message WarehouseId {
 }
 
 message Warehouse {
-  int32 warehouse_id = 1;
+  int32 id = 1;
   string name = 2;
   string postal_code = 3;
   string country_iso_code = 4;
