@@ -17,7 +17,7 @@ service TransportCompaniesSettings {
 
   rpc Get(TransportCompanySettingsId) returns (TransportCompanySettings) {
     option (google.api.http) = {
-      get: "/v1/transport-companies/settings/{transport_company_settings_id}"
+      get: "/v1/transport-companies/settings/{id}"
     };
   }
 
@@ -29,20 +29,20 @@ service TransportCompaniesSettings {
 
   rpc Update(TransportCompanySettings) returns (TransportCompanySettings) {
     option (google.api.http) = {
-      patch: "/v1/transport-companies/settings/{transport_company_settings_id}"
+      patch: "/v1/transport-companies/settings/{id}"
       body: "*"
     };
   }
 
   rpc Delete(TransportCompanySettingsId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/transport-companies/settings/{transport_company_settings_id}"
+      delete: "/v1/transport-companies/settings/{id}"
     };
   }
 }
 
 message TransportCompanySettingsId {
-  int32 transport_company_settings_id = 1;
+  int32 id = 1;
 }
 
 message ListTransportCompanySettingsRequest {

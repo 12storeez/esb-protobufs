@@ -18,7 +18,7 @@ service TransportCompanies {
 
   rpc Get(TransportCompanyId) returns (TransportCompany) {
     option (google.api.http) = {
-      get: "/v1/transport-companies/{transport_company_id}"
+      get: "/v1/transport-companies/{id}"
     };
   }
 
@@ -30,7 +30,7 @@ service TransportCompanies {
 
   rpc Update(TransportCompany) returns (TransportCompany) {
     option (google.api.http) = {
-      patch: "/v1/transport-companies/{transport_company_id}"
+      patch: "/v1/transport-companies/{id}"
       body: "*"
     };
   }
@@ -44,13 +44,13 @@ service TransportCompanies {
 
   rpc Delete(TransportCompanyId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/transport-companies/{transport_company_id}"
+      delete: "/v1/transport-companies/{id}"
     };
   }
 }
 
 message TransportCompanyId {
-  int32 transport_company_id = 1;
+  int32 id = 1;
 }
 
 message TransportCompany {

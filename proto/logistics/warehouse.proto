@@ -17,7 +17,7 @@ service Warehouses {
 
   rpc Get(WarehouseId) returns (Warehouse) {
     option (google.api.http) = {
-      get: "/v1/warehouses/{warehouse_id}"
+      get: "/v1/warehouses/{id}"
     };
   }
 
@@ -29,20 +29,20 @@ service Warehouses {
 
   rpc Update(Warehouse) returns (Warehouse) {
     option (google.api.http) = {
-      patch: "/v1/warehouses/{warehouse_id}"
+      patch: "/v1/warehouses/{id}"
       body: "*"
     };
   }
 
   rpc Delete(WarehouseId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/warehouses/{warehouse_id}"
+      delete: "/v1/warehouses/{id}"
     };
   }
 }
 
 message WarehouseId {
-  int32 warehouse_id = 1;
+  int32 id = 1;
 }
 
 message Warehouse {

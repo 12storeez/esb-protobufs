@@ -1,0 +1,186 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/logistics/winners.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/calculate-winners": {
+      "post": {
+        "operationId": "Winners_CalculateWinners",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsWinnersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsWinnersParams"
+            }
+          }
+        ],
+        "tags": [
+          "Winners"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "logisticsWinner": {
+      "type": "object",
+      "properties": {
+        "delivery_type_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DeliveryTypeTitle": {
+          "type": "string"
+        },
+        "winner_company": {
+          "$ref": "#/definitions/logisticsWinnerDeliveryCompany"
+        },
+        "payments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerPaymentType"
+          }
+        },
+        "delivery_date": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerDeliveryDate"
+          }
+        }
+      }
+    },
+    "logisticsWinnerDeliveryCompany": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsWinnerDeliveryDate": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerDeliveryInterval"
+          }
+        }
+      }
+    },
+    "logisticsWinnerDeliveryInterval": {
+      "type": "object",
+      "properties": {
+        "time_from": {
+          "type": "string"
+        },
+        "time_to": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsWinnerPaymentType": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "delivery_price": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsWinnersParams": {
+      "type": "object",
+      "properties": {
+        "country_iso_code": {
+          "type": "string"
+        },
+        "geo_id": {
+          "type": "string"
+        },
+        "order_price": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsWinnersResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinner"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

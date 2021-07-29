@@ -25,7 +25,7 @@ service Intervals {
 
   rpc Get(IntervalId) returns (Interval) {
     option (google.api.http) = {
-      get: "/v1/intervals/{interval_id}"
+      get: "/v1/intervals/{id}"
     };
   }
 
@@ -37,14 +37,14 @@ service Intervals {
 
   rpc Update(Interval) returns (Interval) {
     option (google.api.http) = {
-      patch: "/v1/intervals/{interval_id}"
+      patch: "/v1/intervals/{id}"
       body: "*"
     };
   }
 
   rpc Delete(IntervalId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/intervals/{interval_id}"
+      delete: "/v1/intervals/{id}"
     };
   }
 }
@@ -75,7 +75,7 @@ message Interval  {
 }
 
 message IntervalId {
-  int32 interval_id = 1;
+  int32 id = 1;
 }
 
 message CreateManyIntervalRequest {
@@ -83,5 +83,5 @@ message CreateManyIntervalRequest {
 }
 
 message CreateManyIntervalResponse {
-  repeated int32 interval_id = 1;
+  repeated int32 id = 1;
 }

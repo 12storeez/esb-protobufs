@@ -1,0 +1,427 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/logistics/delivery_manual_priority.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/deliveries/manual-priorities": {
+      "get": {
+        "operationId": "DeliveriesManualPriorities_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListDeliveriesManualPrioritiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      },
+      "post": {
+        "operationId": "DeliveriesManualPriorities_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualPriorityId"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualPriority"
+            }
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      }
+    },
+    "/v1/deliveries/manual-priorities/{delivery_manual_priority_id}/transport-companies": {
+      "post": {
+        "operationId": "DeliveriesManualPriorities_AddTransportCompany",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualToTransportCompany"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "delivery_manual_priority_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualToTransportCompany"
+            }
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      }
+    },
+    "/v1/deliveries/manual-priorities/{delivery_manual_priority_id}/transport-companies/{transport_company_id}": {
+      "delete": {
+        "operationId": "DeliveriesManualPriorities_DeleteTransportCompany",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "delivery_manual_priority_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "transport_company_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      }
+    },
+    "/v1/deliveries/manual-priorities/{id}": {
+      "get": {
+        "operationId": "DeliveriesManualPriorities_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualPriority"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      },
+      "delete": {
+        "operationId": "DeliveriesManualPriorities_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      },
+      "put": {
+        "operationId": "DeliveriesManualPriorities_CreateOrUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualPriority"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualPriority"
+            }
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      },
+      "patch": {
+        "operationId": "DeliveriesManualPriorities_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualPriority"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryManualPriority"
+            }
+          }
+        ],
+        "tags": [
+          "DeliveriesManualPriorities"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "logisticsDeliveryManualPriority": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "zone_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "delivery_method_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_days": {
+          "type": "number",
+          "format": "double"
+        },
+        "tariff": {
+          "type": "number",
+          "format": "double"
+        },
+        "created": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "transport_companies_values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsTransportCompanyValue"
+          }
+        }
+      }
+    },
+    "logisticsDeliveryManualPriorityId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsDeliveryManualToTransportCompany": {
+      "type": "object",
+      "properties": {
+        "delivery_manual_priority_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "transport_company_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "logisticsListDeliveriesManualPrioritiesResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsDeliveryManualPriority"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsTransportCompanyValue": {
+      "type": "object",
+      "properties": {
+        "transport_company_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

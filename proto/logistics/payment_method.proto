@@ -17,7 +17,7 @@ service PaymentMethods {
 
   rpc Get(PaymentMethodId) returns (PaymentMethod) {
     option (google.api.http) = {
-      get: "/v1/payment-methods/{payment_method_id}"
+      get: "/v1/payment-methods/{id}"
     };
   }
 
@@ -29,14 +29,14 @@ service PaymentMethods {
 
   rpc Update(PaymentMethod) returns (PaymentMethod) {
     option (google.api.http) = {
-      patch: "/v1/payment-methods/{payment_method_id}"
+      patch: "/v1/payment-methods/{id}"
       body: "*"
     };
   }
 
   rpc Delete(PaymentMethodId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/payment-methods/{payment_method_id}"
+      delete: "/v1/payment-methods/{id}"
     };
   }
 }
@@ -60,5 +60,5 @@ message PaymentMethod {
 }
 
 message PaymentMethodId {
-  int32 payment_method_id = 1;
+  int32 id = 1;
 }
