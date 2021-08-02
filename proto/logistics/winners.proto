@@ -27,7 +27,7 @@ message WinnersResponse {
 
 message Winner {
   int32 delivery_type_id = 1;
-  string DeliveryTypeTitle = 2;
+  string delivery_type_title = 2;
   WinnerDeliveryCompany winner_company = 3;
   repeated WinnerPaymentType payments = 4;
   repeated WinnerDeliveryDate delivery_date = 6;

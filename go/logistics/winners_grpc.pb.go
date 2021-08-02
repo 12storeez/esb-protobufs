@@ -39,21 +39,19 @@ func (c *winnersClient) CalculateWinners(ctx context.Context, in *WinnersParams,
 }
 
 // WinnersServer is the server API for Winners service.
-// All implementations must embed UnimplementedWinnersServer
+// All implementations should embed UnimplementedWinnersServer
 // for forward compatibility
 type WinnersServer interface {
 	CalculateWinners(context.Context, *WinnersParams) (*WinnersResponse, error)
-	mustEmbedUnimplementedWinnersServer()
 }
 
-// UnimplementedWinnersServer must be embedded to have forward compatible implementations.
+// UnimplementedWinnersServer should be embedded to have forward compatible implementations.
 type UnimplementedWinnersServer struct {
 }
 
 func (UnimplementedWinnersServer) CalculateWinners(context.Context, *WinnersParams) (*WinnersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CalculateWinners not implemented")
 }
-func (UnimplementedWinnersServer) mustEmbedUnimplementedWinnersServer() {}
 
 // UnsafeWinnersServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to WinnersServer will
