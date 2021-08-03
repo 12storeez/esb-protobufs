@@ -18,7 +18,7 @@ service Winners {
 message WinnersParams {
   string country_iso_code = 1;
   string geo_id = 2;
-  int32 order_price = 3;
+  int32  order_price = 3;
 }
 
 message WinnersResponse {
@@ -26,22 +26,23 @@ message WinnersResponse {
 }
 
 message Winner {
-  int32 delivery_type_id = 1;
-  string delivery_type_title = 2;
+  int32 delivery_method_id = 1;
+  string delivery_method_name = 2;
   WinnerDeliveryCompany winner_company = 3;
-  repeated WinnerPaymentType payments = 4;
-  repeated WinnerDeliveryDate delivery_date = 6;
+  repeated WinnerPaymentType payment_types = 4;
+  repeated WinnerDeliveryDate delivery_date = 5;
+  WinnerMessage message = 6;
 }
 
 message WinnerDeliveryCompany {
   string code = 1;
-  string title = 2;
+  string name = 2;
 }
 
 message WinnerPaymentType {
   string code = 1;
-  string title = 2;
-  int32 delivery_price = 3;
+  string name = 2;
+  int32  delivery_price = 3;
 }
 
 message WinnerDeliveryDate {
@@ -52,4 +53,11 @@ message WinnerDeliveryDate {
 message WinnerDeliveryInterval {
   string time_from = 1;
   string time_to = 2;
+  string day_of_week_type = 3;
+}
+
+message WinnerMessage {
+  int32  price_border = 1;
+  int32  product_quantity_border = 2;
+  string text = 3;
 }
