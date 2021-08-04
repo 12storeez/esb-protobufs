@@ -29,7 +29,7 @@ message Winner {
   int32 delivery_method_id = 1;
   string delivery_method_name = 2;
   WinnerDeliveryCompany winner_company = 3;
-  repeated WinnerPaymentType payment_types = 4;
+  repeated WinnerPaymentMethod payment_methods = 4;
   repeated WinnerDeliveryDate delivery_date = 5;
   WinnerMessage message = 6;
 }
@@ -39,8 +39,8 @@ message WinnerDeliveryCompany {
   string name = 2;
 }
 
-message WinnerPaymentType {
-  string code = 1;
+message WinnerPaymentMethod {
+  int32  id = 1;
   string name = 2;
   int32  delivery_price = 3;
 }
