@@ -334,6 +334,7 @@ export namespace orders {
 
   export interface ParamsOrderById {
     id: number;
+    client_id: number;
   }
 
   export interface ResponseOfflineById {
