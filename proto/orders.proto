@@ -24,6 +24,7 @@ message ResponseOffline {
 
 message ParamsOrderById {
     int32 id = 1;
+    int32 client_id = 2;
 }
 
 message ResponseOfflineById {
