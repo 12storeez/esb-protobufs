@@ -1556,6 +1556,7 @@ export namespace orders {
 
   export interface ParamsOrderById {
     id: number;
+    client_id: number;
   }
 
   export interface ResponseOfflineById {
@@ -1884,11 +1885,11 @@ export namespace logistics {
   }
 
   export interface WarehouseId {
-    warehouse_id: number;
+    id: number;
   }
 
   export interface Warehouse {
-    warehouse_id: number;
+    id: number;
     name: string;
     postal_code: string;
     country_iso_code: string;
@@ -1931,7 +1932,7 @@ export namespace logistics {
   }
 
   export interface Zone {
-    zone_id: number;
+    id: number;
     name: string;
     country_iso_code: string;
     is_active: boolean;
@@ -1941,7 +1942,7 @@ export namespace logistics {
   }
 
   export interface ZoneId {
-    zone_id: number;
+    id: number;
   }
 }
 
@@ -1974,11 +1975,11 @@ export namespace logistics {
   }
 
   export interface TransportCompanyId {
-    transport_company_id: number;
+    id: number;
   }
 
   export interface TransportCompany {
-    transport_company_id: number;
+    id: number;
     name: string;
     is_active: boolean;
     created: string;
@@ -2027,7 +2028,7 @@ export namespace logistics {
   }
 
   export interface PaymentMethod {
-    payment_method_id: number;
+    id: number;
     name: string;
     is_active: boolean;
     created: string;
@@ -2035,7 +2036,7 @@ export namespace logistics {
   }
 
   export interface PaymentMethodId {
-    payment_method_id: number;
+    id: number;
   }
 }
 
@@ -2119,7 +2120,7 @@ export namespace logistics {
   }
 
   export interface TransportCompanySettingsId {
-    transport_company_settings_id: number;
+    id: number;
   }
 
   export interface ListTransportCompanySettingsRequest {
@@ -2133,7 +2134,7 @@ export namespace logistics {
   }
 
   export interface TransportCompanySettings {
-    transport_company_settings_id: number;
+    id: number;
     transport_company_id: number;
     delivery_method_id: number;
     warehouse_id: number;
@@ -2187,11 +2188,11 @@ export namespace logistics {
   }
 
   export interface DeliveryManualPriorityId {
-    delivery_manual_priority_id: number;
+    id: number;
   }
 
   export interface DeliveryManualPriority {
-    delivery_manual_priority_id: number;
+    id: number;
     zone_id: number;
     delivery_method_id: number;
     max_days: number;
@@ -2246,7 +2247,7 @@ export namespace logistics {
   }
 
   export interface DeliveryId {
-    delivery_id: number;
+    id: number;
   }
 
   export interface ListDeliveryRequest {
@@ -2260,7 +2261,7 @@ export namespace logistics {
   }
 
   export interface Delivery {
-    delivery_id: number;
+    id: number;
     zone_id: number;
     cutoff_time: string;
     gap_days: number;
@@ -2306,7 +2307,7 @@ export namespace logistics {
   }
 
   export interface DeliveryMethod {
-    delivery_method_id: number;
+    id: number;
     name: string;
     is_active: boolean;
     created: string;
@@ -2314,7 +2315,63 @@ export namespace logistics {
   }
 
   export interface DeliveryMethodId {
+    id: number;
+  }
+}
+
+export namespace logistics {
+  export interface Winners {
+    calculateWinners(
+      request: WinnersParams,
+      metadata?: any
+    ): Observable<WinnersResponse>;
+  }
+
+  export interface WinnersParams {
+    country_iso_code: string;
+    geo_id: string;
+    order_price: number;
+  }
+
+  export interface WinnersResponse {
+    results: Winner[];
+  }
+
+  export interface Winner {
     delivery_method_id: number;
+    delivery_method_name: string;
+    winner_company: WinnerDeliveryCompany;
+    payment_methods: WinnerPaymentMethod[];
+    delivery_date: WinnerDeliveryDate[];
+    message: WinnerMessage;
+  }
+
+  export interface WinnerDeliveryCompany {
+    code: string;
+    name: string;
+  }
+
+  export interface WinnerPaymentMethod {
+    id: number;
+    name: string;
+    delivery_price: number;
+  }
+
+  export interface WinnerDeliveryDate {
+    date: string;
+    intervals: WinnerDeliveryInterval[];
+  }
+
+  export interface WinnerDeliveryInterval {
+    time_from: string;
+    time_to: string;
+    day_of_week_type: string;
+  }
+
+  export interface WinnerMessage {
+    price_border: number;
+    product_quantity_border: number;
+    text: string;
   }
 }
 
@@ -2355,11 +2412,11 @@ export namespace logistics {
   }
 
   export interface MessageId {
-    message_id: number;
+    id: number;
   }
 
   export interface Message {
-    message_id: number;
+    id: number;
     zone_id: number;
     delivery_method_id: number;
     payment_method_id: number;
@@ -2422,7 +2479,7 @@ export namespace logistics {
   }
 
   export interface Interval {
-    interval_id: number;
+    id: number;
     type: IntervalType;
     time_from: string;
     time_to: string;
@@ -2431,7 +2488,7 @@ export namespace logistics {
   }
 
   export interface IntervalId {
-    interval_id: number;
+    id: number;
   }
 
   export interface CreateManyIntervalRequest {
@@ -2439,7 +2496,7 @@ export namespace logistics {
   }
 
   export interface CreateManyIntervalResponse {
-    interval_id: number[];
+    id: number[];
   }
 }
 
@@ -2472,7 +2529,7 @@ export namespace logistics {
   }
 
   export interface PaymentMethodByZone {
-    payment_method_by_zone_id: number;
+    id: number;
     zone_id: number;
     delivery_method_id: number;
     payment_method_id: number;
@@ -2487,7 +2544,7 @@ export namespace logistics {
   }
 
   export interface PaymentMethodByZoneId {
-    payment_method_by_zone_id: number;
+    id: number;
   }
 
   export interface ListPaymentMethodsByZoneRequest {
@@ -2498,54 +2555,6 @@ export namespace logistics {
   export interface ListPaymentMethodsByZoneResponse {
     results: PaymentMethodByZone[];
     total: number;
-  }
-}
-
-export namespace logistics {
-  export interface Logistics {
-    calculateWinners(
-      request: WinnersParams,
-      metadata?: any
-    ): Observable<WinnersResponse>;
-  }
-
-  export interface WinnersParams {
-    country_iso_code: string;
-    geo_id: string;
-    order_price: number;
-  }
-
-  export interface WinnersResponse {
-    results: Winner[];
-  }
-
-  export interface Winner {
-    delivery_type_id: number;
-    DeliveryTypeTitle: string;
-    winner_company: WinnerDeliveryCompany;
-    payments: WinnerPaymentType[];
-    delivery_date: WinnerDeliveryDate[];
-  }
-
-  export interface WinnerDeliveryCompany {
-    code: string;
-    title: string;
-  }
-
-  export interface WinnerPaymentType {
-    code: string;
-    title: string;
-    delivery_price: number;
-  }
-
-  export interface WinnerDeliveryDate {
-    date: string;
-    intervals: WinnerDeliveryInterval[];
-  }
-
-  export interface WinnerDeliveryInterval {
-    time_from: string;
-    time_to: string;
   }
 }
 
