@@ -43,6 +43,7 @@ message WinnerPaymentMethod {
   int32  id = 1;
   string name = 2;
   int32  delivery_price = 3;
+  WinnerMessage message = 4;
 }
 
 message WinnerDeliveryDate {
@@ -60,4 +61,7 @@ message WinnerMessage {
   int32  price_border = 1;
   int32  product_quantity_border = 2;
   string text = 3;
+  string short_text = 4;
+  string header = 5;
+  string button_text = 6;
 }

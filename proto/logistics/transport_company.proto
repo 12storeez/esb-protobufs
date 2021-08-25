@@ -64,6 +64,7 @@ message TransportCompany {
   int32 product_quantity_border = 8;
   int32 available_delivery_days = 9;
   string track_url = 10;
+  bool has_integration = 11;
 }
 
 message ListTransportCompanyRequest {
