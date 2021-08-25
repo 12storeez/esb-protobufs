@@ -90,7 +90,7 @@ func (c *transportCompaniesClient) Delete(ctx context.Context, in *TransportComp
 }
 
 // TransportCompaniesServer is the server API for TransportCompanies service.
-// All implementations must embed UnimplementedTransportCompaniesServer
+// All implementations should embed UnimplementedTransportCompaniesServer
 // for forward compatibility
 type TransportCompaniesServer interface {
 	Create(context.Context, *TransportCompany) (*TransportCompanyId, error)
@@ -99,10 +99,9 @@ type TransportCompaniesServer interface {
 	Update(context.Context, *TransportCompany) (*TransportCompany, error)
 	Upsert(context.Context, *TransportCompany) (*TransportCompany, error)
 	Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error)
-	mustEmbedUnimplementedTransportCompaniesServer()
 }
 
-// UnimplementedTransportCompaniesServer must be embedded to have forward compatible implementations.
+// UnimplementedTransportCompaniesServer should be embedded to have forward compatible implementations.
 type UnimplementedTransportCompaniesServer struct {
 }
 
@@ -124,7 +123,6 @@ func (UnimplementedTransportCompaniesServer) Upsert(context.Context, *TransportC
 func (UnimplementedTransportCompaniesServer) Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedTransportCompaniesServer) mustEmbedUnimplementedTransportCompaniesServer() {}
 
 // UnsafeTransportCompaniesServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TransportCompaniesServer will
