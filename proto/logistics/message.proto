@@ -70,7 +70,10 @@ enum BorderType {
 message MessageToTransportCompany {
   int32 message_id = 1;
   int32 transport_company_id = 2;
-  string value = 3;
+  string text = 3;
+  string short_text = 4;
+  string header = 5;
+  string button_text = 6;
 }
 
 message MessageId {
