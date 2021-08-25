@@ -110,7 +110,7 @@ func (c *messagesClient) DeleteTransportCompany(ctx context.Context, in *Message
 }
 
 // MessagesServer is the server API for Messages service.
-// All implementations must embed UnimplementedMessagesServer
+// All implementations should embed UnimplementedMessagesServer
 // for forward compatibility
 type MessagesServer interface {
 	Create(context.Context, *Message) (*MessageId, error)
@@ -121,10 +121,9 @@ type MessagesServer interface {
 	Delete(context.Context, *MessageId) (*emptypb.Empty, error)
 	AddTransportCompany(context.Context, *MessageToTransportCompany) (*MessageToTransportCompany, error)
 	DeleteTransportCompany(context.Context, *MessageToTransportCompany) (*emptypb.Empty, error)
-	mustEmbedUnimplementedMessagesServer()
 }
 
-// UnimplementedMessagesServer must be embedded to have forward compatible implementations.
+// UnimplementedMessagesServer should be embedded to have forward compatible implementations.
 type UnimplementedMessagesServer struct {
 }
 
@@ -152,7 +151,6 @@ func (UnimplementedMessagesServer) AddTransportCompany(context.Context, *Message
 func (UnimplementedMessagesServer) DeleteTransportCompany(context.Context, *MessageToTransportCompany) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTransportCompany not implemented")
 }
-func (UnimplementedMessagesServer) mustEmbedUnimplementedMessagesServer() {}
 
 // UnsafeMessagesServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to MessagesServer will
