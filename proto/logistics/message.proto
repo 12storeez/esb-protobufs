@@ -90,8 +90,11 @@ message Message {
 }
 
 message MessageTransportCompanyValue {
-  int32 transport_company_id = 1;
-  string value = 2;
+  int32  transport_company_id = 1;
+  string text = 2;  // безлимитный текст
+  string short_text = 3; // короткий текст
+  string header = 4; // заголовок
+  string button_text = 5; // текст для кнопки
 }
 
 message ListMessagesRequest {
