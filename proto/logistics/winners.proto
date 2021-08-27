@@ -19,6 +19,7 @@ message WinnersParams {
   string country_iso_code = 1;
   string geo_id = 2;
   int32  order_price = 3;
+  int32  order_positions_quantity = 4;
 }
 
 message WinnersResponse {
