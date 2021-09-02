@@ -24,6 +24,7 @@ message WinnersParams {
 
 message WinnersResponse {
   repeated Winner results = 1;
+  bool success = 2;
 }
 
 message Winner {
