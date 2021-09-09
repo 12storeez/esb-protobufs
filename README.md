@@ -2,15 +2,22 @@
 
 ## Генерация файлов для Go
 
-### Файлы для gRPC
-    protoc -I . -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --go_out=. --go-grpc_out=. proto/geo.proto
+### protoc плагины:
+- itemprotoc-gen-go
+- itemprotoc-gen-grpc-gateway
+- itemprotoc-gen-swagger
 
-### Файлы для HTTP запросов
-    protoc -I . --grpc-gateway_out=. \
-      -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
-        --grpc-gateway_opt logtostderr=true \
-        --grpc-gateway_opt generate_unbound_methods=true \
-        proto/geo.proto 
+### Генерация клиента и сервера с пакетом annotations.proto:
+`protoc -I . -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --go_out=. --go-grpc_out=require_unimplemented_servers=false:. proto/notifications/slack.proto`
+
+### Генерация прото:
+`protoc -I . --go_out=. --go-grpc_out=require_unimplemented_servers=false:. proto/notifications/slack.proto`
+
+### Генерация прокси:
+`protoc -I . --grpc-gateway_out=. -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --grpc-gateway_opt logtostderr=true --grpc-gateway_opt generate_unbound_methods=true proto/notifications/slack.proto`
+
+### Генерация даты для свагера:
+`protoc -I . --grpc-gateway_out=. -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --swagger_out=logtostderr=true:. proto/notifications/slack.proto`
 
 ## Генерация файлов для Typescript
     node ./app.js
