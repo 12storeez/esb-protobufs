@@ -14,6 +14,7 @@ service geo {
   rpc CountryDetails(CountryDetailsParams) returns (Country) {
   }
   // Suggest по городам. Если ничего не найдено - возвращает список городов по умолчанию (см. DefaultCityList)
+  // Первый возвращаемый город - город, определённый по IP (если удалось)
   rpc SuggestCity(SuggestCityParams) returns (SuggestCityResponse) {
   }
   // Детали города (используется нормализация дадаты)
@@ -23,10 +24,10 @@ service geo {
   rpc CityDetailsByGeoID(CityDetailsByGeoIDParams) returns (City) {
   }
   // Метод возвращает список городов по-умолчанию, в зависимости от количества заказов
-  rpc DefaultCityList(google.protobuf.Empty) returns (SuggestCity) {
+  rpc DefaultCityList(google.protobuf.Empty) returns (SuggestCityResponse) {
   }
   // Определение города по IP (MaxMind & Dadata + cache)
-  rpc CityByIP(CityByIPParams) returns (CityByIPResponse) {
+  rpc CityByIP(CityByIPParams) returns (City) {
   }
   // Suggest по адресам
   rpc SuggestAddress(SuggestAddressParams) returns (SuggestAddressResponse) {
@@ -42,17 +43,17 @@ service geo {
   }
 }
 
-enum LanguageType {
+enum LocaleType {
   ru = 0;
   en = 1;
 }
 
 // Country ...
 message SuggestCountryParams {
-  LanguageType language = 1;
-  string search = 2;
-  int32  limit = 3;
-  int32  offset = 4;
+  LocaleType locale = 1;
+  string     search = 2;
+  int32      limit = 3;
+  int32      offset = 4;
 }
 
 message SuggestCountryResponse {
@@ -69,7 +70,7 @@ message SuggestCountry {
 }
 
 message CountryDetailsParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string iso_code = 2;
 }
 
@@ -102,11 +103,11 @@ message Capital {
 
 // City ...
 message SuggestCityParams {
-  LanguageType language = 1;
-  string country_iso_code = 2;
-  string search = 3;
-  int32 limit = 4;
-  int32 offset = 5;
+  LocaleType locale = 1;
+  string     country_iso_code = 2;
+  string     search = 3;
+  int32      limit = 4;
+  int32      offset = 5;
 }
 
 message SuggestCityResponse {
@@ -124,7 +125,7 @@ message SuggestCity {
 }
 
 message CityDetailsParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
 
   // для России передавать полученный suggest из SuggestCity. Метод использует нормализацию Dadata
@@ -133,7 +134,7 @@ message CityDetailsParams {
 }
 
 message CityDetailsByGeoIDParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
   string id = 3; // fiasID или geoID
 }
@@ -168,24 +169,13 @@ message Location  {
 }
 
 message CityByIPParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string ip = 2;
-}
-
-// maxmind или dadata (+кэшируем данные в базе по geoID)
-message CityByIPResponse {
-  string id = 1;
-  string name = 2;
-  string subtitle = 3;
-  string type = 4;
-  string country_iso_code = 5;
-  string country_name = 6;
-  Location location = 7;
 }
 
 // Address ...
 message SuggestAddressParams {
-  LanguageType language = 1;
+  LocaleType   locale = 1;
   string       country_iso_code = 2;
   string       city_id = 3;
   string       search = 4;
@@ -209,13 +199,13 @@ message SuggestAddress {
 
 // нормализация
 message AddressDetailsParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
   string query = 3;
 }
 
 message AddressDetailsByGeoIDParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
   string id = 3;
 }
@@ -237,18 +227,19 @@ message Address {
 }
 
 message AddressAdditional {
-  bool is_in_mkad = 1;
-  bool is_in_kad = 2;
+  bool   is_in_mkad = 1;
+  bool   is_in_kad = 2;
   string fias_level = 3;
 }
 
 message CityAdditional {
   string kladr_id = 1;
-  bool is_crimea = 2;
+  bool   is_crimea = 2;
+  string fias_level = 3;
 }
 
 message AddressZonesParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
   string query = 3;
 }

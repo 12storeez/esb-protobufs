@@ -7,6 +7,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -18,13 +19,28 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GeoClient interface {
-	CountryDetails(ctx context.Context, in *CountryDetailsParams, opts ...grpc.CallOption) (*Country, error)
+	// Suggest по странам. Возвращет страны из БД
 	SuggestCountry(ctx context.Context, in *SuggestCountryParams, opts ...grpc.CallOption) (*SuggestCountryResponse, error)
+	// Детальная информация по стране из БД
+	CountryDetails(ctx context.Context, in *CountryDetailsParams, opts ...grpc.CallOption) (*Country, error)
+	// Suggest по городам. Если ничего не найдено - возвращает список городов по умолчанию (см. DefaultCityList)
+	// Первый возвращаемый город - город, определённый по IP (если удалось)
 	SuggestCity(ctx context.Context, in *SuggestCityParams, opts ...grpc.CallOption) (*SuggestCityResponse, error)
+	// Детали города (используется нормализация дадаты)
 	CityDetails(ctx context.Context, in *CityDetailsParams, opts ...grpc.CallOption) (*City, error)
-	CityByIP(ctx context.Context, in *CityByIPParams, opts ...grpc.CallOption) (*CityByIPResponse, error)
+	// Детали города по GeoID
+	CityDetailsByGeoID(ctx context.Context, in *CityDetailsByGeoIDParams, opts ...grpc.CallOption) (*City, error)
+	// Метод возвращает список городов по-умолчанию, в зависимости от количества заказов
+	DefaultCityList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SuggestCityResponse, error)
+	// Определение города по IP (MaxMind & Dadata + cache)
+	CityByIP(ctx context.Context, in *CityByIPParams, opts ...grpc.CallOption) (*City, error)
+	// Suggest по адресам
 	SuggestAddress(ctx context.Context, in *SuggestAddressParams, opts ...grpc.CallOption) (*SuggestAddressResponse, error)
+	// Нормализация адреса
 	AddressDetails(ctx context.Context, in *AddressDetailsParams, opts ...grpc.CallOption) (*Address, error)
+	// Детали адреса по GeoID
+	AddressDetailsByGeoID(ctx context.Context, in *AddressDetailsByGeoIDParams, opts ...grpc.CallOption) (*Address, error)
+	// используется в логистике для поиска geoID родительских зон
 	AddressZones(ctx context.Context, in *AddressZonesParams, opts ...grpc.CallOption) (*AddressZonesResponse, error)
 }
 
@@ -36,18 +52,18 @@ func NewGeoClient(cc grpc.ClientConnInterface) GeoClient {
 	return &geoClient{cc}
 }
 
-func (c *geoClient) CountryDetails(ctx context.Context, in *CountryDetailsParams, opts ...grpc.CallOption) (*Country, error) {
-	out := new(Country)
-	err := c.cc.Invoke(ctx, "/geo.geo/CountryDetails", in, out, opts...)
+func (c *geoClient) SuggestCountry(ctx context.Context, in *SuggestCountryParams, opts ...grpc.CallOption) (*SuggestCountryResponse, error) {
+	out := new(SuggestCountryResponse)
+	err := c.cc.Invoke(ctx, "/geo.geo/SuggestCountry", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *geoClient) SuggestCountry(ctx context.Context, in *SuggestCountryParams, opts ...grpc.CallOption) (*SuggestCountryResponse, error) {
-	out := new(SuggestCountryResponse)
-	err := c.cc.Invoke(ctx, "/geo.geo/SuggestCountry", in, out, opts...)
+func (c *geoClient) CountryDetails(ctx context.Context, in *CountryDetailsParams, opts ...grpc.CallOption) (*Country, error) {
+	out := new(Country)
+	err := c.cc.Invoke(ctx, "/geo.geo/CountryDetails", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,8 +88,26 @@ func (c *geoClient) CityDetails(ctx context.Context, in *CityDetailsParams, opts
 	return out, nil
 }
 
-func (c *geoClient) CityByIP(ctx context.Context, in *CityByIPParams, opts ...grpc.CallOption) (*CityByIPResponse, error) {
-	out := new(CityByIPResponse)
+func (c *geoClient) CityDetailsByGeoID(ctx context.Context, in *CityDetailsByGeoIDParams, opts ...grpc.CallOption) (*City, error) {
+	out := new(City)
+	err := c.cc.Invoke(ctx, "/geo.geo/CityDetailsByGeoID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *geoClient) DefaultCityList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SuggestCityResponse, error) {
+	out := new(SuggestCityResponse)
+	err := c.cc.Invoke(ctx, "/geo.geo/DefaultCityList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *geoClient) CityByIP(ctx context.Context, in *CityByIPParams, opts ...grpc.CallOption) (*City, error) {
+	out := new(City)
 	err := c.cc.Invoke(ctx, "/geo.geo/CityByIP", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -99,6 +133,15 @@ func (c *geoClient) AddressDetails(ctx context.Context, in *AddressDetailsParams
 	return out, nil
 }
 
+func (c *geoClient) AddressDetailsByGeoID(ctx context.Context, in *AddressDetailsByGeoIDParams, opts ...grpc.CallOption) (*Address, error) {
+	out := new(Address)
+	err := c.cc.Invoke(ctx, "/geo.geo/AddressDetailsByGeoID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *geoClient) AddressZones(ctx context.Context, in *AddressZonesParams, opts ...grpc.CallOption) (*AddressZonesResponse, error) {
 	out := new(AddressZonesResponse)
 	err := c.cc.Invoke(ctx, "/geo.geo/AddressZones", in, out, opts...)
@@ -112,13 +155,28 @@ func (c *geoClient) AddressZones(ctx context.Context, in *AddressZonesParams, op
 // All implementations should embed UnimplementedGeoServer
 // for forward compatibility
 type GeoServer interface {
-	CountryDetails(context.Context, *CountryDetailsParams) (*Country, error)
+	// Suggest по странам. Возвращет страны из БД
 	SuggestCountry(context.Context, *SuggestCountryParams) (*SuggestCountryResponse, error)
+	// Детальная информация по стране из БД
+	CountryDetails(context.Context, *CountryDetailsParams) (*Country, error)
+	// Suggest по городам. Если ничего не найдено - возвращает список городов по умолчанию (см. DefaultCityList)
+	// Первый возвращаемый город - город, определённый по IP (если удалось)
 	SuggestCity(context.Context, *SuggestCityParams) (*SuggestCityResponse, error)
+	// Детали города (используется нормализация дадаты)
 	CityDetails(context.Context, *CityDetailsParams) (*City, error)
-	CityByIP(context.Context, *CityByIPParams) (*CityByIPResponse, error)
+	// Детали города по GeoID
+	CityDetailsByGeoID(context.Context, *CityDetailsByGeoIDParams) (*City, error)
+	// Метод возвращает список городов по-умолчанию, в зависимости от количества заказов
+	DefaultCityList(context.Context, *emptypb.Empty) (*SuggestCityResponse, error)
+	// Определение города по IP (MaxMind & Dadata + cache)
+	CityByIP(context.Context, *CityByIPParams) (*City, error)
+	// Suggest по адресам
 	SuggestAddress(context.Context, *SuggestAddressParams) (*SuggestAddressResponse, error)
+	// Нормализация адреса
 	AddressDetails(context.Context, *AddressDetailsParams) (*Address, error)
+	// Детали адреса по GeoID
+	AddressDetailsByGeoID(context.Context, *AddressDetailsByGeoIDParams) (*Address, error)
+	// используется в логистике для поиска geoID родительских зон
 	AddressZones(context.Context, *AddressZonesParams) (*AddressZonesResponse, error)
 }
 
@@ -126,11 +184,11 @@ type GeoServer interface {
 type UnimplementedGeoServer struct {
 }
 
-func (UnimplementedGeoServer) CountryDetails(context.Context, *CountryDetailsParams) (*Country, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CountryDetails not implemented")
-}
 func (UnimplementedGeoServer) SuggestCountry(context.Context, *SuggestCountryParams) (*SuggestCountryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuggestCountry not implemented")
+}
+func (UnimplementedGeoServer) CountryDetails(context.Context, *CountryDetailsParams) (*Country, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountryDetails not implemented")
 }
 func (UnimplementedGeoServer) SuggestCity(context.Context, *SuggestCityParams) (*SuggestCityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuggestCity not implemented")
@@ -138,7 +196,13 @@ func (UnimplementedGeoServer) SuggestCity(context.Context, *SuggestCityParams) (
 func (UnimplementedGeoServer) CityDetails(context.Context, *CityDetailsParams) (*City, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CityDetails not implemented")
 }
-func (UnimplementedGeoServer) CityByIP(context.Context, *CityByIPParams) (*CityByIPResponse, error) {
+func (UnimplementedGeoServer) CityDetailsByGeoID(context.Context, *CityDetailsByGeoIDParams) (*City, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CityDetailsByGeoID not implemented")
+}
+func (UnimplementedGeoServer) DefaultCityList(context.Context, *emptypb.Empty) (*SuggestCityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DefaultCityList not implemented")
+}
+func (UnimplementedGeoServer) CityByIP(context.Context, *CityByIPParams) (*City, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CityByIP not implemented")
 }
 func (UnimplementedGeoServer) SuggestAddress(context.Context, *SuggestAddressParams) (*SuggestAddressResponse, error) {
@@ -146,6 +210,9 @@ func (UnimplementedGeoServer) SuggestAddress(context.Context, *SuggestAddressPar
 }
 func (UnimplementedGeoServer) AddressDetails(context.Context, *AddressDetailsParams) (*Address, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddressDetails not implemented")
+}
+func (UnimplementedGeoServer) AddressDetailsByGeoID(context.Context, *AddressDetailsByGeoIDParams) (*Address, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddressDetailsByGeoID not implemented")
 }
 func (UnimplementedGeoServer) AddressZones(context.Context, *AddressZonesParams) (*AddressZonesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddressZones not implemented")
@@ -162,24 +229,6 @@ func RegisterGeoServer(s grpc.ServiceRegistrar, srv GeoServer) {
 	s.RegisterService(&Geo_ServiceDesc, srv)
 }
 
-func _Geo_CountryDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CountryDetailsParams)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GeoServer).CountryDetails(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/geo.geo/CountryDetails",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeoServer).CountryDetails(ctx, req.(*CountryDetailsParams))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Geo_SuggestCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SuggestCountryParams)
 	if err := dec(in); err != nil {
@@ -194,6 +243,24 @@ func _Geo_SuggestCountry_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GeoServer).SuggestCountry(ctx, req.(*SuggestCountryParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Geo_CountryDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountryDetailsParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeoServer).CountryDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/geo.geo/CountryDetails",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeoServer).CountryDetails(ctx, req.(*CountryDetailsParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -230,6 +297,42 @@ func _Geo_CityDetails_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GeoServer).CityDetails(ctx, req.(*CityDetailsParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Geo_CityDetailsByGeoID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CityDetailsByGeoIDParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeoServer).CityDetailsByGeoID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/geo.geo/CityDetailsByGeoID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeoServer).CityDetailsByGeoID(ctx, req.(*CityDetailsByGeoIDParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Geo_DefaultCityList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeoServer).DefaultCityList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/geo.geo/DefaultCityList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeoServer).DefaultCityList(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -288,6 +391,24 @@ func _Geo_AddressDetails_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Geo_AddressDetailsByGeoID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddressDetailsByGeoIDParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeoServer).AddressDetailsByGeoID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/geo.geo/AddressDetailsByGeoID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeoServer).AddressDetailsByGeoID(ctx, req.(*AddressDetailsByGeoIDParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Geo_AddressZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddressZonesParams)
 	if err := dec(in); err != nil {
@@ -314,12 +435,12 @@ var Geo_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*GeoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CountryDetails",
-			Handler:    _Geo_CountryDetails_Handler,
-		},
-		{
 			MethodName: "SuggestCountry",
 			Handler:    _Geo_SuggestCountry_Handler,
+		},
+		{
+			MethodName: "CountryDetails",
+			Handler:    _Geo_CountryDetails_Handler,
 		},
 		{
 			MethodName: "SuggestCity",
@@ -328,6 +449,14 @@ var Geo_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CityDetails",
 			Handler:    _Geo_CityDetails_Handler,
+		},
+		{
+			MethodName: "CityDetailsByGeoID",
+			Handler:    _Geo_CityDetailsByGeoID_Handler,
+		},
+		{
+			MethodName: "DefaultCityList",
+			Handler:    _Geo_DefaultCityList_Handler,
 		},
 		{
 			MethodName: "CityByIP",
@@ -340,6 +469,10 @@ var Geo_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddressDetails",
 			Handler:    _Geo_AddressDetails_Handler,
+		},
+		{
+			MethodName: "AddressDetailsByGeoID",
+			Handler:    _Geo_AddressDetailsByGeoID_Handler,
 		},
 		{
 			MethodName: "AddressZones",
