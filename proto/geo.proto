@@ -4,33 +4,73 @@ option go_package = "go/geo";
 
 package geo;
 
+import "google/protobuf/empty.proto";
+
 service geo {
-  rpc CountryDetails(CountryDetailsParams) returns (Country) {
-  }
+  // Suggest по странам. Возвращет страны из БД
   rpc SuggestCountry(SuggestCountryParams) returns (SuggestCountryResponse) {
   }
+  // Детальная информация по стране из БД
+  rpc CountryDetails(CountryDetailsParams) returns (Country) {
+  }
+  // Suggest по городам. Если ничего не найдено - возвращает список городов по умолчанию (см. DefaultCityList)
+  // Первый возвращаемый город - город, определённый по IP (если удалось)
   rpc SuggestCity(SuggestCityParams) returns (SuggestCityResponse) {
   }
+  // Детали города (используется нормализация дадаты)
   rpc CityDetails(CityDetailsParams) returns (City) {
   }
-  rpc CityByIP(CityByIPParams) returns (CityByIPResponse) {
+  // Детали города по GeoID
+  rpc CityDetailsByGeoID(CityDetailsByGeoIDParams) returns (City) {
   }
+  // Метод возвращает список городов по-умолчанию, в зависимости от количества заказов
+  rpc DefaultCityList(google.protobuf.Empty) returns (SuggestCityResponse) {
+  }
+  // Определение города по IP (MaxMind & Dadata + cache)
+  rpc CityByIP(CityByIPParams) returns (City) {
+  }
+  // Suggest по адресам
   rpc SuggestAddress(SuggestAddressParams) returns (SuggestAddressResponse) {
   }
+  // Нормализация адреса
   rpc AddressDetails(AddressDetailsParams) returns (Address) {
   }
+  // Детали адреса по GeoID
+  rpc AddressDetailsByGeoID(AddressDetailsByGeoIDParams) returns (Address) {
+  }
+  // используется в логистике для поиска geoID родительских зон
   rpc AddressZones(AddressZonesParams) returns (AddressZonesResponse) {
   }
 }
 
-enum LanguageType {
+enum LocaleType {
   ru = 0;
   en = 1;
 }
 
 // Country ...
+message SuggestCountryParams {
+  LocaleType locale = 1;
+  string     search = 2;
+  int32      limit = 3;
+  int32      offset = 4;
+}
+
+message SuggestCountryResponse {
+  bool success = 1;
+  int32 total = 2;
+  repeated SuggestCountry result = 3;
+}
+
+message SuggestCountry {
+  string iso_code = 1;
+  string name = 2;
+  Continent continent = 3;
+  Phone phone = 4;
+}
+
 message CountryDetailsParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string iso_code = 2;
 }
 
@@ -61,36 +101,19 @@ message Capital {
   string postal_code = 3;
 }
 
-message SuggestCountryParams {
-  LanguageType language = 1;
-  string name = 2;
-  int32 limit = 3;
-  int32 offset = 4;
-}
-
-message SuggestCountryResponse {
-  repeated SuggestCountry results = 1;
-  int32 total = 2;
-}
-
-message SuggestCountry {
-  string iso_code = 1;
-  string name = 2;
-  Continent continent = 3;
-  Phone phone = 4;
-}
-
 // City ...
 message SuggestCityParams {
-  LanguageType language = 1;
-  string country_iso_code = 2;
-  string city_name = 3;
-  int32 limit = 4;
+  LocaleType locale = 1;
+  string     country_iso_code = 2;
+  string     search = 3;
+  int32      limit = 4;
+  int32      offset = 5;
 }
 
 message SuggestCityResponse {
-  repeated SuggestCity results = 1;
+  bool success = 1;
   int32 total = 2;
+  repeated SuggestCity result = 3;
 }
 
 message SuggestCity {
@@ -99,16 +122,21 @@ message SuggestCity {
   string name = 3;
   string subtitle = 4;
   string type = 5;
-  string query_for_details = 6;
 }
 
 message CityDetailsParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
 
-  // для России передавать полученный suggest
+  // для России передавать полученный suggest из SuggestCity. Метод использует нормализацию Dadata
   // для остальных передавать id
   string query = 3;
+}
+
+message CityDetailsByGeoIDParams {
+  LocaleType locale = 1;
+  string country_iso_code = 2;
+  string id = 3; // fiasID или geoID
 }
 
 message City {
@@ -141,43 +169,45 @@ message Location  {
 }
 
 message CityByIPParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string ip = 2;
-}
-
-message CityByIPResponse {
-  string name = 1;
-  string country_iso_code = 2;
-  string country_name = 3;
-  Location location = 4;
 }
 
 // Address ...
 message SuggestAddressParams {
-  LanguageType language = 1;
+  LocaleType   locale = 1;
   string       country_iso_code = 2;
   string       city_id = 3;
-  string       address = 4;
+  string       search = 4;
   int32        limit = 5;
+  int32        offset = 6;
 }
 
 message SuggestAddressResponse {
-  repeated SuggestAddress results = 1;
+  bool success = 1;
   int32 total = 2;
+  repeated SuggestAddress result = 3;
 }
 
 message SuggestAddress {
-  string id = 1;
+  string id = 1;  // fiasID или geoID
   string suggest = 2;
   string title = 3;
   string subtitle = 4;
-  string query_for_details = 5;
+  string query_for_details = 5;  // полная строка адреса, которую можно отправить в нормализацию
 }
 
+// нормализация
 message AddressDetailsParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
   string query = 3;
+}
+
+message AddressDetailsByGeoIDParams {
+  LocaleType locale = 1;
+  string country_iso_code = 2;
+  string id = 3;
 }
 
 message Address {
@@ -197,18 +227,19 @@ message Address {
 }
 
 message AddressAdditional {
-  bool is_in_mkad = 1;
-  bool is_in_kad = 2;
+  bool   is_in_mkad = 1;
+  bool   is_in_kad = 2;
   string fias_level = 3;
 }
 
 message CityAdditional {
   string kladr_id = 1;
-  bool is_crimea = 2;
+  bool   is_crimea = 2;
+  string fias_level = 3;
 }
 
 message AddressZonesParams {
-  LanguageType language = 1;
+  LocaleType locale = 1;
   string country_iso_code = 2;
   string query = 3;
 }
