@@ -495,23 +495,28 @@ export namespace gate {
 
 export namespace geo {
   export interface geo {
-    countryDetails(
-      request: CountryDetailsParams,
-      metadata?: any
-    ): Observable<Country>;
     suggestCountry(
       request: SuggestCountryParams,
       metadata?: any
     ): Observable<SuggestCountryResponse>;
+    countryDetails(
+      request: CountryDetailsParams,
+      metadata?: any
+    ): Observable<Country>;
     suggestCity(
       request: SuggestCityParams,
       metadata?: any
     ): Observable<SuggestCityResponse>;
     cityDetails(request: CityDetailsParams, metadata?: any): Observable<City>;
-    cityByIP(
-      request: CityByIPParams,
+    cityDetailsByGeoID(
+      request: CityDetailsByGeoIDParams,
       metadata?: any
-    ): Observable<CityByIPResponse>;
+    ): Observable<City>;
+    defaultCityList(
+      request: any,
+      metadata?: any
+    ): Observable<SuggestCityResponse>;
+    cityByIP(request: CityByIPParams, metadata?: any): Observable<City>;
     suggestAddress(
       request: SuggestAddressParams,
       metadata?: any
@@ -520,19 +525,43 @@ export namespace geo {
       request: AddressDetailsParams,
       metadata?: any
     ): Observable<Address>;
+    addressDetailsByGeoID(
+      request: AddressDetailsByGeoIDParams,
+      metadata?: any
+    ): Observable<Address>;
     addressZones(
       request: AddressZonesParams,
       metadata?: any
     ): Observable<AddressZonesResponse>;
   }
 
-  export enum LanguageType {
+  export enum LocaleType {
     ru = 0,
     en = 1,
   }
 
+  export interface SuggestCountryParams {
+    locale: LocaleType;
+    search: string;
+    limit: number;
+    offset: number;
+  }
+
+  export interface SuggestCountryResponse {
+    success: boolean;
+    total: number;
+    result: SuggestCountry[];
+  }
+
+  export interface SuggestCountry {
+    iso_code: string;
+    name: string;
+    continent: Continent;
+    phone: Phone;
+  }
+
   export interface CountryDetailsParams {
-    language: LanguageType;
+    locale: LocaleType;
     iso_code: string;
   }
 
@@ -563,35 +592,18 @@ export namespace geo {
     postal_code: string;
   }
 
-  export interface SuggestCountryParams {
-    language: LanguageType;
-    name: string;
+  export interface SuggestCityParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    search: string;
     limit: number;
     offset: number;
   }
 
-  export interface SuggestCountryResponse {
-    results: SuggestCountry[];
-    total: number;
-  }
-
-  export interface SuggestCountry {
-    iso_code: string;
-    name: string;
-    continent: Continent;
-    phone: Phone;
-  }
-
-  export interface SuggestCityParams {
-    language: LanguageType;
-    country_iso_code: string;
-    city_name: string;
-    limit: number;
-  }
-
   export interface SuggestCityResponse {
-    results: SuggestCity[];
+    success: boolean;
     total: number;
+    result: SuggestCity[];
   }
 
   export interface SuggestCity {
@@ -600,13 +612,18 @@ export namespace geo {
     name: string;
     subtitle: string;
     type: string;
-    query_for_details: string;
   }
 
   export interface CityDetailsParams {
-    language: LanguageType;
+    locale: LocaleType;
     country_iso_code: string;
     query: string;
+  }
+
+  export interface CityDetailsByGeoIDParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    id: string;
   }
 
   export interface City {
@@ -639,28 +656,23 @@ export namespace geo {
   }
 
   export interface CityByIPParams {
-    language: LanguageType;
+    locale: LocaleType;
     ip: string;
   }
 
-  export interface CityByIPResponse {
-    name: string;
-    country_iso_code: string;
-    country_name: string;
-    location: Location;
-  }
-
   export interface SuggestAddressParams {
-    language: LanguageType;
+    locale: LocaleType;
     country_iso_code: string;
     city_id: string;
-    address: string;
+    search: string;
     limit: number;
+    offset: number;
   }
 
   export interface SuggestAddressResponse {
-    results: SuggestAddress[];
+    success: boolean;
     total: number;
+    result: SuggestAddress[];
   }
 
   export interface SuggestAddress {
@@ -672,9 +684,15 @@ export namespace geo {
   }
 
   export interface AddressDetailsParams {
-    language: LanguageType;
+    locale: LocaleType;
     country_iso_code: string;
     query: string;
+  }
+
+  export interface AddressDetailsByGeoIDParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    id: string;
   }
 
   export interface Address {
@@ -700,10 +718,11 @@ export namespace geo {
   export interface CityAdditional {
     kladr_id: string;
     is_crimea: boolean;
+    fias_level: string;
   }
 
   export interface AddressZonesParams {
-    language: LanguageType;
+    locale: LocaleType;
     country_iso_code: string;
     query: string;
   }
@@ -1989,6 +2008,7 @@ export namespace logistics {
     product_quantity_border: number;
     available_delivery_days: number;
     track_url: string;
+    has_integration: boolean;
   }
 
   export interface ListTransportCompanyRequest {
@@ -2331,10 +2351,12 @@ export namespace logistics {
     country_iso_code: string;
     geo_id: string;
     order_price: number;
+    order_positions_quantity: number;
   }
 
   export interface WinnersResponse {
     results: Winner[];
+    success: boolean;
   }
 
   export interface Winner {
@@ -2355,6 +2377,7 @@ export namespace logistics {
     id: number;
     name: string;
     delivery_price: number;
+    message: WinnerMessage;
   }
 
   export interface WinnerDeliveryDate {
@@ -2372,6 +2395,9 @@ export namespace logistics {
     price_border: number;
     product_quantity_border: number;
     text: string;
+    short_text: string;
+    header: string;
+    button_text: string;
   }
 }
 
@@ -2408,7 +2434,10 @@ export namespace logistics {
   export interface MessageToTransportCompany {
     message_id: number;
     transport_company_id: number;
-    value: string;
+    text: string;
+    short_text: string;
+    header: string;
+    button_text: string;
   }
 
   export interface MessageId {
@@ -2429,7 +2458,10 @@ export namespace logistics {
 
   export interface MessageTransportCompanyValue {
     transport_company_id: number;
-    value: string;
+    text: string;
+    short_text: string;
+    header: string;
+    button_text: string;
   }
 
   export interface ListMessagesRequest {
