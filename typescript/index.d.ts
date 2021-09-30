@@ -513,7 +513,7 @@ export namespace geo {
       metadata?: any
     ): Observable<City>;
     defaultCityList(
-      request: any,
+      request: DefaultCityListParams,
       metadata?: any
     ): Observable<SuggestCityResponse>;
     cityByIP(request: CityByIPParams, metadata?: any): Observable<City>;
@@ -736,6 +736,10 @@ export namespace geo {
     street_id: string;
     house_id: string;
     flat_id: string;
+  }
+
+  export interface DefaultCityListParams {
+    ip: string;
   }
 }
 
