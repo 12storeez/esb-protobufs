@@ -24,7 +24,7 @@ service geo {
   rpc CityDetailsByGeoID(CityDetailsByGeoIDParams) returns (City) {
   }
   // Метод возвращает список городов по-умолчанию, в зависимости от количества заказов
-  rpc DefaultCityList(google.protobuf.Empty) returns (SuggestCityResponse) {
+  rpc DefaultCityList(DefaultCityListParams) returns (SuggestCityResponse) {
   }
   // Определение города по IP (MaxMind & Dadata + cache)
   rpc CityByIP(CityByIPParams) returns (City) {
@@ -253,4 +253,8 @@ message AddressZonesResponse {
   string street_id = 6;
   string house_id = 7;
   string flat_id = 8;
+}
+
+message DefaultCityListParams {
+  string ip = 1;
 }
