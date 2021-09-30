@@ -7,7 +7,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -31,7 +30,7 @@ type GeoClient interface {
 	// Детали города по GeoID
 	CityDetailsByGeoID(ctx context.Context, in *CityDetailsByGeoIDParams, opts ...grpc.CallOption) (*City, error)
 	// Метод возвращает список городов по-умолчанию, в зависимости от количества заказов
-	DefaultCityList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SuggestCityResponse, error)
+	DefaultCityList(ctx context.Context, in *DefaultCityListParams, opts ...grpc.CallOption) (*SuggestCityResponse, error)
 	// Определение города по IP (MaxMind & Dadata + cache)
 	CityByIP(ctx context.Context, in *CityByIPParams, opts ...grpc.CallOption) (*City, error)
 	// Suggest по адресам
@@ -97,7 +96,7 @@ func (c *geoClient) CityDetailsByGeoID(ctx context.Context, in *CityDetailsByGeo
 	return out, nil
 }
 
-func (c *geoClient) DefaultCityList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SuggestCityResponse, error) {
+func (c *geoClient) DefaultCityList(ctx context.Context, in *DefaultCityListParams, opts ...grpc.CallOption) (*SuggestCityResponse, error) {
 	out := new(SuggestCityResponse)
 	err := c.cc.Invoke(ctx, "/geo.geo/DefaultCityList", in, out, opts...)
 	if err != nil {
@@ -152,7 +151,7 @@ func (c *geoClient) AddressZones(ctx context.Context, in *AddressZonesParams, op
 }
 
 // GeoServer is the server API for Geo service.
-// All implementations should embed UnimplementedGeoServer
+// All implementations must embed UnimplementedGeoServer
 // for forward compatibility
 type GeoServer interface {
 	// Suggest по странам. Возвращет страны из БД
@@ -167,7 +166,7 @@ type GeoServer interface {
 	// Детали города по GeoID
 	CityDetailsByGeoID(context.Context, *CityDetailsByGeoIDParams) (*City, error)
 	// Метод возвращает список городов по-умолчанию, в зависимости от количества заказов
-	DefaultCityList(context.Context, *emptypb.Empty) (*SuggestCityResponse, error)
+	DefaultCityList(context.Context, *DefaultCityListParams) (*SuggestCityResponse, error)
 	// Определение города по IP (MaxMind & Dadata + cache)
 	CityByIP(context.Context, *CityByIPParams) (*City, error)
 	// Suggest по адресам
@@ -178,9 +177,10 @@ type GeoServer interface {
 	AddressDetailsByGeoID(context.Context, *AddressDetailsByGeoIDParams) (*Address, error)
 	// используется в логистике для поиска geoID родительских зон
 	AddressZones(context.Context, *AddressZonesParams) (*AddressZonesResponse, error)
+	mustEmbedUnimplementedGeoServer()
 }
 
-// UnimplementedGeoServer should be embedded to have forward compatible implementations.
+// UnimplementedGeoServer must be embedded to have forward compatible implementations.
 type UnimplementedGeoServer struct {
 }
 
@@ -199,7 +199,7 @@ func (UnimplementedGeoServer) CityDetails(context.Context, *CityDetailsParams) (
 func (UnimplementedGeoServer) CityDetailsByGeoID(context.Context, *CityDetailsByGeoIDParams) (*City, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CityDetailsByGeoID not implemented")
 }
-func (UnimplementedGeoServer) DefaultCityList(context.Context, *emptypb.Empty) (*SuggestCityResponse, error) {
+func (UnimplementedGeoServer) DefaultCityList(context.Context, *DefaultCityListParams) (*SuggestCityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DefaultCityList not implemented")
 }
 func (UnimplementedGeoServer) CityByIP(context.Context, *CityByIPParams) (*City, error) {
@@ -217,6 +217,7 @@ func (UnimplementedGeoServer) AddressDetailsByGeoID(context.Context, *AddressDet
 func (UnimplementedGeoServer) AddressZones(context.Context, *AddressZonesParams) (*AddressZonesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddressZones not implemented")
 }
+func (UnimplementedGeoServer) mustEmbedUnimplementedGeoServer() {}
 
 // UnsafeGeoServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to GeoServer will
@@ -320,7 +321,7 @@ func _Geo_CityDetailsByGeoID_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _Geo_DefaultCityList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(DefaultCityListParams)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +333,7 @@ func _Geo_DefaultCityList_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/geo.geo/DefaultCityList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeoServer).DefaultCityList(ctx, req.(*emptypb.Empty))
+		return srv.(GeoServer).DefaultCityList(ctx, req.(*DefaultCityListParams))
 	}
 	return interceptor(ctx, in, info, handler)
 }
