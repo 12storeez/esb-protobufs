@@ -106,6 +106,7 @@ message SuggestCityParams {
   string     search = 3;
   int32      limit = 4;
   int32      offset = 5;
+  string     ip = 6;
 }
 
 message SuggestCityResponse {
