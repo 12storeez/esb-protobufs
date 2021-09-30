@@ -4,8 +4,6 @@ option go_package = "go/geo";
 
 package geo;
 
-import "google/protobuf/empty.proto";
-
 service geo {
   // Suggest по странам. Возвращет страны из БД
   rpc SuggestCountry(SuggestCountryParams) returns (SuggestCountryResponse) {
