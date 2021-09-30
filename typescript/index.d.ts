@@ -598,6 +598,7 @@ export namespace geo {
     search: string;
     limit: number;
     offset: number;
+    ip: string;
   }
 
   export interface SuggestCityResponse {
