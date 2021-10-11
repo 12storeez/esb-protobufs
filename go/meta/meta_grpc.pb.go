@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // MobileClient is the client API for Mobile service.
@@ -79,7 +80,7 @@ func (c *mobileClient) SocialNetworks(ctx context.Context, in *emptypb.Empty, op
 }
 
 // MobileServer is the server API for Mobile service.
-// All implementations must embed UnimplementedMobileServer
+// All implementations should embed UnimplementedMobileServer
 // for forward compatibility
 type MobileServer interface {
 	Contacts(context.Context, *emptypb.Empty) (*ResponseMobileAPIContacts, error)
@@ -87,10 +88,9 @@ type MobileServer interface {
 	Faq(context.Context, *emptypb.Empty) (*ResponseFaq, error)
 	Countries(context.Context, *ParamsCountries) (*ResponseCountries, error)
 	SocialNetworks(context.Context, *emptypb.Empty) (*ResponseSocialNetworks, error)
-	mustEmbedUnimplementedMobileServer()
 }
 
-// UnimplementedMobileServer must be embedded to have forward compatible implementations.
+// UnimplementedMobileServer should be embedded to have forward compatible implementations.
 type UnimplementedMobileServer struct {
 }
 
@@ -109,7 +109,6 @@ func (UnimplementedMobileServer) Countries(context.Context, *ParamsCountries) (*
 func (UnimplementedMobileServer) SocialNetworks(context.Context, *emptypb.Empty) (*ResponseSocialNetworks, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SocialNetworks not implemented")
 }
-func (UnimplementedMobileServer) mustEmbedUnimplementedMobileServer() {}
 
 // UnsafeMobileServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to MobileServer will
@@ -119,7 +118,7 @@ type UnsafeMobileServer interface {
 }
 
 func RegisterMobileServer(s grpc.ServiceRegistrar, srv MobileServer) {
-	s.RegisterService(&_Mobile_serviceDesc, srv)
+	s.RegisterService(&Mobile_ServiceDesc, srv)
 }
 
 func _Mobile_Contacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -212,7 +211,10 @@ func _Mobile_SocialNetworks_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Mobile_serviceDesc = grpc.ServiceDesc{
+// Mobile_ServiceDesc is the grpc.ServiceDesc for Mobile service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Mobile_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "meta.Mobile",
 	HandlerType: (*MobileServer)(nil),
 	Methods: []grpc.MethodDesc{
@@ -286,16 +288,15 @@ func (c *storesClient) Cities(ctx context.Context, in *ParamsStoresCities, opts 
 }
 
 // StoresServer is the server API for Stores service.
-// All implementations must embed UnimplementedStoresServer
+// All implementations should embed UnimplementedStoresServer
 // for forward compatibility
 type StoresServer interface {
 	All(context.Context, *ParamsStores) (*ResponseAllOfflineStoresInfo, error)
 	ByID(context.Context, *ParamsOfflineStoreInfoByID) (*ResponseOfflineStoreInfoByID, error)
 	Cities(context.Context, *ParamsStoresCities) (*ResponseStoresCities, error)
-	mustEmbedUnimplementedStoresServer()
 }
 
-// UnimplementedStoresServer must be embedded to have forward compatible implementations.
+// UnimplementedStoresServer should be embedded to have forward compatible implementations.
 type UnimplementedStoresServer struct {
 }
 
@@ -308,7 +309,6 @@ func (UnimplementedStoresServer) ByID(context.Context, *ParamsOfflineStoreInfoBy
 func (UnimplementedStoresServer) Cities(context.Context, *ParamsStoresCities) (*ResponseStoresCities, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Cities not implemented")
 }
-func (UnimplementedStoresServer) mustEmbedUnimplementedStoresServer() {}
 
 // UnsafeStoresServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to StoresServer will
@@ -318,7 +318,7 @@ type UnsafeStoresServer interface {
 }
 
 func RegisterStoresServer(s grpc.ServiceRegistrar, srv StoresServer) {
-	s.RegisterService(&_Stores_serviceDesc, srv)
+	s.RegisterService(&Stores_ServiceDesc, srv)
 }
 
 func _Stores_All_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -375,7 +375,10 @@ func _Stores_Cities_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Stores_serviceDesc = grpc.ServiceDesc{
+// Stores_ServiceDesc is the grpc.ServiceDesc for Stores service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Stores_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "meta.Stores",
 	HandlerType: (*StoresServer)(nil),
 	Methods: []grpc.MethodDesc{
