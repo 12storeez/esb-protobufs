@@ -60,6 +60,8 @@ message ResponseMobileAPIContacts {
     Phone phone = 3;
     string quality = 4;
     Social social = 5;
+    string quality_phone = 6;
+    string quality_email = 7;
 }
 
 message Social {
