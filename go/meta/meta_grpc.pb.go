@@ -4,25 +4,26 @@ package meta
 
 import (
 	context "context"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // MobileClient is the client API for Mobile service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MobileClient interface {
-	Contacts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error)
-	About(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error)
-	Faq(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseFaq, error)
+	Contacts(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error)
+	About(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error)
+	Faq(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseFaq, error)
 	Countries(ctx context.Context, in *ParamsCountries, opts ...grpc.CallOption) (*ResponseCountries, error)
-	SocialNetworks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseSocialNetworks, error)
+	SocialNetworks(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseSocialNetworks, error)
 }
 
 type mobileClient struct {
@@ -33,7 +34,7 @@ func NewMobileClient(cc grpc.ClientConnInterface) MobileClient {
 	return &mobileClient{cc}
 }
 
-func (c *mobileClient) Contacts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error) {
+func (c *mobileClient) Contacts(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileAPIContacts, error) {
 	out := new(ResponseMobileAPIContacts)
 	err := c.cc.Invoke(ctx, "/meta.Mobile/Contacts", in, out, opts...)
 	if err != nil {
@@ -42,7 +43,7 @@ func (c *mobileClient) Contacts(ctx context.Context, in *emptypb.Empty, opts ...
 	return out, nil
 }
 
-func (c *mobileClient) About(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error) {
+func (c *mobileClient) About(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseMobileApiAbout, error) {
 	out := new(ResponseMobileApiAbout)
 	err := c.cc.Invoke(ctx, "/meta.Mobile/About", in, out, opts...)
 	if err != nil {
@@ -51,7 +52,7 @@ func (c *mobileClient) About(ctx context.Context, in *emptypb.Empty, opts ...grp
 	return out, nil
 }
 
-func (c *mobileClient) Faq(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseFaq, error) {
+func (c *mobileClient) Faq(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseFaq, error) {
 	out := new(ResponseFaq)
 	err := c.cc.Invoke(ctx, "/meta.Mobile/Faq", in, out, opts...)
 	if err != nil {
@@ -69,7 +70,7 @@ func (c *mobileClient) Countries(ctx context.Context, in *ParamsCountries, opts 
 	return out, nil
 }
 
-func (c *mobileClient) SocialNetworks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseSocialNetworks, error) {
+func (c *mobileClient) SocialNetworks(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResponseSocialNetworks, error) {
 	out := new(ResponseSocialNetworks)
 	err := c.cc.Invoke(ctx, "/meta.Mobile/SocialNetworks", in, out, opts...)
 	if err != nil {
@@ -79,37 +80,35 @@ func (c *mobileClient) SocialNetworks(ctx context.Context, in *emptypb.Empty, op
 }
 
 // MobileServer is the server API for Mobile service.
-// All implementations must embed UnimplementedMobileServer
+// All implementations should embed UnimplementedMobileServer
 // for forward compatibility
 type MobileServer interface {
-	Contacts(context.Context, *emptypb.Empty) (*ResponseMobileAPIContacts, error)
-	About(context.Context, *emptypb.Empty) (*ResponseMobileApiAbout, error)
-	Faq(context.Context, *emptypb.Empty) (*ResponseFaq, error)
+	Contacts(context.Context, *empty.Empty) (*ResponseMobileAPIContacts, error)
+	About(context.Context, *empty.Empty) (*ResponseMobileApiAbout, error)
+	Faq(context.Context, *empty.Empty) (*ResponseFaq, error)
 	Countries(context.Context, *ParamsCountries) (*ResponseCountries, error)
-	SocialNetworks(context.Context, *emptypb.Empty) (*ResponseSocialNetworks, error)
-	mustEmbedUnimplementedMobileServer()
+	SocialNetworks(context.Context, *empty.Empty) (*ResponseSocialNetworks, error)
 }
 
-// UnimplementedMobileServer must be embedded to have forward compatible implementations.
+// UnimplementedMobileServer should be embedded to have forward compatible implementations.
 type UnimplementedMobileServer struct {
 }
 
-func (UnimplementedMobileServer) Contacts(context.Context, *emptypb.Empty) (*ResponseMobileAPIContacts, error) {
+func (UnimplementedMobileServer) Contacts(context.Context, *empty.Empty) (*ResponseMobileAPIContacts, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Contacts not implemented")
 }
-func (UnimplementedMobileServer) About(context.Context, *emptypb.Empty) (*ResponseMobileApiAbout, error) {
+func (UnimplementedMobileServer) About(context.Context, *empty.Empty) (*ResponseMobileApiAbout, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method About not implemented")
 }
-func (UnimplementedMobileServer) Faq(context.Context, *emptypb.Empty) (*ResponseFaq, error) {
+func (UnimplementedMobileServer) Faq(context.Context, *empty.Empty) (*ResponseFaq, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Faq not implemented")
 }
 func (UnimplementedMobileServer) Countries(context.Context, *ParamsCountries) (*ResponseCountries, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Countries not implemented")
 }
-func (UnimplementedMobileServer) SocialNetworks(context.Context, *emptypb.Empty) (*ResponseSocialNetworks, error) {
+func (UnimplementedMobileServer) SocialNetworks(context.Context, *empty.Empty) (*ResponseSocialNetworks, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SocialNetworks not implemented")
 }
-func (UnimplementedMobileServer) mustEmbedUnimplementedMobileServer() {}
 
 // UnsafeMobileServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to MobileServer will
@@ -119,11 +118,11 @@ type UnsafeMobileServer interface {
 }
 
 func RegisterMobileServer(s grpc.ServiceRegistrar, srv MobileServer) {
-	s.RegisterService(&_Mobile_serviceDesc, srv)
+	s.RegisterService(&Mobile_ServiceDesc, srv)
 }
 
 func _Mobile_Contacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -135,13 +134,13 @@ func _Mobile_Contacts_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: "/meta.Mobile/Contacts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Contacts(ctx, req.(*emptypb.Empty))
+		return srv.(MobileServer).Contacts(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Mobile_About_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -153,13 +152,13 @@ func _Mobile_About_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/meta.Mobile/About",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).About(ctx, req.(*emptypb.Empty))
+		return srv.(MobileServer).About(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Mobile_Faq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -171,7 +170,7 @@ func _Mobile_Faq_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: "/meta.Mobile/Faq",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).Faq(ctx, req.(*emptypb.Empty))
+		return srv.(MobileServer).Faq(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -195,7 +194,7 @@ func _Mobile_Countries_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _Mobile_SocialNetworks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -207,12 +206,15 @@ func _Mobile_SocialNetworks_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/meta.Mobile/SocialNetworks",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MobileServer).SocialNetworks(ctx, req.(*emptypb.Empty))
+		return srv.(MobileServer).SocialNetworks(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Mobile_serviceDesc = grpc.ServiceDesc{
+// Mobile_ServiceDesc is the grpc.ServiceDesc for Mobile service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Mobile_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "meta.Mobile",
 	HandlerType: (*MobileServer)(nil),
 	Methods: []grpc.MethodDesc{
@@ -286,16 +288,15 @@ func (c *storesClient) Cities(ctx context.Context, in *ParamsStoresCities, opts 
 }
 
 // StoresServer is the server API for Stores service.
-// All implementations must embed UnimplementedStoresServer
+// All implementations should embed UnimplementedStoresServer
 // for forward compatibility
 type StoresServer interface {
 	All(context.Context, *ParamsStores) (*ResponseAllOfflineStoresInfo, error)
 	ByID(context.Context, *ParamsOfflineStoreInfoByID) (*ResponseOfflineStoreInfoByID, error)
 	Cities(context.Context, *ParamsStoresCities) (*ResponseStoresCities, error)
-	mustEmbedUnimplementedStoresServer()
 }
 
-// UnimplementedStoresServer must be embedded to have forward compatible implementations.
+// UnimplementedStoresServer should be embedded to have forward compatible implementations.
 type UnimplementedStoresServer struct {
 }
 
@@ -308,7 +309,6 @@ func (UnimplementedStoresServer) ByID(context.Context, *ParamsOfflineStoreInfoBy
 func (UnimplementedStoresServer) Cities(context.Context, *ParamsStoresCities) (*ResponseStoresCities, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Cities not implemented")
 }
-func (UnimplementedStoresServer) mustEmbedUnimplementedStoresServer() {}
 
 // UnsafeStoresServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to StoresServer will
@@ -318,7 +318,7 @@ type UnsafeStoresServer interface {
 }
 
 func RegisterStoresServer(s grpc.ServiceRegistrar, srv StoresServer) {
-	s.RegisterService(&_Stores_serviceDesc, srv)
+	s.RegisterService(&Stores_ServiceDesc, srv)
 }
 
 func _Stores_All_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -375,7 +375,10 @@ func _Stores_Cities_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Stores_serviceDesc = grpc.ServiceDesc{
+// Stores_ServiceDesc is the grpc.ServiceDesc for Stores service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Stores_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "meta.Stores",
 	HandlerType: (*StoresServer)(nil),
 	Methods: []grpc.MethodDesc{
