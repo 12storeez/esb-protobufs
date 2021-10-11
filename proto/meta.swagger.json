@@ -1,0 +1,303 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/meta.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "metaBlock": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "metaBlockFaq": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metaTextFaq"
+          }
+        }
+      }
+    },
+    "metaCity": {
+      "type": "object",
+      "properties": {
+        "city_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "stores": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "country": {
+          "type": "string"
+        },
+        "country_name": {
+          "type": "string"
+        }
+      }
+    },
+    "metaCountry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "title_ru": {
+          "type": "string"
+        }
+      }
+    },
+    "metaOfflineStore": {
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "geo": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "picture_url": {
+          "type": "string"
+        },
+        "schedule": {
+          "type": "string"
+        },
+        "city_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "short_address": {
+          "type": "string"
+        }
+      }
+    },
+    "metaPhone": {
+      "type": "object",
+      "properties": {
+        "subtitle": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "numbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metaResponseAllOfflineStoresInfo": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metaOfflineStore"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "metaResponseCountries": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metaCountry"
+          }
+        }
+      }
+    },
+    "metaResponseFaq": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metaBlockFaq"
+          }
+        }
+      }
+    },
+    "metaResponseMobileAPIContacts": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "partnership": {
+          "type": "string"
+        },
+        "phone": {
+          "$ref": "#/definitions/metaPhone"
+        },
+        "quality": {
+          "type": "string"
+        },
+        "social": {
+          "$ref": "#/definitions/metaSocial"
+        },
+        "quality_phone": {
+          "type": "string"
+        },
+        "quality_email": {
+          "type": "string"
+        }
+      }
+    },
+    "metaResponseMobileApiAbout": {
+      "type": "object",
+      "properties": {
+        "about": {
+          "type": "string"
+        },
+        "mission": {
+          "type": "string"
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metaBlock"
+          }
+        },
+        "image_url": {
+          "type": "string"
+        }
+      }
+    },
+    "metaResponseOfflineStoreInfoByID": {
+      "type": "object",
+      "properties": {
+        "store": {
+          "$ref": "#/definitions/metaOfflineStore"
+        }
+      }
+    },
+    "metaResponseSocialNetworks": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metaSocialNetwork"
+          }
+        }
+      }
+    },
+    "metaResponseStoresCities": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metaCity"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "metaSocial": {
+      "type": "object",
+      "properties": {
+        "telegram": {
+          "type": "string"
+        },
+        "whatsapp": {
+          "type": "string"
+        }
+      }
+    },
+    "metaSocialNetwork": {
+      "type": "object",
+      "properties": {
+        "icon": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "metaTextFaq": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
