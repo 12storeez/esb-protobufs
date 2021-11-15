@@ -18,4 +18,5 @@ message EventData {
 
 message Result {
     bool success = 1;
+    string result = 2;
 }
