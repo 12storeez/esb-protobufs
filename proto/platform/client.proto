@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option go_package = "go/platform";
+
+package platform;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service Clients {
+  rpc Create(Client) returns (Client){
+    option (google.api.http)={
+      post: "/api/client"
+      body: "*"
+    };
+  }
+
+  rpc Get(ClientId) returns (Client) {
+    option (google.api.http) = {
+      get: "/api/client/{id}"
+    };
+  }
+
+  rpc List(ListClientRequest) returns (ListClientResponse) {
+    option (google.api.http) = {
+      get: "/api/client"
+    };
+  }
+
+  rpc Update(Client) returns (Client){
+    option(google.api.http) = {
+      patch: "/api/client/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Upsert(Client) returns (Client){
+    option (google.api.http) = {
+      put: "/api/client"
+      body: "*"
+    };
+  }
+
+  rpc Delete(ClientId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/client/{id}"
+    };
+  }
+}
+
+message ClientId {
+  int32 id = 1;
+}
+
+message Client {
+  int32 id = 1;
+  string app_name = 2;
+  string callback_uri = 3;
+  string client_secret = 4;
+}
+
+message ListClientRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message ListClientResponse {
+  repeated Client results = 1;
+  int32 total = 2;
+}
