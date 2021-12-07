@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 service Clients {
-  rpc Create(Client) returns (ClientId){
+  rpc Create(Client) returns (Client){
     option (google.api.http)={
       post: "/api/client"
       body: "*"
