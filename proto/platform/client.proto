@@ -56,7 +56,9 @@ message Client {
   int32 id = 1;
   string app_name = 2;
   string callback_uri = 3;
-  string client_secret = 4;
+  oneof optional_client_secret {
+    string client_secret = 4;
+  }
 }
 
 message ListClientRequest {
