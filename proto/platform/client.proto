@@ -36,7 +36,7 @@ service Clients {
 
   rpc Upsert(Client) returns (Client){
     option (google.api.http) = {
-      put: "/api/client"
+      put: "/api/client/{id}"
       body: "*"
     };
   }
