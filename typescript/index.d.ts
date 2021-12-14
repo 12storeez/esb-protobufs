@@ -63,6 +63,11 @@ export namespace mindbox {
   export interface InitDeviceParams {
     device_id: string;
     apns_token: string;
+    platform: Platform;
+  }
+  enum Platform {
+    IOS,
+    ANDROID,
   }
 
   export interface InitDeviceResponse {
@@ -1684,6 +1689,44 @@ export namespace transport {
 
 export namespace google.protobuf {
   export interface Empty {}
+}
+
+export namespace platform {
+  export interface Clients {
+    create(request: Client, metadata?: any): Observable<Client>;
+    get(request: ClientId, metadata?: any): Observable<Client>;
+    list(
+      request: ListClientRequest,
+      metadata?: any
+    ): Observable<ListClientResponse>;
+    update(request: Client, metadata?: any): Observable<Client>;
+    upsert(request: Client, metadata?: any): Observable<Client>;
+    delete(
+      request: ClientId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface ClientId {
+    id: number;
+  }
+
+  export interface Client {
+    id: number;
+    app_name: string;
+    callback_uri: string;
+    client_secret: string;
+  }
+
+  export interface ListClientRequest {
+    limit: number;
+    offset: number;
+  }
+
+  export interface ListClientResponse {
+    results: Client[];
+    total: number;
+  }
 }
 
 export namespace release {

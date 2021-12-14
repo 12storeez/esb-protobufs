@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // UserClient is the client API for User service.
@@ -58,16 +59,15 @@ func (c *userClient) SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts 
 }
 
 // UserServer is the server API for User service.
-// All implementations must embed UnimplementedUserServer
+// All implementations should embed UnimplementedUserServer
 // for forward compatibility
 type UserServer interface {
 	Info(context.Context, *ParamsUser) (*ResponseUser, error)
 	Orders(context.Context, *ParamsOrders) (*ResponseOrders, error)
 	SendOSMICard(context.Context, *ParamsOSMICard) (*ResponseOSMICard, error)
-	mustEmbedUnimplementedUserServer()
 }
 
-// UnimplementedUserServer must be embedded to have forward compatible implementations.
+// UnimplementedUserServer should be embedded to have forward compatible implementations.
 type UnimplementedUserServer struct {
 }
 
@@ -80,7 +80,6 @@ func (UnimplementedUserServer) Orders(context.Context, *ParamsOrders) (*Response
 func (UnimplementedUserServer) SendOSMICard(context.Context, *ParamsOSMICard) (*ResponseOSMICard, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendOSMICard not implemented")
 }
-func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 
 // UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to UserServer will
@@ -90,7 +89,7 @@ type UnsafeUserServer interface {
 }
 
 func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
-	s.RegisterService(&_User_serviceDesc, srv)
+	s.RegisterService(&User_ServiceDesc, srv)
 }
 
 func _User_Info_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -147,7 +146,10 @@ func _User_SendOSMICard_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-var _User_serviceDesc = grpc.ServiceDesc{
+// User_ServiceDesc is the grpc.ServiceDesc for User service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var User_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "mindbox.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
@@ -263,7 +265,7 @@ func (c *mobileClient) PushClick(ctx context.Context, in *PushClickParams, opts 
 }
 
 // MobileServer is the server API for Mobile service.
-// All implementations must embed UnimplementedMobileServer
+// All implementations should embed UnimplementedMobileServer
 // for forward compatibility
 type MobileServer interface {
 	InitDevice(context.Context, *InitDeviceParams) (*InitDeviceResponse, error)
@@ -274,10 +276,9 @@ type MobileServer interface {
 	EditUser(context.Context, *ParamsEditUser) (*ResponseEditUser, error)
 	IsUserExist(context.Context, *IsUserExistParams) (*IsUserExistResponse, error)
 	PushClick(context.Context, *PushClickParams) (*PushClickResponse, error)
-	mustEmbedUnimplementedMobileServer()
 }
 
-// UnimplementedMobileServer must be embedded to have forward compatible implementations.
+// UnimplementedMobileServer should be embedded to have forward compatible implementations.
 type UnimplementedMobileServer struct {
 }
 
@@ -305,7 +306,6 @@ func (UnimplementedMobileServer) IsUserExist(context.Context, *IsUserExistParams
 func (UnimplementedMobileServer) PushClick(context.Context, *PushClickParams) (*PushClickResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PushClick not implemented")
 }
-func (UnimplementedMobileServer) mustEmbedUnimplementedMobileServer() {}
 
 // UnsafeMobileServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to MobileServer will
@@ -315,7 +315,7 @@ type UnsafeMobileServer interface {
 }
 
 func RegisterMobileServer(s grpc.ServiceRegistrar, srv MobileServer) {
-	s.RegisterService(&_Mobile_serviceDesc, srv)
+	s.RegisterService(&Mobile_ServiceDesc, srv)
 }
 
 func _Mobile_InitDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -462,7 +462,10 @@ func _Mobile_PushClick_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Mobile_serviceDesc = grpc.ServiceDesc{
+// Mobile_ServiceDesc is the grpc.ServiceDesc for Mobile service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Mobile_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "mindbox.Mobile",
 	HandlerType: (*MobileServer)(nil),
 	Methods: []grpc.MethodDesc{
