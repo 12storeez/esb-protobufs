@@ -53,6 +53,11 @@ message IsUserExistResponse {
 message InitDeviceParams {
     string device_id = 1;
     string apns_token = 2;
+    enum Platform {
+        IOS = 0;
+        ANDROID = 1;
+    }
+    Platform platform = 3;
 }
 
 message InitDeviceResponse {
