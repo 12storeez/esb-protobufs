@@ -59,13 +59,14 @@ message InitDeviceResponse {
     bool ok = 1;
 }
 
+enum Platform {
+    IOS = 0;
+    ANDROID = 1;
+}
+
 message InitClientParams {
     string device_id = 1;
     string client_id = 2;
-    enum Platform {
-        IOS = 0;
-        ANDROID = 1;
-    }
     Platform platform = 3;
 }
 

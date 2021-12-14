@@ -69,14 +69,15 @@ export namespace mindbox {
     ok: boolean;
   }
 
+  export enum Platform {
+    IOS = 0,
+    ANDROID = 1,
+  }
+
   export interface InitClientParams {
     device_id: string;
     client_id: string;
     platform: Platform;
-  }
-  enum Platform {
-    IOS,
-    ANDROID,
   }
 
   export interface InitClientResponse {
