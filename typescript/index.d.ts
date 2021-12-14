@@ -63,11 +63,6 @@ export namespace mindbox {
   export interface InitDeviceParams {
     device_id: string;
     apns_token: string;
-    platform: Platform;
-  }
-  enum Platform {
-    IOS,
-    ANDROID,
   }
 
   export interface InitDeviceResponse {
@@ -77,6 +72,11 @@ export namespace mindbox {
   export interface InitClientParams {
     device_id: string;
     client_id: string;
+    platform: Platform;
+  }
+  enum Platform {
+    IOS,
+    ANDROID,
   }
 
   export interface InitClientResponse {
