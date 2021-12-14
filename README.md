@@ -20,7 +20,7 @@
 `protoc -I . --grpc-gateway_out=. -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --swagger_out=logtostderr=true:. proto/notifications/slack.proto`
 
 ## Генерация файлов для Typescript
-    node ./app.js
+    `sh ./build-ts.sh`
 
 ## Обновление версии
 Перед тем как зарелизить новую версию, необходимо поднять версию пакета в `package.json`,
