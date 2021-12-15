@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option go_package = "go/platform";
+
+package platform;
+
+import "google/api/annotations.proto";
+
+service Oauth {
+  rpc Token(TokenRequest) returns (TokenResponse) {
+    option (google.api.http) = {
+      post: "/api/oauth/token"
+      body: "*"
+    };
+  }
+}
+
+message TokenRequest {
+  int32 client_id = 1;
+  string client_secret = 2;
+  string grant_type = 3;
+  string username = 4;
+  string password = 5;
+}
+
+message TokenResponse {
+  bool success = 1;
+  string access_token = 2;
+  string token_type = 3;
+  int32 expires_in = 4;
+  string refresh_token = 5;
+  enum Scope {
+    read = 0;
+    write = 1;
+  }
+  Scope scope = 6;
+  int32 uid = 7;
+  string info = 8;
+}
