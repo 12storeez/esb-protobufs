@@ -1730,6 +1730,35 @@ export namespace platform {
   }
 }
 
+export namespace platform {
+  export interface Oauth {
+    token(request: TokenRequest, metadata?: any): Observable<TokenResponse>;
+  }
+
+  export interface TokenRequest {
+    client_id: number;
+    client_secret: string;
+    grant_type: string;
+    username: string;
+    password: string;
+  }
+
+  export interface TokenResponse {
+    success: boolean;
+    access_token: string;
+    token_type: string;
+    expires_in: number;
+    refresh_token: string;
+    scope: Scope;
+    uid: number;
+    info: string;
+  }
+  enum Scope {
+    read,
+    write,
+  }
+}
+
 export namespace release {
   export interface ArticlesRelease {
     create(
