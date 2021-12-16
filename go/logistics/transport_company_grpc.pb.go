@@ -19,11 +19,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransportCompaniesClient interface {
+	List(ctx context.Context, in *ListTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error)
 	Create(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompanyId, error)
 	Get(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*TransportCompany, error)
-	List(ctx context.Context, in *ListTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error)
 	Update(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error)
-	Upsert(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error)
 	Delete(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -33,6 +32,15 @@ type transportCompaniesClient struct {
 
 func NewTransportCompaniesClient(cc grpc.ClientConnInterface) TransportCompaniesClient {
 	return &transportCompaniesClient{cc}
+}
+
+func (c *transportCompaniesClient) List(ctx context.Context, in *ListTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error) {
+	out := new(ListTransportCompanyResponse)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanies/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *transportCompaniesClient) Create(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompanyId, error) {
@@ -53,27 +61,9 @@ func (c *transportCompaniesClient) Get(ctx context.Context, in *TransportCompany
 	return out, nil
 }
 
-func (c *transportCompaniesClient) List(ctx context.Context, in *ListTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error) {
-	out := new(ListTransportCompanyResponse)
-	err := c.cc.Invoke(ctx, "/logistics.TransportCompanies/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *transportCompaniesClient) Update(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error) {
 	out := new(TransportCompany)
 	err := c.cc.Invoke(ctx, "/logistics.TransportCompanies/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *transportCompaniesClient) Upsert(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error) {
-	out := new(TransportCompany)
-	err := c.cc.Invoke(ctx, "/logistics.TransportCompanies/Upsert", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,11 +83,10 @@ func (c *transportCompaniesClient) Delete(ctx context.Context, in *TransportComp
 // All implementations should embed UnimplementedTransportCompaniesServer
 // for forward compatibility
 type TransportCompaniesServer interface {
+	List(context.Context, *ListTransportCompanyRequest) (*ListTransportCompanyResponse, error)
 	Create(context.Context, *TransportCompany) (*TransportCompanyId, error)
 	Get(context.Context, *TransportCompanyId) (*TransportCompany, error)
-	List(context.Context, *ListTransportCompanyRequest) (*ListTransportCompanyResponse, error)
 	Update(context.Context, *TransportCompany) (*TransportCompany, error)
-	Upsert(context.Context, *TransportCompany) (*TransportCompany, error)
 	Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error)
 }
 
@@ -105,20 +94,17 @@ type TransportCompaniesServer interface {
 type UnimplementedTransportCompaniesServer struct {
 }
 
+func (UnimplementedTransportCompaniesServer) List(context.Context, *ListTransportCompanyRequest) (*ListTransportCompanyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
 func (UnimplementedTransportCompaniesServer) Create(context.Context, *TransportCompany) (*TransportCompanyId, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedTransportCompaniesServer) Get(context.Context, *TransportCompanyId) (*TransportCompany, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedTransportCompaniesServer) List(context.Context, *ListTransportCompanyRequest) (*ListTransportCompanyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedTransportCompaniesServer) Update(context.Context, *TransportCompany) (*TransportCompany, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
-}
-func (UnimplementedTransportCompaniesServer) Upsert(context.Context, *TransportCompany) (*TransportCompany, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Upsert not implemented")
 }
 func (UnimplementedTransportCompaniesServer) Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -133,6 +119,24 @@ type UnsafeTransportCompaniesServer interface {
 
 func RegisterTransportCompaniesServer(s grpc.ServiceRegistrar, srv TransportCompaniesServer) {
 	s.RegisterService(&TransportCompanies_ServiceDesc, srv)
+}
+
+func _TransportCompanies_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTransportCompanyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompaniesServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanies/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompaniesServer).List(ctx, req.(*ListTransportCompanyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TransportCompanies_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -171,24 +175,6 @@ func _TransportCompanies_Get_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransportCompanies_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListTransportCompanyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransportCompaniesServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/logistics.TransportCompanies/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransportCompaniesServer).List(ctx, req.(*ListTransportCompanyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TransportCompanies_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TransportCompany)
 	if err := dec(in); err != nil {
@@ -203,24 +189,6 @@ func _TransportCompanies_Update_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TransportCompaniesServer).Update(ctx, req.(*TransportCompany))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TransportCompanies_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransportCompany)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransportCompaniesServer).Upsert(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/logistics.TransportCompanies/Upsert",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransportCompaniesServer).Upsert(ctx, req.(*TransportCompany))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -251,6 +219,10 @@ var TransportCompanies_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TransportCompaniesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "List",
+			Handler:    _TransportCompanies_List_Handler,
+		},
+		{
 			MethodName: "Create",
 			Handler:    _TransportCompanies_Create_Handler,
 		},
@@ -259,16 +231,8 @@ var TransportCompanies_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TransportCompanies_Get_Handler,
 		},
 		{
-			MethodName: "List",
-			Handler:    _TransportCompanies_List_Handler,
-		},
-		{
 			MethodName: "Update",
 			Handler:    _TransportCompanies_Update_Handler,
-		},
-		{
-			MethodName: "Upsert",
-			Handler:    _TransportCompanies_Upsert_Handler,
 		},
 		{
 			MethodName: "Delete",

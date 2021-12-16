@@ -11,7 +11,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/transport-companies": {
+    "/v1/transport-company": {
       "get": {
         "operationId": "TransportCompanies_List",
         "responses": {
@@ -42,6 +42,18 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -77,39 +89,9 @@
         "tags": [
           "TransportCompanies"
         ]
-      },
-      "put": {
-        "operationId": "TransportCompanies_Upsert",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/logisticsTransportCompany"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/logisticsTransportCompany"
-            }
-          }
-        ],
-        "tags": [
-          "TransportCompanies"
-        ]
       }
     },
-    "/v1/transport-companies/{id}": {
+    "/v1/transport-company/{id}": {
       "get": {
         "operationId": "TransportCompanies_Get",
         "responses": {
@@ -236,32 +218,16 @@
         "is_active": {
           "type": "boolean"
         },
-        "created": {
-          "type": "string"
-        },
-        "updated": {
-          "type": "string"
-        },
-        "transport_company_settings_ids": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "price_border": {
-          "type": "number",
-          "format": "double"
-        },
-        "product_quantity_border": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "available_delivery_days": {
-          "type": "integer",
-          "format": "int32"
-        },
         "track_url": {
+          "type": "string"
+        },
+        "has_integration": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
           "type": "string"
         }
       }
