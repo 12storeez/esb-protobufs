@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransportCompaniesClient interface {
 	List(ctx context.Context, in *ListTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error)
-	Create(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompanyId, error)
+	Create(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error)
 	Get(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*TransportCompany, error)
 	Update(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error)
 	Delete(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -43,8 +43,8 @@ func (c *transportCompaniesClient) List(ctx context.Context, in *ListTransportCo
 	return out, nil
 }
 
-func (c *transportCompaniesClient) Create(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompanyId, error) {
-	out := new(TransportCompanyId)
+func (c *transportCompaniesClient) Create(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error) {
+	out := new(TransportCompany)
 	err := c.cc.Invoke(ctx, "/logistics.TransportCompanies/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -84,7 +84,7 @@ func (c *transportCompaniesClient) Delete(ctx context.Context, in *TransportComp
 // for forward compatibility
 type TransportCompaniesServer interface {
 	List(context.Context, *ListTransportCompanyRequest) (*ListTransportCompanyResponse, error)
-	Create(context.Context, *TransportCompany) (*TransportCompanyId, error)
+	Create(context.Context, *TransportCompany) (*TransportCompany, error)
 	Get(context.Context, *TransportCompanyId) (*TransportCompany, error)
 	Update(context.Context, *TransportCompany) (*TransportCompany, error)
 	Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error)
@@ -97,7 +97,7 @@ type UnimplementedTransportCompaniesServer struct {
 func (UnimplementedTransportCompaniesServer) List(context.Context, *ListTransportCompanyRequest) (*ListTransportCompanyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedTransportCompaniesServer) Create(context.Context, *TransportCompany) (*TransportCompanyId, error) {
+func (UnimplementedTransportCompaniesServer) Create(context.Context, *TransportCompany) (*TransportCompany, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedTransportCompaniesServer) Get(context.Context, *TransportCompanyId) (*TransportCompany, error) {

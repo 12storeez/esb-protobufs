@@ -66,7 +66,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsTransportCompanyId"
+              "$ref": "#/definitions/logisticsTransportCompany"
             }
           },
           "default": {
@@ -215,13 +215,16 @@
         "name": {
           "type": "string"
         },
-        "is_active": {
-          "type": "boolean"
-        },
         "track_url": {
           "type": "string"
         },
         "has_integration": {
+          "type": "boolean"
+        },
+        "is_delivery_use_only_working_days": {
+          "type": "boolean"
+        },
+        "is_active": {
           "type": "boolean"
         },
         "created_at": {
@@ -229,15 +232,6 @@
         },
         "updated_at": {
           "type": "string"
-        }
-      }
-    },
-    "logisticsTransportCompanyId": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },
