@@ -10,33 +10,33 @@ import "google/protobuf/empty.proto";
 service TransportCompanies {
   rpc List(ListTransportCompanyRequest) returns (ListTransportCompanyResponse) {
     option (google.api.http) = {
-      get: "/v1/transport-company"
+      get: "/api/v1/transport-company"
     };
   }
 
-  rpc Create(TransportCompany) returns (TransportCompanyId) {
+  rpc Create(TransportCompany) returns (TransportCompany) {
     option (google.api.http) = {
-      post: "/v1/transport-company"
+      post: "/api/v1/transport-company"
       body: "*"
     };
   }
 
   rpc Get(TransportCompanyId) returns (TransportCompany) {
     option (google.api.http) = {
-      get: "/v1/transport-company/{id}"
+      get: "/api/v1/transport-company/{id}"
     };
   }
 
   rpc Update(TransportCompany) returns (TransportCompany) {
     option (google.api.http) = {
-      patch: "/v1/transport-company/{id}"
+      patch: "/api/v1/transport-company/{id}"
       body: "*"
     };
   }
 
   rpc Delete(TransportCompanyId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/transport-company/{id}"
+      delete: "/api/v1/transport-company/{id}"
     };
   }
 }
@@ -48,11 +48,12 @@ message TransportCompanyId {
 message TransportCompany {
   int32  id = 1;
   string name = 2;
-  bool   is_active = 3;
-  string track_url = 4;
-  bool   has_integration = 5;
-  string created_at = 6;
-  string updated_at = 7;
+  string track_url = 3;
+  bool   has_integration = 4;
+  bool   is_delivery_use_only_working_days = 5;
+  bool   is_active = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message ListTransportCompanyRequest {
@@ -66,3 +67,8 @@ message ListTransportCompanyResponse {
   repeated TransportCompany results = 1;
   int32                     total = 2;
 }
+
+//oneof response {
+//  SuccessResponse success_response = 1;
+//  ErrorResponse error_response = 2;
+//}
