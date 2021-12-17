@@ -32,17 +32,17 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_TransportCompanies_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_TransportCompanyService_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_TransportCompanies_List_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompaniesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_TransportCompanyService_List_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompanyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListTransportCompanyRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TransportCompanies_List_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TransportCompanyService_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -51,14 +51,14 @@ func request_TransportCompanies_List_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_TransportCompanies_List_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompaniesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TransportCompanyService_List_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompanyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListTransportCompanyRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TransportCompanies_List_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TransportCompanyService_List_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -67,7 +67,7 @@ func local_request_TransportCompanies_List_0(ctx context.Context, marshaler runt
 
 }
 
-func request_TransportCompanies_Create_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompaniesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_TransportCompanyService_Create_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompanyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompany
 	var metadata runtime.ServerMetadata
 
@@ -84,7 +84,7 @@ func request_TransportCompanies_Create_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_TransportCompanies_Create_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompaniesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TransportCompanyService_Create_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompanyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompany
 	var metadata runtime.ServerMetadata
 
@@ -101,7 +101,7 @@ func local_request_TransportCompanies_Create_0(ctx context.Context, marshaler ru
 
 }
 
-func request_TransportCompanies_Get_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompaniesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_TransportCompanyService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompanyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompanyId
 	var metadata runtime.ServerMetadata
 
@@ -127,7 +127,7 @@ func request_TransportCompanies_Get_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_TransportCompanies_Get_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompaniesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TransportCompanyService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompanyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompanyId
 	var metadata runtime.ServerMetadata
 
@@ -153,7 +153,7 @@ func local_request_TransportCompanies_Get_0(ctx context.Context, marshaler runti
 
 }
 
-func request_TransportCompanies_Update_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompaniesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_TransportCompanyService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompanyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompany
 	var metadata runtime.ServerMetadata
 
@@ -187,7 +187,7 @@ func request_TransportCompanies_Update_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_TransportCompanies_Update_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompaniesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TransportCompanyService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompanyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompany
 	var metadata runtime.ServerMetadata
 
@@ -221,7 +221,7 @@ func local_request_TransportCompanies_Update_0(ctx context.Context, marshaler ru
 
 }
 
-func request_TransportCompanies_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompaniesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_TransportCompanyService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompanyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompanyId
 	var metadata runtime.ServerMetadata
 
@@ -247,7 +247,7 @@ func request_TransportCompanies_Delete_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_TransportCompanies_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompaniesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TransportCompanyService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompanyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq TransportCompanyId
 	var metadata runtime.ServerMetadata
 
@@ -273,24 +273,24 @@ func local_request_TransportCompanies_Delete_0(ctx context.Context, marshaler ru
 
 }
 
-// RegisterTransportCompaniesHandlerServer registers the http handlers for service TransportCompanies to "mux".
-// UnaryRPC     :call TransportCompaniesServer directly.
+// RegisterTransportCompanyServiceHandlerServer registers the http handlers for service TransportCompanyService to "mux".
+// UnaryRPC     :call TransportCompanyServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTransportCompaniesHandlerFromEndpoint instead.
-func RegisterTransportCompaniesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TransportCompaniesServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTransportCompanyServiceHandlerFromEndpoint instead.
+func RegisterTransportCompanyServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TransportCompanyServiceServer) error {
 
-	mux.Handle("GET", pattern_TransportCompanies_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TransportCompanyService_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanies/List")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyService/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TransportCompanies_List_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TransportCompanyService_List_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -298,22 +298,22 @@ func RegisterTransportCompaniesHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_TransportCompanies_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TransportCompanies_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_TransportCompanyService_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanies/Create")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyService/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TransportCompanies_Create_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TransportCompanyService_Create_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -321,22 +321,22 @@ func RegisterTransportCompaniesHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_TransportCompanies_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_TransportCompanies_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TransportCompanyService_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanies/Get")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyService/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TransportCompanies_Get_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TransportCompanyService_Get_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -344,22 +344,22 @@ func RegisterTransportCompaniesHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_TransportCompanies_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_TransportCompanies_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_TransportCompanyService_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanies/Update")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyService/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TransportCompanies_Update_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TransportCompanyService_Update_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -367,22 +367,22 @@ func RegisterTransportCompaniesHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_TransportCompanies_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_TransportCompanies_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_TransportCompanyService_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanies/Delete")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyService/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TransportCompanies_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TransportCompanyService_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -390,16 +390,16 @@ func RegisterTransportCompaniesHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_TransportCompanies_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterTransportCompaniesHandlerFromEndpoint is same as RegisterTransportCompaniesHandler but
+// RegisterTransportCompanyServiceHandlerFromEndpoint is same as RegisterTransportCompanyServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterTransportCompaniesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterTransportCompanyServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -419,119 +419,119 @@ func RegisterTransportCompaniesHandlerFromEndpoint(ctx context.Context, mux *run
 		}()
 	}()
 
-	return RegisterTransportCompaniesHandler(ctx, mux, conn)
+	return RegisterTransportCompanyServiceHandler(ctx, mux, conn)
 }
 
-// RegisterTransportCompaniesHandler registers the http handlers for service TransportCompanies to "mux".
+// RegisterTransportCompanyServiceHandler registers the http handlers for service TransportCompanyService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterTransportCompaniesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterTransportCompaniesHandlerClient(ctx, mux, NewTransportCompaniesClient(conn))
+func RegisterTransportCompanyServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterTransportCompanyServiceHandlerClient(ctx, mux, NewTransportCompanyServiceClient(conn))
 }
 
-// RegisterTransportCompaniesHandlerClient registers the http handlers for service TransportCompanies
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "TransportCompaniesClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "TransportCompaniesClient"
+// RegisterTransportCompanyServiceHandlerClient registers the http handlers for service TransportCompanyService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "TransportCompanyServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "TransportCompanyServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "TransportCompaniesClient" to call the correct interceptors.
-func RegisterTransportCompaniesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TransportCompaniesClient) error {
+// "TransportCompanyServiceClient" to call the correct interceptors.
+func RegisterTransportCompanyServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TransportCompanyServiceClient) error {
 
-	mux.Handle("GET", pattern_TransportCompanies_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TransportCompanyService_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanies/List")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyService/List")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TransportCompanies_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TransportCompanyService_List_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TransportCompanies_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_List_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TransportCompanies_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_TransportCompanyService_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanies/Create")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyService/Create")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TransportCompanies_Create_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TransportCompanyService_Create_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TransportCompanies_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Create_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_TransportCompanies_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TransportCompanyService_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanies/Get")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyService/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TransportCompanies_Get_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TransportCompanyService_Get_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TransportCompanies_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_TransportCompanies_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_TransportCompanyService_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanies/Update")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyService/Update")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TransportCompanies_Update_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TransportCompanyService_Update_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TransportCompanies_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Update_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_TransportCompanies_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_TransportCompanyService_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanies/Delete")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyService/Delete")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TransportCompanies_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TransportCompanyService_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TransportCompanies_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TransportCompanyService_Delete_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -539,25 +539,25 @@ func RegisterTransportCompaniesHandlerClient(ctx context.Context, mux *runtime.S
 }
 
 var (
-	pattern_TransportCompanies_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "transport-company"}, ""))
+	pattern_TransportCompanyService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "transport-company"}, ""))
 
-	pattern_TransportCompanies_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "transport-company"}, ""))
+	pattern_TransportCompanyService_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "transport-company"}, ""))
 
-	pattern_TransportCompanies_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "transport-company", "id"}, ""))
+	pattern_TransportCompanyService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "transport-company", "id"}, ""))
 
-	pattern_TransportCompanies_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "transport-company", "id"}, ""))
+	pattern_TransportCompanyService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "transport-company", "id"}, ""))
 
-	pattern_TransportCompanies_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "transport-company", "id"}, ""))
+	pattern_TransportCompanyService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "transport-company", "id"}, ""))
 )
 
 var (
-	forward_TransportCompanies_List_0 = runtime.ForwardResponseMessage
+	forward_TransportCompanyService_List_0 = runtime.ForwardResponseMessage
 
-	forward_TransportCompanies_Create_0 = runtime.ForwardResponseMessage
+	forward_TransportCompanyService_Create_0 = runtime.ForwardResponseMessage
 
-	forward_TransportCompanies_Get_0 = runtime.ForwardResponseMessage
+	forward_TransportCompanyService_Get_0 = runtime.ForwardResponseMessage
 
-	forward_TransportCompanies_Update_0 = runtime.ForwardResponseMessage
+	forward_TransportCompanyService_Update_0 = runtime.ForwardResponseMessage
 
-	forward_TransportCompanies_Delete_0 = runtime.ForwardResponseMessage
+	forward_TransportCompanyService_Delete_0 = runtime.ForwardResponseMessage
 )

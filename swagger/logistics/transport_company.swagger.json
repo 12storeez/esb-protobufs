@@ -11,9 +11,9 @@
     "application/json"
   ],
   "paths": {
-    "/v1/transport-company": {
+    "/api/v1/transport-company": {
       "get": {
-        "operationId": "TransportCompanies_List",
+        "operationId": "TransportCompanyService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -57,11 +57,11 @@
           }
         ],
         "tags": [
-          "TransportCompanies"
+          "TransportCompanyService"
         ]
       },
       "post": {
-        "operationId": "TransportCompanies_Create",
+        "operationId": "TransportCompanyService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -87,13 +87,13 @@
           }
         ],
         "tags": [
-          "TransportCompanies"
+          "TransportCompanyService"
         ]
       }
     },
-    "/v1/transport-company/{id}": {
+    "/api/v1/transport-company/{id}": {
       "get": {
-        "operationId": "TransportCompanies_Get",
+        "operationId": "TransportCompanyService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -118,11 +118,11 @@
           }
         ],
         "tags": [
-          "TransportCompanies"
+          "TransportCompanyService"
         ]
       },
       "delete": {
-        "operationId": "TransportCompanies_Delete",
+        "operationId": "TransportCompanyService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -147,11 +147,11 @@
           }
         ],
         "tags": [
-          "TransportCompanies"
+          "TransportCompanyService"
         ]
       },
       "patch": {
-        "operationId": "TransportCompanies_Update",
+        "operationId": "TransportCompanyService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -184,7 +184,7 @@
           }
         ],
         "tags": [
-          "TransportCompanies"
+          "TransportCompanyService"
         ]
       }
     }

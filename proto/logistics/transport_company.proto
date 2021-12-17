@@ -7,7 +7,7 @@ package logistics;
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
-service TransportCompanies {
+service TransportCompanyService {
   rpc List(ListTransportCompanyRequest) returns (ListTransportCompanyResponse) {
     option (google.api.http) = {
       get: "/api/v1/transport-company"
