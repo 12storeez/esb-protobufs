@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+
+service CategoryService {
+  rpc List(ListCategoryRequest) returns (ListCategoryResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/category"
+    };
+  }
+
+  rpc Suggest(SuggestCategoryRequest) returns (ListCategoryResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/category/suggest"
+    };
+  }
+}
+
+message Category {
+  int32  id = 1;
+  string name = 2;
+}
+
+message ListCategoryRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string sort = 3;
+}
+
+message SuggestCategoryRequest {
+  int32  limit = 1;
+  string search = 2;
+}
+
+message ListCategoryResponse {
+  repeated Category results = 1;
+  int32             total = 2;
+}
+
