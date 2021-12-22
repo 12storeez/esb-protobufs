@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service DeliveryModeService {
+  rpc List(ListDeliveryModeRequest) returns (ListDeliveryModeResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-mode"
+    };
+  }
+
+  rpc Create(DeliveryMode) returns (DeliveryMode) {
+    option (google.api.http) = {
+      post: "/api/v1/delivery-mode"
+      body: "*"
+    };
+  }
+
+  rpc Get(DeliveryModeId) returns (DeliveryMode) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-mode/{id}"
+    };
+  }
+
+  rpc Update(DeliveryMode) returns (DeliveryMode) {
+    option (google.api.http) = {
+      patch: "/api/v1/delivery-mode/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(DeliveryModeId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/delivery-mode/{id}"
+    };
+  }
+}
+
+message DeliveryModeId {
+  int32 id = 1;
+}
+
+message DeliveryMode {
+  int32   id = 1;
+  string  title_ru = 2;
+  bool    is_active = 3;
+  bool    is_backup_method = 4;
+  string  created_at = 5;
+  string  updated_at = 6;
+}
+
+message ListDeliveryModeRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListDeliveryModeResponse {
+  repeated DeliveryMode results = 1;
+  int32                   total = 2;
+}
