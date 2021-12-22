@@ -92,6 +92,35 @@
       }
     },
     "/api/v1/delivery-method/{id}": {
+      "get": {
+        "operationId": "DeliveryMethodService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryMethod"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeliveryMethodService"
+        ]
+      },
       "delete": {
         "operationId": "DeliveryMethodService_Delete",
         "responses": {

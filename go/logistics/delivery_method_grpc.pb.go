@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type DeliveryMethodServiceClient interface {
 	List(ctx context.Context, in *ListDeliveryMethodRequest, opts ...grpc.CallOption) (*ListDeliveryMethodResponse, error)
 	Create(ctx context.Context, in *DeliveryMethod, opts ...grpc.CallOption) (*DeliveryMethod, error)
+	Get(ctx context.Context, in *DeliveryMethodId, opts ...grpc.CallOption) (*DeliveryMethod, error)
 	Update(ctx context.Context, in *DeliveryMethod, opts ...grpc.CallOption) (*DeliveryMethod, error)
 	Delete(ctx context.Context, in *DeliveryMethodId, opts ...grpc.CallOption) (*empty.Empty, error)
 }
@@ -51,6 +52,15 @@ func (c *deliveryMethodServiceClient) Create(ctx context.Context, in *DeliveryMe
 	return out, nil
 }
 
+func (c *deliveryMethodServiceClient) Get(ctx context.Context, in *DeliveryMethodId, opts ...grpc.CallOption) (*DeliveryMethod, error) {
+	out := new(DeliveryMethod)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethodService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deliveryMethodServiceClient) Update(ctx context.Context, in *DeliveryMethod, opts ...grpc.CallOption) (*DeliveryMethod, error) {
 	out := new(DeliveryMethod)
 	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethodService/Update", in, out, opts...)
@@ -75,6 +85,7 @@ func (c *deliveryMethodServiceClient) Delete(ctx context.Context, in *DeliveryMe
 type DeliveryMethodServiceServer interface {
 	List(context.Context, *ListDeliveryMethodRequest) (*ListDeliveryMethodResponse, error)
 	Create(context.Context, *DeliveryMethod) (*DeliveryMethod, error)
+	Get(context.Context, *DeliveryMethodId) (*DeliveryMethod, error)
 	Update(context.Context, *DeliveryMethod) (*DeliveryMethod, error)
 	Delete(context.Context, *DeliveryMethodId) (*empty.Empty, error)
 }
@@ -88,6 +99,9 @@ func (UnimplementedDeliveryMethodServiceServer) List(context.Context, *ListDeliv
 }
 func (UnimplementedDeliveryMethodServiceServer) Create(context.Context, *DeliveryMethod) (*DeliveryMethod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedDeliveryMethodServiceServer) Get(context.Context, *DeliveryMethodId) (*DeliveryMethod, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedDeliveryMethodServiceServer) Update(context.Context, *DeliveryMethod) (*DeliveryMethod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
@@ -143,6 +157,24 @@ func _DeliveryMethodService_Create_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeliveryMethodService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeliveryMethodId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeliveryMethodServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.DeliveryMethodService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeliveryMethodServiceServer).Get(ctx, req.(*DeliveryMethodId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeliveryMethodService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryMethod)
 	if err := dec(in); err != nil {
@@ -193,6 +225,10 @@ var DeliveryMethodService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _DeliveryMethodService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _DeliveryMethodService_Get_Handler,
 		},
 		{
 			MethodName: "Update",

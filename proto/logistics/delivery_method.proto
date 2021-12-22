@@ -21,6 +21,12 @@ service DeliveryMethodService {
     };
   }
 
+  rpc Get(DeliveryMethodId) returns (DeliveryMethod) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-method/{id}"
+    };
+  }
+
   rpc Update(DeliveryMethod) returns (DeliveryMethod) {
     option (google.api.http) = {
       patch: "/api/v1/delivery-method/{id}"
