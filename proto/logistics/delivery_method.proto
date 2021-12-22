@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service DeliveryMethodService {
+  rpc List(ListDeliveryMethodRequest) returns (ListDeliveryMethodResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-method"
+    };
+  }
+
+  rpc Create(DeliveryMethod) returns (DeliveryMethod) {
+    option (google.api.http) = {
+      post: "/api/v1/delivery-method"
+      body: "*"
+    };
+  }
+
+  rpc Get(DeliveryMethodId) returns (DeliveryMethod) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-method/{id}"
+    };
+  }
+
+  rpc Update(DeliveryMethod) returns (DeliveryMethod) {
+    option (google.api.http) = {
+      patch: "/api/v1/delivery-method/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(DeliveryMethodId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/delivery-method/{id}"
+    };
+  }
+}
+
+message DeliveryMethodId {
+  int32 id = 1;
+}
+
+message DeliveryMethod {
+  int32   id = 1;
+  string  name = 2;
+  bool    is_active = 3;
+  string  created_at = 4;
+  string  updated_at = 5;
+}
+
+message ListDeliveryMethodRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListDeliveryMethodResponse {
+  repeated DeliveryMethod results = 1;
+  int32                   total = 2;
+}
