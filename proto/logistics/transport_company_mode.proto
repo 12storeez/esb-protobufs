@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "proto/logistics/transport_company.proto";
+import "proto/logistics/delivery_method.proto";
+import "proto/logistics/delivery_mode.proto";
+import "proto/logistics/interval.proto";
+
+service TransportCompanyModeService {
+  rpc List(ListTransportCompanyModeRequest) returns (ListTransportCompanyModeResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/transport-company-mode"
+    };
+  }
+
+  rpc Create(TransportCompanyMode) returns (TransportCompanyMode) {
+    option (google.api.http) = {
+      post: "/api/v1/transport-company-mode"
+      body: "*"
+    };
+  }
+
+  rpc Get(TransportCompanyModeId) returns (TransportCompanyMode) {
+    option (google.api.http) = {
+      get: "/api/v1/transport-company-mode/{id}"
+    };
+  }
+
+  rpc Update(TransportCompanyMode) returns (TransportCompanyMode) {
+    option (google.api.http) = {
+      patch: "/api/v1/transport-company-mode/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(TransportCompanyModeId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/transport-company-mode/{id}"
+    };
+  }
+
+  // intervals for transport-company-mode
+//  rpc GetIntervalList(TransportCompanyModeId) returns (ListIntervalResponse) {
+//    option (google.api.http) = {
+//      get: "/api/v1/transport-company-mode/{id}/interval"
+//    };
+//  }
+//
+//  rpc CreateInterval(Interval) returns (Interval) {
+//    option (google.api.http) = {
+//      post: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval"
+//      body: "*"
+//    };
+//  }
+//
+//  rpc GetInterval(IntervalId) returns (Interval) {
+//    option (google.api.http) = {
+//      get: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval/{id}"
+//    };
+//  }
+//
+//  rpc UpdateInterval(Interval) returns (Interval) {
+//    option (google.api.http) = {
+//      patch: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval/{id}"
+//      body: "*"
+//    };
+//  }
+//
+//  rpc DeleteInterval(TransportCompanyModeIntervalId) returns (google.protobuf.Empty) {
+//    option (google.api.http) = {
+//      delete: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval/{id}"
+//    };
+//  }
+}
+
+message TransportCompanyModeId {
+  int32 id = 1;
+}
+
+message TransportCompanyMode {
+  int32  id = 1;
+  TransportCompany  transport_company = 2;
+  DeliveryMode      delivery_mode = 3;
+  DeliveryMethod    delivery_method = 4;
+  repeated Interval intervals = 5;
+  int32             delivery_interval_days = 6;
+  int32             delivery_delta_days = 7;
+  string            title = 8;
+  string            code = 9;
+  string            sdt_code = 10;
+  bool              is_price_border_include_delivery = 11;
+  bool              is_price_border_include_present = 12;
+  bool              is_product_quantity_border_include_delivery = 13;
+  bool              is_product_quantity_border_include_present = 14;
+  bool              is_active = 15;
+  string            created_at = 16;
+  string            updated_at = 17;
+}
+
+message ListTransportCompanyModeRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string search = 3;
+  string sort = 4;
+}
+
+message ListTransportCompanyModeResponse {
+  repeated TransportCompanyMode results = 1;
+  int32                         total = 2;
+}
