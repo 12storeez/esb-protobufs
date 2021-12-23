@@ -193,15 +193,15 @@
     "logisticsCreateTransportCompanyModeRequest": {
       "type": "object",
       "properties": {
-        "transport_company": {
+        "transport_company_id": {
           "type": "integer",
           "format": "int32"
         },
-        "delivery_mode": {
+        "delivery_mode_id": {
           "type": "integer",
           "format": "int32"
         },
-        "delivery_method": {
+        "delivery_method_id": {
           "type": "integer",
           "format": "int32"
         }
