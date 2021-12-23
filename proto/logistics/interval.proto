@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service IntervalService {
+  rpc List(ListIntervalRequest) returns (ListIntervalResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/interval"
+    };
+  }
+
+  rpc Create(Interval) returns (Interval) {
+    option (google.api.http) = {
+      post: "/api/v1/interval"
+      body: "*"
+    };
+  }
+
+  rpc Get(IntervalId) returns (Interval) {
+    option (google.api.http) = {
+      get: "/api/v1/interval/{id}"
+    };
+  }
+
+  rpc Update(Interval) returns (Interval) {
+    option (google.api.http) = {
+      patch: "/api/v1/interval/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(IntervalId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/interval/{id}"
+    };
+  }
+}
+
+enum DayOfWeek {
+  monday = 0;
+  tuesday = 1;
+  wednesday = 2;
+  thursday = 3;
+  friday = 4;
+  saturday = 5;
+  sunday = 6;
+}
+
+message IntervalId {
+  int32 id = 1;
+}
+
+message Interval {
+  int32     id = 1;
+  string    client_time_from = 2;
+  string    client_time_to = 3;
+  string    tk_time_from = 4;
+  string    tk_time_to = 5;
+  DayOfWeek day_of_week = 6;
+  string    code = 7;
+  string    created_at = 8;
+  string    updated_at = 9;
+}
+
+message ListIntervalRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListIntervalResponse {
+  repeated Interval results = 1;
+  int32             total = 2;
+}
