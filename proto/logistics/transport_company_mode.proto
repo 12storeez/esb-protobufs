@@ -18,7 +18,7 @@ service TransportCompanyModeService {
     };
   }
 
-  rpc Create(TransportCompanyMode) returns (TransportCompanyMode) {
+  rpc Create(CreateTransportCompanyModeRequest) returns (TransportCompanyMode) {
     option (google.api.http) = {
       post: "/api/v1/transport-company-mode"
       body: "*"
@@ -80,6 +80,12 @@ service TransportCompanyModeService {
 
 message TransportCompanyModeId {
   int32 id = 1;
+}
+
+message CreateTransportCompanyModeRequest {
+  int32 transport_company = 1;
+  int32 delivery_mode = 2;
+  int32 delivery_method = 3;
 }
 
 message TransportCompanyMode {

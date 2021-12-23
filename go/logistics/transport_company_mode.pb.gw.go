@@ -68,7 +68,7 @@ func local_request_TransportCompanyModeService_List_0(ctx context.Context, marsh
 }
 
 func request_TransportCompanyModeService_Create_0(ctx context.Context, marshaler runtime.Marshaler, client TransportCompanyModeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TransportCompanyMode
+	var protoReq CreateTransportCompanyModeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -85,7 +85,7 @@ func request_TransportCompanyModeService_Create_0(ctx context.Context, marshaler
 }
 
 func local_request_TransportCompanyModeService_Create_0(ctx context.Context, marshaler runtime.Marshaler, server TransportCompanyModeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TransportCompanyMode
+	var protoReq CreateTransportCompanyModeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
