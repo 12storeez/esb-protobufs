@@ -82,7 +82,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsTransportCompanyMode"
+              "$ref": "#/definitions/logisticsCreateTransportCompanyModeRequest"
             }
           }
         ],
@@ -190,6 +190,23 @@
     }
   },
   "definitions": {
+    "logisticsCreateTransportCompanyModeRequest": {
+      "type": "object",
+      "properties": {
+        "transport_company": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "delivery_mode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "delivery_method": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "logisticsDayOfWeek": {
       "type": "string",
       "enum": [

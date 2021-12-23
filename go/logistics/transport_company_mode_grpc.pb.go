@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransportCompanyModeServiceClient interface {
 	List(ctx context.Context, in *ListTransportCompanyModeRequest, opts ...grpc.CallOption) (*ListTransportCompanyModeResponse, error)
-	Create(ctx context.Context, in *TransportCompanyMode, opts ...grpc.CallOption) (*TransportCompanyMode, error)
+	Create(ctx context.Context, in *CreateTransportCompanyModeRequest, opts ...grpc.CallOption) (*TransportCompanyMode, error)
 	Get(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*TransportCompanyMode, error)
 	Update(ctx context.Context, in *TransportCompanyMode, opts ...grpc.CallOption) (*TransportCompanyMode, error)
 	Delete(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -43,7 +43,7 @@ func (c *transportCompanyModeServiceClient) List(ctx context.Context, in *ListTr
 	return out, nil
 }
 
-func (c *transportCompanyModeServiceClient) Create(ctx context.Context, in *TransportCompanyMode, opts ...grpc.CallOption) (*TransportCompanyMode, error) {
+func (c *transportCompanyModeServiceClient) Create(ctx context.Context, in *CreateTransportCompanyModeRequest, opts ...grpc.CallOption) (*TransportCompanyMode, error) {
 	out := new(TransportCompanyMode)
 	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/Create", in, out, opts...)
 	if err != nil {
@@ -84,7 +84,7 @@ func (c *transportCompanyModeServiceClient) Delete(ctx context.Context, in *Tran
 // for forward compatibility
 type TransportCompanyModeServiceServer interface {
 	List(context.Context, *ListTransportCompanyModeRequest) (*ListTransportCompanyModeResponse, error)
-	Create(context.Context, *TransportCompanyMode) (*TransportCompanyMode, error)
+	Create(context.Context, *CreateTransportCompanyModeRequest) (*TransportCompanyMode, error)
 	Get(context.Context, *TransportCompanyModeId) (*TransportCompanyMode, error)
 	Update(context.Context, *TransportCompanyMode) (*TransportCompanyMode, error)
 	Delete(context.Context, *TransportCompanyModeId) (*emptypb.Empty, error)
@@ -97,7 +97,7 @@ type UnimplementedTransportCompanyModeServiceServer struct {
 func (UnimplementedTransportCompanyModeServiceServer) List(context.Context, *ListTransportCompanyModeRequest) (*ListTransportCompanyModeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedTransportCompanyModeServiceServer) Create(context.Context, *TransportCompanyMode) (*TransportCompanyMode, error) {
+func (UnimplementedTransportCompanyModeServiceServer) Create(context.Context, *CreateTransportCompanyModeRequest) (*TransportCompanyMode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedTransportCompanyModeServiceServer) Get(context.Context, *TransportCompanyModeId) (*TransportCompanyMode, error) {
@@ -140,7 +140,7 @@ func _TransportCompanyModeService_List_Handler(srv interface{}, ctx context.Cont
 }
 
 func _TransportCompanyModeService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransportCompanyMode)
+	in := new(CreateTransportCompanyModeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -152,7 +152,7 @@ func _TransportCompanyModeService_Create_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/logistics.TransportCompanyModeService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransportCompanyModeServiceServer).Create(ctx, req.(*TransportCompanyMode))
+		return srv.(TransportCompanyModeServiceServer).Create(ctx, req.(*CreateTransportCompanyModeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
