@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service PaymentMethodService {
+  rpc List(ListPaymentMethodRequest) returns (ListPaymentMethodResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/payment-method"
+    };
+  }
+
+  rpc Create(PaymentMethod) returns (PaymentMethod) {
+    option (google.api.http) = {
+      post: "/api/v1/payment-method"
+      body: "*"
+    };
+  }
+
+  rpc Update(PaymentMethod) returns (PaymentMethod) {
+    option (google.api.http) = {
+      post: "/api/v1/payment-method/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(PaymentMethodId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/payment-method/{id}"
+    };
+  }
+}
+
+message PaymentMethodId {
+  int32 id = 1;
+}
+
+message PaymentMethod {
+  int32   id = 1;
+  string  title_ru = 2;
+  string  code = 3;
+  bool    is_active = 4;
+  string  created_at = 5;
+  string  updated_at = 6;
+}
+
+message ListPaymentMethodRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListPaymentMethodResponse {
+  repeated PaymentMethod results = 1;
+  int32                  total = 2;
+}
