@@ -190,19 +190,6 @@
     }
   },
   "definitions": {
-    "logisticsDayOfWeek": {
-      "type": "string",
-      "enum": [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
-      ],
-      "default": "monday"
-    },
     "logisticsInterval": {
       "type": "object",
       "properties": {
@@ -223,7 +210,7 @@
           "type": "string"
         },
         "day_of_week": {
-          "$ref": "#/definitions/logisticsDayOfWeek"
+          "type": "string"
         },
         "code": {
           "type": "string"

@@ -252,6 +252,39 @@
         }
       }
     },
+    "logisticsInterval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "client_time_from": {
+          "type": "string"
+        },
+        "client_time_to": {
+          "type": "string"
+        },
+        "tk_time_from": {
+          "type": "string"
+        },
+        "tk_time_to": {
+          "type": "string"
+        },
+        "day_of_week": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsListTransportCompanyModeResponse": {
       "type": "object",
       "properties": {
@@ -316,7 +349,7 @@
         "intervals": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/logisticsTransportCompanyModeInterval"
+            "$ref": "#/definitions/logisticsInterval"
           }
         },
         "delivery_interval_days": {
@@ -358,52 +391,6 @@
           "type": "string"
         }
       }
-    },
-    "logisticsTransportCompanyModeInterval": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "client_time_from": {
-          "type": "string"
-        },
-        "client_time_to": {
-          "type": "string"
-        },
-        "tk_time_from": {
-          "type": "string"
-        },
-        "tk_time_to": {
-          "type": "string"
-        },
-        "day_of_week": {
-          "$ref": "#/definitions/logisticsTransportCompanyModeIntervalDayOfWeek"
-        },
-        "code": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsTransportCompanyModeIntervalDayOfWeek": {
-      "type": "string",
-      "enum": [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
-      ],
-      "default": "monday"
     },
     "protobufAny": {
       "type": "object",
