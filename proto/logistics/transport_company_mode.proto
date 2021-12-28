@@ -6,10 +6,10 @@ package logistics;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "proto/logistics/transport_company.proto";
-import "proto/logistics/delivery_method.proto";
-import "proto/logistics/delivery_mode.proto";
-import "proto/logistics/interval.proto";
+import "transport_company.proto";
+import "delivery_method.proto";
+import "delivery_mode.proto";
+import "interval.proto";
 
 service TransportCompanyModeService {
   rpc List(ListTransportCompanyModeRequest) returns (ListTransportCompanyModeResponse) {

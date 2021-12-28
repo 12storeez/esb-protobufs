@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/logistics/transport_company_mode.proto",
+    "title": "transport_company_mode.proto",
     "version": "version not set"
   },
   "consumes": [
@@ -207,6 +207,19 @@
         }
       }
     },
+    "logisticsDayOfWeek": {
+      "type": "string",
+      "enum": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "default": "monday"
+    },
     "logisticsDeliveryMethod": {
       "type": "object",
       "properties": {
@@ -272,7 +285,7 @@
           "type": "string"
         },
         "day_of_week": {
-          "type": "string"
+          "$ref": "#/definitions/logisticsDayOfWeek"
         },
         "code": {
           "type": "string"
