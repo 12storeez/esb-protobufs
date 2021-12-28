@@ -77,7 +77,7 @@ service TransportCompanyModeService {
 //  }
 }
 
-enum DayOfWeek {
+enum TransportCompanyModeIntervalDayOfWeek {
   monday = 0;
   tuesday = 1;
   wednesday = 2;
@@ -88,15 +88,15 @@ enum DayOfWeek {
 }
 
 message TransportCompanyModeInterval {
-  int32     id = 1;
-  string    client_time_from = 2;
-  string    client_time_to = 3;
-  string    tk_time_from = 4;
-  string    tk_time_to = 5;
-  DayOfWeek day_of_week = 6;
-  string    code = 7;
-  string    created_at = 8;
-  string    updated_at = 9;
+  int32                                 id = 1;
+  string                                client_time_from = 2;
+  string                                client_time_to = 3;
+  string                                tk_time_from = 4;
+  string                                tk_time_to = 5;
+  TransportCompanyModeIntervalDayOfWeek day_of_week = 6;
+  string                                code = 7;
+  string                                created_at = 8;
+  string                                updated_at = 9;
 }
 
 message TransportCompanyModeId {
