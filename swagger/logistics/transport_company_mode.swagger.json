@@ -265,39 +265,6 @@
         }
       }
     },
-    "logisticsInterval": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "client_time_from": {
-          "type": "string"
-        },
-        "client_time_to": {
-          "type": "string"
-        },
-        "tk_time_from": {
-          "type": "string"
-        },
-        "tk_time_to": {
-          "type": "string"
-        },
-        "day_of_week": {
-          "$ref": "#/definitions/logisticsDayOfWeek"
-        },
-        "code": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string"
-        }
-      }
-    },
     "logisticsListTransportCompanyModeResponse": {
       "type": "object",
       "properties": {
@@ -362,7 +329,7 @@
         "intervals": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsTransportCompanyModeInterval"
           }
         },
         "delivery_interval_days": {
@@ -396,6 +363,39 @@
         },
         "is_active": {
           "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsTransportCompanyModeInterval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "client_time_from": {
+          "type": "string"
+        },
+        "client_time_to": {
+          "type": "string"
+        },
+        "tk_time_from": {
+          "type": "string"
+        },
+        "tk_time_to": {
+          "type": "string"
+        },
+        "day_of_week": {
+          "$ref": "#/definitions/logisticsDayOfWeek"
+        },
+        "code": {
+          "type": "string"
         },
         "created_at": {
           "type": "string"
