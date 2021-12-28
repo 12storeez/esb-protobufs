@@ -207,19 +207,6 @@
         }
       }
     },
-    "logisticsDayOfWeek": {
-      "type": "string",
-      "enum": [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
-      ],
-      "default": "monday"
-    },
     "logisticsDeliveryMethod": {
       "type": "object",
       "properties": {
@@ -392,7 +379,7 @@
           "type": "string"
         },
         "day_of_week": {
-          "$ref": "#/definitions/logisticsDayOfWeek"
+          "$ref": "#/definitions/logisticsTransportCompanyModeIntervalDayOfWeek"
         },
         "code": {
           "type": "string"
@@ -404,6 +391,19 @@
           "type": "string"
         }
       }
+    },
+    "logisticsTransportCompanyModeIntervalDayOfWeek": {
+      "type": "string",
+      "enum": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "default": "monday"
     },
     "protobufAny": {
       "type": "object",
