@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/logistics/delivery_mode.proto",
+    "title": "delivery_mode.proto",
     "version": "version not set"
   },
   "consumes": [

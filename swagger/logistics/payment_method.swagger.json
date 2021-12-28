@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/logistics/payment_method.proto",
+    "title": "payment_method.proto",
     "version": "version not set"
   },
   "consumes": [
