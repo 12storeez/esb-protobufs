@@ -285,7 +285,7 @@ func RegisterTransportCompanyModeServiceHandlerServer(ctx context.Context, mux *
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/List")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/List", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -308,7 +308,7 @@ func RegisterTransportCompanyModeServiceHandlerServer(ctx context.Context, mux *
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Create")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Create", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -331,7 +331,7 @@ func RegisterTransportCompanyModeServiceHandlerServer(ctx context.Context, mux *
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Get")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Get", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -354,7 +354,7 @@ func RegisterTransportCompanyModeServiceHandlerServer(ctx context.Context, mux *
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Update")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Update", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -377,7 +377,7 @@ func RegisterTransportCompanyModeServiceHandlerServer(ctx context.Context, mux *
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Delete")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Delete", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -439,7 +439,7 @@ func RegisterTransportCompanyModeServiceHandlerClient(ctx context.Context, mux *
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/List")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/List", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -459,7 +459,7 @@ func RegisterTransportCompanyModeServiceHandlerClient(ctx context.Context, mux *
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Create")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Create", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -479,7 +479,7 @@ func RegisterTransportCompanyModeServiceHandlerClient(ctx context.Context, mux *
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Get")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Get", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -499,7 +499,7 @@ func RegisterTransportCompanyModeServiceHandlerClient(ctx context.Context, mux *
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Update")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Update", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -519,7 +519,7 @@ func RegisterTransportCompanyModeServiceHandlerClient(ctx context.Context, mux *
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Delete")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/logistics.TransportCompanyModeService/Delete", runtime.WithHTTPPathPattern("/api/v1/transport-company-mode/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
