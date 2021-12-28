@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.27.1
 // 	protoc        v3.19.1
-// source: proto/logistics/transport_company_mode.proto
+// source: transport_company_mode.proto
 
 package logistics
 
@@ -33,7 +33,7 @@ type TransportCompanyModeId struct {
 func (x *TransportCompanyModeId) Reset() {
 	*x = TransportCompanyModeId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[0]
+		mi := &file_transport_company_mode_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -46,7 +46,7 @@ func (x *TransportCompanyModeId) String() string {
 func (*TransportCompanyModeId) ProtoMessage() {}
 
 func (x *TransportCompanyModeId) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[0]
+	mi := &file_transport_company_mode_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *TransportCompanyModeId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransportCompanyModeId.ProtoReflect.Descriptor instead.
 func (*TransportCompanyModeId) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_transport_company_mode_proto_rawDescGZIP(), []int{0}
+	return file_transport_company_mode_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *TransportCompanyModeId) GetId() int32 {
@@ -82,7 +82,7 @@ type CreateTransportCompanyModeRequest struct {
 func (x *CreateTransportCompanyModeRequest) Reset() {
 	*x = CreateTransportCompanyModeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[1]
+		mi := &file_transport_company_mode_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -95,7 +95,7 @@ func (x *CreateTransportCompanyModeRequest) String() string {
 func (*CreateTransportCompanyModeRequest) ProtoMessage() {}
 
 func (x *CreateTransportCompanyModeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[1]
+	mi := &file_transport_company_mode_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +108,7 @@ func (x *CreateTransportCompanyModeRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateTransportCompanyModeRequest.ProtoReflect.Descriptor instead.
 func (*CreateTransportCompanyModeRequest) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_transport_company_mode_proto_rawDescGZIP(), []int{1}
+	return file_transport_company_mode_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateTransportCompanyModeRequest) GetTransportCompanyId() int32 {
@@ -159,7 +159,7 @@ type TransportCompanyMode struct {
 func (x *TransportCompanyMode) Reset() {
 	*x = TransportCompanyMode{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[2]
+		mi := &file_transport_company_mode_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -172,7 +172,7 @@ func (x *TransportCompanyMode) String() string {
 func (*TransportCompanyMode) ProtoMessage() {}
 
 func (x *TransportCompanyMode) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[2]
+	mi := &file_transport_company_mode_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -185,7 +185,7 @@ func (x *TransportCompanyMode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransportCompanyMode.ProtoReflect.Descriptor instead.
 func (*TransportCompanyMode) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_transport_company_mode_proto_rawDescGZIP(), []int{2}
+	return file_transport_company_mode_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TransportCompanyMode) GetId() int32 {
@@ -321,7 +321,7 @@ type ListTransportCompanyModeRequest struct {
 func (x *ListTransportCompanyModeRequest) Reset() {
 	*x = ListTransportCompanyModeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[3]
+		mi := &file_transport_company_mode_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -334,7 +334,7 @@ func (x *ListTransportCompanyModeRequest) String() string {
 func (*ListTransportCompanyModeRequest) ProtoMessage() {}
 
 func (x *ListTransportCompanyModeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[3]
+	mi := &file_transport_company_mode_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -347,7 +347,7 @@ func (x *ListTransportCompanyModeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTransportCompanyModeRequest.ProtoReflect.Descriptor instead.
 func (*ListTransportCompanyModeRequest) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_transport_company_mode_proto_rawDescGZIP(), []int{3}
+	return file_transport_company_mode_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListTransportCompanyModeRequest) GetLimit() int32 {
@@ -390,7 +390,7 @@ type ListTransportCompanyModeResponse struct {
 func (x *ListTransportCompanyModeResponse) Reset() {
 	*x = ListTransportCompanyModeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[4]
+		mi := &file_transport_company_mode_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -403,7 +403,7 @@ func (x *ListTransportCompanyModeResponse) String() string {
 func (*ListTransportCompanyModeResponse) ProtoMessage() {}
 
 func (x *ListTransportCompanyModeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_transport_company_mode_proto_msgTypes[4]
+	mi := &file_transport_company_mode_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -416,7 +416,7 @@ func (x *ListTransportCompanyModeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTransportCompanyModeResponse.ProtoReflect.Descriptor instead.
 func (*ListTransportCompanyModeResponse) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_transport_company_mode_proto_rawDescGZIP(), []int{4}
+	return file_transport_company_mode_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ListTransportCompanyModeResponse) GetResults() []*TransportCompanyMode {
@@ -433,25 +433,20 @@ func (x *ListTransportCompanyModeResponse) GetTotal() int32 {
 	return 0
 }
 
-var File_proto_logistics_transport_company_mode_proto protoreflect.FileDescriptor
+var File_transport_company_mode_proto protoreflect.FileDescriptor
 
-var file_proto_logistics_transport_company_mode_proto_rawDesc = []byte{
-	0x0a, 0x2c, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63,
-	0x73, 0x2f, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x6f, 0x72, 0x74, 0x5f, 0x63, 0x6f, 0x6d, 0x70,
+var file_transport_company_mode_proto_rawDesc = []byte{
+	0x0a, 0x1c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x6f, 0x72, 0x74, 0x5f, 0x63, 0x6f, 0x6d, 0x70,
 	0x61, 0x6e, 0x79, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09,
 	0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e,
 	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x27, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69,
-	0x73, 0x74, 0x69, 0x63, 0x73, 0x2f, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x6f, 0x72, 0x74, 0x5f,
-	0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x25, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x2f, 0x64,
+	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x6f, 0x72, 0x74, 0x5f,
+	0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x15, 0x64,
 	0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x5f, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x23, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69,
-	0x73, 0x74, 0x69, 0x63, 0x73, 0x2f, 0x64, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x5f, 0x6d,
-	0x6f, 0x64, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x2f, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72,
+	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x13, 0x64, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x5f, 0x6d,
+	0x6f, 0x64, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0e, 0x69, 0x6e, 0x74, 0x65, 0x72,
 	0x76, 0x61, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x28, 0x0a, 0x16, 0x54, 0x72, 0x61,
 	0x6e, 0x73, 0x70, 0x6f, 0x72, 0x74, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x4d, 0x6f, 0x64,
 	0x65, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
@@ -583,19 +578,19 @@ var file_proto_logistics_transport_company_mode_proto_rawDesc = []byte{
 }
 
 var (
-	file_proto_logistics_transport_company_mode_proto_rawDescOnce sync.Once
-	file_proto_logistics_transport_company_mode_proto_rawDescData = file_proto_logistics_transport_company_mode_proto_rawDesc
+	file_transport_company_mode_proto_rawDescOnce sync.Once
+	file_transport_company_mode_proto_rawDescData = file_transport_company_mode_proto_rawDesc
 )
 
-func file_proto_logistics_transport_company_mode_proto_rawDescGZIP() []byte {
-	file_proto_logistics_transport_company_mode_proto_rawDescOnce.Do(func() {
-		file_proto_logistics_transport_company_mode_proto_rawDescData = protoimpl.X.CompressGZIP(file_proto_logistics_transport_company_mode_proto_rawDescData)
+func file_transport_company_mode_proto_rawDescGZIP() []byte {
+	file_transport_company_mode_proto_rawDescOnce.Do(func() {
+		file_transport_company_mode_proto_rawDescData = protoimpl.X.CompressGZIP(file_transport_company_mode_proto_rawDescData)
 	})
-	return file_proto_logistics_transport_company_mode_proto_rawDescData
+	return file_transport_company_mode_proto_rawDescData
 }
 
-var file_proto_logistics_transport_company_mode_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_proto_logistics_transport_company_mode_proto_goTypes = []interface{}{
+var file_transport_company_mode_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_transport_company_mode_proto_goTypes = []interface{}{
 	(*TransportCompanyModeId)(nil),            // 0: logistics.TransportCompanyModeId
 	(*CreateTransportCompanyModeRequest)(nil), // 1: logistics.CreateTransportCompanyModeRequest
 	(*TransportCompanyMode)(nil),              // 2: logistics.TransportCompanyMode
@@ -607,7 +602,7 @@ var file_proto_logistics_transport_company_mode_proto_goTypes = []interface{}{
 	(*Interval)(nil),                          // 8: logistics.Interval
 	(*emptypb.Empty)(nil),                     // 9: google.protobuf.Empty
 }
-var file_proto_logistics_transport_company_mode_proto_depIdxs = []int32{
+var file_transport_company_mode_proto_depIdxs = []int32{
 	5,  // 0: logistics.TransportCompanyMode.transport_company:type_name -> logistics.TransportCompany
 	6,  // 1: logistics.TransportCompanyMode.delivery_mode:type_name -> logistics.DeliveryMode
 	7,  // 2: logistics.TransportCompanyMode.delivery_method:type_name -> logistics.DeliveryMethod
@@ -630,17 +625,17 @@ var file_proto_logistics_transport_company_mode_proto_depIdxs = []int32{
 	0,  // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_proto_logistics_transport_company_mode_proto_init() }
-func file_proto_logistics_transport_company_mode_proto_init() {
-	if File_proto_logistics_transport_company_mode_proto != nil {
+func init() { file_transport_company_mode_proto_init() }
+func file_transport_company_mode_proto_init() {
+	if File_transport_company_mode_proto != nil {
 		return
 	}
-	file_proto_logistics_transport_company_proto_init()
-	file_proto_logistics_delivery_method_proto_init()
-	file_proto_logistics_delivery_mode_proto_init()
-	file_proto_logistics_interval_proto_init()
+	file_transport_company_proto_init()
+	file_delivery_method_proto_init()
+	file_delivery_mode_proto_init()
+	file_interval_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_proto_logistics_transport_company_mode_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_transport_company_mode_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TransportCompanyModeId); i {
 			case 0:
 				return &v.state
@@ -652,7 +647,7 @@ func file_proto_logistics_transport_company_mode_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_transport_company_mode_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_transport_company_mode_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateTransportCompanyModeRequest); i {
 			case 0:
 				return &v.state
@@ -664,7 +659,7 @@ func file_proto_logistics_transport_company_mode_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_transport_company_mode_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_transport_company_mode_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TransportCompanyMode); i {
 			case 0:
 				return &v.state
@@ -676,7 +671,7 @@ func file_proto_logistics_transport_company_mode_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_transport_company_mode_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_transport_company_mode_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListTransportCompanyModeRequest); i {
 			case 0:
 				return &v.state
@@ -688,7 +683,7 @@ func file_proto_logistics_transport_company_mode_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_transport_company_mode_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_transport_company_mode_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListTransportCompanyModeResponse); i {
 			case 0:
 				return &v.state
@@ -705,18 +700,18 @@ func file_proto_logistics_transport_company_mode_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_proto_logistics_transport_company_mode_proto_rawDesc,
+			RawDescriptor: file_transport_company_mode_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_logistics_transport_company_mode_proto_goTypes,
-		DependencyIndexes: file_proto_logistics_transport_company_mode_proto_depIdxs,
-		MessageInfos:      file_proto_logistics_transport_company_mode_proto_msgTypes,
+		GoTypes:           file_transport_company_mode_proto_goTypes,
+		DependencyIndexes: file_transport_company_mode_proto_depIdxs,
+		MessageInfos:      file_transport_company_mode_proto_msgTypes,
 	}.Build()
-	File_proto_logistics_transport_company_mode_proto = out.File
-	file_proto_logistics_transport_company_mode_proto_rawDesc = nil
-	file_proto_logistics_transport_company_mode_proto_goTypes = nil
-	file_proto_logistics_transport_company_mode_proto_depIdxs = nil
+	File_transport_company_mode_proto = out.File
+	file_transport_company_mode_proto_rawDesc = nil
+	file_transport_company_mode_proto_goTypes = nil
+	file_transport_company_mode_proto_depIdxs = nil
 }
