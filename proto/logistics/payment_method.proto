@@ -21,6 +21,12 @@ service PaymentMethodService {
     };
   }
 
+  rpc Get(PaymentMethodId) returns (PaymentMethod) {
+    option (google.api.http) = {
+      get: "/api/v1/payment-method/{id}"
+    };
+  }
+
   rpc Update(PaymentMethod) returns (PaymentMethod) {
     option (google.api.http) = {
       post: "/api/v1/payment-method/{id}"

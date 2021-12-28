@@ -92,6 +92,35 @@
       }
     },
     "/api/v1/payment-method/{id}": {
+      "get": {
+        "operationId": "PaymentMethodService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsPaymentMethod"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "PaymentMethodService"
+        ]
+      },
       "delete": {
         "operationId": "PaymentMethodService_Delete",
         "responses": {
