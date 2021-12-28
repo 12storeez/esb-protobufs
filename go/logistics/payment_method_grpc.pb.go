@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type PaymentMethodServiceClient interface {
 	List(ctx context.Context, in *ListPaymentMethodRequest, opts ...grpc.CallOption) (*ListPaymentMethodResponse, error)
 	Create(ctx context.Context, in *PaymentMethod, opts ...grpc.CallOption) (*PaymentMethod, error)
+	Get(ctx context.Context, in *PaymentMethodId, opts ...grpc.CallOption) (*PaymentMethod, error)
 	Update(ctx context.Context, in *PaymentMethod, opts ...grpc.CallOption) (*PaymentMethod, error)
 	Delete(ctx context.Context, in *PaymentMethodId, opts ...grpc.CallOption) (*empty.Empty, error)
 }
@@ -51,6 +52,15 @@ func (c *paymentMethodServiceClient) Create(ctx context.Context, in *PaymentMeth
 	return out, nil
 }
 
+func (c *paymentMethodServiceClient) Get(ctx context.Context, in *PaymentMethodId, opts ...grpc.CallOption) (*PaymentMethod, error) {
+	out := new(PaymentMethod)
+	err := c.cc.Invoke(ctx, "/logistics.PaymentMethodService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *paymentMethodServiceClient) Update(ctx context.Context, in *PaymentMethod, opts ...grpc.CallOption) (*PaymentMethod, error) {
 	out := new(PaymentMethod)
 	err := c.cc.Invoke(ctx, "/logistics.PaymentMethodService/Update", in, out, opts...)
@@ -75,6 +85,7 @@ func (c *paymentMethodServiceClient) Delete(ctx context.Context, in *PaymentMeth
 type PaymentMethodServiceServer interface {
 	List(context.Context, *ListPaymentMethodRequest) (*ListPaymentMethodResponse, error)
 	Create(context.Context, *PaymentMethod) (*PaymentMethod, error)
+	Get(context.Context, *PaymentMethodId) (*PaymentMethod, error)
 	Update(context.Context, *PaymentMethod) (*PaymentMethod, error)
 	Delete(context.Context, *PaymentMethodId) (*empty.Empty, error)
 }
@@ -88,6 +99,9 @@ func (UnimplementedPaymentMethodServiceServer) List(context.Context, *ListPaymen
 }
 func (UnimplementedPaymentMethodServiceServer) Create(context.Context, *PaymentMethod) (*PaymentMethod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedPaymentMethodServiceServer) Get(context.Context, *PaymentMethodId) (*PaymentMethod, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedPaymentMethodServiceServer) Update(context.Context, *PaymentMethod) (*PaymentMethod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
@@ -143,6 +157,24 @@ func _PaymentMethodService_Create_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentMethodService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentMethodId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentMethodServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.PaymentMethodService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentMethodServiceServer).Get(ctx, req.(*PaymentMethodId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PaymentMethodService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PaymentMethod)
 	if err := dec(in); err != nil {
@@ -193,6 +225,10 @@ var PaymentMethodService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _PaymentMethodService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _PaymentMethodService_Get_Handler,
 		},
 		{
 			MethodName: "Update",
