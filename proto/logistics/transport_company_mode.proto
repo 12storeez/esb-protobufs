@@ -45,37 +45,43 @@ service TransportCompanyModeService {
   }
 
   // intervals for transport-company-mode
-//  rpc GetIntervalList(TransportCompanyModeId) returns (ListIntervalResponse) {
-//    option (google.api.http) = {
-//      get: "/api/v1/transport-company-mode/{id}/interval"
-//    };
-//  }
-//
-//  rpc CreateInterval(Interval) returns (Interval) {
-//    option (google.api.http) = {
-//      post: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval"
-//      body: "*"
-//    };
-//  }
-//
-//  rpc GetInterval(IntervalId) returns (Interval) {
-//    option (google.api.http) = {
-//      get: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval/{id}"
-//    };
-//  }
-//
-//  rpc UpdateInterval(Interval) returns (Interval) {
-//    option (google.api.http) = {
-//      patch: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval/{id}"
-//      body: "*"
-//    };
-//  }
-//
-//  rpc DeleteInterval(TransportCompanyModeIntervalId) returns (google.protobuf.Empty) {
-//    option (google.api.http) = {
-//      delete: "/api/v1/transport-company-mode/{transport_company_mode_id}/interval/{id}"
-//    };
-//  }
+  rpc GetIntervalList(TransportCompanyModeId) returns (ListIntervalResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/transport-company-mode/{id}/interval"
+    };
+  }
+
+  rpc CreateInterval(TransportCompanyModeIntervalRequest) returns (Interval) {
+    option (google.api.http) = {
+      post: "/api/v1/transport-company-mode/{id}/interval"
+      body: "interval"
+    };
+  }
+
+  rpc GetInterval(TransportCompanyModeIntervalRequest) returns (Interval) {
+    option (google.api.http) = {
+      get: "/api/v1/transport-company-mode/{id}/interval/{interval_id}"
+    };
+  }
+
+  rpc UpdateInterval(TransportCompanyModeIntervalRequest) returns (Interval) {
+    option (google.api.http) = {
+      patch: "/api/v1/transport-company-mode/{id}/interval/{interval_id}"
+      body: "interval"
+    };
+  }
+
+  rpc DeleteInterval(TransportCompanyModeIntervalRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/transport-company-mode/{id}/interval/{interval_id}"
+    };
+  }
+}
+
+message TransportCompanyModeIntervalRequest {
+  int32    id = 1;
+  int32    interval_id = 2;
+  Interval interval = 3;
 }
 
 message TransportCompanyModeId {

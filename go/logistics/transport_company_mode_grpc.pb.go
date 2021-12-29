@@ -28,6 +28,12 @@ type TransportCompanyModeServiceClient interface {
 	Get(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*TransportCompanyMode, error)
 	Update(ctx context.Context, in *TransportCompanyMode, opts ...grpc.CallOption) (*TransportCompanyMode, error)
 	Delete(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// intervals for transport-company-mode
+	GetIntervalList(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*ListIntervalResponse, error)
+	CreateInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*Interval, error)
+	GetInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*Interval, error)
+	UpdateInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*Interval, error)
+	DeleteInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type transportCompanyModeServiceClient struct {
@@ -83,6 +89,51 @@ func (c *transportCompanyModeServiceClient) Delete(ctx context.Context, in *Tran
 	return out, nil
 }
 
+func (c *transportCompanyModeServiceClient) GetIntervalList(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*ListIntervalResponse, error) {
+	out := new(ListIntervalResponse)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/GetIntervalList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportCompanyModeServiceClient) CreateInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*Interval, error) {
+	out := new(Interval)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/CreateInterval", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportCompanyModeServiceClient) GetInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*Interval, error) {
+	out := new(Interval)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/GetInterval", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportCompanyModeServiceClient) UpdateInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*Interval, error) {
+	out := new(Interval)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/UpdateInterval", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportCompanyModeServiceClient) DeleteInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/DeleteInterval", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransportCompanyModeServiceServer is the server API for TransportCompanyModeService service.
 // All implementations should embed UnimplementedTransportCompanyModeServiceServer
 // for forward compatibility
@@ -92,6 +143,12 @@ type TransportCompanyModeServiceServer interface {
 	Get(context.Context, *TransportCompanyModeId) (*TransportCompanyMode, error)
 	Update(context.Context, *TransportCompanyMode) (*TransportCompanyMode, error)
 	Delete(context.Context, *TransportCompanyModeId) (*emptypb.Empty, error)
+	// intervals for transport-company-mode
+	GetIntervalList(context.Context, *TransportCompanyModeId) (*ListIntervalResponse, error)
+	CreateInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error)
+	GetInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error)
+	UpdateInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error)
+	DeleteInterval(context.Context, *TransportCompanyModeIntervalRequest) (*emptypb.Empty, error)
 }
 
 // UnimplementedTransportCompanyModeServiceServer should be embedded to have forward compatible implementations.
@@ -112,6 +169,21 @@ func (UnimplementedTransportCompanyModeServiceServer) Update(context.Context, *T
 }
 func (UnimplementedTransportCompanyModeServiceServer) Delete(context.Context, *TransportCompanyModeId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedTransportCompanyModeServiceServer) GetIntervalList(context.Context, *TransportCompanyModeId) (*ListIntervalResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetIntervalList not implemented")
+}
+func (UnimplementedTransportCompanyModeServiceServer) CreateInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateInterval not implemented")
+}
+func (UnimplementedTransportCompanyModeServiceServer) GetInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInterval not implemented")
+}
+func (UnimplementedTransportCompanyModeServiceServer) UpdateInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateInterval not implemented")
+}
+func (UnimplementedTransportCompanyModeServiceServer) DeleteInterval(context.Context, *TransportCompanyModeIntervalRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteInterval not implemented")
 }
 
 // UnsafeTransportCompanyModeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -215,6 +287,96 @@ func _TransportCompanyModeService_Delete_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransportCompanyModeService_GetIntervalList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyModeId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyModeServiceServer).GetIntervalList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanyModeService/GetIntervalList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyModeServiceServer).GetIntervalList(ctx, req.(*TransportCompanyModeId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportCompanyModeService_CreateInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyModeIntervalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyModeServiceServer).CreateInterval(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanyModeService/CreateInterval",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyModeServiceServer).CreateInterval(ctx, req.(*TransportCompanyModeIntervalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportCompanyModeService_GetInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyModeIntervalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyModeServiceServer).GetInterval(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanyModeService/GetInterval",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyModeServiceServer).GetInterval(ctx, req.(*TransportCompanyModeIntervalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportCompanyModeService_UpdateInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyModeIntervalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyModeServiceServer).UpdateInterval(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanyModeService/UpdateInterval",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyModeServiceServer).UpdateInterval(ctx, req.(*TransportCompanyModeIntervalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportCompanyModeService_DeleteInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransportCompanyModeIntervalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyModeServiceServer).DeleteInterval(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanyModeService/DeleteInterval",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyModeServiceServer).DeleteInterval(ctx, req.(*TransportCompanyModeIntervalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransportCompanyModeService_ServiceDesc is the grpc.ServiceDesc for TransportCompanyModeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -241,6 +403,26 @@ var TransportCompanyModeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _TransportCompanyModeService_Delete_Handler,
+		},
+		{
+			MethodName: "GetIntervalList",
+			Handler:    _TransportCompanyModeService_GetIntervalList_Handler,
+		},
+		{
+			MethodName: "CreateInterval",
+			Handler:    _TransportCompanyModeService_CreateInterval_Handler,
+		},
+		{
+			MethodName: "GetInterval",
+			Handler:    _TransportCompanyModeService_GetInterval_Handler,
+		},
+		{
+			MethodName: "UpdateInterval",
+			Handler:    _TransportCompanyModeService_UpdateInterval_Handler,
+		},
+		{
+			MethodName: "DeleteInterval",
+			Handler:    _TransportCompanyModeService_DeleteInterval_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

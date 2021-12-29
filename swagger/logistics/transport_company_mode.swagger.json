@@ -187,6 +187,330 @@
           "TransportCompanyModeService"
         ]
       }
+    },
+    "/api/v1/transport-company-mode/{id}/interval": {
+      "get": {
+        "summary": "intervals for transport-company-mode",
+        "operationId": "TransportCompanyModeService_GetIntervalList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListIntervalResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TransportCompanyModeService"
+        ]
+      },
+      "post": {
+        "operationId": "TransportCompanyModeService_CreateInterval",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsInterval"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsInterval"
+            }
+          },
+          {
+            "name": "interval_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TransportCompanyModeService"
+        ]
+      }
+    },
+    "/api/v1/transport-company-mode/{id}/interval/{interval_id}": {
+      "get": {
+        "operationId": "TransportCompanyModeService_GetInterval",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsInterval"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "interval_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "interval.id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "interval.client_time_from",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.client_time_to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.tk_time_from",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.tk_time_to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.day_of_week",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday"
+            ],
+            "default": "monday"
+          },
+          {
+            "name": "interval.code",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.created_at",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.updated_at",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TransportCompanyModeService"
+        ]
+      },
+      "delete": {
+        "operationId": "TransportCompanyModeService_DeleteInterval",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "interval_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "interval.id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "interval.client_time_from",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.client_time_to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.tk_time_from",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.tk_time_to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.day_of_week",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday"
+            ],
+            "default": "monday"
+          },
+          {
+            "name": "interval.code",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.created_at",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interval.updated_at",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TransportCompanyModeService"
+        ]
+      },
+      "patch": {
+        "operationId": "TransportCompanyModeService_UpdateInterval",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsInterval"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "interval_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsInterval"
+            }
+          }
+        ],
+        "tags": [
+          "TransportCompanyModeService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -295,6 +619,21 @@
         },
         "updated_at": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsListIntervalResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsInterval"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
