@@ -19,6 +19,9 @@
 ### Генерация даты для свагера:
 `protoc -I . --grpc-gateway_out=. -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --swagger_out=logtostderr=true:. proto/notifications/slack.proto`
 
+### Генерация единого сваггера для нескольких прото файлов (на примере логистики):
+`protoc -I ./proto/logistics --grpc-gateway_out=. -I $GOPATH/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.16.0/third_party/googleapis --openapiv2_out=allow_merge=true,merge_file_name=logistics.json:./swagger/logistics proto/logistics/*.proto`
+
 ## Генерация файлов для Typescript
     `sh ./build-ts.sh`
 
