@@ -18,6 +18,9 @@
       "name": "DeliveryTypeService"
     },
     {
+      "name": "GlobalRestrictionsService"
+    },
+    {
       "name": "IntervalService"
     },
     {
@@ -1011,6 +1014,151 @@
         ]
       }
     },
+    "/api/v1/restriction/global": {
+      "get": {
+        "operationId": "GlobalRestrictionsService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListGlobalRestrictionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GlobalRestrictionsService"
+        ]
+      },
+      "post": {
+        "operationId": "GlobalRestrictionsService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsGlobalRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsGlobalRestriction"
+            }
+          }
+        ],
+        "tags": [
+          "GlobalRestrictionsService"
+        ]
+      }
+    },
+    "/api/v1/restriction/global/{id}": {
+      "patch": {
+        "operationId": "GlobalRestrictionsService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsGlobalRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restriction": {
+                  "$ref": "#/definitions/GlobalRestrictionRestriction"
+                },
+                "value": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "GlobalRestrictionsService"
+        ]
+      }
+    },
     "/api/v1/transport-company": {
       "get": {
         "operationId": "TransportCompanyService_List",
@@ -1514,6 +1662,14 @@
     }
   },
   "definitions": {
+    "GlobalRestrictionRestriction": {
+      "type": "string",
+      "enum": [
+        "price",
+        "quantity"
+      ],
+      "default": "price"
+    },
     "logisticsCategory": {
       "type": "object",
       "properties": {
@@ -1638,6 +1794,39 @@
         }
       }
     },
+    "logisticsGlobalRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restriction": {
+          "$ref": "#/definitions/GlobalRestrictionRestriction"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsInterval": {
       "type": "object",
       "properties": {
@@ -1723,6 +1912,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsDeliveryTypeShort"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsListGlobalRestrictionResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsGlobalRestriction"
           }
         },
         "total": {
