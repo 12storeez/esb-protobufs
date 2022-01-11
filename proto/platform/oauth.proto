@@ -21,6 +21,7 @@ message TokenRequest {
   string grant_type = 3;
   string username = 4;
   string password = 5;
+  string refresh_token = 6;
 }
 
 message TokenResponse {
