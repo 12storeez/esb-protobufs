@@ -2305,11 +2305,14 @@
         "rel": {
           "type": "string"
         },
+        "relName": {
+          "type": "string"
+        },
         "href": {
           "type": "string"
         }
       },
-      "title": "Database relationship for message, where\n- id - identifier for the related entity\n- name - display name of the related entity\n- rel - relationship entity name\n- href - link to the rel, id"
+      "title": "Database relationship for message, where\n- id - identifier for the related entity\n- name - display name of the related entity\n- rel - entity name\n- rel_name - display name for the entity\n- href - link to the rel through id (like /api/v1/transport-company/2/)"
     },
     "logisticsSuggestMessageResponse": {
       "type": "object",
