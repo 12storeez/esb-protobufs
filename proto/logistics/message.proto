@@ -51,7 +51,7 @@ service MessageService {
 // - id - identifier for the related entity
 // - name - display name of the related entity
 // - rel - entity name
-// - href - link to the rel, id
+// - href - link to the rel through id (like /api/v1/transport-company/2/)
 message Rel {
   int32  id = 1;
   string name = 2;
