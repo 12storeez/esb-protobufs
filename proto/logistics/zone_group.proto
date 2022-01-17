@@ -91,7 +91,7 @@ message SuggestZoneGroupRequest {
 
 message SuggestZoneGroup {
   int32  id = 1;
-  string text = 2;
+  string name = 2;
 }
 
 message SuggestZoneGroupResponse {

@@ -87,7 +87,7 @@ message SuggestZoneRequest {
 
 message SuggestZone {
   int32  id = 1;
-  string text = 2;
+  string name = 2;
 }
 
 message SuggestZoneResponse {

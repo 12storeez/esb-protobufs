@@ -2897,7 +2897,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "text": {
+        "name": {
           "type": "string"
         }
       }
@@ -2909,7 +2909,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "text": {
+        "name": {
           "type": "string"
         }
       }
