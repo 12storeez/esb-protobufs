@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "zone.proto";
+
+service ZoneGroupService {
+  rpc List(ListZoneGroupRequest) returns (ListZoneGroupResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/zone-group"
+    };
+  }
+
+  rpc Create(ZoneGroup) returns (ZoneGroup) {
+    option (google.api.http) = {
+      post: "/api/v1/zone-group"
+      body: "*"
+    };
+  }
+
+  rpc Get(ZoneGroupId) returns (ZoneGroup) {
+    option (google.api.http) = {
+      get: "/api/v1/zone-group/{id}"
+    };
+  }
+
+  rpc Update(ZoneGroup) returns (ZoneGroup) {
+    option (google.api.http) = {
+      patch: "/api/v1/zone-group/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(ZoneGroupId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/zone-group/{id}"
+    };
+  }
+
+  rpc Suggest(SuggestZoneGroupRequest) returns (SuggestZoneGroupResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/zone-group/suggest"
+    };
+  }
+
+  rpc DeleteZone(DeleteZoneRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/zone-group/{id}/zone/{zone_id}"
+    };
+  }
+}
+
+message ZoneGroupId {
+  int32 id = 1;
+}
+
+message DeleteZoneRequest {
+  int32 id = 1;
+  int32 zone_id = 2;
+}
+
+message ZoneGroup {
+  int32         id = 1;
+  string        name = 2;
+  bool          is_active = 3;
+  string        created_at = 4;
+  string        updated_at = 5;
+  repeated Zone zones = 6;
+}
+
+message ListZoneGroupRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListZoneGroupResponse {
+  repeated ZoneGroup results = 1;
+  int32            total = 2;
+}
+
+message SuggestZoneGroupRequest {
+  int32  limit = 1;
+  string search = 2;
+}
+
+message SuggestZoneGroup {
+  int32  id = 1;
+  string name = 2;
+}
+
+message SuggestZoneGroupResponse {
+  repeated SuggestZoneGroup results = 1;
+  int32                     total = 2;
+}

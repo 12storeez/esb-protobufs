@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service ZoneService {
+  rpc List(ListZoneRequest) returns (ListZoneResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/zone"
+    };
+  }
+
+  rpc Create(Zone) returns (Zone) {
+    option (google.api.http) = {
+      post: "/api/v1/zone"
+      body: "*"
+    };
+  }
+
+  rpc Get(ZoneId) returns (Zone) {
+    option (google.api.http) = {
+      get: "/api/v1/zone/{id}"
+    };
+  }
+
+  rpc Update(Zone) returns (Zone) {
+    option (google.api.http) = {
+      patch: "/api/v1/zone/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(ZoneId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/zone/{id}"
+    };
+  }
+
+  rpc Suggest(SuggestZoneRequest) returns (SuggestZoneResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/zone/suggest"
+    };
+  }
+}
+
+message ZoneId {
+  int32 id = 1;
+}
+
+message Zone {
+  int32           id = 1;
+  string          name = 2;
+  bool            is_active = 3;
+  string          created_at = 4;
+  string          updated_at = 5;
+  ZoneGroupInfo   zone_group = 6;
+  int32           geo_id_quantity = 7;
+  repeated string geo_ids = 8;
+}
+
+message ZoneGroupInfo {
+  int32  id = 1;
+  string name = 2;
+  bool   is_active = 3;
+}
+
+message ListZoneRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListZoneResponse {
+  repeated Zone results = 1;
+  int32         total = 2;
+}
+
+message SuggestZoneRequest {
+  int32  limit = 1;
+  string search = 2;
+}
+
+message SuggestZone {
+  int32  id = 1;
+  string name = 2;
+}
+
+message SuggestZoneResponse {
+  repeated SuggestZone results = 1;
+  int32                total = 2;
+}
