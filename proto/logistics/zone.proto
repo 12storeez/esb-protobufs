@@ -57,15 +57,17 @@ message Zone {
   bool            is_active = 3;
   string          created_at = 4;
   string          updated_at = 5;
-  ZoneGroupInfo   zone_group = 6;
+  repeated ZoneGroupInfo zone_groups = 6;
   int32           geo_id_quantity = 7;
   repeated string geo_ids = 8;
 }
 
 message ZoneGroupInfo {
-  int32  id = 1;
-  string name = 2;
-  bool   is_active = 3;
+  int32   id = 1;
+  string  name = 2;
+  bool    is_active = 3;
+  string  created_at = 4;
+  string  updated_at = 5;
 }
 
 message ListZoneRequest {
