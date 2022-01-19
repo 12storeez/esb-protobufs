@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.19.2
-// source: proto/logistics/zone.proto
+// source: zone.proto
 
 package logistics
 
@@ -280,5 +280,5 @@ var ZoneService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/logistics/zone.proto",
+	Metadata: "zone.proto",
 }

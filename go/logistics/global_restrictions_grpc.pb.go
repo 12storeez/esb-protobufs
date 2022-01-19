@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.19.2
-// source: proto/logistics/global_restrictions.proto
+// source: global_restrictions.proto
 
 package logistics
 
@@ -171,5 +171,5 @@ var GlobalRestrictionsService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/logistics/global_restrictions.proto",
+	Metadata: "global_restrictions.proto",
 }
