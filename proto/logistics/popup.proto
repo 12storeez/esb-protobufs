@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "message.proto";
+
+service PopupService {
+  rpc List(ListPopupRequest) returns (ListPopupResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/popup"
+    };
+  }
+
+  rpc Create(Popup) returns (Popup) {
+    option (google.api.http) = {
+      post: "/api/v1/popup"
+      body: "*"
+    };
+  }
+
+  rpc Get(PopupId) returns (Popup) {
+    option (google.api.http) = {
+      get: "/api/v1/popup/{id}"
+    };
+  }
+
+  rpc Update(Popup) returns (Popup) {
+    option (google.api.http) = {
+      patch: "/api/v1/popup/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(PopupId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/popup/{id}"
+    };
+  }
+
+  rpc Suggest(SuggestPopupRequest) returns (SuggestPopupResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/popup/suggest"
+    };
+  }
+}
+
+message PopupId {
+  int32 id = 1;
+}
+
+message Popup {
+  int32        id = 1;
+  string       text = 2;
+  string       title = 3;
+  string       button_text = 4;
+  repeated Rel rels = 5;
+  string       created_at = 6;
+  string       updated_at = 7;
+}
+
+message ListPopupRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListPopupResponse {
+  repeated Popup results = 1;
+  int32          total = 2;
+}
+
+message SuggestPopupRequest {
+  int32  limit = 1;
+  string search = 2;
+}
+
+message SuggestPopup {
+  int32  id = 1;
+  string text = 2;
+}
+
+message SuggestPopupResponse {
+  repeated SuggestPopup results = 1;
+  int32                 total = 2;
+}
