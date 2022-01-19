@@ -2391,8 +2391,11 @@
                 "updatedAt": {
                   "type": "string"
                 },
-                "zoneGroup": {
-                  "$ref": "#/definitions/logisticsZoneGroupInfo"
+                "zoneGroups": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/logisticsZoneGroupInfo"
+                  }
                 },
                 "geoIdQuantity": {
                   "type": "integer",
@@ -3055,8 +3058,11 @@
         "updatedAt": {
           "type": "string"
         },
-        "zoneGroup": {
-          "$ref": "#/definitions/logisticsZoneGroupInfo"
+        "zoneGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsZoneGroupInfo"
+          }
         },
         "geoIdQuantity": {
           "type": "integer",
