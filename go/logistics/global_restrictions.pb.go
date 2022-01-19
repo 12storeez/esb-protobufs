@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.27.1
 // 	protoc        v3.19.2
-// source: proto/logistics/global_restrictions.proto
+// source: global_restrictions.proto
 
 package logistics
 
@@ -51,11 +51,11 @@ func (x GlobalRestriction_Restriction) String() string {
 }
 
 func (GlobalRestriction_Restriction) Descriptor() protoreflect.EnumDescriptor {
-	return file_proto_logistics_global_restrictions_proto_enumTypes[0].Descriptor()
+	return file_global_restrictions_proto_enumTypes[0].Descriptor()
 }
 
 func (GlobalRestriction_Restriction) Type() protoreflect.EnumType {
-	return &file_proto_logistics_global_restrictions_proto_enumTypes[0]
+	return &file_global_restrictions_proto_enumTypes[0]
 }
 
 func (x GlobalRestriction_Restriction) Number() protoreflect.EnumNumber {
@@ -64,7 +64,7 @@ func (x GlobalRestriction_Restriction) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GlobalRestriction_Restriction.Descriptor instead.
 func (GlobalRestriction_Restriction) EnumDescriptor() ([]byte, []int) {
-	return file_proto_logistics_global_restrictions_proto_rawDescGZIP(), []int{0, 0}
+	return file_global_restrictions_proto_rawDescGZIP(), []int{0, 0}
 }
 
 type GlobalRestriction struct {
@@ -85,7 +85,7 @@ type GlobalRestriction struct {
 func (x *GlobalRestriction) Reset() {
 	*x = GlobalRestriction{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_global_restrictions_proto_msgTypes[0]
+		mi := &file_global_restrictions_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -98,7 +98,7 @@ func (x *GlobalRestriction) String() string {
 func (*GlobalRestriction) ProtoMessage() {}
 
 func (x *GlobalRestriction) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_global_restrictions_proto_msgTypes[0]
+	mi := &file_global_restrictions_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -111,7 +111,7 @@ func (x *GlobalRestriction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GlobalRestriction.ProtoReflect.Descriptor instead.
 func (*GlobalRestriction) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_global_restrictions_proto_rawDescGZIP(), []int{0}
+	return file_global_restrictions_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GlobalRestriction) GetId() int32 {
@@ -184,7 +184,7 @@ type ListGlobalRestrictionRequest struct {
 func (x *ListGlobalRestrictionRequest) Reset() {
 	*x = ListGlobalRestrictionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_global_restrictions_proto_msgTypes[1]
+		mi := &file_global_restrictions_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -197,7 +197,7 @@ func (x *ListGlobalRestrictionRequest) String() string {
 func (*ListGlobalRestrictionRequest) ProtoMessage() {}
 
 func (x *ListGlobalRestrictionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_global_restrictions_proto_msgTypes[1]
+	mi := &file_global_restrictions_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -210,7 +210,7 @@ func (x *ListGlobalRestrictionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGlobalRestrictionRequest.ProtoReflect.Descriptor instead.
 func (*ListGlobalRestrictionRequest) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_global_restrictions_proto_rawDescGZIP(), []int{1}
+	return file_global_restrictions_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ListGlobalRestrictionRequest) GetLimit() int32 {
@@ -253,7 +253,7 @@ type ListGlobalRestrictionResponse struct {
 func (x *ListGlobalRestrictionResponse) Reset() {
 	*x = ListGlobalRestrictionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_global_restrictions_proto_msgTypes[2]
+		mi := &file_global_restrictions_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -266,7 +266,7 @@ func (x *ListGlobalRestrictionResponse) String() string {
 func (*ListGlobalRestrictionResponse) ProtoMessage() {}
 
 func (x *ListGlobalRestrictionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_global_restrictions_proto_msgTypes[2]
+	mi := &file_global_restrictions_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -279,7 +279,7 @@ func (x *ListGlobalRestrictionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGlobalRestrictionResponse.ProtoReflect.Descriptor instead.
 func (*ListGlobalRestrictionResponse) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_global_restrictions_proto_rawDescGZIP(), []int{2}
+	return file_global_restrictions_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListGlobalRestrictionResponse) GetResults() []*GlobalRestriction {
@@ -296,11 +296,10 @@ func (x *ListGlobalRestrictionResponse) GetTotal() int32 {
 	return 0
 }
 
-var File_proto_logistics_global_restrictions_proto protoreflect.FileDescriptor
+var File_global_restrictions_proto protoreflect.FileDescriptor
 
-var file_proto_logistics_global_restrictions_proto_rawDesc = []byte{
-	0x0a, 0x29, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63,
-	0x73, 0x2f, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x5f, 0x72, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63,
+var file_global_restrictions_proto_rawDesc = []byte{
+	0x0a, 0x19, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x5f, 0x72, 0x65, 0x73, 0x74, 0x72, 0x69, 0x63,
 	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x6c, 0x6f, 0x67,
 	0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61,
 	0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70,
@@ -368,26 +367,26 @@ var file_proto_logistics_global_restrictions_proto_rawDesc = []byte{
 }
 
 var (
-	file_proto_logistics_global_restrictions_proto_rawDescOnce sync.Once
-	file_proto_logistics_global_restrictions_proto_rawDescData = file_proto_logistics_global_restrictions_proto_rawDesc
+	file_global_restrictions_proto_rawDescOnce sync.Once
+	file_global_restrictions_proto_rawDescData = file_global_restrictions_proto_rawDesc
 )
 
-func file_proto_logistics_global_restrictions_proto_rawDescGZIP() []byte {
-	file_proto_logistics_global_restrictions_proto_rawDescOnce.Do(func() {
-		file_proto_logistics_global_restrictions_proto_rawDescData = protoimpl.X.CompressGZIP(file_proto_logistics_global_restrictions_proto_rawDescData)
+func file_global_restrictions_proto_rawDescGZIP() []byte {
+	file_global_restrictions_proto_rawDescOnce.Do(func() {
+		file_global_restrictions_proto_rawDescData = protoimpl.X.CompressGZIP(file_global_restrictions_proto_rawDescData)
 	})
-	return file_proto_logistics_global_restrictions_proto_rawDescData
+	return file_global_restrictions_proto_rawDescData
 }
 
-var file_proto_logistics_global_restrictions_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_proto_logistics_global_restrictions_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_proto_logistics_global_restrictions_proto_goTypes = []interface{}{
+var file_global_restrictions_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_global_restrictions_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_global_restrictions_proto_goTypes = []interface{}{
 	(GlobalRestriction_Restriction)(0),    // 0: logistics.GlobalRestriction.Restriction
 	(*GlobalRestriction)(nil),             // 1: logistics.GlobalRestriction
 	(*ListGlobalRestrictionRequest)(nil),  // 2: logistics.ListGlobalRestrictionRequest
 	(*ListGlobalRestrictionResponse)(nil), // 3: logistics.ListGlobalRestrictionResponse
 }
-var file_proto_logistics_global_restrictions_proto_depIdxs = []int32{
+var file_global_restrictions_proto_depIdxs = []int32{
 	0, // 0: logistics.GlobalRestriction.restriction:type_name -> logistics.GlobalRestriction.Restriction
 	1, // 1: logistics.ListGlobalRestrictionResponse.results:type_name -> logistics.GlobalRestriction
 	2, // 2: logistics.GlobalRestrictionsService.List:input_type -> logistics.ListGlobalRestrictionRequest
@@ -403,13 +402,13 @@ var file_proto_logistics_global_restrictions_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_proto_logistics_global_restrictions_proto_init() }
-func file_proto_logistics_global_restrictions_proto_init() {
-	if File_proto_logistics_global_restrictions_proto != nil {
+func init() { file_global_restrictions_proto_init() }
+func file_global_restrictions_proto_init() {
+	if File_global_restrictions_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_proto_logistics_global_restrictions_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_global_restrictions_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GlobalRestriction); i {
 			case 0:
 				return &v.state
@@ -421,7 +420,7 @@ func file_proto_logistics_global_restrictions_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_global_restrictions_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_global_restrictions_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListGlobalRestrictionRequest); i {
 			case 0:
 				return &v.state
@@ -433,7 +432,7 @@ func file_proto_logistics_global_restrictions_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_global_restrictions_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_global_restrictions_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListGlobalRestrictionResponse); i {
 			case 0:
 				return &v.state
@@ -450,19 +449,19 @@ func file_proto_logistics_global_restrictions_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_proto_logistics_global_restrictions_proto_rawDesc,
+			RawDescriptor: file_global_restrictions_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_logistics_global_restrictions_proto_goTypes,
-		DependencyIndexes: file_proto_logistics_global_restrictions_proto_depIdxs,
-		EnumInfos:         file_proto_logistics_global_restrictions_proto_enumTypes,
-		MessageInfos:      file_proto_logistics_global_restrictions_proto_msgTypes,
+		GoTypes:           file_global_restrictions_proto_goTypes,
+		DependencyIndexes: file_global_restrictions_proto_depIdxs,
+		EnumInfos:         file_global_restrictions_proto_enumTypes,
+		MessageInfos:      file_global_restrictions_proto_msgTypes,
 	}.Build()
-	File_proto_logistics_global_restrictions_proto = out.File
-	file_proto_logistics_global_restrictions_proto_rawDesc = nil
-	file_proto_logistics_global_restrictions_proto_goTypes = nil
-	file_proto_logistics_global_restrictions_proto_depIdxs = nil
+	File_global_restrictions_proto = out.File
+	file_global_restrictions_proto_rawDesc = nil
+	file_global_restrictions_proto_goTypes = nil
+	file_global_restrictions_proto_depIdxs = nil
 }

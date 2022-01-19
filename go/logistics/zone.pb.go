@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.27.1
 // 	protoc        v3.19.2
-// source: proto/logistics/zone.proto
+// source: zone.proto
 
 package logistics
 
@@ -33,7 +33,7 @@ type ZoneId struct {
 func (x *ZoneId) Reset() {
 	*x = ZoneId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[0]
+		mi := &file_zone_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -46,7 +46,7 @@ func (x *ZoneId) String() string {
 func (*ZoneId) ProtoMessage() {}
 
 func (x *ZoneId) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[0]
+	mi := &file_zone_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *ZoneId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZoneId.ProtoReflect.Descriptor instead.
 func (*ZoneId) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{0}
+	return file_zone_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ZoneId) GetId() int32 {
@@ -87,7 +87,7 @@ type Zone struct {
 func (x *Zone) Reset() {
 	*x = Zone{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[1]
+		mi := &file_zone_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -100,7 +100,7 @@ func (x *Zone) String() string {
 func (*Zone) ProtoMessage() {}
 
 func (x *Zone) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[1]
+	mi := &file_zone_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113,7 +113,7 @@ func (x *Zone) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Zone.ProtoReflect.Descriptor instead.
 func (*Zone) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{1}
+	return file_zone_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Zone) GetId() int32 {
@@ -187,7 +187,7 @@ type ZoneGroupInfo struct {
 func (x *ZoneGroupInfo) Reset() {
 	*x = ZoneGroupInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[2]
+		mi := &file_zone_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -200,7 +200,7 @@ func (x *ZoneGroupInfo) String() string {
 func (*ZoneGroupInfo) ProtoMessage() {}
 
 func (x *ZoneGroupInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[2]
+	mi := &file_zone_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -213,7 +213,7 @@ func (x *ZoneGroupInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZoneGroupInfo.ProtoReflect.Descriptor instead.
 func (*ZoneGroupInfo) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{2}
+	return file_zone_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ZoneGroupInfo) GetId() int32 {
@@ -265,7 +265,7 @@ type ListZoneRequest struct {
 func (x *ListZoneRequest) Reset() {
 	*x = ListZoneRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[3]
+		mi := &file_zone_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -278,7 +278,7 @@ func (x *ListZoneRequest) String() string {
 func (*ListZoneRequest) ProtoMessage() {}
 
 func (x *ListZoneRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[3]
+	mi := &file_zone_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +291,7 @@ func (x *ListZoneRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListZoneRequest.ProtoReflect.Descriptor instead.
 func (*ListZoneRequest) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{3}
+	return file_zone_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListZoneRequest) GetLimit() int32 {
@@ -334,7 +334,7 @@ type ListZoneResponse struct {
 func (x *ListZoneResponse) Reset() {
 	*x = ListZoneResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[4]
+		mi := &file_zone_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -347,7 +347,7 @@ func (x *ListZoneResponse) String() string {
 func (*ListZoneResponse) ProtoMessage() {}
 
 func (x *ListZoneResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[4]
+	mi := &file_zone_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -360,7 +360,7 @@ func (x *ListZoneResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListZoneResponse.ProtoReflect.Descriptor instead.
 func (*ListZoneResponse) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{4}
+	return file_zone_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ListZoneResponse) GetResults() []*Zone {
@@ -389,7 +389,7 @@ type SuggestZoneRequest struct {
 func (x *SuggestZoneRequest) Reset() {
 	*x = SuggestZoneRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[5]
+		mi := &file_zone_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -402,7 +402,7 @@ func (x *SuggestZoneRequest) String() string {
 func (*SuggestZoneRequest) ProtoMessage() {}
 
 func (x *SuggestZoneRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[5]
+	mi := &file_zone_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -415,7 +415,7 @@ func (x *SuggestZoneRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SuggestZoneRequest.ProtoReflect.Descriptor instead.
 func (*SuggestZoneRequest) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{5}
+	return file_zone_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SuggestZoneRequest) GetLimit() int32 {
@@ -444,7 +444,7 @@ type SuggestZone struct {
 func (x *SuggestZone) Reset() {
 	*x = SuggestZone{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[6]
+		mi := &file_zone_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -457,7 +457,7 @@ func (x *SuggestZone) String() string {
 func (*SuggestZone) ProtoMessage() {}
 
 func (x *SuggestZone) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[6]
+	mi := &file_zone_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -470,7 +470,7 @@ func (x *SuggestZone) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SuggestZone.ProtoReflect.Descriptor instead.
 func (*SuggestZone) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{6}
+	return file_zone_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SuggestZone) GetId() int32 {
@@ -499,7 +499,7 @@ type SuggestZoneResponse struct {
 func (x *SuggestZoneResponse) Reset() {
 	*x = SuggestZoneResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_logistics_zone_proto_msgTypes[7]
+		mi := &file_zone_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -512,7 +512,7 @@ func (x *SuggestZoneResponse) String() string {
 func (*SuggestZoneResponse) ProtoMessage() {}
 
 func (x *SuggestZoneResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_logistics_zone_proto_msgTypes[7]
+	mi := &file_zone_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -525,7 +525,7 @@ func (x *SuggestZoneResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SuggestZoneResponse.ProtoReflect.Descriptor instead.
 func (*SuggestZoneResponse) Descriptor() ([]byte, []int) {
-	return file_proto_logistics_zone_proto_rawDescGZIP(), []int{7}
+	return file_zone_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SuggestZoneResponse) GetResults() []*SuggestZone {
@@ -542,11 +542,10 @@ func (x *SuggestZoneResponse) GetTotal() int32 {
 	return 0
 }
 
-var File_proto_logistics_zone_proto protoreflect.FileDescriptor
+var File_zone_proto protoreflect.FileDescriptor
 
-var file_proto_logistics_zone_proto_rawDesc = []byte{
-	0x0a, 0x1a, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63,
-	0x73, 0x2f, 0x7a, 0x6f, 0x6e, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x6c, 0x6f,
+var file_zone_proto_rawDesc = []byte{
+	0x0a, 0x0a, 0x7a, 0x6f, 0x6e, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x6c, 0x6f,
 	0x67, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
 	0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72,
@@ -640,19 +639,19 @@ var file_proto_logistics_zone_proto_rawDesc = []byte{
 }
 
 var (
-	file_proto_logistics_zone_proto_rawDescOnce sync.Once
-	file_proto_logistics_zone_proto_rawDescData = file_proto_logistics_zone_proto_rawDesc
+	file_zone_proto_rawDescOnce sync.Once
+	file_zone_proto_rawDescData = file_zone_proto_rawDesc
 )
 
-func file_proto_logistics_zone_proto_rawDescGZIP() []byte {
-	file_proto_logistics_zone_proto_rawDescOnce.Do(func() {
-		file_proto_logistics_zone_proto_rawDescData = protoimpl.X.CompressGZIP(file_proto_logistics_zone_proto_rawDescData)
+func file_zone_proto_rawDescGZIP() []byte {
+	file_zone_proto_rawDescOnce.Do(func() {
+		file_zone_proto_rawDescData = protoimpl.X.CompressGZIP(file_zone_proto_rawDescData)
 	})
-	return file_proto_logistics_zone_proto_rawDescData
+	return file_zone_proto_rawDescData
 }
 
-var file_proto_logistics_zone_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_proto_logistics_zone_proto_goTypes = []interface{}{
+var file_zone_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_zone_proto_goTypes = []interface{}{
 	(*ZoneId)(nil),              // 0: logistics.ZoneId
 	(*Zone)(nil),                // 1: logistics.Zone
 	(*ZoneGroupInfo)(nil),       // 2: logistics.ZoneGroupInfo
@@ -663,7 +662,7 @@ var file_proto_logistics_zone_proto_goTypes = []interface{}{
 	(*SuggestZoneResponse)(nil), // 7: logistics.SuggestZoneResponse
 	(*emptypb.Empty)(nil),       // 8: google.protobuf.Empty
 }
-var file_proto_logistics_zone_proto_depIdxs = []int32{
+var file_zone_proto_depIdxs = []int32{
 	2, // 0: logistics.Zone.zone_groups:type_name -> logistics.ZoneGroupInfo
 	1, // 1: logistics.ListZoneResponse.results:type_name -> logistics.Zone
 	6, // 2: logistics.SuggestZoneResponse.results:type_name -> logistics.SuggestZone
@@ -686,13 +685,13 @@ var file_proto_logistics_zone_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_proto_logistics_zone_proto_init() }
-func file_proto_logistics_zone_proto_init() {
-	if File_proto_logistics_zone_proto != nil {
+func init() { file_zone_proto_init() }
+func file_zone_proto_init() {
+	if File_zone_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_proto_logistics_zone_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ZoneId); i {
 			case 0:
 				return &v.state
@@ -704,7 +703,7 @@ func file_proto_logistics_zone_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_zone_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Zone); i {
 			case 0:
 				return &v.state
@@ -716,7 +715,7 @@ func file_proto_logistics_zone_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_zone_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ZoneGroupInfo); i {
 			case 0:
 				return &v.state
@@ -728,7 +727,7 @@ func file_proto_logistics_zone_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_zone_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListZoneRequest); i {
 			case 0:
 				return &v.state
@@ -740,7 +739,7 @@ func file_proto_logistics_zone_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_zone_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListZoneResponse); i {
 			case 0:
 				return &v.state
@@ -752,7 +751,7 @@ func file_proto_logistics_zone_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_zone_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SuggestZoneRequest); i {
 			case 0:
 				return &v.state
@@ -764,7 +763,7 @@ func file_proto_logistics_zone_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_zone_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SuggestZone); i {
 			case 0:
 				return &v.state
@@ -776,7 +775,7 @@ func file_proto_logistics_zone_proto_init() {
 				return nil
 			}
 		}
-		file_proto_logistics_zone_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_zone_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SuggestZoneResponse); i {
 			case 0:
 				return &v.state
@@ -793,18 +792,18 @@ func file_proto_logistics_zone_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_proto_logistics_zone_proto_rawDesc,
+			RawDescriptor: file_zone_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_logistics_zone_proto_goTypes,
-		DependencyIndexes: file_proto_logistics_zone_proto_depIdxs,
-		MessageInfos:      file_proto_logistics_zone_proto_msgTypes,
+		GoTypes:           file_zone_proto_goTypes,
+		DependencyIndexes: file_zone_proto_depIdxs,
+		MessageInfos:      file_zone_proto_msgTypes,
 	}.Build()
-	File_proto_logistics_zone_proto = out.File
-	file_proto_logistics_zone_proto_rawDesc = nil
-	file_proto_logistics_zone_proto_goTypes = nil
-	file_proto_logistics_zone_proto_depIdxs = nil
+	File_zone_proto = out.File
+	file_zone_proto_rawDesc = nil
+	file_zone_proto_goTypes = nil
+	file_zone_proto_depIdxs = nil
 }
