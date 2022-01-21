@@ -10,6 +10,8 @@ import "message.proto";
 import "popup.proto";
 import "transport_company_mode.proto";
 import "zone_group.proto";
+import "category.proto";
+import "payment_method.proto";
 
 service DeliveryTypeService {
   rpc List(ListDeliveryTypeRequest) returns (ListDeliveryTypeResponse) {
@@ -69,44 +71,68 @@ message ListDeliveryTypeResponse {
 }
 
 message DeliveryType {
-  int32                           id = 1;
-  TransportCompanyMode            transport_company_mode = 2;
-  ZoneGroup                       zone_group = 3;
-  string                          name = 4;
-  string                          description_ru = 5;
-  Popup                           popup = 6;
-  string                          code = 7;
-  int32                           default_days_from = 8;
-  int32                           default_days_to = 9;
-  float                           delivery_price = 10;
-  float                           delivery_price_border = 11;
-  float                           delivery_price_after_border = 12;
-  int32                           delivery_min_days = 13;
-  string                          cutoff_time = 14;
-  int32                           consolidation_hours = 15;
-  int32                           gap_hours = 16;
-  float                           priority_coefficient = 17;
-  float                           max_days_coefficient = 18;
-  float                           tariff_coefficient = 19;
-  int32                           winner_percent = 20;
-  int32                           max_price = 21;
-  bool                            restriction_by_price_is_active = 22;
-  Message                         restriction_by_price_message = 23;
-  Popup                           restriction_by_price_popup = 24;
-  int32                           max_quantity = 25;
-  bool                            restriction_by_quantity_is_active = 26;
-  Message                         restriction_by_quantity_message = 27;
-  Popup                           restriction_by_quantity_popup = 28;
-  int32                           max_quantity_per_article = 29;
-  bool                            restriction_by_quantity_per_article_is_active = 30;
-  Message                         restriction_by_quantity_per_article_message = 31;
-  Popup                           restriction_by_quantity_per_article_popup = 32;
-  bool                            is_visible_while_restricted = 33;
-  bool                            is_active = 34;
-  string                          created_at = 35;
-  string                          updated_at = 36;
-  // @TODO: PaymentMethodToDeliveryType + PaymentMethodToDeliveryTypeCategoryRestrictions
-  PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
-  // @TODO: DeliveryTypeCategoryRestriction
-  DeliveryTypeCategoryRestriction delivery_type_category_restriction = 38;
+  int32                                    id = 1;
+  TransportCompanyMode                     transport_company_mode = 2;
+  ZoneGroup                                zone_group = 3;
+  string                                   name = 4;
+  string                                   description_ru = 5;
+  Popup                                    popup = 6;
+  string                                   code = 7;
+  int32                                    default_days_from = 8;
+  int32                                    default_days_to = 9;
+  float                                    delivery_price = 10;
+  float                                    delivery_price_border = 11;
+  float                                    delivery_price_after_border = 12;
+  int32                                    delivery_min_days = 13;
+  string                                   cutoff_time = 14;
+  int32                                    consolidation_hours = 15;
+  int32                                    gap_hours = 16;
+  float                                    priority_coefficient = 17;
+  float                                    max_days_coefficient = 18;
+  float                                    tariff_coefficient = 19;
+  int32                                    winner_percent = 20;
+  int32                                    max_price = 21;
+  bool                                     restriction_by_price_is_active = 22;
+  Message                                  restriction_by_price_message = 23;
+  Popup                                    restriction_by_price_popup = 24;
+  int32                                    max_quantity = 25;
+  bool                                     restriction_by_quantity_is_active = 26;
+  Message                                  restriction_by_quantity_message = 27;
+  Popup                                    restriction_by_quantity_popup = 28;
+  int32                                    max_quantity_per_article = 29;
+  bool                                     restriction_by_quantity_per_article_is_active = 30;
+  Message                                  restriction_by_quantity_per_article_message = 31;
+  Popup                                    restriction_by_quantity_per_article_popup = 32;
+  bool                                     is_visible_while_restricted = 33;
+  bool                                     is_active = 34;
+  string                                   created_at = 35;
+  string                                   updated_at = 36;
+  PaymentMethodToDeliveryType              payment_method_to_delivery_type = 37;
+  repeated CategoryRestriction delivery_type_category_restriction = 38;
+}
+
+message CategoryRestriction {
+  int32        id = 1;
+  Category     category = 2;
+  Message      message = 3;
+  Popup        popup = 4;
+  bool         is_active = 5;
+  string       created_at = 6;
+  string       updated_at = 7;
+}
+
+message PaymentMethodToDeliveryType {
+  PaymentMethod                             payment_method = 1;
+  Message                                   message = 2;
+  int32                                     max_price = 3;
+  bool                                      is_visible_while_restricted = 4;
+  repeated PaymentMethodCategoryRestriction payment_method_category_restriction = 5;
+}
+
+message PaymentMethodCategoryRestriction {
+  Category category = 1;
+  Message  message = 2;
+  bool     is_active = 3;
+  string   created_at = 4;
+  string   updated_at = 5;
 }
