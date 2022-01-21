@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "category.proto";
+import "zone_group.proto";
+import "message.proto";
+import "popup.proto";
+
+service CategoryZoneGroupRestrictionService {
+  rpc List(ListCategoryZoneGroupRestrictionRequest) returns (ListCategoryZoneGroupRestrictionResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/restriction/category-zone-group"
+    };
+  }
+
+  rpc Create(CreateCategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
+    option (google.api.http) = {
+      post: "/api/v1/restriction/category-zone-group"
+      body: "*"
+    };
+  }
+
+  rpc Update(CreateCategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
+    option (google.api.http) = {
+      patch: "/api/v1/restriction/category-zone-group/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Get(CategoryZoneGroupRestrictionId) returns (CategoryZoneGroupRestriction) {
+    option (google.api.http) = {
+      get: "/api/v1/restriction/category-zone-group/{id}"
+    };
+  }
+
+  rpc Delete(CategoryZoneGroupRestrictionId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/restriction/category-zone-group/{id}"
+    };
+  }
+}
+
+message CategoryZoneGroupRestrictionId {
+  int32 id = 1;
+}
+
+message CreateCategoryZoneGroupRestriction {
+  int32   id = 1;
+  int32   category_id = 2;
+  int32   zone_group_id = 3;
+  int32   message_id = 4;
+  int32   popup_id = 5;
+  bool    is_active = 6;
+  string  created_at = 7;
+  string  updated_at = 8;
+}
+
+message CategoryZoneGroupRestriction {
+  int32     id = 1;
+  Category  category = 2;
+  ZoneGroup zone_group = 3;
+  Message   message = 4;
+  Popup     popup = 5;
+  bool      is_active = 6;
+  string    created_at = 7;
+  string    updated_at = 8;
+}
+
+message ListCategoryZoneGroupRestrictionRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string search = 3;
+  string sort = 4;
+}
+
+message ListCategoryZoneGroupRestrictionResponse {
+  repeated CategoryZoneGroupRestriction results = 1;
+  int32                                 total = 2;
+}

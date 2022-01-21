@@ -23,6 +23,10 @@
 ### Генерация единого сваггера для нескольких прото файлов (на примере логистики):
 `protoc -I ./proto/logistics -I $GOPATH/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.16.0/third_party/googleapis --openapiv2_out=allow_merge=true,merge_file_name=logistics.json:./swagger/logistics proto/logistics/*.proto`
 
+### Импорт протобафов
+`-I ./proto/logistics` - указывает корневой путь до протобафов, что позволяет внутри импортировать их просто как import "name.proto", чтобы импорт из одного протобафа в другой работал корректно.
+При работе вне пакета достаточно `-I ./proto` и `-I . `
+
 ## Генерация файлов для Typescript
     `sh ./build-ts.sh`
 
