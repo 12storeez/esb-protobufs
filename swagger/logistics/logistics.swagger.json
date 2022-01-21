@@ -9,6 +9,9 @@
       "name": "CategoryService"
     },
     {
+      "name": "CategoryZoneGroupRestrictionService"
+    },
+    {
       "name": "DeliveryMethodService"
     },
     {
@@ -1494,6 +1497,210 @@
         ]
       }
     },
+    "/api/v1/restriction/category-zone-group": {
+      "get": {
+        "operationId": "CategoryZoneGroupRestrictionService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListCategoryZoneGroupRestrictionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CategoryZoneGroupRestrictionService"
+        ]
+      },
+      "post": {
+        "operationId": "CategoryZoneGroupRestrictionService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
+            }
+          }
+        ],
+        "tags": [
+          "CategoryZoneGroupRestrictionService"
+        ]
+      }
+    },
+    "/api/v1/restriction/category-zone-group/{id}": {
+      "get": {
+        "operationId": "CategoryZoneGroupRestrictionService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CategoryZoneGroupRestrictionService"
+        ]
+      },
+      "delete": {
+        "operationId": "CategoryZoneGroupRestrictionService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CategoryZoneGroupRestrictionService"
+        ]
+      },
+      "patch": {
+        "operationId": "CategoryZoneGroupRestrictionService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "categoryId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "zoneGroupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "CategoryZoneGroupRestrictionService"
+        ]
+      }
+    },
     "/api/v1/restriction/global": {
       "get": {
         "operationId": "GlobalRestrictionsService_List",
@@ -2678,6 +2885,40 @@
         }
       }
     },
+    "logisticsCategoryZoneGroupRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "categoryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "zoneGroupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsCreateDeliveryTypeRequest": {
       "type": "object",
       "properties": {
@@ -2863,6 +3104,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCategory"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsListCategoryZoneGroupRestrictionResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
           }
         },
         "total": {
