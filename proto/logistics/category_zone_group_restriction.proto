@@ -6,6 +6,10 @@ package logistics;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "category.proto";
+import "zone_group.proto";
+import "message.proto";
+import "popup.proto";
 
 service CategoryZoneGroupRestrictionService {
   rpc List(ListCategoryZoneGroupRestrictionRequest) returns (ListCategoryZoneGroupRestrictionResponse) {
@@ -14,14 +18,14 @@ service CategoryZoneGroupRestrictionService {
     };
   }
 
-  rpc Create(CategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
+  rpc Create(CreateCategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
     option (google.api.http) = {
       post: "/api/v1/restriction/category-zone-group"
       body: "*"
     };
   }
 
-  rpc Update(CategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
+  rpc Update(CreateCategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
     option (google.api.http) = {
       patch: "/api/v1/restriction/category-zone-group/{id}"
       body: "*"
@@ -45,7 +49,7 @@ message CategoryZoneGroupRestrictionId {
   int32 id = 1;
 }
 
-message CategoryZoneGroupRestriction {
+message CreateCategoryZoneGroupRestriction {
   int32   id = 1;
   int32   category_id = 2;
   int32   zone_group_id = 3;
@@ -54,6 +58,17 @@ message CategoryZoneGroupRestriction {
   bool    is_active = 6;
   string  created_at = 7;
   string  updated_at = 8;
+}
+
+message CategoryZoneGroupRestriction {
+  int32     id = 1;
+  Category  category = 2;
+  ZoneGroup zone_group = 3;
+  Message   message = 4;
+  Popup     popup = 5;
+  bool      is_active = 6;
+  string    created_at = 7;
+  string    updated_at = 8;
 }
 
 message ListCategoryZoneGroupRestrictionRequest {

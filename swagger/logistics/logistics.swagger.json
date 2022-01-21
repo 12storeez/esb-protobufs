@@ -1568,7 +1568,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
+              "$ref": "#/definitions/logisticsCreateCategoryZoneGroupRestriction"
             }
           }
         ],
@@ -2886,6 +2886,36 @@
       }
     },
     "logisticsCategoryZoneGroupRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "$ref": "#/definitions/logisticsCategory"
+        },
+        "zoneGroup": {
+          "$ref": "#/definitions/logisticsZoneGroup"
+        },
+        "message": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "popup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsCreateCategoryZoneGroupRestriction": {
       "type": "object",
       "properties": {
         "id": {
