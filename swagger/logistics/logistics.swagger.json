@@ -9,6 +9,9 @@
       "name": "CategoryService"
     },
     {
+      "name": "CategoryDeliveryTypeRestrictionService"
+    },
+    {
       "name": "CategoryZoneGroupRestrictionService"
     },
     {
@@ -602,6 +605,35 @@
       }
     },
     "/api/v1/delivery-type/{id}": {
+      "get": {
+        "operationId": "DeliveryTypeService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryType"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeliveryTypeService"
+        ]
+      },
       "delete": {
         "operationId": "DeliveryTypeService_Delete",
         "responses": {
@@ -1494,6 +1526,210 @@
         ],
         "tags": [
           "PopupService"
+        ]
+      }
+    },
+    "/api/v1/restriction/category-delivery-type": {
+      "get": {
+        "operationId": "CategoryDeliveryTypeRestrictionService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListCategoryDeliveryTypeRestrictionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CategoryDeliveryTypeRestrictionService"
+        ]
+      },
+      "post": {
+        "operationId": "CategoryDeliveryTypeRestrictionService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsCategoryDeliveryTypeRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCreateCategoryDeliveryTypeRestriction"
+            }
+          }
+        ],
+        "tags": [
+          "CategoryDeliveryTypeRestrictionService"
+        ]
+      }
+    },
+    "/api/v1/restriction/category-delivery-type/{id}": {
+      "get": {
+        "operationId": "CategoryDeliveryTypeRestrictionService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsCategoryDeliveryTypeRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CategoryDeliveryTypeRestrictionService"
+        ]
+      },
+      "delete": {
+        "operationId": "CategoryDeliveryTypeRestrictionService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CategoryDeliveryTypeRestrictionService"
+        ]
+      },
+      "patch": {
+        "operationId": "CategoryDeliveryTypeRestrictionService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsCategoryDeliveryTypeRestriction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "categoryId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "deliveryTypeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "CategoryDeliveryTypeRestrictionService"
         ]
       }
     },
@@ -2885,6 +3121,63 @@
         }
       }
     },
+    "logisticsCategoryDeliveryTypeRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "$ref": "#/definitions/logisticsCategory"
+        },
+        "deliveryType": {
+          "$ref": "#/definitions/logisticsDeliveryTypeShort"
+        },
+        "message": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "popup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsCategoryRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "$ref": "#/definitions/logisticsCategory"
+        },
+        "message": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "popup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsCategoryZoneGroupRestriction": {
       "type": "object",
       "properties": {
@@ -2903,6 +3196,40 @@
         },
         "popup": {
           "$ref": "#/definitions/logisticsPopup"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsCreateCategoryDeliveryTypeRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "categoryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryTypeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
         },
         "isActive": {
           "type": "boolean"
@@ -3040,6 +3367,144 @@
         }
       }
     },
+    "logisticsDeliveryType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "transportCompanyMode": {
+          "$ref": "#/definitions/logisticsTransportCompanyMode"
+        },
+        "zoneGroup": {
+          "$ref": "#/definitions/logisticsZoneGroup"
+        },
+        "name": {
+          "type": "string"
+        },
+        "descriptionRu": {
+          "type": "string"
+        },
+        "popup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "code": {
+          "type": "string"
+        },
+        "defaultDaysFrom": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "defaultDaysTo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryPrice": {
+          "type": "number",
+          "format": "float"
+        },
+        "deliveryPriceBorder": {
+          "type": "number",
+          "format": "float"
+        },
+        "deliveryPriceAfterBorder": {
+          "type": "number",
+          "format": "float"
+        },
+        "deliveryMinDays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cutoffTime": {
+          "type": "string"
+        },
+        "consolidationHours": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gapHours": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "priorityCoefficient": {
+          "type": "number",
+          "format": "float"
+        },
+        "maxDaysCoefficient": {
+          "type": "number",
+          "format": "float"
+        },
+        "tariffCoefficient": {
+          "type": "number",
+          "format": "float"
+        },
+        "winnerPercent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxPrice": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restrictionByPriceIsActive": {
+          "type": "boolean"
+        },
+        "restrictionByPriceMessage": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "restrictionByPricePopup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "maxQuantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restrictionByQuantityIsActive": {
+          "type": "boolean"
+        },
+        "restrictionByQuantityMessage": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "restrictionByQuantityPopup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "maxQuantityPerArticle": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restrictionByQuantityPerArticleIsActive": {
+          "type": "boolean"
+        },
+        "restrictionByQuantityPerArticleMessage": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "restrictionByQuantityPerArticlePopup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "isVisibleWhileRestricted": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "paymentMethodToDeliveryType": {
+          "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
+        },
+        "deliveryTypeCategoryRestrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsCategoryRestriction"
+          }
+        }
+      }
+    },
     "logisticsDeliveryTypeShort": {
       "type": "object",
       "properties": {
@@ -3124,6 +3589,21 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsListCategoryDeliveryTypeRestrictionResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsCategoryDeliveryTypeRestriction"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -3382,6 +3862,50 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsPaymentMethodCategoryRestriction": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/logisticsCategory"
+        },
+        "message": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsPaymentMethodToDeliveryType": {
+      "type": "object",
+      "properties": {
+        "paymentMethod": {
+          "$ref": "#/definitions/logisticsPaymentMethod"
+        },
+        "message": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "maxPrice": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isVisibleWhileRestricted": {
+          "type": "boolean"
+        },
+        "paymentMethodCategoryRestrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsPaymentMethodCategoryRestriction"
+          }
         }
       }
     },

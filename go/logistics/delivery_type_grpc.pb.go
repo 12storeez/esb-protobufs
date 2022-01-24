@@ -25,6 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type DeliveryTypeServiceClient interface {
 	List(ctx context.Context, in *ListDeliveryTypeRequest, opts ...grpc.CallOption) (*ListDeliveryTypeResponse, error)
 	Create(ctx context.Context, in *CreateDeliveryTypeRequest, opts ...grpc.CallOption) (*DeliveryTypeShort, error)
+	Get(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*DeliveryType, error)
 	Delete(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -54,6 +55,15 @@ func (c *deliveryTypeServiceClient) Create(ctx context.Context, in *CreateDelive
 	return out, nil
 }
 
+func (c *deliveryTypeServiceClient) Get(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*DeliveryType, error) {
+	out := new(DeliveryType)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryTypeService/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deliveryTypeServiceClient) Delete(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/logistics.DeliveryTypeService/Delete", in, out, opts...)
@@ -69,6 +79,7 @@ func (c *deliveryTypeServiceClient) Delete(ctx context.Context, in *DeliveryType
 type DeliveryTypeServiceServer interface {
 	List(context.Context, *ListDeliveryTypeRequest) (*ListDeliveryTypeResponse, error)
 	Create(context.Context, *CreateDeliveryTypeRequest) (*DeliveryTypeShort, error)
+	Get(context.Context, *DeliveryTypeId) (*DeliveryType, error)
 	Delete(context.Context, *DeliveryTypeId) (*emptypb.Empty, error)
 }
 
@@ -81,6 +92,9 @@ func (UnimplementedDeliveryTypeServiceServer) List(context.Context, *ListDeliver
 }
 func (UnimplementedDeliveryTypeServiceServer) Create(context.Context, *CreateDeliveryTypeRequest) (*DeliveryTypeShort, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedDeliveryTypeServiceServer) Get(context.Context, *DeliveryTypeId) (*DeliveryType, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedDeliveryTypeServiceServer) Delete(context.Context, *DeliveryTypeId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -133,6 +147,24 @@ func _DeliveryTypeService_Create_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeliveryTypeService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeliveryTypeId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeliveryTypeServiceServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.DeliveryTypeService/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeliveryTypeServiceServer).Get(ctx, req.(*DeliveryTypeId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeliveryTypeService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeliveryTypeId)
 	if err := dec(in); err != nil {
@@ -165,6 +197,10 @@ var DeliveryTypeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _DeliveryTypeService_Create_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _DeliveryTypeService_Get_Handler,
 		},
 		{
 			MethodName: "Delete",

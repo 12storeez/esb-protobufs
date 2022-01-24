@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "category.proto";
+import "delivery_type.proto";
+import "message.proto";
+import "popup.proto";
+
+service CategoryDeliveryTypeRestrictionService {
+  rpc List(ListCategoryDeliveryTypeRestrictionRequest) returns (ListCategoryDeliveryTypeRestrictionResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/restriction/category-delivery-type"
+    };
+  }
+
+  rpc Create(CreateCategoryDeliveryTypeRestriction) returns (CategoryDeliveryTypeRestriction) {
+    option (google.api.http) = {
+      post: "/api/v1/restriction/category-delivery-type"
+      body: "*"
+    };
+  }
+
+  rpc Update(CreateCategoryDeliveryTypeRestriction) returns (CategoryDeliveryTypeRestriction) {
+    option (google.api.http) = {
+      patch: "/api/v1/restriction/category-delivery-type/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Get(CategoryDeliveryTypeRestrictionId) returns (CategoryDeliveryTypeRestriction) {
+    option (google.api.http) = {
+      get: "/api/v1/restriction/category-delivery-type/{id}"
+    };
+  }
+
+  rpc Delete(CategoryDeliveryTypeRestrictionId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/restriction/category-delivery-type/{id}"
+    };
+  }
+}
+
+message CategoryDeliveryTypeRestrictionId {
+  int32 id = 1;
+}
+
+message CreateCategoryDeliveryTypeRestriction {
+  int32   id = 1;
+  int32   category_id = 2;
+  int32   delivery_type_id = 3;
+  int32   message_id = 4;
+  int32   popup_id = 5;
+  bool    is_active = 6;
+  string  created_at = 7;
+  string  updated_at = 8;
+}
+
+message CategoryDeliveryTypeRestriction {
+  int32             id = 1;
+  Category          category = 2;
+  DeliveryTypeShort delivery_type = 3;
+  Message           message = 4;
+  Popup             popup = 5;
+  bool              is_active = 6;
+  string            created_at = 7;
+  string            updated_at = 8;
+}
+
+message ListCategoryDeliveryTypeRestrictionRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string search = 3;
+  string sort = 4;
+}
+
+message ListCategoryDeliveryTypeRestrictionResponse {
+  repeated CategoryDeliveryTypeRestriction results = 1;
+  int32                                    total = 2;
+}
