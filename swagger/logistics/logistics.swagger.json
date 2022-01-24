@@ -1703,7 +1703,7 @@
                   "type": "integer",
                   "format": "int32"
                 },
-                "zoneGroupId": {
+                "deliveryTypeId": {
                   "type": "integer",
                   "format": "int32"
                 },
@@ -3219,7 +3219,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "zoneGroupId": {
+        "deliveryTypeId": {
           "type": "integer",
           "format": "int32"
         },
