@@ -3497,7 +3497,7 @@
         "paymentMethodToDeliveryType": {
           "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
         },
-        "deliveryTypeCategoryRestriction": {
+        "deliveryTypeCategoryRestrictions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCategoryRestriction"
@@ -3901,7 +3901,7 @@
         "isVisibleWhileRestricted": {
           "type": "boolean"
         },
-        "paymentMethodCategoryRestriction": {
+        "paymentMethodCategoryRestrictions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsPaymentMethodCategoryRestriction"

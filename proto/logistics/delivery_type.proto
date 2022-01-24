@@ -108,7 +108,7 @@ message DeliveryType {
   string                                   created_at = 35;
   string                                   updated_at = 36;
   PaymentMethodToDeliveryType              payment_method_to_delivery_type = 37;
-  repeated CategoryRestriction delivery_type_category_restriction = 38;
+  repeated CategoryRestriction delivery_type_category_restrictions = 38;
 }
 
 message CategoryRestriction {
@@ -126,7 +126,7 @@ message PaymentMethodToDeliveryType {
   Message                                   message = 2;
   int32                                     max_price = 3;
   bool                                      is_visible_while_restricted = 4;
-  repeated PaymentMethodCategoryRestriction payment_method_category_restriction = 5;
+  repeated PaymentMethodCategoryRestriction payment_method_category_restrictions = 5;
 }
 
 message PaymentMethodCategoryRestriction {
