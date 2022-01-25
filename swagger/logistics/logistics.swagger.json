@@ -3495,7 +3495,10 @@
           "type": "string"
         },
         "paymentMethodToDeliveryType": {
-          "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
+          }
         },
         "deliveryTypeCategoryRestrictions": {
           "type": "array",

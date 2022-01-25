@@ -342,44 +342,44 @@ type DeliveryType struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                                      int32                        `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	TransportCompanyMode                    *TransportCompanyMode        `protobuf:"bytes,2,opt,name=transport_company_mode,json=transportCompanyMode,proto3" json:"transport_company_mode,omitempty"`
-	ZoneGroup                               *ZoneGroup                   `protobuf:"bytes,3,opt,name=zone_group,json=zoneGroup,proto3" json:"zone_group,omitempty"`
-	Name                                    string                       `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	DescriptionRu                           string                       `protobuf:"bytes,5,opt,name=description_ru,json=descriptionRu,proto3" json:"description_ru,omitempty"`
-	Popup                                   *Popup                       `protobuf:"bytes,6,opt,name=popup,proto3" json:"popup,omitempty"`
-	Code                                    string                       `protobuf:"bytes,7,opt,name=code,proto3" json:"code,omitempty"`
-	DefaultDaysFrom                         int32                        `protobuf:"varint,8,opt,name=default_days_from,json=defaultDaysFrom,proto3" json:"default_days_from,omitempty"`
-	DefaultDaysTo                           int32                        `protobuf:"varint,9,opt,name=default_days_to,json=defaultDaysTo,proto3" json:"default_days_to,omitempty"`
-	DeliveryPrice                           float32                      `protobuf:"fixed32,10,opt,name=delivery_price,json=deliveryPrice,proto3" json:"delivery_price,omitempty"`
-	DeliveryPriceBorder                     float32                      `protobuf:"fixed32,11,opt,name=delivery_price_border,json=deliveryPriceBorder,proto3" json:"delivery_price_border,omitempty"`
-	DeliveryPriceAfterBorder                float32                      `protobuf:"fixed32,12,opt,name=delivery_price_after_border,json=deliveryPriceAfterBorder,proto3" json:"delivery_price_after_border,omitempty"`
-	DeliveryMinDays                         int32                        `protobuf:"varint,13,opt,name=delivery_min_days,json=deliveryMinDays,proto3" json:"delivery_min_days,omitempty"`
-	CutoffTime                              string                       `protobuf:"bytes,14,opt,name=cutoff_time,json=cutoffTime,proto3" json:"cutoff_time,omitempty"`
-	ConsolidationHours                      int32                        `protobuf:"varint,15,opt,name=consolidation_hours,json=consolidationHours,proto3" json:"consolidation_hours,omitempty"`
-	GapHours                                int32                        `protobuf:"varint,16,opt,name=gap_hours,json=gapHours,proto3" json:"gap_hours,omitempty"`
-	PriorityCoefficient                     float32                      `protobuf:"fixed32,17,opt,name=priority_coefficient,json=priorityCoefficient,proto3" json:"priority_coefficient,omitempty"`
-	MaxDaysCoefficient                      float32                      `protobuf:"fixed32,18,opt,name=max_days_coefficient,json=maxDaysCoefficient,proto3" json:"max_days_coefficient,omitempty"`
-	TariffCoefficient                       float32                      `protobuf:"fixed32,19,opt,name=tariff_coefficient,json=tariffCoefficient,proto3" json:"tariff_coefficient,omitempty"`
-	WinnerPercent                           int32                        `protobuf:"varint,20,opt,name=winner_percent,json=winnerPercent,proto3" json:"winner_percent,omitempty"`
-	MaxPrice                                int32                        `protobuf:"varint,21,opt,name=max_price,json=maxPrice,proto3" json:"max_price,omitempty"`
-	RestrictionByPriceIsActive              bool                         `protobuf:"varint,22,opt,name=restriction_by_price_is_active,json=restrictionByPriceIsActive,proto3" json:"restriction_by_price_is_active,omitempty"`
-	RestrictionByPriceMessage               *Message                     `protobuf:"bytes,23,opt,name=restriction_by_price_message,json=restrictionByPriceMessage,proto3" json:"restriction_by_price_message,omitempty"`
-	RestrictionByPricePopup                 *Popup                       `protobuf:"bytes,24,opt,name=restriction_by_price_popup,json=restrictionByPricePopup,proto3" json:"restriction_by_price_popup,omitempty"`
-	MaxQuantity                             int32                        `protobuf:"varint,25,opt,name=max_quantity,json=maxQuantity,proto3" json:"max_quantity,omitempty"`
-	RestrictionByQuantityIsActive           bool                         `protobuf:"varint,26,opt,name=restriction_by_quantity_is_active,json=restrictionByQuantityIsActive,proto3" json:"restriction_by_quantity_is_active,omitempty"`
-	RestrictionByQuantityMessage            *Message                     `protobuf:"bytes,27,opt,name=restriction_by_quantity_message,json=restrictionByQuantityMessage,proto3" json:"restriction_by_quantity_message,omitempty"`
-	RestrictionByQuantityPopup              *Popup                       `protobuf:"bytes,28,opt,name=restriction_by_quantity_popup,json=restrictionByQuantityPopup,proto3" json:"restriction_by_quantity_popup,omitempty"`
-	MaxQuantityPerArticle                   int32                        `protobuf:"varint,29,opt,name=max_quantity_per_article,json=maxQuantityPerArticle,proto3" json:"max_quantity_per_article,omitempty"`
-	RestrictionByQuantityPerArticleIsActive bool                         `protobuf:"varint,30,opt,name=restriction_by_quantity_per_article_is_active,json=restrictionByQuantityPerArticleIsActive,proto3" json:"restriction_by_quantity_per_article_is_active,omitempty"`
-	RestrictionByQuantityPerArticleMessage  *Message                     `protobuf:"bytes,31,opt,name=restriction_by_quantity_per_article_message,json=restrictionByQuantityPerArticleMessage,proto3" json:"restriction_by_quantity_per_article_message,omitempty"`
-	RestrictionByQuantityPerArticlePopup    *Popup                       `protobuf:"bytes,32,opt,name=restriction_by_quantity_per_article_popup,json=restrictionByQuantityPerArticlePopup,proto3" json:"restriction_by_quantity_per_article_popup,omitempty"`
-	IsVisibleWhileRestricted                bool                         `protobuf:"varint,33,opt,name=is_visible_while_restricted,json=isVisibleWhileRestricted,proto3" json:"is_visible_while_restricted,omitempty"`
-	IsActive                                bool                         `protobuf:"varint,34,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CreatedAt                               string                       `protobuf:"bytes,35,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt                               string                       `protobuf:"bytes,36,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	PaymentMethodToDeliveryType             *PaymentMethodToDeliveryType `protobuf:"bytes,37,opt,name=payment_method_to_delivery_type,json=paymentMethodToDeliveryType,proto3" json:"payment_method_to_delivery_type,omitempty"`
-	DeliveryTypeCategoryRestrictions        []*CategoryRestriction       `protobuf:"bytes,38,rep,name=delivery_type_category_restrictions,json=deliveryTypeCategoryRestrictions,proto3" json:"delivery_type_category_restrictions,omitempty"`
+	Id                                      int32                          `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	TransportCompanyMode                    *TransportCompanyMode          `protobuf:"bytes,2,opt,name=transport_company_mode,json=transportCompanyMode,proto3" json:"transport_company_mode,omitempty"`
+	ZoneGroup                               *ZoneGroup                     `protobuf:"bytes,3,opt,name=zone_group,json=zoneGroup,proto3" json:"zone_group,omitempty"`
+	Name                                    string                         `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	DescriptionRu                           string                         `protobuf:"bytes,5,opt,name=description_ru,json=descriptionRu,proto3" json:"description_ru,omitempty"`
+	Popup                                   *Popup                         `protobuf:"bytes,6,opt,name=popup,proto3" json:"popup,omitempty"`
+	Code                                    string                         `protobuf:"bytes,7,opt,name=code,proto3" json:"code,omitempty"`
+	DefaultDaysFrom                         int32                          `protobuf:"varint,8,opt,name=default_days_from,json=defaultDaysFrom,proto3" json:"default_days_from,omitempty"`
+	DefaultDaysTo                           int32                          `protobuf:"varint,9,opt,name=default_days_to,json=defaultDaysTo,proto3" json:"default_days_to,omitempty"`
+	DeliveryPrice                           float32                        `protobuf:"fixed32,10,opt,name=delivery_price,json=deliveryPrice,proto3" json:"delivery_price,omitempty"`
+	DeliveryPriceBorder                     float32                        `protobuf:"fixed32,11,opt,name=delivery_price_border,json=deliveryPriceBorder,proto3" json:"delivery_price_border,omitempty"`
+	DeliveryPriceAfterBorder                float32                        `protobuf:"fixed32,12,opt,name=delivery_price_after_border,json=deliveryPriceAfterBorder,proto3" json:"delivery_price_after_border,omitempty"`
+	DeliveryMinDays                         int32                          `protobuf:"varint,13,opt,name=delivery_min_days,json=deliveryMinDays,proto3" json:"delivery_min_days,omitempty"`
+	CutoffTime                              string                         `protobuf:"bytes,14,opt,name=cutoff_time,json=cutoffTime,proto3" json:"cutoff_time,omitempty"`
+	ConsolidationHours                      int32                          `protobuf:"varint,15,opt,name=consolidation_hours,json=consolidationHours,proto3" json:"consolidation_hours,omitempty"`
+	GapHours                                int32                          `protobuf:"varint,16,opt,name=gap_hours,json=gapHours,proto3" json:"gap_hours,omitempty"`
+	PriorityCoefficient                     float32                        `protobuf:"fixed32,17,opt,name=priority_coefficient,json=priorityCoefficient,proto3" json:"priority_coefficient,omitempty"`
+	MaxDaysCoefficient                      float32                        `protobuf:"fixed32,18,opt,name=max_days_coefficient,json=maxDaysCoefficient,proto3" json:"max_days_coefficient,omitempty"`
+	TariffCoefficient                       float32                        `protobuf:"fixed32,19,opt,name=tariff_coefficient,json=tariffCoefficient,proto3" json:"tariff_coefficient,omitempty"`
+	WinnerPercent                           int32                          `protobuf:"varint,20,opt,name=winner_percent,json=winnerPercent,proto3" json:"winner_percent,omitempty"`
+	MaxPrice                                int32                          `protobuf:"varint,21,opt,name=max_price,json=maxPrice,proto3" json:"max_price,omitempty"`
+	RestrictionByPriceIsActive              bool                           `protobuf:"varint,22,opt,name=restriction_by_price_is_active,json=restrictionByPriceIsActive,proto3" json:"restriction_by_price_is_active,omitempty"`
+	RestrictionByPriceMessage               *Message                       `protobuf:"bytes,23,opt,name=restriction_by_price_message,json=restrictionByPriceMessage,proto3" json:"restriction_by_price_message,omitempty"`
+	RestrictionByPricePopup                 *Popup                         `protobuf:"bytes,24,opt,name=restriction_by_price_popup,json=restrictionByPricePopup,proto3" json:"restriction_by_price_popup,omitempty"`
+	MaxQuantity                             int32                          `protobuf:"varint,25,opt,name=max_quantity,json=maxQuantity,proto3" json:"max_quantity,omitempty"`
+	RestrictionByQuantityIsActive           bool                           `protobuf:"varint,26,opt,name=restriction_by_quantity_is_active,json=restrictionByQuantityIsActive,proto3" json:"restriction_by_quantity_is_active,omitempty"`
+	RestrictionByQuantityMessage            *Message                       `protobuf:"bytes,27,opt,name=restriction_by_quantity_message,json=restrictionByQuantityMessage,proto3" json:"restriction_by_quantity_message,omitempty"`
+	RestrictionByQuantityPopup              *Popup                         `protobuf:"bytes,28,opt,name=restriction_by_quantity_popup,json=restrictionByQuantityPopup,proto3" json:"restriction_by_quantity_popup,omitempty"`
+	MaxQuantityPerArticle                   int32                          `protobuf:"varint,29,opt,name=max_quantity_per_article,json=maxQuantityPerArticle,proto3" json:"max_quantity_per_article,omitempty"`
+	RestrictionByQuantityPerArticleIsActive bool                           `protobuf:"varint,30,opt,name=restriction_by_quantity_per_article_is_active,json=restrictionByQuantityPerArticleIsActive,proto3" json:"restriction_by_quantity_per_article_is_active,omitempty"`
+	RestrictionByQuantityPerArticleMessage  *Message                       `protobuf:"bytes,31,opt,name=restriction_by_quantity_per_article_message,json=restrictionByQuantityPerArticleMessage,proto3" json:"restriction_by_quantity_per_article_message,omitempty"`
+	RestrictionByQuantityPerArticlePopup    *Popup                         `protobuf:"bytes,32,opt,name=restriction_by_quantity_per_article_popup,json=restrictionByQuantityPerArticlePopup,proto3" json:"restriction_by_quantity_per_article_popup,omitempty"`
+	IsVisibleWhileRestricted                bool                           `protobuf:"varint,33,opt,name=is_visible_while_restricted,json=isVisibleWhileRestricted,proto3" json:"is_visible_while_restricted,omitempty"`
+	IsActive                                bool                           `protobuf:"varint,34,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CreatedAt                               string                         `protobuf:"bytes,35,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt                               string                         `protobuf:"bytes,36,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	PaymentMethodToDeliveryType             []*PaymentMethodToDeliveryType `protobuf:"bytes,37,rep,name=payment_method_to_delivery_type,json=paymentMethodToDeliveryType,proto3" json:"payment_method_to_delivery_type,omitempty"`
+	DeliveryTypeCategoryRestrictions        []*CategoryRestriction         `protobuf:"bytes,38,rep,name=delivery_type_category_restrictions,json=deliveryTypeCategoryRestrictions,proto3" json:"delivery_type_category_restrictions,omitempty"`
 }
 
 func (x *DeliveryType) Reset() {
@@ -666,7 +666,7 @@ func (x *DeliveryType) GetUpdatedAt() string {
 	return ""
 }
 
-func (x *DeliveryType) GetPaymentMethodToDeliveryType() *PaymentMethodToDeliveryType {
+func (x *DeliveryType) GetPaymentMethodToDeliveryType() []*PaymentMethodToDeliveryType {
 	if x != nil {
 		return x.PaymentMethodToDeliveryType
 	}
@@ -1107,7 +1107,7 @@ var file_delivery_type_proto_rawDesc = []byte{
 	0x28, 0x09, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x6c, 0x0a,
 	0x1f, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x5f,
 	0x74, 0x6f, 0x5f, 0x64, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x5f, 0x74, 0x79, 0x70, 0x65,
-	0x18, 0x25, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69,
+	0x18, 0x25, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69,
 	0x63, 0x73, 0x2e, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64,
 	0x54, 0x6f, 0x44, 0x65, 0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x54, 0x79, 0x70, 0x65, 0x52, 0x1b,
 	0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x54, 0x6f, 0x44,
