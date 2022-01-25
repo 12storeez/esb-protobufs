@@ -3500,7 +3500,7 @@
             "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
           }
         },
-        "deliveryTypeCategoryRestrictions": {
+        "categoryDeliveryTypeRestrictions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCategoryRestriction"
