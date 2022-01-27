@@ -25,7 +25,7 @@ service geo {
   rpc DefaultCityList(DefaultCityListParams) returns (SuggestCityResponse) {
   }
   // Определение города по IP (MaxMind & Dadata + cache)
-  rpc CityByIP(CityByIPParams) returns (City) {
+  rpc CityDetailsByIP(CityDetailsByIPParams) returns (City) {
   }
   // Suggest по адресам
   rpc SuggestAddress(SuggestAddressParams) returns (SuggestAddressResponse) {
@@ -55,48 +55,48 @@ message SuggestCountryParams {
 }
 
 message SuggestCountryResponse {
-  bool success = 1;
-  int32 total = 2;
+  bool                    success = 1;
+  int32                   total = 2;
   repeated SuggestCountry result = 3;
 }
 
 message SuggestCountry {
-  string iso_code = 1;
-  string name = 2;
+  string    iso_code = 1;
+  string    title = 2;
   Continent continent = 3;
-  Phone phone = 4;
+  Phone     phone = 4;
 }
 
 message CountryDetailsParams {
   LocaleType locale = 1;
-  string iso_code = 2;
+  string     iso_code = 2;
 }
 
 message Country {
-  string iso_code = 1;
-  string name = 2;
+  string    iso_code = 1;
+  string    title = 2;
   Continent continent = 3;
-  Capital capital = 4;
-  string postal_code_format = 5;
-  string currency_code = 6;
-  Phone phone = 7;
+  Capital   capital = 4;
+  string    postal_code_format = 5;
+  string    currency_code = 6;
+  Phone     phone = 7;
 }
 
 message Phone  {
-  int32 prefix= 1;
+  int32           prefix= 1;
   repeated string masks = 2;
-  string primary_mask = 3;
+  string          primary_mask = 3;
 }
 
 message Continent {
   string code = 1;
-  string name = 2;
+  string title = 2;
 }
 
 message Capital {
-  string name = 1;
+  string   title = 1;
   Location location = 2;
-  string postal_code = 3;
+  string   postal_code = 3;
 }
 
 // City ...
@@ -110,54 +110,55 @@ message SuggestCityParams {
 }
 
 message SuggestCityResponse {
-  bool success = 1;
-  int32 total = 2;
+  bool                 success = 1;
+  int32                total = 2;
   repeated SuggestCity result = 3;
 }
 
 message SuggestCity {
   string id = 1;
   string suggest = 2;
-  string name = 3;
+  string title = 3;
   string subtitle = 4;
   string type = 5;
 }
 
 message CityDetailsParams {
   LocaleType locale = 1;
-  string country_iso_code = 2;
+  string     country_iso_code = 2;
 
   // для России передавать полученный suggest из SuggestCity. Метод использует нормализацию Dadata
   // для остальных передавать id
-  string query = 3;
+  string     query = 3;
 }
 
 message CityDetailsByGeoIDParams {
   LocaleType locale = 1;
-  string country_iso_code = 2;
-  string id = 3; // fiasID или geoID
+  string     country_iso_code = 2;
+  string     id = 3; // fiasID или geoID
 }
 
 message City {
-  string id = 1;
-  string name = 2;
-  string country_iso_code = 3;
-  string postal_code = 4;
-  string type = 5;
-  Region region = 6;
-  State state = 7;
-  Location location = 8;
-  CityAdditional additional = 9;
+  string         id = 1;
+  string         title = 2;
+  string         full_title = 3;
+  string         country_iso_code = 4;
+  string         postal_code = 5;
+  string         type = 6;
+  Region         region = 7;
+  State          state = 8;
+  Location       location = 9;
+  CityAdditional additional = 10;
 }
 
 message State {
-  string name = 1;
+  string title = 1;
   string iso_code = 2;
 }
 
 message Region {
   string id = 1;
-  string name = 2;
+  string title = 2;
   string iso_code = 3;
   string type = 5;
 }
@@ -167,9 +168,9 @@ message Location  {
   double longitude = 2;
 }
 
-message CityByIPParams {
+message CityDetailsByIPParams {
   LocaleType locale = 1;
-  string ip = 2;
+  string     ip = 2;
 }
 
 // Address ...
@@ -183,8 +184,8 @@ message SuggestAddressParams {
 }
 
 message SuggestAddressResponse {
-  bool success = 1;
-  int32 total = 2;
+  bool                    success = 1;
+  int32                   total = 2;
   repeated SuggestAddress result = 3;
 }
 
@@ -199,28 +200,28 @@ message SuggestAddress {
 // нормализация
 message AddressDetailsParams {
   LocaleType locale = 1;
-  string country_iso_code = 2;
-  string query = 3;
+  string     country_iso_code = 2;
+  string     query = 3;
 }
 
 message AddressDetailsByGeoIDParams {
   LocaleType locale = 1;
-  string country_iso_code = 2;
-  string id = 3;
+  string     country_iso_code = 2;
+  string     id = 3;
 }
 
 message Address {
   // fias_id for dadata and place_id for google
-  string id = 1;
-  string country_iso_code = 2;
-  Region region = 3;
-  State state = 4;
-  string city = 5;
-  string street = 6;
-  string house = 7;
-  string block = 8;
-  string postal_code = 9;
-  Location location = 10;
+  string            id = 1;
+  string            country_iso_code = 2;
+  Region            region = 3;
+  State             state = 4;
+  City              city = 5;
+  string            street = 6;
+  string            house = 7;
+  string            block = 8;
+  string            postal_code = 9;
+  Location          location = 10;
   // fias_level for dadata
   AddressAdditional additional = 11;
 }
@@ -239,8 +240,8 @@ message CityAdditional {
 
 message AddressZonesParams {
   LocaleType locale = 1;
-  string country_iso_code = 2;
-  string query = 3;
+  string     country_iso_code = 2;
+  string     query = 3;
 }
 
 message AddressZonesResponse {
