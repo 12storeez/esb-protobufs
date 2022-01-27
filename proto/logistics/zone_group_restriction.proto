@@ -44,15 +44,8 @@ service ZoneGroupRestrictionService {
   }
 }
 
-message ZoneGroupRestriction {
-  int32     id = 1;
-  ZoneGroup zone_group = 2;
-  Country   country = 3;
-  Message   message_id = 4;
-  Popup     popup_id = 5;
-  bool      is_active = 6;
-  string    created_at = 7;
-  string    updated_at = 8;
+message ZoneGroupRestrictionId {
+  int32 id = 1;
 }
 
 message CreateZoneGroupRestriction {
@@ -66,8 +59,15 @@ message CreateZoneGroupRestriction {
   string  updated_at = 8;
 }
 
-message ZoneGroupRestrictionId {
-  int32 id = 1;
+message ZoneGroupRestriction {
+  int32     id = 1;
+  ZoneGroup zone_group = 2;
+  Country   country = 3;
+  Message   message = 4;
+  Popup     popup = 5;
+  bool      is_active = 6;
+  string    created_at = 7;
+  string    updated_at = 8;
 }
 
 message ListZoneGroupRestrictionRequest {

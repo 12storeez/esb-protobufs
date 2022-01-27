@@ -4509,10 +4509,10 @@
         "country": {
           "$ref": "#/definitions/logisticsCountry"
         },
-        "messageId": {
+        "message": {
           "$ref": "#/definitions/logisticsMessage"
         },
-        "popupId": {
+        "popup": {
           "$ref": "#/definitions/logisticsPopup"
         },
         "isActive": {
