@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "zone_group.proto";
+import "message.proto";
+import "popup.proto";
+
+service ZoneGroupRestrictionService {
+  rpc List(ListZoneGroupRestrictionRequest) returns (ListZoneGroupRestrictionResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/restriction/zone"
+    };
+  }
+
+  rpc Create(CreateListZoneGroupRestrictionRequest) returns (ListZoneGroupRestrictionResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/restriction/zone"
+      body: "*"
+    };
+  }
+
+  rpc Update(CreateListZoneGroupRestrictionRequest) returns (ListZoneGroupRestrictionResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/restriction/zone"
+      body: "*"
+    };
+  }
+
+  rpc Get(ZoneGroupRestrictionId) returns (ZoneGroupRestriction) {
+    option (google.api.http) = {
+      get: "/api/v1/restriction/zone/{id}"
+    };
+  }
+
+  rpc Delete(ZoneGroupRestrictionId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/restriction/zone/{id}"
+    };
+  }
+}
+
+message ZoneGroupRestriction {
+  int32     id = 1;
+  ZoneGroup zone_group = 2;
+  Country   country = 3;
+  Message   message_id = 4;
+  Popup     popup_id = 5;
+  bool      is_active = 6;
+  string    created_at = 7;
+  string    updated_at = 8;
+}
+
+message CreateZoneGroupRestriction {
+  int32   id = 1;
+  int32   zone_group_id = 2;
+  string  country_iso_code = 3;
+  int32   message_id = 4;
+  int32   popup_id = 5;
+  bool    is_active = 6;
+  string  created_at = 7;
+  string  updated_at = 8;
+}
+
+message ZoneGroupRestrictionId {
+  int32 id = 1;
+}
+
+message ListZoneGroupRestrictionRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string search = 3;
+  string sort = 4;
+}
+
+message ListZoneGroupRestrictionResponse {
+  repeated ZoneGroupRestriction results = 1;
+  int32                         total = 2;
+}
+
+message CreateListZoneGroupRestrictionRequest {
+  repeated CreateZoneGroupRestriction results = 1;
+  int32                               total = 2;
+}
+
+message Country{
+  string country_code = 1;
+  string country_name_ru = 2;
+}
