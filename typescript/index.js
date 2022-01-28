@@ -35,6 +35,13 @@ var release;
 })(release = exports.release || (exports.release = {}));
 var logistics;
 (function (logistics) {
+    var Restriction;
+    (function (Restriction) {
+        Restriction[Restriction["price"] = 0] = "price";
+        Restriction[Restriction["quantity"] = 1] = "quantity";
+    })(Restriction || (Restriction = {}));
+})(logistics = exports.logistics || (exports.logistics = {}));
+(function (logistics) {
     var DayOfWeek;
     (function (DayOfWeek) {
         DayOfWeek[DayOfWeek["monday"] = 0] = "monday";

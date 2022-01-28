@@ -1,169 +1,19 @@
 import { Observable } from "rxjs";
 
-export namespace mindbox {
-  export interface User {
-    info(request: ParamsUser, metadata?: any): Observable<ResponseUser>;
-    orders(request: ParamsOrders, metadata?: any): Observable<ResponseOrders>;
-    sendOSMICard(
-      request: ParamsOSMICard,
+export namespace tracker {
+  export interface TrackerSlack {
+    sendTicket(
+      request: SendTicketParams,
       metadata?: any
-    ): Observable<ResponseOSMICard>;
+    ): Observable<SendTicketResponse>;
   }
 
-  export interface Mobile {
-    initDevice(
-      request: InitDeviceParams,
-      metadata?: any
-    ): Observable<InitDeviceResponse>;
-    initClient(
-      request: InitClientParams,
-      metadata?: any
-    ): Observable<InitClientResponse>;
-    removeDevice(
-      request: RemoveDeviceParams,
-      metadata?: any
-    ): Observable<RemoveDeviceResponse>;
-    code(request: ParamsCode, metadata?: any): Observable<ResponseCode>;
-    checkCode(
-      request: ParamsCheckCode,
-      metadata?: any
-    ): Observable<ResponseCheckCode>;
-    editUser(
-      request: ParamsEditUser,
-      metadata?: any
-    ): Observable<ResponseEditUser>;
-    isUserExist(
-      request: IsUserExistParams,
-      metadata?: any
-    ): Observable<IsUserExistResponse>;
-    pushClick(
-      request: PushClickParams,
-      metadata?: any
-    ): Observable<PushClickResponse>;
+  export interface SendTicketParams {
+    ticket_id: string;
   }
 
-  export interface PushClickParams {
-    message_unique_key: string;
-    button_unique_key: string;
-  }
-
-  export interface PushClickResponse {
-    ok: boolean;
-  }
-
-  export interface IsUserExistParams {
-    mobile_phone: string;
-  }
-
-  export interface IsUserExistResponse {
-    ok: boolean;
-    client_id: string;
-  }
-
-  export interface InitDeviceParams {
-    device_id: string;
-    apns_token: string;
-  }
-
-  export interface InitDeviceResponse {
-    ok: boolean;
-  }
-
-  export enum Platform {
-    IOS = 0,
-    ANDROID = 1,
-  }
-
-  export interface InitClientParams {
-    device_id: string;
-    client_id: string;
-    platform: Platform;
-  }
-
-  export interface InitClientResponse {
-    ok: boolean;
-  }
-
-  export interface ParamsUser {
-    client_id: string;
-  }
-
-  export interface ResponseUser {
-    first_name: string;
-    last_name: string;
-    email: string;
-    phone: string;
-    bonus_total: number;
-    bonus_available: number;
-    bonus_blocked: number;
-    total_paid_amount: number;
-  }
-
-  export interface ParamsOrders {
-    client_id: string;
-  }
-
-  export interface ResponseOrders {
-    total: number;
-    result: Order[];
-  }
-
-  export interface Order {
-    order_id: string;
-    created_date: string;
-    payment_type: string;
-    discounted_total_price: number;
-    payment_amount: number;
-    applied_discount: number;
-    acquired_balance_change: number;
-    created_ts: number;
-  }
-
-  export interface ParamsCode {
-    mobile_phone: string;
-    device_id: string;
-  }
-
-  export interface ResponseCode {
-    ok: boolean;
-  }
-
-  export interface ParamsCheckCode {
-    mobile_phone: string;
-    code: string;
-  }
-
-  export interface ResponseCheckCode {
-    ok: boolean;
-    status: string;
-    client_id: string;
-    mindbox_id: number;
-  }
-
-  export interface ParamsEditUser {
-    device_uuid: string;
-    client_id: string;
-    mobile_phone: string;
-  }
-
-  export interface ResponseEditUser {
-    ok: boolean;
-  }
-
-  export interface ParamsOSMICard {
-    client_id: string;
-  }
-
-  export interface ResponseOSMICard {
-    ok: boolean;
-  }
-
-  export interface RemoveDeviceParams {
-    device_id: string;
-  }
-
-  export interface RemoveDeviceResponse {
-    ok: boolean;
+  export interface SendTicketResponse {
+    success: boolean;
   }
 }
 
@@ -324,274 +174,6 @@ export namespace mercaux {
   }
 }
 
-export namespace gate {
-  export interface Shopify {
-    emit(request: EventData, metadata?: any): Observable<Result>;
-  }
-
-  export interface EventData {
-    topic: string;
-    shop_domain: string;
-    payload: string;
-  }
-
-  export interface Result {
-    success: boolean;
-    result: string;
-  }
-}
-
-export namespace geo {
-  export interface geo {
-    suggestCountry(
-      request: SuggestCountryParams,
-      metadata?: any
-    ): Observable<SuggestCountryResponse>;
-    countryDetails(
-      request: CountryDetailsParams,
-      metadata?: any
-    ): Observable<Country>;
-    suggestCity(
-      request: SuggestCityParams,
-      metadata?: any
-    ): Observable<SuggestCityResponse>;
-    cityDetails(request: CityDetailsParams, metadata?: any): Observable<City>;
-    cityDetailsByGeoID(
-      request: CityDetailsByGeoIDParams,
-      metadata?: any
-    ): Observable<City>;
-    defaultCityList(
-      request: DefaultCityListParams,
-      metadata?: any
-    ): Observable<SuggestCityResponse>;
-    cityByIP(request: CityByIPParams, metadata?: any): Observable<City>;
-    suggestAddress(
-      request: SuggestAddressParams,
-      metadata?: any
-    ): Observable<SuggestAddressResponse>;
-    addressDetails(
-      request: AddressDetailsParams,
-      metadata?: any
-    ): Observable<Address>;
-    addressDetailsByGeoID(
-      request: AddressDetailsByGeoIDParams,
-      metadata?: any
-    ): Observable<Address>;
-    addressZones(
-      request: AddressZonesParams,
-      metadata?: any
-    ): Observable<AddressZonesResponse>;
-  }
-
-  export enum LocaleType {
-    ru = 0,
-    en = 1,
-  }
-
-  export interface SuggestCountryParams {
-    locale: LocaleType;
-    search: string;
-    limit: number;
-    offset: number;
-  }
-
-  export interface SuggestCountryResponse {
-    success: boolean;
-    total: number;
-    result: SuggestCountry[];
-  }
-
-  export interface SuggestCountry {
-    iso_code: string;
-    name: string;
-    continent: Continent;
-    phone: Phone;
-  }
-
-  export interface CountryDetailsParams {
-    locale: LocaleType;
-    iso_code: string;
-  }
-
-  export interface Country {
-    iso_code: string;
-    name: string;
-    continent: Continent;
-    capital: Capital;
-    postal_code_format: string;
-    currency_code: string;
-    phone: Phone;
-  }
-
-  export interface Phone {
-    prefix: number;
-    masks: string[];
-    primary_mask: string;
-  }
-
-  export interface Continent {
-    code: string;
-    name: string;
-  }
-
-  export interface Capital {
-    name: string;
-    location: Location;
-    postal_code: string;
-  }
-
-  export interface SuggestCityParams {
-    locale: LocaleType;
-    country_iso_code: string;
-    search: string;
-    limit: number;
-    offset: number;
-    ip: string;
-  }
-
-  export interface SuggestCityResponse {
-    success: boolean;
-    total: number;
-    result: SuggestCity[];
-  }
-
-  export interface SuggestCity {
-    id: string;
-    suggest: string;
-    name: string;
-    subtitle: string;
-    type: string;
-  }
-
-  export interface CityDetailsParams {
-    locale: LocaleType;
-    country_iso_code: string;
-    query: string;
-  }
-
-  export interface CityDetailsByGeoIDParams {
-    locale: LocaleType;
-    country_iso_code: string;
-    id: string;
-  }
-
-  export interface City {
-    id: string;
-    name: string;
-    country_iso_code: string;
-    postal_code: string;
-    type: string;
-    region: Region;
-    state: State;
-    location: Location;
-    additional: CityAdditional;
-  }
-
-  export interface State {
-    name: string;
-    iso_code: string;
-  }
-
-  export interface Region {
-    id: string;
-    name: string;
-    iso_code: string;
-    type: string;
-  }
-
-  export interface Location {
-    latitude: number;
-    longitude: number;
-  }
-
-  export interface CityByIPParams {
-    locale: LocaleType;
-    ip: string;
-  }
-
-  export interface SuggestAddressParams {
-    locale: LocaleType;
-    country_iso_code: string;
-    city_id: string;
-    search: string;
-    limit: number;
-    offset: number;
-  }
-
-  export interface SuggestAddressResponse {
-    success: boolean;
-    total: number;
-    result: SuggestAddress[];
-  }
-
-  export interface SuggestAddress {
-    id: string;
-    suggest: string;
-    title: string;
-    subtitle: string;
-    query_for_details: string;
-  }
-
-  export interface AddressDetailsParams {
-    locale: LocaleType;
-    country_iso_code: string;
-    query: string;
-  }
-
-  export interface AddressDetailsByGeoIDParams {
-    locale: LocaleType;
-    country_iso_code: string;
-    id: string;
-  }
-
-  export interface Address {
-    id: string;
-    country_iso_code: string;
-    region: Region;
-    state: State;
-    city: string;
-    street: string;
-    house: string;
-    block: string;
-    postal_code: string;
-    location: Location;
-    additional: AddressAdditional;
-  }
-
-  export interface AddressAdditional {
-    is_in_mkad: boolean;
-    is_in_kad: boolean;
-    fias_level: string;
-  }
-
-  export interface CityAdditional {
-    kladr_id: string;
-    is_crimea: boolean;
-    fias_level: string;
-  }
-
-  export interface AddressZonesParams {
-    locale: LocaleType;
-    country_iso_code: string;
-    query: string;
-  }
-
-  export interface AddressZonesResponse {
-    id: string;
-    region_id: string;
-    area_id: string;
-    city_id: string;
-    settlement_id: string;
-    street_id: string;
-    house_id: string;
-    flat_id: string;
-  }
-
-  export interface DefaultCityListParams {
-    ip: string;
-  }
-}
-
 export namespace usedesk {
   export interface CSI {
     save(request: saveParams, metadata?: any): Observable<saveResponse>;
@@ -661,200 +243,124 @@ export namespace payments {
   }
 }
 
-export namespace feedbacks {
-  export interface Mobile {
-    app(request: ParamsApp, metadata?: any): Observable<ResponseOk>;
-    store(request: ParamsStore, metadata?: any): Observable<ResponseOk>;
-    order(request: ParamsOrder, metadata?: any): Observable<ResponseOk>;
-    categories(request: any, metadata?: any): Observable<ResponseCategories>;
-    reasonsByOrder(
-      request: ParamsReasonsByOrder,
+export namespace orders {
+  export interface Offline {
+    byClient(
+      request: ParamsOfflineByClient,
       metadata?: any
-    ): Observable<ResponseReasons>;
-    reasonsByStore(request: any, metadata?: any): Observable<ResponseReasons>;
-    canBeSaved(
-      request: CanBeSavedParams,
+    ): Observable<ResponseOffline>;
+    getById(
+      request: ParamsOrderById,
       metadata?: any
-    ): Observable<ResponseOk>;
+    ): Observable<ResponseOfflineById>;
   }
 
-  export interface Store {
-    new (request: NewParams, metadata?: any): Observable<NewResponse>;
-    patch(request: PatchParams, metadata?: any): Observable<ResponseOk>;
-    newOrder(
-      request: NewOrderParams,
-      metadata?: any
-    ): Observable<NewOrderResponse>;
-    patchOrder(
-      request: PatchOrderParams,
-      metadata?: any
-    ): Observable<ResponseOk>;
-  }
-
-  export interface NPS {
-    new (request: NewNPSParams, metadata?: any): Observable<NewNpsResponse>;
-    update(request: UpdateNPSParams, metadata?: any): Observable<ResponseOk>;
-  }
-
-  export interface UpdateNPSParams {
-    id: number;
-    rate: number;
-    store_code: number;
-    order_date: string;
-    order_id: string;
-    comment: string;
-    source: string;
-  }
-
-  export interface NewNPSParams {
-    rate: number;
-    store_code: number;
-    order_date: string;
-    order_id: string;
-    comment: string;
-    source: string;
-  }
-
-  export interface NewNpsResponse {
-    id: number;
-  }
-
-  export interface CanBeSavedParams {
-    order_id: string;
-  }
-
-  export interface PatchParams {
-    id: number;
-    store_id: number;
-    location: number;
-    type: number;
-    rate: number;
-    improvements: number[];
-    comment: string;
-    contact: string;
-  }
-
-  export interface NewParams {
-    store_id: number;
-    location: number;
-    type: number;
-    rate: number;
-  }
-
-  export interface NewResponse {
-    id: number;
-    improvements: Improvement[];
-  }
-
-  export interface Improvement {
-    id: number;
-    title: string;
-  }
-
-  export interface ResponseOk {
-    ok: boolean;
-  }
-
-  export interface ParamsApp {
+  export interface ParamsOfflineByClient {
     client_id: number;
-    name: string;
-    email: string;
-    phone: string;
-    app_version: string;
-    rate: string;
-    comment: string;
-    device_id: string;
+    limit: number;
+    offset: number;
   }
 
-  export interface ParamsStore {
+  export interface ResponseOffline {
+    result: Order[];
+    total: number;
+  }
+
+  export interface ParamsOrderById {
+    id: number;
     client_id: number;
-    rate: string;
-    reasons: number[];
-    comment: string;
-    store_id: number;
-    device_id: string;
   }
 
-  export interface ParamsOrder {
-    order_id: string;
-    rate: string;
-    reasons: number[];
-    comment: string;
-    store_id: number;
-    device_id: string;
+  export interface ResponseOfflineById {
+    result: Order;
   }
 
-  export interface Reason {
+  export interface Order {
     id: number;
-    title: string;
-    category_id: number;
-  }
-
-  export interface Category {
-    id: number;
-    title: string;
-  }
-
-  export interface RequestChoices {
-    category_id: number;
-  }
-
-  export interface ResponseReasons {
-    result: Reason[];
-  }
-
-  export interface ResponseCategories {
-    result: Category[];
-  }
-
-  export interface ParamsReasonsByOrder {
-    order_id: string;
     store_code: number;
+    order_number: string;
+    order_id: string;
+    date: string;
+    client_id: number;
+    seller: string;
+    operation: number;
+    bonuses_wasted: number;
+    bonuses_accrued: number;
+    sum: number;
+    positions: Position[];
+    store_name: string;
+    is_rated: boolean;
   }
 
-  export interface NewOrderParams {
+  export interface Position {
+    id: number;
+    article: number;
+    barcode: number;
+    title: string;
+    color: string;
+    size: string;
+    qty: number;
+    sum: number;
+    discount: number;
+    family: string;
+  }
+
+  export interface Online {
+    byClient(
+      request: ParamsOnlineByClient,
+      metadata?: any
+    ): Observable<ResponseOnlineByClient>;
+  }
+
+  export interface ParamsOnlineByClient {
+    client_id: number;
+  }
+
+  export interface ResponseOnlineByClient {
+    order: number[];
+  }
+
+  export interface OfflineOrderPosition {
+    store_name: string;
     store_id: number;
-    order_date: string;
+    cashbox_id: number;
     order_id: string;
-    rate: number;
-    channel: string;
-    company: string;
+    row_receipt: number;
+    date: string;
+    time: string;
+    article: string;
+    title: string;
+    color: string;
+    size: string;
+    barcode: string;
+    qty: number;
+    total_gross: number;
+    discount: number;
+    total: number;
+    client_id: number;
+    seller: string;
+    family: string;
+    operation: number;
     source: string;
-    type: string;
-    template: string;
-  }
-
-  export interface NewOrderResponse {
-    id: number;
-    improvements: Improvement[];
-  }
-
-  export interface PatchOrderParams {
-    id: number;
-    store_id: number;
-    order_date: string;
-    order_id: string;
-    rate: number;
-    improvements: number[];
-    comment: string;
-    contact: string;
+    bonuses_wasted: number;
+    bonuses_accrued: number;
   }
 }
 
-export namespace tracker {
-  export interface TrackerSlack {
-    sendTicket(
-      request: SendTicketParams,
-      metadata?: any
-    ): Observable<SendTicketResponse>;
+export namespace gate {
+  export interface Shopify {
+    emit(request: EventData, metadata?: any): Observable<Result>;
   }
 
-  export interface SendTicketParams {
-    ticket_id: string;
+  export interface EventData {
+    topic: string;
+    shop_domain: string;
+    payload: string;
   }
 
-  export interface SendTicketResponse {
+  export interface Result {
     success: boolean;
+    result: string;
   }
 }
 
@@ -1025,6 +531,611 @@ export namespace meta {
   }
 }
 
+export namespace mindbox {
+  export interface User {
+    info(request: ParamsUser, metadata?: any): Observable<ResponseUser>;
+    orders(request: ParamsOrders, metadata?: any): Observable<ResponseOrders>;
+    sendOSMICard(
+      request: ParamsOSMICard,
+      metadata?: any
+    ): Observable<ResponseOSMICard>;
+  }
+
+  export interface Mobile {
+    initDevice(
+      request: InitDeviceParams,
+      metadata?: any
+    ): Observable<InitDeviceResponse>;
+    initClient(
+      request: InitClientParams,
+      metadata?: any
+    ): Observable<InitClientResponse>;
+    removeDevice(
+      request: RemoveDeviceParams,
+      metadata?: any
+    ): Observable<RemoveDeviceResponse>;
+    code(request: ParamsCode, metadata?: any): Observable<ResponseCode>;
+    checkCode(
+      request: ParamsCheckCode,
+      metadata?: any
+    ): Observable<ResponseCheckCode>;
+    editUser(
+      request: ParamsEditUser,
+      metadata?: any
+    ): Observable<ResponseEditUser>;
+    isUserExist(
+      request: IsUserExistParams,
+      metadata?: any
+    ): Observable<IsUserExistResponse>;
+    pushClick(
+      request: PushClickParams,
+      metadata?: any
+    ): Observable<PushClickResponse>;
+  }
+
+  export interface PushClickParams {
+    message_unique_key: string;
+    button_unique_key: string;
+  }
+
+  export interface PushClickResponse {
+    ok: boolean;
+  }
+
+  export interface IsUserExistParams {
+    mobile_phone: string;
+  }
+
+  export interface IsUserExistResponse {
+    ok: boolean;
+    client_id: string;
+  }
+
+  export interface InitDeviceParams {
+    device_id: string;
+    apns_token: string;
+  }
+
+  export interface InitDeviceResponse {
+    ok: boolean;
+  }
+
+  export enum Platform {
+    IOS = 0,
+    ANDROID = 1,
+  }
+
+  export interface InitClientParams {
+    device_id: string;
+    client_id: string;
+    platform: Platform;
+  }
+
+  export interface InitClientResponse {
+    ok: boolean;
+  }
+
+  export interface ParamsUser {
+    client_id: string;
+  }
+
+  export interface ResponseUser {
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone: string;
+    bonus_total: number;
+    bonus_available: number;
+    bonus_blocked: number;
+    total_paid_amount: number;
+  }
+
+  export interface ParamsOrders {
+    client_id: string;
+  }
+
+  export interface ResponseOrders {
+    total: number;
+    result: Order[];
+  }
+
+  export interface Order {
+    order_id: string;
+    created_date: string;
+    payment_type: string;
+    discounted_total_price: number;
+    payment_amount: number;
+    applied_discount: number;
+    acquired_balance_change: number;
+    created_ts: number;
+  }
+
+  export interface ParamsCode {
+    mobile_phone: string;
+    device_id: string;
+  }
+
+  export interface ResponseCode {
+    ok: boolean;
+  }
+
+  export interface ParamsCheckCode {
+    mobile_phone: string;
+    code: string;
+  }
+
+  export interface ResponseCheckCode {
+    ok: boolean;
+    status: string;
+    client_id: string;
+    mindbox_id: number;
+  }
+
+  export interface ParamsEditUser {
+    device_uuid: string;
+    client_id: string;
+    mobile_phone: string;
+  }
+
+  export interface ResponseEditUser {
+    ok: boolean;
+  }
+
+  export interface ParamsOSMICard {
+    client_id: string;
+  }
+
+  export interface ResponseOSMICard {
+    ok: boolean;
+  }
+
+  export interface RemoveDeviceParams {
+    device_id: string;
+  }
+
+  export interface RemoveDeviceResponse {
+    ok: boolean;
+  }
+}
+
+export namespace geo {
+  export interface geo {
+    suggestCountry(
+      request: SuggestCountryParams,
+      metadata?: any
+    ): Observable<SuggestCountryResponse>;
+    countryDetails(
+      request: CountryDetailsParams,
+      metadata?: any
+    ): Observable<Country>;
+    suggestCity(
+      request: SuggestCityParams,
+      metadata?: any
+    ): Observable<SuggestCityResponse>;
+    cityDetails(request: CityDetailsParams, metadata?: any): Observable<City>;
+    cityDetailsByGeoID(
+      request: CityDetailsByGeoIDParams,
+      metadata?: any
+    ): Observable<City>;
+    defaultCityList(
+      request: DefaultCityListParams,
+      metadata?: any
+    ): Observable<SuggestCityResponse>;
+    cityDetailsByIP(
+      request: CityDetailsByIPParams,
+      metadata?: any
+    ): Observable<City>;
+    suggestAddress(
+      request: SuggestAddressParams,
+      metadata?: any
+    ): Observable<SuggestAddressResponse>;
+    addressDetails(
+      request: AddressDetailsParams,
+      metadata?: any
+    ): Observable<Address>;
+    addressDetailsByGeoID(
+      request: AddressDetailsByGeoIDParams,
+      metadata?: any
+    ): Observable<Address>;
+    addressZones(
+      request: AddressZonesParams,
+      metadata?: any
+    ): Observable<AddressZonesResponse>;
+  }
+
+  export enum LocaleType {
+    ru = 0,
+    en = 1,
+  }
+
+  export interface SuggestCountryParams {
+    locale: LocaleType;
+    search: string;
+    limit: number;
+    offset: number;
+  }
+
+  export interface SuggestCountryResponse {
+    success: boolean;
+    total: number;
+    result: SuggestCountry[];
+  }
+
+  export interface SuggestCountry {
+    iso_code: string;
+    title: string;
+    continent: Continent;
+    phone: Phone;
+  }
+
+  export interface CountryDetailsParams {
+    locale: LocaleType;
+    iso_code: string;
+  }
+
+  export interface Country {
+    iso_code: string;
+    title: string;
+    continent: Continent;
+    capital: Capital;
+    postal_code_format: string;
+    currency_code: string;
+    phone: Phone;
+  }
+
+  export interface Phone {
+    prefix: number;
+    masks: string[];
+    primary_mask: string;
+  }
+
+  export interface Continent {
+    code: string;
+    title: string;
+  }
+
+  export interface Capital {
+    title: string;
+    location: Location;
+    postal_code: string;
+  }
+
+  export interface SuggestCityParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    search: string;
+    limit: number;
+    offset: number;
+    ip: string;
+  }
+
+  export interface SuggestCityResponse {
+    success: boolean;
+    total: number;
+    result: SuggestCity[];
+  }
+
+  export interface SuggestCity {
+    id: string;
+    suggest: string;
+    title: string;
+    subtitle: string;
+    type: string;
+  }
+
+  export interface CityDetailsParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    query: string;
+  }
+
+  export interface CityDetailsByGeoIDParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    id: string;
+  }
+
+  export interface City {
+    id: string;
+    title: string;
+    full_title: string;
+    country_iso_code: string;
+    postal_code: string;
+    type: string;
+    region: Region;
+    state: State;
+    location: Location;
+    additional: CityAdditional;
+  }
+
+  export interface State {
+    title: string;
+    iso_code: string;
+  }
+
+  export interface Region {
+    id: string;
+    title: string;
+    iso_code: string;
+    type: string;
+  }
+
+  export interface Location {
+    latitude: number;
+    longitude: number;
+  }
+
+  export interface CityDetailsByIPParams {
+    locale: LocaleType;
+    ip: string;
+  }
+
+  export interface SuggestAddressParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    city_id: string;
+    search: string;
+    limit: number;
+    offset: number;
+  }
+
+  export interface SuggestAddressResponse {
+    success: boolean;
+    total: number;
+    result: SuggestAddress[];
+  }
+
+  export interface SuggestAddress {
+    id: string;
+    suggest: string;
+    title: string;
+    subtitle: string;
+    query_for_details: string;
+  }
+
+  export interface AddressDetailsParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    query: string;
+  }
+
+  export interface AddressDetailsByGeoIDParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    id: string;
+  }
+
+  export interface Address {
+    id: string;
+    country_iso_code: string;
+    region: Region;
+    state: State;
+    city: City;
+    street: string;
+    house: string;
+    block: string;
+    postal_code: string;
+    location: Location;
+    additional: AddressAdditional;
+  }
+
+  export interface AddressAdditional {
+    is_in_mkad: boolean;
+    is_in_kad: boolean;
+    fias_level: string;
+  }
+
+  export interface CityAdditional {
+    kladr_id: string;
+    is_crimea: boolean;
+    fias_level: string;
+  }
+
+  export interface AddressZonesParams {
+    locale: LocaleType;
+    country_iso_code: string;
+    query: string;
+  }
+
+  export interface AddressZonesResponse {
+    id: string;
+    region_id: string;
+    area_id: string;
+    city_id: string;
+    settlement_id: string;
+    street_id: string;
+    house_id: string;
+    flat_id: string;
+  }
+
+  export interface DefaultCityListParams {
+    ip: string;
+  }
+}
+
+export namespace feedbacks {
+  export interface Mobile {
+    app(request: ParamsApp, metadata?: any): Observable<ResponseOk>;
+    store(request: ParamsStore, metadata?: any): Observable<ResponseOk>;
+    order(request: ParamsOrder, metadata?: any): Observable<ResponseOk>;
+    categories(request: any, metadata?: any): Observable<ResponseCategories>;
+    reasonsByOrder(
+      request: ParamsReasonsByOrder,
+      metadata?: any
+    ): Observable<ResponseReasons>;
+    reasonsByStore(request: any, metadata?: any): Observable<ResponseReasons>;
+    canBeSaved(
+      request: CanBeSavedParams,
+      metadata?: any
+    ): Observable<ResponseOk>;
+  }
+
+  export interface Store {
+    new (request: NewParams, metadata?: any): Observable<NewResponse>;
+    patch(request: PatchParams, metadata?: any): Observable<ResponseOk>;
+    newOrder(
+      request: NewOrderParams,
+      metadata?: any
+    ): Observable<NewOrderResponse>;
+    patchOrder(
+      request: PatchOrderParams,
+      metadata?: any
+    ): Observable<ResponseOk>;
+  }
+
+  export interface NPS {
+    new (request: NewNPSParams, metadata?: any): Observable<NewNpsResponse>;
+    update(request: UpdateNPSParams, metadata?: any): Observable<ResponseOk>;
+  }
+
+  export interface UpdateNPSParams {
+    id: number;
+    rate: number;
+    store_code: number;
+    order_date: string;
+    order_id: string;
+    comment: string;
+    source: string;
+  }
+
+  export interface NewNPSParams {
+    rate: number;
+    store_code: number;
+    order_date: string;
+    order_id: string;
+    comment: string;
+    source: string;
+  }
+
+  export interface NewNpsResponse {
+    id: number;
+  }
+
+  export interface CanBeSavedParams {
+    order_id: string;
+  }
+
+  export interface PatchParams {
+    id: number;
+    store_id: number;
+    location: number;
+    type: number;
+    rate: number;
+    improvements: number[];
+    comment: string;
+    contact: string;
+  }
+
+  export interface NewParams {
+    store_id: number;
+    location: number;
+    type: number;
+    rate: number;
+  }
+
+  export interface NewResponse {
+    id: number;
+    improvements: Improvement[];
+  }
+
+  export interface Improvement {
+    id: number;
+    title: string;
+  }
+
+  export interface ResponseOk {
+    ok: boolean;
+  }
+
+  export interface ParamsApp {
+    client_id: number;
+    name: string;
+    email: string;
+    phone: string;
+    app_version: string;
+    rate: string;
+    comment: string;
+    device_id: string;
+    platform: string;
+  }
+
+  export interface ParamsStore {
+    client_id: number;
+    rate: string;
+    reasons: number[];
+    comment: string;
+    store_id: number;
+    device_id: string;
+    platform: string;
+  }
+
+  export interface ParamsOrder {
+    order_id: string;
+    rate: string;
+    reasons: number[];
+    comment: string;
+    store_id: number;
+    device_id: string;
+    platform: string;
+  }
+
+  export interface Reason {
+    id: number;
+    title: string;
+    category_id: number;
+  }
+
+  export interface Category {
+    id: number;
+    title: string;
+  }
+
+  export interface RequestChoices {
+    category_id: number;
+  }
+
+  export interface ResponseReasons {
+    result: Reason[];
+  }
+
+  export interface ResponseCategories {
+    result: Category[];
+  }
+
+  export interface ParamsReasonsByOrder {
+    order_id: string;
+    store_code: number;
+  }
+
+  export interface NewOrderParams {
+    store_id: number;
+    order_date: string;
+    order_id: string;
+    rate: number;
+    channel: string;
+    company: string;
+    source: string;
+    type: string;
+    template: string;
+  }
+
+  export interface NewOrderResponse {
+    id: number;
+    improvements: Improvement[];
+  }
+
+  export interface PatchOrderParams {
+    id: number;
+    store_id: number;
+    order_date: string;
+    order_id: string;
+    rate: number;
+    improvements: number[];
+    comment: string;
+    contact: string;
+  }
+}
+
 export namespace slack {
   export interface Tracker {
     statusChangeTicket(
@@ -1060,114 +1171,6 @@ export namespace slack {
     resp_channel: string;
     resp_timestamp: string;
   }
-}
-
-export namespace orders {
-  export interface Offline {
-    byClient(
-      request: ParamsOfflineByClient,
-      metadata?: any
-    ): Observable<ResponseOffline>;
-    getById(
-      request: ParamsOrderById,
-      metadata?: any
-    ): Observable<ResponseOfflineById>;
-  }
-
-  export interface ParamsOfflineByClient {
-    client_id: number;
-    limit: number;
-    offset: number;
-  }
-
-  export interface ResponseOffline {
-    result: Order[];
-    total: number;
-  }
-
-  export interface ParamsOrderById {
-    id: number;
-    client_id: number;
-  }
-
-  export interface ResponseOfflineById {
-    result: Order;
-  }
-
-  export interface Order {
-    id: number;
-    store_code: number;
-    order_number: string;
-    order_id: string;
-    date: string;
-    client_id: number;
-    seller: string;
-    operation: number;
-    bonuses_wasted: number;
-    bonuses_accrued: number;
-    sum: number;
-    positions: Position[];
-    store_name: string;
-    is_rated: boolean;
-  }
-
-  export interface Position {
-    id: number;
-    article: number;
-    barcode: number;
-    title: string;
-    color: string;
-    size: string;
-    qty: number;
-    sum: number;
-    discount: number;
-    family: string;
-  }
-
-  export interface Online {
-    byClient(
-      request: ParamsOnlineByClient,
-      metadata?: any
-    ): Observable<ResponseOnlineByClient>;
-  }
-
-  export interface ParamsOnlineByClient {
-    client_id: number;
-  }
-
-  export interface ResponseOnlineByClient {
-    order: number[];
-  }
-
-  export interface OfflineOrderPosition {
-    store_name: string;
-    store_id: number;
-    cashbox_id: number;
-    order_id: string;
-    row_receipt: number;
-    date: string;
-    time: string;
-    article: string;
-    title: string;
-    color: string;
-    size: string;
-    barcode: string;
-    qty: number;
-    total_gross: number;
-    discount: number;
-    total: number;
-    client_id: number;
-    seller: string;
-    family: string;
-    operation: number;
-    source: string;
-    bonuses_wasted: number;
-    bonuses_accrued: number;
-  }
-}
-
-export namespace google.protobuf {
-  export interface Empty {}
 }
 
 export namespace platform {
@@ -1238,72 +1241,8 @@ export namespace platform {
   }
 }
 
-export namespace release {
-  export interface ArticlesRelease {
-    create(
-      request: ParamsCreateArticle,
-      metadata?: any
-    ): Observable<ArticleReleaseActionResponse>;
-    get(
-      request: ParamsGetArticleRelease,
-      metadata?: any
-    ): Observable<ArticleReleaseList>;
-    getById(
-      request: ArticlesReleaseId,
-      metadata?: any
-    ): Observable<ArticleRelease>;
-    update(
-      request: ParamsCreateArticle,
-      metadata?: any
-    ): Observable<ArticleReleaseActionResponse>;
-    delete(
-      request: ArticlesReleaseId,
-      metadata?: any
-    ): Observable<ArticleReleaseActionResponse>;
-  }
-
-  export enum ArticleReleaseType {
-    site = 0,
-    mercaux = 1,
-  }
-
-  export interface ParamsCreateArticle {
-    article: string;
-    trigger_time: string;
-    type: ArticleReleaseType;
-  }
-
-  export interface ArticleReleaseActionResponse {
-    ok: boolean;
-    id: number;
-  }
-
-  export interface ParamsGetArticleRelease {
-    limit: number;
-    offset: number;
-    type: ArticleReleaseType;
-    is_deleted: boolean;
-    is_active: boolean;
-  }
-
-  export interface ArticleReleaseList {
-    ok: boolean;
-    total: number;
-    article: ArticleRelease[];
-  }
-
-  export interface ArticleRelease {
-    id: number;
-    article: string;
-    trigger_time: string;
-    type: ArticleReleaseType;
-    is_deleted: boolean;
-    is_active: boolean;
-  }
-
-  export interface ArticlesReleaseId {
-    id: number;
-  }
+export namespace google.protobuf {
+  export interface Empty {}
 }
 
 export namespace products {
@@ -1393,22 +1332,6 @@ export namespace products {
   }
 }
 
-export namespace products {
-  export interface Error {
-    source: string;
-    type: string;
-    message: string;
-  }
-
-  export interface CreateResponse {
-    ok: boolean;
-  }
-
-  export interface Errors {
-    create(request: Error, metadata?: any): Observable<CreateResponse>;
-  }
-}
-
 export namespace stocks {
   export interface Stocks {
     upsert(request: ListStocks, metadata?: any): Observable<SuccessResponse>;
@@ -1448,55 +1371,160 @@ export namespace stocks {
   }
 }
 
-export namespace logistics {
-  export interface TransportCompanyService {
-    list(
-      request: ListTransportCompanyRequest,
-      metadata?: any
-    ): Observable<ListTransportCompanyResponse>;
+export namespace release {
+  export interface ArticlesRelease {
     create(
-      request: TransportCompany,
+      request: ParamsCreateArticle,
       metadata?: any
-    ): Observable<TransportCompany>;
+    ): Observable<ArticleReleaseActionResponse>;
     get(
-      request: TransportCompanyId,
+      request: ParamsGetArticleRelease,
       metadata?: any
-    ): Observable<TransportCompany>;
+    ): Observable<ArticleReleaseList>;
+    getById(
+      request: ArticlesReleaseId,
+      metadata?: any
+    ): Observable<ArticleRelease>;
     update(
-      request: TransportCompany,
+      request: ParamsCreateArticle,
       metadata?: any
-    ): Observable<TransportCompany>;
+    ): Observable<ArticleReleaseActionResponse>;
     delete(
-      request: TransportCompanyId,
+      request: ArticlesReleaseId,
+      metadata?: any
+    ): Observable<ArticleReleaseActionResponse>;
+  }
+
+  export enum ArticleReleaseType {
+    site = 0,
+    mercaux = 1,
+  }
+
+  export interface ParamsCreateArticle {
+    article: string;
+    trigger_time: string;
+    type: ArticleReleaseType;
+  }
+
+  export interface ArticleReleaseActionResponse {
+    ok: boolean;
+    id: number;
+  }
+
+  export interface ParamsGetArticleRelease {
+    limit: number;
+    offset: number;
+    type: ArticleReleaseType;
+    is_deleted: boolean;
+    is_active: boolean;
+  }
+
+  export interface ArticleReleaseList {
+    ok: boolean;
+    total: number;
+    article: ArticleRelease[];
+  }
+
+  export interface ArticleRelease {
+    id: number;
+    article: string;
+    trigger_time: string;
+    type: ArticleReleaseType;
+    is_deleted: boolean;
+    is_active: boolean;
+  }
+
+  export interface ArticlesReleaseId {
+    id: number;
+  }
+}
+
+export namespace products {
+  export interface Error {
+    source: string;
+    type: string;
+    message: string;
+  }
+
+  export interface CreateResponse {
+    ok: boolean;
+  }
+
+  export interface Errors {
+    create(request: Error, metadata?: any): Observable<CreateResponse>;
+  }
+}
+
+export namespace logistics {
+  export interface ZoneGroupRestrictionService {
+    list(
+      request: ListZoneGroupRestrictionRequest,
+      metadata?: any
+    ): Observable<ListZoneGroupRestrictionResponse>;
+    create(
+      request: CreateListZoneGroupRestrictionRequest,
+      metadata?: any
+    ): Observable<ListZoneGroupRestrictionResponse>;
+    update(
+      request: CreateListZoneGroupRestrictionRequest,
+      metadata?: any
+    ): Observable<ListZoneGroupRestrictionResponse>;
+    get(
+      request: ZoneGroupRestrictionId,
+      metadata?: any
+    ): Observable<ZoneGroupRestriction>;
+    delete(
+      request: ZoneGroupRestrictionId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
   }
 
-  export interface TransportCompanyId {
+  export interface ZoneGroupRestrictionId {
     id: number;
   }
 
-  export interface TransportCompany {
+  export interface CreateZoneGroupRestriction {
     id: number;
-    name: string;
-    track_url: string;
-    has_integration: boolean;
-    is_delivery_use_only_working_days: boolean;
+    zone_group_id: number;
+    country_iso_code: string;
+    message_id: number;
+    popup_id: number;
     is_active: boolean;
     created_at: string;
     updated_at: string;
   }
 
-  export interface ListTransportCompanyRequest {
+  export interface ZoneGroupRestriction {
+    id: number;
+    zone_group: ZoneGroup;
+    country: Country;
+    message: Message;
+    popup: Popup;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListZoneGroupRestrictionRequest {
     limit: number;
     offset: number;
     search: string;
     sort: string;
   }
 
-  export interface ListTransportCompanyResponse {
-    results: TransportCompany[];
+  export interface ListZoneGroupRestrictionResponse {
+    results: ZoneGroupRestriction[];
     total: number;
+  }
+
+  export interface CreateListZoneGroupRestrictionRequest {
+    results: CreateZoneGroupRestriction[];
+    total: number;
+  }
+
+  export interface Country {
+    country_code: string;
+    country_name_ru: string;
   }
 }
 
@@ -1537,40 +1565,6 @@ export namespace logistics {
 
   export interface ListPaymentMethodResponse {
     results: PaymentMethod[];
-    total: number;
-  }
-}
-
-export namespace logistics {
-  export interface CategoryService {
-    list(
-      request: ListCategoryRequest,
-      metadata?: any
-    ): Observable<ListCategoryResponse>;
-    suggest(
-      request: SuggestCategoryRequest,
-      metadata?: any
-    ): Observable<ListCategoryResponse>;
-  }
-
-  export interface Category {
-    id: number;
-    name: string;
-  }
-
-  export interface ListCategoryRequest {
-    limit: number;
-    offset: number;
-    sort: string;
-  }
-
-  export interface SuggestCategoryRequest {
-    limit: number;
-    search: string;
-  }
-
-  export interface ListCategoryResponse {
-    results: Category[];
     total: number;
   }
 }
@@ -1617,6 +1611,73 @@ export namespace logistics {
 }
 
 export namespace logistics {
+  export interface ZoneService {
+    list(
+      request: ListZoneRequest,
+      metadata?: any
+    ): Observable<ListZoneResponse>;
+    create(request: Zone, metadata?: any): Observable<Zone>;
+    get(request: ZoneId, metadata?: any): Observable<Zone>;
+    update(request: Zone, metadata?: any): Observable<Zone>;
+    delete(request: ZoneId, metadata?: any): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestZoneRequest,
+      metadata?: any
+    ): Observable<SuggestZoneResponse>;
+  }
+
+  export interface ZoneId {
+    id: number;
+  }
+
+  export interface Zone {
+    id: number;
+    name: string;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+    zone_groups: ZoneGroupInfo[];
+    geo_id_quantity: number;
+    geo_ids: string[];
+  }
+
+  export interface ZoneGroupInfo {
+    id: number;
+    name: string;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListZoneRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListZoneResponse {
+    results: Zone[];
+    total: number;
+  }
+
+  export interface SuggestZoneRequest {
+    limit: number;
+    search: string;
+  }
+
+  export interface SuggestZone {
+    id: number;
+    name: string;
+  }
+
+  export interface SuggestZoneResponse {
+    results: SuggestZone[];
+    total: number;
+  }
+}
+
+export namespace logistics {
   export interface DeliveryTypeService {
     list(
       request: ListDeliveryTypeRequest,
@@ -1626,6 +1687,7 @@ export namespace logistics {
       request: CreateDeliveryTypeRequest,
       metadata?: any
     ): Observable<DeliveryTypeShort>;
+    get(request: DeliveryTypeId, metadata?: any): Observable<DeliveryType>;
     delete(
       request: DeliveryTypeId,
       metadata?: any
@@ -1661,44 +1723,184 @@ export namespace logistics {
     results: DeliveryTypeShort[];
     total: number;
   }
-}
 
-export namespace logistics {
-  export interface DeliveryMethodService {
-    list(
-      request: ListDeliveryMethodRequest,
-      metadata?: any
-    ): Observable<ListDeliveryMethodResponse>;
-    create(request: DeliveryMethod, metadata?: any): Observable<DeliveryMethod>;
-    get(request: DeliveryMethodId, metadata?: any): Observable<DeliveryMethod>;
-    update(request: DeliveryMethod, metadata?: any): Observable<DeliveryMethod>;
-    delete(
-      request: DeliveryMethodId,
-      metadata?: any
-    ): Observable<google.protobuf.Empty>;
-  }
-
-  export interface DeliveryMethodId {
+  export interface DeliveryType {
     id: number;
-  }
-
-  export interface DeliveryMethod {
-    id: number;
+    transport_company_mode: TransportCompanyMode;
+    zone_group: ZoneGroup;
     name: string;
+    description_ru: string;
+    popup: Popup;
+    code: string;
+    default_days_from: number;
+    default_days_to: number;
+    delivery_price: number;
+    delivery_price_border: number;
+    delivery_price_after_border: number;
+    delivery_min_days: number;
+    cutoff_time: string;
+    consolidation_hours: number;
+    gap_hours: number;
+    priority_coefficient: number;
+    max_days_coefficient: number;
+    tariff_coefficient: number;
+    winner_percent: number;
+    max_price: number;
+    restriction_by_price_is_active: boolean;
+    restriction_by_price_message: Message;
+    restriction_by_price_popup: Popup;
+    max_quantity: number;
+    restriction_by_quantity_is_active: boolean;
+    restriction_by_quantity_message: Message;
+    restriction_by_quantity_popup: Popup;
+    max_quantity_per_article: number;
+    restriction_by_quantity_per_article_is_active: boolean;
+    restriction_by_quantity_per_article_message: Message;
+    restriction_by_quantity_per_article_popup: Popup;
+    is_visible_while_restricted: boolean;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+    payment_method_to_delivery_type: PaymentMethodToDeliveryType[];
+    category_delivery_type_restrictions: CategoryRestriction[];
+  }
+
+  export interface CategoryRestriction {
+    id: number;
+    category: Category;
+    message: Message;
+    popup: Popup;
     is_active: boolean;
     created_at: string;
     updated_at: string;
   }
 
-  export interface ListDeliveryMethodRequest {
+  export interface PaymentMethodToDeliveryType {
+    payment_method: PaymentMethod;
+    message: Message;
+    max_price: number;
+    is_visible_while_restricted: boolean;
+    payment_method_category_restrictions: PaymentMethodCategoryRestriction[];
+  }
+
+  export interface PaymentMethodCategoryRestriction {
+    category: Category;
+    message: Message;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+}
+
+export namespace logistics {
+  export interface GlobalRestrictionsService {
+    list(
+      request: ListGlobalRestrictionRequest,
+      metadata?: any
+    ): Observable<ListGlobalRestrictionResponse>;
+    create(
+      request: GlobalRestriction,
+      metadata?: any
+    ): Observable<GlobalRestriction>;
+    update(
+      request: GlobalRestriction,
+      metadata?: any
+    ): Observable<GlobalRestriction>;
+  }
+
+  export interface GlobalRestriction {
+    id: number;
+    message_id: number;
+    popup_id: number;
+    restriction: Restriction;
+    value: number;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+  enum Restriction {
+    price,
+    quantity,
+  }
+
+  export interface ListGlobalRestrictionRequest {
     limit: number;
     offset: number;
     search: string;
     sort: string;
   }
 
-  export interface ListDeliveryMethodResponse {
-    results: DeliveryMethod[];
+  export interface ListGlobalRestrictionResponse {
+    results: GlobalRestriction[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface ZoneGroupService {
+    list(
+      request: ListZoneGroupRequest,
+      metadata?: any
+    ): Observable<ListZoneGroupResponse>;
+    create(request: ZoneGroup, metadata?: any): Observable<ZoneGroup>;
+    get(request: ZoneGroupId, metadata?: any): Observable<ZoneGroup>;
+    update(request: ZoneGroup, metadata?: any): Observable<ZoneGroup>;
+    delete(
+      request: ZoneGroupId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestZoneGroupRequest,
+      metadata?: any
+    ): Observable<SuggestZoneGroupResponse>;
+    deleteZone(
+      request: DeleteZoneRequest,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface ZoneGroupId {
+    id: number;
+  }
+
+  export interface DeleteZoneRequest {
+    id: number;
+    zone_id: number;
+  }
+
+  export interface ZoneGroup {
+    id: number;
+    name: string;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+    zones: Zone[];
+  }
+
+  export interface ListZoneGroupRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListZoneGroupResponse {
+    results: ZoneGroup[];
+    total: number;
+  }
+
+  export interface SuggestZoneGroupRequest {
+    limit: number;
+    search: string;
+  }
+
+  export interface SuggestZoneGroup {
+    id: number;
+    name: string;
+  }
+
+  export interface SuggestZoneGroupResponse {
+    results: SuggestZoneGroup[];
     total: number;
   }
 }
@@ -1784,6 +1986,161 @@ export namespace logistics {
 }
 
 export namespace logistics {
+  export interface CategoryService {
+    list(
+      request: ListCategoryRequest,
+      metadata?: any
+    ): Observable<ListCategoryResponse>;
+    suggest(
+      request: SuggestCategoryRequest,
+      metadata?: any
+    ): Observable<ListCategoryResponse>;
+  }
+
+  export interface Category {
+    id: number;
+    name: string;
+  }
+
+  export interface ListCategoryRequest {
+    limit: number;
+    offset: number;
+    sort: string;
+  }
+
+  export interface SuggestCategoryRequest {
+    limit: number;
+    search: string;
+  }
+
+  export interface ListCategoryResponse {
+    results: Category[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface CategoryDeliveryTypeRestrictionService {
+    list(
+      request: ListCategoryDeliveryTypeRestrictionRequest,
+      metadata?: any
+    ): Observable<ListCategoryDeliveryTypeRestrictionResponse>;
+    create(
+      request: CreateCategoryDeliveryTypeRestriction,
+      metadata?: any
+    ): Observable<CategoryDeliveryTypeRestriction>;
+    update(
+      request: CreateCategoryDeliveryTypeRestriction,
+      metadata?: any
+    ): Observable<CategoryDeliveryTypeRestriction>;
+    get(
+      request: CategoryDeliveryTypeRestrictionId,
+      metadata?: any
+    ): Observable<CategoryDeliveryTypeRestriction>;
+    delete(
+      request: CategoryDeliveryTypeRestrictionId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface CategoryDeliveryTypeRestrictionId {
+    id: number;
+  }
+
+  export interface CreateCategoryDeliveryTypeRestriction {
+    id: number;
+    category_id: number;
+    delivery_type_id: number;
+    message_id: number;
+    popup_id: number;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface CategoryDeliveryTypeRestriction {
+    id: number;
+    category: Category;
+    delivery_type: DeliveryTypeShort;
+    message: Message;
+    popup: Popup;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListCategoryDeliveryTypeRestrictionRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListCategoryDeliveryTypeRestrictionResponse {
+    results: CategoryDeliveryTypeRestriction[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface PopupService {
+    list(
+      request: ListPopupRequest,
+      metadata?: any
+    ): Observable<ListPopupResponse>;
+    create(request: Popup, metadata?: any): Observable<Popup>;
+    get(request: PopupId, metadata?: any): Observable<Popup>;
+    update(request: Popup, metadata?: any): Observable<Popup>;
+    delete(request: PopupId, metadata?: any): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestPopupRequest,
+      metadata?: any
+    ): Observable<SuggestPopupResponse>;
+  }
+
+  export interface PopupId {
+    id: number;
+  }
+
+  export interface Popup {
+    id: number;
+    text: string;
+    title: string;
+    button_text: string;
+    rels: Rel[];
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListPopupRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListPopupResponse {
+    results: Popup[];
+    total: number;
+  }
+
+  export interface SuggestPopupRequest {
+    limit: number;
+    search: string;
+  }
+
+  export interface SuggestPopup {
+    id: number;
+    text: string;
+  }
+
+  export interface SuggestPopupResponse {
+    results: SuggestPopup[];
+    total: number;
+  }
+}
+
+export namespace logistics {
   export interface IntervalService {
     list(
       request: ListIntervalRequest,
@@ -1833,6 +2190,228 @@ export namespace logistics {
 
   export interface ListIntervalResponse {
     results: Interval[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface MessageService {
+    list(
+      request: ListMessageRequest,
+      metadata?: any
+    ): Observable<ListMessageResponse>;
+    create(request: Message, metadata?: any): Observable<Message>;
+    get(request: MessageId, metadata?: any): Observable<Message>;
+    update(request: Message, metadata?: any): Observable<Message>;
+    delete(
+      request: MessageId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestMessageRequest,
+      metadata?: any
+    ): Observable<SuggestMessageResponse>;
+  }
+
+  export interface Rel {
+    id: number;
+    name: string;
+    rel: string;
+    rel_name: string;
+    href: string;
+  }
+
+  export interface MessageId {
+    id: number;
+  }
+
+  export interface Message {
+    id: number;
+    text: string;
+    rels: Rel[];
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListMessageRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListMessageResponse {
+    results: Message[];
+    total: number;
+  }
+
+  export interface SuggestMessageRequest {
+    limit: number;
+    search: string;
+  }
+
+  export interface SuggestMessage {
+    id: number;
+    text: string;
+  }
+
+  export interface SuggestMessageResponse {
+    results: SuggestMessage[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface CategoryZoneGroupRestrictionService {
+    list(
+      request: ListCategoryZoneGroupRestrictionRequest,
+      metadata?: any
+    ): Observable<ListCategoryZoneGroupRestrictionResponse>;
+    create(
+      request: CreateCategoryZoneGroupRestriction,
+      metadata?: any
+    ): Observable<CategoryZoneGroupRestriction>;
+    update(
+      request: CreateCategoryZoneGroupRestriction,
+      metadata?: any
+    ): Observable<CategoryZoneGroupRestriction>;
+    get(
+      request: CategoryZoneGroupRestrictionId,
+      metadata?: any
+    ): Observable<CategoryZoneGroupRestriction>;
+    delete(
+      request: CategoryZoneGroupRestrictionId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface CategoryZoneGroupRestrictionId {
+    id: number;
+  }
+
+  export interface CreateCategoryZoneGroupRestriction {
+    id: number;
+    category_id: number;
+    zone_group_id: number;
+    message_id: number;
+    popup_id: number;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface CategoryZoneGroupRestriction {
+    id: number;
+    category: Category;
+    zone_group: ZoneGroup;
+    message: Message;
+    popup: Popup;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListCategoryZoneGroupRestrictionRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListCategoryZoneGroupRestrictionResponse {
+    results: CategoryZoneGroupRestriction[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface TransportCompanyService {
+    list(
+      request: ListTransportCompanyRequest,
+      metadata?: any
+    ): Observable<ListTransportCompanyResponse>;
+    create(
+      request: TransportCompany,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    get(
+      request: TransportCompanyId,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    update(
+      request: TransportCompany,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    delete(
+      request: TransportCompanyId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface TransportCompanyId {
+    id: number;
+  }
+
+  export interface TransportCompany {
+    id: number;
+    name: string;
+    track_url: string;
+    has_integration: boolean;
+    is_delivery_use_only_working_days: boolean;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListTransportCompanyRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListTransportCompanyResponse {
+    results: TransportCompany[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface DeliveryMethodService {
+    list(
+      request: ListDeliveryMethodRequest,
+      metadata?: any
+    ): Observable<ListDeliveryMethodResponse>;
+    create(request: DeliveryMethod, metadata?: any): Observable<DeliveryMethod>;
+    get(request: DeliveryMethodId, metadata?: any): Observable<DeliveryMethod>;
+    update(request: DeliveryMethod, metadata?: any): Observable<DeliveryMethod>;
+    delete(
+      request: DeliveryMethodId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface DeliveryMethodId {
+    id: number;
+  }
+
+  export interface DeliveryMethod {
+    id: number;
+    name: string;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListDeliveryMethodRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListDeliveryMethodResponse {
+    results: DeliveryMethod[];
     total: number;
   }
 }
