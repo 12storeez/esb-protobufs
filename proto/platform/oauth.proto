@@ -5,11 +5,19 @@ option go_package = "go/platform";
 package platform;
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 service Oauth {
   rpc Token(TokenRequest) returns (TokenResponse) {
     option (google.api.http) = {
       post: "/api/oauth/token"
+      body: "*"
+    };
+  }
+
+  rpc Authorize(AuthorizeRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/oauth/authorize"
       body: "*"
     };
   }
@@ -22,6 +30,7 @@ message TokenRequest {
   string username = 4;
   string password = 5;
   string refresh_token = 6;
+  string code = 7;
 }
 
 message TokenResponse {
@@ -37,4 +46,10 @@ message TokenResponse {
   Scope scope = 6;
   int32 uid = 7;
   string info = 8;
+}
+
+message AuthorizeRequest {
+  int32 client_id = 1;
+  string redirect_uri = 2;
+  string response_type = 3;
 }
