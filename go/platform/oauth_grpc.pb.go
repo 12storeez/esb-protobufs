@@ -7,6 +7,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OauthClient interface {
 	Token(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
+	Authorize(ctx context.Context, in *AuthorizeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type oauthClient struct {
@@ -38,11 +40,21 @@ func (c *oauthClient) Token(ctx context.Context, in *TokenRequest, opts ...grpc.
 	return out, nil
 }
 
+func (c *oauthClient) Authorize(ctx context.Context, in *AuthorizeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/platform.Oauth/Authorize", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OauthServer is the server API for Oauth service.
 // All implementations should embed UnimplementedOauthServer
 // for forward compatibility
 type OauthServer interface {
 	Token(context.Context, *TokenRequest) (*TokenResponse, error)
+	Authorize(context.Context, *AuthorizeRequest) (*emptypb.Empty, error)
 }
 
 // UnimplementedOauthServer should be embedded to have forward compatible implementations.
@@ -51,6 +63,9 @@ type UnimplementedOauthServer struct {
 
 func (UnimplementedOauthServer) Token(context.Context, *TokenRequest) (*TokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Token not implemented")
+}
+func (UnimplementedOauthServer) Authorize(context.Context, *AuthorizeRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Authorize not implemented")
 }
 
 // UnsafeOauthServer may be embedded to opt out of forward compatibility for this service.
@@ -82,6 +97,24 @@ func _Oauth_Token_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Oauth_Authorize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthorizeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OauthServer).Authorize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/platform.Oauth/Authorize",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OauthServer).Authorize(ctx, req.(*AuthorizeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Oauth_ServiceDesc is the grpc.ServiceDesc for Oauth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -92,6 +125,10 @@ var Oauth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Token",
 			Handler:    _Oauth_Token_Handler,
+		},
+		{
+			MethodName: "Authorize",
+			Handler:    _Oauth_Authorize_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
