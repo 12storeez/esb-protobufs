@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "message.proto";
+import "popup.proto";
+import "delivery_mode.proto";
+import "delivery_type.proto";
+
+service DeliveryCalendarService {
+  rpc List(ListDeliveryCalendarRequest) returns (ListDeliveryCalendarResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-calendar"
+    };
+  }
+
+  rpc Create(CreateDeliveryCalendar) returns (DeliveryCalendar) {
+    option (google.api.http) = {
+      post: "/api/v1/delivery-calendar"
+      body: "*"
+    };
+  }
+
+  rpc Update(CreateDeliveryCalendar) returns (DeliveryCalendar) {
+    option (google.api.http) = {
+      patch: "/api/v1/delivery-calendar/{id}"
+      body: "*"
+    };
+  }
+
+  rpc Get(DeliveryCalendarId) returns (DeliveryCalendar) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-calendar/{id}"
+    };
+  }
+
+  rpc Delete(DeliveryCalendarId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/delivery-calendar/{id}"
+    };
+  }
+}
+
+message DeliveryCalendarId {
+  int32 id = 1;
+}
+
+message CreateDeliveryCalendar {
+  int32   id = 1;
+  int32   delivery_mode_id = 2;
+  int32   delivery_type_id = 3;
+  int32   message_id = 4;
+  int32   popup_id = 5;
+  string  date_from = 6;
+  string  date_to = 7;
+  bool    is_delivery_delayed = 8;
+  string  created_at = 9;
+  string  updated_at = 10;
+}
+
+message DeliveryCalendar {
+  int32         id = 1;
+  DeliveryMode  delivery_mode = 2;
+  DeliveryType  delivery_type = 3;
+  Message       message = 4;
+  Popup         popup = 5;
+  string        date_from = 6;
+  string        date_to = 7;
+  bool          is_delivery_delayed = 8;
+  string        created_at = 9;
+  string        updated_at = 10;
+}
+
+message ListDeliveryCalendarRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string search = 3;
+  string sort = 4;
+}
+
+message ListDeliveryCalendarResponse {
+  repeated DeliveryCalendar results = 1;
+  int32                     total = 2;
+}
