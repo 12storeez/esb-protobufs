@@ -15,6 +15,9 @@
       "name": "CategoryZoneGroupRestrictionService"
     },
     {
+      "name": "DeliveryCalendarService"
+    },
+    {
       "name": "DeliveryMethodService"
     },
     {
@@ -139,6 +142,216 @@
         ],
         "tags": [
           "CategoryService"
+        ]
+      }
+    },
+    "/api/v1/delivery-calendar": {
+      "get": {
+        "operationId": "DeliveryCalendarService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListDeliveryCalendarResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeliveryCalendarService"
+        ]
+      },
+      "post": {
+        "operationId": "DeliveryCalendarService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryCalendar"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCreateDeliveryCalendar"
+            }
+          }
+        ],
+        "tags": [
+          "DeliveryCalendarService"
+        ]
+      }
+    },
+    "/api/v1/delivery-calendar/{id}": {
+      "get": {
+        "operationId": "DeliveryCalendarService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryCalendar"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeliveryCalendarService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeliveryCalendarService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "DeliveryCalendarService"
+        ]
+      },
+      "patch": {
+        "operationId": "DeliveryCalendarService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryCalendar"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "deliveryModeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "deliveryTypeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "dateFrom": {
+                  "type": "string"
+                },
+                "dateTo": {
+                  "type": "string"
+                },
+                "isDeliveryDelayed": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "DeliveryCalendarService"
         ]
       }
     },
@@ -3460,6 +3673,46 @@
         }
       }
     },
+    "logisticsCreateDeliveryCalendar": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryModeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryTypeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "dateFrom": {
+          "type": "string"
+        },
+        "dateTo": {
+          "type": "string"
+        },
+        "isDeliveryDelayed": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsCreateDeliveryTypeRequest": {
       "type": "object",
       "properties": {
@@ -3553,6 +3806,42 @@
         "sunday"
       ],
       "default": "monday"
+    },
+    "logisticsDeliveryCalendar": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryMode": {
+          "$ref": "#/definitions/logisticsDeliveryMode"
+        },
+        "deliveryType": {
+          "$ref": "#/definitions/logisticsDeliveryType"
+        },
+        "message": {
+          "$ref": "#/definitions/logisticsMessage"
+        },
+        "popup": {
+          "$ref": "#/definitions/logisticsPopup"
+        },
+        "dateFrom": {
+          "type": "string"
+        },
+        "dateTo": {
+          "type": "string"
+        },
+        "isDeliveryDelayed": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
     },
     "logisticsDeliveryMethod": {
       "type": "object",
@@ -3864,6 +4153,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsListDeliveryCalendarResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsDeliveryCalendar"
           }
         },
         "total": {
