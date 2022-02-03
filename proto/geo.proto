@@ -208,6 +208,7 @@ message AddressDetailsByGeoIDParams {
   LocaleType locale = 1;
   string     country_iso_code = 2;
   string     id = 3;
+  string     city_id = 4;
 }
 
 message Address {
