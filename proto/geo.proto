@@ -42,8 +42,9 @@ service geo {
 }
 
 enum LocaleType {
-  ru = 0;
-  en = 1;
+  nil = 0;
+  ru = 1;
+  en = 2;
 }
 
 // Country ...
