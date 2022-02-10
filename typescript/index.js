@@ -13,8 +13,9 @@ var geo;
 (function (geo) {
     var LocaleType;
     (function (LocaleType) {
-        LocaleType[LocaleType["ru"] = 0] = "ru";
-        LocaleType[LocaleType["en"] = 1] = "en";
+        LocaleType[LocaleType["nil"] = 0] = "nil";
+        LocaleType[LocaleType["ru"] = 1] = "ru";
+        LocaleType[LocaleType["en"] = 2] = "en";
     })(LocaleType = geo.LocaleType || (geo.LocaleType = {}));
 })(geo = exports.geo || (exports.geo = {}));
 var platform;

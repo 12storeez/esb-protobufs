@@ -387,8 +387,9 @@ export namespace geo {
   }
 
   export enum LocaleType {
-    ru = 0,
-    en = 1,
+    nil = 0,
+    ru = 1,
+    en = 2,
   }
 
   export interface SuggestCountryParams {
@@ -546,6 +547,7 @@ export namespace geo {
     locale: LocaleType;
     country_iso_code: string;
     id: string;
+    city_id: string;
   }
 
   export interface Address {
@@ -1232,6 +1234,7 @@ export namespace platform {
     password: string;
     refresh_token: string;
     code: string;
+    token: string;
   }
 
   export interface TokenResponse {
@@ -2075,6 +2078,73 @@ export namespace logistics {
 
   export interface ListCategoryDeliveryTypeRestrictionResponse {
     results: CategoryDeliveryTypeRestriction[];
+    total: number;
+  }
+}
+
+export namespace logistics {
+  export interface DeliveryCalendarService {
+    list(
+      request: ListDeliveryCalendarRequest,
+      metadata?: any
+    ): Observable<ListDeliveryCalendarResponse>;
+    create(
+      request: CreateDeliveryCalendar,
+      metadata?: any
+    ): Observable<DeliveryCalendar>;
+    update(
+      request: CreateDeliveryCalendar,
+      metadata?: any
+    ): Observable<DeliveryCalendar>;
+    get(
+      request: DeliveryCalendarId,
+      metadata?: any
+    ): Observable<DeliveryCalendar>;
+    delete(
+      request: DeliveryCalendarId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface DeliveryCalendarId {
+    id: number;
+  }
+
+  export interface CreateDeliveryCalendar {
+    id: number;
+    delivery_mode_id: number;
+    delivery_type_id: number;
+    message_id: number;
+    popup_id: number;
+    date_from: string;
+    date_to: string;
+    is_delivery_delayed: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface DeliveryCalendar {
+    id: number;
+    delivery_mode: DeliveryMode;
+    delivery_type: DeliveryType;
+    message: Message;
+    popup: Popup;
+    date_from: string;
+    date_to: string;
+    is_delivery_delayed: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface ListDeliveryCalendarRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListDeliveryCalendarResponse {
+    results: DeliveryCalendar[];
     total: number;
   }
 }
