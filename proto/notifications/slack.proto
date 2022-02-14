@@ -12,6 +12,22 @@ service Slack {
       body: "*"
     };
   }
+
+  rpc SendFile (SlackSendFileParams) returns (SlackSendResponse) {
+    option (google.api.http) = {
+      post: "/v1/slack/send-file"
+      body: "*"
+    };
+  }
+}
+
+message SlackSendFileParams {
+  repeated string channels = 1;
+  string file = 2;
+  string filetype = 3;
+  string title = 4;
+  string initial_comment = 5;
+  string thread_ts = 6;
 }
 
 message SlackSendParams {
