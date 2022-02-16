@@ -878,6 +878,177 @@
         "tags": [
           "DeliveryTypeService"
         ]
+      },
+      "patch": {
+        "operationId": "DeliveryTypeService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsDeliveryType"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "transportCompanyMode": {
+                  "$ref": "#/definitions/logisticsTransportCompanyMode"
+                },
+                "zoneGroup": {
+                  "$ref": "#/definitions/logisticsZoneGroup"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "descriptionRu": {
+                  "type": "string"
+                },
+                "popup": {
+                  "$ref": "#/definitions/logisticsPopup"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "defaultDaysFrom": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "defaultDaysTo": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "deliveryPrice": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "deliveryPriceBorder": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "deliveryPriceAfterBorder": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "deliveryMinDays": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "cutoffTime": {
+                  "type": "string"
+                },
+                "consolidationHours": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "gapHours": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "priorityCoefficient": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "maxDaysCoefficient": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "tariffCoefficient": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "winnerPercent": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "maxPrice": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByPriceIsActive": {
+                  "type": "boolean"
+                },
+                "restrictionByPriceMessage": {
+                  "$ref": "#/definitions/logisticsMessage"
+                },
+                "restrictionByPricePopup": {
+                  "$ref": "#/definitions/logisticsPopup"
+                },
+                "maxQuantity": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByQuantityIsActive": {
+                  "type": "boolean"
+                },
+                "restrictionByQuantityMessage": {
+                  "$ref": "#/definitions/logisticsMessage"
+                },
+                "restrictionByQuantityPopup": {
+                  "$ref": "#/definitions/logisticsPopup"
+                },
+                "maxQuantityPerArticle": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByQuantityPerArticleIsActive": {
+                  "type": "boolean"
+                },
+                "restrictionByQuantityPerArticleMessage": {
+                  "$ref": "#/definitions/logisticsMessage"
+                },
+                "restrictionByQuantityPerArticlePopup": {
+                  "$ref": "#/definitions/logisticsPopup"
+                },
+                "isVisibleWhileRestricted": {
+                  "type": "boolean"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                },
+                "paymentMethodToDeliveryType": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
+                  }
+                },
+                "categoryDeliveryTypeRestrictions": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/logisticsCategoryRestriction"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "DeliveryTypeService"
+        ]
       }
     },
     "/api/v1/interval": {

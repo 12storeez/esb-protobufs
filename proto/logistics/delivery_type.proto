@@ -38,6 +38,13 @@ service DeliveryTypeService {
       delete: "/api/v1/delivery-type/{id}"
     };
   }
+
+  rpc Update(DeliveryType) returns (DeliveryType) {
+    option (google.api.http) = {
+      patch: "/api/v1/delivery-type/{id}"
+      body: "*"
+    };
+  }
 }
 
 message DeliveryTypeId {
