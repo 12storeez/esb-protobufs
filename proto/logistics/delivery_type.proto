@@ -12,6 +12,7 @@ import "transport_company_mode.proto";
 import "zone_group.proto";
 import "category.proto";
 import "payment_method.proto";
+import "interval.proto";
 
 service DeliveryTypeService {
   rpc List(ListDeliveryTypeRequest) returns (ListDeliveryTypeResponse) {
@@ -116,6 +117,7 @@ message DeliveryType {
   string                                   updated_at = 36;
   repeated PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
   repeated CategoryRestriction             category_delivery_type_restrictions = 38;
+  repeated Interval                        delivery_type_intervals = 39;
 }
 
 message CategoryRestriction {

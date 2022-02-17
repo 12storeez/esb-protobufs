@@ -1041,6 +1041,12 @@
                   "items": {
                     "$ref": "#/definitions/logisticsCategoryRestriction"
                   }
+                },
+                "deliveryTypeIntervals": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/logisticsInterval"
+                  }
                 }
               }
             }
@@ -4196,6 +4202,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCategoryRestriction"
+          }
+        },
+        "deliveryTypeIntervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsInterval"
           }
         }
       }
