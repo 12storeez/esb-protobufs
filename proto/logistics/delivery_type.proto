@@ -40,7 +40,7 @@ service DeliveryTypeService {
     };
   }
 
-  rpc Update(DeliveryType) returns (DeliveryType) {
+  rpc Update(UpdateDeliveryType) returns (DeliveryType) {
     option (google.api.http) = {
       patch: "/api/v1/delivery-type/{id}"
       body: "*"
@@ -144,4 +144,47 @@ message PaymentMethodCategoryRestriction {
   bool     is_active = 3;
   string   created_at = 4;
   string   updated_at = 5;
+}
+
+
+message UpdateDeliveryType {
+  int32                                    id = 1;
+  int32                                    transport_company_mode_id = 2;
+  int32                                    zone_group_id = 3;
+  string                                   name = 4;
+  string                                   description_ru = 5;
+  int32                                    popup_id = 6;
+  string                                   code = 7;
+  int32                                    default_days_from = 8;
+  int32                                    default_days_to = 9;
+  float                                    delivery_price = 10;
+  float                                    delivery_price_border = 11;
+  float                                    delivery_price_after_border = 12;
+  int32                                    delivery_min_days = 13;
+  string                                   cutoff_time = 14;
+  int32                                    consolidation_hours = 15;
+  int32                                    gap_hours = 16;
+  float                                    priority_coefficient = 17;
+  float                                    max_days_coefficient = 18;
+  float                                    tariff_coefficient = 19;
+  int32                                    winner_percent = 20;
+  int32                                    max_price = 21;
+  bool                                     restriction_by_price_is_active = 22;
+  int32                                    restriction_by_price_message_id = 23;
+  int32                                    restriction_by_price_popup_id = 24;
+  int32                                    max_quantity = 25;
+  bool                                     restriction_by_quantity_is_active = 26;
+  int32                                    restriction_by_quantity_message_id = 27;
+  int32                                    restriction_by_quantity_popup_id = 28;
+  int32                                    max_quantity_per_article = 29;
+  bool                                     restriction_by_quantity_per_article_is_active = 30;
+  int32                                    restriction_by_quantity_per_article_message_id = 31;
+  int32                                    restriction_by_quantity_per_article_popup_id = 32;
+  bool                                     is_visible_while_restricted = 33;
+  bool                                     is_active = 34;
+  string                                   created_at = 35;
+  string                                   updated_at = 36;
+  repeated PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
+  repeated CategoryRestriction             category_delivery_type_restrictions = 38;
+  repeated int32                           delivery_type_interval_ids = 39;
 }
