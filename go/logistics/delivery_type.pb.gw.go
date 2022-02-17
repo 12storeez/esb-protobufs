@@ -206,7 +206,7 @@ func local_request_DeliveryTypeService_Delete_0(ctx context.Context, marshaler r
 }
 
 func request_DeliveryTypeService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryTypeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeliveryType
+	var protoReq UpdateDeliveryType
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func request_DeliveryTypeService_Update_0(ctx context.Context, marshaler runtime
 }
 
 func local_request_DeliveryTypeService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryTypeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeliveryType
+	var protoReq UpdateDeliveryType
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

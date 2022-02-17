@@ -910,11 +910,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "transportCompanyMode": {
-                  "$ref": "#/definitions/logisticsTransportCompanyMode"
+                "transportCompanyModeId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
-                "zoneGroup": {
-                  "$ref": "#/definitions/logisticsZoneGroup"
+                "zoneGroupId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
                 "name": {
                   "type": "string"
@@ -922,8 +924,9 @@
                 "descriptionRu": {
                   "type": "string"
                 },
-                "popup": {
-                  "$ref": "#/definitions/logisticsPopup"
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
                 "code": {
                   "type": "string"
@@ -986,11 +989,13 @@
                 "restrictionByPriceIsActive": {
                   "type": "boolean"
                 },
-                "restrictionByPriceMessage": {
-                  "$ref": "#/definitions/logisticsMessage"
+                "restrictionByPriceMessageId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
-                "restrictionByPricePopup": {
-                  "$ref": "#/definitions/logisticsPopup"
+                "restrictionByPricePopupId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
                 "maxQuantity": {
                   "type": "integer",
@@ -999,11 +1004,13 @@
                 "restrictionByQuantityIsActive": {
                   "type": "boolean"
                 },
-                "restrictionByQuantityMessage": {
-                  "$ref": "#/definitions/logisticsMessage"
+                "restrictionByQuantityMessageId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
-                "restrictionByQuantityPopup": {
-                  "$ref": "#/definitions/logisticsPopup"
+                "restrictionByQuantityPopupId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
                 "maxQuantityPerArticle": {
                   "type": "integer",
@@ -1012,11 +1019,13 @@
                 "restrictionByQuantityPerArticleIsActive": {
                   "type": "boolean"
                 },
-                "restrictionByQuantityPerArticleMessage": {
-                  "$ref": "#/definitions/logisticsMessage"
+                "restrictionByQuantityPerArticleMessageId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
-                "restrictionByQuantityPerArticlePopup": {
-                  "$ref": "#/definitions/logisticsPopup"
+                "restrictionByQuantityPerArticlePopupId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
                 "isVisibleWhileRestricted": {
                   "type": "boolean"
@@ -1042,10 +1051,11 @@
                     "$ref": "#/definitions/logisticsCategoryRestriction"
                   }
                 },
-                "deliveryTypeIntervals": {
+                "deliveryTypeIntervalIds": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/logisticsInterval"
+                    "type": "integer",
+                    "format": "int32"
                   }
                 }
               }

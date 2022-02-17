@@ -27,7 +27,7 @@ type DeliveryTypeServiceClient interface {
 	Create(ctx context.Context, in *CreateDeliveryTypeRequest, opts ...grpc.CallOption) (*DeliveryTypeShort, error)
 	Get(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*DeliveryType, error)
 	Delete(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Update(ctx context.Context, in *DeliveryType, opts ...grpc.CallOption) (*DeliveryType, error)
+	Update(ctx context.Context, in *UpdateDeliveryType, opts ...grpc.CallOption) (*DeliveryType, error)
 }
 
 type deliveryTypeServiceClient struct {
@@ -74,7 +74,7 @@ func (c *deliveryTypeServiceClient) Delete(ctx context.Context, in *DeliveryType
 	return out, nil
 }
 
-func (c *deliveryTypeServiceClient) Update(ctx context.Context, in *DeliveryType, opts ...grpc.CallOption) (*DeliveryType, error) {
+func (c *deliveryTypeServiceClient) Update(ctx context.Context, in *UpdateDeliveryType, opts ...grpc.CallOption) (*DeliveryType, error) {
 	out := new(DeliveryType)
 	err := c.cc.Invoke(ctx, "/logistics.DeliveryTypeService/Update", in, out, opts...)
 	if err != nil {
@@ -91,7 +91,7 @@ type DeliveryTypeServiceServer interface {
 	Create(context.Context, *CreateDeliveryTypeRequest) (*DeliveryTypeShort, error)
 	Get(context.Context, *DeliveryTypeId) (*DeliveryType, error)
 	Delete(context.Context, *DeliveryTypeId) (*emptypb.Empty, error)
-	Update(context.Context, *DeliveryType) (*DeliveryType, error)
+	Update(context.Context, *UpdateDeliveryType) (*DeliveryType, error)
 }
 
 // UnimplementedDeliveryTypeServiceServer should be embedded to have forward compatible implementations.
@@ -110,7 +110,7 @@ func (UnimplementedDeliveryTypeServiceServer) Get(context.Context, *DeliveryType
 func (UnimplementedDeliveryTypeServiceServer) Delete(context.Context, *DeliveryTypeId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedDeliveryTypeServiceServer) Update(context.Context, *DeliveryType) (*DeliveryType, error) {
+func (UnimplementedDeliveryTypeServiceServer) Update(context.Context, *UpdateDeliveryType) (*DeliveryType, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 
@@ -198,7 +198,7 @@ func _DeliveryTypeService_Delete_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _DeliveryTypeService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeliveryType)
+	in := new(UpdateDeliveryType)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func _DeliveryTypeService_Update_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/logistics.DeliveryTypeService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryTypeServiceServer).Update(ctx, req.(*DeliveryType))
+		return srv.(DeliveryTypeServiceServer).Update(ctx, req.(*UpdateDeliveryType))
 	}
 	return interceptor(ctx, in, info, handler)
 }
