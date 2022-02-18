@@ -184,7 +184,33 @@ message UpdateDeliveryType {
   bool                                     is_active = 34;
   string                                   created_at = 35;
   string                                   updated_at = 36;
-  repeated PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
-  repeated CategoryRestriction             category_delivery_type_restrictions = 38;
-  repeated int32                           delivery_type_interval_ids = 39;
+  repeated UpdatePaymentMethodToDeliveryType      payment_method_to_delivery_type = 37;
+  repeated UpdateCategoryRestriction              category_delivery_type_restrictions = 38;
+  repeated int32                                  delivery_type_interval_ids = 39;
+}
+
+message UpdatePaymentMethodToDeliveryType {
+  int32                                           payment_method_id = 1;
+  int32                                           message_id = 2;
+  int32                                           max_price = 3;
+  bool                                            is_visible_while_restricted = 4;
+  repeated UpdatePaymentMethodCategoryRestriction payment_method_category_restrictions = 5;
+}
+
+message UpdatePaymentMethodCategoryRestriction {
+  int32     category_id = 1;
+  int32     message_id = 2;
+  bool      is_active = 3;
+  string    created_at = 4;
+  string    updated_at = 5;
+}
+
+message UpdateCategoryRestriction {
+  int32        id = 1;
+  int32        category_id = 2;
+  int32        message_id = 3;
+  int32        popup_id = 4;
+  bool         is_active = 5;
+  string       created_at = 6;
+  string       updated_at = 7;
 }

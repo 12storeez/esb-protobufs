@@ -1042,13 +1042,13 @@
                 "paymentMethodToDeliveryType": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
+                    "$ref": "#/definitions/logisticsUpdatePaymentMethodToDeliveryType"
                   }
                 },
                 "categoryDeliveryTypeRestrictions": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/logisticsCategoryRestriction"
+                    "$ref": "#/definitions/logisticsUpdateCategoryRestriction"
                   }
                 },
                 "deliveryTypeIntervalIds": {
@@ -4905,6 +4905,84 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsUpdateCategoryRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "categoryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsUpdatePaymentMethodCategoryRestriction": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsUpdatePaymentMethodToDeliveryType": {
+      "type": "object",
+      "properties": {
+        "paymentMethodId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxPrice": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isVisibleWhileRestricted": {
+          "type": "boolean"
+        },
+        "paymentMethodCategoryRestrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsUpdatePaymentMethodCategoryRestriction"
+          }
         }
       }
     },
