@@ -4941,6 +4941,10 @@
     "logisticsUpdatePaymentMethodCategoryRestriction": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
         "categoryId": {
           "type": "integer",
           "format": "int32"
@@ -4963,6 +4967,10 @@
     "logisticsUpdatePaymentMethodToDeliveryType": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
         "paymentMethodId": {
           "type": "integer",
           "format": "int32"
