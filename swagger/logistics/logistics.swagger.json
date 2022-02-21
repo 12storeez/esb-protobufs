@@ -3684,8 +3684,7 @@
             "name": "geoId",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [
@@ -3713,8 +3712,7 @@
             "name": "geoId",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [

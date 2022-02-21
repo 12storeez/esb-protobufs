@@ -56,7 +56,7 @@ service ZoneToGeoService {
 }
 
 message ZoneToGeoId {
-  int32 geo_id = 1;
+  string geo_id = 1;
 }
 
 message ZoneToGeo {

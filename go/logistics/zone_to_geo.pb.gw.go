@@ -151,7 +151,7 @@ func request_ZoneToGeoService_Get_0(ctx context.Context, marshaler runtime.Marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "geo_id")
 	}
 
-	protoReq.GeoId, err = runtime.Int32(val)
+	protoReq.GeoId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "geo_id", err)
 	}
@@ -177,7 +177,7 @@ func local_request_ZoneToGeoService_Get_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "geo_id")
 	}
 
-	protoReq.GeoId, err = runtime.Int32(val)
+	protoReq.GeoId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "geo_id", err)
 	}
@@ -271,7 +271,7 @@ func request_ZoneToGeoService_Delete_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "geo_id")
 	}
 
-	protoReq.GeoId, err = runtime.Int32(val)
+	protoReq.GeoId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "geo_id", err)
 	}
@@ -297,7 +297,7 @@ func local_request_ZoneToGeoService_Delete_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "geo_id")
 	}
 
-	protoReq.GeoId, err = runtime.Int32(val)
+	protoReq.GeoId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "geo_id", err)
 	}
