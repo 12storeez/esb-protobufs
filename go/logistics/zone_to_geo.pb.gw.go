@@ -188,7 +188,7 @@ func local_request_ZoneToGeoService_Get_0(ctx context.Context, marshaler runtime
 }
 
 func request_ZoneToGeoService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ZoneToGeoServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneToGeo
+	var protoReq ZoneToGeoUpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -222,7 +222,7 @@ func request_ZoneToGeoService_Update_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_ZoneToGeoService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ZoneToGeoServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneToGeo
+	var protoReq ZoneToGeoUpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

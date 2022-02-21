@@ -35,7 +35,7 @@ service ZoneToGeoService {
     };
   }
 
-  rpc Update(ZoneToGeo) returns (ZoneToGeo) {
+  rpc Update(ZoneToGeoUpdateRequest) returns (ZoneToGeo) {
     option (google.api.http) = {
       patch: "/api/v1/zone-to-geo/{geo_id}"
       body: "*"
@@ -69,6 +69,11 @@ message ZoneToGeo {
   string region = 7;
 }
 
+message ZoneToGeoUpdateRequest {
+  string zone_id = 1;
+  string geo_id = 2;
+}
+
 message ListZoneToGeoRequest {
   int32   limit = 1;
   int32   offset = 2;
@@ -87,8 +92,10 @@ message SuggestZoneToGeoRequest {
 }
 
 message SuggestZoneToGeo {
-  int32  id = 1;
-  string geo_id = 2;
+  string geo_id = 1;
+  string description = 2;
+  string city = 3;
+  string region = 4;
 }
 
 message SuggestZoneToGeoResponse {

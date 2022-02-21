@@ -3749,22 +3749,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "zone": {
-                  "$ref": "#/definitions/logisticsZone"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "countryIsoCode": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "cityGeoId": {
-                  "type": "string"
-                },
-                "region": {
+                "zoneId": {
                   "type": "string"
                 }
               }
@@ -5102,11 +5087,16 @@
     "logisticsSuggestZoneToGeo": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "geoId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
           "type": "string"
         }
       }
