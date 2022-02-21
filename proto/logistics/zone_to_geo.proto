@@ -70,7 +70,7 @@ message ZoneToGeo {
 }
 
 message ZoneToGeoUpdateRequest {
-  string zone_id = 1;
+  int32  zone_id = 1;
   string geo_id = 2;
 }
 

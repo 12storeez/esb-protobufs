@@ -3750,7 +3750,8 @@
               "type": "object",
               "properties": {
                 "zoneId": {
-                  "type": "string"
+                  "type": "integer",
+                  "format": "int32"
                 }
               }
             }
