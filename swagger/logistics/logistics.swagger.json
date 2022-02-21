@@ -55,6 +55,9 @@
     },
     {
       "name": "ZoneGroupRestrictionService"
+    },
+    {
+      "name": "ZoneToGeoService"
     }
   ],
   "consumes": [
@@ -3508,6 +3511,273 @@
         ]
       }
     },
+    "/api/v1/zone-to-geo": {
+      "get": {
+        "operationId": "ZoneToGeoService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListZoneToGeoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ZoneToGeoService"
+        ]
+      }
+    },
+    "/api/v1/zone-to-geo/suggest": {
+      "get": {
+        "operationId": "ZoneToGeoService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsSuggestZoneToGeoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ZoneToGeoService"
+        ]
+      }
+    },
+    "/api/v1/zone-to-geo/transfer": {
+      "post": {
+        "operationId": "ZoneToGeoService_Transfer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsTransferZoneToGeoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZoneToGeoService"
+        ]
+      }
+    },
+    "/api/v1/zone-to-geo/validate": {
+      "post": {
+        "operationId": "ZoneToGeoService_Validate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsValidateZoneToGeoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsValidateZoneToGeoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZoneToGeoService"
+        ]
+      }
+    },
+    "/api/v1/zone-to-geo/{geoId}": {
+      "get": {
+        "operationId": "ZoneToGeoService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsZoneToGeo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "geoId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ZoneToGeoService"
+        ]
+      },
+      "delete": {
+        "operationId": "ZoneToGeoService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "geoId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ZoneToGeoService"
+        ]
+      },
+      "patch": {
+        "operationId": "ZoneToGeoService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsZoneToGeo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "geoId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "zone": {
+                  "$ref": "#/definitions/logisticsZone"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "countryIsoCode": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "cityGeoId": {
+                  "type": "string"
+                },
+                "region": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "ZoneToGeoService"
+        ]
+      }
+    },
     "/api/v1/zone/suggest": {
       "get": {
         "operationId": "ZoneService_Suggest",
@@ -4564,6 +4834,21 @@
         }
       }
     },
+    "logisticsListZoneToGeoResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsZoneToGeo"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "logisticsMessage": {
       "type": "object",
       "properties": {
@@ -4816,6 +5101,49 @@
         }
       }
     },
+    "logisticsSuggestZoneToGeo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "geoId": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsSuggestZoneToGeoResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsSuggestZoneToGeo"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsTransferZoneToGeoRequest": {
+      "type": "object",
+      "properties": {
+        "geoIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "zoneId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "Transfer ZoneToGeo from one zone to another"
+    },
     "logisticsTransportCompany": {
       "type": "object",
       "properties": {
@@ -4994,6 +5322,33 @@
         }
       }
     },
+    "logisticsValidateZoneToGeoRequest": {
+      "type": "object",
+      "properties": {
+        "geoIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Validate ZoneToGeo"
+    },
+    "logisticsValidateZoneToGeoResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsZoneToGeoConflict"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "logisticsZone": {
       "type": "object",
       "properties": {
@@ -5105,6 +5460,46 @@
           "type": "string"
         },
         "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsZoneToGeo": {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "$ref": "#/definitions/logisticsZone"
+        },
+        "geoId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "countryIsoCode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "cityGeoId": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsZoneToGeoConflict": {
+      "type": "object",
+      "properties": {
+        "zoneName": {
+          "type": "string"
+        },
+        "geoId": {
+          "type": "string"
+        },
+        "description": {
           "type": "string"
         }
       }

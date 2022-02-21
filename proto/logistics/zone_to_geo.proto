@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "zone.proto";
+
+service ZoneToGeoService {
+  rpc List(ListZoneToGeoRequest) returns (ListZoneToGeoResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/zone-to-geo"
+    };
+  }
+
+  rpc Validate(ValidateZoneToGeoRequest) returns (ValidateZoneToGeoResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/zone-to-geo/validate"
+      body: "*"
+    };
+  }
+
+  rpc Transfer(TransferZoneToGeoRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/v1/zone-to-geo/transfer"
+      body: "*"
+    };
+  }
+
+  rpc Get(ZoneToGeoId) returns (ZoneToGeo) {
+    option (google.api.http) = {
+      get: "/api/v1/zone-to-geo/{geo_id}"
+    };
+  }
+
+  rpc Update(ZoneToGeo) returns (ZoneToGeo) {
+    option (google.api.http) = {
+      patch: "/api/v1/zone-to-geo/{geo_id}"
+      body: "*"
+    };
+  }
+
+  rpc Delete(ZoneToGeoId) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/v1/zone-to-geo/{geo_id}"
+    };
+  }
+
+  rpc Suggest(SuggestZoneToGeoRequest) returns (SuggestZoneToGeoResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/zone-to-geo/suggest"
+    };
+  }
+}
+
+message ZoneToGeoId {
+  int32 geo_id = 1;
+}
+
+message ZoneToGeo {
+  Zone zone = 1;
+  string geo_id = 2;
+  string description = 3;
+  string country_iso_code = 4;
+  string city = 5;
+  string city_geo_id = 6;
+  string region = 7;
+}
+
+message ListZoneToGeoRequest {
+  int32   limit = 1;
+  int32   offset = 2;
+  string  search = 3;
+  string  sort = 4;
+}
+
+message ListZoneToGeoResponse {
+  repeated ZoneToGeo results = 1;
+  int32              total = 2;
+}
+
+message SuggestZoneToGeoRequest {
+  int32  limit = 1;
+  string search = 2;
+}
+
+message SuggestZoneToGeo {
+  int32  id = 1;
+  string geo_id = 2;
+}
+
+message SuggestZoneToGeoResponse {
+  repeated SuggestZoneToGeo results = 1;
+  int32                total = 2;
+}
+
+// Transfer ZoneToGeo from one zone to another
+message TransferZoneToGeoRequest {
+  repeated string geo_ids = 1;
+  int32           zone_id = 2;
+}
+
+// Validate ZoneToGeo
+message ValidateZoneToGeoRequest {
+  repeated string geo_ids = 1;
+}
+
+message ValidateZoneToGeoResponse {
+  repeated ZoneToGeoConflict results = 1;
+  int32                       total = 2;
+}
+
+message ZoneToGeoConflict {
+  string zone_name = 1;
+  string geo_id = 2;
+  string description = 3;
+}
