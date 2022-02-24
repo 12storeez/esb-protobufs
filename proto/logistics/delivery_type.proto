@@ -190,29 +190,26 @@ message UpdateDeliveryType {
 }
 
 message UpdatePaymentMethodToDeliveryType {
-  int32                                           id = 1;
-  int32                                           payment_method_id = 2;
-  int32                                           message_id = 3;
-  int32                                           max_price = 4;
-  bool                                            is_visible_while_restricted = 5;
-  repeated UpdatePaymentMethodCategoryRestriction payment_method_category_restrictions = 6;
+  int32                                           payment_method_id = 1;
+  int32                                           message_id = 2;
+  int32                                           max_price = 3;
+  bool                                            is_visible_while_restricted = 4;
+  repeated UpdatePaymentMethodCategoryRestriction payment_method_category_restrictions = 5;
 }
 
 message UpdatePaymentMethodCategoryRestriction {
-  int32     id = 1;
-  int32     category_id = 2;
-  int32     message_id = 3;
-  bool      is_active = 4;
-  string    created_at = 5;
-  string    updated_at = 6;
+  int32     category_id = 1;
+  int32     message_id = 2;
+  bool      is_active = 3;
+  string    created_at = 4;
+  string    updated_at = 5;
 }
 
 message UpdateCategoryRestriction {
-  int32        id = 1;
-  int32        category_id = 2;
-  int32        message_id = 3;
-  int32        popup_id = 4;
-  bool         is_active = 5;
-  string       created_at = 6;
-  string       updated_at = 7;
+  int32        category_id = 1;
+  int32        message_id = 2;
+  int32        popup_id = 3;
+  bool         is_active = 4;
+  string       created_at = 5;
+  string       updated_at = 6;
 }
