@@ -3164,12 +3164,12 @@
     },
     "/api/v1/winner/calculate": {
       "get": {
-        "operationId": "WinnerService_CalculateWinner",
+        "operationId": "WinnerService_Calculate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsWinnerResponse"
+              "$ref": "#/definitions/logisticsCalculateResponse"
             }
           },
           "default": {
@@ -3968,6 +3968,42 @@
         "quantity"
       ],
       "default": "price"
+    },
+    "logisticsCalculateResponse": {
+      "type": "object",
+      "properties": {
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerRestriction"
+          }
+        },
+        "deliveryTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerDeliveryType"
+          }
+        }
+      }
+    },
+    "logisticsCartPosition": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        },
+        "isPresent": {
+          "type": "boolean"
+        }
+      }
     },
     "logisticsCategory": {
       "type": "object",
@@ -5359,22 +5395,20 @@
         }
       }
     },
-    "logisticsWinnerCartPosition": {
+    "logisticsWinnerDeliveryDates": {
       "type": "object",
       "properties": {
-        "category": {
+        "date": {
           "type": "string"
         },
-        "quantity": {
-          "type": "integer",
-          "format": "int32"
+        "title": {
+          "type": "string"
         },
-        "price": {
-          "type": "number",
-          "format": "float"
-        },
-        "isPresent": {
-          "type": "boolean"
+        "intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerInterval"
+          }
         }
       }
     },
@@ -5400,10 +5434,10 @@
             "$ref": "#/definitions/logisticsWinnerPaymentMethod"
           }
         },
-        "intervals": {
+        "deliveryDates": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/logisticsWinnerInterval"
+            "$ref": "#/definitions/logisticsWinnerDeliveryDates"
           }
         },
         "isRestricted": {
@@ -5420,17 +5454,17 @@
     "logisticsWinnerInterval": {
       "type": "object",
       "properties": {
-        "date": {
-          "type": "string"
-        },
         "title": {
           "type": "string"
         },
-        "timeInterval": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/logisticsWinnerTimeInterval"
-          }
+        "timeFrom": {
+          "type": "string"
+        },
+        "timeTo": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
         }
       }
     },
@@ -5465,23 +5499,6 @@
         }
       }
     },
-    "logisticsWinnerResponse": {
-      "type": "object",
-      "properties": {
-        "restrictions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/logisticsWinnerRestriction"
-          }
-        },
-        "deliveryTypes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/logisticsWinnerDeliveryType"
-          }
-        }
-      }
-    },
     "logisticsWinnerRestriction": {
       "type": "object",
       "properties": {
@@ -5490,23 +5507,6 @@
         },
         "popup": {
           "$ref": "#/definitions/logisticsWinnerPopup"
-        }
-      }
-    },
-    "logisticsWinnerTimeInterval": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "timeFrom": {
-          "type": "string"
-        },
-        "timeTo": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
         }
       }
     },

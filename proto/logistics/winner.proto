@@ -7,26 +7,26 @@ package logistics;
 import "google/api/annotations.proto";
 
 service WinnerService {
-  rpc CalculateWinner(WinnerRequest) returns (WinnerResponse) {
+  rpc Calculate(CalculateRequest) returns (CalculateResponse) {
     option (google.api.http) = {
       get: "/api/v1/winner/calculate"
     };
   }
 }
 
-message WinnerRequest {
+message CalculateRequest {
   string    geo_id = 1;
-  repeated  WinnerCartPosition cart = 2;
+  repeated  CartPosition cart = 2;
 }
 
-message WinnerCartPosition {
+message CartPosition {
   string  category = 1;
   int32   quantity = 2;
   float   price = 3;
   bool    is_present = 4;
 }
 
-message WinnerResponse {
+message CalculateResponse {
   repeated WinnerRestriction  restrictions = 1;
   repeated WinnerDeliveryType delivery_types = 2;
 }
@@ -48,7 +48,7 @@ message WinnerDeliveryType {
   float       delivery_price = 3;
   WinnerPopup popup = 4;
   repeated    WinnerPaymentMethod payment_methods = 5;
-  repeated    WinnerInterval intervals = 6;
+  repeated    WinnerDeliveryDates delivery_dates = 6;
   bool        is_restricted = 7;
   repeated    WinnerRestriction restrictions = 8;
 }
@@ -60,13 +60,13 @@ message WinnerPaymentMethod {
   string  message = 4;
 }
 
-message WinnerInterval {
+message WinnerDeliveryDates {
   string    date = 1;
   string    title = 2;
-  repeated  WinnerTimeInterval time_interval = 3;
+  repeated  WinnerInterval intervals = 3;
 }
 
-message WinnerTimeInterval {
+message WinnerInterval {
   string title = 1;
   string time_from = 2;
   string time_to = 3;

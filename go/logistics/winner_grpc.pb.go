@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WinnerServiceClient interface {
-	CalculateWinner(ctx context.Context, in *WinnerRequest, opts ...grpc.CallOption) (*WinnerResponse, error)
+	Calculate(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
 }
 
 type winnerServiceClient struct {
@@ -33,9 +33,9 @@ func NewWinnerServiceClient(cc grpc.ClientConnInterface) WinnerServiceClient {
 	return &winnerServiceClient{cc}
 }
 
-func (c *winnerServiceClient) CalculateWinner(ctx context.Context, in *WinnerRequest, opts ...grpc.CallOption) (*WinnerResponse, error) {
-	out := new(WinnerResponse)
-	err := c.cc.Invoke(ctx, "/logistics.WinnerService/CalculateWinner", in, out, opts...)
+func (c *winnerServiceClient) Calculate(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error) {
+	out := new(CalculateResponse)
+	err := c.cc.Invoke(ctx, "/logistics.WinnerService/Calculate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,15 +46,15 @@ func (c *winnerServiceClient) CalculateWinner(ctx context.Context, in *WinnerReq
 // All implementations should embed UnimplementedWinnerServiceServer
 // for forward compatibility
 type WinnerServiceServer interface {
-	CalculateWinner(context.Context, *WinnerRequest) (*WinnerResponse, error)
+	Calculate(context.Context, *CalculateRequest) (*CalculateResponse, error)
 }
 
 // UnimplementedWinnerServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedWinnerServiceServer struct {
 }
 
-func (UnimplementedWinnerServiceServer) CalculateWinner(context.Context, *WinnerRequest) (*WinnerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CalculateWinner not implemented")
+func (UnimplementedWinnerServiceServer) Calculate(context.Context, *CalculateRequest) (*CalculateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Calculate not implemented")
 }
 
 // UnsafeWinnerServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -68,20 +68,20 @@ func RegisterWinnerServiceServer(s grpc.ServiceRegistrar, srv WinnerServiceServe
 	s.RegisterService(&WinnerService_ServiceDesc, srv)
 }
 
-func _WinnerService_CalculateWinner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WinnerRequest)
+func _WinnerService_Calculate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CalculateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WinnerServiceServer).CalculateWinner(ctx, in)
+		return srv.(WinnerServiceServer).Calculate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/logistics.WinnerService/CalculateWinner",
+		FullMethod: "/logistics.WinnerService/Calculate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WinnerServiceServer).CalculateWinner(ctx, req.(*WinnerRequest))
+		return srv.(WinnerServiceServer).Calculate(ctx, req.(*CalculateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -94,8 +94,8 @@ var WinnerService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*WinnerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CalculateWinner",
-			Handler:    _WinnerService_CalculateWinner_Handler,
+			MethodName: "Calculate",
+			Handler:    _WinnerService_Calculate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
