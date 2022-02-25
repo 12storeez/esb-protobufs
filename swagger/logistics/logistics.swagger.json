@@ -48,6 +48,9 @@
       "name": "TransportCompanyModeService"
     },
     {
+      "name": "WinnerService"
+    },
+    {
       "name": "ZoneService"
     },
     {
@@ -3159,6 +3162,36 @@
         ]
       }
     },
+    "/api/v1/winner/calculate": {
+      "get": {
+        "operationId": "WinnerService_CalculateWinner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsWinnerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "geoId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WinnerService"
+        ]
+      }
+    },
     "/api/v1/zone": {
       "get": {
         "operationId": "ZoneService_List",
@@ -5323,6 +5356,157 @@
         "total": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "logisticsWinnerCartPosition": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        },
+        "isPresent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsWinnerDeliveryType": {
+      "type": "object",
+      "properties": {
+        "deliveryTypeName": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "deliveryPrice": {
+          "type": "number",
+          "format": "float"
+        },
+        "popup": {
+          "$ref": "#/definitions/logisticsWinnerPopup"
+        },
+        "paymentMethods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerPaymentMethod"
+          }
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerInterval"
+          }
+        },
+        "isRestricted": {
+          "type": "boolean"
+        },
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerRestriction"
+          }
+        }
+      }
+    },
+    "logisticsWinnerInterval": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "timeInterval": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerTimeInterval"
+          }
+        }
+      }
+    },
+    "logisticsWinnerPaymentMethod": {
+      "type": "object",
+      "properties": {
+        "titleRu": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "isRestricted": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsWinnerPopup": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "button": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsWinnerResponse": {
+      "type": "object",
+      "properties": {
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerRestriction"
+          }
+        },
+        "deliveryTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsWinnerDeliveryType"
+          }
+        }
+      }
+    },
+    "logisticsWinnerRestriction": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "popup": {
+          "$ref": "#/definitions/logisticsWinnerPopup"
+        }
+      }
+    },
+    "logisticsWinnerTimeInterval": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "timeFrom": {
+          "type": "string"
+        },
+        "timeTo": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
         }
       }
     },
