@@ -1788,6 +1788,10 @@ export namespace logistics {
       request: DeliveryTypeId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    update(
+      request: UpdateDeliveryType,
+      metadata?: any
+    ): Observable<DeliveryType>;
   }
 
   export interface DeliveryTypeId {
@@ -1859,6 +1863,7 @@ export namespace logistics {
     updated_at: string;
     payment_method_to_delivery_type: PaymentMethodToDeliveryType[];
     category_delivery_type_restrictions: CategoryRestriction[];
+    delivery_type_intervals: Interval[];
   }
 
   export interface CategoryRestriction {
@@ -1882,6 +1887,73 @@ export namespace logistics {
   export interface PaymentMethodCategoryRestriction {
     category: Category;
     message: Message;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface UpdateDeliveryType {
+    id: number;
+    transport_company_mode_id: number;
+    zone_group_id: number;
+    name: string;
+    description_ru: string;
+    popup_id: number;
+    code: string;
+    default_days_from: number;
+    default_days_to: number;
+    delivery_price: number;
+    delivery_price_border: number;
+    delivery_price_after_border: number;
+    delivery_min_days: number;
+    cutoff_time: string;
+    consolidation_hours: number;
+    gap_hours: number;
+    priority_coefficient: number;
+    max_days_coefficient: number;
+    tariff_coefficient: number;
+    winner_percent: number;
+    max_price: number;
+    restriction_by_price_is_active: boolean;
+    restriction_by_price_message_id: number;
+    restriction_by_price_popup_id: number;
+    max_quantity: number;
+    restriction_by_quantity_is_active: boolean;
+    restriction_by_quantity_message_id: number;
+    restriction_by_quantity_popup_id: number;
+    max_quantity_per_article: number;
+    restriction_by_quantity_per_article_is_active: boolean;
+    restriction_by_quantity_per_article_message_id: number;
+    restriction_by_quantity_per_article_popup_id: number;
+    is_visible_while_restricted: boolean;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+    payment_method_to_delivery_type: UpdatePaymentMethodToDeliveryType[];
+    category_delivery_type_restrictions: UpdateCategoryRestriction[];
+    delivery_type_interval_ids: number[];
+  }
+
+  export interface UpdatePaymentMethodToDeliveryType {
+    payment_method_id: number;
+    message_id: number;
+    max_price: number;
+    is_visible_while_restricted: boolean;
+    payment_method_category_restrictions: UpdatePaymentMethodCategoryRestriction[];
+  }
+
+  export interface UpdatePaymentMethodCategoryRestriction {
+    category_id: number;
+    message_id: number;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface UpdateCategoryRestriction {
+    category_id: number;
+    message_id: number;
+    popup_id: number;
     is_active: boolean;
     created_at: string;
     updated_at: string;
@@ -2079,6 +2151,104 @@ export namespace logistics {
   export interface ListCategoryDeliveryTypeRestrictionResponse {
     results: CategoryDeliveryTypeRestriction[];
     total: number;
+  }
+}
+
+export namespace logistics {
+  export interface ZoneToGeoService {
+    list(
+      request: ListZoneToGeoRequest,
+      metadata?: any
+    ): Observable<ListZoneToGeoResponse>;
+    validate(
+      request: ValidateZoneToGeoRequest,
+      metadata?: any
+    ): Observable<ValidateZoneToGeoResponse>;
+    transfer(
+      request: TransferZoneToGeoRequest,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    get(request: ZoneToGeoId, metadata?: any): Observable<ZoneToGeo>;
+    update(
+      request: ZoneToGeoUpdateRequest,
+      metadata?: any
+    ): Observable<ZoneToGeo>;
+    delete(
+      request: ZoneToGeoId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestZoneToGeoRequest,
+      metadata?: any
+    ): Observable<SuggestZoneToGeoResponse>;
+  }
+
+  export interface ZoneToGeoId {
+    geo_id: string;
+  }
+
+  export interface ZoneToGeo {
+    zone: Zone;
+    geo_id: string;
+    description: string;
+    country_iso_code: string;
+    city: string;
+    city_geo_id: string;
+    region: string;
+  }
+
+  export interface ZoneToGeoUpdateRequest {
+    zone_id: number;
+    geo_id: string;
+  }
+
+  export interface ListZoneToGeoRequest {
+    limit: number;
+    offset: number;
+    search: string;
+    sort: string;
+  }
+
+  export interface ListZoneToGeoResponse {
+    results: ZoneToGeo[];
+    total: number;
+  }
+
+  export interface SuggestZoneToGeoRequest {
+    limit: number;
+    search: string;
+  }
+
+  export interface SuggestZoneToGeo {
+    geo_id: string;
+    description: string;
+    city: string;
+    region: string;
+  }
+
+  export interface SuggestZoneToGeoResponse {
+    results: SuggestZoneToGeo[];
+    total: number;
+  }
+
+  export interface TransferZoneToGeoRequest {
+    geo_ids: string[];
+    zone_id: number;
+  }
+
+  export interface ValidateZoneToGeoRequest {
+    geo_ids: string[];
+  }
+
+  export interface ValidateZoneToGeoResponse {
+    results: ZoneToGeoConflict[];
+    total: number;
+  }
+
+  export interface ZoneToGeoConflict {
+    zone_name: string;
+    geo_id: string;
+    description: string;
   }
 }
 
@@ -2503,6 +2673,19 @@ export namespace notifications {
       request: SlackSendParams,
       metadata?: any
     ): Observable<SlackSendResponse>;
+    sendFile(
+      request: SlackSendFileParams,
+      metadata?: any
+    ): Observable<SlackSendResponse>;
+  }
+
+  export interface SlackSendFileParams {
+    channel_id: string;
+    thread_ts: string;
+    file: string;
+    filetype: string;
+    title: string;
+    initial_comment: string;
   }
 
   export interface SlackSendParams {

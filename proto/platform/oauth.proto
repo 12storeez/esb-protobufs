@@ -17,8 +17,7 @@ service Oauth {
 
   rpc Authorize(AuthorizeRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/oauth/authorize"
-      body: "*"
+      get: "/api/oauth/authorize"
     };
   }
 }
