@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.19.2
-// source: feedbacks.proto
+// source: proto/feedbacks.proto
 
 package feedbacks
 
@@ -316,7 +316,7 @@ var Mobile_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "feedbacks.proto",
+	Metadata: "proto/feedbacks.proto",
 }
 
 // StoreClient is the client API for Store service.
@@ -508,7 +508,7 @@ var Store_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "feedbacks.proto",
+	Metadata: "proto/feedbacks.proto",
 }
 
 // NPSClient is the client API for NPS service.
@@ -628,5 +628,125 @@ var NPS_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "feedbacks.proto",
+	Metadata: "proto/feedbacks.proto",
+}
+
+// PortalFeedbackServiceClient is the client API for PortalFeedbackService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PortalFeedbackServiceClient interface {
+	Delete(ctx context.Context, in *PortalFeedbackId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Suggest(ctx context.Context, in *SuggestPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error)
+}
+
+type portalFeedbackServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPortalFeedbackServiceClient(cc grpc.ClientConnInterface) PortalFeedbackServiceClient {
+	return &portalFeedbackServiceClient{cc}
+}
+
+func (c *portalFeedbackServiceClient) Delete(ctx context.Context, in *PortalFeedbackId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *portalFeedbackServiceClient) Suggest(ctx context.Context, in *SuggestPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error) {
+	out := new(ListPortalFeedbackResponse)
+	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/Suggest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PortalFeedbackServiceServer is the server API for PortalFeedbackService service.
+// All implementations should embed UnimplementedPortalFeedbackServiceServer
+// for forward compatibility
+type PortalFeedbackServiceServer interface {
+	Delete(context.Context, *PortalFeedbackId) (*emptypb.Empty, error)
+	Suggest(context.Context, *SuggestPortalFeedbackRequest) (*ListPortalFeedbackResponse, error)
+}
+
+// UnimplementedPortalFeedbackServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedPortalFeedbackServiceServer struct {
+}
+
+func (UnimplementedPortalFeedbackServiceServer) Delete(context.Context, *PortalFeedbackId) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedPortalFeedbackServiceServer) Suggest(context.Context, *SuggestPortalFeedbackRequest) (*ListPortalFeedbackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
+}
+
+// UnsafePortalFeedbackServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PortalFeedbackServiceServer will
+// result in compilation errors.
+type UnsafePortalFeedbackServiceServer interface {
+	mustEmbedUnimplementedPortalFeedbackServiceServer()
+}
+
+func RegisterPortalFeedbackServiceServer(s grpc.ServiceRegistrar, srv PortalFeedbackServiceServer) {
+	s.RegisterService(&PortalFeedbackService_ServiceDesc, srv)
+}
+
+func _PortalFeedbackService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PortalFeedbackId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PortalFeedbackServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/feedbacks.PortalFeedbackService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PortalFeedbackServiceServer).Delete(ctx, req.(*PortalFeedbackId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PortalFeedbackService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestPortalFeedbackRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PortalFeedbackServiceServer).Suggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/feedbacks.PortalFeedbackService/Suggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PortalFeedbackServiceServer).Suggest(ctx, req.(*SuggestPortalFeedbackRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PortalFeedbackService_ServiceDesc is the grpc.ServiceDesc for PortalFeedbackService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PortalFeedbackService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "feedbacks.PortalFeedbackService",
+	HandlerType: (*PortalFeedbackServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Delete",
+			Handler:    _PortalFeedbackService_Delete_Handler,
+		},
+		{
+			MethodName: "Suggest",
+			Handler:    _PortalFeedbackService_Suggest_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/feedbacks.proto",
 }
