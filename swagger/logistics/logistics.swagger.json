@@ -4328,7 +4328,7 @@
           "$ref": "#/definitions/logisticsDeliveryMode"
         },
         "deliveryType": {
-          "$ref": "#/definitions/logisticsDeliveryType"
+          "$ref": "#/definitions/logisticsDeliveryTypeShort"
         },
         "message": {
           "$ref": "#/definitions/logisticsMessage"
