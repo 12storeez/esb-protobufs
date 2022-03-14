@@ -45,12 +45,12 @@ service NPS {
 service PortalFeedbackService {
     rpc Delete(PortalFeedbackId) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/api/v1/portal_feedback/{id}"
+            delete: "/api/v1/portal/feedback/{id}"
         };
     }
     rpc Suggest(SuggestPortalFeedbackRequest) returns (ListPortalFeedbackResponse) {
         option (google.api.http) = {
-            get: "/api/v1/portal_feedback/suggest"
+            get: "/api/v1/portal/feedback/suggest"
         };
     }
 }
