@@ -63,16 +63,16 @@ message CreateDeliveryCalendar {
 }
 
 message DeliveryCalendar {
-  int32         id = 1;
-  DeliveryMode  delivery_mode = 2;
-  DeliveryType  delivery_type = 3;
-  Message       message = 4;
-  Popup         popup = 5;
-  string        date_from = 6;
-  string        date_to = 7;
-  bool          is_delivery_delayed = 8;
-  string        created_at = 9;
-  string        updated_at = 10;
+  int32               id = 1;
+  DeliveryMode        delivery_mode = 2;
+  DeliveryTypeShort   delivery_type = 3;
+  Message             message = 4;
+  Popup               popup = 5;
+  string              date_from = 6;
+  string              date_to = 7;
+  bool                is_delivery_delayed = 8;
+  string              created_at = 9;
+  string              updated_at = 10;
 }
 
 message ListDeliveryCalendarRequest {
