@@ -3181,6 +3181,12 @@
         },
         "parameters": [
           {
+            "name": "countryIsoCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "geoId",
             "in": "query",
             "required": false,
