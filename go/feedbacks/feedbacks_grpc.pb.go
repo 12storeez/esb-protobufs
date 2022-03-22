@@ -636,7 +636,6 @@ var NPS_ServiceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PortalFeedbackServiceClient interface {
 	Delete(ctx context.Context, in *PortalFeedbackId, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Suggest(ctx context.Context, in *SuggestPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error)
 	List(ctx context.Context, in *ListPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error)
 }
 
@@ -657,15 +656,6 @@ func (c *portalFeedbackServiceClient) Delete(ctx context.Context, in *PortalFeed
 	return out, nil
 }
 
-func (c *portalFeedbackServiceClient) Suggest(ctx context.Context, in *SuggestPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error) {
-	out := new(ListPortalFeedbackResponse)
-	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/Suggest", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *portalFeedbackServiceClient) List(ctx context.Context, in *ListPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error) {
 	out := new(ListPortalFeedbackResponse)
 	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/List", in, out, opts...)
@@ -680,7 +670,6 @@ func (c *portalFeedbackServiceClient) List(ctx context.Context, in *ListPortalFe
 // for forward compatibility
 type PortalFeedbackServiceServer interface {
 	Delete(context.Context, *PortalFeedbackId) (*emptypb.Empty, error)
-	Suggest(context.Context, *SuggestPortalFeedbackRequest) (*ListPortalFeedbackResponse, error)
 	List(context.Context, *ListPortalFeedbackRequest) (*ListPortalFeedbackResponse, error)
 }
 
@@ -690,9 +679,6 @@ type UnimplementedPortalFeedbackServiceServer struct {
 
 func (UnimplementedPortalFeedbackServiceServer) Delete(context.Context, *PortalFeedbackId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
-}
-func (UnimplementedPortalFeedbackServiceServer) Suggest(context.Context, *SuggestPortalFeedbackRequest) (*ListPortalFeedbackResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 func (UnimplementedPortalFeedbackServiceServer) List(context.Context, *ListPortalFeedbackRequest) (*ListPortalFeedbackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -727,24 +713,6 @@ func _PortalFeedbackService_Delete_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PortalFeedbackService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SuggestPortalFeedbackRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PortalFeedbackServiceServer).Suggest(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/feedbacks.PortalFeedbackService/Suggest",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PortalFeedbackServiceServer).Suggest(ctx, req.(*SuggestPortalFeedbackRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PortalFeedbackService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPortalFeedbackRequest)
 	if err := dec(in); err != nil {
@@ -773,10 +741,6 @@ var PortalFeedbackService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _PortalFeedbackService_Delete_Handler,
-		},
-		{
-			MethodName: "Suggest",
-			Handler:    _PortalFeedbackService_Suggest_Handler,
 		},
 		{
 			MethodName: "List",
