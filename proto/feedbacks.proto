@@ -48,11 +48,6 @@ service PortalFeedbackService {
             delete: "/api/v1/portal/feedback/{id}"
         };
     }
-    rpc Suggest(SuggestPortalFeedbackRequest) returns (ListPortalFeedbackResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/portal/feedback/suggest"
-        };
-    }
     rpc List(ListPortalFeedbackRequest) returns (ListPortalFeedbackResponse) {
         option (google.api.http) = {
             get: "/api/v1/portal/feedback/list"
@@ -64,19 +59,15 @@ message PortalFeedbackId {
     int32 id = 1;
 }
 
-message SuggestPortalFeedbackRequest {
-    int32  limit = 1;
-    string search = 2;
-}
-
 message ListPortalFeedbackResponse {
     repeated PortalFeedback results = 1;
     int32                   total = 2;
 }
 
 message ListPortalFeedbackRequest {
-    int32  limit = 1;
-    int32  offset = 2;
+    int32   limit = 1;
+    int32   offset = 2;
+    string  search = 3;
 }
 
 message PortalFeedback {
