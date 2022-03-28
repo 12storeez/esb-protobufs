@@ -702,6 +702,70 @@ export namespace feedbacks {
     update(request: UpdateNPSParams, metadata?: any): Observable<ResponseOk>;
   }
 
+  export interface PortalFeedbackService {
+    delete(
+      request: PortalFeedbackId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+  }
+
+  export interface PortalFeedbackId {
+    id: number;
+  }
+
+  export interface ListPortalFeedbackResponse {
+    results: PortalFeedback[];
+    total: number;
+  }
+
+  export interface ListPortalFeedbackRequest {
+    limit: number;
+    offset: number;
+    search: string;
+  }
+
+  export interface PortalFeedback {
+    id: number;
+    survey: number;
+    name: string;
+    email: string;
+    phone: string;
+    user_id: string;
+    contacts: string;
+    ts: string;
+    source: string;
+    date: string;
+    channel: string;
+    nickname: string;
+    client_status: string;
+    description: string;
+    feedback_category: string;
+    article_category: string;
+    quality_category: string;
+    acceptance_quality_category: string;
+    defect: string;
+    article: string;
+    store_date: string;
+    order_id: string;
+    receipt: string;
+    store: string;
+    user: string;
+    sent: boolean;
+    mindbox_sent: boolean;
+    status: string;
+    conclusion: string;
+    source_type: string;
+    transport_company: string;
+    transport_city: string;
+    status_inwork: string;
+    status_done: string;
+    created: string;
+    updated: string;
+    status_new: string;
+    status_err: string;
+    logistic_pretense: string;
+  }
+
   export interface UpdateNPSParams {
     id: number;
     rate: number;
@@ -1224,6 +1288,10 @@ export namespace platform {
       request: AuthorizeRequest,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    clientInfo(
+      request: ClientInfoRequest,
+      metadata?: any
+    ): Observable<ClientInfoResponse>;
   }
 
   export interface TokenRequest {
@@ -1256,6 +1324,15 @@ export namespace platform {
     client_id: number;
     redirect_uri: string;
     response_type: string;
+  }
+
+  export interface ClientInfoRequest {
+    client_uri: string;
+    client_secret: string;
+  }
+
+  export interface ClientInfoResponse {
+    client_id: number;
   }
 }
 
@@ -2019,6 +2096,75 @@ export namespace logistics {
 }
 
 export namespace logistics {
+  export interface WinnerService {
+    calculate(
+      request: CalculateRequest,
+      metadata?: any
+    ): Observable<CalculateResponse>;
+  }
+
+  export interface CalculateRequest {
+    country_iso_code: string;
+    geo_id: string;
+    cart: CartPosition[];
+  }
+
+  export interface CartPosition {
+    category: string;
+    quantity: number;
+    price: number;
+    is_present: boolean;
+  }
+
+  export interface CalculateResponse {
+    restrictions: WinnerRestriction[];
+    delivery_types: WinnerDeliveryType[];
+  }
+
+  export interface WinnerRestriction {
+    message: string;
+    popup: WinnerPopup;
+  }
+
+  export interface WinnerPopup {
+    title: string;
+    text: string;
+    button: string;
+  }
+
+  export interface WinnerDeliveryType {
+    delivery_type_name: string;
+    message: string;
+    delivery_price: number;
+    popup: WinnerPopup;
+    payment_methods: WinnerPaymentMethod[];
+    delivery_dates: WinnerDeliveryDates[];
+    is_restricted: boolean;
+    restrictions: WinnerRestriction[];
+  }
+
+  export interface WinnerPaymentMethod {
+    title_ru: string;
+    code: string;
+    is_restricted: boolean;
+    message: string;
+  }
+
+  export interface WinnerDeliveryDates {
+    date: string;
+    title: string;
+    intervals: WinnerInterval[];
+  }
+
+  export interface WinnerInterval {
+    title: string;
+    time_from: string;
+    time_to: string;
+    code: string;
+  }
+}
+
+export namespace logistics {
   export interface ZoneGroupRestrictionService {
     list(
       request: ListZoneGroupRestrictionRequest,
@@ -2296,7 +2442,7 @@ export namespace logistics {
   export interface DeliveryCalendar {
     id: number;
     delivery_mode: DeliveryMode;
-    delivery_type: DeliveryType;
+    delivery_type: DeliveryTypeShort;
     message: Message;
     popup: Popup;
     date_from: string;
