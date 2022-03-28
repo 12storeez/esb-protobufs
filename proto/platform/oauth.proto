@@ -20,6 +20,13 @@ service Oauth {
       get: "/api/oauth/authorize"
     };
   }
+
+  rpc ClientInfo(ClientInfoRequest) returns (ClientInfoResponse) {
+    option (google.api.http) = {
+      post: "/api/oauth/client-info"
+      body: "*"
+    };
+  }
 }
 
 message TokenRequest {
@@ -52,4 +59,13 @@ message AuthorizeRequest {
   int32 client_id = 1;
   string redirect_uri = 2;
   string response_type = 3;
+}
+
+message ClientInfoRequest {
+  string client_uri = 1;
+  string client_secret = 2;
+}
+
+message ClientInfoResponse {
+  int32 client_id = 1;
 }
