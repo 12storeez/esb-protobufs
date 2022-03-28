@@ -1288,10 +1288,6 @@ export namespace platform {
       request: AuthorizeRequest,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
-    clientInfo(
-      request: ClientInfoRequest,
-      metadata?: any
-    ): Observable<ClientInfoResponse>;
   }
 
   export interface TokenRequest {
@@ -1324,15 +1320,6 @@ export namespace platform {
     client_id: number;
     redirect_uri: string;
     response_type: string;
-  }
-
-  export interface ClientInfoRequest {
-    client_uri: string;
-    client_secret: string;
-  }
-
-  export interface ClientInfoResponse {
-    client_id: number;
   }
 }
 
