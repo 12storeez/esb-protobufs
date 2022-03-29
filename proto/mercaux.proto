@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 
 package mercaux;
 
-service StocksService {
+service MercauxService {
     rpc Stocks(ListRequest) returns (ListStocksResponse) {
         option (google.api.http) = {
             get: "/api/v1/stocks"

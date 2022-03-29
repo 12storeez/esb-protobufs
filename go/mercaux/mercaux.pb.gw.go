@@ -33,17 +33,17 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_StocksService_Stocks_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MercauxService_Stocks_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_StocksService_Stocks_0(ctx context.Context, marshaler runtime.Marshaler, client StocksServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MercauxService_Stocks_0(ctx context.Context, marshaler runtime.Marshaler, client MercauxServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StocksService_Stocks_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MercauxService_Stocks_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -52,14 +52,14 @@ func request_StocksService_Stocks_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_StocksService_Stocks_0(ctx context.Context, marshaler runtime.Marshaler, server StocksServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MercauxService_Stocks_0(ctx context.Context, marshaler runtime.Marshaler, server MercauxServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StocksService_Stocks_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MercauxService_Stocks_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -69,17 +69,17 @@ func local_request_StocksService_Stocks_0(ctx context.Context, marshaler runtime
 }
 
 var (
-	filter_StocksService_Catalog_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MercauxService_Catalog_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_StocksService_Catalog_0(ctx context.Context, marshaler runtime.Marshaler, client StocksServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MercauxService_Catalog_0(ctx context.Context, marshaler runtime.Marshaler, client MercauxServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StocksService_Catalog_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MercauxService_Catalog_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -88,14 +88,14 @@ func request_StocksService_Catalog_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_StocksService_Catalog_0(ctx context.Context, marshaler runtime.Marshaler, server StocksServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MercauxService_Catalog_0(ctx context.Context, marshaler runtime.Marshaler, server MercauxServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StocksService_Catalog_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MercauxService_Catalog_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -206,24 +206,24 @@ func local_request_Orders_NewOrder_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-// RegisterStocksServiceHandlerServer registers the http handlers for service StocksService to "mux".
-// UnaryRPC     :call StocksServiceServer directly.
+// RegisterMercauxServiceHandlerServer registers the http handlers for service MercauxService to "mux".
+// UnaryRPC     :call MercauxServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterStocksServiceHandlerFromEndpoint instead.
-func RegisterStocksServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server StocksServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterMercauxServiceHandlerFromEndpoint instead.
+func RegisterMercauxServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server MercauxServiceServer) error {
 
-	mux.Handle("GET", pattern_StocksService_Stocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MercauxService_Stocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.StocksService/Stocks", runtime.WithHTTPPathPattern("/api/v1/stocks"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.MercauxService/Stocks", runtime.WithHTTPPathPattern("/api/v1/stocks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StocksService_Stocks_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MercauxService_Stocks_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -231,22 +231,22 @@ func RegisterStocksServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_StocksService_Stocks_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MercauxService_Stocks_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StocksService_Catalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MercauxService_Catalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.StocksService/Catalog", runtime.WithHTTPPathPattern("/api/v1/catalog"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.MercauxService/Catalog", runtime.WithHTTPPathPattern("/api/v1/catalog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StocksService_Catalog_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MercauxService_Catalog_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -254,7 +254,7 @@ func RegisterStocksServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_StocksService_Catalog_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MercauxService_Catalog_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -357,9 +357,9 @@ func RegisterOrdersHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 	return nil
 }
 
-// RegisterStocksServiceHandlerFromEndpoint is same as RegisterStocksServiceHandler but
+// RegisterMercauxServiceHandlerFromEndpoint is same as RegisterMercauxServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterStocksServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterMercauxServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -379,59 +379,59 @@ func RegisterStocksServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.
 		}()
 	}()
 
-	return RegisterStocksServiceHandler(ctx, mux, conn)
+	return RegisterMercauxServiceHandler(ctx, mux, conn)
 }
 
-// RegisterStocksServiceHandler registers the http handlers for service StocksService to "mux".
+// RegisterMercauxServiceHandler registers the http handlers for service MercauxService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterStocksServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterStocksServiceHandlerClient(ctx, mux, NewStocksServiceClient(conn))
+func RegisterMercauxServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterMercauxServiceHandlerClient(ctx, mux, NewMercauxServiceClient(conn))
 }
 
-// RegisterStocksServiceHandlerClient registers the http handlers for service StocksService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "StocksServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "StocksServiceClient"
+// RegisterMercauxServiceHandlerClient registers the http handlers for service MercauxService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "MercauxServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "MercauxServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "StocksServiceClient" to call the correct interceptors.
-func RegisterStocksServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client StocksServiceClient) error {
+// "MercauxServiceClient" to call the correct interceptors.
+func RegisterMercauxServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client MercauxServiceClient) error {
 
-	mux.Handle("GET", pattern_StocksService_Stocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MercauxService_Stocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.StocksService/Stocks", runtime.WithHTTPPathPattern("/api/v1/stocks"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.MercauxService/Stocks", runtime.WithHTTPPathPattern("/api/v1/stocks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StocksService_Stocks_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MercauxService_Stocks_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StocksService_Stocks_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MercauxService_Stocks_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_StocksService_Catalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MercauxService_Catalog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.StocksService/Catalog", runtime.WithHTTPPathPattern("/api/v1/catalog"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.MercauxService/Catalog", runtime.WithHTTPPathPattern("/api/v1/catalog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StocksService_Catalog_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MercauxService_Catalog_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_StocksService_Catalog_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MercauxService_Catalog_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -439,15 +439,15 @@ func RegisterStocksServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_StocksService_Stocks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "stocks"}, ""))
+	pattern_MercauxService_Stocks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "stocks"}, ""))
 
-	pattern_StocksService_Catalog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "catalog"}, ""))
+	pattern_MercauxService_Catalog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "catalog"}, ""))
 )
 
 var (
-	forward_StocksService_Stocks_0 = runtime.ForwardResponseMessage
+	forward_MercauxService_Stocks_0 = runtime.ForwardResponseMessage
 
-	forward_StocksService_Catalog_0 = runtime.ForwardResponseMessage
+	forward_MercauxService_Catalog_0 = runtime.ForwardResponseMessage
 )
 
 // RegisterStoresHandlerFromEndpoint is same as RegisterStoresHandler but
