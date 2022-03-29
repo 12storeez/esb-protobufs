@@ -19,372 +19,420 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// MercauxServiceClient is the client API for MercauxService service.
+// StocksServiceClient is the client API for StocksService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MercauxServiceClient interface {
-	Stocks(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListStocksResponse, error)
-	Catalog(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListCatalogResponse, error)
+type StocksServiceClient interface {
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListStocksResponse, error)
 }
 
-type mercauxServiceClient struct {
+type stocksServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewMercauxServiceClient(cc grpc.ClientConnInterface) MercauxServiceClient {
-	return &mercauxServiceClient{cc}
+func NewStocksServiceClient(cc grpc.ClientConnInterface) StocksServiceClient {
+	return &stocksServiceClient{cc}
 }
 
-func (c *mercauxServiceClient) Stocks(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListStocksResponse, error) {
+func (c *stocksServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListStocksResponse, error) {
 	out := new(ListStocksResponse)
-	err := c.cc.Invoke(ctx, "/mercaux.MercauxService/Stocks", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mercaux.StocksService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mercauxServiceClient) Catalog(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListCatalogResponse, error) {
+// StocksServiceServer is the server API for StocksService service.
+// All implementations should embed UnimplementedStocksServiceServer
+// for forward compatibility
+type StocksServiceServer interface {
+	List(context.Context, *ListRequest) (*ListStocksResponse, error)
+}
+
+// UnimplementedStocksServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedStocksServiceServer struct {
+}
+
+func (UnimplementedStocksServiceServer) List(context.Context, *ListRequest) (*ListStocksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+
+// UnsafeStocksServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StocksServiceServer will
+// result in compilation errors.
+type UnsafeStocksServiceServer interface {
+	mustEmbedUnimplementedStocksServiceServer()
+}
+
+func RegisterStocksServiceServer(s grpc.ServiceRegistrar, srv StocksServiceServer) {
+	s.RegisterService(&StocksService_ServiceDesc, srv)
+}
+
+func _StocksService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StocksServiceServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mercaux.StocksService/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StocksServiceServer).List(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// StocksService_ServiceDesc is the grpc.ServiceDesc for StocksService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var StocksService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mercaux.StocksService",
+	HandlerType: (*StocksServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "List",
+			Handler:    _StocksService_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mercaux.proto",
+}
+
+// CatalogServiceClient is the client API for CatalogService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CatalogServiceClient interface {
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListCatalogResponse, error)
+}
+
+type catalogServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCatalogServiceClient(cc grpc.ClientConnInterface) CatalogServiceClient {
+	return &catalogServiceClient{cc}
+}
+
+func (c *catalogServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListCatalogResponse, error) {
 	out := new(ListCatalogResponse)
-	err := c.cc.Invoke(ctx, "/mercaux.MercauxService/Catalog", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mercaux.CatalogService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MercauxServiceServer is the server API for MercauxService service.
-// All implementations should embed UnimplementedMercauxServiceServer
+// CatalogServiceServer is the server API for CatalogService service.
+// All implementations should embed UnimplementedCatalogServiceServer
 // for forward compatibility
-type MercauxServiceServer interface {
-	Stocks(context.Context, *ListRequest) (*ListStocksResponse, error)
-	Catalog(context.Context, *ListRequest) (*ListCatalogResponse, error)
+type CatalogServiceServer interface {
+	List(context.Context, *ListRequest) (*ListCatalogResponse, error)
 }
 
-// UnimplementedMercauxServiceServer should be embedded to have forward compatible implementations.
-type UnimplementedMercauxServiceServer struct {
+// UnimplementedCatalogServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedCatalogServiceServer struct {
 }
 
-func (UnimplementedMercauxServiceServer) Stocks(context.Context, *ListRequest) (*ListStocksResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Stocks not implemented")
-}
-func (UnimplementedMercauxServiceServer) Catalog(context.Context, *ListRequest) (*ListCatalogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Catalog not implemented")
+func (UnimplementedCatalogServiceServer) List(context.Context, *ListRequest) (*ListCatalogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 
-// UnsafeMercauxServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MercauxServiceServer will
+// UnsafeCatalogServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CatalogServiceServer will
 // result in compilation errors.
-type UnsafeMercauxServiceServer interface {
-	mustEmbedUnimplementedMercauxServiceServer()
+type UnsafeCatalogServiceServer interface {
+	mustEmbedUnimplementedCatalogServiceServer()
 }
 
-func RegisterMercauxServiceServer(s grpc.ServiceRegistrar, srv MercauxServiceServer) {
-	s.RegisterService(&MercauxService_ServiceDesc, srv)
+func RegisterCatalogServiceServer(s grpc.ServiceRegistrar, srv CatalogServiceServer) {
+	s.RegisterService(&CatalogService_ServiceDesc, srv)
 }
 
-func _MercauxService_Stocks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CatalogService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MercauxServiceServer).Stocks(ctx, in)
+		return srv.(CatalogServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mercaux.MercauxService/Stocks",
+		FullMethod: "/mercaux.CatalogService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MercauxServiceServer).Stocks(ctx, req.(*ListRequest))
+		return srv.(CatalogServiceServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MercauxService_Catalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MercauxServiceServer).Catalog(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/mercaux.MercauxService/Catalog",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MercauxServiceServer).Catalog(ctx, req.(*ListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// MercauxService_ServiceDesc is the grpc.ServiceDesc for MercauxService service.
+// CatalogService_ServiceDesc is the grpc.ServiceDesc for CatalogService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var MercauxService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "mercaux.MercauxService",
-	HandlerType: (*MercauxServiceServer)(nil),
+var CatalogService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mercaux.CatalogService",
+	HandlerType: (*CatalogServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Stocks",
-			Handler:    _MercauxService_Stocks_Handler,
-		},
-		{
-			MethodName: "Catalog",
-			Handler:    _MercauxService_Catalog_Handler,
+			MethodName: "List",
+			Handler:    _CatalogService_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/mercaux.proto",
 }
 
-// StoresClient is the client API for Stores service.
+// StoresServiceClient is the client API for StoresService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type StoresClient interface {
-	Get(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StoresGetResponse, error)
+type StoresServiceClient interface {
+	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListStoresResponse, error)
 }
 
-type storesClient struct {
+type storesServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewStoresClient(cc grpc.ClientConnInterface) StoresClient {
-	return &storesClient{cc}
+func NewStoresServiceClient(cc grpc.ClientConnInterface) StoresServiceClient {
+	return &storesServiceClient{cc}
 }
 
-func (c *storesClient) Get(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StoresGetResponse, error) {
-	out := new(StoresGetResponse)
-	err := c.cc.Invoke(ctx, "/mercaux.Stores/Get", in, out, opts...)
+func (c *storesServiceClient) List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListStoresResponse, error) {
+	out := new(ListStoresResponse)
+	err := c.cc.Invoke(ctx, "/mercaux.StoresService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// StoresServer is the server API for Stores service.
-// All implementations should embed UnimplementedStoresServer
+// StoresServiceServer is the server API for StoresService service.
+// All implementations should embed UnimplementedStoresServiceServer
 // for forward compatibility
-type StoresServer interface {
-	Get(context.Context, *emptypb.Empty) (*StoresGetResponse, error)
+type StoresServiceServer interface {
+	List(context.Context, *emptypb.Empty) (*ListStoresResponse, error)
 }
 
-// UnimplementedStoresServer should be embedded to have forward compatible implementations.
-type UnimplementedStoresServer struct {
+// UnimplementedStoresServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedStoresServiceServer struct {
 }
 
-func (UnimplementedStoresServer) Get(context.Context, *emptypb.Empty) (*StoresGetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+func (UnimplementedStoresServiceServer) List(context.Context, *emptypb.Empty) (*ListStoresResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 
-// UnsafeStoresServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to StoresServer will
+// UnsafeStoresServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StoresServiceServer will
 // result in compilation errors.
-type UnsafeStoresServer interface {
-	mustEmbedUnimplementedStoresServer()
+type UnsafeStoresServiceServer interface {
+	mustEmbedUnimplementedStoresServiceServer()
 }
 
-func RegisterStoresServer(s grpc.ServiceRegistrar, srv StoresServer) {
-	s.RegisterService(&Stores_ServiceDesc, srv)
+func RegisterStoresServiceServer(s grpc.ServiceRegistrar, srv StoresServiceServer) {
+	s.RegisterService(&StoresService_ServiceDesc, srv)
 }
 
-func _Stores_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StoresService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StoresServer).Get(ctx, in)
+		return srv.(StoresServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mercaux.Stores/Get",
+		FullMethod: "/mercaux.StoresService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StoresServer).Get(ctx, req.(*emptypb.Empty))
+		return srv.(StoresServiceServer).List(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Stores_ServiceDesc is the grpc.ServiceDesc for Stores service.
+// StoresService_ServiceDesc is the grpc.ServiceDesc for StoresService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Stores_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "mercaux.Stores",
-	HandlerType: (*StoresServer)(nil),
+var StoresService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mercaux.StoresService",
+	HandlerType: (*StoresServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Get",
-			Handler:    _Stores_Get_Handler,
+			MethodName: "List",
+			Handler:    _StoresService_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/mercaux.proto",
 }
 
-// SellersClient is the client API for Sellers service.
+// SellersServiceClient is the client API for SellersService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SellersClient interface {
-	Get(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SellersGetResponse, error)
+type SellersServiceClient interface {
+	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListSellersResponse, error)
 }
 
-type sellersClient struct {
+type sellersServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSellersClient(cc grpc.ClientConnInterface) SellersClient {
-	return &sellersClient{cc}
+func NewSellersServiceClient(cc grpc.ClientConnInterface) SellersServiceClient {
+	return &sellersServiceClient{cc}
 }
 
-func (c *sellersClient) Get(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SellersGetResponse, error) {
-	out := new(SellersGetResponse)
-	err := c.cc.Invoke(ctx, "/mercaux.Sellers/Get", in, out, opts...)
+func (c *sellersServiceClient) List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListSellersResponse, error) {
+	out := new(ListSellersResponse)
+	err := c.cc.Invoke(ctx, "/mercaux.SellersService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SellersServer is the server API for Sellers service.
-// All implementations should embed UnimplementedSellersServer
+// SellersServiceServer is the server API for SellersService service.
+// All implementations should embed UnimplementedSellersServiceServer
 // for forward compatibility
-type SellersServer interface {
-	Get(context.Context, *emptypb.Empty) (*SellersGetResponse, error)
+type SellersServiceServer interface {
+	List(context.Context, *emptypb.Empty) (*ListSellersResponse, error)
 }
 
-// UnimplementedSellersServer should be embedded to have forward compatible implementations.
-type UnimplementedSellersServer struct {
+// UnimplementedSellersServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedSellersServiceServer struct {
 }
 
-func (UnimplementedSellersServer) Get(context.Context, *emptypb.Empty) (*SellersGetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+func (UnimplementedSellersServiceServer) List(context.Context, *emptypb.Empty) (*ListSellersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 
-// UnsafeSellersServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SellersServer will
+// UnsafeSellersServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SellersServiceServer will
 // result in compilation errors.
-type UnsafeSellersServer interface {
-	mustEmbedUnimplementedSellersServer()
+type UnsafeSellersServiceServer interface {
+	mustEmbedUnimplementedSellersServiceServer()
 }
 
-func RegisterSellersServer(s grpc.ServiceRegistrar, srv SellersServer) {
-	s.RegisterService(&Sellers_ServiceDesc, srv)
+func RegisterSellersServiceServer(s grpc.ServiceRegistrar, srv SellersServiceServer) {
+	s.RegisterService(&SellersService_ServiceDesc, srv)
 }
 
-func _Sellers_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SellersService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SellersServer).Get(ctx, in)
+		return srv.(SellersServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mercaux.Sellers/Get",
+		FullMethod: "/mercaux.SellersService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SellersServer).Get(ctx, req.(*emptypb.Empty))
+		return srv.(SellersServiceServer).List(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Sellers_ServiceDesc is the grpc.ServiceDesc for Sellers service.
+// SellersService_ServiceDesc is the grpc.ServiceDesc for SellersService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Sellers_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "mercaux.Sellers",
-	HandlerType: (*SellersServer)(nil),
+var SellersService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mercaux.SellersService",
+	HandlerType: (*SellersServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Get",
-			Handler:    _Sellers_Get_Handler,
+			MethodName: "List",
+			Handler:    _SellersService_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/mercaux.proto",
 }
 
-// OrdersClient is the client API for Orders service.
+// OrdersServiceClient is the client API for OrdersService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type OrdersClient interface {
-	NewOrder(ctx context.Context, in *OrdersNewParams, opts ...grpc.CallOption) (*OrdersNewResponse, error)
+type OrdersServiceClient interface {
+	New(ctx context.Context, in *NewOrderRequest, opts ...grpc.CallOption) (*NewOrderResponse, error)
 }
 
-type ordersClient struct {
+type ordersServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewOrdersClient(cc grpc.ClientConnInterface) OrdersClient {
-	return &ordersClient{cc}
+func NewOrdersServiceClient(cc grpc.ClientConnInterface) OrdersServiceClient {
+	return &ordersServiceClient{cc}
 }
 
-func (c *ordersClient) NewOrder(ctx context.Context, in *OrdersNewParams, opts ...grpc.CallOption) (*OrdersNewResponse, error) {
-	out := new(OrdersNewResponse)
-	err := c.cc.Invoke(ctx, "/mercaux.Orders/NewOrder", in, out, opts...)
+func (c *ordersServiceClient) New(ctx context.Context, in *NewOrderRequest, opts ...grpc.CallOption) (*NewOrderResponse, error) {
+	out := new(NewOrderResponse)
+	err := c.cc.Invoke(ctx, "/mercaux.OrdersService/New", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// OrdersServer is the server API for Orders service.
-// All implementations should embed UnimplementedOrdersServer
+// OrdersServiceServer is the server API for OrdersService service.
+// All implementations should embed UnimplementedOrdersServiceServer
 // for forward compatibility
-type OrdersServer interface {
-	NewOrder(context.Context, *OrdersNewParams) (*OrdersNewResponse, error)
+type OrdersServiceServer interface {
+	New(context.Context, *NewOrderRequest) (*NewOrderResponse, error)
 }
 
-// UnimplementedOrdersServer should be embedded to have forward compatible implementations.
-type UnimplementedOrdersServer struct {
+// UnimplementedOrdersServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedOrdersServiceServer struct {
 }
 
-func (UnimplementedOrdersServer) NewOrder(context.Context, *OrdersNewParams) (*OrdersNewResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NewOrder not implemented")
+func (UnimplementedOrdersServiceServer) New(context.Context, *NewOrderRequest) (*NewOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method New not implemented")
 }
 
-// UnsafeOrdersServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to OrdersServer will
+// UnsafeOrdersServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to OrdersServiceServer will
 // result in compilation errors.
-type UnsafeOrdersServer interface {
-	mustEmbedUnimplementedOrdersServer()
+type UnsafeOrdersServiceServer interface {
+	mustEmbedUnimplementedOrdersServiceServer()
 }
 
-func RegisterOrdersServer(s grpc.ServiceRegistrar, srv OrdersServer) {
-	s.RegisterService(&Orders_ServiceDesc, srv)
+func RegisterOrdersServiceServer(s grpc.ServiceRegistrar, srv OrdersServiceServer) {
+	s.RegisterService(&OrdersService_ServiceDesc, srv)
 }
 
-func _Orders_NewOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OrdersNewParams)
+func _OrdersService_New_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NewOrderRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OrdersServer).NewOrder(ctx, in)
+		return srv.(OrdersServiceServer).New(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mercaux.Orders/NewOrder",
+		FullMethod: "/mercaux.OrdersService/New",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrdersServer).NewOrder(ctx, req.(*OrdersNewParams))
+		return srv.(OrdersServiceServer).New(ctx, req.(*NewOrderRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Orders_ServiceDesc is the grpc.ServiceDesc for Orders service.
+// OrdersService_ServiceDesc is the grpc.ServiceDesc for OrdersService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Orders_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "mercaux.Orders",
-	HandlerType: (*OrdersServer)(nil),
+var OrdersService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mercaux.OrdersService",
+	HandlerType: (*OrdersServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "NewOrder",
-			Handler:    _Orders_NewOrder_Handler,
+			MethodName: "New",
+			Handler:    _OrdersService_New_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

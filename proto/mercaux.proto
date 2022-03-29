@@ -7,32 +7,44 @@ import "google/api/annotations.proto";
 
 package mercaux;
 
-service MercauxService {
-    rpc Stocks(ListRequest) returns (ListStocksResponse) {
+service StocksService {
+    rpc List(ListRequest) returns (ListStocksResponse) {
         option (google.api.http) = {
             get: "/api/v1/stocks"
         };
     }
+}
 
-    rpc Catalog(ListRequest) returns (ListCatalogResponse) {
+service CatalogService {
+    rpc List(ListRequest) returns (ListCatalogResponse) {
         option (google.api.http) = {
             get: "/api/v1/catalog"
         };
     }
 }
 
-service Stores {
-    rpc Get (google.protobuf.Empty) returns (StoresGetResponse) {
+service StoresService {
+    rpc List(google.protobuf.Empty) returns (ListStoresResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/stores"
+        };
     }
 }
 
-service Sellers {
-    rpc Get (google.protobuf.Empty) returns (SellersGetResponse) {
+service SellersService {
+    rpc List(google.protobuf.Empty) returns (ListSellersResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/sellers"
+        };
     }
 }
 
-service Orders {
-    rpc NewOrder (OrdersNewParams) returns (OrdersNewResponse) {
+service OrdersService {
+    rpc New(NewOrderRequest) returns (NewOrderResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/order"
+            body: "*"
+        };
     }
 }
 
@@ -109,7 +121,7 @@ message Quantity {
     int32 price_before_discount = 6;
 }
 
-message StoresGetResponse {
+message ListStoresResponse {
     bool ok = 1;
     repeated Store stores = 2;
 }
@@ -125,7 +137,7 @@ message Store {
     bool active = 8;
 }
 
-message SellersGetResponse {
+message ListSellersResponse {
     bool ok = 1;
     repeated Seller sellers = 2;
 }
@@ -136,7 +148,7 @@ message Seller {
     string seller_name = 3;
 }
 
-message OrdersNewParams {
+message NewOrderRequest {
     Order order = 1;
     string source = 2;
     string seller_id = 3;
@@ -157,7 +169,7 @@ message OrderItem {
     float price = 3;
 }
 
-message OrdersNewResponse {
+message NewOrderResponse {
     bool ok = 1;
     string order_id = 2;
     repeated OrderError errors = 3;
