@@ -1,11 +1,23 @@
 syntax = "proto3";
 
 option go_package = "go/mercaux";
+
 import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
 package mercaux;
 
-service Stocks {
-    rpc Get (StocksGetParams) returns (StocksGetResponse) {
+service MercauxService {
+    rpc Stocks(ListRequest) returns (ListStocksResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/stocks"
+        };
+    }
+
+    rpc Catalog(ListRequest) returns (ListCatalogResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/catalog"
+        };
     }
 }
 
@@ -24,54 +36,56 @@ service Orders {
     }
 }
 
-message StocksGetParams {
-    int32 page = 1;
+message ListRequest {
+    int32   limit = 1;
+    int32   offset = 2;
 }
 
-message StocksGetResponse {
-    bool ok = 1;
-    int32 pages = 2;
-    int32 page = 3;
-    repeated Stock stocks = 4;
+message ListCatalogResponse {
+    repeated Catalog results = 1;
+    int32            total = 2;
+}
+
+message ListStocksResponse {
+    repeated Stock results = 1;
+    int32           total = 2;
+}
+
+message Catalog {
+    int64 barcode = 1;
+    string category = 2;
+    string family = 3;
+    string product_name = 4;
+    string url = 5;
+    bool is_active = 6;
+    int32 price = 7;
+    int32 article = 8;
+    string size = 9;
+    string color = 10;
+    string fabric = 11;
+    string super_model_name = 12;
+    string gender = 13;
+    repeated string sizes = 14;
+    repeated string barcode_alt = 15;
+    int32 discount = 16;
+    repeated string total_look = 17;
+    string description = 18;
+    repeated string images = 19;
+    Category main_category = 20;
+    repeated Category site_category = 21;
+    string size_description = 22;
+    repeated string alternatives = 23;
+    string video = 24;
+    repeated string instashop = 25;
+    string country = 26;
+    repeated Quantity quantity = 27;
+    string preview = 28;
+    Capsules capsules = 29;
 }
 
 message Stock {
-    string barcode = 1;
-    string category = 2;
-    string family = 3;
-    string family_id = 4;
-    string product_name = 5;
-    string product_name_en = 6;
-    string picture = 7;
-    string url = 8;
-    bool is_active = 9;
-    int32 price = 10;
-    string article = 11;
-    string size = 12;
-    string color = 13;
-    string fabric = 14;
-    string model = 15;
-    string super_model_id = 16;
-    string super_model_name = 17;
-    string super_model_name_en = 18;
-    string gender = 19;
-    repeated string sizes = 20;
-    repeated string barcode_alt = 21;
-    int32 discount = 22;
-    repeated string total_look = 23;
-    string description = 24;
-    repeated string images = 25;
-    Category main_category = 26;
-    repeated Category site_category = 27;
-    string size_description = 28;
-    repeated string recommendations = 29;
-    repeated string alternatives = 30;
-    string video = 31;
-    repeated string instashop = 32;
-    string country = 33;
-    repeated Quantity quantity = 34;
-    string preview = 35;
-    Capsules capsules = 36;
+    int64 barcode = 1;
+    repeated Quantity quantity = 2;
 }
 
 message Capsules {
