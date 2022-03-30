@@ -64,39 +64,40 @@ message ListStocksResponse {
 }
 
 message Catalog {
-    int64 barcode = 1;
-    string category = 2;
-    string family = 3;
-    string product_name = 4;
-    string url = 5;
-    bool is_active = 6;
-    int32 price = 7;
-    int32 article = 8;
-    string size = 9;
-    string color = 10;
-    string fabric = 11;
-    string super_model_name = 12;
-    string gender = 13;
-    repeated string sizes = 14;
-    repeated string barcode_alt = 15;
-    int32 discount = 16;
-    repeated string total_look = 17;
-    string description = 18;
-    repeated string images = 19;
-    Category main_category = 20;
+    int64             barcode = 1;
+    string            category = 2;
+    string            family = 3;
+    string            product_name = 4;
+    string            url = 5;
+    bool              is_active = 6;
+    int32             price = 7;
+    int32             article = 8;
+    string            size = 9;
+    string            color = 10;
+    string            fabric = 11;
+    string            super_model_name = 12;
+    string            gender = 13;
+    repeated string   sizes = 14;
+    repeated string   barcode_alt = 15;
+    int32             discount = 16;
+    repeated string   total_look = 17;
+    string            description = 18;
+    repeated string   images = 19;
+    Category          main_category = 20;
     repeated Category site_category = 21;
-    string size_description = 22;
-    repeated string alternatives = 23;
-    string video = 24;
-    repeated string instashop = 25;
-    string country = 26;
-    string preview = 27;
-    Capsules capsules = 28;
+    string            size_description = 22;
+    repeated string   alternatives = 23;
+    string            video = 24;
+    repeated string   instashop = 25;
+    string            country = 26;
+    string            preview = 27;
+    Capsules          capsules = 28;
 }
 
 message Stock {
-    int64 barcode = 1;
-    repeated Quantity quantity = 2;
+    int64     barcode = 1;
+    string    country = 2;
+    repeated  Quantity quantity = 3;
 }
 
 message Capsules {
