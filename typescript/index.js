@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-exports.logistics = exports.release = exports.platform = exports.geo = exports.mindbox = void 0;
 var mindbox;
 (function (mindbox) {
     var Platform;

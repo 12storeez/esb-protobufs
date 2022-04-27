@@ -126,6 +126,7 @@ export namespace mindbox {
 
   export interface ResponseCode {
     ok: boolean;
+    timestamp: number;
   }
 
   export interface ParamsCheckCode {
@@ -168,58 +169,56 @@ export namespace mindbox {
 }
 
 export namespace mercaux {
-  export interface Stocks {
-    get(
-      request: StocksGetParams,
-      metadata?: any
-    ): Observable<StocksGetResponse>;
+  export interface StocksService {
+    list(request: ListRequest, metadata?: any): Observable<ListStocksResponse>;
   }
 
-  export interface Stores {
-    get(request: any, metadata?: any): Observable<StoresGetResponse>;
+  export interface CatalogService {
+    list(request: ListRequest, metadata?: any): Observable<ListCatalogResponse>;
   }
 
-  export interface Sellers {
-    get(request: any, metadata?: any): Observable<SellersGetResponse>;
+  export interface StoresService {
+    list(request: any, metadata?: any): Observable<ListStoresResponse>;
   }
 
-  export interface Orders {
-    newOrder(
-      request: OrdersNewParams,
-      metadata?: any
-    ): Observable<OrdersNewResponse>;
+  export interface SellersService {
+    list(request: any, metadata?: any): Observable<ListSellersResponse>;
   }
 
-  export interface StocksGetParams {
-    page: number;
+  export interface OrdersService {
+    new (request: NewOrderRequest, metadata?: any): Observable<
+      NewOrderResponse
+    >;
   }
 
-  export interface StocksGetResponse {
-    ok: boolean;
-    pages: number;
-    page: number;
-    stocks: Stock[];
+  export interface ListRequest {
+    limit: number;
+    offset: number;
   }
 
-  export interface Stock {
-    barcode: string;
+  export interface ListCatalogResponse {
+    results: Catalog[];
+    total: number;
+  }
+
+  export interface ListStocksResponse {
+    results: Stock[];
+    total: number;
+  }
+
+  export interface Catalog {
+    barcode: number;
     category: string;
     family: string;
-    family_id: string;
     product_name: string;
-    product_name_en: string;
-    picture: string;
     url: string;
     is_active: boolean;
     price: number;
-    article: string;
+    article: number;
     size: string;
     color: string;
     fabric: string;
-    model: string;
-    super_model_id: string;
     super_model_name: string;
-    super_model_name_en: string;
     gender: string;
     sizes: string[];
     barcode_alt: string[];
@@ -230,14 +229,18 @@ export namespace mercaux {
     main_category: Category;
     site_category: Category[];
     size_description: string;
-    recommendations: string[];
     alternatives: string[];
     video: string;
     instashop: string[];
     country: string;
-    quantity: Quantity[];
     preview: string;
     capsules: Capsules;
+  }
+
+  export interface Stock {
+    barcode: number;
+    country: string;
+    quantity: Quantity[];
   }
 
   export interface Capsules {
@@ -261,7 +264,7 @@ export namespace mercaux {
     price_before_discount: number;
   }
 
-  export interface StoresGetResponse {
+  export interface ListStoresResponse {
     ok: boolean;
     stores: Store[];
   }
@@ -277,7 +280,7 @@ export namespace mercaux {
     active: boolean;
   }
 
-  export interface SellersGetResponse {
+  export interface ListSellersResponse {
     ok: boolean;
     sellers: Seller[];
   }
@@ -288,7 +291,7 @@ export namespace mercaux {
     seller_name: string;
   }
 
-  export interface OrdersNewParams {
+  export interface NewOrderRequest {
     order: Order;
     source: string;
     seller_id: string;
@@ -309,7 +312,7 @@ export namespace mercaux {
     price: number;
   }
 
-  export interface OrdersNewResponse {
+  export interface NewOrderResponse {
     ok: boolean;
     order_id: string;
     errors: OrderError[];
