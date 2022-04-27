@@ -42,7 +42,7 @@ service SellersService {
 service OrdersService {
     rpc New(NewOrderRequest) returns (NewOrderResponse) {
         option (google.api.http) = {
-            post: "/api/v1/order"
+            post: "/api/v1/order/new"
             body: "*"
         };
     }
