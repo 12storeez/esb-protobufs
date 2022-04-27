@@ -112,7 +112,8 @@ message ParamsCode {
     string device_id = 2;
 }
 message ResponseCode {
-    bool ok = 1;
+    bool  ok = 1;
+    int64 timestamp = 2;
 }
 
 message ParamsCheckCode {
@@ -120,10 +121,10 @@ message ParamsCheckCode {
     string code = 2;
 }
 message ResponseCheckCode {
-    bool ok = 1;
+    bool   ok = 1;
     string status = 2;
     string client_id = 3;
-    int32 mindbox_id = 4;
+    int32  mindbox_id = 4;
 }
 
 message ParamsEditUser {
