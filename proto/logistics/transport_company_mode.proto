@@ -57,6 +57,12 @@ service TransportCompanyModeService {
       body: "interval"
     };
   }
+
+  rpc Suggest(SuggestTransportCompanyModeRequest) returns (SuggestTransportCompanyModeResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/transport-company-mode/suggest"
+    };
+  }
 }
 
 message TransportCompanyModeIntervalRequest {
@@ -104,4 +110,14 @@ message ListTransportCompanyModeRequest {
 message ListTransportCompanyModeResponse {
   repeated TransportCompanyMode results = 1;
   int32                         total = 2;
+}
+
+message SuggestTransportCompanyModeRequest {
+  int32 limit = 1;
+  int32 search = 2;
+}
+
+message SuggestTransportCompanyModeResponse {
+  int32  id = 1;
+  string code = 2;
 }

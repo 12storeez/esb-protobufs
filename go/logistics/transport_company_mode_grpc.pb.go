@@ -31,6 +31,7 @@ type TransportCompanyModeServiceClient interface {
 	// intervals for transport-company-mode
 	GetIntervalList(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*ListIntervalResponse, error)
 	CreateInterval(ctx context.Context, in *TransportCompanyModeIntervalRequest, opts ...grpc.CallOption) (*Interval, error)
+	Suggest(ctx context.Context, in *SuggestTransportCompanyModeRequest, opts ...grpc.CallOption) (*SuggestTransportCompanyModeResponse, error)
 }
 
 type transportCompanyModeServiceClient struct {
@@ -104,6 +105,15 @@ func (c *transportCompanyModeServiceClient) CreateInterval(ctx context.Context, 
 	return out, nil
 }
 
+func (c *transportCompanyModeServiceClient) Suggest(ctx context.Context, in *SuggestTransportCompanyModeRequest, opts ...grpc.CallOption) (*SuggestTransportCompanyModeResponse, error) {
+	out := new(SuggestTransportCompanyModeResponse)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/Suggest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransportCompanyModeServiceServer is the server API for TransportCompanyModeService service.
 // All implementations should embed UnimplementedTransportCompanyModeServiceServer
 // for forward compatibility
@@ -116,6 +126,7 @@ type TransportCompanyModeServiceServer interface {
 	// intervals for transport-company-mode
 	GetIntervalList(context.Context, *TransportCompanyModeId) (*ListIntervalResponse, error)
 	CreateInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error)
+	Suggest(context.Context, *SuggestTransportCompanyModeRequest) (*SuggestTransportCompanyModeResponse, error)
 }
 
 // UnimplementedTransportCompanyModeServiceServer should be embedded to have forward compatible implementations.
@@ -142,6 +153,9 @@ func (UnimplementedTransportCompanyModeServiceServer) GetIntervalList(context.Co
 }
 func (UnimplementedTransportCompanyModeServiceServer) CreateInterval(context.Context, *TransportCompanyModeIntervalRequest) (*Interval, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateInterval not implemented")
+}
+func (UnimplementedTransportCompanyModeServiceServer) Suggest(context.Context, *SuggestTransportCompanyModeRequest) (*SuggestTransportCompanyModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
 // UnsafeTransportCompanyModeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -281,6 +295,24 @@ func _TransportCompanyModeService_CreateInterval_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransportCompanyModeService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestTransportCompanyModeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyModeServiceServer).Suggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanyModeService/Suggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyModeServiceServer).Suggest(ctx, req.(*SuggestTransportCompanyModeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransportCompanyModeService_ServiceDesc is the grpc.ServiceDesc for TransportCompanyModeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -315,6 +347,10 @@ var TransportCompanyModeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateInterval",
 			Handler:    _TransportCompanyModeService_CreateInterval_Handler,
+		},
+		{
+			MethodName: "Suggest",
+			Handler:    _TransportCompanyModeService_Suggest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
