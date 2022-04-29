@@ -5144,15 +5144,30 @@
         }
       }
     },
-    "logisticsSuggestTransportCompanyModeResponse": {
+    "logisticsSuggestTransportCompanyMode": {
       "type": "object",
       "properties": {
         "id": {
           "type": "integer",
           "format": "int32"
         },
-        "code": {
+        "title": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsSuggestTransportCompanyModeResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsSuggestTransportCompanyMode"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
