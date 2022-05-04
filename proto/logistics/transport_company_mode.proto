@@ -114,7 +114,7 @@ message ListTransportCompanyModeResponse {
 
 message SuggestTransportCompanyModeRequest {
   int32 limit = 1;
-  int32 search = 2;
+  string search = 2;
 }
 
 message SuggestTransportCompanyMode {
