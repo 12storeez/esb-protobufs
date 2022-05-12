@@ -86,9 +86,8 @@ message Catalog {
     repeated string   alternatives = 20;
     string            video = 21;
     repeated string   instashop = 22;
-    string            country = 23;
-    string            preview = 24;
-    Capsules          capsules = 25;
+    string            preview = 23;
+    Capsules          capsules = 24;
 }
 
 message Stock {
