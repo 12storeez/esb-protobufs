@@ -3534,10 +3534,11 @@
                 "updatedAt": {
                   "type": "string"
                 },
-                "zones": {
+                "zoneIds": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/logisticsZone"
+                    "type": "integer",
+                    "format": "int32"
                   }
                 }
               }
