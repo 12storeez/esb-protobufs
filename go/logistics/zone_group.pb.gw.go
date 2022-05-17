@@ -154,7 +154,7 @@ func local_request_ZoneGroupService_Get_0(ctx context.Context, marshaler runtime
 }
 
 func request_ZoneGroupService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ZoneGroupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneGroup
+	var protoReq UpdateZoneGroup
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -188,7 +188,7 @@ func request_ZoneGroupService_Update_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_ZoneGroupService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ZoneGroupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ZoneGroup
+	var protoReq UpdateZoneGroup
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
