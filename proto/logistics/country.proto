@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "zone_group_restriction.proto";
+
+service CountryService {
+  rpc List(ListCountryRequest) returns (ListCountryResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/country"
+    };
+  }
+}
+
+message ListCountryRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string sort = 3;
+}
+
+message ListCountryResponse {
+  repeated Country results = 1;
+  int32            total = 2;
+}
+
