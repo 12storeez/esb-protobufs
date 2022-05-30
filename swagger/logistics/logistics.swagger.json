@@ -15,6 +15,9 @@
       "name": "CategoryZoneGroupRestrictionService"
     },
     {
+      "name": "CountryService"
+    },
+    {
       "name": "DeliveryCalendarService"
     },
     {
@@ -148,6 +151,50 @@
         ],
         "tags": [
           "CategoryService"
+        ]
+      }
+    },
+    "/api/v1/country": {
+      "get": {
+        "operationId": "CountryService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListCountryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CountryService"
         ]
       }
     },
@@ -4713,6 +4760,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsListCountryResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsCountry"
           }
         },
         "total": {
