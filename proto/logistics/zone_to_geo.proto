@@ -22,13 +22,6 @@ service ZoneToGeoService {
     };
   }
 
-  rpc Transfer(TransferZoneToGeoRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/api/v1/zone-to-geo/transfer"
-      body: "*"
-    };
-  }
-
   rpc Get(ZoneToGeoId) returns (ZoneToGeo) {
     option (google.api.http) = {
       get: "/api/v1/zone-to-geo/{geo_id}"
@@ -100,18 +93,13 @@ message SuggestZoneToGeo {
 
 message SuggestZoneToGeoResponse {
   repeated SuggestZoneToGeo results = 1;
-  int32                total = 2;
-}
-
-// Transfer ZoneToGeo from one zone to another
-message TransferZoneToGeoRequest {
-  repeated string geo_ids = 1;
-  int32           zone_id = 2;
+  int32                     total = 2;
 }
 
 // Validate ZoneToGeo
 message ValidateZoneToGeoRequest {
   repeated string geo_ids = 1;
+  int32           zone_id = 2;
 }
 
 message ValidateZoneToGeoResponse {
