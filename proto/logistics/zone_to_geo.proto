@@ -93,12 +93,13 @@ message SuggestZoneToGeo {
 
 message SuggestZoneToGeoResponse {
   repeated SuggestZoneToGeo results = 1;
-  int32                total = 2;
+  int32                     total = 2;
 }
 
 // Validate ZoneToGeo
 message ValidateZoneToGeoRequest {
   repeated string geo_ids = 1;
+  int32           zone_id = 2;
 }
 
 message ValidateZoneToGeoResponse {

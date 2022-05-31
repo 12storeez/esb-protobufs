@@ -5461,6 +5461,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "zoneId": {
+          "type": "integer",
+          "format": "int32"
         }
       },
       "title": "Validate ZoneToGeo"
