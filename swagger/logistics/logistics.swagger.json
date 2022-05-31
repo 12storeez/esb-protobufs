@@ -3722,38 +3722,6 @@
         ]
       }
     },
-    "/api/v1/zone-to-geo/transfer": {
-      "post": {
-        "operationId": "ZoneToGeoService_Transfer",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/logisticsTransferZoneToGeoRequest"
-            }
-          }
-        ],
-        "tags": [
-          "ZoneToGeoService"
-        ]
-      }
-    },
     "/api/v1/zone-to-geo/validate": {
       "post": {
         "operationId": "ZoneToGeoService_Validate",
@@ -5318,22 +5286,6 @@
           "format": "int32"
         }
       }
-    },
-    "logisticsTransferZoneToGeoRequest": {
-      "type": "object",
-      "properties": {
-        "geoIds": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "zoneId": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "Transfer ZoneToGeo from one zone to another"
     },
     "logisticsTransportCompany": {
       "type": "object",

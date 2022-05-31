@@ -25,7 +25,6 @@ const _ = grpc.SupportPackageIsVersion7
 type ZoneToGeoServiceClient interface {
 	List(ctx context.Context, in *ListZoneToGeoRequest, opts ...grpc.CallOption) (*ListZoneToGeoResponse, error)
 	Validate(ctx context.Context, in *ValidateZoneToGeoRequest, opts ...grpc.CallOption) (*ValidateZoneToGeoResponse, error)
-	Transfer(ctx context.Context, in *TransferZoneToGeoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Get(ctx context.Context, in *ZoneToGeoId, opts ...grpc.CallOption) (*ZoneToGeo, error)
 	Update(ctx context.Context, in *ZoneToGeoUpdateRequest, opts ...grpc.CallOption) (*ZoneToGeo, error)
 	Delete(ctx context.Context, in *ZoneToGeoId, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -52,15 +51,6 @@ func (c *zoneToGeoServiceClient) List(ctx context.Context, in *ListZoneToGeoRequ
 func (c *zoneToGeoServiceClient) Validate(ctx context.Context, in *ValidateZoneToGeoRequest, opts ...grpc.CallOption) (*ValidateZoneToGeoResponse, error) {
 	out := new(ValidateZoneToGeoResponse)
 	err := c.cc.Invoke(ctx, "/logistics.ZoneToGeoService/Validate", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *zoneToGeoServiceClient) Transfer(ctx context.Context, in *TransferZoneToGeoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/logistics.ZoneToGeoService/Transfer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,7 +99,6 @@ func (c *zoneToGeoServiceClient) Suggest(ctx context.Context, in *SuggestZoneToG
 type ZoneToGeoServiceServer interface {
 	List(context.Context, *ListZoneToGeoRequest) (*ListZoneToGeoResponse, error)
 	Validate(context.Context, *ValidateZoneToGeoRequest) (*ValidateZoneToGeoResponse, error)
-	Transfer(context.Context, *TransferZoneToGeoRequest) (*emptypb.Empty, error)
 	Get(context.Context, *ZoneToGeoId) (*ZoneToGeo, error)
 	Update(context.Context, *ZoneToGeoUpdateRequest) (*ZoneToGeo, error)
 	Delete(context.Context, *ZoneToGeoId) (*emptypb.Empty, error)
@@ -125,9 +114,6 @@ func (UnimplementedZoneToGeoServiceServer) List(context.Context, *ListZoneToGeoR
 }
 func (UnimplementedZoneToGeoServiceServer) Validate(context.Context, *ValidateZoneToGeoRequest) (*ValidateZoneToGeoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
-}
-func (UnimplementedZoneToGeoServiceServer) Transfer(context.Context, *TransferZoneToGeoRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Transfer not implemented")
 }
 func (UnimplementedZoneToGeoServiceServer) Get(context.Context, *ZoneToGeoId) (*ZoneToGeo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -185,24 +171,6 @@ func _ZoneToGeoService_Validate_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ZoneToGeoServiceServer).Validate(ctx, req.(*ValidateZoneToGeoRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ZoneToGeoService_Transfer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransferZoneToGeoRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ZoneToGeoServiceServer).Transfer(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/logistics.ZoneToGeoService/Transfer",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZoneToGeoServiceServer).Transfer(ctx, req.(*TransferZoneToGeoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -293,10 +261,6 @@ var ZoneToGeoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Validate",
 			Handler:    _ZoneToGeoService_Validate_Handler,
-		},
-		{
-			MethodName: "Transfer",
-			Handler:    _ZoneToGeoService_Transfer_Handler,
 		},
 		{
 			MethodName: "Get",
