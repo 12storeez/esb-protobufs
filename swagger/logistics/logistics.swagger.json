@@ -198,6 +198,43 @@
         ]
       }
     },
+    "/api/v1/country/suggest": {
+      "get": {
+        "operationId": "CountryService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListCountryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CountryService"
+        ]
+      }
+    },
     "/api/v1/delivery-calendar": {
       "get": {
         "operationId": "DeliveryCalendarService_List",

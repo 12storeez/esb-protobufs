@@ -13,6 +13,12 @@ service CountryService {
       get: "/api/v1/country"
     };
   }
+
+  rpc Suggest(SuggestCountryRequest) returns (ListCountryResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/country/suggest"
+    };
+  }
 }
 
 message ListCountryRequest {
@@ -24,5 +30,10 @@ message ListCountryRequest {
 message ListCountryResponse {
   repeated Country results = 1;
   int32            total = 2;
+}
+
+message SuggestCountryRequest {
+  int32  limit = 1;
+  string search = 2;
 }
 
