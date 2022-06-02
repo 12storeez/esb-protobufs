@@ -25,7 +25,7 @@ service CategoryDeliveryTypeRestrictionService {
     };
   }
 
-  rpc Update(CreateCategoryDeliveryTypeRestriction) returns (CategoryDeliveryTypeRestriction) {
+  rpc Update(UpdateCategoryDeliveryTypeRestriction) returns (CategoryDeliveryTypeRestriction) {
     option (google.api.http) = {
       patch: "/api/v1/restriction/category-delivery-type/{id}"
       body: "*"
@@ -50,6 +50,16 @@ message CategoryDeliveryTypeRestrictionId {
 }
 
 message CreateCategoryDeliveryTypeRestriction {
+  int32   category_id = 1;
+  int32   delivery_type_id = 2;
+  int32   message_id = 3;
+  int32   popup_id = 4;
+  bool    is_active = 5;
+  string  created_at = 6;
+  string  updated_at = 7;
+}
+
+message UpdateCategoryDeliveryTypeRestriction {
   int32   id = 1;
   int32   category_id = 2;
   int32   delivery_type_id = 3;
