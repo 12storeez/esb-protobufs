@@ -2676,7 +2676,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCreateListZoneGroupRestrictionRequest"
+              "$ref": "#/definitions/logisticsUpdateListZoneGroupRestrictionRequest"
             }
           }
         ],
@@ -4214,10 +4214,6 @@
     "logisticsCreateCategoryDeliveryTypeRestriction": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "categoryId": {
           "type": "integer",
           "format": "int32"
@@ -4248,10 +4244,6 @@
     "logisticsCreateCategoryZoneGroupRestriction": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "categoryId": {
           "type": "integer",
           "format": "int32"
@@ -4282,10 +4274,6 @@
     "logisticsCreateDeliveryCalendar": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "deliveryModeId": {
           "type": "integer",
           "format": "int32"
@@ -4338,15 +4326,11 @@
     "logisticsCreateListZoneGroupRestrictionRequest": {
       "type": "object",
       "properties": {
-        "results": {
+        "ZoneGroupRestrictions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCreateZoneGroupRestriction"
           }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },
@@ -4370,10 +4354,6 @@
     "logisticsCreateZoneGroupRestriction": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
         "zoneGroupId": {
           "type": "integer",
           "format": "int32"
@@ -5442,6 +5422,17 @@
         }
       }
     },
+    "logisticsUpdateListZoneGroupRestrictionRequest": {
+      "type": "object",
+      "properties": {
+        "ZoneGroupRestrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsUpdateZoneGroupRestriction"
+          }
+        }
+      }
+    },
     "logisticsUpdatePaymentMethodCategoryRestriction": {
       "type": "object",
       "properties": {
@@ -5487,6 +5478,39 @@
           "items": {
             "$ref": "#/definitions/logisticsUpdatePaymentMethodCategoryRestriction"
           }
+        }
+      }
+    },
+    "logisticsUpdateZoneGroupRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "zoneGroupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countryIsoCode": {
+          "type": "string"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
         }
       }
     },

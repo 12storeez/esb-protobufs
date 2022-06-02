@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type CategoryDeliveryTypeRestrictionServiceClient interface {
 	List(ctx context.Context, in *ListCategoryDeliveryTypeRestrictionRequest, opts ...grpc.CallOption) (*ListCategoryDeliveryTypeRestrictionResponse, error)
 	Create(ctx context.Context, in *CreateCategoryDeliveryTypeRestriction, opts ...grpc.CallOption) (*CategoryDeliveryTypeRestriction, error)
-	Update(ctx context.Context, in *CreateCategoryDeliveryTypeRestriction, opts ...grpc.CallOption) (*CategoryDeliveryTypeRestriction, error)
+	Update(ctx context.Context, in *UpdateCategoryDeliveryTypeRestriction, opts ...grpc.CallOption) (*CategoryDeliveryTypeRestriction, error)
 	Get(ctx context.Context, in *CategoryDeliveryTypeRestrictionId, opts ...grpc.CallOption) (*CategoryDeliveryTypeRestriction, error)
 	Delete(ctx context.Context, in *CategoryDeliveryTypeRestrictionId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -56,7 +56,7 @@ func (c *categoryDeliveryTypeRestrictionServiceClient) Create(ctx context.Contex
 	return out, nil
 }
 
-func (c *categoryDeliveryTypeRestrictionServiceClient) Update(ctx context.Context, in *CreateCategoryDeliveryTypeRestriction, opts ...grpc.CallOption) (*CategoryDeliveryTypeRestriction, error) {
+func (c *categoryDeliveryTypeRestrictionServiceClient) Update(ctx context.Context, in *UpdateCategoryDeliveryTypeRestriction, opts ...grpc.CallOption) (*CategoryDeliveryTypeRestriction, error) {
 	out := new(CategoryDeliveryTypeRestriction)
 	err := c.cc.Invoke(ctx, "/logistics.CategoryDeliveryTypeRestrictionService/Update", in, out, opts...)
 	if err != nil {
@@ -89,7 +89,7 @@ func (c *categoryDeliveryTypeRestrictionServiceClient) Delete(ctx context.Contex
 type CategoryDeliveryTypeRestrictionServiceServer interface {
 	List(context.Context, *ListCategoryDeliveryTypeRestrictionRequest) (*ListCategoryDeliveryTypeRestrictionResponse, error)
 	Create(context.Context, *CreateCategoryDeliveryTypeRestriction) (*CategoryDeliveryTypeRestriction, error)
-	Update(context.Context, *CreateCategoryDeliveryTypeRestriction) (*CategoryDeliveryTypeRestriction, error)
+	Update(context.Context, *UpdateCategoryDeliveryTypeRestriction) (*CategoryDeliveryTypeRestriction, error)
 	Get(context.Context, *CategoryDeliveryTypeRestrictionId) (*CategoryDeliveryTypeRestriction, error)
 	Delete(context.Context, *CategoryDeliveryTypeRestrictionId) (*emptypb.Empty, error)
 }
@@ -104,7 +104,7 @@ func (UnimplementedCategoryDeliveryTypeRestrictionServiceServer) List(context.Co
 func (UnimplementedCategoryDeliveryTypeRestrictionServiceServer) Create(context.Context, *CreateCategoryDeliveryTypeRestriction) (*CategoryDeliveryTypeRestriction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedCategoryDeliveryTypeRestrictionServiceServer) Update(context.Context, *CreateCategoryDeliveryTypeRestriction) (*CategoryDeliveryTypeRestriction, error) {
+func (UnimplementedCategoryDeliveryTypeRestrictionServiceServer) Update(context.Context, *UpdateCategoryDeliveryTypeRestriction) (*CategoryDeliveryTypeRestriction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedCategoryDeliveryTypeRestrictionServiceServer) Get(context.Context, *CategoryDeliveryTypeRestrictionId) (*CategoryDeliveryTypeRestriction, error) {
@@ -162,7 +162,7 @@ func _CategoryDeliveryTypeRestrictionService_Create_Handler(srv interface{}, ctx
 }
 
 func _CategoryDeliveryTypeRestrictionService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCategoryDeliveryTypeRestriction)
+	in := new(UpdateCategoryDeliveryTypeRestriction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func _CategoryDeliveryTypeRestrictionService_Update_Handler(srv interface{}, ctx
 		FullMethod: "/logistics.CategoryDeliveryTypeRestrictionService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CategoryDeliveryTypeRestrictionServiceServer).Update(ctx, req.(*CreateCategoryDeliveryTypeRestriction))
+		return srv.(CategoryDeliveryTypeRestrictionServiceServer).Update(ctx, req.(*UpdateCategoryDeliveryTypeRestriction))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -102,7 +102,7 @@ func local_request_CategoryDeliveryTypeRestrictionService_Create_0(ctx context.C
 }
 
 func request_CategoryDeliveryTypeRestrictionService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client CategoryDeliveryTypeRestrictionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateCategoryDeliveryTypeRestriction
+	var protoReq UpdateCategoryDeliveryTypeRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -136,7 +136,7 @@ func request_CategoryDeliveryTypeRestrictionService_Update_0(ctx context.Context
 }
 
 func local_request_CategoryDeliveryTypeRestrictionService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server CategoryDeliveryTypeRestrictionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateCategoryDeliveryTypeRestriction
+	var protoReq UpdateCategoryDeliveryTypeRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

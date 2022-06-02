@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type DeliveryCalendarServiceClient interface {
 	List(ctx context.Context, in *ListDeliveryCalendarRequest, opts ...grpc.CallOption) (*ListDeliveryCalendarResponse, error)
 	Create(ctx context.Context, in *CreateDeliveryCalendar, opts ...grpc.CallOption) (*DeliveryCalendar, error)
-	Update(ctx context.Context, in *CreateDeliveryCalendar, opts ...grpc.CallOption) (*DeliveryCalendar, error)
+	Update(ctx context.Context, in *UpdateDeliveryCalendar, opts ...grpc.CallOption) (*DeliveryCalendar, error)
 	Get(ctx context.Context, in *DeliveryCalendarId, opts ...grpc.CallOption) (*DeliveryCalendar, error)
 	Delete(ctx context.Context, in *DeliveryCalendarId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -56,7 +56,7 @@ func (c *deliveryCalendarServiceClient) Create(ctx context.Context, in *CreateDe
 	return out, nil
 }
 
-func (c *deliveryCalendarServiceClient) Update(ctx context.Context, in *CreateDeliveryCalendar, opts ...grpc.CallOption) (*DeliveryCalendar, error) {
+func (c *deliveryCalendarServiceClient) Update(ctx context.Context, in *UpdateDeliveryCalendar, opts ...grpc.CallOption) (*DeliveryCalendar, error) {
 	out := new(DeliveryCalendar)
 	err := c.cc.Invoke(ctx, "/logistics.DeliveryCalendarService/Update", in, out, opts...)
 	if err != nil {
@@ -89,7 +89,7 @@ func (c *deliveryCalendarServiceClient) Delete(ctx context.Context, in *Delivery
 type DeliveryCalendarServiceServer interface {
 	List(context.Context, *ListDeliveryCalendarRequest) (*ListDeliveryCalendarResponse, error)
 	Create(context.Context, *CreateDeliveryCalendar) (*DeliveryCalendar, error)
-	Update(context.Context, *CreateDeliveryCalendar) (*DeliveryCalendar, error)
+	Update(context.Context, *UpdateDeliveryCalendar) (*DeliveryCalendar, error)
 	Get(context.Context, *DeliveryCalendarId) (*DeliveryCalendar, error)
 	Delete(context.Context, *DeliveryCalendarId) (*emptypb.Empty, error)
 }
@@ -104,7 +104,7 @@ func (UnimplementedDeliveryCalendarServiceServer) List(context.Context, *ListDel
 func (UnimplementedDeliveryCalendarServiceServer) Create(context.Context, *CreateDeliveryCalendar) (*DeliveryCalendar, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedDeliveryCalendarServiceServer) Update(context.Context, *CreateDeliveryCalendar) (*DeliveryCalendar, error) {
+func (UnimplementedDeliveryCalendarServiceServer) Update(context.Context, *UpdateDeliveryCalendar) (*DeliveryCalendar, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedDeliveryCalendarServiceServer) Get(context.Context, *DeliveryCalendarId) (*DeliveryCalendar, error) {
@@ -162,7 +162,7 @@ func _DeliveryCalendarService_Create_Handler(srv interface{}, ctx context.Contex
 }
 
 func _DeliveryCalendarService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDeliveryCalendar)
+	in := new(UpdateDeliveryCalendar)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func _DeliveryCalendarService_Update_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/logistics.DeliveryCalendarService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryCalendarServiceServer).Update(ctx, req.(*CreateDeliveryCalendar))
+		return srv.(DeliveryCalendarServiceServer).Update(ctx, req.(*UpdateDeliveryCalendar))
 	}
 	return interceptor(ctx, in, info, handler)
 }

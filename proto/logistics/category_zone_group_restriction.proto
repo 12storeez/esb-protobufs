@@ -25,7 +25,7 @@ service CategoryZoneGroupRestrictionService {
     };
   }
 
-  rpc Update(CreateCategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
+  rpc Update(UpdateCategoryZoneGroupRestriction) returns (CategoryZoneGroupRestriction) {
     option (google.api.http) = {
       patch: "/api/v1/restriction/category-zone-group/{id}"
       body: "*"
@@ -50,6 +50,16 @@ message CategoryZoneGroupRestrictionId {
 }
 
 message CreateCategoryZoneGroupRestriction {
+  int32   category_id = 1;
+  int32   zone_group_id = 2;
+  int32   message_id = 3;
+  int32   popup_id = 4;
+  bool    is_active = 5;
+  string  created_at = 6;
+  string  updated_at = 7;
+}
+
+message UpdateCategoryZoneGroupRestriction {
   int32   id = 1;
   int32   category_id = 2;
   int32   zone_group_id = 3;
