@@ -25,7 +25,7 @@ service DeliveryCalendarService {
     };
   }
 
-  rpc Update(CreateDeliveryCalendar) returns (DeliveryCalendar) {
+  rpc Update(UpdateDeliveryCalendar) returns (DeliveryCalendar) {
     option (google.api.http) = {
       patch: "/api/v1/delivery-calendar/{id}"
       body: "*"
@@ -50,6 +50,18 @@ message DeliveryCalendarId {
 }
 
 message CreateDeliveryCalendar {
+  int32   delivery_mode_id = 1;
+  int32   delivery_type_id = 2;
+  int32   message_id = 3;
+  int32   popup_id = 4;
+  string  date_from = 5;
+  string  date_to = 6;
+  bool    is_delivery_delayed = 7;
+  string  created_at = 8;
+  string  updated_at = 9;
+}
+
+message UpdateDeliveryCalendar {
   int32   id = 1;
   int32   delivery_mode_id = 2;
   int32   delivery_type_id = 3;

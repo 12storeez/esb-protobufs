@@ -102,7 +102,7 @@ func local_request_CategoryZoneGroupRestrictionService_Create_0(ctx context.Cont
 }
 
 func request_CategoryZoneGroupRestrictionService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client CategoryZoneGroupRestrictionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateCategoryZoneGroupRestriction
+	var protoReq UpdateCategoryZoneGroupRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -136,7 +136,7 @@ func request_CategoryZoneGroupRestrictionService_Update_0(ctx context.Context, m
 }
 
 func local_request_CategoryZoneGroupRestrictionService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server CategoryZoneGroupRestrictionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateCategoryZoneGroupRestriction
+	var protoReq UpdateCategoryZoneGroupRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

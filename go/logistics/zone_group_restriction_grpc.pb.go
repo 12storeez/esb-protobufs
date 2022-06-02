@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type ZoneGroupRestrictionServiceClient interface {
 	List(ctx context.Context, in *ListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
 	Create(ctx context.Context, in *CreateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
-	Update(ctx context.Context, in *CreateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
+	Update(ctx context.Context, in *UpdateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
 	Get(ctx context.Context, in *ZoneGroupRestrictionId, opts ...grpc.CallOption) (*ZoneGroupRestriction, error)
 	Delete(ctx context.Context, in *ZoneGroupRestrictionId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -56,7 +56,7 @@ func (c *zoneGroupRestrictionServiceClient) Create(ctx context.Context, in *Crea
 	return out, nil
 }
 
-func (c *zoneGroupRestrictionServiceClient) Update(ctx context.Context, in *CreateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error) {
+func (c *zoneGroupRestrictionServiceClient) Update(ctx context.Context, in *UpdateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error) {
 	out := new(ListZoneGroupRestrictionResponse)
 	err := c.cc.Invoke(ctx, "/logistics.ZoneGroupRestrictionService/Update", in, out, opts...)
 	if err != nil {
@@ -89,7 +89,7 @@ func (c *zoneGroupRestrictionServiceClient) Delete(ctx context.Context, in *Zone
 type ZoneGroupRestrictionServiceServer interface {
 	List(context.Context, *ListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error)
 	Create(context.Context, *CreateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error)
-	Update(context.Context, *CreateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error)
+	Update(context.Context, *UpdateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error)
 	Get(context.Context, *ZoneGroupRestrictionId) (*ZoneGroupRestriction, error)
 	Delete(context.Context, *ZoneGroupRestrictionId) (*emptypb.Empty, error)
 }
@@ -104,7 +104,7 @@ func (UnimplementedZoneGroupRestrictionServiceServer) List(context.Context, *Lis
 func (UnimplementedZoneGroupRestrictionServiceServer) Create(context.Context, *CreateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedZoneGroupRestrictionServiceServer) Update(context.Context, *CreateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error) {
+func (UnimplementedZoneGroupRestrictionServiceServer) Update(context.Context, *UpdateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedZoneGroupRestrictionServiceServer) Get(context.Context, *ZoneGroupRestrictionId) (*ZoneGroupRestriction, error) {
@@ -162,7 +162,7 @@ func _ZoneGroupRestrictionService_Create_Handler(srv interface{}, ctx context.Co
 }
 
 func _ZoneGroupRestrictionService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateListZoneGroupRestrictionRequest)
+	in := new(UpdateListZoneGroupRestrictionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func _ZoneGroupRestrictionService_Update_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/logistics.ZoneGroupRestrictionService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZoneGroupRestrictionServiceServer).Update(ctx, req.(*CreateListZoneGroupRestrictionRequest))
+		return srv.(ZoneGroupRestrictionServiceServer).Update(ctx, req.(*UpdateListZoneGroupRestrictionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

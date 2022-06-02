@@ -102,7 +102,7 @@ func local_request_DeliveryCalendarService_Create_0(ctx context.Context, marshal
 }
 
 func request_DeliveryCalendarService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryCalendarServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDeliveryCalendar
+	var protoReq UpdateDeliveryCalendar
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -136,7 +136,7 @@ func request_DeliveryCalendarService_Update_0(ctx context.Context, marshaler run
 }
 
 func local_request_DeliveryCalendarService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryCalendarServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDeliveryCalendar
+	var protoReq UpdateDeliveryCalendar
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
