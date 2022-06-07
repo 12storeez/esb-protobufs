@@ -4270,7 +4270,7 @@
     "logisticsCreateListZoneGroupRestrictionRequest": {
       "type": "object",
       "properties": {
-        "ZoneGroupRestrictions": {
+        "zoneGroupRestrictions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsCreateZoneGroupRestriction"
@@ -5404,7 +5404,7 @@
     "logisticsUpdateListZoneGroupRestrictionRequest": {
       "type": "object",
       "properties": {
-        "ZoneGroupRestrictions": {
+        "zoneGroupRestrictions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsUpdateZoneGroupRestriction"
