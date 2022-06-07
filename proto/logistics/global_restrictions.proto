@@ -32,8 +32,8 @@ service GlobalRestrictionsService {
 
 message GlobalRestriction {
   int32       id = 1;
-  Message     message_id = 2;
-  Popup       popup_id = 3;
+  Message     message = 2;
+  Popup       popup = 3;
   enum Restriction {
     price = 0;
     quantity = 1;
