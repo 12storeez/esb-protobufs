@@ -54,8 +54,6 @@ message CreateZoneGroupRestriction {
   int32   message_id = 3;
   int32   popup_id = 4;
   bool    is_active = 5;
-  string  created_at = 6;
-  string  updated_at = 7;
 }
 
 message UpdateZoneGroupRestriction {
@@ -65,8 +63,6 @@ message UpdateZoneGroupRestriction {
   int32   message_id = 4;
   int32   popup_id = 5;
   bool    is_active = 6;
-  string  created_at = 7;
-  string  updated_at = 8;
 }
 
 message ZoneGroupRestriction {
