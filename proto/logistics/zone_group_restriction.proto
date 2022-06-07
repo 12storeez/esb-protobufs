@@ -89,14 +89,14 @@ message ListZoneGroupRestrictionResponse {
 }
 
 message CreateListZoneGroupRestrictionRequest {
-  repeated CreateZoneGroupRestriction ZoneGroupRestrictions = 1;
+  repeated CreateZoneGroupRestriction zone_group_restrictions = 1;
 }
 
 message UpdateListZoneGroupRestrictionRequest {
-  repeated UpdateZoneGroupRestriction ZoneGroupRestrictions = 1;
+  repeated UpdateZoneGroupRestriction zone_group_restrictions = 1;
 }
 
-message Country{
+message Country {
   string country_code = 1;
   string country_name_ru = 2;
 }
