@@ -76,9 +76,7 @@ message UpdateZoneGroup {
   int32           id = 1;
   string          name = 2;
   bool            is_active = 3;
-  string          created_at = 4;
-  string          updated_at = 5;
-  repeated int32  zone_ids = 6;
+  repeated int32  zone_ids = 4;
 }
 
 message ListZoneGroupRequest {

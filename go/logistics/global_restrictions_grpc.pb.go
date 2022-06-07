@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GlobalRestrictionsServiceClient interface {
 	List(ctx context.Context, in *ListGlobalRestrictionRequest, opts ...grpc.CallOption) (*ListGlobalRestrictionResponse, error)
-	Create(ctx context.Context, in *CreateGlobalRestriction, opts ...grpc.CallOption) (*GlobalRestriction, error)
+	Create(ctx context.Context, in *UpdateGlobalRestriction, opts ...grpc.CallOption) (*GlobalRestriction, error)
 	Update(ctx context.Context, in *UpdateGlobalRestriction, opts ...grpc.CallOption) (*GlobalRestriction, error)
 }
 
@@ -44,7 +44,7 @@ func (c *globalRestrictionsServiceClient) List(ctx context.Context, in *ListGlob
 	return out, nil
 }
 
-func (c *globalRestrictionsServiceClient) Create(ctx context.Context, in *CreateGlobalRestriction, opts ...grpc.CallOption) (*GlobalRestriction, error) {
+func (c *globalRestrictionsServiceClient) Create(ctx context.Context, in *UpdateGlobalRestriction, opts ...grpc.CallOption) (*GlobalRestriction, error) {
 	out := new(GlobalRestriction)
 	err := c.cc.Invoke(ctx, "/logistics.GlobalRestrictionsService/Create", in, out, opts...)
 	if err != nil {
@@ -67,7 +67,7 @@ func (c *globalRestrictionsServiceClient) Update(ctx context.Context, in *Update
 // for forward compatibility
 type GlobalRestrictionsServiceServer interface {
 	List(context.Context, *ListGlobalRestrictionRequest) (*ListGlobalRestrictionResponse, error)
-	Create(context.Context, *CreateGlobalRestriction) (*GlobalRestriction, error)
+	Create(context.Context, *UpdateGlobalRestriction) (*GlobalRestriction, error)
 	Update(context.Context, *UpdateGlobalRestriction) (*GlobalRestriction, error)
 }
 
@@ -78,7 +78,7 @@ type UnimplementedGlobalRestrictionsServiceServer struct {
 func (UnimplementedGlobalRestrictionsServiceServer) List(context.Context, *ListGlobalRestrictionRequest) (*ListGlobalRestrictionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedGlobalRestrictionsServiceServer) Create(context.Context, *CreateGlobalRestriction) (*GlobalRestriction, error) {
+func (UnimplementedGlobalRestrictionsServiceServer) Create(context.Context, *UpdateGlobalRestriction) (*GlobalRestriction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedGlobalRestrictionsServiceServer) Update(context.Context, *UpdateGlobalRestriction) (*GlobalRestriction, error) {
@@ -115,7 +115,7 @@ func _GlobalRestrictionsService_List_Handler(srv interface{}, ctx context.Contex
 }
 
 func _GlobalRestrictionsService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateGlobalRestriction)
+	in := new(UpdateGlobalRestriction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func _GlobalRestrictionsService_Create_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/logistics.GlobalRestrictionsService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GlobalRestrictionsServiceServer).Create(ctx, req.(*CreateGlobalRestriction))
+		return srv.(GlobalRestrictionsServiceServer).Create(ctx, req.(*UpdateGlobalRestriction))
 	}
 	return interceptor(ctx, in, info, handler)
 }

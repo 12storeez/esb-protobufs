@@ -15,7 +15,7 @@ service GlobalRestrictionsService {
     };
   }
 
-  rpc Create(CreateGlobalRestriction) returns (GlobalRestriction) {
+  rpc Create(UpdateGlobalRestriction) returns (GlobalRestriction) {
     option (google.api.http) = {
       post: "/api/v1/restriction/global"
       body: "*"
@@ -56,24 +56,7 @@ message UpdateGlobalRestriction {
   Restriction restriction = 4;
   int32       value = 5;
   bool        is_active = 6;
-  string      created_at = 7;
-  string      updated_at = 8;
 }
-
-message CreateGlobalRestriction {
-  int32       message_id = 2;
-  int32       popup_id = 3;
-  enum Restriction {
-    price = 0;
-    quantity = 1;
-  }
-  Restriction restriction = 4;
-  int32       value = 5;
-  bool        is_active = 6;
-  string      created_at = 7;
-  string      updated_at = 8;
-}
-
 
 message ListGlobalRestrictionRequest {
   int32  limit = 1;

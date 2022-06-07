@@ -429,12 +429,6 @@
                 },
                 "isDeliveryDelayed": {
                   "type": "boolean"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
                 }
               }
             }
@@ -2210,12 +2204,6 @@
                 },
                 "isActive": {
                   "type": "boolean"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
                 }
               }
             }
@@ -2414,12 +2402,6 @@
                 },
                 "isActive": {
                   "type": "boolean"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
                 }
               }
             }
@@ -2501,7 +2483,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCreateGlobalRestriction"
+              "$ref": "#/definitions/logisticsUpdateGlobalRestriction"
             }
           }
         ],
@@ -2559,12 +2541,6 @@
                 },
                 "isActive": {
                   "type": "boolean"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
                 }
               }
             }
@@ -3612,12 +3588,6 @@
                 "isActive": {
                   "type": "boolean"
                 },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
-                },
                 "zoneIds": {
                   "type": "array",
                   "items": {
@@ -4224,12 +4194,6 @@
         },
         "isActive": {
           "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },
@@ -4254,12 +4218,6 @@
         },
         "isActive": {
           "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },
@@ -4290,12 +4248,6 @@
         },
         "isDeliveryDelayed": {
           "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },
@@ -4314,43 +4266,6 @@
           "type": "string"
         }
       }
-    },
-    "logisticsCreateGlobalRestriction": {
-      "type": "object",
-      "properties": {
-        "messageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "popupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restriction": {
-          "$ref": "#/definitions/logisticsCreateGlobalRestrictionRestriction"
-        },
-        "value": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsCreateGlobalRestrictionRestriction": {
-      "type": "string",
-      "enum": [
-        "price",
-        "quantity"
-      ],
-      "default": "price"
     },
     "logisticsCreateListZoneGroupRestrictionRequest": {
       "type": "object",
@@ -4400,12 +4315,6 @@
         },
         "isActive": {
           "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },
@@ -5457,6 +5366,33 @@
         }
       }
     },
+    "logisticsUpdateGlobalRestriction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restriction": {
+          "$ref": "#/definitions/logisticsUpdateGlobalRestrictionRestriction"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
     "logisticsUpdateGlobalRestrictionRestriction": {
       "type": "string",
       "enum": [
@@ -5548,12 +5484,6 @@
         },
         "isActive": {
           "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },

@@ -57,8 +57,6 @@ message CreateDeliveryCalendar {
   string  date_from = 5;
   string  date_to = 6;
   bool    is_delivery_delayed = 7;
-  string  created_at = 8;
-  string  updated_at = 9;
 }
 
 message UpdateDeliveryCalendar {
@@ -70,8 +68,6 @@ message UpdateDeliveryCalendar {
   string  date_from = 6;
   string  date_to = 7;
   bool    is_delivery_delayed = 8;
-  string  created_at = 9;
-  string  updated_at = 10;
 }
 
 message DeliveryCalendar {
