@@ -5,6 +5,8 @@ option go_package = "go/logistics";
 package logistics;
 
 import "google/api/annotations.proto";
+import "message.proto";
+import "popup.proto";
 
 service GlobalRestrictionsService {
   rpc List(ListGlobalRestrictionRequest) returns (ListGlobalRestrictionResponse) {
@@ -13,14 +15,14 @@ service GlobalRestrictionsService {
     };
   }
 
-  rpc Create(GlobalRestriction) returns (GlobalRestriction) {
+  rpc Create(CreateGlobalRestriction) returns (GlobalRestriction) {
     option (google.api.http) = {
       post: "/api/v1/restriction/global"
       body: "*"
     };
   }
 
-  rpc Update(GlobalRestriction) returns (GlobalRestriction) {
+  rpc Update(UpdateGlobalRestriction) returns (GlobalRestriction) {
     option (google.api.http) = {
       patch: "/api/v1/restriction/global/{id}"
       body: "*"
@@ -29,19 +31,49 @@ service GlobalRestrictionsService {
 }
 
 message GlobalRestriction {
-  int32 id = 1;
-  int32 message_id = 2;
-  int32 popup_id = 3;
+  int32       id = 1;
+  Message     message_id = 2;
+  Popup       popup_id = 3;
   enum Restriction {
     price = 0;
     quantity = 1;
   }
   Restriction restriction = 4;
-  int32 value = 5;
-  bool is_active = 6;
-  string created_at = 7;
-  string updated_at = 8;
+  int32       value = 5;
+  bool        is_active = 6;
+  string      created_at = 7;
+  string      updated_at = 8;
 }
+
+message UpdateGlobalRestriction {
+  int32       id = 1;
+  int32       message_id = 2;
+  int32       popup_id = 3;
+  enum Restriction {
+    price = 0;
+    quantity = 1;
+  }
+  Restriction restriction = 4;
+  int32       value = 5;
+  bool        is_active = 6;
+  string      created_at = 7;
+  string      updated_at = 8;
+}
+
+message CreateGlobalRestriction {
+  int32       message_id = 2;
+  int32       popup_id = 3;
+  enum Restriction {
+    price = 0;
+    quantity = 1;
+  }
+  Restriction restriction = 4;
+  int32       value = 5;
+  bool        is_active = 6;
+  string      created_at = 7;
+  string      updated_at = 8;
+}
+
 
 message ListGlobalRestrictionRequest {
   int32  limit = 1;
