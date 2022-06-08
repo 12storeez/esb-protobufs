@@ -88,6 +88,7 @@ message Catalog {
     repeated string   instashop = 22;
     string            preview = 23;
     Capsules          capsules = 24;
+    bool              is_sample_sale = 25;
 }
 
 message Stock {
