@@ -29,7 +29,10 @@ service GlobalRestrictionsService {
     };
   }
 }
-
+enum Restriction {
+  price = 0;
+  quantity = 1;
+}
 message GlobalRestriction {
   int32       id = 1;
   Message     message = 2;
@@ -49,10 +52,6 @@ message UpdateGlobalRestriction {
   int32       id = 1;
   int32       message_id = 2;
   int32       popup_id = 3;
-  enum Restriction {
-    price = 0;
-    quantity = 1;
-  }
   Restriction restriction = 4;
   int32       value = 5;
   bool        is_active = 6;

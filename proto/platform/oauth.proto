@@ -33,16 +33,17 @@ message TokenRequest {
   string token = 8;
 }
 
+enum Scope {
+  read = 0;
+  write = 1;
+}
+
 message TokenResponse {
   bool success = 1;
   string access_token = 2;
   string token_type = 3;
   int32 expires_in = 4;
   string refresh_token = 5;
-  enum Scope {
-    read = 0;
-    write = 1;
-  }
   Scope scope = 6;
   int32 uid = 7;
   string info = 8;
