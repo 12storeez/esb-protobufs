@@ -637,6 +637,7 @@ var NPS_ServiceDesc = grpc.ServiceDesc{
 type PortalFeedbackServiceClient interface {
 	Delete(ctx context.Context, in *PortalFeedbackId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	List(ctx context.Context, in *ListPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error)
+	Validate(ctx context.Context, in *ValidatePortalFeedbackRequest, opts ...grpc.CallOption) (*ValidatePortalFeedbackResponse, error)
 }
 
 type portalFeedbackServiceClient struct {
@@ -665,12 +666,22 @@ func (c *portalFeedbackServiceClient) List(ctx context.Context, in *ListPortalFe
 	return out, nil
 }
 
+func (c *portalFeedbackServiceClient) Validate(ctx context.Context, in *ValidatePortalFeedbackRequest, opts ...grpc.CallOption) (*ValidatePortalFeedbackResponse, error) {
+	out := new(ValidatePortalFeedbackResponse)
+	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/Validate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PortalFeedbackServiceServer is the server API for PortalFeedbackService service.
 // All implementations should embed UnimplementedPortalFeedbackServiceServer
 // for forward compatibility
 type PortalFeedbackServiceServer interface {
 	Delete(context.Context, *PortalFeedbackId) (*emptypb.Empty, error)
 	List(context.Context, *ListPortalFeedbackRequest) (*ListPortalFeedbackResponse, error)
+	Validate(context.Context, *ValidatePortalFeedbackRequest) (*ValidatePortalFeedbackResponse, error)
 }
 
 // UnimplementedPortalFeedbackServiceServer should be embedded to have forward compatible implementations.
@@ -682,6 +693,9 @@ func (UnimplementedPortalFeedbackServiceServer) Delete(context.Context, *PortalF
 }
 func (UnimplementedPortalFeedbackServiceServer) List(context.Context, *ListPortalFeedbackRequest) (*ListPortalFeedbackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedPortalFeedbackServiceServer) Validate(context.Context, *ValidatePortalFeedbackRequest) (*ValidatePortalFeedbackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
 }
 
 // UnsafePortalFeedbackServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -731,6 +745,24 @@ func _PortalFeedbackService_List_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PortalFeedbackService_Validate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidatePortalFeedbackRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PortalFeedbackServiceServer).Validate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/feedbacks.PortalFeedbackService/Validate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PortalFeedbackServiceServer).Validate(ctx, req.(*ValidatePortalFeedbackRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PortalFeedbackService_ServiceDesc is the grpc.ServiceDesc for PortalFeedbackService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -745,6 +777,10 @@ var PortalFeedbackService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _PortalFeedbackService_List_Handler,
+		},
+		{
+			MethodName: "Validate",
+			Handler:    _PortalFeedbackService_Validate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
