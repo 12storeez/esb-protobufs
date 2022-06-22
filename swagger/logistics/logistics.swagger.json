@@ -351,6 +351,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -555,6 +556,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -746,6 +748,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -940,6 +943,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -1267,6 +1271,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -1507,6 +1512,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -1701,6 +1707,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -1932,6 +1939,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -2132,6 +2140,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -2330,6 +2339,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -2533,7 +2543,7 @@
                   "format": "int32"
                 },
                 "restriction": {
-                  "$ref": "#/definitions/logisticsUpdateGlobalRestrictionRestriction"
+                  "$ref": "#/definitions/logisticsRestriction"
                 },
                 "value": {
                   "type": "integer",
@@ -2697,6 +2707,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -2954,6 +2965,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -3126,7 +3138,7 @@
             "format": "int32"
           },
           {
-            "name": "body",
+            "name": "interval",
             "in": "body",
             "required": true,
             "schema": {
@@ -3175,6 +3187,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -3528,6 +3541,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -3611,6 +3625,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -3796,6 +3811,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -3934,6 +3950,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -5081,6 +5098,14 @@
       },
       "title": "Database relationship for message, where\n- id - identifier for the related entity\n- name - display name of the related entity\n- rel - entity name\n- rel_name - display name for the entity\n- href - link to the rel through id (like /api/v1/transport-company/2/)"
     },
+    "logisticsRestriction": {
+      "type": "string",
+      "enum": [
+        "price",
+        "quantity"
+      ],
+      "default": "price"
+    },
     "logisticsSuggestMessage": {
       "type": "object",
       "properties": {
@@ -5382,7 +5407,7 @@
           "format": "int32"
         },
         "restriction": {
-          "$ref": "#/definitions/logisticsUpdateGlobalRestrictionRestriction"
+          "$ref": "#/definitions/logisticsRestriction"
         },
         "value": {
           "type": "integer",
@@ -5392,14 +5417,6 @@
           "type": "boolean"
         }
       }
-    },
-    "logisticsUpdateGlobalRestrictionRestriction": {
-      "type": "string",
-      "enum": [
-        "price",
-        "quantity"
-      ],
-      "default": "price"
     },
     "logisticsUpdateListZoneGroupRestrictionRequest": {
       "type": "object",
