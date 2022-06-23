@@ -1,0 +1,350 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "slack.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Slack"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/slack/send": {
+      "post": {
+        "operationId": "Slack_Send",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationsSlackSendResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/notificationsSlackSendParams"
+            }
+          }
+        ],
+        "tags": [
+          "Slack"
+        ]
+      }
+    },
+    "/v1/slack/send-file": {
+      "post": {
+        "operationId": "Slack_SendFile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/notificationsSlackSendResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/notificationsSlackSendFileParams"
+            }
+          }
+        ],
+        "tags": [
+          "Slack"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "notificationsAttachment": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "fallback": {
+          "type": "string"
+        },
+        "callbackId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "authorId": {
+          "type": "string"
+        },
+        "authorName": {
+          "type": "string"
+        },
+        "authorSubName": {
+          "type": "string"
+        },
+        "authorLink": {
+          "type": "string"
+        },
+        "authorIcon": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "titleLink": {
+          "type": "string"
+        },
+        "preText": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "thumbUrl": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationsAttachmentField"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationsAttachmentAction"
+          }
+        },
+        "footer": {
+          "type": "string"
+        },
+        "footerIcon": {
+          "type": "string"
+        }
+      },
+      "title": "attachments (https://api.slack.com/methods/chat.postMessage#arg_attachments)"
+    },
+    "notificationsAttachmentAction": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "dataSource": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationsAttachmentActionOption"
+          }
+        },
+        "selectedOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationsAttachmentActionOption"
+          }
+        },
+        "optionGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationsAttachmentActionOptionGroup"
+          }
+        },
+        "confirm": {
+          "$ref": "#/definitions/notificationsAttachmentConfirm"
+        }
+      }
+    },
+    "notificationsAttachmentActionOption": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "notificationsAttachmentActionOptionGroup": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationsAttachmentActionOption"
+          }
+        }
+      }
+    },
+    "notificationsAttachmentConfirm": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "okText": {
+          "type": "string"
+        },
+        "dissmissText": {
+          "type": "string"
+        }
+      }
+    },
+    "notificationsAttachmentField": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "short": {
+          "type": "boolean"
+        }
+      }
+    },
+    "notificationsSlackSendFileParams": {
+      "type": "object",
+      "properties": {
+        "channelId": {
+          "type": "string"
+        },
+        "threadTs": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        },
+        "filetype": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "initialComment": {
+          "type": "string"
+        }
+      }
+    },
+    "notificationsSlackSendParams": {
+      "type": "object",
+      "properties": {
+        "channelId": {
+          "type": "string"
+        },
+        "threadTs": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/notificationsAttachment"
+          }
+        },
+        "blocks": {
+          "type": "string",
+          "title": "https://api.slack.com/methods/chat.postMessage#arg_blocks\nhttps://api.slack.com/reference/block-kit/blocks\nhttps://api.slack.com/messaging/composing/layouts\njson represented as string"
+        }
+      }
+    },
+    "notificationsSlackSendResponse": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "ts": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
