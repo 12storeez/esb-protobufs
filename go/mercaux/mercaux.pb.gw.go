@@ -186,12 +186,13 @@ func RegisterStocksServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.StocksService/List", runtime.WithHTTPPathPattern("/api/v1/stocks"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.StocksService/List", runtime.WithHTTPPathPattern("/api/v1/stocks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StocksService_List_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StocksService_List_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -218,12 +219,13 @@ func RegisterCatalogServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.CatalogService/List", runtime.WithHTTPPathPattern("/api/v1/catalog"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.CatalogService/List", runtime.WithHTTPPathPattern("/api/v1/catalog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CatalogService_List_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CatalogService_List_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -250,12 +252,13 @@ func RegisterStoresServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.StoresService/List", runtime.WithHTTPPathPattern("/api/v1/stores"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.StoresService/List", runtime.WithHTTPPathPattern("/api/v1/stores"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_StoresService_List_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StoresService_List_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -282,12 +285,13 @@ func RegisterSellersServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.SellersService/List", runtime.WithHTTPPathPattern("/api/v1/sellers"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.SellersService/List", runtime.WithHTTPPathPattern("/api/v1/sellers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SellersService_List_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SellersService_List_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -314,12 +318,13 @@ func RegisterOrdersServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.OrdersService/New", runtime.WithHTTPPathPattern("/api/v1/order"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/mercaux.OrdersService/New", runtime.WithHTTPPathPattern("/api/v1/order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_OrdersService_New_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_OrdersService_New_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -376,12 +381,13 @@ func RegisterStocksServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.StocksService/List", runtime.WithHTTPPathPattern("/api/v1/stocks"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/mercaux.StocksService/List", runtime.WithHTTPPathPattern("/api/v1/stocks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StocksService_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StocksService_List_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -445,12 +451,13 @@ func RegisterCatalogServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.CatalogService/List", runtime.WithHTTPPathPattern("/api/v1/catalog"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/mercaux.CatalogService/List", runtime.WithHTTPPathPattern("/api/v1/catalog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CatalogService_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CatalogService_List_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -514,12 +521,13 @@ func RegisterStoresServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.StoresService/List", runtime.WithHTTPPathPattern("/api/v1/stores"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/mercaux.StoresService/List", runtime.WithHTTPPathPattern("/api/v1/stores"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_StoresService_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StoresService_List_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -583,12 +591,13 @@ func RegisterSellersServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.SellersService/List", runtime.WithHTTPPathPattern("/api/v1/sellers"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/mercaux.SellersService/List", runtime.WithHTTPPathPattern("/api/v1/sellers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SellersService_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SellersService_List_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -652,12 +661,13 @@ func RegisterOrdersServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/mercaux.OrdersService/New", runtime.WithHTTPPathPattern("/api/v1/order"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/mercaux.OrdersService/New", runtime.WithHTTPPathPattern("/api/v1/order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_OrdersService_New_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_OrdersService_New_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

@@ -610,12 +610,13 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks.Mobile/App"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks.Mobile/App"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Mobile_App_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Mobile_App_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -633,12 +634,13 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Store"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Store"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Mobile_Store_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Mobile_Store_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -656,12 +658,13 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Order"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Mobile_Order_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Mobile_Order_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -679,12 +682,13 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Categories"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Mobile_Categories_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Mobile_Categories_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -702,12 +706,13 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByOrder"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Mobile_ReasonsByOrder_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Mobile_ReasonsByOrder_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -725,12 +730,13 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByStore"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByStore"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Mobile_ReasonsByStore_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Mobile_ReasonsByStore_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -748,12 +754,13 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks.Mobile/CanBeSaved"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks.Mobile/CanBeSaved"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Mobile_CanBeSaved_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Mobile_CanBeSaved_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -780,12 +787,13 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/New", runtime.WithHTTPPathPattern("/feedbacks.Store/New"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/New", runtime.WithHTTPPathPattern("/feedbacks.Store/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Store_New_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Store_New_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -803,12 +811,13 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks.Store/Patch"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks.Store/Patch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Store_Patch_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Store_Patch_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -826,12 +835,13 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/NewOrder"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/NewOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Store_NewOrder_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Store_NewOrder_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -849,12 +859,13 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/PatchOrder"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/PatchOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Store_PatchOrder_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Store_PatchOrder_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -881,12 +892,13 @@ func RegisterNPSHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.NPS/New", runtime.WithHTTPPathPattern("/feedbacks.NPS/New"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.NPS/New", runtime.WithHTTPPathPattern("/feedbacks.NPS/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_NPS_New_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_NPS_New_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -904,12 +916,13 @@ func RegisterNPSHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks.NPS/Update"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks.NPS/Update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_NPS_Update_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_NPS_Update_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -936,12 +949,13 @@ func RegisterPortalFeedbackServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PortalFeedbackService_Delete_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PortalFeedbackService_Delete_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -959,12 +973,13 @@ func RegisterPortalFeedbackServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PortalFeedbackService_List_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PortalFeedbackService_List_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -982,12 +997,13 @@ func RegisterPortalFeedbackServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PortalFeedbackService_Validate_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PortalFeedbackService_Validate_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1044,12 +1060,13 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks.Mobile/App"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks.Mobile/App"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mobile_App_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mobile_App_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1064,12 +1081,13 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Store"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Store"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mobile_Store_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mobile_Store_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1084,12 +1102,13 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Order"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mobile_Order_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mobile_Order_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1104,12 +1123,13 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Categories"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mobile_Categories_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mobile_Categories_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1124,12 +1144,13 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByOrder"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mobile_ReasonsByOrder_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mobile_ReasonsByOrder_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1144,12 +1165,13 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByStore"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByStore"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mobile_ReasonsByStore_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mobile_ReasonsByStore_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1164,12 +1186,13 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks.Mobile/CanBeSaved"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks.Mobile/CanBeSaved"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Mobile_CanBeSaved_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Mobile_CanBeSaved_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1257,12 +1280,13 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/New", runtime.WithHTTPPathPattern("/feedbacks.Store/New"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/New", runtime.WithHTTPPathPattern("/feedbacks.Store/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Store_New_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Store_New_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1277,12 +1301,13 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks.Store/Patch"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks.Store/Patch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Store_Patch_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Store_Patch_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1297,12 +1322,13 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/NewOrder"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/NewOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Store_NewOrder_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Store_NewOrder_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1317,12 +1343,13 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/PatchOrder"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/PatchOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Store_PatchOrder_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Store_PatchOrder_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1398,12 +1425,13 @@ func RegisterNPSHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.NPS/New", runtime.WithHTTPPathPattern("/feedbacks.NPS/New"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.NPS/New", runtime.WithHTTPPathPattern("/feedbacks.NPS/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_NPS_New_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_NPS_New_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1418,12 +1446,13 @@ func RegisterNPSHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks.NPS/Update"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks.NPS/Update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_NPS_Update_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_NPS_Update_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1491,12 +1520,13 @@ func RegisterPortalFeedbackServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PortalFeedbackService_Delete_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PortalFeedbackService_Delete_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1511,12 +1541,13 @@ func RegisterPortalFeedbackServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PortalFeedbackService_List_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PortalFeedbackService_List_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1531,12 +1562,13 @@ func RegisterPortalFeedbackServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PortalFeedbackService_Validate_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PortalFeedbackService_Validate_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
