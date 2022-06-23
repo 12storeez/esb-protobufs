@@ -1,8 +1,10 @@
 .PHONY: push test go
-PWD = /Users/.../go/src/esb-protobufs
+# Тут необходимо указать путь до репозитория esb-protobufs
+PWD = ~/go/src/esb-protobufs
 
 # Если в директории swagger есть папка соответствующая папке протобафа, то файл swagger сгенерируется, если нет, то нет
 # Например, чтобы сгенерировать файл для сервиса нотификаций, нужно создать директорию  swagger/notifications
+# Иначе будет ошибки вида "./swagger/*: No such file or directory" - если swagger не нужен, то не обращаем внимание
 
 # Если в .proto файле (хотя бы одном, в случае с директорией) есть текст "annotations.proto", то
 # используем для всех протобафов директории скрипт "Генерация клиента и сервера с пакетом annotations.proto"
@@ -14,7 +16,7 @@ PWD = /Users/.../go/src/esb-protobufs
 # Скрипты для protoc указаны в Read.me
 
 push:
-	bash cat login.json | docker login --username json_key --password-stdin cr.yandex
+	cat login.json | docker login --username json_key --password-stdin cr.yandex
 	docker build --rm=true -t cr.yandex/crpio465qcfelrmo3fv8/esb-protobufs/protobuf-generator .
 	docker push cr.yandex/crpio465qcfelrmo3fv8/esb-protobufs/protobuf-generator
 
