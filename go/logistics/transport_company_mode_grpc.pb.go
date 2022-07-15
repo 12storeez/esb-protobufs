@@ -26,7 +26,7 @@ type TransportCompanyModeServiceClient interface {
 	List(ctx context.Context, in *ListTransportCompanyModeRequest, opts ...grpc.CallOption) (*ListTransportCompanyModeResponse, error)
 	Create(ctx context.Context, in *CreateTransportCompanyModeRequest, opts ...grpc.CallOption) (*TransportCompanyMode, error)
 	Get(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*TransportCompanyMode, error)
-	Update(ctx context.Context, in *TransportCompanyMode, opts ...grpc.CallOption) (*TransportCompanyMode, error)
+	Update(ctx context.Context, in *UpdateTransportCompanyModeRequest, opts ...grpc.CallOption) (*TransportCompanyMode, error)
 	Delete(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// intervals for transport-company-mode
 	GetIntervalList(ctx context.Context, in *TransportCompanyModeId, opts ...grpc.CallOption) (*ListIntervalResponse, error)
@@ -69,7 +69,7 @@ func (c *transportCompanyModeServiceClient) Get(ctx context.Context, in *Transpo
 	return out, nil
 }
 
-func (c *transportCompanyModeServiceClient) Update(ctx context.Context, in *TransportCompanyMode, opts ...grpc.CallOption) (*TransportCompanyMode, error) {
+func (c *transportCompanyModeServiceClient) Update(ctx context.Context, in *UpdateTransportCompanyModeRequest, opts ...grpc.CallOption) (*TransportCompanyMode, error) {
 	out := new(TransportCompanyMode)
 	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyModeService/Update", in, out, opts...)
 	if err != nil {
@@ -121,7 +121,7 @@ type TransportCompanyModeServiceServer interface {
 	List(context.Context, *ListTransportCompanyModeRequest) (*ListTransportCompanyModeResponse, error)
 	Create(context.Context, *CreateTransportCompanyModeRequest) (*TransportCompanyMode, error)
 	Get(context.Context, *TransportCompanyModeId) (*TransportCompanyMode, error)
-	Update(context.Context, *TransportCompanyMode) (*TransportCompanyMode, error)
+	Update(context.Context, *UpdateTransportCompanyModeRequest) (*TransportCompanyMode, error)
 	Delete(context.Context, *TransportCompanyModeId) (*emptypb.Empty, error)
 	// intervals for transport-company-mode
 	GetIntervalList(context.Context, *TransportCompanyModeId) (*ListIntervalResponse, error)
@@ -142,7 +142,7 @@ func (UnimplementedTransportCompanyModeServiceServer) Create(context.Context, *C
 func (UnimplementedTransportCompanyModeServiceServer) Get(context.Context, *TransportCompanyModeId) (*TransportCompanyMode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedTransportCompanyModeServiceServer) Update(context.Context, *TransportCompanyMode) (*TransportCompanyMode, error) {
+func (UnimplementedTransportCompanyModeServiceServer) Update(context.Context, *UpdateTransportCompanyModeRequest) (*TransportCompanyMode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedTransportCompanyModeServiceServer) Delete(context.Context, *TransportCompanyModeId) (*emptypb.Empty, error) {
@@ -224,7 +224,7 @@ func _TransportCompanyModeService_Get_Handler(srv interface{}, ctx context.Conte
 }
 
 func _TransportCompanyModeService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransportCompanyMode)
+	in := new(UpdateTransportCompanyModeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -236,7 +236,7 @@ func _TransportCompanyModeService_Update_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/logistics.TransportCompanyModeService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransportCompanyModeServiceServer).Update(ctx, req.(*TransportCompanyMode))
+		return srv.(TransportCompanyModeServiceServer).Update(ctx, req.(*UpdateTransportCompanyModeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

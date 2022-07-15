@@ -31,7 +31,7 @@ service TransportCompanyModeService {
     };
   }
 
-  rpc Update(TransportCompanyMode) returns (TransportCompanyMode) {
+  rpc Update(UpdateTransportCompanyModeRequest) returns (TransportCompanyMode) {
     option (google.api.http) = {
       patch: "/api/v1/transport-company-mode/{id}"
       body: "*"
@@ -98,6 +98,35 @@ message TransportCompanyMode {
   bool              is_active = 15;
   string            created_at = 16;
   string            updated_at = 17;
+}
+
+message UpdateTransportCompanyModeRequest {
+  int32                   id = 1;
+  TransportCompany        transport_company = 2;
+  DeliveryMode            delivery_mode = 3;
+  DeliveryMethod          delivery_method = 4;
+  repeated UpdateInterval intervals = 5;
+  int32                   delivery_interval_days = 6;
+  int32                   delivery_delta_days = 7;
+  string                  title = 8;
+  string                  code = 9;
+  string                  sdt_code = 10;
+  bool                    is_price_border_include_delivery = 11;
+  bool                    is_price_border_include_present = 12;
+  bool                    is_product_quantity_border_include_delivery = 13;
+  bool                    is_product_quantity_border_include_present = 14;
+  bool                    is_active = 15;
+  string                  created_at = 16;
+  string                  updated_at = 17;
+}
+
+message UpdateInterval {
+  repeated DayOfWeek day_of_week_list = 1;
+  string    client_time_from = 2;
+  string    client_time_to = 3;
+  string    tk_time_from = 4;
+  string    tk_time_to = 5;
+  string    code = 6;
 }
 
 message ListTransportCompanyModeRequest {
