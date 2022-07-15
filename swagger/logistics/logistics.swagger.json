@@ -3032,7 +3032,7 @@
                 "intervals": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/logisticsUpdateInterval"
+                    "$ref": "#/definitions/logisticsInterval"
                   }
                 },
                 "deliveryIntervalDays": {
@@ -5415,32 +5415,6 @@
         },
         "isActive": {
           "type": "boolean"
-        }
-      }
-    },
-    "logisticsUpdateInterval": {
-      "type": "object",
-      "properties": {
-        "dayOfWeekList": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/logisticsDayOfWeek"
-          }
-        },
-        "clientTimeFrom": {
-          "type": "string"
-        },
-        "clientTimeTo": {
-          "type": "string"
-        },
-        "tkTimeFrom": {
-          "type": "string"
-        },
-        "tkTimeTo": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
         }
       }
     },
