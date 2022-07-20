@@ -76,9 +76,15 @@ function convertJSONObjectToTSObject(json: NamespaceBase) {
   }
 }
 
+function toLowerCaseFirstLetter(str) {
+  return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
 function buildForService(json) {
   function buildMethod(method) {
-    return `${method.name}(request: ${method.requestType.value}): Observable<${method.responseType.value}>`;
+    return `${toLowerCaseFirstLetter(method.name)}(request: ${
+      method.requestType.value
+    }): Observable<${method.responseType.value}>`;
   }
   return `export interface ${json.name} {
     ${Object.keys(json.methods)
