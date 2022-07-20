@@ -5,31 +5,54 @@ export namespace google.protobuf {
 }
 export namespace feedbacks {
   export interface Mobile {
-    app(request: ParamsApp): Observable<ResponseOk>;
-    store(request: ParamsStore): Observable<ResponseOk>;
-    order(request: ParamsOrder): Observable<ResponseOk>;
-    categories(request: google.protobuf.Empty): Observable<ResponseCategories>;
-    reasonsByOrder(request: ParamsReasonsByOrder): Observable<ResponseReasons>;
-    reasonsByStore(request: google.protobuf.Empty): Observable<ResponseReasons>;
-    canBeSaved(request: CanBeSavedParams): Observable<ResponseOk>;
+    app(request: ParamsApp, metadata?: any): Observable<ResponseOk>;
+    store(request: ParamsStore, metadata?: any): Observable<ResponseOk>;
+    order(request: ParamsOrder, metadata?: any): Observable<ResponseOk>;
+    categories(
+      request: google.protobuf.Empty,
+      metadata?: any
+    ): Observable<ResponseCategories>;
+    reasonsByOrder(
+      request: ParamsReasonsByOrder,
+      metadata?: any
+    ): Observable<ResponseReasons>;
+    reasonsByStore(
+      request: google.protobuf.Empty,
+      metadata?: any
+    ): Observable<ResponseReasons>;
+    canBeSaved(
+      request: CanBeSavedParams,
+      metadata?: any
+    ): Observable<ResponseOk>;
   }
   export interface Store {
-    new (request: NewParams): Observable<NewResponse>;
-    patch(request: PatchParams): Observable<ResponseOk>;
-    newOrder(request: NewOrderParams): Observable<NewOrderResponse>;
-    patchOrder(request: PatchOrderParams): Observable<ResponseOk>;
+    new (request: NewParams, metadata?: any): Observable<NewResponse>;
+    patch(request: PatchParams, metadata?: any): Observable<ResponseOk>;
+    newOrder(
+      request: NewOrderParams,
+      metadata?: any
+    ): Observable<NewOrderResponse>;
+    patchOrder(
+      request: PatchOrderParams,
+      metadata?: any
+    ): Observable<ResponseOk>;
   }
   export interface NPS {
-    new (request: NewNPSParams): Observable<NewNpsResponse>;
-    update(request: UpdateNPSParams): Observable<ResponseOk>;
+    new (request: NewNPSParams, metadata?: any): Observable<NewNpsResponse>;
+    update(request: UpdateNPSParams, metadata?: any): Observable<ResponseOk>;
   }
   export interface PortalFeedbackService {
-    delete(request: PortalFeedbackId): Observable<google.protobuf.Empty>;
+    delete(
+      request: PortalFeedbackId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
     list(
-      request: ListPortalFeedbackRequest
+      request: ListPortalFeedbackRequest,
+      metadata?: any
     ): Observable<ListPortalFeedbackResponse>;
     validate(
-      request: ValidatePortalFeedbackRequest
+      request: ValidatePortalFeedbackRequest,
+      metadata?: any
     ): Observable<ValidatePortalFeedbackResponse>;
   }
   export interface PortalFeedbackId {
@@ -223,7 +246,7 @@ export namespace feedbacks {
 }
 export namespace gate {
   export interface Shopify {
-    emit(request: EventData): Observable<Result>;
+    emit(request: EventData, metadata?: any): Observable<Result>;
   }
   export interface EventData {
     topic?: string;
@@ -238,24 +261,46 @@ export namespace gate {
 export namespace geo {
   export interface geo {
     suggestCountry(
-      request: SuggestCountryParams
+      request: SuggestCountryParams,
+      metadata?: any
     ): Observable<SuggestCountryResponse>;
-    countryDetails(request: CountryDetailsParams): Observable<Country>;
-    suggestCity(request: SuggestCityParams): Observable<SuggestCityResponse>;
-    cityDetails(request: CityDetailsParams): Observable<City>;
-    cityDetailsByGeoID(request: CityDetailsByGeoIDParams): Observable<City>;
-    defaultCityList(
-      request: DefaultCityListParams
+    countryDetails(
+      request: CountryDetailsParams,
+      metadata?: any
+    ): Observable<Country>;
+    suggestCity(
+      request: SuggestCityParams,
+      metadata?: any
     ): Observable<SuggestCityResponse>;
-    cityDetailsByIP(request: CityDetailsByIPParams): Observable<City>;
+    cityDetails(request: CityDetailsParams, metadata?: any): Observable<City>;
+    cityDetailsByGeoID(
+      request: CityDetailsByGeoIDParams,
+      metadata?: any
+    ): Observable<City>;
+    defaultCityList(
+      request: DefaultCityListParams,
+      metadata?: any
+    ): Observable<SuggestCityResponse>;
+    cityDetailsByIP(
+      request: CityDetailsByIPParams,
+      metadata?: any
+    ): Observable<City>;
     suggestAddress(
-      request: SuggestAddressParams
+      request: SuggestAddressParams,
+      metadata?: any
     ): Observable<SuggestAddressResponse>;
-    addressDetails(request: AddressDetailsParams): Observable<Address>;
-    addressDetailsByGeoID(
-      request: AddressDetailsByGeoIDParams
+    addressDetails(
+      request: AddressDetailsParams,
+      metadata?: any
     ): Observable<Address>;
-    addressZones(request: AddressZonesParams): Observable<AddressZonesResponse>;
+    addressDetailsByGeoID(
+      request: AddressDetailsByGeoIDParams,
+      metadata?: any
+    ): Observable<Address>;
+    addressZones(
+      request: AddressZonesParams,
+      metadata?: any
+    ): Observable<AddressZonesResponse>;
   }
   export enum LocaleType {
     nil = 0,
@@ -441,19 +486,28 @@ export namespace geo {
 }
 export namespace mercaux {
   export interface StocksService {
-    list(request: ListRequest): Observable<ListStocksResponse>;
+    list(request: ListRequest, metadata?: any): Observable<ListStocksResponse>;
   }
   export interface CatalogService {
-    list(request: ListRequest): Observable<ListCatalogResponse>;
+    list(request: ListRequest, metadata?: any): Observable<ListCatalogResponse>;
   }
   export interface StoresService {
-    list(request: google.protobuf.Empty): Observable<ListStoresResponse>;
+    list(
+      request: google.protobuf.Empty,
+      metadata?: any
+    ): Observable<ListStoresResponse>;
   }
   export interface SellersService {
-    list(request: google.protobuf.Empty): Observable<ListSellersResponse>;
+    list(
+      request: google.protobuf.Empty,
+      metadata?: any
+    ): Observable<ListSellersResponse>;
   }
   export interface OrdersService {
-    new (request: NewOrderRequest): Observable<NewOrderResponse>;
+    new (
+      request: NewOrderRequest,
+      metadata?: any
+    ): Observable<NewOrderResponse>;
   }
   export interface ListRequest {
     limit?: number;
@@ -574,21 +628,39 @@ export namespace mercaux {
 export namespace meta {
   export interface Mobile {
     contacts(
-      request: google.protobuf.Empty
+      request: google.protobuf.Empty,
+      metadata?: any
     ): Observable<ResponseMobileAPIContacts>;
-    about(request: google.protobuf.Empty): Observable<ResponseMobileApiAbout>;
-    faq(request: google.protobuf.Empty): Observable<ResponseFaq>;
-    countries(request: ParamsCountries): Observable<ResponseCountries>;
+    about(
+      request: google.protobuf.Empty,
+      metadata?: any
+    ): Observable<ResponseMobileApiAbout>;
+    faq(
+      request: google.protobuf.Empty,
+      metadata?: any
+    ): Observable<ResponseFaq>;
+    countries(
+      request: ParamsCountries,
+      metadata?: any
+    ): Observable<ResponseCountries>;
     socialNetworks(
-      request: google.protobuf.Empty
+      request: google.protobuf.Empty,
+      metadata?: any
     ): Observable<ResponseSocialNetworks>;
   }
   export interface Stores {
-    all(request: ParamsStores): Observable<ResponseAllOfflineStoresInfo>;
+    all(
+      request: ParamsStores,
+      metadata?: any
+    ): Observable<ResponseAllOfflineStoresInfo>;
     byID(
-      request: ParamsOfflineStoreInfoByID
+      request: ParamsOfflineStoreInfoByID,
+      metadata?: any
     ): Observable<ResponseOfflineStoreInfoByID>;
-    cities(request: ParamsStoresCities): Observable<ResponseStoresCities>;
+    cities(
+      request: ParamsStoresCities,
+      metadata?: any
+    ): Observable<ResponseStoresCities>;
   }
   export interface ResponseAllOfflineStoresInfo {
     result?: OfflineStore[];
@@ -704,19 +776,43 @@ export namespace meta {
 }
 export namespace mindbox {
   export interface User {
-    info(request: ParamsUser): Observable<ResponseUser>;
-    orders(request: ParamsOrders): Observable<ResponseOrders>;
-    sendOSMICard(request: ParamsOSMICard): Observable<ResponseOSMICard>;
+    info(request: ParamsUser, metadata?: any): Observable<ResponseUser>;
+    orders(request: ParamsOrders, metadata?: any): Observable<ResponseOrders>;
+    sendOSMICard(
+      request: ParamsOSMICard,
+      metadata?: any
+    ): Observable<ResponseOSMICard>;
   }
   export interface Mobile {
-    initDevice(request: InitDeviceParams): Observable<InitDeviceResponse>;
-    initClient(request: InitClientParams): Observable<InitClientResponse>;
-    removeDevice(request: RemoveDeviceParams): Observable<RemoveDeviceResponse>;
-    code(request: ParamsCode): Observable<ResponseCode>;
-    checkCode(request: ParamsCheckCode): Observable<ResponseCheckCode>;
-    editUser(request: ParamsEditUser): Observable<ResponseEditUser>;
-    isUserExist(request: IsUserExistParams): Observable<IsUserExistResponse>;
-    pushClick(request: PushClickParams): Observable<PushClickResponse>;
+    initDevice(
+      request: InitDeviceParams,
+      metadata?: any
+    ): Observable<InitDeviceResponse>;
+    initClient(
+      request: InitClientParams,
+      metadata?: any
+    ): Observable<InitClientResponse>;
+    removeDevice(
+      request: RemoveDeviceParams,
+      metadata?: any
+    ): Observable<RemoveDeviceResponse>;
+    code(request: ParamsCode, metadata?: any): Observable<ResponseCode>;
+    checkCode(
+      request: ParamsCheckCode,
+      metadata?: any
+    ): Observable<ResponseCheckCode>;
+    editUser(
+      request: ParamsEditUser,
+      metadata?: any
+    ): Observable<ResponseEditUser>;
+    isUserExist(
+      request: IsUserExistParams,
+      metadata?: any
+    ): Observable<IsUserExistResponse>;
+    pushClick(
+      request: PushClickParams,
+      metadata?: any
+    ): Observable<PushClickResponse>;
   }
   export interface PushClickParams {
     message_unique_key?: string;
@@ -823,8 +919,14 @@ export namespace mindbox {
 }
 export namespace orders {
   export interface Offline {
-    byClient(request: ParamsOfflineByClient): Observable<ResponseOffline>;
-    getById(request: ParamsOrderById): Observable<ResponseOfflineById>;
+    byClient(
+      request: ParamsOfflineByClient,
+      metadata?: any
+    ): Observable<ResponseOffline>;
+    getById(
+      request: ParamsOrderById,
+      metadata?: any
+    ): Observable<ResponseOfflineById>;
   }
   export interface ParamsOfflineByClient {
     client_id?: number;
@@ -871,7 +973,10 @@ export namespace orders {
     family?: string;
   }
   export interface Online {
-    byClient(request: ParamsOnlineByClient): Observable<ResponseOnlineByClient>;
+    byClient(
+      request: ParamsOnlineByClient,
+      metadata?: any
+    ): Observable<ResponseOnlineByClient>;
   }
   export interface ParamsOnlineByClient {
     client_id?: number;
@@ -908,10 +1013,17 @@ export namespace orders {
 export namespace payments {
   export interface Payments {
     getCardsByUserID(
-      request: ParamsGetCardByUserID
+      request: ParamsGetCardByUserID,
+      metadata?: any
     ): Observable<ResponseGetCardByUserID>;
-    saveUserCard(request: UserCard): Observable<ResponseSuccess>;
-    deleteCardByID(request: ParamsDeleteCardByID): Observable<ResponseSuccess>;
+    saveUserCard(
+      request: UserCard,
+      metadata?: any
+    ): Observable<ResponseSuccess>;
+    deleteCardByID(
+      request: ParamsDeleteCardByID,
+      metadata?: any
+    ): Observable<ResponseSuccess>;
   }
   export interface ParamsGetCardByUserID {
     user_id?: number;
@@ -940,11 +1052,12 @@ export namespace payments {
 export namespace slack {
   export interface Tracker {
     statusChangeTicket(
-      request: StatusChangeTicketParams
+      request: StatusChangeTicketParams,
+      metadata?: any
     ): Observable<StatusChangeTicketResponse>;
   }
   export interface Slack {
-    send(request: SendParams): Observable<SendResponse>;
+    send(request: SendParams, metadata?: any): Observable<SendResponse>;
   }
   export interface StatusChangeTicketParams {
     ticket_key?: string;
@@ -969,7 +1082,10 @@ export namespace slack {
 }
 export namespace tracker {
   export interface TrackerSlack {
-    sendTicket(request: SendTicketParams): Observable<SendTicketResponse>;
+    sendTicket(
+      request: SendTicketParams,
+      metadata?: any
+    ): Observable<SendTicketResponse>;
   }
   export interface SendTicketParams {
     ticket_id?: string;
@@ -980,7 +1096,7 @@ export namespace tracker {
 }
 export namespace usedesk {
   export interface CSI {
-    save(request: saveParams): Observable<saveResponse>;
+    save(request: saveParams, metadata?: any): Observable<saveResponse>;
   }
   export interface saveParams {
     id?: number;
@@ -1010,7 +1126,7 @@ export namespace products {
     ok?: boolean;
   }
   export interface Errors {
-    create(request: Error): Observable<CreateResponse>;
+    create(request: Error, metadata?: any): Observable<CreateResponse>;
   }
   export interface Product {
     id?: number;
@@ -1079,22 +1195,34 @@ export namespace products {
     article?: number;
   }
   export interface Catalog {
-    get(request: Request): Observable<GetResponse>;
-    getByArticle(request: Article): Observable<GetByArticleResponse>;
+    get(request: Request, metadata?: any): Observable<GetResponse>;
+    getByArticle(
+      request: Article,
+      metadata?: any
+    ): Observable<GetByArticleResponse>;
   }
 }
 export namespace release {
   export interface ArticlesRelease {
     create(
-      request: ParamsCreateArticle
+      request: ParamsCreateArticle,
+      metadata?: any
     ): Observable<ArticleReleaseActionResponse>;
-    get(request: ParamsGetArticleRelease): Observable<ArticleReleaseList>;
-    getById(request: ArticlesReleaseId): Observable<ArticleRelease>;
+    get(
+      request: ParamsGetArticleRelease,
+      metadata?: any
+    ): Observable<ArticleReleaseList>;
+    getById(
+      request: ArticlesReleaseId,
+      metadata?: any
+    ): Observable<ArticleRelease>;
     update(
-      request: ParamsCreateArticle
+      request: ParamsCreateArticle,
+      metadata?: any
     ): Observable<ArticleReleaseActionResponse>;
     delete(
-      request: ArticlesReleaseId
+      request: ArticlesReleaseId,
+      metadata?: any
     ): Observable<ArticleReleaseActionResponse>;
   }
   export enum ArticleReleaseType {
@@ -1136,9 +1264,9 @@ export namespace release {
 }
 export namespace stocks {
   export interface Stocks {
-    upsert(request: ListStocks): Observable<SuccessResponse>;
-    get(request: GetParams): Observable<ListStocks>;
-    getPagination(request: Request): Observable<Response>;
+    upsert(request: ListStocks, metadata?: any): Observable<SuccessResponse>;
+    get(request: GetParams, metadata?: any): Observable<ListStocks>;
+    getPagination(request: Request, metadata?: any): Observable<Response>;
   }
   export interface GetParams {
     enabled_buffer_site?: boolean;
@@ -1168,8 +1296,14 @@ export namespace stocks {
 }
 export namespace logistics {
   export interface CategoryService {
-    list(request: ListCategoryRequest): Observable<ListCategoryResponse>;
-    suggest(request: SuggestCategoryRequest): Observable<ListCategoryResponse>;
+    list(
+      request: ListCategoryRequest,
+      metadata?: any
+    ): Observable<ListCategoryResponse>;
+    suggest(
+      request: SuggestCategoryRequest,
+      metadata?: any
+    ): Observable<ListCategoryResponse>;
   }
   export interface Category {
     id?: number;
@@ -1190,19 +1324,24 @@ export namespace logistics {
   }
   export interface CategoryDeliveryTypeRestrictionService {
     list(
-      request: ListCategoryDeliveryTypeRestrictionRequest
+      request: ListCategoryDeliveryTypeRestrictionRequest,
+      metadata?: any
     ): Observable<ListCategoryDeliveryTypeRestrictionResponse>;
     create(
-      request: CreateCategoryDeliveryTypeRestriction
+      request: CreateCategoryDeliveryTypeRestriction,
+      metadata?: any
     ): Observable<CategoryDeliveryTypeRestriction>;
     update(
-      request: UpdateCategoryDeliveryTypeRestriction
+      request: UpdateCategoryDeliveryTypeRestriction,
+      metadata?: any
     ): Observable<CategoryDeliveryTypeRestriction>;
     get(
-      request: CategoryDeliveryTypeRestrictionId
+      request: CategoryDeliveryTypeRestrictionId,
+      metadata?: any
     ): Observable<CategoryDeliveryTypeRestriction>;
     delete(
-      request: CategoryDeliveryTypeRestrictionId
+      request: CategoryDeliveryTypeRestrictionId,
+      metadata?: any
     ): Observable<google.protobuf.Empty>;
   }
   export interface CategoryDeliveryTypeRestrictionId {
@@ -1245,19 +1384,24 @@ export namespace logistics {
   }
   export interface CategoryZoneGroupRestrictionService {
     list(
-      request: ListCategoryZoneGroupRestrictionRequest
+      request: ListCategoryZoneGroupRestrictionRequest,
+      metadata?: any
     ): Observable<ListCategoryZoneGroupRestrictionResponse>;
     create(
-      request: CreateCategoryZoneGroupRestriction
+      request: CreateCategoryZoneGroupRestriction,
+      metadata?: any
     ): Observable<CategoryZoneGroupRestriction>;
     update(
-      request: UpdateCategoryZoneGroupRestriction
+      request: UpdateCategoryZoneGroupRestriction,
+      metadata?: any
     ): Observable<CategoryZoneGroupRestriction>;
     get(
-      request: CategoryZoneGroupRestrictionId
+      request: CategoryZoneGroupRestrictionId,
+      metadata?: any
     ): Observable<CategoryZoneGroupRestriction>;
     delete(
-      request: CategoryZoneGroupRestrictionId
+      request: CategoryZoneGroupRestrictionId,
+      metadata?: any
     ): Observable<google.protobuf.Empty>;
   }
   export interface CategoryZoneGroupRestrictionId {
@@ -1299,8 +1443,14 @@ export namespace logistics {
     total?: number;
   }
   export interface CountryService {
-    list(request: ListCountryRequest): Observable<ListCountryResponse>;
-    suggest(request: SuggestCountryRequest): Observable<ListCountryResponse>;
+    list(
+      request: ListCountryRequest,
+      metadata?: any
+    ): Observable<ListCountryResponse>;
+    suggest(
+      request: SuggestCountryRequest,
+      metadata?: any
+    ): Observable<ListCountryResponse>;
   }
   export interface ListCountryRequest {
     limit?: number;
@@ -1317,12 +1467,25 @@ export namespace logistics {
   }
   export interface DeliveryCalendarService {
     list(
-      request: ListDeliveryCalendarRequest
+      request: ListDeliveryCalendarRequest,
+      metadata?: any
     ): Observable<ListDeliveryCalendarResponse>;
-    create(request: CreateDeliveryCalendar): Observable<DeliveryCalendar>;
-    update(request: UpdateDeliveryCalendar): Observable<DeliveryCalendar>;
-    get(request: DeliveryCalendarId): Observable<DeliveryCalendar>;
-    delete(request: DeliveryCalendarId): Observable<google.protobuf.Empty>;
+    create(
+      request: CreateDeliveryCalendar,
+      metadata?: any
+    ): Observable<DeliveryCalendar>;
+    update(
+      request: UpdateDeliveryCalendar,
+      metadata?: any
+    ): Observable<DeliveryCalendar>;
+    get(
+      request: DeliveryCalendarId,
+      metadata?: any
+    ): Observable<DeliveryCalendar>;
+    delete(
+      request: DeliveryCalendarId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface DeliveryCalendarId {
     id?: number;
@@ -1370,12 +1533,16 @@ export namespace logistics {
   }
   export interface DeliveryMethodService {
     list(
-      request: ListDeliveryMethodRequest
+      request: ListDeliveryMethodRequest,
+      metadata?: any
     ): Observable<ListDeliveryMethodResponse>;
-    create(request: DeliveryMethod): Observable<DeliveryMethod>;
-    get(request: DeliveryMethodId): Observable<DeliveryMethod>;
-    update(request: DeliveryMethod): Observable<DeliveryMethod>;
-    delete(request: DeliveryMethodId): Observable<google.protobuf.Empty>;
+    create(request: DeliveryMethod, metadata?: any): Observable<DeliveryMethod>;
+    get(request: DeliveryMethodId, metadata?: any): Observable<DeliveryMethod>;
+    update(request: DeliveryMethod, metadata?: any): Observable<DeliveryMethod>;
+    delete(
+      request: DeliveryMethodId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface DeliveryMethodId {
     id?: number;
@@ -1399,12 +1566,16 @@ export namespace logistics {
   }
   export interface DeliveryModeService {
     list(
-      request: ListDeliveryModeRequest
+      request: ListDeliveryModeRequest,
+      metadata?: any
     ): Observable<ListDeliveryModeResponse>;
-    create(request: DeliveryMode): Observable<DeliveryMode>;
-    get(request: DeliveryModeId): Observable<DeliveryMode>;
-    update(request: DeliveryMode): Observable<DeliveryMode>;
-    delete(request: DeliveryModeId): Observable<google.protobuf.Empty>;
+    create(request: DeliveryMode, metadata?: any): Observable<DeliveryMode>;
+    get(request: DeliveryModeId, metadata?: any): Observable<DeliveryMode>;
+    update(request: DeliveryMode, metadata?: any): Observable<DeliveryMode>;
+    delete(
+      request: DeliveryModeId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface DeliveryModeId {
     id?: number;
@@ -1429,12 +1600,22 @@ export namespace logistics {
   }
   export interface DeliveryTypeService {
     list(
-      request: ListDeliveryTypeRequest
+      request: ListDeliveryTypeRequest,
+      metadata?: any
     ): Observable<ListDeliveryTypeResponse>;
-    create(request: CreateDeliveryTypeRequest): Observable<DeliveryTypeShort>;
-    get(request: DeliveryTypeId): Observable<DeliveryType>;
-    delete(request: DeliveryTypeId): Observable<google.protobuf.Empty>;
-    update(request: UpdateDeliveryType): Observable<DeliveryType>;
+    create(
+      request: CreateDeliveryTypeRequest,
+      metadata?: any
+    ): Observable<DeliveryTypeShort>;
+    get(request: DeliveryTypeId, metadata?: any): Observable<DeliveryType>;
+    delete(
+      request: DeliveryTypeId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    update(
+      request: UpdateDeliveryType,
+      metadata?: any
+    ): Observable<DeliveryType>;
   }
   export interface DeliveryTypeId {
     id?: number;
@@ -1590,10 +1771,17 @@ export namespace logistics {
   }
   export interface GlobalRestrictionsService {
     list(
-      request: ListGlobalRestrictionRequest
+      request: ListGlobalRestrictionRequest,
+      metadata?: any
     ): Observable<ListGlobalRestrictionResponse>;
-    create(request: UpdateGlobalRestriction): Observable<GlobalRestriction>;
-    update(request: UpdateGlobalRestriction): Observable<GlobalRestriction>;
+    create(
+      request: UpdateGlobalRestriction,
+      metadata?: any
+    ): Observable<GlobalRestriction>;
+    update(
+      request: UpdateGlobalRestriction,
+      metadata?: any
+    ): Observable<GlobalRestriction>;
   }
   export enum Restriction {
     price = 0,
@@ -1628,11 +1816,17 @@ export namespace logistics {
     total?: number;
   }
   export interface IntervalService {
-    list(request: ListIntervalRequest): Observable<ListIntervalResponse>;
-    create(request: Interval): Observable<Interval>;
-    get(request: IntervalId): Observable<Interval>;
-    update(request: Interval): Observable<Interval>;
-    delete(request: IntervalId): Observable<google.protobuf.Empty>;
+    list(
+      request: ListIntervalRequest,
+      metadata?: any
+    ): Observable<ListIntervalResponse>;
+    create(request: Interval, metadata?: any): Observable<Interval>;
+    get(request: IntervalId, metadata?: any): Observable<Interval>;
+    update(request: Interval, metadata?: any): Observable<Interval>;
+    delete(
+      request: IntervalId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export enum DayOfWeek {
     monday = 0,
@@ -1668,12 +1862,21 @@ export namespace logistics {
     total?: number;
   }
   export interface MessageService {
-    list(request: ListMessageRequest): Observable<ListMessageResponse>;
-    create(request: Message): Observable<Message>;
-    get(request: MessageId): Observable<Message>;
-    update(request: Message): Observable<Message>;
-    delete(request: MessageId): Observable<google.protobuf.Empty>;
-    suggest(request: SuggestMessageRequest): Observable<SuggestMessageResponse>;
+    list(
+      request: ListMessageRequest,
+      metadata?: any
+    ): Observable<ListMessageResponse>;
+    create(request: Message, metadata?: any): Observable<Message>;
+    get(request: MessageId, metadata?: any): Observable<Message>;
+    update(request: Message, metadata?: any): Observable<Message>;
+    delete(
+      request: MessageId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestMessageRequest,
+      metadata?: any
+    ): Observable<SuggestMessageResponse>;
   }
   export interface Rel {
     id?: number;
@@ -1716,12 +1919,16 @@ export namespace logistics {
   }
   export interface PaymentMethodService {
     list(
-      request: ListPaymentMethodRequest
+      request: ListPaymentMethodRequest,
+      metadata?: any
     ): Observable<ListPaymentMethodResponse>;
-    create(request: PaymentMethod): Observable<PaymentMethod>;
-    get(request: PaymentMethodId): Observable<PaymentMethod>;
-    update(request: PaymentMethod): Observable<PaymentMethod>;
-    delete(request: PaymentMethodId): Observable<google.protobuf.Empty>;
+    create(request: PaymentMethod, metadata?: any): Observable<PaymentMethod>;
+    get(request: PaymentMethodId, metadata?: any): Observable<PaymentMethod>;
+    update(request: PaymentMethod, metadata?: any): Observable<PaymentMethod>;
+    delete(
+      request: PaymentMethodId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface PaymentMethodId {
     id?: number;
@@ -1745,12 +1952,18 @@ export namespace logistics {
     total?: number;
   }
   export interface PopupService {
-    list(request: ListPopupRequest): Observable<ListPopupResponse>;
-    create(request: Popup): Observable<Popup>;
-    get(request: PopupId): Observable<Popup>;
-    update(request: Popup): Observable<Popup>;
-    delete(request: PopupId): Observable<google.protobuf.Empty>;
-    suggest(request: SuggestPopupRequest): Observable<SuggestPopupResponse>;
+    list(
+      request: ListPopupRequest,
+      metadata?: any
+    ): Observable<ListPopupResponse>;
+    create(request: Popup, metadata?: any): Observable<Popup>;
+    get(request: PopupId, metadata?: any): Observable<Popup>;
+    update(request: Popup, metadata?: any): Observable<Popup>;
+    delete(request: PopupId, metadata?: any): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestPopupRequest,
+      metadata?: any
+    ): Observable<SuggestPopupResponse>;
   }
   export interface PopupId {
     id?: number;
@@ -1788,12 +2001,25 @@ export namespace logistics {
   }
   export interface TransportCompanyService {
     list(
-      request: ListTransportCompanyRequest
+      request: ListTransportCompanyRequest,
+      metadata?: any
     ): Observable<ListTransportCompanyResponse>;
-    create(request: TransportCompany): Observable<TransportCompany>;
-    get(request: TransportCompanyId): Observable<TransportCompany>;
-    update(request: TransportCompany): Observable<TransportCompany>;
-    delete(request: TransportCompanyId): Observable<google.protobuf.Empty>;
+    create(
+      request: TransportCompany,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    get(
+      request: TransportCompanyId,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    update(
+      request: TransportCompany,
+      metadata?: any
+    ): Observable<TransportCompany>;
+    delete(
+      request: TransportCompanyId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface TransportCompanyId {
     id?: number;
@@ -1820,22 +2046,36 @@ export namespace logistics {
   }
   export interface TransportCompanyModeService {
     list(
-      request: ListTransportCompanyModeRequest
+      request: ListTransportCompanyModeRequest,
+      metadata?: any
     ): Observable<ListTransportCompanyModeResponse>;
     create(
-      request: CreateTransportCompanyModeRequest
+      request: CreateTransportCompanyModeRequest,
+      metadata?: any
     ): Observable<TransportCompanyMode>;
-    get(request: TransportCompanyModeId): Observable<TransportCompanyMode>;
-    update(request: TransportCompanyMode): Observable<TransportCompanyMode>;
-    delete(request: TransportCompanyModeId): Observable<google.protobuf.Empty>;
+    get(
+      request: TransportCompanyModeId,
+      metadata?: any
+    ): Observable<TransportCompanyMode>;
+    update(
+      request: TransportCompanyMode,
+      metadata?: any
+    ): Observable<TransportCompanyMode>;
+    delete(
+      request: TransportCompanyModeId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
     getIntervalList(
-      request: TransportCompanyModeId
+      request: TransportCompanyModeId,
+      metadata?: any
     ): Observable<ListIntervalResponse>;
     createInterval(
-      request: TransportCompanyModeIntervalRequest
+      request: TransportCompanyModeIntervalRequest,
+      metadata?: any
     ): Observable<Interval>;
     suggest(
-      request: SuggestTransportCompanyModeRequest
+      request: SuggestTransportCompanyModeRequest,
+      metadata?: any
     ): Observable<SuggestTransportCompanyModeResponse>;
   }
   export interface TransportCompanyModeIntervalRequest {
@@ -1892,7 +2132,10 @@ export namespace logistics {
     total?: number;
   }
   export interface WinnerService {
-    calculate(request: CalculateRequest): Observable<CalculateResponse>;
+    calculate(
+      request: CalculateRequest,
+      metadata?: any
+    ): Observable<CalculateResponse>;
   }
   export interface CalculateRequest {
     country_iso_code?: string;
@@ -1946,12 +2189,18 @@ export namespace logistics {
     code?: string;
   }
   export interface ZoneService {
-    list(request: ListZoneRequest): Observable<ListZoneResponse>;
-    create(request: Zone): Observable<Zone>;
-    get(request: ZoneId): Observable<Zone>;
-    update(request: Zone): Observable<Zone>;
-    delete(request: ZoneId): Observable<google.protobuf.Empty>;
-    suggest(request: SuggestZoneRequest): Observable<SuggestZoneResponse>;
+    list(
+      request: ListZoneRequest,
+      metadata?: any
+    ): Observable<ListZoneResponse>;
+    create(request: Zone, metadata?: any): Observable<Zone>;
+    get(request: ZoneId, metadata?: any): Observable<Zone>;
+    update(request: Zone, metadata?: any): Observable<Zone>;
+    delete(request: ZoneId, metadata?: any): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestZoneRequest,
+      metadata?: any
+    ): Observable<SuggestZoneResponse>;
   }
   export interface ZoneId {
     id?: number;
@@ -1996,15 +2245,25 @@ export namespace logistics {
     total?: number;
   }
   export interface ZoneGroupService {
-    list(request: ListZoneGroupRequest): Observable<ListZoneGroupResponse>;
-    create(request: ZoneGroup): Observable<ZoneGroup>;
-    get(request: ZoneGroupId): Observable<ZoneGroup>;
-    update(request: UpdateZoneGroup): Observable<ZoneGroup>;
-    delete(request: ZoneGroupId): Observable<google.protobuf.Empty>;
+    list(
+      request: ListZoneGroupRequest,
+      metadata?: any
+    ): Observable<ListZoneGroupResponse>;
+    create(request: ZoneGroup, metadata?: any): Observable<ZoneGroup>;
+    get(request: ZoneGroupId, metadata?: any): Observable<ZoneGroup>;
+    update(request: UpdateZoneGroup, metadata?: any): Observable<ZoneGroup>;
+    delete(
+      request: ZoneGroupId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
     suggest(
-      request: SuggestZoneGroupRequest
+      request: SuggestZoneGroupRequest,
+      metadata?: any
     ): Observable<SuggestZoneGroupResponse>;
-    deleteZone(request: DeleteZoneRequest): Observable<google.protobuf.Empty>;
+    deleteZone(
+      request: DeleteZoneRequest,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface ZoneGroupId {
     id?: number;
@@ -2051,16 +2310,25 @@ export namespace logistics {
   }
   export interface ZoneGroupRestrictionService {
     list(
-      request: ListZoneGroupRestrictionRequest
+      request: ListZoneGroupRestrictionRequest,
+      metadata?: any
     ): Observable<ListZoneGroupRestrictionResponse>;
     create(
-      request: CreateListZoneGroupRestrictionRequest
+      request: CreateListZoneGroupRestrictionRequest,
+      metadata?: any
     ): Observable<ListZoneGroupRestrictionResponse>;
     update(
-      request: UpdateListZoneGroupRestrictionRequest
+      request: UpdateListZoneGroupRestrictionRequest,
+      metadata?: any
     ): Observable<ListZoneGroupRestrictionResponse>;
-    get(request: ZoneGroupRestrictionId): Observable<ZoneGroupRestriction>;
-    delete(request: ZoneGroupRestrictionId): Observable<google.protobuf.Empty>;
+    get(
+      request: ZoneGroupRestrictionId,
+      metadata?: any
+    ): Observable<ZoneGroupRestriction>;
+    delete(
+      request: ZoneGroupRestrictionId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface ZoneGroupRestrictionId {
     id?: number;
@@ -2111,15 +2379,26 @@ export namespace logistics {
     country_name_ru?: string;
   }
   export interface ZoneToGeoService {
-    list(request: ListZoneToGeoRequest): Observable<ListZoneToGeoResponse>;
+    list(
+      request: ListZoneToGeoRequest,
+      metadata?: any
+    ): Observable<ListZoneToGeoResponse>;
     validate(
-      request: ValidateZoneToGeoRequest
+      request: ValidateZoneToGeoRequest,
+      metadata?: any
     ): Observable<ValidateZoneToGeoResponse>;
-    get(request: ZoneToGeoId): Observable<ZoneToGeo>;
-    update(request: ZoneToGeoUpdateRequest): Observable<ZoneToGeo>;
-    delete(request: ZoneToGeoId): Observable<google.protobuf.Empty>;
+    get(request: ZoneToGeoId, metadata?: any): Observable<ZoneToGeo>;
+    update(
+      request: ZoneToGeoUpdateRequest,
+      metadata?: any
+    ): Observable<ZoneToGeo>;
+    delete(
+      request: ZoneToGeoId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
     suggest(
-      request: SuggestZoneToGeoRequest
+      request: SuggestZoneToGeoRequest,
+      metadata?: any
     ): Observable<SuggestZoneToGeoResponse>;
   }
   export interface ZoneToGeoId {
@@ -2178,8 +2457,14 @@ export namespace logistics {
 }
 export namespace notifications {
   export interface Slack {
-    send(request: SlackSendParams): Observable<SlackSendResponse>;
-    sendFile(request: SlackSendFileParams): Observable<SlackSendResponse>;
+    send(
+      request: SlackSendParams,
+      metadata?: any
+    ): Observable<SlackSendResponse>;
+    sendFile(
+      request: SlackSendFileParams,
+      metadata?: any
+    ): Observable<SlackSendResponse>;
   }
   export interface SlackSendFileParams {
     channel_id?: string;
@@ -2258,12 +2543,18 @@ export namespace notifications {
 }
 export namespace platform {
   export interface Clients {
-    create(request: Client): Observable<Client>;
-    get(request: ClientId): Observable<Client>;
-    list(request: ListClientRequest): Observable<ListClientResponse>;
-    update(request: Client): Observable<Client>;
-    upsert(request: Client): Observable<Client>;
-    delete(request: ClientId): Observable<google.protobuf.Empty>;
+    create(request: Client, metadata?: any): Observable<Client>;
+    get(request: ClientId, metadata?: any): Observable<Client>;
+    list(
+      request: ListClientRequest,
+      metadata?: any
+    ): Observable<ListClientResponse>;
+    update(request: Client, metadata?: any): Observable<Client>;
+    upsert(request: Client, metadata?: any): Observable<Client>;
+    delete(
+      request: ClientId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface ClientId {
     id?: number;
@@ -2283,8 +2574,11 @@ export namespace platform {
     total?: number;
   }
   export interface Oauth {
-    token(request: TokenRequest): Observable<TokenResponse>;
-    authorize(request: AuthorizeRequest): Observable<google.protobuf.Empty>;
+    token(request: TokenRequest, metadata?: any): Observable<TokenResponse>;
+    authorize(
+      request: AuthorizeRequest,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
   }
   export interface TokenRequest {
     client_id?: number;

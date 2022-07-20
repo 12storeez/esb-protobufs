@@ -84,7 +84,7 @@ function buildForService(json) {
   function buildMethod(method) {
     return `${toLowerCaseFirstLetter(method.name)}(request: ${
       method.requestType.value
-    }): Observable<${method.responseType.value}>`;
+    }, metadata?: any): Observable<${method.responseType.value}>`;
   }
   return `export interface ${json.name} {
     ${Object.keys(json.methods)
