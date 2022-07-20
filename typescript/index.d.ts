@@ -522,7 +522,7 @@ export namespace mercaux {
     total?: number;
   }
   export interface Catalog {
-    barcode?: number;
+    barcode?: Long;
     category?: string;
     family?: string;
     product_name?: string;
@@ -549,7 +549,7 @@ export namespace mercaux {
     is_sample_sale?: boolean;
   }
   export interface Stock {
-    barcode?: number;
+    barcode?: Long;
     country?: string;
     quantity?: Quantity[];
   }
@@ -884,7 +884,7 @@ export namespace mindbox {
   }
   export interface ResponseCode {
     ok?: boolean;
-    timestamp?: number;
+    timestamp?: Long;
   }
   export interface ParamsCheckCode {
     mobile_phone?: string;
@@ -963,7 +963,7 @@ export namespace orders {
   export interface Position {
     id?: number;
     article?: number;
-    barcode?: number;
+    barcode?: Long;
     title?: string;
     color?: string;
     size?: string;
@@ -1162,14 +1162,14 @@ export namespace products {
   }
   export interface Size {
     guid?: UUID;
-    barcode?: number;
+    barcode?: Long;
     title_ru?: string;
     title_en?: string;
     stocks?: Stock[];
     prices?: Price[];
   }
   export interface Stock {
-    barcode?: number;
+    barcode?: Long;
     store_code?: number;
     quantity?: number;
     available?: number;
@@ -1287,7 +1287,7 @@ export namespace stocks {
     stocks?: Stock[];
   }
   export interface Stock {
-    barcode?: number;
+    barcode?: Long;
     store_code?: number;
     quantity?: number;
     available?: number;
