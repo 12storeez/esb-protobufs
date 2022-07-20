@@ -28,6 +28,9 @@ export namespace feedbacks {
     List(
       request: ListPortalFeedbackRequest
     ): Observable<ListPortalFeedbackResponse>;
+    Validate(
+      request: ValidatePortalFeedbackRequest
+    ): Observable<ValidatePortalFeedbackResponse>;
   }
   export interface PortalFeedbackId {
     id?: number;
@@ -40,6 +43,15 @@ export namespace feedbacks {
     limit?: number;
     offset?: number;
     search?: string;
+  }
+  export interface ValidatePortalFeedbackRequest {
+    order_id?: string;
+    article?: string;
+    feedback_category?: string;
+  }
+  export interface ValidatePortalFeedbackResponse {
+    is_valid?: boolean;
+    error?: string;
   }
   export interface PortalFeedback {
     id?: number;
@@ -480,6 +492,7 @@ export namespace mercaux {
     instashop?: string[];
     preview?: string;
     capsules?: Capsules;
+    is_sample_sale?: boolean;
   }
   export interface Stock {
     barcode?: number;
@@ -771,6 +784,7 @@ export namespace mindbox {
   export interface ParamsCode {
     mobile_phone?: string;
     device_id?: string;
+    ip?: string;
   }
   export interface ResponseCode {
     ok?: boolean;
@@ -1200,8 +1214,6 @@ export namespace logistics {
     message_id?: number;
     popup_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface UpdateCategoryDeliveryTypeRestriction {
     id?: number;
@@ -1210,8 +1222,6 @@ export namespace logistics {
     message_id?: number;
     popup_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface CategoryDeliveryTypeRestriction {
     id?: number;
@@ -1259,8 +1269,6 @@ export namespace logistics {
     message_id?: number;
     popup_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface UpdateCategoryZoneGroupRestriction {
     id?: number;
@@ -1269,8 +1277,6 @@ export namespace logistics {
     message_id?: number;
     popup_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface CategoryZoneGroupRestriction {
     id?: number;
@@ -1329,8 +1335,6 @@ export namespace logistics {
     date_from?: string;
     date_to?: string;
     is_delivery_delayed?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface UpdateDeliveryCalendar {
     id?: number;
@@ -1341,8 +1345,6 @@ export namespace logistics {
     date_from?: string;
     date_to?: string;
     is_delivery_delayed?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface DeliveryCalendar {
     id?: number;
@@ -1590,8 +1592,8 @@ export namespace logistics {
     List(
       request: ListGlobalRestrictionRequest
     ): Observable<ListGlobalRestrictionResponse>;
-    Create(request: GlobalRestriction): Observable<GlobalRestriction>;
-    Update(request: GlobalRestriction): Observable<GlobalRestriction>;
+    Create(request: UpdateGlobalRestriction): Observable<GlobalRestriction>;
+    Update(request: UpdateGlobalRestriction): Observable<GlobalRestriction>;
   }
   export enum Restriction {
     price = 0,
@@ -1599,13 +1601,21 @@ export namespace logistics {
   }
   export interface GlobalRestriction {
     id?: number;
-    message_id?: number;
-    popup_id?: number;
+    message?: Message;
+    popup?: Popup;
     restriction?: Restriction;
     value?: number;
     is_active?: boolean;
     created_at?: string;
     updated_at?: string;
+  }
+  export interface UpdateGlobalRestriction {
+    id?: number;
+    message_id?: number;
+    popup_id?: number;
+    restriction?: Restriction;
+    value?: number;
+    is_active?: boolean;
   }
   export interface ListGlobalRestrictionRequest {
     limit?: number;
@@ -2015,8 +2025,6 @@ export namespace logistics {
     id?: number;
     name?: string;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
     zone_ids?: number[];
   }
   export interface ListZoneGroupRequest {
@@ -2063,8 +2071,6 @@ export namespace logistics {
     message_id?: number;
     popup_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface UpdateZoneGroupRestriction {
     id?: number;
@@ -2073,8 +2079,6 @@ export namespace logistics {
     message_id?: number;
     popup_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface ZoneGroupRestriction {
     id?: number;
@@ -2097,10 +2101,10 @@ export namespace logistics {
     total?: number;
   }
   export interface CreateListZoneGroupRestrictionRequest {
-    ZoneGroupRestrictions?: CreateZoneGroupRestriction[];
+    zone_group_restrictions?: CreateZoneGroupRestriction[];
   }
   export interface UpdateListZoneGroupRestrictionRequest {
-    ZoneGroupRestrictions?: UpdateZoneGroupRestriction[];
+    zone_group_restrictions?: UpdateZoneGroupRestriction[];
   }
   export interface Country {
     country_code?: string;
