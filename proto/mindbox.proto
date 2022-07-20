@@ -110,7 +110,9 @@ message Order {
 message ParamsCode {
     string mobile_phone = 1;
     string device_id = 2;
+    string ip = 3;
 }
+
 message ResponseCode {
     bool  ok = 1;
     int64 timestamp = 2;
