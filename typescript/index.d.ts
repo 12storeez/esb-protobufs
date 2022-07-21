@@ -881,6 +881,8 @@ export namespace mindbox {
     mobile_phone?: string;
     device_id?: string;
     ip?: string;
+    platform?: string;
+    version?: string;
   }
   export interface ResponseCode {
     ok?: boolean;
