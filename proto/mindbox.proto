@@ -111,6 +111,8 @@ message ParamsCode {
     string mobile_phone = 1;
     string device_id = 2;
     string ip = 3;
+    string platform = 4;
+    string version = 5;
 }
 
 message ResponseCode {
