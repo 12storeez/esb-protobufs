@@ -2,11 +2,11 @@
 // source: proto/feedbacks.proto
 
 /*
-Package feedbacks is a reverse proxy.
+Package feedbacks_old is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package feedbacks
+package feedbacks_old
 
 import (
 	"context"
@@ -611,7 +611,7 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks.Mobile/App"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/App"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -635,7 +635,7 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Store"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/Store"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -659,7 +659,7 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Order"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/Order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -683,7 +683,7 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Categories"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/Categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -707,7 +707,7 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByOrder"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/ReasonsByOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -731,7 +731,7 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByStore"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/ReasonsByStore"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -755,7 +755,7 @@ func RegisterMobileHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks.Mobile/CanBeSaved"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/CanBeSaved"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -788,7 +788,7 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/New", runtime.WithHTTPPathPattern("/feedbacks.Store/New"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Store/New", runtime.WithHTTPPathPattern("/feedbacks_old.Store/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -812,7 +812,7 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks.Store/Patch"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks_old.Store/Patch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -836,7 +836,7 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/NewOrder"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks_old.Store/NewOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -860,7 +860,7 @@ func RegisterStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/PatchOrder"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks_old.Store/PatchOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -893,7 +893,7 @@ func RegisterNPSHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.NPS/New", runtime.WithHTTPPathPattern("/feedbacks.NPS/New"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.NPS/New", runtime.WithHTTPPathPattern("/feedbacks_old.NPS/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -917,7 +917,7 @@ func RegisterNPSHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks.NPS/Update"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks_old.NPS/Update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -950,7 +950,7 @@ func RegisterPortalFeedbackServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -974,7 +974,7 @@ func RegisterPortalFeedbackServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -998,7 +998,7 @@ func RegisterPortalFeedbackServiceHandlerServer(ctx context.Context, mux *runtim
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/feedbacks_old.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1061,7 +1061,7 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks.Mobile/App"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Mobile/App", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/App"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1082,7 +1082,7 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Store"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Mobile/Store", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/Store"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1103,7 +1103,7 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Order"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Mobile/Order", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/Order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1124,7 +1124,7 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks.Mobile/Categories"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Mobile/Categories", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/Categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1145,7 +1145,7 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByOrder"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Mobile/ReasonsByOrder", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/ReasonsByOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1166,7 +1166,7 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks.Mobile/ReasonsByStore"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Mobile/ReasonsByStore", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/ReasonsByStore"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1187,7 +1187,7 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks.Mobile/CanBeSaved"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Mobile/CanBeSaved", runtime.WithHTTPPathPattern("/feedbacks_old.Mobile/CanBeSaved"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1207,19 +1207,19 @@ func RegisterMobileHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 }
 
 var (
-	pattern_Mobile_App_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Mobile", "App"}, ""))
+	pattern_Mobile_App_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Mobile", "App"}, ""))
 
-	pattern_Mobile_Store_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Mobile", "Store"}, ""))
+	pattern_Mobile_Store_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Mobile", "Store"}, ""))
 
-	pattern_Mobile_Order_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Mobile", "Order"}, ""))
+	pattern_Mobile_Order_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Mobile", "Order"}, ""))
 
-	pattern_Mobile_Categories_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Mobile", "Categories"}, ""))
+	pattern_Mobile_Categories_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Mobile", "Categories"}, ""))
 
-	pattern_Mobile_ReasonsByOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Mobile", "ReasonsByOrder"}, ""))
+	pattern_Mobile_ReasonsByOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Mobile", "ReasonsByOrder"}, ""))
 
-	pattern_Mobile_ReasonsByStore_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Mobile", "ReasonsByStore"}, ""))
+	pattern_Mobile_ReasonsByStore_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Mobile", "ReasonsByStore"}, ""))
 
-	pattern_Mobile_CanBeSaved_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Mobile", "CanBeSaved"}, ""))
+	pattern_Mobile_CanBeSaved_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Mobile", "CanBeSaved"}, ""))
 )
 
 var (
@@ -1281,7 +1281,7 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/New", runtime.WithHTTPPathPattern("/feedbacks.Store/New"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Store/New", runtime.WithHTTPPathPattern("/feedbacks_old.Store/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1302,7 +1302,7 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks.Store/Patch"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Store/Patch", runtime.WithHTTPPathPattern("/feedbacks_old.Store/Patch"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1323,7 +1323,7 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/NewOrder"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Store/NewOrder", runtime.WithHTTPPathPattern("/feedbacks_old.Store/NewOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1344,7 +1344,7 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks.Store/PatchOrder"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.Store/PatchOrder", runtime.WithHTTPPathPattern("/feedbacks_old.Store/PatchOrder"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1364,13 +1364,13 @@ func RegisterStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Store_New_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Store", "New"}, ""))
+	pattern_Store_New_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Store", "New"}, ""))
 
-	pattern_Store_Patch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Store", "Patch"}, ""))
+	pattern_Store_Patch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Store", "Patch"}, ""))
 
-	pattern_Store_NewOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Store", "NewOrder"}, ""))
+	pattern_Store_NewOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Store", "NewOrder"}, ""))
 
-	pattern_Store_PatchOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.Store", "PatchOrder"}, ""))
+	pattern_Store_PatchOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.Store", "PatchOrder"}, ""))
 )
 
 var (
@@ -1426,7 +1426,7 @@ func RegisterNPSHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.NPS/New", runtime.WithHTTPPathPattern("/feedbacks.NPS/New"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.NPS/New", runtime.WithHTTPPathPattern("/feedbacks_old.NPS/New"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1447,7 +1447,7 @@ func RegisterNPSHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks.NPS/Update"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.NPS/Update", runtime.WithHTTPPathPattern("/feedbacks_old.NPS/Update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1467,9 +1467,9 @@ func RegisterNPSHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 }
 
 var (
-	pattern_NPS_New_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.NPS", "New"}, ""))
+	pattern_NPS_New_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.NPS", "New"}, ""))
 
-	pattern_NPS_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks.NPS", "Update"}, ""))
+	pattern_NPS_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"feedbacks_old.NPS", "Update"}, ""))
 )
 
 var (
@@ -1521,7 +1521,7 @@ func RegisterPortalFeedbackServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.PortalFeedbackService/Delete", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1542,7 +1542,7 @@ func RegisterPortalFeedbackServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.PortalFeedbackService/List", runtime.WithHTTPPathPattern("/api/v1/portal/feedback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1563,7 +1563,7 @@ func RegisterPortalFeedbackServiceHandlerClient(ctx context.Context, mux *runtim
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/feedbacks_old.PortalFeedbackService/Validate", runtime.WithHTTPPathPattern("/api/v1/portal/feedback/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

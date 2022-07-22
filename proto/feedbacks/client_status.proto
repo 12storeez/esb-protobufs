@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "go/feedbacks";
+
+package feedbacks;
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service ClientStatusesService {
+  rpc List(google.protobuf.Empty) returns (ListClientStatusResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/clients/statuses"
+    };
+  }
+}
+
+message ClientStatus {
+  int32  id = 1;
+  string name = 2;
+  int32  order = 3;
+}
+
+message ListClientStatusResponse {
+  repeated ClientStatus results = 1;
+  int32           total = 2;
+}
