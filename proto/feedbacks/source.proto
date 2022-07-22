@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "go/feedbacks";
+
+package feedbacks;
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service FeedbacksSourcesService {
+  rpc List(google.protobuf.Empty) returns (ListSourceResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/feedbacks/sources"
+    };
+  }
+}
+
+message Source {
+  int32  id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message ListSourceResponse {
+  repeated Source results = 1;
+  int32           total = 2;
+}
