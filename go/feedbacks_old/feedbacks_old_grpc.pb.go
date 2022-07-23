@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.18.1
-// source: proto/feedbacks.proto
+// source: proto/feedbacks_old.proto
 
 package feedbacks_old
 
@@ -316,7 +316,7 @@ var Mobile_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks.proto",
+	Metadata: "proto/feedbacks_old.proto",
 }
 
 // StoreClient is the client API for Store service.
@@ -508,7 +508,7 @@ var Store_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks.proto",
+	Metadata: "proto/feedbacks_old.proto",
 }
 
 // NPSClient is the client API for NPS service.
@@ -628,7 +628,7 @@ var NPS_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks.proto",
+	Metadata: "proto/feedbacks_old.proto",
 }
 
 // PortalFeedbackServiceClient is the client API for PortalFeedbackService service.
@@ -784,5 +784,5 @@ var PortalFeedbackService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks.proto",
+	Metadata: "proto/feedbacks_old.proto",
 }
