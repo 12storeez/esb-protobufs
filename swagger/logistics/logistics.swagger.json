@@ -3273,7 +3273,7 @@
       }
     },
     "/api/v1/winner/calculate": {
-      "get": {
+      "post": {
         "operationId": "WinnerService_Calculate",
         "responses": {
           "200": {
@@ -4064,7 +4064,7 @@
     "logisticsCartPosition": {
       "type": "object",
       "properties": {
-        "category": {
+        "categoryId": {
           "type": "string"
         },
         "quantity": {
