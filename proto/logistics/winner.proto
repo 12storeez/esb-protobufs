@@ -10,6 +10,7 @@ service WinnerService {
   rpc Calculate(CalculateRequest) returns (CalculateResponse) {
     option (google.api.http) = {
       post: "/api/v1/winner/calculate"
+      body: "*"
     };
   }
 }

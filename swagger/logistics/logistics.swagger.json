@@ -3291,16 +3291,12 @@
         },
         "parameters": [
           {
-            "name": "countryIsoCode",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "geoId",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCalculateRequest"
+            }
           }
         ],
         "tags": [
@@ -4044,6 +4040,23 @@
     }
   },
   "definitions": {
+    "logisticsCalculateRequest": {
+      "type": "object",
+      "properties": {
+        "countryIsoCode": {
+          "type": "string"
+        },
+        "geoId": {
+          "type": "string"
+        },
+        "cart": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsCartPosition"
+          }
+        }
+      }
+    },
     "logisticsCalculateResponse": {
       "type": "object",
       "properties": {
