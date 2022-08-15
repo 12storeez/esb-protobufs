@@ -13,7 +13,7 @@ do
 
     if grep -r -q "google.api.http" $file; then
       ### Генерация прокси:
-      ls $file/ | grep "google.api.http" | xargs -I {} protoc -I $file --grpc-gateway_out=. -I ../git_repo/googleapis --grpc-gateway_opt logtostderr=true --grpc-gateway_opt generate_unbound_methods=true $file/{}
+      ls $file/ | grep -r -q "google.api.http" | xargs -I {} protoc -I $file --grpc-gateway_out=. -I ../git_repo/googleapis --grpc-gateway_opt logtostderr=true --grpc-gateway_opt generate_unbound_methods=true $file/{}
 
       ### Генерация единого сваггера для нескольких прото файлов
       dirname=$(basename "$file")
