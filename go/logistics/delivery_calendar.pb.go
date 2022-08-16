@@ -704,6 +704,7 @@ var file_delivery_calendar_proto_goTypes = []interface{}{
 	(*DeliveryTypeShort)(nil),            // 8: logistics.DeliveryTypeShort
 	(*Message)(nil),                      // 9: logistics.Message
 	(*Popup)(nil),                        // 10: logistics.Popup
+	(*Interval)(nil),                     // 10: logistics.Interval
 	(*emptypb.Empty)(nil),                // 11: google.protobuf.Empty
 }
 var file_delivery_calendar_proto_depIdxs = []int32{
