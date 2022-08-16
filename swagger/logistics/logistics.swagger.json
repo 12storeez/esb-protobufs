@@ -430,6 +430,12 @@
                 },
                 "isDeliveryDelayed": {
                   "type": "boolean"
+                },
+                "intervals": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/logisticsInterval"
+                  }
                 }
               }
             }
@@ -4279,6 +4285,12 @@
         },
         "isDeliveryDelayed": {
           "type": "boolean"
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsInterval"
+          }
         }
       }
     },
@@ -4395,6 +4407,12 @@
         },
         "updatedAt": {
           "type": "string"
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsInterval"
+          }
         }
       }
     },

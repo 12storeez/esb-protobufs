@@ -10,6 +10,7 @@ import "message.proto";
 import "popup.proto";
 import "delivery_mode.proto";
 import "delivery_type.proto";
+import "interval.proto";
 
 service DeliveryCalendarService {
   rpc List(ListDeliveryCalendarRequest) returns (ListDeliveryCalendarResponse) {
@@ -50,24 +51,26 @@ message DeliveryCalendarId {
 }
 
 message CreateDeliveryCalendar {
-  int32   delivery_mode_id = 1;
-  int32   delivery_type_id = 2;
-  int32   message_id = 3;
-  int32   popup_id = 4;
-  string  date_from = 5;
-  string  date_to = 6;
-  bool    is_delivery_delayed = 7;
+  int32             delivery_mode_id = 1;
+  int32             delivery_type_id = 2;
+  int32             message_id = 3;
+  int32             popup_id = 4;
+  string            date_from = 5;
+  string            date_to = 6;
+  bool              is_delivery_delayed = 7;
+  repeated Interval intervals = 8;
 }
 
 message UpdateDeliveryCalendar {
-  int32   id = 1;
-  int32   delivery_mode_id = 2;
-  int32   delivery_type_id = 3;
-  int32   message_id = 4;
-  int32   popup_id = 5;
-  string  date_from = 6;
-  string  date_to = 7;
-  bool    is_delivery_delayed = 8;
+  int32             id = 1;
+  int32             delivery_mode_id = 2;
+  int32             delivery_type_id = 3;
+  int32             message_id = 4;
+  int32             popup_id = 5;
+  string            date_from = 6;
+  string            date_to = 7;
+  bool              is_delivery_delayed = 8;
+  repeated Interval intervals = 9;
 }
 
 message DeliveryCalendar {
@@ -81,6 +84,7 @@ message DeliveryCalendar {
   bool                is_delivery_delayed = 8;
   string              created_at = 9;
   string              updated_at = 10;
+  repeated Interval   intervals = 11;
 }
 
 message ListDeliveryCalendarRequest {
