@@ -51,13 +51,14 @@ message DeliveryCalendarId {
 }
 
 message CreateDeliveryCalendar {
-  int32   delivery_mode_id = 1;
-  int32   delivery_type_id = 2;
-  int32   message_id = 3;
-  int32   popup_id = 4;
-  string  date_from = 5;
-  string  date_to = 6;
-  bool    is_delivery_delayed = 7;
+  int32             delivery_mode_id = 1;
+  int32             delivery_type_id = 2;
+  int32             message_id = 3;
+  int32             popup_id = 4;
+  string            date_from = 5;
+  string            date_to = 6;
+  bool              is_delivery_delayed = 7;
+  repeated Interval intervals = 8;
 }
 
 message UpdateDeliveryCalendar {
@@ -69,7 +70,7 @@ message UpdateDeliveryCalendar {
   string            date_from = 6;
   string            date_to = 7;
   bool              is_delivery_delayed = 8;
-  repeated int32    delivery_calendar_interval_ids = 9;
+  repeated Interval intervals = 9;
 }
 
 message DeliveryCalendar {
