@@ -182,11 +182,9 @@ message UpdateDeliveryType {
   int32                                    restriction_by_quantity_per_article_popup_id = 32;
   bool                                     is_visible_while_restricted = 33;
   bool                                     is_active = 34;
-  string                                   created_at = 35;
-  string                                   updated_at = 36;
-  repeated UpdatePaymentMethodToDeliveryType      payment_method_to_delivery_type = 37;
-  repeated UpdateCategoryRestriction              category_delivery_type_restrictions = 38;
-  repeated int32                                  delivery_type_interval_ids = 39;
+  repeated UpdatePaymentMethodToDeliveryType      payment_method_to_delivery_type = 35;
+  repeated UpdateCategoryRestriction              category_delivery_type_restrictions = 36;
+  repeated Interval                               intervals = 37;
 }
 
 message UpdatePaymentMethodToDeliveryType {

@@ -1127,12 +1127,6 @@
                 "isActive": {
                   "type": "boolean"
                 },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
-                },
                 "paymentMethodToDeliveryType": {
                   "type": "array",
                   "items": {
@@ -1145,11 +1139,10 @@
                     "$ref": "#/definitions/logisticsUpdateCategoryRestriction"
                   }
                 },
-                "deliveryTypeIntervalIds": {
+                "intervals": {
                   "type": "array",
                   "items": {
-                    "type": "integer",
-                    "format": "int32"
+                    "$ref": "#/definitions/logisticsInterval"
                   }
                 }
               }
