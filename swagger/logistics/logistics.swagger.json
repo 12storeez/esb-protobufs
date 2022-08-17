@@ -5407,12 +5407,6 @@
         },
         "isActive": {
           "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },
@@ -5467,12 +5461,6 @@
         },
         "isActive": {
           "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },

@@ -199,8 +199,6 @@ message UpdatePaymentMethodCategoryRestriction {
   int32     category_id = 1;
   int32     message_id = 2;
   bool      is_active = 3;
-  string    created_at = 4;
-  string    updated_at = 5;
 }
 
 message UpdateCategoryRestriction {
@@ -208,6 +206,4 @@ message UpdateCategoryRestriction {
   int32        message_id = 2;
   int32        popup_id = 3;
   bool         is_active = 4;
-  string       created_at = 5;
-  string       updated_at = 6;
 }
