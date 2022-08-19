@@ -47,17 +47,19 @@ message Feedback {
   int32            id = 1;
   string           source = 3;
   string           user = 4;
-  string           client = 5;
-  string           client_status = 6;
-  string           phone = 7;
-  string           email = 8;
-  string           status = 9;
-  string           solution = 10;
-  bool             is_manual = 11;
-  bool             is_double = 12;
-  FeedbackPriority priority = 13;
-  string           created_at = 14;
-  string           created_by = 15;
+  string           user_department = 5;
+  string           client = 6;
+  int32            client_id = 7;
+  string           client_status = 8;
+  string           phone = 9;
+  string           email = 10;
+  string           status = 11;
+  string           solution = 12;
+  bool             is_manual = 13;
+  bool             is_double = 14;
+  FeedbackPriority priority = 15;
+  string           created_at = 16;
+  string           created_by = 17;
 }
 
 message ListFeedbackResponse {

@@ -394,8 +394,15 @@
         "user": {
           "type": "string"
         },
+        "userDepartment": {
+          "type": "string"
+        },
         "client": {
           "type": "string"
+        },
+        "clientId": {
+          "type": "integer",
+          "format": "int32"
         },
         "clientStatus": {
           "type": "string"
