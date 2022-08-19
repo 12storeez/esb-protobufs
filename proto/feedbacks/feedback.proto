@@ -44,7 +44,7 @@ message ListFeedbackRequest {
 }
 
 message Feedback {
-  int64            id = 1;
+  int32            id = 1;
   string           source = 3;
   string           user = 4;
   string           client = 5;

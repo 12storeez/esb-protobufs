@@ -19,6 +19,12 @@
     },
     {
       "name": "FeedbacksStatusesService"
+    },
+    {
+      "name": "FeedbacksUsersService"
+    },
+    {
+      "name": "FeedbacksOperatorsService"
     }
   ],
   "consumes": [
@@ -191,6 +197,56 @@
         ]
       }
     },
+    "/api/v1/feedbacks/operators": {
+      "get": {
+        "operationId": "FeedbacksOperatorsService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/feedbacksListUsersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FeedbacksOperatorsService"
+        ]
+      }
+    },
     "/api/v1/feedbacks/sources": {
       "get": {
         "operationId": "FeedbacksSourcesService_List",
@@ -256,6 +312,56 @@
           "SolutionsService"
         ]
       }
+    },
+    "/api/v1/users": {
+      "get": {
+        "operationId": "FeedbacksUsersService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/feedbacksListUsersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FeedbacksUsersService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -279,8 +385,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
-          "format": "int64"
+          "type": "integer",
+          "format": "int32"
         },
         "source": {
           "type": "string"
@@ -415,6 +521,21 @@
         }
       }
     },
+    "feedbacksListUsersResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feedbacksUser"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "feedbacksSolution": {
       "type": "object",
       "properties": {
@@ -463,6 +584,21 @@
           "type": "string"
         },
         "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "feedbacksUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
           "type": "string"
         }
       }
