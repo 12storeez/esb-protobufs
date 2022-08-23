@@ -56,7 +56,7 @@ message Feedback {
   string           status = 11;
   string           solution = 12;
   bool             is_manual = 13;
-  bool             is_double = 14;
+  bool             is_duplicate = 14;
   FeedbackPriority priority = 15;
   string           created_at = 16;
   string           created_by = 17;

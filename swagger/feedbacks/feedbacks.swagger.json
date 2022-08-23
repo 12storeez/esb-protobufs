@@ -422,7 +422,7 @@
         "isManual": {
           "type": "boolean"
         },
-        "isDouble": {
+        "isDuplicate": {
           "type": "boolean"
         },
         "priority": {
