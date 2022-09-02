@@ -3454,7 +3454,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsZoneGroup"
+              "$ref": "#/definitions/logisticsCreateZoneGroup"
             }
           }
         ],
@@ -4328,6 +4328,24 @@
         "deliveryMethodId": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "logisticsCreateZoneGroup": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "zoneIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
         }
       }
     },
