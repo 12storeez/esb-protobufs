@@ -15,7 +15,7 @@ service ZoneGroupService {
     };
   }
 
-  rpc Create(ZoneGroup) returns (ZoneGroup) {
+  rpc Create(CreateZoneGroup) returns (ZoneGroup) {
     option (google.api.http) = {
       post: "/api/v1/zone-group"
       body: "*"
@@ -77,6 +77,12 @@ message UpdateZoneGroup {
   string          name = 2;
   bool            is_active = 3;
   repeated int32  zone_ids = 4;
+}
+
+message CreateZoneGroup {
+  string          name = 1;
+  bool            is_active = 2;
+  repeated int32  zone_ids = 3;
 }
 
 message ListZoneGroupRequest {

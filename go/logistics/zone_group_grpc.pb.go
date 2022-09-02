@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ZoneGroupServiceClient interface {
 	List(ctx context.Context, in *ListZoneGroupRequest, opts ...grpc.CallOption) (*ListZoneGroupResponse, error)
-	Create(ctx context.Context, in *ZoneGroup, opts ...grpc.CallOption) (*ZoneGroup, error)
+	Create(ctx context.Context, in *CreateZoneGroup, opts ...grpc.CallOption) (*ZoneGroup, error)
 	Get(ctx context.Context, in *ZoneGroupId, opts ...grpc.CallOption) (*ZoneGroup, error)
 	Update(ctx context.Context, in *UpdateZoneGroup, opts ...grpc.CallOption) (*ZoneGroup, error)
 	Delete(ctx context.Context, in *ZoneGroupId, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -49,7 +49,7 @@ func (c *zoneGroupServiceClient) List(ctx context.Context, in *ListZoneGroupRequ
 	return out, nil
 }
 
-func (c *zoneGroupServiceClient) Create(ctx context.Context, in *ZoneGroup, opts ...grpc.CallOption) (*ZoneGroup, error) {
+func (c *zoneGroupServiceClient) Create(ctx context.Context, in *CreateZoneGroup, opts ...grpc.CallOption) (*ZoneGroup, error) {
 	out := new(ZoneGroup)
 	err := c.cc.Invoke(ctx, "/logistics.ZoneGroupService/Create", in, out, opts...)
 	if err != nil {
@@ -108,7 +108,7 @@ func (c *zoneGroupServiceClient) DeleteZone(ctx context.Context, in *DeleteZoneR
 // for forward compatibility
 type ZoneGroupServiceServer interface {
 	List(context.Context, *ListZoneGroupRequest) (*ListZoneGroupResponse, error)
-	Create(context.Context, *ZoneGroup) (*ZoneGroup, error)
+	Create(context.Context, *CreateZoneGroup) (*ZoneGroup, error)
 	Get(context.Context, *ZoneGroupId) (*ZoneGroup, error)
 	Update(context.Context, *UpdateZoneGroup) (*ZoneGroup, error)
 	Delete(context.Context, *ZoneGroupId) (*emptypb.Empty, error)
@@ -123,7 +123,7 @@ type UnimplementedZoneGroupServiceServer struct {
 func (UnimplementedZoneGroupServiceServer) List(context.Context, *ListZoneGroupRequest) (*ListZoneGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedZoneGroupServiceServer) Create(context.Context, *ZoneGroup) (*ZoneGroup, error) {
+func (UnimplementedZoneGroupServiceServer) Create(context.Context, *CreateZoneGroup) (*ZoneGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (UnimplementedZoneGroupServiceServer) Get(context.Context, *ZoneGroupId) (*ZoneGroup, error) {
@@ -172,7 +172,7 @@ func _ZoneGroupService_List_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _ZoneGroupService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ZoneGroup)
+	in := new(CreateZoneGroup)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -184,7 +184,7 @@ func _ZoneGroupService_Create_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: "/logistics.ZoneGroupService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZoneGroupServiceServer).Create(ctx, req.(*ZoneGroup))
+		return srv.(ZoneGroupServiceServer).Create(ctx, req.(*CreateZoneGroup))
 	}
 	return interceptor(ctx, in, info, handler)
 }
