@@ -105,6 +105,8 @@ message SuggestZoneGroupRequest {
 message SuggestZoneGroup {
   int32  id = 1;
   string name = 2;
+  bool   is_active = 3;
+
 }
 
 message SuggestZoneGroupResponse {

@@ -120,6 +120,7 @@ message SuggestTransportCompanyModeRequest {
 message SuggestTransportCompanyMode {
   int32  id = 1;
   string title = 2;
+  bool   is_active = 3;
 }
 
 message SuggestTransportCompanyModeResponse {

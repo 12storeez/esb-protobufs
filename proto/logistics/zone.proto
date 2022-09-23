@@ -90,6 +90,7 @@ message SuggestZoneRequest {
 message SuggestZone {
   int32  id = 1;
   string name = 2;
+  bool   is_active = 3;
 }
 
 message SuggestZoneResponse {
