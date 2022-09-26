@@ -5148,6 +5148,9 @@
         },
         "title": {
           "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
@@ -5175,6 +5178,9 @@
         },
         "name": {
           "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
@@ -5187,6 +5193,9 @@
         },
         "name": {
           "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
