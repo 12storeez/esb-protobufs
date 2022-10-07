@@ -65,6 +65,7 @@ message ZoneToGeo {
 message ZoneToGeoUpdateRequest {
   int32  zone_id = 1;
   string geo_id = 2;
+  string geo_id_new = 3;
 }
 
 message ListZoneToGeoRequest {

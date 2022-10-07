@@ -3832,6 +3832,9 @@
                 "zoneId": {
                   "type": "integer",
                   "format": "int32"
+                },
+                "geoIdNew": {
+                  "type": "string"
                 }
               }
             }
