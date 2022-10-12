@@ -2603,14 +2603,50 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "isCountryRestriction",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
           "ZoneGroupRestrictionService"
         ]
       },
-      "put": {
-        "operationId": "ZoneGroupRestrictionService_Upsert",
+      "post": {
+        "operationId": "ZoneGroupRestrictionService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListZoneGroupRestrictionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCreateListZoneGroupRestrictionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ZoneGroupRestrictionService"
+        ]
+      },
+      "patch": {
+        "operationId": "ZoneGroupRestrictionService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -4276,6 +4312,17 @@
         }
       }
     },
+    "logisticsCreateListZoneGroupRestrictionRequest": {
+      "type": "object",
+      "properties": {
+        "zoneGroupRestrictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsCreateZoneGroupRestriction"
+          }
+        }
+      }
+    },
     "logisticsCreateTransportCompanyModeRequest": {
       "type": "object",
       "properties": {
@@ -4308,6 +4355,29 @@
             "type": "integer",
             "format": "int32"
           }
+        }
+      }
+    },
+    "logisticsCreateZoneGroupRestriction": {
+      "type": "object",
+      "properties": {
+        "zoneGroupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countryIsoCode": {
+          "type": "string"
+        },
+        "messageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "popupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
