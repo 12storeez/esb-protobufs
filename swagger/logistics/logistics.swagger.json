@@ -2637,7 +2637,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCreateListZoneGroupRestrictionRequest"
+              "$ref": "#/definitions/logisticsCreateZoneGroupRestriction"
             }
           }
         ],
@@ -2667,7 +2667,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsUpdateListZoneGroupRestrictionRequest"
+              "$ref": "#/definitions/logisticsUpdateZoneGroupRestriction"
             }
           }
         ],
@@ -4312,17 +4312,6 @@
         }
       }
     },
-    "logisticsCreateListZoneGroupRestrictionRequest": {
-      "type": "object",
-      "properties": {
-        "zoneGroupRestrictions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/logisticsCreateZoneGroupRestriction"
-          }
-        }
-      }
-    },
     "logisticsCreateTransportCompanyModeRequest": {
       "type": "object",
       "properties": {
@@ -5470,17 +5459,6 @@
         },
         "isActive": {
           "type": "boolean"
-        }
-      }
-    },
-    "logisticsUpdateListZoneGroupRestrictionRequest": {
-      "type": "object",
-      "properties": {
-        "zoneGroupRestrictions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/logisticsUpdateZoneGroupRestriction"
-          }
         }
       }
     },

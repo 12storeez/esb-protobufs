@@ -24,8 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ZoneGroupRestrictionServiceClient interface {
 	List(ctx context.Context, in *ListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
-	Create(ctx context.Context, in *CreateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
-	Update(ctx context.Context, in *UpdateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
+	Create(ctx context.Context, in *CreateZoneGroupRestriction, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
+	Update(ctx context.Context, in *UpdateZoneGroupRestriction, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error)
 	Get(ctx context.Context, in *ZoneGroupRestrictionId, opts ...grpc.CallOption) (*ZoneGroupRestriction, error)
 	Delete(ctx context.Context, in *ZoneGroupRestrictionId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -47,7 +47,7 @@ func (c *zoneGroupRestrictionServiceClient) List(ctx context.Context, in *ListZo
 	return out, nil
 }
 
-func (c *zoneGroupRestrictionServiceClient) Create(ctx context.Context, in *CreateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error) {
+func (c *zoneGroupRestrictionServiceClient) Create(ctx context.Context, in *CreateZoneGroupRestriction, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error) {
 	out := new(ListZoneGroupRestrictionResponse)
 	err := c.cc.Invoke(ctx, "/logistics.ZoneGroupRestrictionService/Create", in, out, opts...)
 	if err != nil {
@@ -56,7 +56,7 @@ func (c *zoneGroupRestrictionServiceClient) Create(ctx context.Context, in *Crea
 	return out, nil
 }
 
-func (c *zoneGroupRestrictionServiceClient) Update(ctx context.Context, in *UpdateListZoneGroupRestrictionRequest, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error) {
+func (c *zoneGroupRestrictionServiceClient) Update(ctx context.Context, in *UpdateZoneGroupRestriction, opts ...grpc.CallOption) (*ListZoneGroupRestrictionResponse, error) {
 	out := new(ListZoneGroupRestrictionResponse)
 	err := c.cc.Invoke(ctx, "/logistics.ZoneGroupRestrictionService/Update", in, out, opts...)
 	if err != nil {
@@ -88,8 +88,8 @@ func (c *zoneGroupRestrictionServiceClient) Delete(ctx context.Context, in *Zone
 // for forward compatibility
 type ZoneGroupRestrictionServiceServer interface {
 	List(context.Context, *ListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error)
-	Create(context.Context, *CreateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error)
-	Update(context.Context, *UpdateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error)
+	Create(context.Context, *CreateZoneGroupRestriction) (*ListZoneGroupRestrictionResponse, error)
+	Update(context.Context, *UpdateZoneGroupRestriction) (*ListZoneGroupRestrictionResponse, error)
 	Get(context.Context, *ZoneGroupRestrictionId) (*ZoneGroupRestriction, error)
 	Delete(context.Context, *ZoneGroupRestrictionId) (*emptypb.Empty, error)
 }
@@ -101,10 +101,10 @@ type UnimplementedZoneGroupRestrictionServiceServer struct {
 func (UnimplementedZoneGroupRestrictionServiceServer) List(context.Context, *ListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedZoneGroupRestrictionServiceServer) Create(context.Context, *CreateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error) {
+func (UnimplementedZoneGroupRestrictionServiceServer) Create(context.Context, *CreateZoneGroupRestriction) (*ListZoneGroupRestrictionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedZoneGroupRestrictionServiceServer) Update(context.Context, *UpdateListZoneGroupRestrictionRequest) (*ListZoneGroupRestrictionResponse, error) {
+func (UnimplementedZoneGroupRestrictionServiceServer) Update(context.Context, *UpdateZoneGroupRestriction) (*ListZoneGroupRestrictionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedZoneGroupRestrictionServiceServer) Get(context.Context, *ZoneGroupRestrictionId) (*ZoneGroupRestriction, error) {
@@ -144,7 +144,7 @@ func _ZoneGroupRestrictionService_List_Handler(srv interface{}, ctx context.Cont
 }
 
 func _ZoneGroupRestrictionService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateListZoneGroupRestrictionRequest)
+	in := new(CreateZoneGroupRestriction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -156,13 +156,13 @@ func _ZoneGroupRestrictionService_Create_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/logistics.ZoneGroupRestrictionService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZoneGroupRestrictionServiceServer).Create(ctx, req.(*CreateListZoneGroupRestrictionRequest))
+		return srv.(ZoneGroupRestrictionServiceServer).Create(ctx, req.(*CreateZoneGroupRestriction))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ZoneGroupRestrictionService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateListZoneGroupRestrictionRequest)
+	in := new(UpdateZoneGroupRestriction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func _ZoneGroupRestrictionService_Update_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/logistics.ZoneGroupRestrictionService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ZoneGroupRestrictionServiceServer).Update(ctx, req.(*UpdateListZoneGroupRestrictionRequest))
+		return srv.(ZoneGroupRestrictionServiceServer).Update(ctx, req.(*UpdateZoneGroupRestriction))
 	}
 	return interceptor(ctx, in, info, handler)
 }
