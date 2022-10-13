@@ -17,14 +17,14 @@ service ZoneGroupRestrictionService {
     };
   }
 
-  rpc Create(CreateListZoneGroupRestrictionRequest) returns (ListZoneGroupRestrictionResponse) {
+  rpc Create(CreateZoneGroupRestriction) returns (ListZoneGroupRestrictionResponse) {
     option (google.api.http) = {
       post: "/api/v1/restriction/zone"
       body: "*"
     };
   }
 
-  rpc Update(UpdateListZoneGroupRestrictionRequest) returns (ListZoneGroupRestrictionResponse) {
+  rpc Update(UpdateZoneGroupRestriction) returns (ListZoneGroupRestrictionResponse) {
     option (google.api.http) = {
       patch: "/api/v1/restriction/zone"
       body: "*"
@@ -87,14 +87,6 @@ message ListZoneGroupRestrictionRequest {
 message ListZoneGroupRestrictionResponse {
   repeated ZoneGroupRestriction results = 1;
   int32                         total = 2;
-}
-
-message CreateListZoneGroupRestrictionRequest {
-  repeated CreateZoneGroupRestriction zone_group_restrictions = 1;
-}
-
-message UpdateListZoneGroupRestrictionRequest {
-  repeated UpdateZoneGroupRestriction zone_group_restrictions = 1;
 }
 
 message Country {

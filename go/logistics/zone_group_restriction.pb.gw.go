@@ -68,7 +68,7 @@ func local_request_ZoneGroupRestrictionService_List_0(ctx context.Context, marsh
 }
 
 func request_ZoneGroupRestrictionService_Create_0(ctx context.Context, marshaler runtime.Marshaler, client ZoneGroupRestrictionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateListZoneGroupRestrictionRequest
+	var protoReq CreateZoneGroupRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -85,7 +85,7 @@ func request_ZoneGroupRestrictionService_Create_0(ctx context.Context, marshaler
 }
 
 func local_request_ZoneGroupRestrictionService_Create_0(ctx context.Context, marshaler runtime.Marshaler, server ZoneGroupRestrictionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateListZoneGroupRestrictionRequest
+	var protoReq CreateZoneGroupRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -102,7 +102,7 @@ func local_request_ZoneGroupRestrictionService_Create_0(ctx context.Context, mar
 }
 
 func request_ZoneGroupRestrictionService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ZoneGroupRestrictionServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateListZoneGroupRestrictionRequest
+	var protoReq UpdateZoneGroupRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -119,7 +119,7 @@ func request_ZoneGroupRestrictionService_Update_0(ctx context.Context, marshaler
 }
 
 func local_request_ZoneGroupRestrictionService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ZoneGroupRestrictionServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateListZoneGroupRestrictionRequest
+	var protoReq UpdateZoneGroupRestriction
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
