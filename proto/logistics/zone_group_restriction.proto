@@ -17,14 +17,14 @@ service ZoneGroupRestrictionService {
     };
   }
 
-  rpc Create(CreateZoneGroupRestriction) returns (ListZoneGroupRestrictionResponse) {
+  rpc Create(CreateZoneGroupRestriction) returns (ZoneGroupRestriction) {
     option (google.api.http) = {
       post: "/api/v1/restriction/zone"
       body: "*"
     };
   }
 
-  rpc Update(UpdateZoneGroupRestriction) returns (ListZoneGroupRestrictionResponse) {
+  rpc Update(UpdateZoneGroupRestriction) returns (ZoneGroupRestriction) {
     option (google.api.http) = {
       patch: "/api/v1/restriction/zone"
       body: "*"

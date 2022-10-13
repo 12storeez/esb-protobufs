@@ -2621,7 +2621,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsListZoneGroupRestrictionResponse"
+              "$ref": "#/definitions/logisticsZoneGroupRestriction"
             }
           },
           "default": {
@@ -2651,7 +2651,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsListZoneGroupRestrictionResponse"
+              "$ref": "#/definitions/logisticsZoneGroupRestriction"
             }
           },
           "default": {
