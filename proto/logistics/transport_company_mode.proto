@@ -100,6 +100,14 @@ message TransportCompanyMode {
   string            updated_at = 17;
 }
 
+message TransportCompanyModeShort {
+  int32       id = 1;
+  string      title = 2;
+  bool        is_active = 3;
+  string      created_at = 4;
+  string      updated_at = 5;
+}
+
 message ListTransportCompanyModeRequest {
   int32  limit = 1;
   int32  offset = 2;
@@ -108,8 +116,8 @@ message ListTransportCompanyModeRequest {
 }
 
 message ListTransportCompanyModeResponse {
-  repeated TransportCompanyMode results = 1;
-  int32                         total = 2;
+  repeated TransportCompanyModeShort  results = 1;
+  int32                               total = 2;
 }
 
 message SuggestTransportCompanyModeRequest {

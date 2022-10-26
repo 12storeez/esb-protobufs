@@ -4911,7 +4911,7 @@
         "results": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/logisticsTransportCompanyMode"
+            "$ref": "#/definitions/logisticsTransportCompanyModeShort"
           }
         },
         "total": {
@@ -5403,6 +5403,27 @@
         },
         "isProductQuantityBorderIncludePresent": {
           "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsTransportCompanyModeShort": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
         },
         "isActive": {
           "type": "boolean"
