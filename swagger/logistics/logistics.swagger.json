@@ -4054,7 +4054,16 @@
         "countryIsoCode": {
           "type": "string"
         },
+        "regionGeoId": {
+          "type": "string"
+        },
+        "cityGeoId": {
+          "type": "string"
+        },
         "geoId": {
+          "type": "string"
+        },
+        "cartId": {
           "type": "string"
         },
         "cart": {

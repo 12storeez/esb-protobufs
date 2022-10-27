@@ -17,8 +17,11 @@ service WinnerService {
 
 message CalculateRequest {
   string    country_iso_code = 1;
-  string    geo_id = 2;
-  repeated  CartPosition cart = 3;
+  string    region_geo_id = 2;
+  string    city_geo_id = 3;
+  string    geo_id = 4;
+  string    cart_id = 5;
+  repeated  CartPosition cart = 6;
 }
 
 message CartPosition {
