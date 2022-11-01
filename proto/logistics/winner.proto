@@ -56,6 +56,9 @@ message WinnerDeliveryType {
   repeated    WinnerDeliveryDates delivery_dates = 6;
   bool        is_restricted = 7;
   repeated    WinnerRestriction restrictions = 8;
+  int32       from_days = 9;
+  int32       to_days = 10;
+  bool        is_delivery_use_only_working_days = 11;
 }
 
 message WinnerPaymentMethod {

@@ -5645,6 +5645,17 @@
           "items": {
             "$ref": "#/definitions/logisticsWinnerRestriction"
           }
+        },
+        "fromDays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "toDays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isDeliveryUseOnlyWorkingDays": {
+          "type": "boolean"
         }
       }
     },
