@@ -36,9 +36,6 @@ service geo {
   // Детали адреса по GeoID
   rpc AddressDetailsByGeoID(AddressDetailsByGeoIDParams) returns (Address) {
   }
-  // используется в логистике для поиска geoID родительских зон
-  rpc AddressZones(AddressZonesParams) returns (AddressZonesResponse) {
-  }
 }
 
 enum LocaleType {
@@ -238,23 +235,6 @@ message CityAdditional {
   string kladr_id = 1;
   bool   is_crimea = 2;
   string fias_level = 3;
-}
-
-message AddressZonesParams {
-  LocaleType locale = 1;
-  string     country_iso_code = 2;
-  string     query = 3;
-}
-
-message AddressZonesResponse {
-  string id = 1;
-  string region_id = 2;
-  string area_id = 3;
-  string city_id = 4;
-  string settlement_id = 5;
-  string street_id = 6;
-  string house_id = 7;
-  string flat_id = 8;
 }
 
 message DefaultCityListParams {
