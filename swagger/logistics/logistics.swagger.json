@@ -4318,6 +4318,9 @@
         },
         "code": {
           "type": "string"
+        },
+        "name": {
+          "type": "string"
         }
       }
     },
@@ -4335,6 +4338,9 @@
         "deliveryMethodId": {
           "type": "integer",
           "format": "int32"
+        },
+        "title": {
+          "type": "string"
         }
       }
     },
