@@ -20,7 +20,7 @@ message CalculateRequest {
   string    region_geo_id = 2;
   string    city_geo_id = 3;
   string    geo_id = 4;
-  string    cart_id = 5;
+  int32     cart_id = 5;
   repeated  CartPosition cart = 6;
 }
 
