@@ -4064,7 +4064,8 @@
           "type": "string"
         },
         "cartId": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "cart": {
           "type": "array",
