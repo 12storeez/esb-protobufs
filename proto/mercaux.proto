@@ -89,6 +89,7 @@ message Catalog {
     string            preview = 23;
     Capsules          capsules = 24;
     bool              is_sample_sale = 25;
+    bool              is_ecological = 26;
 }
 
 message Stock {
