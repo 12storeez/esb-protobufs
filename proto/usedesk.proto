@@ -4,12 +4,18 @@ option go_package = "go/usedesk";
 
 package usedesk;
 
+import "google/api/annotations.proto";
+
 service CSI {
-    rpc Save (saveParams) returns (saveResponse) {
+    rpc Save (SaveParams) returns (SaveResponse) {
+        option (google.api.http) = {
+            post: "/"
+            body: "*"
+        };
     }
 }
 
-message saveParams {
+message SaveParams {
     int32 id = 1;
     int32 user_id = 2;
     int32 client_id = 3;
@@ -23,7 +29,7 @@ message saveParams {
     string updated_at = 11;
 }
 
-message saveResponse {
+message SaveResponse {
     bool ok = 1;
 }
 

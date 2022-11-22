@@ -19,9 +19,12 @@ message CalculateRequest {
   string    country_iso_code = 1;
   string    region_geo_id = 2;
   string    city_geo_id = 3;
-  string    geo_id = 4;
-  int32     cart_id = 5;
-  repeated  CartPosition cart = 6;
+  string    settlement_geo_id = 4;
+  string    street_geo_id = 5;
+  string    house_geo_id = 6;
+  string    geo_id = 7;
+  int32     cart_id = 8;
+  repeated  CartPosition cart = 9;
 }
 
 message CartPosition {
