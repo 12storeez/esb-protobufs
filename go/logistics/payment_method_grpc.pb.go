@@ -28,6 +28,7 @@ type PaymentMethodServiceClient interface {
 	Get(ctx context.Context, in *PaymentMethodId, opts ...grpc.CallOption) (*PaymentMethod, error)
 	Update(ctx context.Context, in *PaymentMethod, opts ...grpc.CallOption) (*PaymentMethod, error)
 	Delete(ctx context.Context, in *PaymentMethodId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Suggest(ctx context.Context, in *SuggestPaymentMethodRequest, opts ...grpc.CallOption) (*ListPaymentMethodResponse, error)
 }
 
 type paymentMethodServiceClient struct {
@@ -83,6 +84,15 @@ func (c *paymentMethodServiceClient) Delete(ctx context.Context, in *PaymentMeth
 	return out, nil
 }
 
+func (c *paymentMethodServiceClient) Suggest(ctx context.Context, in *SuggestPaymentMethodRequest, opts ...grpc.CallOption) (*ListPaymentMethodResponse, error) {
+	out := new(ListPaymentMethodResponse)
+	err := c.cc.Invoke(ctx, "/logistics.PaymentMethodService/Suggest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PaymentMethodServiceServer is the server API for PaymentMethodService service.
 // All implementations should embed UnimplementedPaymentMethodServiceServer
 // for forward compatibility
@@ -92,6 +102,7 @@ type PaymentMethodServiceServer interface {
 	Get(context.Context, *PaymentMethodId) (*PaymentMethod, error)
 	Update(context.Context, *PaymentMethod) (*PaymentMethod, error)
 	Delete(context.Context, *PaymentMethodId) (*emptypb.Empty, error)
+	Suggest(context.Context, *SuggestPaymentMethodRequest) (*ListPaymentMethodResponse, error)
 }
 
 // UnimplementedPaymentMethodServiceServer should be embedded to have forward compatible implementations.
@@ -112,6 +123,9 @@ func (UnimplementedPaymentMethodServiceServer) Update(context.Context, *PaymentM
 }
 func (UnimplementedPaymentMethodServiceServer) Delete(context.Context, *PaymentMethodId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedPaymentMethodServiceServer) Suggest(context.Context, *SuggestPaymentMethodRequest) (*ListPaymentMethodResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
 // UnsafePaymentMethodServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -215,6 +229,24 @@ func _PaymentMethodService_Delete_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentMethodService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestPaymentMethodRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentMethodServiceServer).Suggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.PaymentMethodService/Suggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentMethodServiceServer).Suggest(ctx, req.(*SuggestPaymentMethodRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PaymentMethodService_ServiceDesc is the grpc.ServiceDesc for PaymentMethodService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -241,6 +273,10 @@ var PaymentMethodService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _PaymentMethodService_Delete_Handler,
+		},
+		{
+			MethodName: "Suggest",
+			Handler:    _PaymentMethodService_Suggest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

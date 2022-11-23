@@ -28,6 +28,7 @@ type DeliveryModeServiceClient interface {
 	Get(ctx context.Context, in *DeliveryModeId, opts ...grpc.CallOption) (*DeliveryMode, error)
 	Update(ctx context.Context, in *DeliveryMode, opts ...grpc.CallOption) (*DeliveryMode, error)
 	Delete(ctx context.Context, in *DeliveryModeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Suggest(ctx context.Context, in *SuggestDeliveryModeRequest, opts ...grpc.CallOption) (*ListDeliveryModeResponse, error)
 }
 
 type deliveryModeServiceClient struct {
@@ -83,6 +84,15 @@ func (c *deliveryModeServiceClient) Delete(ctx context.Context, in *DeliveryMode
 	return out, nil
 }
 
+func (c *deliveryModeServiceClient) Suggest(ctx context.Context, in *SuggestDeliveryModeRequest, opts ...grpc.CallOption) (*ListDeliveryModeResponse, error) {
+	out := new(ListDeliveryModeResponse)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryModeService/Suggest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeliveryModeServiceServer is the server API for DeliveryModeService service.
 // All implementations should embed UnimplementedDeliveryModeServiceServer
 // for forward compatibility
@@ -92,6 +102,7 @@ type DeliveryModeServiceServer interface {
 	Get(context.Context, *DeliveryModeId) (*DeliveryMode, error)
 	Update(context.Context, *DeliveryMode) (*DeliveryMode, error)
 	Delete(context.Context, *DeliveryModeId) (*emptypb.Empty, error)
+	Suggest(context.Context, *SuggestDeliveryModeRequest) (*ListDeliveryModeResponse, error)
 }
 
 // UnimplementedDeliveryModeServiceServer should be embedded to have forward compatible implementations.
@@ -112,6 +123,9 @@ func (UnimplementedDeliveryModeServiceServer) Update(context.Context, *DeliveryM
 }
 func (UnimplementedDeliveryModeServiceServer) Delete(context.Context, *DeliveryModeId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedDeliveryModeServiceServer) Suggest(context.Context, *SuggestDeliveryModeRequest) (*ListDeliveryModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
 // UnsafeDeliveryModeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -215,6 +229,24 @@ func _DeliveryModeService_Delete_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeliveryModeService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestDeliveryModeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeliveryModeServiceServer).Suggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.DeliveryModeService/Suggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeliveryModeServiceServer).Suggest(ctx, req.(*SuggestDeliveryModeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeliveryModeService_ServiceDesc is the grpc.ServiceDesc for DeliveryModeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -241,6 +273,10 @@ var DeliveryModeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _DeliveryModeService_Delete_Handler,
+		},
+		{
+			MethodName: "Suggest",
+			Handler:    _DeliveryModeService_Suggest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
