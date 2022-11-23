@@ -526,6 +526,43 @@
         ]
       }
     },
+    "/api/v1/delivery-method/suggest": {
+      "get": {
+        "operationId": "DeliveryMethodService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListDeliveryMethodResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeliveryMethodService"
+        ]
+      }
+    },
     "/api/v1/delivery-method/{id}": {
       "get": {
         "operationId": "DeliveryMethodService_Get",
@@ -711,6 +748,43 @@
             "schema": {
               "$ref": "#/definitions/logisticsDeliveryMode"
             }
+          }
+        ],
+        "tags": [
+          "DeliveryModeService"
+        ]
+      }
+    },
+    "/api/v1/delivery-mode/suggest": {
+      "get": {
+        "operationId": "DeliveryModeService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListDeliveryModeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -906,6 +980,43 @@
             "schema": {
               "$ref": "#/definitions/logisticsCreateDeliveryTypeRequest"
             }
+          }
+        ],
+        "tags": [
+          "DeliveryTypeService"
+        ]
+      }
+    },
+    "/api/v1/delivery-type/suggest": {
+      "get": {
+        "operationId": "DeliveryTypeService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListDeliveryTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -1663,6 +1774,43 @@
             "schema": {
               "$ref": "#/definitions/logisticsPaymentMethod"
             }
+          }
+        ],
+        "tags": [
+          "PaymentMethodService"
+        ]
+      }
+    },
+    "/api/v1/payment-method/suggest": {
+      "get": {
+        "operationId": "PaymentMethodService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListPaymentMethodResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -3156,6 +3304,43 @@
         ]
       }
     },
+    "/api/v1/transport-company/suggest": {
+      "get": {
+        "operationId": "TransportCompanyService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListTransportCompanyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TransportCompanyService"
+        ]
+      }
+    },
     "/api/v1/transport-company/{id}": {
       "get": {
         "operationId": "TransportCompanyService_Get",
@@ -4060,6 +4245,15 @@
         "cityGeoId": {
           "type": "string"
         },
+        "settlementGeoId": {
+          "type": "string"
+        },
+        "streetGeoId": {
+          "type": "string"
+        },
+        "houseGeoId": {
+          "type": "string"
+        },
         "geoId": {
           "type": "string"
         },
@@ -4625,7 +4819,7 @@
             "$ref": "#/definitions/logisticsCategoryRestriction"
           }
         },
-        "deliveryTypeIntervals": {
+        "intervals": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsInterval"

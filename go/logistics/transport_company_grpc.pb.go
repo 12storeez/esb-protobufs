@@ -28,6 +28,7 @@ type TransportCompanyServiceClient interface {
 	Get(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*TransportCompany, error)
 	Update(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error)
 	Delete(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Suggest(ctx context.Context, in *SuggestTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error)
 }
 
 type transportCompanyServiceClient struct {
@@ -83,6 +84,15 @@ func (c *transportCompanyServiceClient) Delete(ctx context.Context, in *Transpor
 	return out, nil
 }
 
+func (c *transportCompanyServiceClient) Suggest(ctx context.Context, in *SuggestTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error) {
+	out := new(ListTransportCompanyResponse)
+	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyService/Suggest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransportCompanyServiceServer is the server API for TransportCompanyService service.
 // All implementations should embed UnimplementedTransportCompanyServiceServer
 // for forward compatibility
@@ -92,6 +102,7 @@ type TransportCompanyServiceServer interface {
 	Get(context.Context, *TransportCompanyId) (*TransportCompany, error)
 	Update(context.Context, *TransportCompany) (*TransportCompany, error)
 	Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error)
+	Suggest(context.Context, *SuggestTransportCompanyRequest) (*ListTransportCompanyResponse, error)
 }
 
 // UnimplementedTransportCompanyServiceServer should be embedded to have forward compatible implementations.
@@ -112,6 +123,9 @@ func (UnimplementedTransportCompanyServiceServer) Update(context.Context, *Trans
 }
 func (UnimplementedTransportCompanyServiceServer) Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedTransportCompanyServiceServer) Suggest(context.Context, *SuggestTransportCompanyRequest) (*ListTransportCompanyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
 // UnsafeTransportCompanyServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -215,6 +229,24 @@ func _TransportCompanyService_Delete_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransportCompanyService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestTransportCompanyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportCompanyServiceServer).Suggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.TransportCompanyService/Suggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportCompanyServiceServer).Suggest(ctx, req.(*SuggestTransportCompanyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransportCompanyService_ServiceDesc is the grpc.ServiceDesc for TransportCompanyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -241,6 +273,10 @@ var TransportCompanyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _TransportCompanyService_Delete_Handler,
+		},
+		{
+			MethodName: "Suggest",
+			Handler:    _TransportCompanyService_Suggest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

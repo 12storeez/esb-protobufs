@@ -39,6 +39,12 @@ service DeliveryModeService {
       delete: "/api/v1/delivery-mode/{id}"
     };
   }
+
+  rpc Suggest(SuggestDeliveryModeRequest) returns (ListDeliveryModeResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-mode/suggest"
+    };
+  }
 }
 
 message DeliveryModeId {
@@ -64,4 +70,9 @@ message ListDeliveryModeRequest {
 message ListDeliveryModeResponse {
   repeated DeliveryMode results = 1;
   int32                   total = 2;
+}
+
+message SuggestDeliveryModeRequest {
+  int32  limit = 1;
+  string search = 2;
 }

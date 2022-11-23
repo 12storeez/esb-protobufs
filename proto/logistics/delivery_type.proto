@@ -46,6 +46,12 @@ service DeliveryTypeService {
       body: "*"
     };
   }
+
+  rpc Suggest(SuggestDeliveryTypeRequest) returns (ListDeliveryTypeResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-type/suggest"
+    };
+  }
 }
 
 message DeliveryTypeId {
@@ -118,7 +124,7 @@ message DeliveryType {
   string                                   updated_at = 36;
   repeated PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
   repeated CategoryRestriction             category_delivery_type_restrictions = 38;
-  repeated Interval                        delivery_type_intervals = 39;
+  repeated Interval                        intervals = 39;
 }
 
 message CategoryRestriction {
@@ -207,4 +213,9 @@ message UpdateCategoryRestriction {
   int32        message_id = 2;
   int32        popup_id = 3;
   bool         is_active = 4;
+}
+
+message SuggestDeliveryTypeRequest {
+  int32  limit = 1;
+  string search = 2;
 }

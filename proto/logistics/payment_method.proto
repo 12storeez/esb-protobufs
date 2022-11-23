@@ -39,6 +39,12 @@ service PaymentMethodService {
       delete: "/api/v1/payment-method/{id}"
     };
   }
+
+  rpc Suggest(SuggestPaymentMethodRequest) returns (ListPaymentMethodResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/payment-method/suggest"
+    };
+  }
 }
 
 message PaymentMethodId {
@@ -64,4 +70,9 @@ message ListPaymentMethodRequest {
 message ListPaymentMethodResponse {
   repeated PaymentMethod results = 1;
   int32                  total = 2;
+}
+
+message SuggestPaymentMethodRequest {
+  int32  limit = 1;
+  string search = 2;
 }

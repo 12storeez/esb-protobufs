@@ -28,6 +28,7 @@ type DeliveryTypeServiceClient interface {
 	Get(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*DeliveryType, error)
 	Delete(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Update(ctx context.Context, in *UpdateDeliveryType, opts ...grpc.CallOption) (*DeliveryType, error)
+	Suggest(ctx context.Context, in *SuggestDeliveryTypeRequest, opts ...grpc.CallOption) (*ListDeliveryTypeResponse, error)
 }
 
 type deliveryTypeServiceClient struct {
@@ -83,6 +84,15 @@ func (c *deliveryTypeServiceClient) Update(ctx context.Context, in *UpdateDelive
 	return out, nil
 }
 
+func (c *deliveryTypeServiceClient) Suggest(ctx context.Context, in *SuggestDeliveryTypeRequest, opts ...grpc.CallOption) (*ListDeliveryTypeResponse, error) {
+	out := new(ListDeliveryTypeResponse)
+	err := c.cc.Invoke(ctx, "/logistics.DeliveryTypeService/Suggest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeliveryTypeServiceServer is the server API for DeliveryTypeService service.
 // All implementations should embed UnimplementedDeliveryTypeServiceServer
 // for forward compatibility
@@ -92,6 +102,7 @@ type DeliveryTypeServiceServer interface {
 	Get(context.Context, *DeliveryTypeId) (*DeliveryType, error)
 	Delete(context.Context, *DeliveryTypeId) (*emptypb.Empty, error)
 	Update(context.Context, *UpdateDeliveryType) (*DeliveryType, error)
+	Suggest(context.Context, *SuggestDeliveryTypeRequest) (*ListDeliveryTypeResponse, error)
 }
 
 // UnimplementedDeliveryTypeServiceServer should be embedded to have forward compatible implementations.
@@ -112,6 +123,9 @@ func (UnimplementedDeliveryTypeServiceServer) Delete(context.Context, *DeliveryT
 }
 func (UnimplementedDeliveryTypeServiceServer) Update(context.Context, *UpdateDeliveryType) (*DeliveryType, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedDeliveryTypeServiceServer) Suggest(context.Context, *SuggestDeliveryTypeRequest) (*ListDeliveryTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
 // UnsafeDeliveryTypeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -215,6 +229,24 @@ func _DeliveryTypeService_Update_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeliveryTypeService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuggestDeliveryTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeliveryTypeServiceServer).Suggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/logistics.DeliveryTypeService/Suggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeliveryTypeServiceServer).Suggest(ctx, req.(*SuggestDeliveryTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeliveryTypeService_ServiceDesc is the grpc.ServiceDesc for DeliveryTypeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -241,6 +273,10 @@ var DeliveryTypeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _DeliveryTypeService_Update_Handler,
+		},
+		{
+			MethodName: "Suggest",
+			Handler:    _DeliveryTypeService_Suggest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

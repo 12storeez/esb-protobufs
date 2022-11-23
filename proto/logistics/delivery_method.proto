@@ -39,6 +39,12 @@ service DeliveryMethodService {
       delete: "/api/v1/delivery-method/{id}"
     };
   }
+
+  rpc Suggest(SuggestDeliveryMethodRequest) returns (ListDeliveryMethodResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery-method/suggest"
+    };
+  }
 }
 
 message DeliveryMethodId {
@@ -63,4 +69,9 @@ message ListDeliveryMethodRequest {
 message ListDeliveryMethodResponse {
   repeated DeliveryMethod results = 1;
   int32                   total = 2;
+}
+
+message SuggestDeliveryMethodRequest {
+  int32  limit = 1;
+  string search = 2;
 }

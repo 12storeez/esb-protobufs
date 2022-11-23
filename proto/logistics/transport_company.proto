@@ -39,6 +39,12 @@ service TransportCompanyService {
       delete: "/api/v1/transport-company/{id}"
     };
   }
+
+  rpc Suggest(SuggestTransportCompanyRequest) returns (ListTransportCompanyResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/transport-company/suggest"
+    };
+  }
 }
 
 message TransportCompanyId {
@@ -67,6 +73,12 @@ message ListTransportCompanyResponse {
   repeated TransportCompany results = 1;
   int32                     total = 2;
 }
+
+message SuggestTransportCompanyRequest {
+  int32  limit = 1;
+  string search = 2;
+}
+
 
 //oneof response {
 //  SuccessResponse success_response = 1;
