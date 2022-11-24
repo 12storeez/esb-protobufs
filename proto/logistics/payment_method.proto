@@ -40,7 +40,7 @@ service PaymentMethodService {
     };
   }
 
-  rpc Suggest(SuggestPaymentMethodRequest) returns (ListPaymentMethodResponse) {
+  rpc Suggest(SuggestPaymentMethodRequest) returns (SuggestPaymentMethodResponse) {
     option (google.api.http) = {
       get: "/api/v1/payment-method/suggest"
     };
@@ -75,4 +75,15 @@ message ListPaymentMethodResponse {
 message SuggestPaymentMethodRequest {
   int32  limit = 1;
   string search = 2;
+}
+
+message SuggestPaymentMethod {
+  int32  id = 1;
+  string title_ru = 2;
+  bool   is_active = 3;
+}
+
+message SuggestPaymentMethodResponse {
+  repeated SuggestPaymentMethod results = 1;
+  int32                         total = 2;
 }

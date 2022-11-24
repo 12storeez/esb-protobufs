@@ -40,7 +40,7 @@ service DeliveryMethodService {
     };
   }
 
-  rpc Suggest(SuggestDeliveryMethodRequest) returns (ListDeliveryMethodResponse) {
+  rpc Suggest(SuggestDeliveryMethodRequest) returns (SuggestDeliveryMethodResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery-method/suggest"
     };
@@ -74,4 +74,15 @@ message ListDeliveryMethodResponse {
 message SuggestDeliveryMethodRequest {
   int32  limit = 1;
   string search = 2;
+}
+
+message SuggestDeliveryMethod {
+  int32  id = 1;
+  string name = 2;
+  bool   is_active = 3;
+}
+
+message SuggestDeliveryMethodResponse {
+  repeated SuggestDeliveryMethod  results = 1;
+  int32                           total = 2;
 }

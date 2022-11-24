@@ -40,7 +40,7 @@ service DeliveryModeService {
     };
   }
 
-  rpc Suggest(SuggestDeliveryModeRequest) returns (ListDeliveryModeResponse) {
+  rpc Suggest(SuggestDeliveryModeRequest) returns (SuggestDeliveryModeResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery-mode/suggest"
     };
@@ -75,4 +75,15 @@ message ListDeliveryModeResponse {
 message SuggestDeliveryModeRequest {
   int32  limit = 1;
   string search = 2;
+}
+
+message SuggestDeliveryMode {
+  int32  id = 1;
+  string title_ru = 2;
+  bool   is_active = 3;
+}
+
+message SuggestDeliveryModeResponse {
+  repeated SuggestDeliveryMode  results = 1;
+  int32                         total = 2;
 }

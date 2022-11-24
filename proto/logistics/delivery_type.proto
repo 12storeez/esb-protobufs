@@ -47,7 +47,7 @@ service DeliveryTypeService {
     };
   }
 
-  rpc Suggest(SuggestDeliveryTypeRequest) returns (ListDeliveryTypeResponse) {
+  rpc Suggest(SuggestDeliveryTypeRequest) returns (SuggestDeliveryTypeResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery-type/suggest"
     };
@@ -218,4 +218,15 @@ message UpdateCategoryRestriction {
 message SuggestDeliveryTypeRequest {
   int32  limit = 1;
   string search = 2;
+}
+
+message SuggestDeliveryType {
+  int32  id = 1;
+  string name = 2;
+  bool   is_active = 3;
+}
+
+message SuggestDeliveryTypeResponse {
+  repeated SuggestDeliveryType  results = 1;
+  int32                         total = 2;
 }

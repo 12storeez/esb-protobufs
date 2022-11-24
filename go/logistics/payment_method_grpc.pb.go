@@ -28,7 +28,7 @@ type PaymentMethodServiceClient interface {
 	Get(ctx context.Context, in *PaymentMethodId, opts ...grpc.CallOption) (*PaymentMethod, error)
 	Update(ctx context.Context, in *PaymentMethod, opts ...grpc.CallOption) (*PaymentMethod, error)
 	Delete(ctx context.Context, in *PaymentMethodId, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Suggest(ctx context.Context, in *SuggestPaymentMethodRequest, opts ...grpc.CallOption) (*ListPaymentMethodResponse, error)
+	Suggest(ctx context.Context, in *SuggestPaymentMethodRequest, opts ...grpc.CallOption) (*SuggestPaymentMethodResponse, error)
 }
 
 type paymentMethodServiceClient struct {
@@ -84,8 +84,8 @@ func (c *paymentMethodServiceClient) Delete(ctx context.Context, in *PaymentMeth
 	return out, nil
 }
 
-func (c *paymentMethodServiceClient) Suggest(ctx context.Context, in *SuggestPaymentMethodRequest, opts ...grpc.CallOption) (*ListPaymentMethodResponse, error) {
-	out := new(ListPaymentMethodResponse)
+func (c *paymentMethodServiceClient) Suggest(ctx context.Context, in *SuggestPaymentMethodRequest, opts ...grpc.CallOption) (*SuggestPaymentMethodResponse, error) {
+	out := new(SuggestPaymentMethodResponse)
 	err := c.cc.Invoke(ctx, "/logistics.PaymentMethodService/Suggest", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ type PaymentMethodServiceServer interface {
 	Get(context.Context, *PaymentMethodId) (*PaymentMethod, error)
 	Update(context.Context, *PaymentMethod) (*PaymentMethod, error)
 	Delete(context.Context, *PaymentMethodId) (*emptypb.Empty, error)
-	Suggest(context.Context, *SuggestPaymentMethodRequest) (*ListPaymentMethodResponse, error)
+	Suggest(context.Context, *SuggestPaymentMethodRequest) (*SuggestPaymentMethodResponse, error)
 }
 
 // UnimplementedPaymentMethodServiceServer should be embedded to have forward compatible implementations.
@@ -124,7 +124,7 @@ func (UnimplementedPaymentMethodServiceServer) Update(context.Context, *PaymentM
 func (UnimplementedPaymentMethodServiceServer) Delete(context.Context, *PaymentMethodId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedPaymentMethodServiceServer) Suggest(context.Context, *SuggestPaymentMethodRequest) (*ListPaymentMethodResponse, error) {
+func (UnimplementedPaymentMethodServiceServer) Suggest(context.Context, *SuggestPaymentMethodRequest) (*SuggestPaymentMethodResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
