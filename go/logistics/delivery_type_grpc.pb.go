@@ -28,7 +28,7 @@ type DeliveryTypeServiceClient interface {
 	Get(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*DeliveryType, error)
 	Delete(ctx context.Context, in *DeliveryTypeId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Update(ctx context.Context, in *UpdateDeliveryType, opts ...grpc.CallOption) (*DeliveryType, error)
-	Suggest(ctx context.Context, in *SuggestDeliveryTypeRequest, opts ...grpc.CallOption) (*ListDeliveryTypeResponse, error)
+	Suggest(ctx context.Context, in *SuggestDeliveryTypeRequest, opts ...grpc.CallOption) (*SuggestDeliveryTypeResponse, error)
 }
 
 type deliveryTypeServiceClient struct {
@@ -84,8 +84,8 @@ func (c *deliveryTypeServiceClient) Update(ctx context.Context, in *UpdateDelive
 	return out, nil
 }
 
-func (c *deliveryTypeServiceClient) Suggest(ctx context.Context, in *SuggestDeliveryTypeRequest, opts ...grpc.CallOption) (*ListDeliveryTypeResponse, error) {
-	out := new(ListDeliveryTypeResponse)
+func (c *deliveryTypeServiceClient) Suggest(ctx context.Context, in *SuggestDeliveryTypeRequest, opts ...grpc.CallOption) (*SuggestDeliveryTypeResponse, error) {
+	out := new(SuggestDeliveryTypeResponse)
 	err := c.cc.Invoke(ctx, "/logistics.DeliveryTypeService/Suggest", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ type DeliveryTypeServiceServer interface {
 	Get(context.Context, *DeliveryTypeId) (*DeliveryType, error)
 	Delete(context.Context, *DeliveryTypeId) (*emptypb.Empty, error)
 	Update(context.Context, *UpdateDeliveryType) (*DeliveryType, error)
-	Suggest(context.Context, *SuggestDeliveryTypeRequest) (*ListDeliveryTypeResponse, error)
+	Suggest(context.Context, *SuggestDeliveryTypeRequest) (*SuggestDeliveryTypeResponse, error)
 }
 
 // UnimplementedDeliveryTypeServiceServer should be embedded to have forward compatible implementations.
@@ -124,7 +124,7 @@ func (UnimplementedDeliveryTypeServiceServer) Delete(context.Context, *DeliveryT
 func (UnimplementedDeliveryTypeServiceServer) Update(context.Context, *UpdateDeliveryType) (*DeliveryType, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedDeliveryTypeServiceServer) Suggest(context.Context, *SuggestDeliveryTypeRequest) (*ListDeliveryTypeResponse, error) {
+func (UnimplementedDeliveryTypeServiceServer) Suggest(context.Context, *SuggestDeliveryTypeRequest) (*SuggestDeliveryTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 

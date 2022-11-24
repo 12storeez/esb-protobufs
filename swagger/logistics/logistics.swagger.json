@@ -533,7 +533,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsListDeliveryMethodResponse"
+              "$ref": "#/definitions/logisticsSuggestDeliveryMethodResponse"
             }
           },
           "default": {
@@ -762,7 +762,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsListDeliveryModeResponse"
+              "$ref": "#/definitions/logisticsSuggestDeliveryModeResponse"
             }
           },
           "default": {
@@ -994,7 +994,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsListDeliveryTypeResponse"
+              "$ref": "#/definitions/logisticsSuggestDeliveryTypeResponse"
             }
           },
           "default": {
@@ -1788,7 +1788,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsListPaymentMethodResponse"
+              "$ref": "#/definitions/logisticsSuggestPaymentMethodResponse"
             }
           },
           "default": {
@@ -5357,6 +5357,96 @@
       ],
       "default": "price"
     },
+    "logisticsSuggestDeliveryMethod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsSuggestDeliveryMethodResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsSuggestDeliveryMethod"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsSuggestDeliveryMode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "titleRu": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsSuggestDeliveryModeResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsSuggestDeliveryMode"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsSuggestDeliveryType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsSuggestDeliveryTypeResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsSuggestDeliveryType"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "logisticsSuggestMessage": {
       "type": "object",
       "properties": {
@@ -5376,6 +5466,36 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/logisticsSuggestMessage"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsSuggestPaymentMethod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "titleRu": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsSuggestPaymentMethodResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsSuggestPaymentMethod"
           }
         },
         "total": {

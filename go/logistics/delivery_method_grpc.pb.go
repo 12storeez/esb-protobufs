@@ -28,7 +28,7 @@ type DeliveryMethodServiceClient interface {
 	Get(ctx context.Context, in *DeliveryMethodId, opts ...grpc.CallOption) (*DeliveryMethod, error)
 	Update(ctx context.Context, in *DeliveryMethod, opts ...grpc.CallOption) (*DeliveryMethod, error)
 	Delete(ctx context.Context, in *DeliveryMethodId, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Suggest(ctx context.Context, in *SuggestDeliveryMethodRequest, opts ...grpc.CallOption) (*ListDeliveryMethodResponse, error)
+	Suggest(ctx context.Context, in *SuggestDeliveryMethodRequest, opts ...grpc.CallOption) (*SuggestDeliveryMethodResponse, error)
 }
 
 type deliveryMethodServiceClient struct {
@@ -84,8 +84,8 @@ func (c *deliveryMethodServiceClient) Delete(ctx context.Context, in *DeliveryMe
 	return out, nil
 }
 
-func (c *deliveryMethodServiceClient) Suggest(ctx context.Context, in *SuggestDeliveryMethodRequest, opts ...grpc.CallOption) (*ListDeliveryMethodResponse, error) {
-	out := new(ListDeliveryMethodResponse)
+func (c *deliveryMethodServiceClient) Suggest(ctx context.Context, in *SuggestDeliveryMethodRequest, opts ...grpc.CallOption) (*SuggestDeliveryMethodResponse, error) {
+	out := new(SuggestDeliveryMethodResponse)
 	err := c.cc.Invoke(ctx, "/logistics.DeliveryMethodService/Suggest", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ type DeliveryMethodServiceServer interface {
 	Get(context.Context, *DeliveryMethodId) (*DeliveryMethod, error)
 	Update(context.Context, *DeliveryMethod) (*DeliveryMethod, error)
 	Delete(context.Context, *DeliveryMethodId) (*emptypb.Empty, error)
-	Suggest(context.Context, *SuggestDeliveryMethodRequest) (*ListDeliveryMethodResponse, error)
+	Suggest(context.Context, *SuggestDeliveryMethodRequest) (*SuggestDeliveryMethodResponse, error)
 }
 
 // UnimplementedDeliveryMethodServiceServer should be embedded to have forward compatible implementations.
@@ -124,7 +124,7 @@ func (UnimplementedDeliveryMethodServiceServer) Update(context.Context, *Deliver
 func (UnimplementedDeliveryMethodServiceServer) Delete(context.Context, *DeliveryMethodId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedDeliveryMethodServiceServer) Suggest(context.Context, *SuggestDeliveryMethodRequest) (*ListDeliveryMethodResponse, error) {
+func (UnimplementedDeliveryMethodServiceServer) Suggest(context.Context, *SuggestDeliveryMethodRequest) (*SuggestDeliveryMethodResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
