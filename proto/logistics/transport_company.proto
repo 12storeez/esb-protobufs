@@ -40,7 +40,7 @@ service TransportCompanyService {
     };
   }
 
-  rpc Suggest(SuggestTransportCompanyRequest) returns (ListTransportCompanyResponse) {
+  rpc Suggest(SuggestTransportCompanyRequest) returns (SuggestTransportCompanyResponse) {
     option (google.api.http) = {
       get: "/api/v1/transport-company/suggest"
     };
