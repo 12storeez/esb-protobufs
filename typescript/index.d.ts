@@ -315,11 +315,9 @@ export namespace geo {
     result?: SuggestCountry[];
   }
   export interface SuggestCountry {
-    id?: string;
-    suggest?: string;
-    title?: string;
-    subtitle?: string;
     iso_code?: string;
+    title?: string;
+    continent?: Continent;
     phone?: Phone;
   }
   export interface CountryDetailsParams {
@@ -327,20 +325,27 @@ export namespace geo {
     iso_code?: string;
   }
   export interface Country {
-    id?: string;
-    full_title?: string;
-    type?: string;
-    country?: CountryDetails;
-    postal_code?: string;
+    iso_code?: string;
+    title?: string;
+    continent?: Continent;
+    capital?: Capital;
     postal_code_format?: string;
     currency_code?: string;
     phone?: Phone;
-    location?: Location;
   }
   export interface Phone {
     prefix?: number;
     masks?: string[];
     primary_mask?: string;
+  }
+  export interface Continent {
+    code?: string;
+    title?: string;
+  }
+  export interface Capital {
+    title?: string;
+    location?: Location;
+    postal_code?: string;
   }
   export interface SuggestCityParams {
     locale?: LocaleType;
@@ -360,6 +365,7 @@ export namespace geo {
     suggest?: string;
     title?: string;
     subtitle?: string;
+    type?: string;
   }
   export interface CityDetailsParams {
     locale?: LocaleType;
@@ -373,62 +379,29 @@ export namespace geo {
   }
   export interface City {
     id?: string;
+    title?: string;
     full_title?: string;
-    type?: string;
-    country?: CountryDetails;
-    region?: RegionDetails;
-    state?: State;
-    city?: Details;
+    country_iso_code?: string;
     postal_code?: string;
-    postal_code_format?: string;
-    currency_code?: string;
-    phone?: Phone;
+    type?: string;
+    region?: Region;
+    state?: State;
     location?: Location;
     additional?: CityAdditional;
-  }
-  export interface Details {
-    id?: string;
-    fias?: string;
-    title?: string;
-    full_title?: string;
-    type?: string;
-  }
-  export interface RegionDetails {
-    id?: string;
-    fias?: string;
-    title?: string;
-    full_title?: string;
-    type?: string;
-    iso_code?: string;
-  }
-  export interface HouseDetails {
-    id?: string;
-    fias?: string;
-    title?: string;
-    full_title?: string;
-    type?: string;
-    building?: string;
-    block?: string;
-  }
-  export interface CountryDetails {
-    id?: string;
-    title?: string;
-    full_title?: string;
-    type?: string;
-    iso_code?: string;
-    capital_id?: string;
-    capital_title?: string;
   }
   export interface State {
     title?: string;
     iso_code?: string;
   }
+  export interface Region {
+    id?: string;
+    title?: string;
+    iso_code?: string;
+    type?: string;
+  }
   export interface Location {
     latitude?: number;
     longitude?: number;
-  }
-  export interface CityAdditional {
-    fias_level?: string;
   }
   export interface CityDetailsByIPParams {
     locale?: LocaleType;
@@ -452,6 +425,7 @@ export namespace geo {
     suggest?: string;
     title?: string;
     subtitle?: string;
+    query_for_details?: string;
   }
   export interface AddressDetailsParams {
     locale?: LocaleType;
@@ -466,30 +440,46 @@ export namespace geo {
   }
   export interface Address {
     id?: string;
-    full_title?: string;
-    type?: string;
-    country?: CountryDetails;
-    region?: RegionDetails;
+    country_iso_code?: string;
+    region?: Region;
     state?: State;
-    city?: Details;
-    settlement?: Details;
-    street?: Details;
-    house?: HouseDetails;
+    city?: City;
+    settlement?: Settlement;
+    street?: Street;
+    house?: House;
+    block?: string;
     postal_code?: string;
-    postal_code_format?: string;
-    currency_code?: string;
-    phone?: Phone;
     location?: Location;
     additional?: AddressAdditional;
+  }
+  export interface Settlement {
+    id?: string;
+    title?: string;
+  }
+  export interface Street {
+    id?: string;
+    title?: string;
+    type?: string;
+    type_full?: string;
+  }
+  export interface House {
+    id?: string;
+    title?: string;
+    type?: string;
+    type_full?: string;
   }
   export interface AddressAdditional {
     is_in_mkad?: boolean;
     is_in_kad?: boolean;
     fias_level?: string;
   }
+  export interface CityAdditional {
+    kladr_id?: string;
+    is_crimea?: boolean;
+    fias_level?: string;
+  }
   export interface DefaultCityListParams {
     ip?: string;
-    country_iso_code?: string;
   }
 }
 export namespace mercaux {
