@@ -216,13 +216,33 @@ message Address {
   Region            region = 3;
   State             state = 4;
   City              city = 5;
-  string            street = 6;
-  string            house = 7;
-  string            block = 8;
-  string            postal_code = 9;
-  Location          location = 10;
+  Settlement        settlement = 6;
+  Street            street = 7;
+  House             house = 8;
+  string            block = 9;
+  string            postal_code = 10;
+  Location          location = 11;
   // fias_level for dadata
-  AddressAdditional additional = 11;
+  AddressAdditional additional = 12;
+}
+
+message Settlement {
+  string id = 1;
+  string title = 2;
+}
+
+message Street {
+  string id = 1;
+  string title = 2;
+  string type = 3;
+  string type_full = 4;
+}
+
+message House {
+  string id = 1;
+  string title = 2;
+  string type = 3;
+  string type_full = 4;
 }
 
 message AddressAdditional {
