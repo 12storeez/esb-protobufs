@@ -28,7 +28,7 @@ type TransportCompanyServiceClient interface {
 	Get(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*TransportCompany, error)
 	Update(ctx context.Context, in *TransportCompany, opts ...grpc.CallOption) (*TransportCompany, error)
 	Delete(ctx context.Context, in *TransportCompanyId, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Suggest(ctx context.Context, in *SuggestTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error)
+	Suggest(ctx context.Context, in *SuggestTransportCompanyRequest, opts ...grpc.CallOption) (*SuggestTransportCompanyResponse, error)
 }
 
 type transportCompanyServiceClient struct {
@@ -84,8 +84,8 @@ func (c *transportCompanyServiceClient) Delete(ctx context.Context, in *Transpor
 	return out, nil
 }
 
-func (c *transportCompanyServiceClient) Suggest(ctx context.Context, in *SuggestTransportCompanyRequest, opts ...grpc.CallOption) (*ListTransportCompanyResponse, error) {
-	out := new(ListTransportCompanyResponse)
+func (c *transportCompanyServiceClient) Suggest(ctx context.Context, in *SuggestTransportCompanyRequest, opts ...grpc.CallOption) (*SuggestTransportCompanyResponse, error) {
+	out := new(SuggestTransportCompanyResponse)
 	err := c.cc.Invoke(ctx, "/logistics.TransportCompanyService/Suggest", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ type TransportCompanyServiceServer interface {
 	Get(context.Context, *TransportCompanyId) (*TransportCompany, error)
 	Update(context.Context, *TransportCompany) (*TransportCompany, error)
 	Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error)
-	Suggest(context.Context, *SuggestTransportCompanyRequest) (*ListTransportCompanyResponse, error)
+	Suggest(context.Context, *SuggestTransportCompanyRequest) (*SuggestTransportCompanyResponse, error)
 }
 
 // UnimplementedTransportCompanyServiceServer should be embedded to have forward compatible implementations.
@@ -124,7 +124,7 @@ func (UnimplementedTransportCompanyServiceServer) Update(context.Context, *Trans
 func (UnimplementedTransportCompanyServiceServer) Delete(context.Context, *TransportCompanyId) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedTransportCompanyServiceServer) Suggest(context.Context, *SuggestTransportCompanyRequest) (*ListTransportCompanyResponse, error) {
+func (UnimplementedTransportCompanyServiceServer) Suggest(context.Context, *SuggestTransportCompanyRequest) (*SuggestTransportCompanyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Suggest not implemented")
 }
 
