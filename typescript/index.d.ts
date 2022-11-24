@@ -887,6 +887,7 @@ export namespace mindbox {
     available_from_date_time?: string;
     balance_change_kind?: string;
     balance_change_kind_system_name?: string;
+    expiration_date_time?: string;
   }
   export interface ParamsCode {
     mobile_phone?: string;

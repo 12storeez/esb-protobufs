@@ -118,6 +118,7 @@ message Order {
     string available_from_date_time = 9;
     string balance_change_kind = 10;
     string balance_change_kind_system_name = 11;
+    string expiration_date_time = 12;
 }
 
 message ParamsCode {
