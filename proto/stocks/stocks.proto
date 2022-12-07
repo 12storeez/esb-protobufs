@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option go_package = "go/stocks";
+
+package stocks;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service StocksService {
+  rpc List(ListStocksRequest) returns (ListStocksResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/stocks"
+    };
+  }
+}
+
+service StocksTokenService {
+  rpc Token(google.protobuf.Empty) returns (TokenStocksResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/token"
+    };
+  }
+}
+
+message ListStocksRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+}
+
+message Stock {
+  string    barcode = 1;
+  string    start_sale_date = 2;
+  string    start_online_sale_date = 3;
+  string    start_offline_sale_date = 4;
+  repeated  Quantity quantity = 5;
+}
+
+message Quantity {
+  int32 store_id = 1;
+  int32 total = 2;
+  int32 available = 3;
+  int32 reserved = 4;
+}
+
+message ListStocksResponse {
+  repeated Stock results = 1;
+  int32         total = 2;
+}
+
+message TokenStocksResponse {
+  string token = 1;
+}

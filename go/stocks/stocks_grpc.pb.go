@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.18.1
-// source: proto/internal/stocks.proto
+// source: stocks.proto
 
 package stocks
 
@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -18,158 +19,170 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// StocksClient is the client API for Stocks service.
+// StocksServiceClient is the client API for StocksService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type StocksClient interface {
-	Upsert(ctx context.Context, in *ListStocks, opts ...grpc.CallOption) (*SuccessResponse, error)
-	Get(ctx context.Context, in *GetParams, opts ...grpc.CallOption) (*ListStocks, error)
-	GetPagination(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+type StocksServiceClient interface {
+	List(ctx context.Context, in *ListStocksRequest, opts ...grpc.CallOption) (*ListStocksResponse, error)
 }
 
-type stocksClient struct {
+type stocksServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewStocksClient(cc grpc.ClientConnInterface) StocksClient {
-	return &stocksClient{cc}
+func NewStocksServiceClient(cc grpc.ClientConnInterface) StocksServiceClient {
+	return &stocksServiceClient{cc}
 }
 
-func (c *stocksClient) Upsert(ctx context.Context, in *ListStocks, opts ...grpc.CallOption) (*SuccessResponse, error) {
-	out := new(SuccessResponse)
-	err := c.cc.Invoke(ctx, "/stocks.Stocks/Upsert", in, out, opts...)
+func (c *stocksServiceClient) List(ctx context.Context, in *ListStocksRequest, opts ...grpc.CallOption) (*ListStocksResponse, error) {
+	out := new(ListStocksResponse)
+	err := c.cc.Invoke(ctx, "/stocks.StocksService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *stocksClient) Get(ctx context.Context, in *GetParams, opts ...grpc.CallOption) (*ListStocks, error) {
-	out := new(ListStocks)
-	err := c.cc.Invoke(ctx, "/stocks.Stocks/Get", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *stocksClient) GetPagination(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
-	err := c.cc.Invoke(ctx, "/stocks.Stocks/GetPagination", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// StocksServer is the server API for Stocks service.
-// All implementations should embed UnimplementedStocksServer
+// StocksServiceServer is the server API for StocksService service.
+// All implementations should embed UnimplementedStocksServiceServer
 // for forward compatibility
-type StocksServer interface {
-	Upsert(context.Context, *ListStocks) (*SuccessResponse, error)
-	Get(context.Context, *GetParams) (*ListStocks, error)
-	GetPagination(context.Context, *Request) (*Response, error)
+type StocksServiceServer interface {
+	List(context.Context, *ListStocksRequest) (*ListStocksResponse, error)
 }
 
-// UnimplementedStocksServer should be embedded to have forward compatible implementations.
-type UnimplementedStocksServer struct {
+// UnimplementedStocksServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedStocksServiceServer struct {
 }
 
-func (UnimplementedStocksServer) Upsert(context.Context, *ListStocks) (*SuccessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Upsert not implemented")
-}
-func (UnimplementedStocksServer) Get(context.Context, *GetParams) (*ListStocks, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (UnimplementedStocksServer) GetPagination(context.Context, *Request) (*Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPagination not implemented")
+func (UnimplementedStocksServiceServer) List(context.Context, *ListStocksRequest) (*ListStocksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 
-// UnsafeStocksServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to StocksServer will
+// UnsafeStocksServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StocksServiceServer will
 // result in compilation errors.
-type UnsafeStocksServer interface {
-	mustEmbedUnimplementedStocksServer()
+type UnsafeStocksServiceServer interface {
+	mustEmbedUnimplementedStocksServiceServer()
 }
 
-func RegisterStocksServer(s grpc.ServiceRegistrar, srv StocksServer) {
-	s.RegisterService(&Stocks_ServiceDesc, srv)
+func RegisterStocksServiceServer(s grpc.ServiceRegistrar, srv StocksServiceServer) {
+	s.RegisterService(&StocksService_ServiceDesc, srv)
 }
 
-func _Stocks_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListStocks)
+func _StocksService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListStocksRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StocksServer).Upsert(ctx, in)
+		return srv.(StocksServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/stocks.Stocks/Upsert",
+		FullMethod: "/stocks.StocksService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StocksServer).Upsert(ctx, req.(*ListStocks))
+		return srv.(StocksServiceServer).List(ctx, req.(*ListStocksRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Stocks_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetParams)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StocksServer).Get(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stocks.Stocks/Get",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StocksServer).Get(ctx, req.(*GetParams))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Stocks_GetPagination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StocksServer).GetPagination(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stocks.Stocks/GetPagination",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StocksServer).GetPagination(ctx, req.(*Request))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Stocks_ServiceDesc is the grpc.ServiceDesc for Stocks service.
+// StocksService_ServiceDesc is the grpc.ServiceDesc for StocksService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Stocks_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "stocks.Stocks",
-	HandlerType: (*StocksServer)(nil),
+var StocksService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "stocks.StocksService",
+	HandlerType: (*StocksServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Upsert",
-			Handler:    _Stocks_Upsert_Handler,
-		},
-		{
-			MethodName: "Get",
-			Handler:    _Stocks_Get_Handler,
-		},
-		{
-			MethodName: "GetPagination",
-			Handler:    _Stocks_GetPagination_Handler,
+			MethodName: "List",
+			Handler:    _StocksService_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/internal/stocks.proto",
+	Metadata: "stocks.proto",
+}
+
+// StocksTokenServiceClient is the client API for StocksTokenService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type StocksTokenServiceClient interface {
+	Token(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TokenStocksResponse, error)
+}
+
+type stocksTokenServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStocksTokenServiceClient(cc grpc.ClientConnInterface) StocksTokenServiceClient {
+	return &stocksTokenServiceClient{cc}
+}
+
+func (c *stocksTokenServiceClient) Token(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TokenStocksResponse, error) {
+	out := new(TokenStocksResponse)
+	err := c.cc.Invoke(ctx, "/stocks.StocksTokenService/Token", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StocksTokenServiceServer is the server API for StocksTokenService service.
+// All implementations should embed UnimplementedStocksTokenServiceServer
+// for forward compatibility
+type StocksTokenServiceServer interface {
+	Token(context.Context, *emptypb.Empty) (*TokenStocksResponse, error)
+}
+
+// UnimplementedStocksTokenServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedStocksTokenServiceServer struct {
+}
+
+func (UnimplementedStocksTokenServiceServer) Token(context.Context, *emptypb.Empty) (*TokenStocksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Token not implemented")
+}
+
+// UnsafeStocksTokenServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StocksTokenServiceServer will
+// result in compilation errors.
+type UnsafeStocksTokenServiceServer interface {
+	mustEmbedUnimplementedStocksTokenServiceServer()
+}
+
+func RegisterStocksTokenServiceServer(s grpc.ServiceRegistrar, srv StocksTokenServiceServer) {
+	s.RegisterService(&StocksTokenService_ServiceDesc, srv)
+}
+
+func _StocksTokenService_Token_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StocksTokenServiceServer).Token(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stocks.StocksTokenService/Token",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StocksTokenServiceServer).Token(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// StocksTokenService_ServiceDesc is the grpc.ServiceDesc for StocksTokenService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var StocksTokenService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "stocks.StocksTokenService",
+	HandlerType: (*StocksTokenServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Token",
+			Handler:    _StocksTokenService_Token_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "stocks.proto",
 }

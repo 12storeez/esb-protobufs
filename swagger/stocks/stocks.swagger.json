@@ -1,0 +1,179 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "stocks.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "StocksService"
+    },
+    {
+      "name": "StocksTokenService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/stocks": {
+      "get": {
+        "operationId": "StocksService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stocksListStocksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "StocksService"
+        ]
+      }
+    },
+    "/api/v1/token": {
+      "get": {
+        "operationId": "StocksTokenService_Token",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stocksTokenStocksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "StocksTokenService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "stocksListStocksResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stocksStock"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "stocksQuantity": {
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "available": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reserved": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "stocksStock": {
+      "type": "object",
+      "properties": {
+        "barcode": {
+          "type": "string"
+        },
+        "startSaleDate": {
+          "type": "string"
+        },
+        "startOnlineSaleDate": {
+          "type": "string"
+        },
+        "startOfflineSaleDate": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stocksQuantity"
+          }
+        }
+      }
+    },
+    "stocksTokenStocksResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
