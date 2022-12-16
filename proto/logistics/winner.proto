@@ -25,6 +25,7 @@ message CalculateRequest {
   string    geo_id = 7;
   int32     cart_id = 8;
   repeated  CartPosition cart = 9;
+  string    order_datetime = 10;
 }
 
 message CartPosition {

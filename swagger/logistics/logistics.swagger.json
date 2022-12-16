@@ -4266,6 +4266,9 @@
           "items": {
             "$ref": "#/definitions/logisticsCartPosition"
           }
+        },
+        "orderDatetime": {
+          "type": "string"
         }
       }
     },
