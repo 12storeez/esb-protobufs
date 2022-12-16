@@ -4539,6 +4539,9 @@
         },
         "title": {
           "type": "string"
+        },
+        "code": {
+          "type": "string"
         }
       }
     },
