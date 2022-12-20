@@ -79,6 +79,7 @@ message CreateTransportCompanyModeRequest {
   int32   delivery_mode_id = 2;
   int32   delivery_method_id = 3;
   string  title = 4;
+  string  code = 5;
 }
 
 message TransportCompanyMode {
