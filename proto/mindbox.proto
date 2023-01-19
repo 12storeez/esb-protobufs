@@ -96,6 +96,9 @@ message NearestExpiration {
 
 message ParamsOrders {
     string client_id = 1;
+    string date_from = 2;
+    string date_to = 3;
+    int32  limit = 4;
 }
 message ResponseOrders {
     int32 total = 1;
