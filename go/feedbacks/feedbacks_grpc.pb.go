@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.18.1
-// source: proto/feedbacks_old.proto
+// source: proto/feedbacks.proto
 
-package feedbacks_old
+package feedbacks
 
 import (
 	context "context"
@@ -42,7 +42,7 @@ func NewMobileClient(cc grpc.ClientConnInterface) MobileClient {
 
 func (c *mobileClient) App(ctx context.Context, in *ParamsApp, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Mobile/App", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/App", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *mobileClient) App(ctx context.Context, in *ParamsApp, opts ...grpc.Call
 
 func (c *mobileClient) Store(ctx context.Context, in *ParamsStore, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Mobile/Store", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Store", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (c *mobileClient) Store(ctx context.Context, in *ParamsStore, opts ...grpc.
 
 func (c *mobileClient) Order(ctx context.Context, in *ParamsOrder, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Mobile/Order", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Order", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (c *mobileClient) Order(ctx context.Context, in *ParamsOrder, opts ...grpc.
 
 func (c *mobileClient) Categories(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseCategories, error) {
 	out := new(ResponseCategories)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Mobile/Categories", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/Categories", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (c *mobileClient) Categories(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *mobileClient) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOrder, opts ...grpc.CallOption) (*ResponseReasons, error) {
 	out := new(ResponseReasons)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Mobile/ReasonsByOrder", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/ReasonsByOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *mobileClient) ReasonsByOrder(ctx context.Context, in *ParamsReasonsByOr
 
 func (c *mobileClient) ReasonsByStore(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ResponseReasons, error) {
 	out := new(ResponseReasons)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Mobile/ReasonsByStore", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/ReasonsByStore", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (c *mobileClient) ReasonsByStore(ctx context.Context, in *emptypb.Empty, op
 
 func (c *mobileClient) CanBeSaved(ctx context.Context, in *CanBeSavedParams, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Mobile/CanBeSaved", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Mobile/CanBeSaved", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func _Mobile_App_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Mobile/App",
+		FullMethod: "/feedbacks.Mobile/App",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).App(ctx, req.(*ParamsApp))
@@ -181,7 +181,7 @@ func _Mobile_Store_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Mobile/Store",
+		FullMethod: "/feedbacks.Mobile/Store",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).Store(ctx, req.(*ParamsStore))
@@ -199,7 +199,7 @@ func _Mobile_Order_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Mobile/Order",
+		FullMethod: "/feedbacks.Mobile/Order",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).Order(ctx, req.(*ParamsOrder))
@@ -217,7 +217,7 @@ func _Mobile_Categories_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Mobile/Categories",
+		FullMethod: "/feedbacks.Mobile/Categories",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).Categories(ctx, req.(*emptypb.Empty))
@@ -235,7 +235,7 @@ func _Mobile_ReasonsByOrder_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Mobile/ReasonsByOrder",
+		FullMethod: "/feedbacks.Mobile/ReasonsByOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).ReasonsByOrder(ctx, req.(*ParamsReasonsByOrder))
@@ -253,7 +253,7 @@ func _Mobile_ReasonsByStore_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Mobile/ReasonsByStore",
+		FullMethod: "/feedbacks.Mobile/ReasonsByStore",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).ReasonsByStore(ctx, req.(*emptypb.Empty))
@@ -271,7 +271,7 @@ func _Mobile_CanBeSaved_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Mobile/CanBeSaved",
+		FullMethod: "/feedbacks.Mobile/CanBeSaved",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MobileServer).CanBeSaved(ctx, req.(*CanBeSavedParams))
@@ -283,7 +283,7 @@ func _Mobile_CanBeSaved_Handler(srv interface{}, ctx context.Context, dec func(i
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Mobile_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "feedbacks_old.Mobile",
+	ServiceName: "feedbacks.Mobile",
 	HandlerType: (*MobileServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -316,7 +316,7 @@ var Mobile_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks_old.proto",
+	Metadata: "proto/feedbacks.proto",
 }
 
 // StoreClient is the client API for Store service.
@@ -339,7 +339,7 @@ func NewStoreClient(cc grpc.ClientConnInterface) StoreClient {
 
 func (c *storeClient) New(ctx context.Context, in *NewParams, opts ...grpc.CallOption) (*NewResponse, error) {
 	out := new(NewResponse)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Store/New", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Store/New", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -348,7 +348,7 @@ func (c *storeClient) New(ctx context.Context, in *NewParams, opts ...grpc.CallO
 
 func (c *storeClient) Patch(ctx context.Context, in *PatchParams, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Store/Patch", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Store/Patch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -357,7 +357,7 @@ func (c *storeClient) Patch(ctx context.Context, in *PatchParams, opts ...grpc.C
 
 func (c *storeClient) NewOrder(ctx context.Context, in *NewOrderParams, opts ...grpc.CallOption) (*NewOrderResponse, error) {
 	out := new(NewOrderResponse)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Store/NewOrder", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Store/NewOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -366,7 +366,7 @@ func (c *storeClient) NewOrder(ctx context.Context, in *NewOrderParams, opts ...
 
 func (c *storeClient) PatchOrder(ctx context.Context, in *PatchOrderParams, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.Store/PatchOrder", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.Store/PatchOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -421,7 +421,7 @@ func _Store_New_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Store/New",
+		FullMethod: "/feedbacks.Store/New",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StoreServer).New(ctx, req.(*NewParams))
@@ -439,7 +439,7 @@ func _Store_Patch_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Store/Patch",
+		FullMethod: "/feedbacks.Store/Patch",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StoreServer).Patch(ctx, req.(*PatchParams))
@@ -457,7 +457,7 @@ func _Store_NewOrder_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Store/NewOrder",
+		FullMethod: "/feedbacks.Store/NewOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StoreServer).NewOrder(ctx, req.(*NewOrderParams))
@@ -475,7 +475,7 @@ func _Store_PatchOrder_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.Store/PatchOrder",
+		FullMethod: "/feedbacks.Store/PatchOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StoreServer).PatchOrder(ctx, req.(*PatchOrderParams))
@@ -487,7 +487,7 @@ func _Store_PatchOrder_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Store_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "feedbacks_old.Store",
+	ServiceName: "feedbacks.Store",
 	HandlerType: (*StoreServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -508,7 +508,7 @@ var Store_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks_old.proto",
+	Metadata: "proto/feedbacks.proto",
 }
 
 // NPSClient is the client API for NPS service.
@@ -529,7 +529,7 @@ func NewNPSClient(cc grpc.ClientConnInterface) NPSClient {
 
 func (c *nPSClient) New(ctx context.Context, in *NewNPSParams, opts ...grpc.CallOption) (*NewNpsResponse, error) {
 	out := new(NewNpsResponse)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.NPS/New", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.NPS/New", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -538,7 +538,7 @@ func (c *nPSClient) New(ctx context.Context, in *NewNPSParams, opts ...grpc.Call
 
 func (c *nPSClient) Update(ctx context.Context, in *UpdateNPSParams, opts ...grpc.CallOption) (*ResponseOk, error) {
 	out := new(ResponseOk)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.NPS/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.NPS/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -585,7 +585,7 @@ func _NPS_New_Handler(srv interface{}, ctx context.Context, dec func(interface{}
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.NPS/New",
+		FullMethod: "/feedbacks.NPS/New",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NPSServer).New(ctx, req.(*NewNPSParams))
@@ -603,7 +603,7 @@ func _NPS_Update_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.NPS/Update",
+		FullMethod: "/feedbacks.NPS/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NPSServer).Update(ctx, req.(*UpdateNPSParams))
@@ -615,7 +615,7 @@ func _NPS_Update_Handler(srv interface{}, ctx context.Context, dec func(interfac
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var NPS_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "feedbacks_old.NPS",
+	ServiceName: "feedbacks.NPS",
 	HandlerType: (*NPSServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -628,7 +628,7 @@ var NPS_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks_old.proto",
+	Metadata: "proto/feedbacks.proto",
 }
 
 // PortalFeedbackServiceClient is the client API for PortalFeedbackService service.
@@ -650,7 +650,7 @@ func NewPortalFeedbackServiceClient(cc grpc.ClientConnInterface) PortalFeedbackS
 
 func (c *portalFeedbackServiceClient) Delete(ctx context.Context, in *PortalFeedbackId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.PortalFeedbackService/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -659,7 +659,7 @@ func (c *portalFeedbackServiceClient) Delete(ctx context.Context, in *PortalFeed
 
 func (c *portalFeedbackServiceClient) List(ctx context.Context, in *ListPortalFeedbackRequest, opts ...grpc.CallOption) (*ListPortalFeedbackResponse, error) {
 	out := new(ListPortalFeedbackResponse)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.PortalFeedbackService/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -668,7 +668,7 @@ func (c *portalFeedbackServiceClient) List(ctx context.Context, in *ListPortalFe
 
 func (c *portalFeedbackServiceClient) Validate(ctx context.Context, in *ValidatePortalFeedbackRequest, opts ...grpc.CallOption) (*ValidatePortalFeedbackResponse, error) {
 	out := new(ValidatePortalFeedbackResponse)
-	err := c.cc.Invoke(ctx, "/feedbacks_old.PortalFeedbackService/Validate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/feedbacks.PortalFeedbackService/Validate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -719,7 +719,7 @@ func _PortalFeedbackService_Delete_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.PortalFeedbackService/Delete",
+		FullMethod: "/feedbacks.PortalFeedbackService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PortalFeedbackServiceServer).Delete(ctx, req.(*PortalFeedbackId))
@@ -737,7 +737,7 @@ func _PortalFeedbackService_List_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.PortalFeedbackService/List",
+		FullMethod: "/feedbacks.PortalFeedbackService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PortalFeedbackServiceServer).List(ctx, req.(*ListPortalFeedbackRequest))
@@ -755,7 +755,7 @@ func _PortalFeedbackService_Validate_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/feedbacks_old.PortalFeedbackService/Validate",
+		FullMethod: "/feedbacks.PortalFeedbackService/Validate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PortalFeedbackServiceServer).Validate(ctx, req.(*ValidatePortalFeedbackRequest))
@@ -767,7 +767,7 @@ func _PortalFeedbackService_Validate_Handler(srv interface{}, ctx context.Contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PortalFeedbackService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "feedbacks_old.PortalFeedbackService",
+	ServiceName: "feedbacks.PortalFeedbackService",
 	HandlerType: (*PortalFeedbackServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -784,5 +784,5 @@ var PortalFeedbackService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/feedbacks_old.proto",
+	Metadata: "proto/feedbacks.proto",
 }
