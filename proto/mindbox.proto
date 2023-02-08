@@ -99,6 +99,7 @@ message ParamsOrders {
     string date_from = 2;
     string date_to = 3;
     int32  limit = 4;
+    int32  page = 5;
 }
 message ResponseOrders {
     int32 total = 1;
