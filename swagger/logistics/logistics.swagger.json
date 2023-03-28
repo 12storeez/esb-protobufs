@@ -1163,6 +1163,9 @@
                 "cutoffTime": {
                   "type": "string"
                 },
+                "shippingTime": {
+                  "type": "string"
+                },
                 "consolidationHours": {
                   "type": "integer",
                   "format": "int32"
@@ -4739,6 +4742,9 @@
           "format": "int32"
         },
         "cutoffTime": {
+          "type": "string"
+        },
+        "shippingTime": {
           "type": "string"
         },
         "consolidationHours": {
