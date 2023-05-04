@@ -89,17 +89,16 @@ message TransportCompanyMode {
   DeliveryMethod    delivery_method = 4;
   repeated Interval intervals = 5;
   int32             delivery_interval_days = 6;
-  int32             delivery_delta_days = 7;
-  string            title = 8;
-  string            code = 9;
-  string            sdt_code = 10;
-  bool              is_price_border_include_delivery = 11;
-  bool              is_price_border_include_present = 12;
-  bool              is_product_quantity_border_include_delivery = 13;
-  bool              is_product_quantity_border_include_present = 14;
-  bool              is_active = 15;
-  string            created_at = 16;
-  string            updated_at = 17;
+  string            title = 7;
+  string            code = 8;
+  string            sdt_code = 9;
+  bool              is_price_border_include_delivery = 10;
+  bool              is_price_border_include_present = 11;
+  bool              is_product_quantity_border_include_delivery = 12;
+  bool              is_product_quantity_border_include_present = 13;
+  bool              is_active = 14;
+  string            created_at = 15;
+  string            updated_at = 16;
 }
 
 message TransportCompanyModeShort {

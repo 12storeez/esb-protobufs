@@ -1160,11 +1160,8 @@
                   "type": "integer",
                   "format": "int32"
                 },
-                "cutoffTime": {
-                  "type": "string"
-                },
-                "shippingTime": {
-                  "type": "string"
+                "isOnlyDaysAmount": {
+                  "type": "boolean"
                 },
                 "consolidationHours": {
                   "type": "integer",
@@ -3195,10 +3192,6 @@
                   "type": "integer",
                   "format": "int32"
                 },
-                "deliveryDeltaDays": {
-                  "type": "integer",
-                  "format": "int32"
-                },
                 "title": {
                   "type": "string"
                 },
@@ -4741,11 +4734,8 @@
           "type": "integer",
           "format": "int32"
         },
-        "cutoffTime": {
-          "type": "string"
-        },
-        "shippingTime": {
-          "type": "string"
+        "isOnlyDaysAmount": {
+          "type": "boolean"
         },
         "consolidationHours": {
           "type": "integer",
@@ -5751,10 +5741,6 @@
           }
         },
         "deliveryIntervalDays": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "deliveryDeltaDays": {
           "type": "integer",
           "format": "int32"
         },
