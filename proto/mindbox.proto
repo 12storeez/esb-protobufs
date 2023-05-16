@@ -117,6 +117,7 @@ message Order {
     int32 created_ts = 8;
     string available_from_date_time = 9;
     string balance_change_kind = 10;
+    string balance_change_kind_system_name = 11;
 }
 
 message ParamsCode {
