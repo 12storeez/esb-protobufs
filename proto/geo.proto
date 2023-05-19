@@ -76,7 +76,7 @@ message Country {
   string          id = 1;
   string          full_title = 2;
   string          type = 3;
-  DetailsCountry  country = 4;
+  CountryDetails  country = 4;
   string          postal_code = 5;
   string          postal_code_format = 6;
   string          currency_code = 7;
@@ -132,8 +132,8 @@ message City {
   string          id = 1;
   string          full_title = 2;
   string          type = 3;
-  DetailsCountry  country = 4;
-  DetailsRegion   region = 5;
+  CountryDetails  country = 4;
+  RegionDetails   region = 5;
   State           state = 6;
   Details         city = 7;
   string          postal_code = 8;
@@ -152,7 +152,7 @@ message Details {
   string type = 5;
 }
 
-message DetailsRegion {
+message RegionDetails {
   string id = 1;
   string fias = 2;
   string title = 3;
@@ -162,7 +162,7 @@ message DetailsRegion {
   string iso_code = 6;
 }
 
-message DetailsHouse {
+message HouseDetails {
   string  id = 1;
   string  fias = 2;
   string  title = 3;
@@ -173,7 +173,7 @@ message DetailsHouse {
   string  block = 7;
 }
 
-message DetailsCountry {
+message CountryDetails {
   string id = 1;
   string title = 2;
   string full_title = 3;
@@ -244,13 +244,13 @@ message Address {
   string              id = 1;
   string              full_title = 2;
   string              type = 3;
-  DetailsCountry      country = 4;
-  DetailsRegion       region = 5;
+  CountryDetails      country = 4;
+  RegionDetails       region = 5;
   State               state = 6;
   Details             city = 7;
   Details             settlement = 8;
   Details             street = 9;
-  DetailsHouse        house = 10;
+  HouseDetails        house = 10;
   string              postal_code = 11;
   string              postal_code_format = 12;
   string              currency_code = 13;

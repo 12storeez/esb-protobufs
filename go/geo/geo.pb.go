@@ -354,7 +354,7 @@ type Country struct {
 	Id               string          `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	FullTitle        string          `protobuf:"bytes,2,opt,name=full_title,json=fullTitle,proto3" json:"full_title,omitempty"`
 	Type             string          `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	Country          *DetailsCountry `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
+	Country          *CountryDetails `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
 	PostalCode       string          `protobuf:"bytes,5,opt,name=postal_code,json=postalCode,proto3" json:"postal_code,omitempty"`
 	PostalCodeFormat string          `protobuf:"bytes,6,opt,name=postal_code_format,json=postalCodeFormat,proto3" json:"postal_code_format,omitempty"`
 	CurrencyCode     string          `protobuf:"bytes,7,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
@@ -415,7 +415,7 @@ func (x *Country) GetType() string {
 	return ""
 }
 
-func (x *Country) GetCountry() *DetailsCountry {
+func (x *Country) GetCountry() *CountryDetails {
 	if x != nil {
 		return x.Country
 	}
@@ -878,8 +878,8 @@ type City struct {
 	Id               string          `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	FullTitle        string          `protobuf:"bytes,2,opt,name=full_title,json=fullTitle,proto3" json:"full_title,omitempty"`
 	Type             string          `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	Country          *DetailsCountry `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
-	Region           *DetailsRegion  `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty"`
+	Country          *CountryDetails `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
+	Region           *RegionDetails  `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty"`
 	State            *State          `protobuf:"bytes,6,opt,name=state,proto3" json:"state,omitempty"`
 	City             *Details        `protobuf:"bytes,7,opt,name=city,proto3" json:"city,omitempty"`
 	PostalCode       string          `protobuf:"bytes,8,opt,name=postal_code,json=postalCode,proto3" json:"postal_code,omitempty"`
@@ -943,14 +943,14 @@ func (x *City) GetType() string {
 	return ""
 }
 
-func (x *City) GetCountry() *DetailsCountry {
+func (x *City) GetCountry() *CountryDetails {
 	if x != nil {
 		return x.Country
 	}
 	return nil
 }
 
-func (x *City) GetRegion() *DetailsRegion {
+func (x *City) GetRegion() *RegionDetails {
 	if x != nil {
 		return x.Region
 	}
@@ -1092,7 +1092,7 @@ func (x *Details) GetType() string {
 	return ""
 }
 
-type DetailsRegion struct {
+type RegionDetails struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1105,8 +1105,8 @@ type DetailsRegion struct {
 	IsoCode   string `protobuf:"bytes,6,opt,name=iso_code,json=isoCode,proto3" json:"iso_code,omitempty"`
 }
 
-func (x *DetailsRegion) Reset() {
-	*x = DetailsRegion{}
+func (x *RegionDetails) Reset() {
+	*x = RegionDetails{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_geo_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1114,13 +1114,13 @@ func (x *DetailsRegion) Reset() {
 	}
 }
 
-func (x *DetailsRegion) String() string {
+func (x *RegionDetails) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DetailsRegion) ProtoMessage() {}
+func (*RegionDetails) ProtoMessage() {}
 
-func (x *DetailsRegion) ProtoReflect() protoreflect.Message {
+func (x *RegionDetails) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_geo_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1132,54 +1132,54 @@ func (x *DetailsRegion) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DetailsRegion.ProtoReflect.Descriptor instead.
-func (*DetailsRegion) Descriptor() ([]byte, []int) {
+// Deprecated: Use RegionDetails.ProtoReflect.Descriptor instead.
+func (*RegionDetails) Descriptor() ([]byte, []int) {
 	return file_proto_geo_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *DetailsRegion) GetId() string {
+func (x *RegionDetails) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *DetailsRegion) GetFias() string {
+func (x *RegionDetails) GetFias() string {
 	if x != nil {
 		return x.Fias
 	}
 	return ""
 }
 
-func (x *DetailsRegion) GetTitle() string {
+func (x *RegionDetails) GetTitle() string {
 	if x != nil {
 		return x.Title
 	}
 	return ""
 }
 
-func (x *DetailsRegion) GetFullTitle() string {
+func (x *RegionDetails) GetFullTitle() string {
 	if x != nil {
 		return x.FullTitle
 	}
 	return ""
 }
 
-func (x *DetailsRegion) GetType() string {
+func (x *RegionDetails) GetType() string {
 	if x != nil {
 		return x.Type
 	}
 	return ""
 }
 
-func (x *DetailsRegion) GetIsoCode() string {
+func (x *RegionDetails) GetIsoCode() string {
 	if x != nil {
 		return x.IsoCode
 	}
 	return ""
 }
 
-type DetailsHouse struct {
+type HouseDetails struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1193,8 +1193,8 @@ type DetailsHouse struct {
 	Block     string `protobuf:"bytes,7,opt,name=block,proto3" json:"block,omitempty"`
 }
 
-func (x *DetailsHouse) Reset() {
-	*x = DetailsHouse{}
+func (x *HouseDetails) Reset() {
+	*x = HouseDetails{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_geo_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1202,13 +1202,13 @@ func (x *DetailsHouse) Reset() {
 	}
 }
 
-func (x *DetailsHouse) String() string {
+func (x *HouseDetails) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DetailsHouse) ProtoMessage() {}
+func (*HouseDetails) ProtoMessage() {}
 
-func (x *DetailsHouse) ProtoReflect() protoreflect.Message {
+func (x *HouseDetails) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_geo_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1220,61 +1220,61 @@ func (x *DetailsHouse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DetailsHouse.ProtoReflect.Descriptor instead.
-func (*DetailsHouse) Descriptor() ([]byte, []int) {
+// Deprecated: Use HouseDetails.ProtoReflect.Descriptor instead.
+func (*HouseDetails) Descriptor() ([]byte, []int) {
 	return file_proto_geo_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *DetailsHouse) GetId() string {
+func (x *HouseDetails) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *DetailsHouse) GetFias() string {
+func (x *HouseDetails) GetFias() string {
 	if x != nil {
 		return x.Fias
 	}
 	return ""
 }
 
-func (x *DetailsHouse) GetTitle() string {
+func (x *HouseDetails) GetTitle() string {
 	if x != nil {
 		return x.Title
 	}
 	return ""
 }
 
-func (x *DetailsHouse) GetFullTitle() string {
+func (x *HouseDetails) GetFullTitle() string {
 	if x != nil {
 		return x.FullTitle
 	}
 	return ""
 }
 
-func (x *DetailsHouse) GetType() string {
+func (x *HouseDetails) GetType() string {
 	if x != nil {
 		return x.Type
 	}
 	return ""
 }
 
-func (x *DetailsHouse) GetBuilding() string {
+func (x *HouseDetails) GetBuilding() string {
 	if x != nil {
 		return x.Building
 	}
 	return ""
 }
 
-func (x *DetailsHouse) GetBlock() string {
+func (x *HouseDetails) GetBlock() string {
 	if x != nil {
 		return x.Block
 	}
 	return ""
 }
 
-type DetailsCountry struct {
+type CountryDetails struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1288,8 +1288,8 @@ type DetailsCountry struct {
 	CapitalTitle string `protobuf:"bytes,7,opt,name=capital_title,json=capitalTitle,proto3" json:"capital_title,omitempty"`
 }
 
-func (x *DetailsCountry) Reset() {
-	*x = DetailsCountry{}
+func (x *CountryDetails) Reset() {
+	*x = CountryDetails{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_geo_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1297,13 +1297,13 @@ func (x *DetailsCountry) Reset() {
 	}
 }
 
-func (x *DetailsCountry) String() string {
+func (x *CountryDetails) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DetailsCountry) ProtoMessage() {}
+func (*CountryDetails) ProtoMessage() {}
 
-func (x *DetailsCountry) ProtoReflect() protoreflect.Message {
+func (x *CountryDetails) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_geo_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1315,54 +1315,54 @@ func (x *DetailsCountry) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DetailsCountry.ProtoReflect.Descriptor instead.
-func (*DetailsCountry) Descriptor() ([]byte, []int) {
+// Deprecated: Use CountryDetails.ProtoReflect.Descriptor instead.
+func (*CountryDetails) Descriptor() ([]byte, []int) {
 	return file_proto_geo_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *DetailsCountry) GetId() string {
+func (x *CountryDetails) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *DetailsCountry) GetTitle() string {
+func (x *CountryDetails) GetTitle() string {
 	if x != nil {
 		return x.Title
 	}
 	return ""
 }
 
-func (x *DetailsCountry) GetFullTitle() string {
+func (x *CountryDetails) GetFullTitle() string {
 	if x != nil {
 		return x.FullTitle
 	}
 	return ""
 }
 
-func (x *DetailsCountry) GetType() string {
+func (x *CountryDetails) GetType() string {
 	if x != nil {
 		return x.Type
 	}
 	return ""
 }
 
-func (x *DetailsCountry) GetIsoCode() string {
+func (x *CountryDetails) GetIsoCode() string {
 	if x != nil {
 		return x.IsoCode
 	}
 	return ""
 }
 
-func (x *DetailsCountry) GetCapitalId() string {
+func (x *CountryDetails) GetCapitalId() string {
 	if x != nil {
 		return x.CapitalId
 	}
 	return ""
 }
 
-func (x *DetailsCountry) GetCapitalTitle() string {
+func (x *CountryDetails) GetCapitalTitle() string {
 	if x != nil {
 		return x.CapitalTitle
 	}
@@ -1947,13 +1947,13 @@ type Address struct {
 	Id               string             `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	FullTitle        string             `protobuf:"bytes,2,opt,name=full_title,json=fullTitle,proto3" json:"full_title,omitempty"`
 	Type             string             `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	Country          *DetailsCountry    `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
-	Region           *DetailsRegion     `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty"`
+	Country          *CountryDetails    `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
+	Region           *RegionDetails     `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty"`
 	State            *State             `protobuf:"bytes,6,opt,name=state,proto3" json:"state,omitempty"`
 	City             *Details           `protobuf:"bytes,7,opt,name=city,proto3" json:"city,omitempty"`
 	Settlement       *Details           `protobuf:"bytes,8,opt,name=settlement,proto3" json:"settlement,omitempty"`
 	Street           *Details           `protobuf:"bytes,9,opt,name=street,proto3" json:"street,omitempty"`
-	House            *DetailsHouse      `protobuf:"bytes,10,opt,name=house,proto3" json:"house,omitempty"`
+	House            *HouseDetails      `protobuf:"bytes,10,opt,name=house,proto3" json:"house,omitempty"`
 	PostalCode       string             `protobuf:"bytes,11,opt,name=postal_code,json=postalCode,proto3" json:"postal_code,omitempty"`
 	PostalCodeFormat string             `protobuf:"bytes,12,opt,name=postal_code_format,json=postalCodeFormat,proto3" json:"postal_code_format,omitempty"`
 	CurrencyCode     string             `protobuf:"bytes,13,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
@@ -2015,14 +2015,14 @@ func (x *Address) GetType() string {
 	return ""
 }
 
-func (x *Address) GetCountry() *DetailsCountry {
+func (x *Address) GetCountry() *CountryDetails {
 	if x != nil {
 		return x.Country
 	}
 	return nil
 }
 
-func (x *Address) GetRegion() *DetailsRegion {
+func (x *Address) GetRegion() *RegionDetails {
 	if x != nil {
 		return x.Region
 	}
@@ -2057,7 +2057,7 @@ func (x *Address) GetStreet() *Details {
 	return nil
 }
 
-func (x *Address) GetHouse() *DetailsHouse {
+func (x *Address) GetHouse() *HouseDetails {
 	if x != nil {
 		return x.House
 	}
@@ -2267,8 +2267,8 @@ var file_proto_geo_proto_rawDesc = []byte{
 	0x75, 0x6c, 0x6c, 0x54, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65,
 	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x2d, 0x0a, 0x07,
 	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e,
-	0x67, 0x65, 0x6f, 0x2e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74,
-	0x72, 0x79, 0x52, 0x07, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x1f, 0x0a, 0x0b, 0x70,
+	0x67, 0x65, 0x6f, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x44, 0x65, 0x74, 0x61, 0x69,
+	0x6c, 0x73, 0x52, 0x07, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x1f, 0x0a, 0x0b, 0x70,
 	0x6f, 0x73, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x0a, 0x70, 0x6f, 0x73, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x2c, 0x0a, 0x12,
 	0x70, 0x6f, 0x73, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x5f, 0x66, 0x6f, 0x72, 0x6d,
@@ -2334,10 +2334,10 @@ var file_proto_geo_proto_rawDesc = []byte{
 	0x6c, 0x54, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x2d, 0x0a, 0x07, 0x63, 0x6f,
 	0x75, 0x6e, 0x74, 0x72, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x67, 0x65,
-	0x6f, 0x2e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79,
+	0x6f, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73,
 	0x52, 0x07, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x2a, 0x0a, 0x06, 0x72, 0x65, 0x67,
 	0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x67, 0x65, 0x6f, 0x2e,
-	0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x06, 0x72,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x06, 0x72,
 	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x20, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x06,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x67, 0x65, 0x6f, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65,
 	0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x12, 0x20, 0x0a, 0x04, 0x63, 0x69, 0x74, 0x79, 0x18,
@@ -2365,8 +2365,8 @@ var file_proto_geo_proto_rawDesc = []byte{
 	0x69, 0x74, 0x6c, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x66, 0x75, 0x6c, 0x6c, 0x5f, 0x74, 0x69, 0x74,
 	0x6c, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x66, 0x75, 0x6c, 0x6c, 0x54, 0x69,
 	0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x97, 0x01, 0x0a, 0x0d, 0x44, 0x65, 0x74, 0x61,
-	0x69, 0x6c, 0x73, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x97, 0x01, 0x0a, 0x0d, 0x52, 0x65, 0x67, 0x69,
+	0x6f, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x66, 0x69, 0x61,
 	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x66, 0x69, 0x61, 0x73, 0x12, 0x14, 0x0a,
 	0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69,
@@ -2375,8 +2375,8 @@ var file_proto_geo_proto_rawDesc = []byte{
 	0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x69, 0x73, 0x6f, 0x5f, 0x63, 0x6f,
 	0x64, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x69, 0x73, 0x6f, 0x43, 0x6f, 0x64,
-	0x65, 0x22, 0xad, 0x01, 0x0a, 0x0c, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x48, 0x6f, 0x75,
-	0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
+	0x65, 0x22, 0xad, 0x01, 0x0a, 0x0c, 0x48, 0x6f, 0x75, 0x73, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69,
+	0x6c, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
 	0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x66, 0x69, 0x61, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x04, 0x66, 0x69, 0x61, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18,
 	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x1d, 0x0a, 0x0a,
@@ -2386,8 +2386,8 @@ var file_proto_geo_proto_rawDesc = []byte{
 	0x1a, 0x0a, 0x08, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x06, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x08, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x69, 0x6e, 0x67, 0x12, 0x14, 0x0a, 0x05, 0x62,
 	0x6c, 0x6f, 0x63, 0x6b, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x62, 0x6c, 0x6f, 0x63,
-	0x6b, 0x22, 0xc8, 0x01, 0x0a, 0x0e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x72, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x6b, 0x22, 0xc8, 0x01, 0x0a, 0x0e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x44, 0x65, 0x74,
+	0x61, 0x69, 0x6c, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x66, 0x75,
 	0x6c, 0x6c, 0x5f, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
@@ -2466,10 +2466,10 @@ var file_proto_geo_proto_rawDesc = []byte{
 	0x6c, 0x6c, 0x54, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18,
 	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x2d, 0x0a, 0x07, 0x63,
 	0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x67,
-	0x65, 0x6f, 0x2e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72,
-	0x79, 0x52, 0x07, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x2a, 0x0a, 0x06, 0x72, 0x65,
+	0x65, 0x6f, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c,
+	0x73, 0x52, 0x07, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x2a, 0x0a, 0x06, 0x72, 0x65,
 	0x67, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x67, 0x65, 0x6f,
-	0x2e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x06,
+	0x2e, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x06,
 	0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x20, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18,
 	0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x67, 0x65, 0x6f, 0x2e, 0x53, 0x74, 0x61, 0x74,
 	0x65, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x12, 0x20, 0x0a, 0x04, 0x63, 0x69, 0x74, 0x79,
@@ -2481,7 +2481,7 @@ var file_proto_geo_proto_rawDesc = []byte{
 	0x65, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x67, 0x65, 0x6f, 0x2e, 0x44,
 	0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x06, 0x73, 0x74, 0x72, 0x65, 0x65, 0x74, 0x12, 0x27,
 	0x0a, 0x05, 0x68, 0x6f, 0x75, 0x73, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e,
-	0x67, 0x65, 0x6f, 0x2e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x48, 0x6f, 0x75, 0x73, 0x65,
+	0x67, 0x65, 0x6f, 0x2e, 0x48, 0x6f, 0x75, 0x73, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73,
 	0x52, 0x05, 0x68, 0x6f, 0x75, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x6f, 0x73, 0x74, 0x61,
 	0x6c, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x70, 0x6f,
 	0x73, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x2c, 0x0a, 0x12, 0x70, 0x6f, 0x73, 0x74,
@@ -2587,9 +2587,9 @@ var file_proto_geo_proto_goTypes = []interface{}{
 	(*CityDetailsByGeoIDParams)(nil),    // 11: geo.CityDetailsByGeoIDParams
 	(*City)(nil),                        // 12: geo.City
 	(*Details)(nil),                     // 13: geo.Details
-	(*DetailsRegion)(nil),               // 14: geo.DetailsRegion
-	(*DetailsHouse)(nil),                // 15: geo.DetailsHouse
-	(*DetailsCountry)(nil),              // 16: geo.DetailsCountry
+	(*RegionDetails)(nil),               // 14: geo.RegionDetails
+	(*HouseDetails)(nil),                // 15: geo.HouseDetails
+	(*CountryDetails)(nil),              // 16: geo.CountryDetails
 	(*State)(nil),                       // 17: geo.State
 	(*Location)(nil),                    // 18: geo.Location
 	(*CityAdditional)(nil),              // 19: geo.CityAdditional
@@ -2608,15 +2608,15 @@ var file_proto_geo_proto_depIdxs = []int32{
 	3,  // 1: geo.SuggestCountryResponse.result:type_name -> geo.SuggestCountry
 	6,  // 2: geo.SuggestCountry.phone:type_name -> geo.Phone
 	0,  // 3: geo.CountryDetailsParams.locale:type_name -> geo.LocaleType
-	16, // 4: geo.Country.country:type_name -> geo.DetailsCountry
+	16, // 4: geo.Country.country:type_name -> geo.CountryDetails
 	6,  // 5: geo.Country.phone:type_name -> geo.Phone
 	18, // 6: geo.Country.location:type_name -> geo.Location
 	0,  // 7: geo.SuggestCityParams.locale:type_name -> geo.LocaleType
 	9,  // 8: geo.SuggestCityResponse.result:type_name -> geo.SuggestCity
 	0,  // 9: geo.CityDetailsParams.locale:type_name -> geo.LocaleType
 	0,  // 10: geo.CityDetailsByGeoIDParams.locale:type_name -> geo.LocaleType
-	16, // 11: geo.City.country:type_name -> geo.DetailsCountry
-	14, // 12: geo.City.region:type_name -> geo.DetailsRegion
+	16, // 11: geo.City.country:type_name -> geo.CountryDetails
+	14, // 12: geo.City.region:type_name -> geo.RegionDetails
 	17, // 13: geo.City.state:type_name -> geo.State
 	13, // 14: geo.City.city:type_name -> geo.Details
 	6,  // 15: geo.City.phone:type_name -> geo.Phone
@@ -2627,13 +2627,13 @@ var file_proto_geo_proto_depIdxs = []int32{
 	23, // 20: geo.SuggestAddressResponse.result:type_name -> geo.SuggestAddress
 	0,  // 21: geo.AddressDetailsParams.locale:type_name -> geo.LocaleType
 	0,  // 22: geo.AddressDetailsByGeoIDParams.locale:type_name -> geo.LocaleType
-	16, // 23: geo.Address.country:type_name -> geo.DetailsCountry
-	14, // 24: geo.Address.region:type_name -> geo.DetailsRegion
+	16, // 23: geo.Address.country:type_name -> geo.CountryDetails
+	14, // 24: geo.Address.region:type_name -> geo.RegionDetails
 	17, // 25: geo.Address.state:type_name -> geo.State
 	13, // 26: geo.Address.city:type_name -> geo.Details
 	13, // 27: geo.Address.settlement:type_name -> geo.Details
 	13, // 28: geo.Address.street:type_name -> geo.Details
-	15, // 29: geo.Address.house:type_name -> geo.DetailsHouse
+	15, // 29: geo.Address.house:type_name -> geo.HouseDetails
 	6,  // 30: geo.Address.phone:type_name -> geo.Phone
 	18, // 31: geo.Address.location:type_name -> geo.Location
 	27, // 32: geo.Address.additional:type_name -> geo.AddressAdditional
@@ -2827,7 +2827,7 @@ func file_proto_geo_proto_init() {
 			}
 		}
 		file_proto_geo_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DetailsRegion); i {
+			switch v := v.(*RegionDetails); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2839,7 +2839,7 @@ func file_proto_geo_proto_init() {
 			}
 		}
 		file_proto_geo_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DetailsHouse); i {
+			switch v := v.(*HouseDetails); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2851,7 +2851,7 @@ func file_proto_geo_proto_init() {
 			}
 		}
 		file_proto_geo_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DetailsCountry); i {
+			switch v := v.(*CountryDetails); i {
 			case 0:
 				return &v.state
 			case 1:
