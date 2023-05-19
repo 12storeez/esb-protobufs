@@ -59,42 +59,35 @@ message SuggestCountryResponse {
 }
 
 message SuggestCountry {
-  string    iso_code = 1;
-  string    title = 2;
-  Continent continent = 3;
-  Phone     phone = 4;
+  string    id = 1;
+  string    suggest = 2;
+  string    title = 3;
+  string    subtitle = 4;
+  string    iso_code = 5;
+  Phone     phone = 6;
 }
 
 message CountryDetailsParams {
-  LocaleType locale = 1;
-  string     iso_code = 2;
+  LocaleType  locale = 1;
+  string      iso_code = 2;
 }
 
 message Country {
-  string    iso_code = 1;
-  string    title = 2;
-  Continent continent = 3;
-  Capital   capital = 4;
-  string    postal_code_format = 5;
-  string    currency_code = 6;
-  Phone     phone = 7;
+  string          id = 1;
+  string          full_title = 2;
+  string          type = 3;
+  DetailsCountry  country = 4;
+  string          postal_code = 5;
+  string          postal_code_format = 6;
+  string          currency_code = 7;
+  Phone           phone = 8;
+  Location        location = 9;
 }
 
 message Phone  {
-  int32           prefix= 1;
+  int32           prefix = 1;
   repeated string masks = 2;
   string          primary_mask = 3;
-}
-
-message Continent {
-  string code = 1;
-  string title = 2;
-}
-
-message Capital {
-  string   title = 1;
-  Location location = 2;
-  string   postal_code = 3;
 }
 
 // City ...
@@ -114,11 +107,10 @@ message SuggestCityResponse {
 }
 
 message SuggestCity {
-  string id = 1;
-  string suggest = 2;
-  string title = 3;
-  string subtitle = 4;
-  string type = 5;
+  string    id = 1;
+  string    suggest = 2;
+  string    title = 3;
+  string    subtitle = 4;
 }
 
 message CityDetailsParams {
@@ -137,33 +129,72 @@ message CityDetailsByGeoIDParams {
 }
 
 message City {
-  string         id = 1;
-  string         title = 2;
-  string         full_title = 3;
-  string         country_iso_code = 4;
-  string         postal_code = 5;
-  string         type = 6;
-  Region         region = 7;
-  State          state = 8;
-  Location       location = 9;
-  CityAdditional additional = 10;
+  string          id = 1;
+  string          full_title = 2;
+  string          type = 3;
+  DetailsCountry  country = 4;
+  DetailsRegion   region = 5;
+  State           state = 6;
+  Details         city = 7;
+  string          postal_code = 8;
+  string          postal_code_format = 9;
+  string          currency_code = 10;
+  Phone           phone = 11;
+  Location        location = 12;
+  CityAdditional  additional = 13;
 }
 
-message State {
-  string title = 1;
-  string iso_code = 2;
-}
-
-message Region {
+message Details {
   string id = 1;
-  string title = 2;
-  string iso_code = 3;
+  string fias = 2;
+  string title = 3;
+  string full_title = 4;
   string type = 5;
 }
 
+message DetailsRegion {
+  string id = 1;
+  string fias = 2;
+  string title = 3;
+  string full_title = 4;
+  string type = 5;
+
+  string iso_code = 6;
+}
+
+message DetailsHouse {
+  string  id = 1;
+  string  fias = 2;
+  string  title = 3;
+  string  full_title = 4;
+  string  type = 5;
+
+  string  building = 6;
+  string  block = 7;
+}
+
+message DetailsCountry {
+  string id = 1;
+  string title = 2;
+  string full_title = 3;
+  string type = 4;
+  string iso_code = 5;
+  string capital_id = 6;
+  string capital_title = 7;
+}
+
+message State {
+  string  title = 1;
+  string  iso_code = 2;
+}
+
 message Location  {
-  double latitude = 1;
-  double longitude = 2;
+  double  latitude = 1;
+  double  longitude = 2;
+}
+
+message CityAdditional {
+  string fias_level = 1;
 }
 
 message CityDetailsByIPParams {
@@ -188,11 +219,10 @@ message SuggestAddressResponse {
 }
 
 message SuggestAddress {
-  string id = 1;  // fiasID или geoID
-  string suggest = 2;
-  string title = 3;
-  string subtitle = 4;
-  string query_for_details = 5;  // полная строка адреса, которую можно отправить в нормализацию
+  string  id = 1;  // fiasID или geoID или query_for_details (полная строка адреса)
+  string  suggest = 2;
+  string  title = 3;
+  string  subtitle = 4;
 }
 
 // нормализация
@@ -211,52 +241,31 @@ message AddressDetailsByGeoIDParams {
 
 message Address {
   // fias_id for dadata and place_id for google
-  string            id = 1;
-  string            country_iso_code = 2;
-  Region            region = 3;
-  State             state = 4;
-  City              city = 5;
-  Settlement        settlement = 6;
-  Street            street = 7;
-  House             house = 8;
-  string            block = 9;
-  string            postal_code = 10;
-  Location          location = 11;
-  // fias_level for dadata
-  AddressAdditional additional = 12;
-}
-
-message Settlement {
-  string id = 1;
-  string title = 2;
-}
-
-message Street {
-  string id = 1;
-  string title = 2;
-  string type = 3;
-  string type_full = 4;
-}
-
-message House {
-  string id = 1;
-  string title = 2;
-  string type = 3;
-  string type_full = 4;
+  string              id = 1;
+  string              full_title = 2;
+  string              type = 3;
+  DetailsCountry      country = 4;
+  DetailsRegion       region = 5;
+  State               state = 6;
+  Details             city = 7;
+  Details             settlement = 8;
+  Details             street = 9;
+  DetailsHouse        house = 10;
+  string              postal_code = 11;
+  string              postal_code_format = 12;
+  string              currency_code = 13;
+  Phone               phone = 14;
+  Location            location = 15;
+  AddressAdditional   additional = 16;
 }
 
 message AddressAdditional {
-  bool   is_in_mkad = 1;
-  bool   is_in_kad = 2;
-  string fias_level = 3;
-}
-
-message CityAdditional {
-  string kladr_id = 1;
-  bool   is_crimea = 2;
-  string fias_level = 3;
+  bool    is_in_mkad = 1;
+  bool    is_in_kad = 2;
+  string  fias_level = 3;
 }
 
 message DefaultCityListParams {
-  string ip = 1;
+  string  ip = 1;
+  string  country_iso_code = 2;
 }
