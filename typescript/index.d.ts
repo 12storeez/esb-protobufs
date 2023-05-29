@@ -297,10 +297,6 @@ export namespace geo {
       request: AddressDetailsByGeoIDParams,
       metadata?: any
     ): Observable<Address>;
-    addressZones(
-      request: AddressZonesParams,
-      metadata?: any
-    ): Observable<AddressZonesResponse>;
   }
   export enum LocaleType {
     nil = 0,
@@ -319,9 +315,11 @@ export namespace geo {
     result?: SuggestCountry[];
   }
   export interface SuggestCountry {
-    iso_code?: string;
+    id?: string;
+    suggest?: string;
     title?: string;
-    continent?: Continent;
+    subtitle?: string;
+    iso_code?: string;
     phone?: Phone;
   }
   export interface CountryDetailsParams {
@@ -329,27 +327,20 @@ export namespace geo {
     iso_code?: string;
   }
   export interface Country {
-    iso_code?: string;
-    title?: string;
-    continent?: Continent;
-    capital?: Capital;
+    id?: string;
+    full_title?: string;
+    type?: string;
+    country?: CountryDetails;
+    postal_code?: string;
     postal_code_format?: string;
     currency_code?: string;
     phone?: Phone;
+    location?: Location;
   }
   export interface Phone {
     prefix?: number;
     masks?: string[];
     primary_mask?: string;
-  }
-  export interface Continent {
-    code?: string;
-    title?: string;
-  }
-  export interface Capital {
-    title?: string;
-    location?: Location;
-    postal_code?: string;
   }
   export interface SuggestCityParams {
     locale?: LocaleType;
@@ -369,7 +360,6 @@ export namespace geo {
     suggest?: string;
     title?: string;
     subtitle?: string;
-    type?: string;
   }
   export interface CityDetailsParams {
     locale?: LocaleType;
@@ -383,29 +373,62 @@ export namespace geo {
   }
   export interface City {
     id?: string;
-    title?: string;
     full_title?: string;
-    country_iso_code?: string;
-    postal_code?: string;
     type?: string;
-    region?: Region;
+    country?: CountryDetails;
+    region?: RegionDetails;
     state?: State;
+    city?: Details;
+    postal_code?: string;
+    postal_code_format?: string;
+    currency_code?: string;
+    phone?: Phone;
     location?: Location;
     additional?: CityAdditional;
+  }
+  export interface Details {
+    id?: string;
+    fias?: string;
+    title?: string;
+    full_title?: string;
+    type?: string;
+  }
+  export interface RegionDetails {
+    id?: string;
+    fias?: string;
+    title?: string;
+    full_title?: string;
+    type?: string;
+    iso_code?: string;
+  }
+  export interface HouseDetails {
+    id?: string;
+    fias?: string;
+    title?: string;
+    full_title?: string;
+    type?: string;
+    building?: string;
+    block?: string;
+  }
+  export interface CountryDetails {
+    id?: string;
+    title?: string;
+    full_title?: string;
+    type?: string;
+    iso_code?: string;
+    capital_id?: string;
+    capital_title?: string;
   }
   export interface State {
     title?: string;
     iso_code?: string;
   }
-  export interface Region {
-    id?: string;
-    title?: string;
-    iso_code?: string;
-    type?: string;
-  }
   export interface Location {
     latitude?: number;
     longitude?: number;
+  }
+  export interface CityAdditional {
+    fias_level?: string;
   }
   export interface CityDetailsByIPParams {
     locale?: LocaleType;
@@ -429,7 +452,6 @@ export namespace geo {
     suggest?: string;
     title?: string;
     subtitle?: string;
-    query_for_details?: string;
   }
   export interface AddressDetailsParams {
     locale?: LocaleType;
@@ -444,14 +466,19 @@ export namespace geo {
   }
   export interface Address {
     id?: string;
-    country_iso_code?: string;
-    region?: Region;
+    full_title?: string;
+    type?: string;
+    country?: CountryDetails;
+    region?: RegionDetails;
     state?: State;
-    city?: City;
-    street?: string;
-    house?: string;
-    block?: string;
+    city?: Details;
+    settlement?: Details;
+    street?: Details;
+    house?: HouseDetails;
     postal_code?: string;
+    postal_code_format?: string;
+    currency_code?: string;
+    phone?: Phone;
     location?: Location;
     additional?: AddressAdditional;
   }
@@ -460,28 +487,9 @@ export namespace geo {
     is_in_kad?: boolean;
     fias_level?: string;
   }
-  export interface CityAdditional {
-    kladr_id?: string;
-    is_crimea?: boolean;
-    fias_level?: string;
-  }
-  export interface AddressZonesParams {
-    locale?: LocaleType;
-    country_iso_code?: string;
-    query?: string;
-  }
-  export interface AddressZonesResponse {
-    id?: string;
-    region_id?: string;
-    area_id?: string;
-    city_id?: string;
-    settlement_id?: string;
-    street_id?: string;
-    house_id?: string;
-    flat_id?: string;
-  }
   export interface DefaultCityListParams {
     ip?: string;
+    country_iso_code?: string;
   }
 }
 export namespace mercaux {
@@ -547,6 +555,7 @@ export namespace mercaux {
     preview?: string;
     capsules?: Capsules;
     is_sample_sale?: boolean;
+    is_ecological?: boolean;
   }
   export interface Stock {
     barcode?: Long;
@@ -859,9 +868,18 @@ export namespace mindbox {
     bonus_available?: number;
     bonus_blocked?: number;
     total_paid_amount?: number;
+    nearest_expiration?: NearestExpiration;
+  }
+  export interface NearestExpiration {
+    total?: number;
+    date?: string;
   }
   export interface ParamsOrders {
     client_id?: string;
+    date_from?: string;
+    date_to?: string;
+    limit?: number;
+    page?: number;
   }
   export interface ResponseOrders {
     total?: number;
@@ -876,6 +894,9 @@ export namespace mindbox {
     applied_discount?: number;
     acquired_balance_change?: number;
     created_ts?: number;
+    available_from_date_time?: string;
+    balance_change_kind?: string;
+    balance_change_kind_system_name?: string;
   }
   export interface ParamsCode {
     mobile_phone?: string;
@@ -1098,9 +1119,9 @@ export namespace tracker {
 }
 export namespace usedesk {
   export interface CSI {
-    save(request: saveParams, metadata?: any): Observable<saveResponse>;
+    save(request: SaveParams, metadata?: any): Observable<SaveResponse>;
   }
-  export interface saveParams {
+  export interface SaveParams {
     id?: number;
     user_id?: number;
     client_id?: number;
@@ -1113,7 +1134,7 @@ export namespace usedesk {
     created_at?: string;
     updated_at?: string;
   }
-  export interface saveResponse {
+  export interface SaveResponse {
     ok?: boolean;
   }
 }
@@ -1310,6 +1331,7 @@ export namespace logistics {
   export interface Category {
     id?: number;
     name?: string;
+    is_active?: boolean;
   }
   export interface ListCategoryRequest {
     limit?: number;
@@ -1500,6 +1522,7 @@ export namespace logistics {
     date_from?: string;
     date_to?: string;
     is_delivery_delayed?: boolean;
+    intervals?: Interval[];
   }
   export interface UpdateDeliveryCalendar {
     id?: number;
@@ -1510,6 +1533,7 @@ export namespace logistics {
     date_from?: string;
     date_to?: string;
     is_delivery_delayed?: boolean;
+    intervals?: Interval[];
   }
   export interface DeliveryCalendar {
     id?: number;
@@ -1522,6 +1546,7 @@ export namespace logistics {
     is_delivery_delayed?: boolean;
     created_at?: string;
     updated_at?: string;
+    intervals?: Interval[];
   }
   export interface ListDeliveryCalendarRequest {
     limit?: number;
@@ -1545,6 +1570,10 @@ export namespace logistics {
       request: DeliveryMethodId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestDeliveryMethodRequest,
+      metadata?: any
+    ): Observable<SuggestDeliveryMethodResponse>;
   }
   export interface DeliveryMethodId {
     id?: number;
@@ -1566,6 +1595,19 @@ export namespace logistics {
     results?: DeliveryMethod[];
     total?: number;
   }
+  export interface SuggestDeliveryMethodRequest {
+    limit?: number;
+    search?: string;
+  }
+  export interface SuggestDeliveryMethod {
+    id?: number;
+    name?: string;
+    is_active?: boolean;
+  }
+  export interface SuggestDeliveryMethodResponse {
+    results?: SuggestDeliveryMethod[];
+    total?: number;
+  }
   export interface DeliveryModeService {
     list(
       request: ListDeliveryModeRequest,
@@ -1578,6 +1620,10 @@ export namespace logistics {
       request: DeliveryModeId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestDeliveryModeRequest,
+      metadata?: any
+    ): Observable<SuggestDeliveryModeResponse>;
   }
   export interface DeliveryModeId {
     id?: number;
@@ -1600,6 +1646,19 @@ export namespace logistics {
     results?: DeliveryMode[];
     total?: number;
   }
+  export interface SuggestDeliveryModeRequest {
+    limit?: number;
+    search?: string;
+  }
+  export interface SuggestDeliveryMode {
+    id?: number;
+    title_ru?: string;
+    is_active?: boolean;
+  }
+  export interface SuggestDeliveryModeResponse {
+    results?: SuggestDeliveryMode[];
+    total?: number;
+  }
   export interface DeliveryTypeService {
     list(
       request: ListDeliveryTypeRequest,
@@ -1618,6 +1677,10 @@ export namespace logistics {
       request: UpdateDeliveryType,
       metadata?: any
     ): Observable<DeliveryType>;
+    suggest(
+      request: SuggestDeliveryTypeRequest,
+      metadata?: any
+    ): Observable<SuggestDeliveryTypeResponse>;
   }
   export interface DeliveryTypeId {
     id?: number;
@@ -1626,6 +1689,7 @@ export namespace logistics {
     transport_company_mode_id?: number;
     zone_group_id?: number;
     code?: string;
+    name?: string;
   }
   export interface DeliveryTypeShort {
     id?: number;
@@ -1658,7 +1722,7 @@ export namespace logistics {
     delivery_price_border?: number;
     delivery_price_after_border?: number;
     delivery_min_days?: number;
-    cutoff_time?: string;
+    is_only_days_amount?: boolean;
     consolidation_hours?: number;
     gap_hours?: number;
     priority_coefficient?: number;
@@ -1683,7 +1747,7 @@ export namespace logistics {
     updated_at?: string;
     payment_method_to_delivery_type?: PaymentMethodToDeliveryType[];
     category_delivery_type_restrictions?: CategoryRestriction[];
-    delivery_type_intervals?: Interval[];
+    intervals?: Interval[];
   }
   export interface CategoryRestriction {
     id?: number;
@@ -1722,7 +1786,7 @@ export namespace logistics {
     delivery_price_border?: number;
     delivery_price_after_border?: number;
     delivery_min_days?: number;
-    cutoff_time?: string;
+    is_only_days_amount?: boolean;
     consolidation_hours?: number;
     gap_hours?: number;
     priority_coefficient?: number;
@@ -1743,11 +1807,9 @@ export namespace logistics {
     restriction_by_quantity_per_article_popup_id?: number;
     is_visible_while_restricted?: boolean;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
     payment_method_to_delivery_type?: UpdatePaymentMethodToDeliveryType[];
     category_delivery_type_restrictions?: UpdateCategoryRestriction[];
-    delivery_type_interval_ids?: number[];
+    intervals?: Interval[];
   }
   export interface UpdatePaymentMethodToDeliveryType {
     payment_method_id?: number;
@@ -1760,16 +1822,25 @@ export namespace logistics {
     category_id?: number;
     message_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
   }
   export interface UpdateCategoryRestriction {
     category_id?: number;
     message_id?: number;
     popup_id?: number;
     is_active?: boolean;
-    created_at?: string;
-    updated_at?: string;
+  }
+  export interface SuggestDeliveryTypeRequest {
+    limit?: number;
+    search?: string;
+  }
+  export interface SuggestDeliveryType {
+    id?: number;
+    name?: string;
+    is_active?: boolean;
+  }
+  export interface SuggestDeliveryTypeResponse {
+    results?: SuggestDeliveryType[];
+    total?: number;
   }
   export interface GlobalRestrictionsService {
     list(
@@ -1931,6 +2002,10 @@ export namespace logistics {
       request: PaymentMethodId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestPaymentMethodRequest,
+      metadata?: any
+    ): Observable<SuggestPaymentMethodResponse>;
   }
   export interface PaymentMethodId {
     id?: number;
@@ -1951,6 +2026,19 @@ export namespace logistics {
   }
   export interface ListPaymentMethodResponse {
     results?: PaymentMethod[];
+    total?: number;
+  }
+  export interface SuggestPaymentMethodRequest {
+    limit?: number;
+    search?: string;
+  }
+  export interface SuggestPaymentMethod {
+    id?: number;
+    title_ru?: string;
+    is_active?: boolean;
+  }
+  export interface SuggestPaymentMethodResponse {
+    results?: SuggestPaymentMethod[];
     total?: number;
   }
   export interface PopupService {
@@ -2022,6 +2110,10 @@ export namespace logistics {
       request: TransportCompanyId,
       metadata?: any
     ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestTransportCompanyRequest,
+      metadata?: any
+    ): Observable<SuggestTransportCompanyResponse>;
   }
   export interface TransportCompanyId {
     id?: number;
@@ -2044,6 +2136,19 @@ export namespace logistics {
   }
   export interface ListTransportCompanyResponse {
     results?: TransportCompany[];
+    total?: number;
+  }
+  export interface SuggestTransportCompanyRequest {
+    limit?: number;
+    search?: string;
+  }
+  export interface SuggestTransportCompany {
+    id?: number;
+    name?: string;
+    is_active?: boolean;
+  }
+  export interface SuggestTransportCompanyResponse {
+    results?: SuggestTransportCompany[];
     total?: number;
   }
   export interface TransportCompanyModeService {
@@ -2091,6 +2196,8 @@ export namespace logistics {
     transport_company_id?: number;
     delivery_mode_id?: number;
     delivery_method_id?: number;
+    title?: string;
+    code?: string;
   }
   export interface TransportCompanyMode {
     id?: number;
@@ -2099,7 +2206,6 @@ export namespace logistics {
     delivery_method?: DeliveryMethod;
     intervals?: Interval[];
     delivery_interval_days?: number;
-    delivery_delta_days?: number;
     title?: string;
     code?: string;
     sdt_code?: string;
@@ -2111,6 +2217,13 @@ export namespace logistics {
     created_at?: string;
     updated_at?: string;
   }
+  export interface TransportCompanyModeShort {
+    id?: number;
+    title?: string;
+    is_active?: boolean;
+    created_at?: string;
+    updated_at?: string;
+  }
   export interface ListTransportCompanyModeRequest {
     limit?: number;
     offset?: number;
@@ -2118,7 +2231,7 @@ export namespace logistics {
     sort?: string;
   }
   export interface ListTransportCompanyModeResponse {
-    results?: TransportCompanyMode[];
+    results?: TransportCompanyModeShort[];
     total?: number;
   }
   export interface SuggestTransportCompanyModeRequest {
@@ -2128,6 +2241,7 @@ export namespace logistics {
   export interface SuggestTransportCompanyMode {
     id?: number;
     title?: string;
+    is_active?: boolean;
   }
   export interface SuggestTransportCompanyModeResponse {
     results?: SuggestTransportCompanyMode[];
@@ -2141,11 +2255,18 @@ export namespace logistics {
   }
   export interface CalculateRequest {
     country_iso_code?: string;
+    region_geo_id?: string;
+    city_geo_id?: string;
+    settlement_geo_id?: string;
+    street_geo_id?: string;
+    house_geo_id?: string;
     geo_id?: string;
+    cart_id?: number;
     cart?: CartPosition[];
+    order_datetime?: string;
   }
   export interface CartPosition {
-    category?: string;
+    category_id?: number;
     quantity?: number;
     price?: number;
     is_present?: boolean;
@@ -2172,6 +2293,9 @@ export namespace logistics {
     delivery_dates?: WinnerDeliveryDates[];
     is_restricted?: boolean;
     restrictions?: WinnerRestriction[];
+    from_days?: number;
+    to_days?: number;
+    is_delivery_use_only_working_days?: boolean;
   }
   export interface WinnerPaymentMethod {
     title_ru?: string;
@@ -2241,6 +2365,7 @@ export namespace logistics {
   export interface SuggestZone {
     id?: number;
     name?: string;
+    is_active?: boolean;
   }
   export interface SuggestZoneResponse {
     results?: SuggestZone[];
@@ -2251,7 +2376,7 @@ export namespace logistics {
       request: ListZoneGroupRequest,
       metadata?: any
     ): Observable<ListZoneGroupResponse>;
-    create(request: ZoneGroup, metadata?: any): Observable<ZoneGroup>;
+    create(request: CreateZoneGroup, metadata?: any): Observable<ZoneGroup>;
     get(request: ZoneGroupId, metadata?: any): Observable<ZoneGroup>;
     update(request: UpdateZoneGroup, metadata?: any): Observable<ZoneGroup>;
     delete(
@@ -2288,6 +2413,11 @@ export namespace logistics {
     is_active?: boolean;
     zone_ids?: number[];
   }
+  export interface CreateZoneGroup {
+    name?: string;
+    is_active?: boolean;
+    zone_ids?: number[];
+  }
   export interface ListZoneGroupRequest {
     limit?: number;
     offset?: number;
@@ -2305,6 +2435,7 @@ export namespace logistics {
   export interface SuggestZoneGroup {
     id?: number;
     name?: string;
+    is_active?: boolean;
   }
   export interface SuggestZoneGroupResponse {
     results?: SuggestZoneGroup[];
@@ -2316,13 +2447,13 @@ export namespace logistics {
       metadata?: any
     ): Observable<ListZoneGroupRestrictionResponse>;
     create(
-      request: CreateListZoneGroupRestrictionRequest,
+      request: CreateZoneGroupRestriction,
       metadata?: any
-    ): Observable<ListZoneGroupRestrictionResponse>;
+    ): Observable<ZoneGroupRestriction>;
     update(
-      request: UpdateListZoneGroupRestrictionRequest,
+      request: UpdateZoneGroupRestriction,
       metadata?: any
-    ): Observable<ListZoneGroupRestrictionResponse>;
+    ): Observable<ZoneGroupRestriction>;
     get(
       request: ZoneGroupRestrictionId,
       metadata?: any
@@ -2365,16 +2496,11 @@ export namespace logistics {
     offset?: number;
     search?: string;
     sort?: string;
+    is_country_restriction?: boolean;
   }
   export interface ListZoneGroupRestrictionResponse {
     results?: ZoneGroupRestriction[];
     total?: number;
-  }
-  export interface CreateListZoneGroupRestrictionRequest {
-    zone_group_restrictions?: CreateZoneGroupRestriction[];
-  }
-  export interface UpdateListZoneGroupRestrictionRequest {
-    zone_group_restrictions?: UpdateZoneGroupRestriction[];
   }
   export interface Country {
     country_code?: string;
@@ -2418,6 +2544,7 @@ export namespace logistics {
   export interface ZoneToGeoUpdateRequest {
     zone_id?: number;
     geo_id?: string;
+    geo_id_new?: string;
   }
   export interface ListZoneToGeoRequest {
     limit?: number;

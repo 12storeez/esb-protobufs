@@ -1,6 +1,6 @@
 {
   "name": "esb-protobufs",
-  "version": "0.6.41",
+  "version": "0.6.42",
   "description": "protobuf for esb project",
   "types": "./typescript/index.d.ts",
   "main": "./typescript/index.js",
@@ -41,6 +41,7 @@
     "proto-parser": "0.0.8",
     "protobufjs": "^6.8.8",
     "rxjs": "^6.5.5",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "@types/long":"4.0.0"
   }
 }
