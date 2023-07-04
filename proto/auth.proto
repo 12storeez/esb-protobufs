@@ -58,7 +58,7 @@ message RefreshResponse {
   string              message = 2;
   int64               code = 3;
   repeated Error      errors = 4;
-  RefreshResponseData data =5;
+  RefreshResponseData data = 5;
 }
 
 message RefreshResponseData {
