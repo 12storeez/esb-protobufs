@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+option go_package = "go/auth";
+
+package auth;
+
+service auth {
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {}
+  rpc Refresh(RefreshRequest) returns (RefreshResponse) {}
+}
+
+// Login request
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  LoginResponseData data = 5;
+}
+
+message LoginResponseData {
+  string          id = 1;
+  string          access_token = 2;
+  string          refresh_token = 3;
+  string          email = 4;
+  string          first_name = 5;
+  string          last_name = 6;
+  repeated string roles = 7;
+  repeated string groups = 8;
+}
+
+// Logout
+message LogoutRequest {
+  string access_token = 1;
+}
+
+message LogoutResponse {
+  string   status = 1;
+  string   message = 2;
+  int64    code = 3;
+  repeated Error errors = 4;
+}
+
+// Refresh
+message RefreshRequest {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message RefreshResponse {
+  string              status = 1;
+  string              message = 2;
+  int64               code = 3;
+  repeated Error      errors = 4;
+  RefreshResponseData data =5;
+}
+
+message RefreshResponseData {
+  string access_token = 1;
+}
+
+// Error
+message Error {
+  string target = 1;
+  int64  code = 2;
+  string message = 3;
+}
