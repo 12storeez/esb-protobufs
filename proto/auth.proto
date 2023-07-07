@@ -21,10 +21,11 @@ message LoginResponse {
   string            message = 2;
   int64             code = 3;
   repeated Error    errors = 4;
-  LoginResponseData data = 5;
+  TokenData         data = 5;
 }
 
-message LoginResponseData {
+// TokenData
+message TokenData {
   string          access_token = 1;
   string          refresh_token = 2;
   string          token_type = 3;
@@ -54,12 +55,7 @@ message RefreshResponse {
   string              message = 2;
   int64               code = 3;
   repeated Error      errors = 4;
-  RefreshResponseData data = 5;
-}
-
-message RefreshResponseData {
-  string access_token = 1;
-  string refresh_token = 2;
+  TokenData           data = 5;
 }
 
 // Error
