@@ -28,16 +28,14 @@ message LoginResponseData {
   string          id = 1;
   string          access_token = 2;
   string          refresh_token = 3;
-  string          email = 4;
-  string          first_name = 5;
-  string          last_name = 6;
-  repeated string roles = 7;
-  repeated string groups = 8;
+  string          token_type = 4;
+  int32           expires_in = 5;
+  int32           refresh_expires_in = 6;
 }
 
 // Logout
 message LogoutRequest {
-  string access_token = 1;
+  string refresh_token = 1;
 }
 
 message LogoutResponse {
@@ -50,7 +48,6 @@ message LogoutResponse {
 // Refresh
 message RefreshRequest {
   string access_token = 1;
-  string refresh_token = 2;
 }
 
 message RefreshResponse {
@@ -63,6 +60,7 @@ message RefreshResponse {
 
 message RefreshResponseData {
   string access_token = 1;
+  string refresh_token = 2;
 }
 
 // Error
