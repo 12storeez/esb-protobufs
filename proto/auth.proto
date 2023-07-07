@@ -47,7 +47,7 @@ message LogoutResponse {
 
 // Refresh
 message RefreshRequest {
-  string access_token = 1;
+  string refresh_token = 1;
 }
 
 message RefreshResponse {
