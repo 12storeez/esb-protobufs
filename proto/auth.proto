@@ -25,12 +25,11 @@ message LoginResponse {
 }
 
 message LoginResponseData {
-  string          id = 1;
-  string          access_token = 2;
-  string          refresh_token = 3;
-  string          token_type = 4;
-  int32           expires_in = 5;
-  int32           refresh_expires_in = 6;
+  string          access_token = 1;
+  string          refresh_token = 2;
+  string          token_type = 3;
+  int32           expires_in = 4;
+  int32           refresh_expires_in = 5;
 }
 
 // Logout
