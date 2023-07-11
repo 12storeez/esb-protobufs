@@ -22,7 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
-	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	LoginPassword(ctx context.Context, in *LoginPasswordRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	LoginSMS(ctx context.Context, in *LoginSMSRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 }
@@ -35,9 +36,18 @@ func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
 	return &authClient{cc}
 }
 
-func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+func (c *authClient) LoginPassword(ctx context.Context, in *LoginPasswordRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/auth.auth/Login", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/auth.auth/LoginPassword", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) LoginSMS(ctx context.Context, in *LoginSMSRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+	out := new(LoginResponse)
+	err := c.cc.Invoke(ctx, "/auth.auth/LoginSMS", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +76,8 @@ func (c *authClient) Refresh(ctx context.Context, in *RefreshRequest, opts ...gr
 // All implementations should embed UnimplementedAuthServer
 // for forward compatibility
 type AuthServer interface {
-	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	LoginPassword(context.Context, *LoginPasswordRequest) (*LoginResponse, error)
+	LoginSMS(context.Context, *LoginSMSRequest) (*LoginResponse, error)
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
 }
@@ -75,8 +86,11 @@ type AuthServer interface {
 type UnimplementedAuthServer struct {
 }
 
-func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+func (UnimplementedAuthServer) LoginPassword(context.Context, *LoginPasswordRequest) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginPassword not implemented")
+}
+func (UnimplementedAuthServer) LoginSMS(context.Context, *LoginSMSRequest) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginSMS not implemented")
 }
 func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
@@ -96,20 +110,38 @@ func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
 	s.RegisterService(&Auth_ServiceDesc, srv)
 }
 
-func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginRequest)
+func _Auth_LoginPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginPasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Login(ctx, in)
+		return srv.(AuthServer).LoginPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.auth/Login",
+		FullMethod: "/auth.auth/LoginPassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Login(ctx, req.(*LoginRequest))
+		return srv.(AuthServer).LoginPassword(ctx, req.(*LoginPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_LoginSMS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginSMSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).LoginSMS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.auth/LoginSMS",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).LoginSMS(ctx, req.(*LoginSMSRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -158,8 +190,12 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Login",
-			Handler:    _Auth_Login_Handler,
+			MethodName: "LoginPassword",
+			Handler:    _Auth_LoginPassword_Handler,
+		},
+		{
+			MethodName: "LoginSMS",
+			Handler:    _Auth_LoginSMS_Handler,
 		},
 		{
 			MethodName: "Logout",

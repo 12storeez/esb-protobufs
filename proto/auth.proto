@@ -5,13 +5,14 @@ option go_package = "go/auth";
 package auth;
 
 service auth {
-  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc LoginPassword(LoginPasswordRequest) returns (LoginResponse) {}
+  rpc LoginSMS(LoginSMSRequest) returns (LoginResponse) {}
   rpc Logout(LogoutRequest) returns (LogoutResponse) {}
   rpc Refresh(RefreshRequest) returns (RefreshResponse) {}
 }
 
-// Login request
-message LoginRequest {
+// LoginPasswordRequest request
+message LoginPasswordRequest {
   string username = 1;
   string password = 2;
 }
@@ -22,6 +23,12 @@ message LoginResponse {
   int64             code = 3;
   repeated Error    errors = 4;
   TokenData         data = 5;
+}
+
+// LoginSMSRequest request
+message LoginSMSRequest {
+  string username = 1;
+  string code = 2;
 }
 
 // TokenData
