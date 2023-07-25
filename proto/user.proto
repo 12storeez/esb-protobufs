@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+option go_package = "go/user";
+
+package user;
+
+service user {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Update(User) returns (UpdateResponse) {}
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc GetList(GetListRequest) returns (GetListResponse) {}
+  rpc GetPassword(GetPasswordRequest) returns (GetPasswordResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  // @TODO: оставить отдельными методами? Или оставить в Update?
+//  rpc Block(BlockRequest) returns (BlockResponse) {}
+//  rpc Unblock(UnblockRequest) returns (UnblockResponse) {}
+}
+
+// CreateRequest
+message CreateRequest {
+  string phone = 1;
+  string password = 2;
+  // основные поля
+  string email = 3;
+  string first_name = 4;
+  string middle_name = 5;
+  string last_name = 6;
+  string birthdate = 7;
+  string gender = 8;
+  // клиентские поля
+  int32  store_code = 9;
+  int32  rcrm_id = 10;
+  string clothing_size = 11;
+  string shoe_size = 12;
+  string country = 13;
+  string city = 14;
+  string region = 15;
+  // поля внутренних пользователей
+  string department = 16;
+  string position = 17;
+  int64  site_id = 18;
+  string onec_id = 19;
+  string wms_id = 20;
+}
+
+message CreateResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  User              data = 5;
+}
+
+// User
+message User {
+  string id = 1;
+  string phone = 2;
+  string password = 3;
+  // основные поля
+  string email = 4;
+  string first_name = 5;
+  string middle_name = 6;
+  string last_name = 7;
+  string birthdate = 8;
+  string gender = 9;
+  // клиентские поля
+  int32  store_code = 10;
+  int32  rcrm_id = 11;
+  string clothing_size = 12;
+  string shoe_size = 13;
+  string country = 14;
+  string city = 15;
+  string region = 16;
+  // поля внутренних пользователей
+  string department = 17;
+  string position = 18;
+  int64  site_id = 19;
+  string onec_id = 20;
+  string wms_id = 21;
+}
+
+message UpdateResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  User              data = 5;
+}
+
+// Get
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  User              data = 5;
+}
+
+// GetList
+message GetListRequest {
+  string updated_from = 1;
+  string updated_to   = 2;
+}
+
+message GetListResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  repeated User     data = 5;
+}
+
+// GetPassword
+message GetPasswordRequest {
+  string id = 1;
+}
+
+message GetPasswordResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  PasswordData      data = 5;
+}
+
+message PasswordData {
+  string encrypted_password = 1;
+}
+
+// Delete
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+}
+
+// Error
+message Error {
+  string target = 1;
+  int64  code = 2;
+  string message = 3;
+}
