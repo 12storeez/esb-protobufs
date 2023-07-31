@@ -4,36 +4,36 @@ option go_package = "go/slack";
 
 package slack;
 
-service Tracker {
-    rpc StatusChangeTicket (StatusChangeTicketParams) returns (StatusChangeTicketResponse) {
-    }
-}
-
 service Slack {
-    rpc Send (SendParams) returns (SendResponse) {
+    rpc Send (SendRequest) returns (SendResponse) {
     }
 }
 
-message StatusChangeTicketParams {
-    string ticket_key = 1;
-    string slack_channel = 2;
-}
-
-message StatusChangeTicketResponse {
-    bool ok = 1;
-}
-
-message SendParams {
-    string channel = 1;
-    string email = 2;
-    string message = 3;
-    string from = 4;
-    string thread_ts = 5;
-    string type = 6;
+message SendRequest {
+    string          from = 1;
+    string          to = 2;
+    string          title = 3;
+    string          message = 4;
+    repeated string attachments = 5;
+    string          thread_id = 6;
 }
 
 message SendResponse {
-    bool ok = 1;
-    string resp_channel = 2;
-    string resp_timestamp = 3;
+    string            status = 1;
+    string            message = 2;
+    int64             code = 3;
+    repeated Error    errors = 4;
+    SendData          data = 5;
+}
+
+message SendData {
+    string thread_id = 1;
+    string channel_id = 2;
+}
+
+// Error
+message Error {
+    string target = 1;
+    int64  code = 2;
+    string message = 3;
 }
