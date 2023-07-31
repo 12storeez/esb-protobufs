@@ -18,95 +18,11 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// TrackerClient is the client API for Tracker service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TrackerClient interface {
-	StatusChangeTicket(ctx context.Context, in *StatusChangeTicketParams, opts ...grpc.CallOption) (*StatusChangeTicketResponse, error)
-}
-
-type trackerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewTrackerClient(cc grpc.ClientConnInterface) TrackerClient {
-	return &trackerClient{cc}
-}
-
-func (c *trackerClient) StatusChangeTicket(ctx context.Context, in *StatusChangeTicketParams, opts ...grpc.CallOption) (*StatusChangeTicketResponse, error) {
-	out := new(StatusChangeTicketResponse)
-	err := c.cc.Invoke(ctx, "/slack.Tracker/StatusChangeTicket", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// TrackerServer is the server API for Tracker service.
-// All implementations should embed UnimplementedTrackerServer
-// for forward compatibility
-type TrackerServer interface {
-	StatusChangeTicket(context.Context, *StatusChangeTicketParams) (*StatusChangeTicketResponse, error)
-}
-
-// UnimplementedTrackerServer should be embedded to have forward compatible implementations.
-type UnimplementedTrackerServer struct {
-}
-
-func (UnimplementedTrackerServer) StatusChangeTicket(context.Context, *StatusChangeTicketParams) (*StatusChangeTicketResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StatusChangeTicket not implemented")
-}
-
-// UnsafeTrackerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TrackerServer will
-// result in compilation errors.
-type UnsafeTrackerServer interface {
-	mustEmbedUnimplementedTrackerServer()
-}
-
-func RegisterTrackerServer(s grpc.ServiceRegistrar, srv TrackerServer) {
-	s.RegisterService(&Tracker_ServiceDesc, srv)
-}
-
-func _Tracker_StatusChangeTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StatusChangeTicketParams)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TrackerServer).StatusChangeTicket(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/slack.Tracker/StatusChangeTicket",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrackerServer).StatusChangeTicket(ctx, req.(*StatusChangeTicketParams))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Tracker_ServiceDesc is the grpc.ServiceDesc for Tracker service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var Tracker_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "slack.Tracker",
-	HandlerType: (*TrackerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "StatusChangeTicket",
-			Handler:    _Tracker_StatusChangeTicket_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/slack.proto",
-}
-
 // SlackClient is the client API for Slack service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SlackClient interface {
-	Send(ctx context.Context, in *SendParams, opts ...grpc.CallOption) (*SendResponse, error)
+	Send(ctx context.Context, in *SendRequest, opts ...grpc.CallOption) (*SendResponse, error)
 }
 
 type slackClient struct {
@@ -117,7 +33,7 @@ func NewSlackClient(cc grpc.ClientConnInterface) SlackClient {
 	return &slackClient{cc}
 }
 
-func (c *slackClient) Send(ctx context.Context, in *SendParams, opts ...grpc.CallOption) (*SendResponse, error) {
+func (c *slackClient) Send(ctx context.Context, in *SendRequest, opts ...grpc.CallOption) (*SendResponse, error) {
 	out := new(SendResponse)
 	err := c.cc.Invoke(ctx, "/slack.Slack/Send", in, out, opts...)
 	if err != nil {
@@ -130,14 +46,14 @@ func (c *slackClient) Send(ctx context.Context, in *SendParams, opts ...grpc.Cal
 // All implementations should embed UnimplementedSlackServer
 // for forward compatibility
 type SlackServer interface {
-	Send(context.Context, *SendParams) (*SendResponse, error)
+	Send(context.Context, *SendRequest) (*SendResponse, error)
 }
 
 // UnimplementedSlackServer should be embedded to have forward compatible implementations.
 type UnimplementedSlackServer struct {
 }
 
-func (UnimplementedSlackServer) Send(context.Context, *SendParams) (*SendResponse, error) {
+func (UnimplementedSlackServer) Send(context.Context, *SendRequest) (*SendResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
 }
 
@@ -153,7 +69,7 @@ func RegisterSlackServer(s grpc.ServiceRegistrar, srv SlackServer) {
 }
 
 func _Slack_Send_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendParams)
+	in := new(SendRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -165,7 +81,7 @@ func _Slack_Send_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: "/slack.Slack/Send",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SlackServer).Send(ctx, req.(*SendParams))
+		return srv.(SlackServer).Send(ctx, req.(*SendRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
