@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option go_package = "go/notifications";
+
+package notifications;
+
+service notifications {
+  rpc Send (SendRequest) returns (SendResponse) {
+  }
+}
+
+message SendRequest {
+  string          from = 1;
+  string          to = 2;
+  string          title = 3;
+  string          message = 4;
+  repeated string attachments = 5;
+  string          channel = 6;
+  Payload         payload = 7;
+}
+
+message Payload {
+  string thread_id = 1;
+}
+
+message SendResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  SendData          data = 5;
+}
+
+
+message SendData {
+  string thread_id = 1;
+}
+
+// Error
+message Error {
+  string target = 1;
+  int64  code = 2;
+  string message = 3;
+}
