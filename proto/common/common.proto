@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "go/common";
+
+package app.grpc.common;
+
+message UUID {
+  string value = 1;
+}
+
+message Paginate {
+  uint32 limit = 1;
+  uint32 offset = 2;
+  uint32 total = 3;
+}
+
+message Error {
+  string target = 1;
+  sint32 code = 2;
+  string message = 3;
+}

@@ -1037,7 +1037,7 @@ func RegisterPortalFeedbackServiceHandlerServer(ctx context.Context, mux *runtim
 // RegisterMobileHandlerFromEndpoint is same as RegisterMobileHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterMobileHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
@@ -1264,7 +1264,7 @@ var (
 // RegisterStoreHandlerFromEndpoint is same as RegisterStoreHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterStoreHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
@@ -1413,7 +1413,7 @@ var (
 // RegisterNPSHandlerFromEndpoint is same as RegisterNPSHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterNPSHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
@@ -1510,7 +1510,7 @@ var (
 // RegisterPortalFeedbackServiceHandlerFromEndpoint is same as RegisterPortalFeedbackServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterPortalFeedbackServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

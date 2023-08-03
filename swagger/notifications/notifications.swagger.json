@@ -134,12 +134,14 @@
         "fields": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/notificationsAttachmentField"
           }
         },
         "actions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/notificationsAttachmentAction"
           }
         },
@@ -179,18 +181,21 @@
         "options": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/notificationsAttachmentActionOption"
           }
         },
         "selectedOptions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/notificationsAttachmentActionOption"
           }
         },
         "optionGroups": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/notificationsAttachmentActionOptionGroup"
           }
         },
@@ -222,6 +227,7 @@
         "options": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/notificationsAttachmentActionOption"
           }
         }
@@ -296,6 +302,7 @@
         "attachments": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/notificationsAttachment"
           }
         },
@@ -341,6 +348,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }

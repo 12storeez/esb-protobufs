@@ -8,7 +8,7 @@ do
       ls $file/ | xargs -I {} protoc -I $file -I ../git_repo/googleapis --go_out=. --go-grpc_out=require_unimplemented_servers=false:. $file/{}
     else
       ### Генерация прото:
-      ls $file/ | xargs -I {} protoc -I . --go_out=. --go-grpc_out=require_unimplemented_servers=false:. $file/{}
+      ls $file/ | xargs -I {} protoc -I $file -I . --go_out=. --go-grpc_out=require_unimplemented_servers=false:. $file/{}
     fi
 
     if grep -r -q "google.api.http" $file; then
