@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "go/common";
+
+package app.grpc.response;
+
+import "common.proto";
+
+message Response {
+    oneof response {
+        EmptyResponse success = 1;
+        FailResponse fail = 2;
+    }
+}
+
+message FailResponse {
+    sint32 code = 1;
+    repeated common.Error errors = 2;
+    string error_message = 3;
+    sint32 http_code = 4;
+}
+
+message EmptyResponse {}

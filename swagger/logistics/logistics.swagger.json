@@ -434,6 +434,7 @@
                 "intervals": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsInterval"
                   }
                 }
@@ -1241,18 +1242,21 @@
                 "paymentMethodToDeliveryType": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsUpdatePaymentMethodToDeliveryType"
                   }
                 },
                 "categoryDeliveryTypeRestrictions": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsUpdateCategoryRestriction"
                   }
                 },
                 "intervals": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsInterval"
                   }
                 }
@@ -1683,6 +1687,7 @@
                 "rels": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsRel"
                   }
                 },
@@ -2153,6 +2158,7 @@
                 "rels": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsRel"
                   }
                 },
@@ -3185,6 +3191,7 @@
                 "intervals": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsInterval"
                   }
                 },
@@ -4205,6 +4212,7 @@
                 "zoneGroups": {
                   "type": "array",
                   "items": {
+                    "type": "object",
                     "$ref": "#/definitions/logisticsZoneGroupInfo"
                   }
                 },
@@ -4260,6 +4268,7 @@
         "cart": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsCartPosition"
           }
         },
@@ -4274,12 +4283,14 @@
         "restrictions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsWinnerRestriction"
           }
         },
         "deliveryTypes": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsWinnerDeliveryType"
           }
         }
@@ -4497,6 +4508,7 @@
         "intervals": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsInterval"
           }
         }
@@ -4635,6 +4647,7 @@
         "intervals": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsInterval"
           }
         }
@@ -4815,18 +4828,21 @@
         "paymentMethodToDeliveryType": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsPaymentMethodToDeliveryType"
           }
         },
         "categoryDeliveryTypeRestrictions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsCategoryRestriction"
           }
         },
         "intervals": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsInterval"
           }
         }
@@ -4931,6 +4947,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsCategoryDeliveryTypeRestriction"
           }
         },
@@ -4946,6 +4963,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsCategory"
           }
         },
@@ -4961,6 +4979,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsCategoryZoneGroupRestriction"
           }
         },
@@ -4976,6 +4995,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsCountry"
           }
         },
@@ -4991,6 +5011,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsDeliveryCalendar"
           }
         },
@@ -5006,6 +5027,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsDeliveryMethod"
           }
         },
@@ -5021,6 +5043,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsDeliveryMode"
           }
         },
@@ -5036,6 +5059,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsDeliveryTypeShort"
           }
         },
@@ -5051,6 +5075,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsGlobalRestriction"
           }
         },
@@ -5066,6 +5091,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsInterval"
           }
         },
@@ -5081,6 +5107,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsMessage"
           }
         },
@@ -5096,6 +5123,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsPaymentMethod"
           }
         },
@@ -5111,6 +5139,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsPopup"
           }
         },
@@ -5126,6 +5155,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsTransportCompanyModeShort"
           }
         },
@@ -5141,6 +5171,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsTransportCompany"
           }
         },
@@ -5156,6 +5187,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsZoneGroup"
           }
         },
@@ -5171,6 +5203,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsZoneGroupRestriction"
           }
         },
@@ -5186,6 +5219,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsZone"
           }
         },
@@ -5201,6 +5235,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsZoneToGeo"
           }
         },
@@ -5223,6 +5258,7 @@
         "rels": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsRel"
           }
         },
@@ -5297,6 +5333,7 @@
         "paymentMethodCategoryRestrictions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsPaymentMethodCategoryRestriction"
           }
         }
@@ -5321,6 +5358,7 @@
         "rels": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsRel"
           }
         },
@@ -5383,6 +5421,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestDeliveryMethod"
           }
         },
@@ -5413,6 +5452,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestDeliveryMode"
           }
         },
@@ -5443,6 +5483,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestDeliveryType"
           }
         },
@@ -5470,6 +5511,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestMessage"
           }
         },
@@ -5500,6 +5542,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestPaymentMethod"
           }
         },
@@ -5527,6 +5570,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestPopup"
           }
         },
@@ -5572,6 +5616,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestTransportCompanyMode"
           }
         },
@@ -5587,6 +5632,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestTransportCompany"
           }
         },
@@ -5632,6 +5678,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestZoneGroup"
           }
         },
@@ -5647,6 +5694,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestZone"
           }
         },
@@ -5679,6 +5727,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsSuggestZoneToGeo"
           }
         },
@@ -5737,6 +5786,7 @@
         "intervals": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsInterval"
           }
         },
@@ -5881,6 +5931,7 @@
         "paymentMethodCategoryRestrictions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsUpdatePaymentMethodCategoryRestriction"
           }
         }
@@ -5935,6 +5986,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsZoneToGeoConflict"
           }
         },
@@ -5956,6 +6008,7 @@
         "intervals": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsWinnerInterval"
           }
         }
@@ -5980,12 +6033,14 @@
         "paymentMethods": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsWinnerPaymentMethod"
           }
         },
         "deliveryDates": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsWinnerDeliveryDates"
           }
         },
@@ -5995,6 +6050,7 @@
         "restrictions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsWinnerRestriction"
           }
         },
@@ -6092,6 +6148,7 @@
         "zoneGroups": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsZoneGroupInfo"
           }
         },
@@ -6129,6 +6186,7 @@
         "zones": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/logisticsZone"
           }
         }
@@ -6247,6 +6305,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }

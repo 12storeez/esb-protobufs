@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+import "response.proto";
+import "request.proto";
+
+option go_package = "go/common";
+
+option java_multiple_files = true;
+option java_package = "app.storeez.ms.marketplace";
+option java_outer_classname = "DeliveryService";
+option php_generic_services = true;
+
+package app.grpc.marketplace;
+
+service DeliveryService {
+    rpc GetSKU (request.EmptyRequest) returns (GetSkuResponse) {
+    }
+
+    rpc UpdateStocks (UpdateStocksRequest) returns (GetSkuResponse) {
+    }
+}
+
+service OrderService {
+    rpc UpdateOrderStatus (OrderStatusUpdateRequest) returns (app.grpc.response.Response) {
+    }
+    
+    rpc UpdateOrderItemStatus (OrderItemStatusUpdateRequest) returns (app.grpc.response.Response) {
+    }
+
+    rpc UpdateOrderNumber (UpdateOrderNumberRequest) returns (app.grpc.response.Response) {
+    }
+}
+
+message SkuItem {
+    string sku = 1;
+    int32 quantity = 2;
+}
+
+message SuccessGetSkuResponse {
+    repeated SkuItem items = 1;
+}
+
+message GetSkuResponse {
+  oneof data {
+    SuccessGetSkuResponse success = 1;
+    app.grpc.response.FailResponse fail = 2;
+  }
+}
+
+message UpdateStocksRequest {
+    repeated SkuItem items = 1;
+}
+
+message OrderStatusUpdateRequest {
+    string orderNumber = 1;
+    Status status = 2;
+    string reason = 3;
+}
+
+message UpdateOrderNumberRequest {
+    string orderNr = 1;
+    string externalOrderNumber = 2;
+}
+
+message OrderItemStatusUpdateRequest {
+    string orderNumber = 1;
+    string orderItemNumber = 2;
+    Status status = 3;
+    string reason = 4;
+}
+
+enum Status {
+    READY_FOR_SHIMPENT = 0;
+    SHIPPED = 1;
+    NOT_DELIVERED = 2;
+    DELIVERED = 3;
+    RETURNED = 4;
+    CANCELED = 5;
+}

@@ -471,7 +471,7 @@ func RegisterDeliveryMethodServiceHandlerServer(ctx context.Context, mux *runtim
 // RegisterDeliveryMethodServiceHandlerFromEndpoint is same as RegisterDeliveryMethodServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterDeliveryMethodServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

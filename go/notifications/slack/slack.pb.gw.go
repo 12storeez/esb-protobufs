@@ -161,7 +161,7 @@ func RegisterSlackHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 // RegisterSlackHandlerFromEndpoint is same as RegisterSlackHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterSlackHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
