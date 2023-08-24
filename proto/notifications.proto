@@ -21,6 +21,7 @@ message SendRequest {
 
 message Payload {
   string thread_id = 1;
+  bool   is_split_by_blocks_enabled = 2;
 }
 
 message SendResponse {
@@ -34,7 +35,6 @@ message SendResponse {
 
 message SendData {
   string thread_id = 1;
-  bool   is_split_by_blocks_enabled = 2;
 }
 
 // Error
