@@ -16,6 +16,7 @@ message SendRequest {
     string          message = 4;
     repeated string attachments = 5;
     string          thread_id = 6;
+    bool            is_split_by_blocks_enabled = 7;
 }
 
 message SendResponse {
