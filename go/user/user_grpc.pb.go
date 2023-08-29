@@ -22,6 +22,7 @@ const (
 	User_Create_FullMethodName      = "/user.user/Create"
 	User_Update_FullMethodName      = "/user.user/Update"
 	User_Get_FullMethodName         = "/user.user/Get"
+	User_GetByToken_FullMethodName  = "/user.user/GetByToken"
 	User_GetList_FullMethodName     = "/user.user/GetList"
 	User_GetPassword_FullMethodName = "/user.user/GetPassword"
 	User_Delete_FullMethodName      = "/user.user/Delete"
@@ -34,6 +35,7 @@ type UserClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Update(ctx context.Context, in *User, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetByToken(ctx context.Context, in *GetByTokenRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	GetPassword(ctx context.Context, in *GetPasswordRequest, opts ...grpc.CallOption) (*GetPasswordResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
@@ -74,6 +76,15 @@ func (c *userClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallO
 	return out, nil
 }
 
+func (c *userClient) GetByToken(ctx context.Context, in *GetByTokenRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, User_GetByToken_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error) {
 	out := new(GetListResponse)
 	err := c.cc.Invoke(ctx, User_GetList_FullMethodName, in, out, opts...)
@@ -108,6 +119,7 @@ type UserServer interface {
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Update(context.Context, *User) (*UpdateResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
 	GetPassword(context.Context, *GetPasswordRequest) (*GetPasswordResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
@@ -125,6 +137,9 @@ func (UnimplementedUserServer) Update(context.Context, *User) (*UpdateResponse, 
 }
 func (UnimplementedUserServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedUserServer) GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByToken not implemented")
 }
 func (UnimplementedUserServer) GetList(context.Context, *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
@@ -201,6 +216,24 @@ func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_GetByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetByToken(ctx, req.(*GetByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetListRequest)
 	if err := dec(in); err != nil {
@@ -273,6 +306,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _User_Get_Handler,
+		},
+		{
+			MethodName: "GetByToken",
+			Handler:    _User_GetByToken_Handler,
 		},
 		{
 			MethodName: "GetList",
