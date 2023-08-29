@@ -8,6 +8,7 @@ service user {
   rpc Create(CreateRequest) returns (CreateResponse) {}
   rpc Update(User) returns (UpdateResponse) {}
   rpc Get(GetRequest) returns (GetResponse) {}
+  rpc GetByToken(GetByTokenRequest) returns (GetResponse) {}
   rpc GetList(GetListRequest) returns (GetListResponse) {}
   rpc GetPassword(GetPasswordRequest) returns (GetPasswordResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
@@ -100,10 +101,15 @@ message GetResponse {
   User              data = 5;
 }
 
+// GetByToken
+message GetByTokenRequest {
+  string access_token = 1;
+}
+
 // GetList
 message GetListRequest {
-  string updated_from = 1;
-  string updated_to   = 2;
+  GetListFilters filters = 1;
+  Pagination     pagination = 2;
 }
 
 message GetListResponse {
@@ -148,4 +154,16 @@ message Error {
   string target = 1;
   int64  code = 2;
   string message = 3;
+}
+
+// Filters
+message GetListFilters {
+  string updated_from = 1;
+  string updated_to   = 2;
+}
+
+// Pagination
+message Pagination {
+  int64 limit = 1;
+  int64 offset = 2;
 }
