@@ -19,45 +19,10 @@ service user {
 
 // CreateRequest
 message CreateRequest {
-  string phone = 1;
+  string username = 1;
   string password = 2;
   // основные поля
-  string email = 3;
-  string first_name = 4;
-  string middle_name = 5;
-  string last_name = 6;
-  string birthdate = 7;
-  string gender = 8;
-  // клиентские поля
-  int32  store_code = 9;
-  int32  rcrm_id = 10;
-  string clothing_size = 11;
-  string shoe_size = 12;
-  string country = 13;
-  string city = 14;
-  string region = 15;
-  // поля внутренних пользователей
-  string department = 16;
-  string position = 17;
-  int64  site_id = 18;
-  string onec_id = 19;
-  string wms_id = 20;
-}
-
-message CreateResponse {
-  string            status = 1;
-  string            message = 2;
-  int64             code = 3;
-  repeated Error    errors = 4;
-  User              data = 5;
-}
-
-// User
-message User {
-  string id = 1;
-  string phone = 2;
-  string password = 3;
-  // основные поля
+  string phone = 3;
   string email = 4;
   string first_name = 5;
   string middle_name = 6;
@@ -78,6 +43,43 @@ message User {
   int64  site_id = 19;
   string onec_id = 20;
   string wms_id = 21;
+}
+
+message CreateResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  User              data = 5;
+}
+
+// User
+message User {
+  string id = 1;
+  string username = 2;
+  string password = 3;
+  // основные поля
+  string phone = 4;
+  string email = 5;
+  string first_name = 6;
+  string middle_name = 7;
+  string last_name = 8;
+  string birthdate = 9;
+  string gender = 10;
+  // клиентские поля
+  int32  store_code = 11;
+  int32  rcrm_id = 13;
+  string clothing_size = 12;
+  string shoe_size = 14;
+  string country = 15;
+  string city = 16;
+  string region = 17;
+  // поля внутренних пользователей
+  string department = 18;
+  string position = 19;
+  int64  site_id = 20;
+  string onec_id = 21;
+  string wms_id = 22;
 }
 
 message UpdateResponse {
@@ -160,6 +162,7 @@ message Error {
 message GetListFilters {
   string updated_from = 1;
   string updated_to   = 2;
+  string type         = 3;
 }
 
 // Pagination
