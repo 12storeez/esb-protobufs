@@ -32,6 +32,27 @@ message SendData {
     string channel_id = 2;
 }
 
+message EditMessageRequest {
+    string          channel = 2;
+    string          thread_id = 6;
+    string          title = 3;
+    string          message = 4;
+    bool            is_split_by_blocks_enabled = 7;
+}
+
+
+message DeleteMessageRequest {
+    string          channel = 2;
+    string          thread_id = 6;
+}
+
+message BaseResponse {
+    string            status = 1;
+    string            message = 2;
+    int64             code = 3;
+    repeated Error    errors = 4;
+}
+
 // Error
 message Error {
     string target = 1;
