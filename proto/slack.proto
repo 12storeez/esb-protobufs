@@ -7,6 +7,10 @@ package slack;
 service Slack {
     rpc Send (SendRequest) returns (SendResponse) {
     }
+    rpc Update (UpdateMessageRequest) returns (BaseResponse) {
+    }
+    rpc Delete (DeleteMessageRequest) returns (BaseResponse) {
+    }
 }
 
 message SendRequest {
@@ -32,7 +36,7 @@ message SendData {
     string channel_id = 2;
 }
 
-message EditMessageRequest {
+message UpdateMessageRequest {
     string          channel = 2;
     string          thread_id = 6;
     string          title = 3;
