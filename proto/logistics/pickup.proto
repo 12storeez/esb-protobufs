@@ -79,6 +79,8 @@ message Pickup {
   int32             max_cells = 4;
   int32             busy_cells = 5;
   bool              is_active = 6;
+  string            created_at = 7;
+  string            updated_at = 8;
 }
 
 message UpdatePickup {
