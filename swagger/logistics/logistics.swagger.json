@@ -42,7 +42,13 @@
       "name": "PaymentMethodService"
     },
     {
+      "name": "PickupService"
+    },
+    {
       "name": "PopupService"
+    },
+    {
+      "name": "StoreService"
     },
     {
       "name": "TransportCompanyService"
@@ -1938,6 +1944,240 @@
         ]
       }
     },
+    "/api/v1/pickup": {
+      "get": {
+        "operationId": "PickupService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListPickupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PickupService"
+        ]
+      },
+      "post": {
+        "operationId": "PickupService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsPickup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCreatePickupRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PickupService"
+        ]
+      }
+    },
+    "/api/v1/pickup/suggest": {
+      "get": {
+        "operationId": "PickupService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsSuggestPickupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PickupService"
+        ]
+      }
+    },
+    "/api/v1/pickup/{id}": {
+      "get": {
+        "operationId": "PickupService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsPickup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "PickupService"
+        ]
+      },
+      "delete": {
+        "operationId": "PickupService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "PickupService"
+        ]
+      },
+      "patch": {
+        "operationId": "PickupService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsPickup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "store": {
+                  "$ref": "#/definitions/logisticsStore"
+                },
+                "deliveryType": {
+                  "$ref": "#/definitions/logisticsDeliveryTypeShort"
+                },
+                "maxCells": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "busyCells": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "PickupService"
+        ]
+      }
+    },
     "/api/v1/popup": {
       "get": {
         "operationId": "PopupService_List",
@@ -2888,6 +3128,87 @@
         ],
         "tags": [
           "ZoneGroupRestrictionService"
+        ]
+      }
+    },
+    "/api/v1/store": {
+      "get": {
+        "operationId": "StoreService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListStoreResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StoreService"
+        ]
+      }
+    },
+    "/api/v1/store/suggest": {
+      "get": {
+        "operationId": "StoreService_Suggest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsListStoreResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StoreService"
         ]
       }
     },
@@ -4533,6 +4854,22 @@
         }
       }
     },
+    "logisticsCreatePickupRequest": {
+      "type": "object",
+      "properties": {
+        "storeCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryTypeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxCells": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsCreateTransportCompanyModeRequest": {
       "type": "object",
       "properties": {
@@ -5133,6 +5470,22 @@
         }
       }
     },
+    "logisticsListPickupResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsPickup"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "logisticsListPopupResponse": {
       "type": "object",
       "properties": {
@@ -5141,6 +5494,22 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/logisticsPopup"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsListStoreResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsStore"
           }
         },
         "total": {
@@ -5339,6 +5708,32 @@
         }
       }
     },
+    "logisticsPickup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "store": {
+          "$ref": "#/definitions/logisticsStore"
+        },
+        "deliveryType": {
+          "$ref": "#/definitions/logisticsDeliveryTypeShort"
+        },
+        "maxCells": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "busyCells": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
     "logisticsPopup": {
       "type": "object",
       "properties": {
@@ -5399,6 +5794,33 @@
         "quantity"
       ],
       "default": "price"
+    },
+    "logisticsStore": {
+      "type": "object",
+      "properties": {
+        "storeCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "schedule": {
+          "type": "string"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
     },
     "logisticsSuggestDeliveryMethod": {
       "type": "object",
@@ -5544,6 +5966,37 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/logisticsSuggestPaymentMethod"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "logisticsSuggestPickup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsSuggestPickupResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsSuggestPickup"
           }
         },
         "total": {

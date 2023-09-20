@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+
+service StoreService {
+  rpc List(ListStoreRequest) returns (ListStoreResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/store"
+    };
+  }
+
+  rpc Suggest(SuggestStoreRequest) returns (ListStoreResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/store/suggest"
+    };
+  }
+}
+
+message Store {
+  int32  store_code = 1;
+  string name = 2;
+  string address = 3;
+  string phone = 4;
+  string schedule = 5;
+  bool   is_visible = 6;
+  bool   is_active = 7;
+}
+
+message ListStoreRequest {
+  int32  limit = 1;
+  int32  offset = 2;
+  string sort = 3;
+}
+
+message SuggestStoreRequest {
+  int32  limit = 1;
+  string search = 2;
+}
+
+message ListStoreResponse {
+  repeated Store results = 1;
+  int32             total = 2;
+}
+
