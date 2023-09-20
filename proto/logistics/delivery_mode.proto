@@ -56,8 +56,10 @@ message DeliveryMode {
   string  title_ru = 2;
   bool    is_active = 3;
   bool    is_backup_method = 4;
-  string  created_at = 5;
-  string  updated_at = 6;
+  string  code = 5;
+  bool    is_winner_competition_active = 6;
+  string  created_at = 7;
+  string  updated_at = 8;
 }
 
 message ListDeliveryModeRequest {

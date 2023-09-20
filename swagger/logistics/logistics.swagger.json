@@ -899,6 +899,12 @@
                 "isBackupMethod": {
                   "type": "boolean"
                 },
+                "code": {
+                  "type": "string"
+                },
+                "isWinnerCompetitionActive": {
+                  "type": "boolean"
+                },
                 "createdAt": {
                   "type": "string"
                 },
@@ -5025,6 +5031,12 @@
           "type": "boolean"
         },
         "isBackupMethod": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string"
+        },
+        "isWinnerCompetitionActive": {
           "type": "boolean"
         },
         "createdAt": {
