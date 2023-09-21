@@ -75,7 +75,7 @@ message ListPickupResponse {
 message Pickup {
   int32             id = 1;
   Store             store = 2;
-  DeliveryTypeShort deliveryType = 3;
+  DeliveryTypeShort delivery_type = 3;
   int32             max_cells = 4;
   int32             busy_cells = 5;
   bool              is_active = 6;
