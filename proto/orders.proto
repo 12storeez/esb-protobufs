@@ -59,6 +59,7 @@ message Position {
     int32 sum = 8;
     int32 discount = 9;
     string family = 10;
+    int32 row_receipt = 11;
 }
 
 service Online {
