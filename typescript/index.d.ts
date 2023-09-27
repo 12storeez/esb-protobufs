@@ -3,6 +3,69 @@ import { Observable } from "rxjs";
 export namespace google.protobuf {
   export interface Empty {}
 }
+export namespace auth {
+  export interface auth {
+    loginPassword(
+      request: LoginPasswordRequest,
+      metadata?: any
+    ): Observable<LoginResponse>;
+    loginSMS(
+      request: LoginSMSRequest,
+      metadata?: any
+    ): Observable<LoginResponse>;
+    logout(request: LogoutRequest, metadata?: any): Observable<LogoutResponse>;
+    refresh(
+      request: RefreshRequest,
+      metadata?: any
+    ): Observable<RefreshResponse>;
+  }
+  export interface LoginPasswordRequest {
+    username?: string;
+    password?: string;
+  }
+  export interface LoginResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: TokenData;
+  }
+  export interface LoginSMSRequest {
+    username?: string;
+    code?: string;
+  }
+  export interface TokenData {
+    access_token?: string;
+    refresh_token?: string;
+    token_type?: string;
+    expires_in?: number;
+    refresh_expires_in?: number;
+  }
+  export interface LogoutRequest {
+    refresh_token?: string;
+  }
+  export interface LogoutResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+  }
+  export interface RefreshRequest {
+    refresh_token?: string;
+  }
+  export interface RefreshResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: TokenData;
+  }
+  export interface Error {
+    target?: string;
+    code?: Long;
+    message?: string;
+  }
+}
 export namespace feedbacks {
   export interface Mobile {
     app(request: ParamsApp, metadata?: any): Observable<ResponseOk>;
@@ -556,6 +619,8 @@ export namespace mercaux {
     capsules?: Capsules;
     is_sample_sale?: boolean;
     is_ecological?: boolean;
+    super_model_merging_code?: string;
+    pilling_grade?: string;
   }
   export interface Stock {
     barcode?: Long;
@@ -941,6 +1006,123 @@ export namespace mindbox {
     ok?: boolean;
   }
 }
+export namespace notifications {
+  export interface notifications {
+    send(request: SendRequest, metadata?: any): Observable<SendResponse>;
+  }
+  export interface SendRequest {
+    from?: string;
+    to?: string;
+    title?: string;
+    message?: string;
+    attachments?: string[];
+    channel?: string;
+    payload?: Payload;
+  }
+  export interface Payload {
+    thread_id?: string;
+    is_split_by_blocks_enabled?: boolean;
+  }
+  export interface SendResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: SendData;
+  }
+  export interface SendData {
+    thread_id?: string;
+  }
+  export interface Error {
+    target?: string;
+    code?: Long;
+    message?: string;
+  }
+  export interface Slack {
+    send(
+      request: SlackSendParams,
+      metadata?: any
+    ): Observable<SlackSendResponse>;
+    sendFile(
+      request: SlackSendFileParams,
+      metadata?: any
+    ): Observable<SlackSendResponse>;
+  }
+  export interface SlackSendFileParams {
+    channel_id?: string;
+    thread_ts?: string;
+    file?: string;
+    filetype?: string;
+    title?: string;
+    initial_comment?: string;
+  }
+  export interface SlackSendParams {
+    channel_id?: string;
+    thread_ts?: string;
+    text?: string;
+    attachments?: Attachment[];
+    blocks?: string;
+  }
+  export interface Attachment {
+    color?: string;
+    fallback?: string;
+    callback_id?: string;
+    id?: number;
+    author_id?: string;
+    author_name?: string;
+    author_sub_name?: string;
+    author_link?: string;
+    author_icon?: string;
+    title?: string;
+    title_link?: string;
+    pre_text?: string;
+    text?: string;
+    image_url?: string;
+    thumb_url?: string;
+    fields?: AttachmentField[];
+    actions?: AttachmentAction[];
+    footer?: string;
+    footer_icon?: string;
+  }
+  export interface AttachmentField {
+    title?: string;
+    value?: string;
+    short?: boolean;
+  }
+  export interface AttachmentAction {
+    name?: string;
+    text?: string;
+    style?: string;
+    type?: string;
+    value?: string;
+    data_source?: string;
+    url?: string;
+    options?: AttachmentActionOption[];
+    selected_options?: AttachmentActionOption[];
+    option_groups?: AttachmentActionOptionGroup[];
+    confirm?: AttachmentConfirm;
+  }
+  export interface AttachmentActionOption {
+    text?: string;
+    value?: string;
+    description?: string;
+  }
+  export interface AttachmentActionOptionGroup {
+    text?: string;
+    options?: AttachmentActionOption[];
+  }
+  export interface AttachmentConfirm {
+    title?: string;
+    text?: string;
+    ok_text?: string;
+    dissmiss_text?: string;
+  }
+  export interface SlackSendResponse {
+    ok?: boolean;
+    channel?: string;
+    ts?: string;
+  }
+}
 export namespace orders {
   export interface Offline {
     byClient(
@@ -995,6 +1177,7 @@ export namespace orders {
     sum?: number;
     discount?: number;
     family?: string;
+    row_receipt?: number;
   }
   export interface Online {
     byClient(
@@ -1074,34 +1257,58 @@ export namespace payments {
   }
 }
 export namespace slack {
-  export interface Tracker {
-    statusChangeTicket(
-      request: StatusChangeTicketParams,
-      metadata?: any
-    ): Observable<StatusChangeTicketResponse>;
-  }
   export interface Slack {
-    send(request: SendParams, metadata?: any): Observable<SendResponse>;
+    send(request: SendRequest, metadata?: any): Observable<SendResponse>;
+    update(
+      request: UpdateMessageRequest,
+      metadata?: any
+    ): Observable<BaseResponse>;
+    delete(
+      request: DeleteMessageRequest,
+      metadata?: any
+    ): Observable<BaseResponse>;
   }
-  export interface StatusChangeTicketParams {
-    ticket_key?: string;
-    slack_channel?: string;
-  }
-  export interface StatusChangeTicketResponse {
-    ok?: boolean;
-  }
-  export interface SendParams {
-    channel?: string;
-    email?: string;
-    message?: string;
+  export interface SendRequest {
     from?: string;
-    thread_ts?: string;
-    type?: string;
+    to?: string;
+    title?: string;
+    message?: string;
+    attachments?: string[];
+    thread_id?: string;
+    is_split_by_blocks_enabled?: boolean;
   }
   export interface SendResponse {
-    ok?: boolean;
-    resp_channel?: string;
-    resp_timestamp?: string;
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: SendData;
+  }
+  export interface SendData {
+    thread_id?: string;
+    channel_id?: string;
+  }
+  export interface UpdateMessageRequest {
+    channel?: string;
+    thread_id?: string;
+    title?: string;
+    message?: string;
+    is_split_by_blocks_enabled?: boolean;
+  }
+  export interface DeleteMessageRequest {
+    channel?: string;
+    thread_id?: string;
+  }
+  export interface BaseResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+  }
+  export interface Error {
+    target?: string;
+    code?: Long;
+    message?: string;
   }
 }
 export namespace tracker {
@@ -1139,6 +1346,148 @@ export namespace usedesk {
     ok?: boolean;
   }
 }
+export namespace user {
+  export interface user {
+    create(request: CreateRequest, metadata?: any): Observable<CreateResponse>;
+    update(request: User, metadata?: any): Observable<UpdateResponse>;
+    get(request: GetRequest, metadata?: any): Observable<GetResponse>;
+    getByToken(
+      request: GetByTokenRequest,
+      metadata?: any
+    ): Observable<GetResponse>;
+    getList(
+      request: GetListRequest,
+      metadata?: any
+    ): Observable<GetListResponse>;
+    getPassword(
+      request: GetPasswordRequest,
+      metadata?: any
+    ): Observable<GetPasswordResponse>;
+    delete(request: DeleteRequest, metadata?: any): Observable<DeleteResponse>;
+  }
+  export interface CreateRequest {
+    username?: string;
+    password?: string;
+    phone?: string;
+    email?: string;
+    first_name?: string;
+    middle_name?: string;
+    last_name?: string;
+    birthdate?: string;
+    gender?: string;
+    store_code?: number;
+    rcrm_id?: number;
+    clothing_size?: string;
+    shoe_size?: string;
+    country?: string;
+    city?: string;
+    region?: string;
+    department?: string;
+    position?: string;
+    site_id?: Long;
+    onec_id?: string;
+    wms_id?: string;
+  }
+  export interface CreateResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: User;
+  }
+  export interface User {
+    id?: string;
+    username?: string;
+    password?: string;
+    phone?: string;
+    email?: string;
+    first_name?: string;
+    middle_name?: string;
+    last_name?: string;
+    birthdate?: string;
+    gender?: string;
+    store_code?: number;
+    rcrm_id?: number;
+    clothing_size?: string;
+    shoe_size?: string;
+    country?: string;
+    city?: string;
+    region?: string;
+    department?: string;
+    position?: string;
+    site_id?: Long;
+    onec_id?: string;
+    wms_id?: string;
+  }
+  export interface UpdateResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: User;
+  }
+  export interface GetRequest {
+    id?: string;
+  }
+  export interface GetResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: User;
+  }
+  export interface GetByTokenRequest {
+    access_token?: string;
+  }
+  export interface GetListRequest {
+    filters?: GetListFilters;
+    pagination?: Pagination;
+  }
+  export interface GetListResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: User[];
+  }
+  export interface GetPasswordRequest {
+    id?: string;
+  }
+  export interface GetPasswordResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+    data?: PasswordData;
+  }
+  export interface PasswordData {
+    encrypted_password?: string;
+  }
+  export interface DeleteRequest {
+    id?: string;
+  }
+  export interface DeleteResponse {
+    status?: string;
+    message?: string;
+    code?: Long;
+    errors?: Error[];
+  }
+  export interface Error {
+    target?: string;
+    code?: Long;
+    message?: string;
+  }
+  export interface GetListFilters {
+    updated_from?: string;
+    updated_to?: string;
+    type?: string;
+  }
+  export interface Pagination {
+    limit?: Long;
+    offset?: Long;
+  }
+}
+export namespace app {}
 export namespace google {}
 export namespace products {
   export interface Error {
@@ -1634,6 +1983,8 @@ export namespace logistics {
     title_ru?: string;
     is_active?: boolean;
     is_backup_method?: boolean;
+    code?: string;
+    is_winner_competition_active?: boolean;
     created_at?: string;
     updated_at?: string;
   }
@@ -2042,6 +2393,72 @@ export namespace logistics {
     results?: SuggestPaymentMethod[];
     total?: number;
   }
+  export interface PickupService {
+    list(
+      request: ListPickupRequest,
+      metadata?: any
+    ): Observable<ListPickupResponse>;
+    create(request: CreatePickupRequest, metadata?: any): Observable<Pickup>;
+    get(request: PickupId, metadata?: any): Observable<Pickup>;
+    update(request: Pickup, metadata?: any): Observable<Pickup>;
+    delete(
+      request: PickupId,
+      metadata?: any
+    ): Observable<google.protobuf.Empty>;
+    suggest(
+      request: SuggestPickupRequest,
+      metadata?: any
+    ): Observable<SuggestPickupResponse>;
+  }
+  export interface PickupId {
+    id?: number;
+  }
+  export interface CreatePickupRequest {
+    store_code?: number;
+    delivery_type_id?: number;
+    max_cells?: string;
+  }
+  export interface ListPickupRequest {
+    limit?: number;
+    offset?: number;
+    search?: string;
+    sort?: string;
+  }
+  export interface ListPickupResponse {
+    results?: Pickup[];
+    total?: number;
+  }
+  export interface Pickup {
+    id?: number;
+    store?: Store;
+    delivery_type?: DeliveryTypeShort;
+    max_cells?: number;
+    busy_cells?: number;
+    is_active?: boolean;
+    created_at?: string;
+    updated_at?: string;
+  }
+  export interface UpdatePickup {
+    id?: number;
+    store_code?: number;
+    delivery_type_id?: number;
+    max_cells?: number;
+    busy_cells?: number;
+    is_active?: boolean;
+  }
+  export interface SuggestPickupRequest {
+    limit?: number;
+    search?: string;
+  }
+  export interface SuggestPickup {
+    id?: number;
+    name?: string;
+    is_active?: boolean;
+  }
+  export interface SuggestPickupResponse {
+    results?: SuggestPickup[];
+    total?: number;
+  }
   export interface PopupService {
     list(
       request: ListPopupRequest,
@@ -2088,6 +2505,38 @@ export namespace logistics {
   }
   export interface SuggestPopupResponse {
     results?: SuggestPopup[];
+    total?: number;
+  }
+  export interface StoreService {
+    list(
+      request: ListStoreRequest,
+      metadata?: any
+    ): Observable<ListStoreResponse>;
+    suggest(
+      request: SuggestStoreRequest,
+      metadata?: any
+    ): Observable<ListStoreResponse>;
+  }
+  export interface Store {
+    store_code?: number;
+    name?: string;
+    address?: string;
+    phone?: string;
+    schedule?: string;
+    is_visible?: boolean;
+    is_active?: boolean;
+  }
+  export interface ListStoreRequest {
+    limit?: number;
+    offset?: number;
+    sort?: string;
+  }
+  export interface SuggestStoreRequest {
+    limit?: number;
+    search?: string;
+  }
+  export interface ListStoreResponse {
+    results?: Store[];
     total?: number;
   }
   export interface TransportCompanyService {
@@ -2583,92 +3032,6 @@ export namespace logistics {
     zone_name?: string;
     geo_id?: string;
     description?: string;
-  }
-}
-export namespace notifications {
-  export interface Slack {
-    send(
-      request: SlackSendParams,
-      metadata?: any
-    ): Observable<SlackSendResponse>;
-    sendFile(
-      request: SlackSendFileParams,
-      metadata?: any
-    ): Observable<SlackSendResponse>;
-  }
-  export interface SlackSendFileParams {
-    channel_id?: string;
-    thread_ts?: string;
-    file?: string;
-    filetype?: string;
-    title?: string;
-    initial_comment?: string;
-  }
-  export interface SlackSendParams {
-    channel_id?: string;
-    thread_ts?: string;
-    text?: string;
-    attachments?: Attachment[];
-    blocks?: string;
-  }
-  export interface Attachment {
-    color?: string;
-    fallback?: string;
-    callback_id?: string;
-    id?: number;
-    author_id?: string;
-    author_name?: string;
-    author_sub_name?: string;
-    author_link?: string;
-    author_icon?: string;
-    title?: string;
-    title_link?: string;
-    pre_text?: string;
-    text?: string;
-    image_url?: string;
-    thumb_url?: string;
-    fields?: AttachmentField[];
-    actions?: AttachmentAction[];
-    footer?: string;
-    footer_icon?: string;
-  }
-  export interface AttachmentField {
-    title?: string;
-    value?: string;
-    short?: boolean;
-  }
-  export interface AttachmentAction {
-    name?: string;
-    text?: string;
-    style?: string;
-    type?: string;
-    value?: string;
-    data_source?: string;
-    url?: string;
-    options?: AttachmentActionOption[];
-    selected_options?: AttachmentActionOption[];
-    option_groups?: AttachmentActionOptionGroup[];
-    confirm?: AttachmentConfirm;
-  }
-  export interface AttachmentActionOption {
-    text?: string;
-    value?: string;
-    description?: string;
-  }
-  export interface AttachmentActionOptionGroup {
-    text?: string;
-    options?: AttachmentActionOption[];
-  }
-  export interface AttachmentConfirm {
-    title?: string;
-    text?: string;
-    ok_text?: string;
-    dissmiss_text?: string;
-  }
-  export interface SlackSendResponse {
-    ok?: boolean;
-    channel?: string;
-    ts?: string;
   }
 }
 export namespace platform {
