@@ -13,6 +13,7 @@ import "zone_group.proto";
 import "category.proto";
 import "payment_method.proto";
 import "interval.proto";
+import "store.proto";
 
 service DeliveryTypeService {
   rpc List(ListDeliveryTypeRequest) returns (ListDeliveryTypeResponse) {
@@ -125,6 +126,7 @@ message DeliveryType {
   repeated PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
   repeated CategoryRestriction             category_delivery_type_restrictions = 38;
   repeated Interval                        intervals = 39;
+  repeated StorePickup                     store_pickups = 40;
 }
 
 message CategoryRestriction {
@@ -135,6 +137,18 @@ message CategoryRestriction {
   bool         is_active = 5;
   string       created_at = 6;
   string       updated_at = 7;
+}
+
+message StorePickup {
+  int32             id = 1;
+  Store             store = 2;
+  int32             max_cells = 3;
+  int32             busy_cells = 4;
+  int32             free_cells = 5;
+  bool              is_active = 6;
+  bool              is_active_by_cells = 7;
+  string            created_at = 8;
+  string            updated_at = 9;
 }
 
 message PaymentMethodToDeliveryType {

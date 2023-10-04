@@ -36,7 +36,7 @@ var (
 )
 
 func request_PickupService_List_0(ctx context.Context, marshaler runtime.Marshaler, client PickupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListPickupRequest
+	var protoReq ListStoreDeliveryTypePickupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -52,7 +52,7 @@ func request_PickupService_List_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_PickupService_List_0(ctx context.Context, marshaler runtime.Marshaler, server PickupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListPickupRequest
+	var protoReq ListStoreDeliveryTypePickupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -68,7 +68,7 @@ func local_request_PickupService_List_0(ctx context.Context, marshaler runtime.M
 }
 
 func request_PickupService_Create_0(ctx context.Context, marshaler runtime.Marshaler, client PickupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreatePickupRequest
+	var protoReq CreateStoreDeliveryTypePickupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -85,7 +85,7 @@ func request_PickupService_Create_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_PickupService_Create_0(ctx context.Context, marshaler runtime.Marshaler, server PickupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreatePickupRequest
+	var protoReq CreateStoreDeliveryTypePickupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -102,7 +102,7 @@ func local_request_PickupService_Create_0(ctx context.Context, marshaler runtime
 }
 
 func request_PickupService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client PickupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickupId
+	var protoReq StoreDeliveryTypePickupId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -128,7 +128,7 @@ func request_PickupService_Get_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func local_request_PickupService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server PickupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickupId
+	var protoReq StoreDeliveryTypePickupId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -154,7 +154,7 @@ func local_request_PickupService_Get_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func request_PickupService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client PickupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Pickup
+	var protoReq StoreDeliveryTypePickup
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -188,7 +188,7 @@ func request_PickupService_Update_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_PickupService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server PickupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Pickup
+	var protoReq StoreDeliveryTypePickup
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -222,7 +222,7 @@ func local_request_PickupService_Update_0(ctx context.Context, marshaler runtime
 }
 
 func request_PickupService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client PickupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickupId
+	var protoReq StoreDeliveryTypePickupId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -248,7 +248,7 @@ func request_PickupService_Delete_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_PickupService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server PickupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickupId
+	var protoReq StoreDeliveryTypePickupId
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -278,7 +278,7 @@ var (
 )
 
 func request_PickupService_Suggest_0(ctx context.Context, marshaler runtime.Marshaler, client PickupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SuggestPickupRequest
+	var protoReq SuggestStoreDeliveryTypePickupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -294,7 +294,7 @@ func request_PickupService_Suggest_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_PickupService_Suggest_0(ctx context.Context, marshaler runtime.Marshaler, server PickupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SuggestPickupRequest
+	var protoReq SuggestStoreDeliveryTypePickupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -323,7 +323,7 @@ func RegisterPickupServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/List", runtime.WithHTTPPathPattern("/api/v1/pickup"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/List", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -348,7 +348,7 @@ func RegisterPickupServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Create", runtime.WithHTTPPathPattern("/api/v1/pickup"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Create", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -373,7 +373,7 @@ func RegisterPickupServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Get", runtime.WithHTTPPathPattern("/api/v1/pickup/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Get", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -398,7 +398,7 @@ func RegisterPickupServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Update", runtime.WithHTTPPathPattern("/api/v1/pickup/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Update", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -423,7 +423,7 @@ func RegisterPickupServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Delete", runtime.WithHTTPPathPattern("/api/v1/pickup/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Delete", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -448,7 +448,7 @@ func RegisterPickupServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Suggest", runtime.WithHTTPPathPattern("/api/v1/pickup/suggest"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.PickupService/Suggest", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/suggest"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -512,7 +512,7 @@ func RegisterPickupServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/List", runtime.WithHTTPPathPattern("/api/v1/pickup"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/List", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -534,7 +534,7 @@ func RegisterPickupServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Create", runtime.WithHTTPPathPattern("/api/v1/pickup"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Create", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -556,7 +556,7 @@ func RegisterPickupServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Get", runtime.WithHTTPPathPattern("/api/v1/pickup/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Get", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -578,7 +578,7 @@ func RegisterPickupServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Update", runtime.WithHTTPPathPattern("/api/v1/pickup/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Update", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -600,7 +600,7 @@ func RegisterPickupServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Delete", runtime.WithHTTPPathPattern("/api/v1/pickup/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Delete", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -622,7 +622,7 @@ func RegisterPickupServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Suggest", runtime.WithHTTPPathPattern("/api/v1/pickup/suggest"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.PickupService/Suggest", runtime.WithHTTPPathPattern("/api/v1/store-delivery-type-pickup/suggest"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -642,17 +642,17 @@ func RegisterPickupServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_PickupService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "pickup"}, ""))
+	pattern_PickupService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "store-delivery-type-pickup"}, ""))
 
-	pattern_PickupService_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "pickup"}, ""))
+	pattern_PickupService_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "store-delivery-type-pickup"}, ""))
 
-	pattern_PickupService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "pickup", "id"}, ""))
+	pattern_PickupService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "store-delivery-type-pickup", "id"}, ""))
 
-	pattern_PickupService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "pickup", "id"}, ""))
+	pattern_PickupService_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "store-delivery-type-pickup", "id"}, ""))
 
-	pattern_PickupService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "pickup", "id"}, ""))
+	pattern_PickupService_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "store-delivery-type-pickup", "id"}, ""))
 
-	pattern_PickupService_Suggest_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "pickup", "suggest"}, ""))
+	pattern_PickupService_Suggest_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "store-delivery-type-pickup", "suggest"}, ""))
 )
 
 var (

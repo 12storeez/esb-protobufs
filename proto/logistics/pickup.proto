@@ -11,79 +11,81 @@ import "delivery_type.proto";
 
 
 service PickupService {
-  rpc List(ListPickupRequest) returns (ListPickupResponse) {
+  rpc List(ListStoreDeliveryTypePickupRequest) returns (ListStoreDeliveryTypePickupResponse) {
     option (google.api.http) = {
-      get: "/api/v1/pickup"
+      get: "/api/v1/store-delivery-type-pickup"
     };
   }
 
-  rpc Create(CreatePickupRequest) returns (Pickup) {
+  rpc Create(CreateStoreDeliveryTypePickupRequest) returns (StoreDeliveryTypePickup) {
     option (google.api.http) = {
-      post: "/api/v1/pickup"
+      post: "/api/v1/store-delivery-type-pickup"
       body: "*"
     };
   }
 
-  rpc Get(PickupId) returns (Pickup) {
+  rpc Get(StoreDeliveryTypePickupId) returns (StoreDeliveryTypePickup) {
     option (google.api.http) = {
-      get: "/api/v1/pickup/{id}"
+      get: "/api/v1/store-delivery-type-pickup/{id}"
     };
   }
 
-  rpc Update(Pickup) returns (Pickup) {
+  rpc Update(StoreDeliveryTypePickup) returns (StoreDeliveryTypePickup) {
     option (google.api.http) = {
-      patch: "/api/v1/pickup/{id}"
+      patch: "/api/v1/store-delivery-type-pickup/{id}"
       body: "*"
     };
   }
 
-  rpc Delete(PickupId) returns (google.protobuf.Empty) {
+  rpc Delete(StoreDeliveryTypePickupId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/api/v1/pickup/{id}"
+      delete: "/api/v1/store-delivery-type-pickup/{id}"
     };
   }
 
-  rpc Suggest(SuggestPickupRequest) returns (SuggestPickupResponse) {
+  rpc Suggest(SuggestStoreDeliveryTypePickupRequest) returns (SuggestStoreDeliveryTypePickupResponse) {
     option (google.api.http) = {
-      get: "/api/v1/pickup/suggest"
+      get: "/api/v1/store-delivery-type-pickup/suggest"
     };
   }
 }
 
-message PickupId {
+message StoreDeliveryTypePickupId {
   int32 id = 1;
 }
 
-message CreatePickupRequest {
+message CreateStoreDeliveryTypePickupRequest {
   int32   store_code = 1;
   int32   delivery_type_id = 2;
   string  max_cells = 3;
 }
 
-message ListPickupRequest {
+message ListStoreDeliveryTypePickupRequest {
   int32   limit = 1;
   int32   offset = 2;
   string  search = 3;
   string  sort = 4;
 }
 
-message ListPickupResponse {
-  repeated Pickup  results = 1;
-  int32            total = 2;
+message ListStoreDeliveryTypePickupResponse {
+  repeated StoreDeliveryTypePickup  results = 1;
+  int32                             total = 2;
 }
 
-message Pickup {
+message StoreDeliveryTypePickup {
   int32             id = 1;
   Store             store = 2;
   DeliveryTypeShort delivery_type = 3;
   int32             max_cells = 4;
   int32             busy_cells = 5;
-  bool              is_active = 6;
-  string            created_at = 7;
-  string            updated_at = 8;
+  int32             free_cells = 6;
+  bool              is_active = 7;
+  bool              is_active_by_cells = 8;
+  string            created_at = 9;
+  string            updated_at = 10;
 }
 
-message UpdatePickup {
+message UpdateStoreDeliveryTypePickup {
   int32             id = 1;
   int32             store_code = 2;
   int32             delivery_type_id = 3;
@@ -92,18 +94,19 @@ message UpdatePickup {
   bool              is_active = 6;
 }
 
-message SuggestPickupRequest {
+message SuggestStoreDeliveryTypePickupRequest {
   int32  limit = 1;
   string search = 2;
 }
 
-message SuggestPickup {
+message SuggestStoreDeliveryTypePickup {
   int32  id = 1;
   string name = 2;
   bool   is_active = 3;
+  int32  store_code = 4;
 }
 
-message SuggestPickupResponse {
-  repeated SuggestPickup  results = 1;
-  int32                   total = 2;
+message SuggestStoreDeliveryTypePickupResponse {
+  repeated SuggestStoreDeliveryTypePickup   results = 1;
+  int32                                     total = 2;
 }
