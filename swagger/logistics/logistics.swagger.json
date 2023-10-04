@@ -42,13 +42,13 @@
       "name": "PaymentMethodService"
     },
     {
-      "name": "PickupService"
-    },
-    {
       "name": "PopupService"
     },
     {
       "name": "StoreService"
+    },
+    {
+      "name": "PickupService"
     },
     {
       "name": "TransportCompanyService"
@@ -5208,7 +5208,7 @@
             "$ref": "#/definitions/logisticsInterval"
           }
         },
-        "pickups": {
+        "storePickups": {
           "type": "array",
           "items": {
             "type": "object",
