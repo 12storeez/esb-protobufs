@@ -10,14 +10,14 @@ import "store.proto";
 import "delivery_type.proto";
 
 
-service PickupService {
+service StoreDeliveryTypePickupService {
   rpc List(ListStoreDeliveryTypePickupRequest) returns (ListStoreDeliveryTypePickupResponse) {
     option (google.api.http) = {
       get: "/api/v1/store-delivery-type-pickup"
     };
   }
 
-  rpc Create(CreateStoreDeliveryTypePickupRequest) returns (StoreDeliveryTypePickup) {
+  rpc Create(CreateStoreDeliveryTypePickup) returns (StoreDeliveryTypePickup) {
     option (google.api.http) = {
       post: "/api/v1/store-delivery-type-pickup"
       body: "*"
@@ -54,10 +54,11 @@ message StoreDeliveryTypePickupId {
   int32 id = 1;
 }
 
-message CreateStoreDeliveryTypePickupRequest {
+message CreateStoreDeliveryTypePickup {
   int32   store_code = 1;
   int32   delivery_type_id = 2;
-  string  max_cells = 3;
+  int32   max_cells = 3;
+  bool    is_active = 4;
 }
 
 message ListStoreDeliveryTypePickupRequest {
