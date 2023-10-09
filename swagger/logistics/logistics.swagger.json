@@ -48,7 +48,7 @@
       "name": "StoreService"
     },
     {
-      "name": "PickupService"
+      "name": "StoreDeliveryTypePickupService"
     },
     {
       "name": "TransportCompanyService"
@@ -2949,7 +2949,7 @@
     },
     "/api/v1/store-delivery-type-pickup": {
       "get": {
-        "operationId": "PickupService_List",
+        "operationId": "StoreDeliveryTypePickupService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2993,11 +2993,11 @@
           }
         ],
         "tags": [
-          "PickupService"
+          "StoreDeliveryTypePickupService"
         ]
       },
       "post": {
-        "operationId": "PickupService_Create",
+        "operationId": "StoreDeliveryTypePickupService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3018,18 +3018,18 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCreateStoreDeliveryTypePickupRequest"
+              "$ref": "#/definitions/logisticsCreateStoreDeliveryTypePickup"
             }
           }
         ],
         "tags": [
-          "PickupService"
+          "StoreDeliveryTypePickupService"
         ]
       }
     },
     "/api/v1/store-delivery-type-pickup/suggest": {
       "get": {
-        "operationId": "PickupService_Suggest",
+        "operationId": "StoreDeliveryTypePickupService_Suggest",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3060,13 +3060,13 @@
           }
         ],
         "tags": [
-          "PickupService"
+          "StoreDeliveryTypePickupService"
         ]
       }
     },
     "/api/v1/store-delivery-type-pickup/{id}": {
       "get": {
-        "operationId": "PickupService_Get",
+        "operationId": "StoreDeliveryTypePickupService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3091,11 +3091,11 @@
           }
         ],
         "tags": [
-          "PickupService"
+          "StoreDeliveryTypePickupService"
         ]
       },
       "delete": {
-        "operationId": "PickupService_Delete",
+        "operationId": "StoreDeliveryTypePickupService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3121,11 +3121,11 @@
           }
         ],
         "tags": [
-          "PickupService"
+          "StoreDeliveryTypePickupService"
         ]
       },
       "patch": {
-        "operationId": "PickupService_Update",
+        "operationId": "StoreDeliveryTypePickupService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3190,7 +3190,7 @@
           }
         ],
         "tags": [
-          "PickupService"
+          "StoreDeliveryTypePickupService"
         ]
       }
     },
@@ -4873,7 +4873,7 @@
         }
       }
     },
-    "logisticsCreateStoreDeliveryTypePickupRequest": {
+    "logisticsCreateStoreDeliveryTypePickup": {
       "type": "object",
       "properties": {
         "storeCode": {
@@ -4885,7 +4885,11 @@
           "format": "int32"
         },
         "maxCells": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
