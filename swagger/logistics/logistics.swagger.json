@@ -3155,11 +3155,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "store": {
-                  "$ref": "#/definitions/logisticsStore"
+                "storeCode": {
+                  "type": "integer",
+                  "format": "int32"
                 },
-                "deliveryType": {
-                  "$ref": "#/definitions/logisticsDeliveryTypeShort"
+                "deliveryTypeId": {
+                  "type": "integer",
+                  "format": "int32"
                 },
                 "maxCells": {
                   "type": "integer",
@@ -3169,21 +3171,8 @@
                   "type": "integer",
                   "format": "int32"
                 },
-                "freeCells": {
-                  "type": "integer",
-                  "format": "int32"
-                },
                 "isActive": {
                   "type": "boolean"
-                },
-                "isActiveByCells": {
-                  "type": "boolean"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
                 }
               }
             }
