@@ -30,7 +30,7 @@ service StoreDeliveryTypePickupService {
     };
   }
 
-  rpc Update(StoreDeliveryTypePickup) returns (StoreDeliveryTypePickup) {
+  rpc Update(UpdateStoreDeliveryTypePickup) returns (StoreDeliveryTypePickup) {
     option (google.api.http) = {
       patch: "/api/v1/store-delivery-type-pickup/{id}"
       body: "*"

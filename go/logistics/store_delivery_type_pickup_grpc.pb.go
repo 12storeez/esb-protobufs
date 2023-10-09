@@ -35,7 +35,7 @@ type StoreDeliveryTypePickupServiceClient interface {
 	List(ctx context.Context, in *ListStoreDeliveryTypePickupRequest, opts ...grpc.CallOption) (*ListStoreDeliveryTypePickupResponse, error)
 	Create(ctx context.Context, in *CreateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error)
 	Get(ctx context.Context, in *StoreDeliveryTypePickupId, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error)
-	Update(ctx context.Context, in *StoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error)
+	Update(ctx context.Context, in *UpdateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error)
 	Delete(ctx context.Context, in *StoreDeliveryTypePickupId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Suggest(ctx context.Context, in *SuggestStoreDeliveryTypePickupRequest, opts ...grpc.CallOption) (*SuggestStoreDeliveryTypePickupResponse, error)
 }
@@ -75,7 +75,7 @@ func (c *storeDeliveryTypePickupServiceClient) Get(ctx context.Context, in *Stor
 	return out, nil
 }
 
-func (c *storeDeliveryTypePickupServiceClient) Update(ctx context.Context, in *StoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error) {
+func (c *storeDeliveryTypePickupServiceClient) Update(ctx context.Context, in *UpdateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error) {
 	out := new(StoreDeliveryTypePickup)
 	err := c.cc.Invoke(ctx, StoreDeliveryTypePickupService_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -109,7 +109,7 @@ type StoreDeliveryTypePickupServiceServer interface {
 	List(context.Context, *ListStoreDeliveryTypePickupRequest) (*ListStoreDeliveryTypePickupResponse, error)
 	Create(context.Context, *CreateStoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error)
 	Get(context.Context, *StoreDeliveryTypePickupId) (*StoreDeliveryTypePickup, error)
-	Update(context.Context, *StoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error)
+	Update(context.Context, *UpdateStoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error)
 	Delete(context.Context, *StoreDeliveryTypePickupId) (*emptypb.Empty, error)
 	Suggest(context.Context, *SuggestStoreDeliveryTypePickupRequest) (*SuggestStoreDeliveryTypePickupResponse, error)
 }
@@ -127,7 +127,7 @@ func (UnimplementedStoreDeliveryTypePickupServiceServer) Create(context.Context,
 func (UnimplementedStoreDeliveryTypePickupServiceServer) Get(context.Context, *StoreDeliveryTypePickupId) (*StoreDeliveryTypePickup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedStoreDeliveryTypePickupServiceServer) Update(context.Context, *StoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error) {
+func (UnimplementedStoreDeliveryTypePickupServiceServer) Update(context.Context, *UpdateStoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedStoreDeliveryTypePickupServiceServer) Delete(context.Context, *StoreDeliveryTypePickupId) (*emptypb.Empty, error) {
@@ -203,7 +203,7 @@ func _StoreDeliveryTypePickupService_Get_Handler(srv interface{}, ctx context.Co
 }
 
 func _StoreDeliveryTypePickupService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StoreDeliveryTypePickup)
+	in := new(UpdateStoreDeliveryTypePickup)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -215,7 +215,7 @@ func _StoreDeliveryTypePickupService_Update_Handler(srv interface{}, ctx context
 		FullMethod: StoreDeliveryTypePickupService_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StoreDeliveryTypePickupServiceServer).Update(ctx, req.(*StoreDeliveryTypePickup))
+		return srv.(StoreDeliveryTypePickupServiceServer).Update(ctx, req.(*UpdateStoreDeliveryTypePickup))
 	}
 	return interceptor(ctx, in, info, handler)
 }

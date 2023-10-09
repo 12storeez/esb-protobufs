@@ -154,7 +154,7 @@ func local_request_StoreDeliveryTypePickupService_Get_0(ctx context.Context, mar
 }
 
 func request_StoreDeliveryTypePickupService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client StoreDeliveryTypePickupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StoreDeliveryTypePickup
+	var protoReq UpdateStoreDeliveryTypePickup
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -188,7 +188,7 @@ func request_StoreDeliveryTypePickupService_Update_0(ctx context.Context, marsha
 }
 
 func local_request_StoreDeliveryTypePickupService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server StoreDeliveryTypePickupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq StoreDeliveryTypePickup
+	var protoReq UpdateStoreDeliveryTypePickup
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
