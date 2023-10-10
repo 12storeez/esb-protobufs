@@ -3167,10 +3167,6 @@
                   "type": "integer",
                   "format": "int32"
                 },
-                "busyCells": {
-                  "type": "integer",
-                  "format": "int32"
-                },
                 "isActive": {
                   "type": "boolean"
                 }
