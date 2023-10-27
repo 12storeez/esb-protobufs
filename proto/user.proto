@@ -10,7 +10,6 @@ service user {
   rpc Get(GetRequest) returns (GetResponse) {}
   rpc GetByToken(GetByTokenRequest) returns (GetResponse) {}
   rpc GetList(GetListRequest) returns (GetListResponse) {}
-  rpc GetPassword(GetPasswordRequest) returns (GetPasswordResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
   // @TODO: оставить отдельными методами? Или оставить в Update?
 //  rpc Block(BlockRequest) returns (BlockResponse) {}
@@ -120,23 +119,6 @@ message GetListResponse {
   int64             code = 3;
   repeated Error    errors = 4;
   repeated User     data = 5;
-}
-
-// GetPassword
-message GetPasswordRequest {
-  string id = 1;
-}
-
-message GetPasswordResponse {
-  string            status = 1;
-  string            message = 2;
-  int64             code = 3;
-  repeated Error    errors = 4;
-  PasswordData      data = 5;
-}
-
-message PasswordData {
-  string encrypted_password = 1;
 }
 
 // Delete

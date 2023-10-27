@@ -1,0 +1,143 @@
+syntax = "proto3";
+option go_package = "go/nomenclature";
+// Package product describes the gRPC interface of the product-go -ms microservice.
+// Warning! it`s not equal internal/products
+package nomenclature;
+// Pagination for Request to ms
+message PaginationRequest {
+  int64 limit = 1;
+  int64 offset = 2;
+}
+
+// Pagination for Response to ms
+message PaginationResponse {
+  int64 limit = 1;
+  int64 offset = 2;
+  int64 total = 3;
+}
+
+// Error
+message Error {
+  string target = 1;
+  int64 code = 2;
+  string message = 3;
+}
+
+// Filters
+//message GetListFilters {
+//  repeated string lexems = 1;
+//  ... maybe filer - lexem processor ???
+//}
+
+message NomenclatureDescription {
+  string id = 1;
+  string title_ru = 2;
+  string title_en = 3;
+  // Поле используется только для размеров Size
+  bool is_sample_sale = 4;
+}
+
+message SuperModel {
+  string id = 1;
+  string title_ru = 2;
+  string title_en = 3;
+  bool is_sample_sale = 4;
+  string merging_code = 5;
+}
+
+message ColorDescription {
+  string id = 1;
+  string title_ru = 2;
+  string title_en = 3;
+  bool is_sample_sale = 4;
+  string hex = 5;
+}
+
+message Color {
+  string id = 1;
+  string title_ru = 2;
+  string title_en = 3;
+  bool is_sample_sale = 4;
+  string hex = 5;
+  repeated ColorDescription color_groups = 6;
+}
+
+message Capsules {
+  string id = 1;
+  string title = 2;
+  string parent_season = 3;
+}
+
+message Alt {
+  string source = 1;
+  string barcode = 2;
+}
+
+message Price {
+  int64 currency_code = 1;
+  string currency_iso = 2;
+  int64 price = 3;
+  int64 price_before_discount = 4;
+  repeated int64 store_code = 5;
+}
+
+message Size {
+  string barcode = 1;
+  NomenclatureDescription size = 2;
+  repeated Alt alts = 3;
+  repeated Price prices = 4;
+}
+
+message Nomenclature {
+  string id = 1;
+  string article = 2;
+  string title_ru = 3;
+  bool is_active = 4;
+  string start_online_sale_date = 5;
+  string start_offline_sale_date = 6;
+  string category = 7;
+  string gender = 8;
+  string url = 9;
+  NomenclatureDescription fabric = 10;
+  NomenclatureDescription family = 11;
+  NomenclatureDescription color_model = 12;
+  SuperModel super_model = 13;
+  Color color = 14;
+  Capsules capsules = 16;
+  bool is_ecological = 17;
+  string pilling_grade = 18;
+  repeated Size sizes = 15;
+}
+
+message GetListRequest {
+  // GetListFilters filters = 1;
+  reserved 1;
+  reserved "filters";
+  PaginationRequest pagination = 2;
+}
+
+message GetListResponse {
+  string status = 1;
+  string message = 2;
+  PaginationResponse pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated Nomenclature data = 6;
+}
+
+message GetByArticleRequest {
+  int32 article = 1;
+}
+
+message GetByArticleResponse {
+  string status = 1;
+  string message = 2;
+  Nomenclature data = 4;
+  int64 code = 5;
+  repeated Error errors = 6;
+}
+
+service NomenclatureService {
+  rpc GetList (GetListRequest) returns (GetListResponse);
+  rpc GetByArticle (GetByArticleRequest) returns (GetByArticleResponse);
+}
