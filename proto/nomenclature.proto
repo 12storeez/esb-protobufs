@@ -126,7 +126,7 @@ message GetListResponse {
 }
 
 message GetByArticleRequest {
-  int32 article = 1;
+  string article = 1;
 }
 
 message GetByArticleResponse {
