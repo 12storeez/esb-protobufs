@@ -19,13 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	User_Create_FullMethodName      = "/user.user/Create"
-	User_Update_FullMethodName      = "/user.user/Update"
-	User_Get_FullMethodName         = "/user.user/Get"
-	User_GetByToken_FullMethodName  = "/user.user/GetByToken"
-	User_GetList_FullMethodName     = "/user.user/GetList"
-	User_GetPassword_FullMethodName = "/user.user/GetPassword"
-	User_Delete_FullMethodName      = "/user.user/Delete"
+	User_Create_FullMethodName     = "/user.user/Create"
+	User_Update_FullMethodName     = "/user.user/Update"
+	User_Get_FullMethodName        = "/user.user/Get"
+	User_GetByToken_FullMethodName = "/user.user/GetByToken"
+	User_GetList_FullMethodName    = "/user.user/GetList"
+	User_Delete_FullMethodName     = "/user.user/Delete"
 )
 
 // UserClient is the client API for User service.
@@ -37,7 +36,6 @@ type UserClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetByToken(ctx context.Context, in *GetByTokenRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
-	GetPassword(ctx context.Context, in *GetPasswordRequest, opts ...grpc.CallOption) (*GetPasswordResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
@@ -94,15 +92,6 @@ func (c *userClient) GetList(ctx context.Context, in *GetListRequest, opts ...gr
 	return out, nil
 }
 
-func (c *userClient) GetPassword(ctx context.Context, in *GetPasswordRequest, opts ...grpc.CallOption) (*GetPasswordResponse, error) {
-	out := new(GetPasswordResponse)
-	err := c.cc.Invoke(ctx, User_GetPassword_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *userClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
 	err := c.cc.Invoke(ctx, User_Delete_FullMethodName, in, out, opts...)
@@ -121,7 +110,6 @@ type UserServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
-	GetPassword(context.Context, *GetPasswordRequest) (*GetPasswordResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 }
 
@@ -143,9 +131,6 @@ func (UnimplementedUserServer) GetByToken(context.Context, *GetByTokenRequest) (
 }
 func (UnimplementedUserServer) GetList(context.Context, *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
-}
-func (UnimplementedUserServer) GetPassword(context.Context, *GetPasswordRequest) (*GetPasswordResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
 func (UnimplementedUserServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -252,24 +237,6 @@ func _User_GetList_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPasswordRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).GetPassword(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_GetPassword_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetPassword(ctx, req.(*GetPasswordRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _User_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -314,10 +281,6 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _User_GetList_Handler,
-		},
-		{
-			MethodName: "GetPassword",
-			Handler:    _User_GetPassword_Handler,
 		},
 		{
 			MethodName: "Delete",
