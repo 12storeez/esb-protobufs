@@ -28,20 +28,23 @@ message CreateRequest {
   string last_name = 7;
   string birthdate = 8;
   string gender = 9;
+  string create_source = 10;
   // клиентские поля
-  int32  store_code = 10;
-  int32  rcrm_id = 11;
-  string clothing_size = 12;
-  string shoe_size = 13;
-  string country = 14;
-  string city = 15;
-  string region = 16;
+  int32  store_code = 11;
+  int32  rcrm_id = 12;
+  string clothing_size = 13;
+  string shoe_size = 14;
+  string country = 15;
+  string city = 16;
+  string region = 17;
+  bool   is_vic = 18;
+  bool   is_personal_policy_accepted = 19;
   // поля внутренних пользователей
-  string department = 17;
-  string position = 18;
-  int64  site_id = 19;
-  string onec_id = 20;
-  string wms_id = 21;
+  string department = 20;
+  string position = 21;
+  int64  site_id = 22;
+  string onec_id = 23;
+  string wms_id = 24;
 }
 
 message CreateResponse {
@@ -65,20 +68,23 @@ message User {
   optional string last_name = 8;
   optional string birthdate = 9;
   optional string gender = 10;
+  optional string create_source = 11;
   // клиентские поля
-  optional int32  store_code = 11;
+  optional int32  store_code = 12;
   optional int32  rcrm_id = 13;
-  optional string clothing_size = 12;
-  optional string shoe_size = 14;
-  optional string country = 15;
-  optional string city = 16;
-  optional string region = 17;
+  optional string clothing_size = 14;
+  optional string shoe_size = 15;
+  optional string country = 16;
+  optional string city = 17;
+  optional string region = 18;
+  optional bool   is_vic = 19;
+  optional bool   is_personal_policy_accepted = 20;
   // поля внутренних пользователей
-  optional string department = 18;
-  optional string position = 19;
-  optional int64  site_id = 20;
-  optional string onec_id = 21;
-  optional string wms_id = 22;
+  optional string department = 21;
+  optional string position = 22;
+  optional int64  site_id = 23;
+  optional string onec_id = 24;
+  optional string wms_id = 25;
 }
 
 message UpdateResponse {
@@ -140,11 +146,16 @@ message Error {
   string message = 3;
 }
 
+enum UserType {
+  CLIENT = 0;
+  EMPLOYEE = 1;
+}
+
 // Filters
 message GetListFilters {
-  string updated_from = 1;
-  string updated_to   = 2;
-  string type         = 3;
+  string   updated_from = 1;
+  string   updated_to   = 2;
+  UserType type         = 3;
 }
 
 // Pagination
