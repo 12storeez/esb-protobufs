@@ -70,7 +70,7 @@ message Catalog {
     string            product_name = 4;
     string            url = 5;
     bool              is_active = 6;
-    int32             article = 7;
+    string            article = 7;
     string            size = 8;
     string            color = 9;
     string            fabric = 10;
@@ -92,6 +92,7 @@ message Catalog {
     bool              is_ecological = 26;
     string            super_model_merging_code = 27;
     string            pilling_grade = 28;
+    bool              is_low_quality = 29;
 }
 
 message Stock {
