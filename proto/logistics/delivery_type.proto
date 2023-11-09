@@ -232,6 +232,7 @@ message UpdateCategoryRestriction {
 message SuggestDeliveryTypeRequest {
   int32  limit = 1;
   string search = 2;
+  FilterDeliveryType filter = 3;
 }
 
 message SuggestDeliveryType {
@@ -244,3 +245,8 @@ message SuggestDeliveryTypeResponse {
   repeated SuggestDeliveryType  results = 1;
   int32                         total = 2;
 }
+
+message FilterDeliveryType {
+  bool is_store_pickup = 1;
+}
+
