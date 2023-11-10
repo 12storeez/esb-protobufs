@@ -1030,6 +1030,12 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "filter.isStorePickup",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -5224,6 +5230,14 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsFilterDeliveryType": {
+      "type": "object",
+      "properties": {
+        "isStorePickup": {
+          "type": "boolean"
         }
       }
     },
