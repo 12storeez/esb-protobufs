@@ -29,6 +29,7 @@ const (
 	Geo_SuggestAddress_FullMethodName        = "/geo.geo/SuggestAddress"
 	Geo_AddressDetails_FullMethodName        = "/geo.geo/AddressDetails"
 	Geo_AddressDetailsByGeoID_FullMethodName = "/geo.geo/AddressDetailsByGeoID"
+	Geo_CountryDetailsByPhone_FullMethodName = "/geo.geo/CountryDetailsByPhone"
 )
 
 // GeoClient is the client API for Geo service.
@@ -56,6 +57,8 @@ type GeoClient interface {
 	AddressDetails(ctx context.Context, in *AddressDetailsParams, opts ...grpc.CallOption) (*Address, error)
 	// Детали адреса по GeoID
 	AddressDetailsByGeoID(ctx context.Context, in *AddressDetailsByGeoIDParams, opts ...grpc.CallOption) (*Address, error)
+	// Детали страны по номеру телефона
+	CountryDetailsByPhone(ctx context.Context, in *CountryDetailsByPhoneRequest, opts ...grpc.CallOption) (*CountryDetailsByPhoneResponse, error)
 }
 
 type geoClient struct {
@@ -156,6 +159,15 @@ func (c *geoClient) AddressDetailsByGeoID(ctx context.Context, in *AddressDetail
 	return out, nil
 }
 
+func (c *geoClient) CountryDetailsByPhone(ctx context.Context, in *CountryDetailsByPhoneRequest, opts ...grpc.CallOption) (*CountryDetailsByPhoneResponse, error) {
+	out := new(CountryDetailsByPhoneResponse)
+	err := c.cc.Invoke(ctx, Geo_CountryDetailsByPhone_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GeoServer is the server API for Geo service.
 // All implementations should embed UnimplementedGeoServer
 // for forward compatibility
@@ -181,6 +193,8 @@ type GeoServer interface {
 	AddressDetails(context.Context, *AddressDetailsParams) (*Address, error)
 	// Детали адреса по GeoID
 	AddressDetailsByGeoID(context.Context, *AddressDetailsByGeoIDParams) (*Address, error)
+	// Детали страны по номеру телефона
+	CountryDetailsByPhone(context.Context, *CountryDetailsByPhoneRequest) (*CountryDetailsByPhoneResponse, error)
 }
 
 // UnimplementedGeoServer should be embedded to have forward compatible implementations.
@@ -216,6 +230,9 @@ func (UnimplementedGeoServer) AddressDetails(context.Context, *AddressDetailsPar
 }
 func (UnimplementedGeoServer) AddressDetailsByGeoID(context.Context, *AddressDetailsByGeoIDParams) (*Address, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddressDetailsByGeoID not implemented")
+}
+func (UnimplementedGeoServer) CountryDetailsByPhone(context.Context, *CountryDetailsByPhoneRequest) (*CountryDetailsByPhoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountryDetailsByPhone not implemented")
 }
 
 // UnsafeGeoServer may be embedded to opt out of forward compatibility for this service.
@@ -409,6 +426,24 @@ func _Geo_AddressDetailsByGeoID_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Geo_CountryDetailsByPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountryDetailsByPhoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeoServer).CountryDetailsByPhone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Geo_CountryDetailsByPhone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeoServer).CountryDetailsByPhone(ctx, req.(*CountryDetailsByPhoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Geo_ServiceDesc is the grpc.ServiceDesc for Geo service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -455,6 +490,10 @@ var Geo_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddressDetailsByGeoID",
 			Handler:    _Geo_AddressDetailsByGeoID_Handler,
+		},
+		{
+			MethodName: "CountryDetailsByPhone",
+			Handler:    _Geo_CountryDetailsByPhone_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
