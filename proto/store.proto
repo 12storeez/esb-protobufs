@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+option go_package = "go/store";
+
+package store;
+
+service StoreService {
+  rpc GetList (GetListRequest) returns (GetListResponse) {
+  }
+  rpc GetByStoreCode (GetByStoreCodeRequest) returns (GetByStoreCodeResponse) {
+  }
+}
+
+message Pagination {
+  int64 limit = 1;
+  int64 offset = 2;
+  int64 total = 3;
+}
+
+message Filters {}
+
+message Error {
+  string target = 1;
+  int64 code = 2;
+  string message = 3;
+}
+
+message GetListRequest {
+  Pagination pagination = 1;
+  Filters    filters = 2;
+}
+
+message GetListResponse {
+  string status = 1;
+  string message = 2;
+  Pagination pagination = 3;
+  repeated Store data = 4;
+  int64 code = 5;
+  repeated Error errors = 6;
+}
+
+message GetByStoreCodeRequest {
+  int32 store_code = 1;
+}
+
+message GetByStoreCodeResponse {
+  string status = 1;
+  string message = 2;
+  Store data = 4;
+  int64 code = 5;
+  repeated Error errors = 6;
+}
+
+message Store {
+  int32  store_code = 1;
+  string created_at = 2;
+  string updated_at = 3;
+  string title_ru = 4;
+  string short_title_ru = 5;
+  string title_en = 6;
+  string short_title_en = 7;
+  string address = 8;
+  string short_address = 9;
+  string phone = 10;
+  string geo = 11;
+  int64  countmax_id = 12;
+  string city = 13;
+  string country = 14;
+  string country_iso_code = 15;
+  string schedule = 16;
+  string picture_url = 17;
+  bool   is_active = 18;
+  bool   is_visible = 19;
+  string cluster = 20;
+  string postal = 21;
+  string street = 22;
+  string house = 23;
+  string housing = 24;
+  string floor = 25;
+}
