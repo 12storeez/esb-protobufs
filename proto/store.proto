@@ -5,10 +5,10 @@ option go_package = "go/store";
 package store;
 
 service StoreService {
-  rpc GetList (GetListRequest) returns (GetListResponse) {
-  }
-  rpc GetByStoreCode (GetByStoreCodeRequest) returns (GetByStoreCodeResponse) {
-  }
+  rpc Create (Store) returns (StoreResponse) {}
+  rpc UpdateByStoreCode (Store) returns (StoreResponse) {}
+  rpc GetList (GetListRequest) returns (GetListResponse) {}
+  rpc GetByStoreCode (GetByStoreCodeRequest) returns (StoreResponse) {}
 }
 
 message Pagination {
@@ -43,7 +43,7 @@ message GetByStoreCodeRequest {
   int32 store_code = 1;
 }
 
-message GetByStoreCodeResponse {
+message StoreResponse {
   string status = 1;
   string message = 2;
   Store data = 4;
@@ -53,28 +53,30 @@ message GetByStoreCodeResponse {
 
 message Store {
   int32  store_code = 1;
-  string created_at = 2;
-  string updated_at = 3;
-  string title_ru = 4;
-  string short_title_ru = 5;
-  string title_en = 6;
-  string short_title_en = 7;
-  string address = 8;
-  string short_address = 9;
-  string phone = 10;
-  string geo = 11;
-  int64  countmax_id = 12;
-  string city = 13;
-  string country = 14;
-  string country_iso_code = 15;
-  string schedule = 16;
-  string picture_url = 17;
-  bool   is_active = 18;
-  bool   is_visible = 19;
-  string cluster = 20;
-  string postal = 21;
-  string street = 22;
-  string house = 23;
-  string housing = 24;
-  string floor = 25;
+  // помещение
+  reserved 2;
+  string created_at = 3;
+  string updated_at = 4;
+  string title_ru = 5;
+  string short_title_ru = 6;
+  string title_en = 7;
+  string short_title_en = 8;
+  string address = 9;
+  string short_address = 10;
+  string phone = 11;
+  string geo = 12;
+  int64  countmax_id = 13;
+  string city = 14;
+  string country = 15;
+  string country_iso_code = 16;
+  string schedule = 17;
+  string picture_url = 18;
+  bool   is_active = 19;
+  bool   is_visible = 20;
+  string cluster = 21;
+  string postal = 22;
+  string street = 23;
+  string house = 24;
+  string housing = 25;
+  string floor = 26;
 }
