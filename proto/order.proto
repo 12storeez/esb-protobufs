@@ -1,32 +1,14 @@
 syntax = "proto3";
-option go_package = "go/order";
-
-// import "common/request.proto";
-// import "common/response.proto";
-
 package orders;
 
-// Pagination for Request to ms
-message PaginationRequest {
-  int64 limit = 1;
-  int64 offset = 2;
+import "proto/common/common.proto";
+
+option go_package = "go/order";
+
+message ListRequest {
+    uint32 limit = 1;
+    uint32 offset = 2;
 }
-
-// Pagination for Response to ms
-message PaginationResponse {
-  int64 limit = 1;
-  int64 offset = 2;
-  int64 total = 3;
-}
-
-// Error
-message Error {
-  string target = 1;
-  int64 code = 2;
-  string message = 3;
-}
-
-
 
 message PositionStatus {
   int64 id = 1;
@@ -145,6 +127,11 @@ enum ForBloggerType {
   blogger_type_top2 = 5;
 }
 
+enum PVZProvider {
+  boxberry = 0;
+  lamoda = 1;
+}
+
 message Order {
   int64 id = 1;
   string created_at = 2;
@@ -183,45 +170,46 @@ message Order {
   optional string delivery_track_number = 35;
   optional string delivery_comment = 36;
   optional string pvz_provider_id = 37;
-  optional string geo_id_type = 38;
-  optional string full_address = 39;
-  optional string full_address_id = 40;
-  optional string country_iso_code = 41;
-  optional string region = 42;
-  optional string region_id = 43;
-  optional string city = 44;
-  optional string city_id = 45;
-  optional string street = 46;
-  optional string street_id = 47;
-  optional string house = 48;
-  optional string housing = 49;
-  optional string building = 50;
-  optional string entrance = 51;
-  optional string floor = 52;
-  optional string flat = 53;
-  optional string postal_code = 54;
-  optional string recipient_last_name = 55;
-  optional string recipient_phone = 56;
-  optional string recipient_email = 57;
-  optional string recipient_comment = 58;
-  optional string manager_comment = 59;
-  optional int64 manager_id = 60;
-  optional string manager_processing_reason = 61;
-  optional string return_delivery_tk = 62;
-  optional string return_delivery_method = 63;
-  optional string return_money = 64;
-  optional int64 return_store = 65;
-  optional string return_reason = 66;
-  optional string cancel_reason = 67;
-  optional string order_method = 68;
-  optional string last_change_source = 69;
-  int64 version = 70;
-  optional string seller_1s_guid = 71;
-  optional string seller_store_id = 72;
-  optional string seller_user_id = 73;
-  optional string seller_name = 74;
-  optional string org = 75;
-  optional int64 store_code = 76;
+  optional PVZProvider pvz_provider = 38;
+  optional string geo_id_type = 39;
+  optional string full_address = 40;
+  optional string full_address_id = 41;
+  optional string country_iso_code = 42;
+  optional string region = 43;
+  optional string region_id = 44;
+  optional string city = 45;
+  optional string city_id = 46;
+  optional string street = 47;
+  optional string street_id = 48;
+  optional string house = 49;
+  optional string housing = 50;
+  optional string building = 51;
+  optional string entrance = 52;
+  optional string floor = 53;
+  optional string flat = 54;
+  optional string postal_code = 55;
+  optional string recipient_last_name = 56;
+  optional string recipient_phone = 57;
+  optional string recipient_email = 58;
+  optional string recipient_comment = 59;
+  optional string manager_comment = 60;
+  optional int64 manager_id = 61;
+  optional string manager_processing_reason = 62;
+  optional string return_delivery_tk = 63;
+  optional string return_delivery_method = 64;
+  optional string return_money = 65;
+  optional int64 return_store = 66;
+  optional string return_reason = 67;
+  optional string cancel_reason = 68;
+  optional string order_method = 69;
+  optional string last_change_source = 70;
+  int64 version = 71;
+  optional string seller_1s_guid = 72;
+  optional string seller_store_id = 73;
+  optional string seller_user_id = 74;
+  optional string seller_name = 75;
+  optional string org = 76;
+  optional int64 store_code = 77;
   optional string storage_expired_at = 78;
   bool is_increased_storage_expired_at = 79;
   bool is_dismantle = 80;
@@ -282,15 +270,15 @@ message GetListOutBoxRequest {
   reserved 1;
   reserved "filters";
   bool need_orders = 2;
-  PaginationRequest pagination = 3;
+  ListRequest pagination = 3;
 }
 
 message GetListOutBoxResponse {
   string status = 1;
   string message = 2;
-  PaginationResponse pagination = 3;
+  app.grpc.common.Paginate pagination = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
   repeated Outbox data = 6;
 }
 
@@ -303,7 +291,7 @@ message GetByIDOutBoxResponse {
   string message = 2;
   Outbox data = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
 }
 
 message SetByIDOutboxBodyRequest {
@@ -315,7 +303,7 @@ message SetByIDOutboxBodyResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
-  repeated Error errors = 4;
+  repeated app.grpc.common.Error errors = 4;
 }
 
 message DeleteByIDOutboxRequest {
@@ -326,7 +314,7 @@ message DeleteByIDOutboxResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
-  repeated Error errors = 4;
+  repeated app.grpc.common.Error errors = 4;
 }
 
 message GetListOrderHistoryRequest {
@@ -335,15 +323,15 @@ message GetListOrderHistoryRequest {
   reserved "filters";
   bool need_orders = 2;
   bool need_positions = 3;
-  PaginationRequest pagination = 4;
+  ListRequest pagination = 4;
 }
 
 message GetListOrderHistoryResponse {
   string status = 1;
   string message = 2;
-  PaginationResponse pagination = 3;
+  app.grpc.common.Paginate pagination = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
   repeated OrderHistory data = 6;
 }
 
@@ -356,7 +344,7 @@ message GetByIDOrderHistoryResponse {
   string message = 2;
   OrderHistory data = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
 }
 
 message GetListPositionHistoryRequest {
@@ -364,15 +352,15 @@ message GetListPositionHistoryRequest {
   reserved 1;
   reserved "filters";
   bool need_positions = 2;
-  PaginationRequest pagination = 3;
+  ListRequest pagination = 3;
 }
 
 message GetListPositionHistoryResponse {
   string status = 1;
   string message = 2;
-  PaginationResponse pagination = 3;
+  app.grpc.common.Paginate pagination = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
   repeated PositionHistory data = 6;
 }
 
@@ -385,7 +373,7 @@ message GetByIDPositionHistoryResponse {
   string message = 2;
   PositionHistory data = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
 }
 
 message GetListOrderRequest {
@@ -393,15 +381,15 @@ message GetListOrderRequest {
   reserved 1;
   reserved "filters";
   bool need_positions = 2;
-  PaginationRequest pagination = 3;
+  ListRequest pagination = 3;
 }
 
 message GetListOrderResponse {
   string status = 1;
   string message = 2;
-  PaginationResponse pagination = 3;
+  app.grpc.common.Paginate pagination = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
   repeated Order data = 6;
 }
 
@@ -414,7 +402,7 @@ message GetByIDOrderResponse {
   string message = 2;
   Order data = 3;
   int64 code = 4;
-  repeated Error errors = 5;
+  repeated app.grpc.common.Error errors = 5;
 }
 
 service OrderService{
