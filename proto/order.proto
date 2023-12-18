@@ -1,13 +1,23 @@
 syntax = "proto3";
 package orders;
 
-import "proto/common/common.proto";
-
 option go_package = "go/order";
 
 message ListRequest {
-    uint32 limit = 1;
-    uint32 offset = 2;
+  uint32 limit = 1;
+  uint32 offset = 2;
+}
+
+message Paginate {
+  uint32 limit = 1;
+  uint32 offset = 2;
+  uint32 total = 3;
+}
+
+message Error {
+  string target = 1;
+  sint32 code = 2;
+  string message = 3;
 }
 
 message PositionStatus {
@@ -276,9 +286,9 @@ message GetListOutBoxRequest {
 message GetListOutBoxResponse {
   string status = 1;
   string message = 2;
-  app.grpc.common.Paginate pagination = 3;
+  Paginate pagination = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
   repeated Outbox data = 6;
 }
 
@@ -291,7 +301,7 @@ message GetByIDOutBoxResponse {
   string message = 2;
   Outbox data = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
 }
 
 message SetByIDOutboxBodyRequest {
@@ -303,7 +313,7 @@ message SetByIDOutboxBodyResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
-  repeated app.grpc.common.Error errors = 4;
+  repeated Error errors = 4;
 }
 
 message DeleteByIDOutboxRequest {
@@ -314,7 +324,7 @@ message DeleteByIDOutboxResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
-  repeated app.grpc.common.Error errors = 4;
+  repeated Error errors = 4;
 }
 
 message GetListOrderHistoryRequest {
@@ -329,9 +339,9 @@ message GetListOrderHistoryRequest {
 message GetListOrderHistoryResponse {
   string status = 1;
   string message = 2;
-  app.grpc.common.Paginate pagination = 3;
+  Paginate pagination = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
   repeated OrderHistory data = 6;
 }
 
@@ -344,7 +354,7 @@ message GetByIDOrderHistoryResponse {
   string message = 2;
   OrderHistory data = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
 }
 
 message GetListPositionHistoryRequest {
@@ -358,9 +368,9 @@ message GetListPositionHistoryRequest {
 message GetListPositionHistoryResponse {
   string status = 1;
   string message = 2;
-  app.grpc.common.Paginate pagination = 3;
+  Paginate pagination = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
   repeated PositionHistory data = 6;
 }
 
@@ -373,7 +383,7 @@ message GetByIDPositionHistoryResponse {
   string message = 2;
   PositionHistory data = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
 }
 
 message GetListOrderRequest {
@@ -387,9 +397,9 @@ message GetListOrderRequest {
 message GetListOrderResponse {
   string status = 1;
   string message = 2;
-  app.grpc.common.Paginate pagination = 3;
+  Paginate pagination = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
   repeated Order data = 6;
 }
 
@@ -402,7 +412,7 @@ message GetByIDOrderResponse {
   string message = 2;
   Order data = 3;
   int64 code = 4;
-  repeated app.grpc.common.Error errors = 5;
+  repeated Error errors = 5;
 }
 
 service OrderService{
