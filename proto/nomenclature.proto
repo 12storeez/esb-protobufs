@@ -109,6 +109,53 @@ message Nomenclature {
   repeated Size sizes = 15;
 }
 
+
+message PhotoModel {
+  int64 id = 1;
+  string name = 2;
+  int32 growth = 3;
+  int32 bust = 4;
+  int32 waist = 5;
+  int32 hips = 6;
+  bool is_model_xl = 7;
+  string image_files = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message PhotoModelWithoutID {
+  string name = 1;
+  int32 growth = 2;
+  int32 bust = 3;
+  int32 waist = 4;
+  int32 hips = 5;
+  bool is_model_xl = 6;
+  string image_files = 7;
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+message DictionarySize {
+  string guid = 1;
+  string title = 2;
+  string type = 3;
+  int32 state = 4;
+  int32 state_mobile = 5;
+  int32 order = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message DictionarySizeWithoutGUID {
+  string title = 1;
+  string type = 2;
+  int32 state = 3;
+  int32 state_mobile = 4;
+  int32 order = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
 message GetListRequest {
   // GetListFilters filters = 1;
   reserved 1;
@@ -116,7 +163,7 @@ message GetListRequest {
   PaginationRequest pagination = 2;
 }
 
-message GetListResponse {
+message GetNomenclatureListResponse {
   string status = 1;
   string message = 2;
   PaginationResponse pagination = 3;
@@ -125,11 +172,11 @@ message GetListResponse {
   repeated Nomenclature data = 6;
 }
 
-message GetByArticleRequest {
+message GetNomenclatureByArticleRequest {
   string article = 1;
 }
 
-message GetByArticleResponse {
+message GetNomenclatureByArticleResponse {
   string status = 1;
   string message = 2;
   Nomenclature data = 4;
@@ -137,7 +184,58 @@ message GetByArticleResponse {
   repeated Error errors = 6;
 }
 
+message GetPhotoModelListResponse {
+  string status = 1;
+  string message = 2;
+  PaginationResponse pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated PhotoModel data = 6;
+}
+
+message GetByIDRequest {
+  int64 id = 1;
+}
+
+message GetPhotoModelByIDResponse {
+  string status = 1;
+  string message = 2;
+  PhotoModel data = 4;
+  int64 code = 5;
+  repeated Error errors = 6;
+}
+
+message GetDictionarySizeListResponse {
+  string status = 1;
+  string message = 2;
+  PaginationResponse pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated DictionarySize data = 6;
+}
+
+message GetByGUID {
+  string guid = 1;
+}
+
+message GetDictionarySizeByGUIDResponse {
+  string status = 1;
+  string message = 2;
+  DictionarySize data = 4;
+  int64 code = 5;
+  repeated Error errors = 6;
+}
+
 service NomenclatureService {
-  rpc GetList (GetListRequest) returns (GetListResponse);
-  rpc GetByArticle (GetByArticleRequest) returns (GetByArticleResponse);
+  rpc GetNomenclatureList (GetListRequest) returns (GetNomenclatureListResponse);
+  rpc GetNomenclatureByArticle (GetNomenclatureByArticleRequest) returns (GetNomenclatureByArticleResponse);
+
+  rpc GetPhotoModelList(GetListRequest) returns (GetPhotoModelListResponse);
+  rpc GetPhotoModelByID(GetByIDRequest) returns (GetPhotoModelByIDResponse);
+  rpc CreatePhotoModel(PhotoModelWithoutID) returns (GetPhotoModelByIDResponse);
+  rpc UpdatePhotoModel(PhotoModel) returns (GetPhotoModelByIDResponse);
+
+  rpc GetDictionarySizeList (GetListRequest) returns (GetDictionarySizeListResponse);
+  rpc GetDictionarySizeByGUID(GetByGUID) returns (GetDictionarySizeByGUIDResponse);
+  rpc UpdateDictionarySize(DictionarySize) returns (GetDictionarySizeByGUIDResponse);
 }
