@@ -139,8 +139,8 @@ message DictionarySize {
   string guid = 1;
   string title = 2;
   string type = 3;
-  int32 state = 4;
-  int32 state_mobile = 5;
+  optional int32 state = 4;
+  optional int32 state_mobile = 5;
   int32 order = 6;
   string created_at = 7;
   string updated_at = 8;
@@ -149,8 +149,8 @@ message DictionarySize {
 message DictionarySizeWithoutGUID {
   string title = 1;
   string type = 2;
-  int32 state = 3;
-  int32 state_mobile = 4;
+  optional int32 state = 3;
+  optional int32 state_mobile = 4;
   int32 order = 5;
   string created_at = 6;
   string updated_at = 7;
