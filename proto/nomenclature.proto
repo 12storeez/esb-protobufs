@@ -1,26 +1,29 @@
 syntax = "proto3";
+
 option go_package = "go/nomenclature";
+
 // Package product describes the gRPC interface of the product-go -ms microservice.
 // Warning! it`s not equal internal/products
 package nomenclature;
+
 // Pagination for Request to ms
 message PaginationRequest {
-  int64 limit = 1;
-  int64 offset = 2;
+    int64 limit = 1;
+    int64 offset = 2;
 }
 
 // Pagination for Response to ms
 message PaginationResponse {
-  int64 limit = 1;
-  int64 offset = 2;
-  int64 total = 3;
+    int64 limit = 1;
+    int64 offset = 2;
+    int64 total = 3;
 }
 
 // Error
 message Error {
-  string target = 1;
-  int64 code = 2;
-  string message = 3;
+    string target = 1;
+    int64 code = 2;
+    string message = 3;
 }
 
 // Filters
@@ -30,212 +33,352 @@ message Error {
 //}
 
 message NomenclatureDescription {
-  string id = 1;
-  string title_ru = 2;
-  string title_en = 3;
-  // Поле используется только для размеров Size
-  bool is_sample_sale = 4;
+    string id = 1;
+    string title_ru = 2;
+    string title_en = 3;
+    // Поле используется только для размеров Size
+    bool is_sample_sale = 4;
 }
 
 message SuperModel {
-  string id = 1;
-  string title_ru = 2;
-  string title_en = 3;
-  bool is_sample_sale = 4;
-  string merging_code = 5;
+    string id = 1;
+    string title_ru = 2;
+    string title_en = 3;
+    bool is_sample_sale = 4;
+    string merging_code = 5;
 }
 
 message ColorDescription {
-  string id = 1;
-  string title_ru = 2;
-  string title_en = 3;
-  bool is_sample_sale = 4;
-  string hex = 5;
+    string id = 1;
+    string title_ru = 2;
+    string title_en = 3;
+    bool is_sample_sale = 4;
+    string hex = 5;
 }
 
 message Color {
-  string id = 1;
-  string title_ru = 2;
-  string title_en = 3;
-  bool is_sample_sale = 4;
-  string hex = 5;
-  repeated ColorDescription color_groups = 6;
+    string id = 1;
+    string title_ru = 2;
+    string title_en = 3;
+    bool is_sample_sale = 4;
+    string hex = 5;
+    repeated ColorDescription color_groups = 6;
 }
 
 message Capsules {
-  string id = 1;
-  string title = 2;
-  string parent_season = 3;
+    string id = 1;
+    string title = 2;
+    string parent_season = 3;
 }
 
 message Alt {
-  string source = 1;
-  string barcode = 2;
+    string source = 1;
+    string barcode = 2;
 }
 
 message Price {
-  int64 currency_code = 1;
-  string currency_iso = 2;
-  int64 price = 3;
-  int64 price_before_discount = 4;
-  repeated int64 store_code = 5;
+    int64 currency_code = 1;
+    string currency_iso = 2;
+    int64 price = 3;
+    int64 price_before_discount = 4;
+    repeated int64 store_code = 5;
 }
 
 message Size {
-  string barcode = 1;
-  NomenclatureDescription size = 2;
-  repeated Alt alts = 3;
-  repeated Price prices = 4;
+    string barcode = 1;
+    NomenclatureDescription size = 2;
+    repeated Alt alts = 3;
+    repeated Price prices = 4;
+}
+
+message Maintenance {
+    int64 id = 1;
+    optional string alias = 2;
+    optional string title_ru = 3;
+    optional string title_en = 4;
+    optional string video = 5;
+    optional string video_preview = 6;
+    optional string video_small = 7;
+    optional string video_preview_small = 8;
+    optional string details_url = 9;
+    optional string created_at = 10;
+    optional string updated_at = 11;
+    optional string deleted_at = 12;
+}
+
+message UpdateMaintenance {
+    int64 id = 1;
+    optional string alias = 2;
+    optional string title_ru = 3;
+    optional string title_en = 4;
+    optional string video = 5;
+    optional string video_preview = 6;
+    optional string video_small = 7;
+    optional string video_preview_small = 8;
+    optional string details_url = 9;
+    optional string deleted_at = 12;
+}
+
+message SetNullMaintenance {
+    int64 id = 1;
+    optional bool alias = 2;
+    optional bool title_ru = 3;
+    optional bool title_en = 4;
+    optional bool video = 5;
+    optional bool video_preview = 6;
+    optional bool video_small = 7;
+    optional bool video_preview_small = 8;
+    optional bool details_url = 9;
+    optional bool deleted_at = 12;
+}
+
+message MaintenanceithoutID {
+    optional string alias = 2;
+    optional string title_ru = 3;
+    optional string title_en = 4;
+    optional string video = 5;
+    optional string video_preview = 6;
+    optional string video_small = 7;
+    optional string video_preview_small = 8;
+    optional string details_url = 9;
+    optional string created_at = 10;
+    optional string updated_at = 11;
+    optional string deleted_at = 12;
 }
 
 message Nomenclature {
-  string id = 1;
-  string article = 2;
-  string title_ru = 3;
-  bool is_active = 4;
-  string start_online_sale_date = 5;
-  string start_offline_sale_date = 6;
-  string category = 7;
-  string gender = 8;
-  string url = 9;
-  NomenclatureDescription fabric = 10;
-  NomenclatureDescription family = 11;
-  NomenclatureDescription color_model = 12;
-  SuperModel super_model = 13;
-  Color color = 14;
-  Capsules capsules = 16;
-  bool is_ecological = 17;
-  string pilling_grade = 18;
-  repeated Size sizes = 15;
+    string guid = 1;
+    string article = 2;
+    string title_ru = 3;
+    bool is_active = 4;
+    string start_online_sale_date = 5;
+    string start_offline_sale_date = 6;
+    string category = 7;
+    string gender = 8;
+    string url = 9;
+    NomenclatureDescription fabric = 10;
+    NomenclatureDescription family = 11;
+    NomenclatureDescription color_model = 12;
+    SuperModel super_model = 13;
+    Color color = 14;
+    Capsules capsules = 16;
+    bool is_ecological = 17;
+    string pilling_grade = 18;
+    Maintenance maintenance = 19;
+    repeated Size sizes = 15;
 }
 
 
 message PhotoModel {
-  int64 id = 1;
-  string name = 2;
-  int32 growth = 3;
-  int32 bust = 4;
-  int32 waist = 5;
-  int32 hips = 6;
-  bool is_model_xl = 7;
-  string image_files = 8;
-  string created_at = 9;
-  string updated_at = 10;
+    int64 id = 1;
+    string name = 2;
+    int32 growth = 3;
+    int32 bust = 4;
+    int32 waist = 5;
+    int32 hips = 6;
+    bool is_model_xl = 7;
+    optional string image_files = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+message UpdatePhotoModel {
+    int64 id = 1;
+    optional string name = 2;
+    optional int32 growth = 3;
+    optional int32 bust = 4;
+    optional int32 waist = 5;
+    optional int32 hips = 6;
+    optional bool is_model_xl = 7;
+    optional string image_files = 8;
+}
+
+message SetNullPhotoModel {
+    int64 id = 1;
+    optional bool image_files = 2;
 }
 
 message PhotoModelWithoutID {
-  string name = 1;
-  int32 growth = 2;
-  int32 bust = 3;
-  int32 waist = 4;
-  int32 hips = 5;
-  bool is_model_xl = 6;
-  string image_files = 7;
-  string created_at = 8;
-  string updated_at = 9;
+    string name = 1;
+    int32 growth = 2;
+    int32 bust = 3;
+    int32 waist = 4;
+    int32 hips = 5;
+    bool is_model_xl = 6;
+    string image_files = 7;
+    string created_at = 8;
+    string updated_at = 9;
 }
 
 message DictionarySize {
-  string guid = 1;
-  string title = 2;
-  string type = 3;
-  optional int32 state = 4;
-  optional int32 state_mobile = 5;
-  int32 order = 6;
-  string created_at = 7;
-  string updated_at = 8;
+    string guid = 1;
+    string title = 2;
+    string type = 3;
+    optional int32 state = 4;
+    optional int32 state_mobile = 5;
+    int32 order = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+message UpdateDictionarySize {
+    string guid = 1;
+    optional string title = 2;
+    optional string type = 3;
+    optional int32 state = 4;
+    optional int32 state_mobile = 5;
+    optional int32 order = 6;
+}
+
+message SetNullDictionarySize {
+    string guid = 1;
+    optional bool state = 2;
+    optional bool state_mobile = 3;
 }
 
 message DictionarySizeWithoutGUID {
-  string title = 1;
-  string type = 2;
-  optional int32 state = 3;
-  optional int32 state_mobile = 4;
-  int32 order = 5;
-  string created_at = 6;
-  string updated_at = 7;
+    string title = 1;
+    string type = 2;
+    optional int32 state = 3;
+    optional int32 state_mobile = 4;
+    int32 order = 5;
+    string created_at = 6;
+    string updated_at = 7;
 }
 
 message GetListRequest {
-  // GetListFilters filters = 1;
-  reserved 1;
-  reserved "filters";
-  PaginationRequest pagination = 2;
+    // GetListFilters filters = 1;
+    reserved 1;
+    reserved   "filters";
+    PaginationRequest pagination = 2;
 }
 
 message GetNomenclatureListResponse {
-  string status = 1;
-  string message = 2;
-  PaginationResponse pagination = 3;
-  int64 code = 4;
-  repeated Error errors = 5;
-  repeated Nomenclature data = 6;
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated Nomenclature data = 6;
 }
 
 message GetNomenclatureByArticleRequest {
-  string article = 1;
+    string article = 1;
 }
 
 message GetNomenclatureByArticleResponse {
-  string status = 1;
-  string message = 2;
-  Nomenclature data = 4;
-  int64 code = 5;
-  repeated Error errors = 6;
+    string status = 1;
+    string message = 2;
+    Nomenclature data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
 }
 
 message GetPhotoModelListResponse {
-  string status = 1;
-  string message = 2;
-  PaginationResponse pagination = 3;
-  int64 code = 4;
-  repeated Error errors = 5;
-  repeated PhotoModel data = 6;
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated PhotoModel data = 6;
 }
 
 message GetByIDRequest {
-  int64 id = 1;
+    int64 id = 1;
 }
 
 message GetPhotoModelByIDResponse {
-  string status = 1;
-  string message = 2;
-  PhotoModel data = 4;
-  int64 code = 5;
-  repeated Error errors = 6;
+    string status = 1;
+    string message = 2;
+    PhotoModel data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
 }
 
 message GetDictionarySizeListResponse {
-  string status = 1;
-  string message = 2;
-  PaginationResponse pagination = 3;
-  int64 code = 4;
-  repeated Error errors = 5;
-  repeated DictionarySize data = 6;
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated DictionarySize data = 6;
 }
 
-message GetByGUID {
-  string guid = 1;
+message GetByGUIDRequest {
+    string guid = 1;
 }
 
 message GetDictionarySizeByGUIDResponse {
-  string status = 1;
-  string message = 2;
-  DictionarySize data = 4;
-  int64 code = 5;
-  repeated Error errors = 6;
+    string status = 1;
+    string message = 2;
+    DictionarySize data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
+message GetMaintenanceListResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated Maintenance data = 6;
+}
+
+message GetMaintenanceByIDResponse {
+    string status = 1;
+    string message = 2;
+    Maintenance data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
+message QuickProduct {
+    string guid = 1;
+    string article = 2;
+}
+
+message QuickMaintenance {
+    int64 id = 1;
+    optional string title_ru = 2;
+    optional string title_en = 3;
+    repeated QuickProduct products_list = 4;
+}
+
+message GetListProductsToMaintenanceResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated QuickMaintenance data = 6;
 }
 
 service NomenclatureService {
-  rpc GetNomenclatureList (GetListRequest) returns (GetNomenclatureListResponse);
-  rpc GetNomenclatureByArticle (GetNomenclatureByArticleRequest) returns (GetNomenclatureByArticleResponse);
+    rpc GetList (GetListRequest) returns (GetNomenclatureListResponse);
+    rpc GetByArticle (GetNomenclatureByArticleRequest) returns (GetNomenclatureByArticleResponse);
+}
 
-  rpc GetPhotoModelList(GetListRequest) returns (GetPhotoModelListResponse);
-  rpc GetPhotoModelByID(GetByIDRequest) returns (GetPhotoModelByIDResponse);
-  rpc CreatePhotoModel(PhotoModelWithoutID) returns (GetPhotoModelByIDResponse);
-  rpc UpdatePhotoModel(PhotoModel) returns (GetPhotoModelByIDResponse);
+service PhotoModelService {
+    rpc GetList (GetListRequest) returns (GetPhotoModelListResponse);
+    rpc GetByID (GetByIDRequest) returns (GetPhotoModelByIDResponse);
+    rpc Create (PhotoModelWithoutID) returns (GetPhotoModelByIDResponse);
+    rpc Update (UpdatePhotoModel) returns (GetPhotoModelByIDResponse);
+    rpc SetNull (SetNullPhotoModel) returns (GetPhotoModelByIDResponse);
+}
 
-  rpc GetDictionarySizeList (GetListRequest) returns (GetDictionarySizeListResponse);
-  rpc GetDictionarySizeByGUID(GetByGUID) returns (GetDictionarySizeByGUIDResponse);
-  rpc UpdateDictionarySize(DictionarySize) returns (GetDictionarySizeByGUIDResponse);
+service DictionarySizeService {
+    rpc GetList (GetListRequest) returns (GetDictionarySizeListResponse);
+    rpc GetByGUID (GetByGUIDRequest) returns (GetDictionarySizeByGUIDResponse);
+    rpc Update (UpdateDictionarySize) returns (GetDictionarySizeByGUIDResponse);
+    rpc SetNull (SetNullDictionarySize) returns (GetDictionarySizeByGUIDResponse);
+}
+
+service MaintenanceService {
+    rpc GetList (GetListRequest) returns (GetMaintenanceListResponse);
+    rpc GetByID (GetByIDRequest) returns (GetMaintenanceByIDResponse);
+    rpc Create (MaintenanceithoutID) returns (GetMaintenanceByIDResponse);
+    rpc Update (UpdateMaintenance) returns (GetMaintenanceByIDResponse);
+    rpc SetNull (SetNullMaintenance) returns (GetMaintenanceByIDResponse);
+    rpc GetListProductsToMaintenance (GetListRequest) returns (GetListProductsToMaintenanceResponse);
 }

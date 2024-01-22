@@ -22,15 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NomenclatureServiceClient interface {
-	GetNomenclatureList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetNomenclatureListResponse, error)
-	GetNomenclatureByArticle(ctx context.Context, in *GetNomenclatureByArticleRequest, opts ...grpc.CallOption) (*GetNomenclatureByArticleResponse, error)
-	GetPhotoModelList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetPhotoModelListResponse, error)
-	GetPhotoModelByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error)
-	CreatePhotoModel(ctx context.Context, in *PhotoModelWithoutID, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error)
-	UpdatePhotoModel(ctx context.Context, in *PhotoModel, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error)
-	GetDictionarySizeList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetDictionarySizeListResponse, error)
-	GetDictionarySizeByGUID(ctx context.Context, in *GetByGUID, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error)
-	UpdateDictionarySize(ctx context.Context, in *DictionarySize, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error)
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetNomenclatureListResponse, error)
+	GetByArticle(ctx context.Context, in *GetNomenclatureByArticleRequest, opts ...grpc.CallOption) (*GetNomenclatureByArticleResponse, error)
 }
 
 type nomenclatureServiceClient struct {
@@ -41,81 +34,18 @@ func NewNomenclatureServiceClient(cc grpc.ClientConnInterface) NomenclatureServi
 	return &nomenclatureServiceClient{cc}
 }
 
-func (c *nomenclatureServiceClient) GetNomenclatureList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetNomenclatureListResponse, error) {
+func (c *nomenclatureServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetNomenclatureListResponse, error) {
 	out := new(GetNomenclatureListResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetNomenclatureList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *nomenclatureServiceClient) GetNomenclatureByArticle(ctx context.Context, in *GetNomenclatureByArticleRequest, opts ...grpc.CallOption) (*GetNomenclatureByArticleResponse, error) {
+func (c *nomenclatureServiceClient) GetByArticle(ctx context.Context, in *GetNomenclatureByArticleRequest, opts ...grpc.CallOption) (*GetNomenclatureByArticleResponse, error) {
 	out := new(GetNomenclatureByArticleResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetNomenclatureByArticle", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nomenclatureServiceClient) GetPhotoModelList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetPhotoModelListResponse, error) {
-	out := new(GetPhotoModelListResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetPhotoModelList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nomenclatureServiceClient) GetPhotoModelByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error) {
-	out := new(GetPhotoModelByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetPhotoModelByID", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nomenclatureServiceClient) CreatePhotoModel(ctx context.Context, in *PhotoModelWithoutID, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error) {
-	out := new(GetPhotoModelByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/CreatePhotoModel", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nomenclatureServiceClient) UpdatePhotoModel(ctx context.Context, in *PhotoModel, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error) {
-	out := new(GetPhotoModelByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/UpdatePhotoModel", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nomenclatureServiceClient) GetDictionarySizeList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetDictionarySizeListResponse, error) {
-	out := new(GetDictionarySizeListResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetDictionarySizeList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nomenclatureServiceClient) GetDictionarySizeByGUID(ctx context.Context, in *GetByGUID, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error) {
-	out := new(GetDictionarySizeByGUIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetDictionarySizeByGUID", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nomenclatureServiceClient) UpdateDictionarySize(ctx context.Context, in *DictionarySize, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error) {
-	out := new(GetDictionarySizeByGUIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/UpdateDictionarySize", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/nomenclature.NomenclatureService/GetByArticle", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,47 +56,19 @@ func (c *nomenclatureServiceClient) UpdateDictionarySize(ctx context.Context, in
 // All implementations should embed UnimplementedNomenclatureServiceServer
 // for forward compatibility
 type NomenclatureServiceServer interface {
-	GetNomenclatureList(context.Context, *GetListRequest) (*GetNomenclatureListResponse, error)
-	GetNomenclatureByArticle(context.Context, *GetNomenclatureByArticleRequest) (*GetNomenclatureByArticleResponse, error)
-	GetPhotoModelList(context.Context, *GetListRequest) (*GetPhotoModelListResponse, error)
-	GetPhotoModelByID(context.Context, *GetByIDRequest) (*GetPhotoModelByIDResponse, error)
-	CreatePhotoModel(context.Context, *PhotoModelWithoutID) (*GetPhotoModelByIDResponse, error)
-	UpdatePhotoModel(context.Context, *PhotoModel) (*GetPhotoModelByIDResponse, error)
-	GetDictionarySizeList(context.Context, *GetListRequest) (*GetDictionarySizeListResponse, error)
-	GetDictionarySizeByGUID(context.Context, *GetByGUID) (*GetDictionarySizeByGUIDResponse, error)
-	UpdateDictionarySize(context.Context, *DictionarySize) (*GetDictionarySizeByGUIDResponse, error)
+	GetList(context.Context, *GetListRequest) (*GetNomenclatureListResponse, error)
+	GetByArticle(context.Context, *GetNomenclatureByArticleRequest) (*GetNomenclatureByArticleResponse, error)
 }
 
 // UnimplementedNomenclatureServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedNomenclatureServiceServer struct {
 }
 
-func (UnimplementedNomenclatureServiceServer) GetNomenclatureList(context.Context, *GetListRequest) (*GetNomenclatureListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNomenclatureList not implemented")
+func (UnimplementedNomenclatureServiceServer) GetList(context.Context, *GetListRequest) (*GetNomenclatureListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
 }
-func (UnimplementedNomenclatureServiceServer) GetNomenclatureByArticle(context.Context, *GetNomenclatureByArticleRequest) (*GetNomenclatureByArticleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNomenclatureByArticle not implemented")
-}
-func (UnimplementedNomenclatureServiceServer) GetPhotoModelList(context.Context, *GetListRequest) (*GetPhotoModelListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPhotoModelList not implemented")
-}
-func (UnimplementedNomenclatureServiceServer) GetPhotoModelByID(context.Context, *GetByIDRequest) (*GetPhotoModelByIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPhotoModelByID not implemented")
-}
-func (UnimplementedNomenclatureServiceServer) CreatePhotoModel(context.Context, *PhotoModelWithoutID) (*GetPhotoModelByIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePhotoModel not implemented")
-}
-func (UnimplementedNomenclatureServiceServer) UpdatePhotoModel(context.Context, *PhotoModel) (*GetPhotoModelByIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePhotoModel not implemented")
-}
-func (UnimplementedNomenclatureServiceServer) GetDictionarySizeList(context.Context, *GetListRequest) (*GetDictionarySizeListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDictionarySizeList not implemented")
-}
-func (UnimplementedNomenclatureServiceServer) GetDictionarySizeByGUID(context.Context, *GetByGUID) (*GetDictionarySizeByGUIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDictionarySizeByGUID not implemented")
-}
-func (UnimplementedNomenclatureServiceServer) UpdateDictionarySize(context.Context, *DictionarySize) (*GetDictionarySizeByGUIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDictionarySize not implemented")
+func (UnimplementedNomenclatureServiceServer) GetByArticle(context.Context, *GetNomenclatureByArticleRequest) (*GetNomenclatureByArticleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByArticle not implemented")
 }
 
 // UnsafeNomenclatureServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -180,164 +82,38 @@ func RegisterNomenclatureServiceServer(s grpc.ServiceRegistrar, srv Nomenclature
 	s.RegisterService(&NomenclatureService_ServiceDesc, srv)
 }
 
-func _NomenclatureService_GetNomenclatureList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _NomenclatureService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).GetNomenclatureList(ctx, in)
+		return srv.(NomenclatureServiceServer).GetList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/GetNomenclatureList",
+		FullMethod: "/nomenclature.NomenclatureService/GetList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).GetNomenclatureList(ctx, req.(*GetListRequest))
+		return srv.(NomenclatureServiceServer).GetList(ctx, req.(*GetListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NomenclatureService_GetNomenclatureByArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _NomenclatureService_GetByArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetNomenclatureByArticleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).GetNomenclatureByArticle(ctx, in)
+		return srv.(NomenclatureServiceServer).GetByArticle(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/GetNomenclatureByArticle",
+		FullMethod: "/nomenclature.NomenclatureService/GetByArticle",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).GetNomenclatureByArticle(ctx, req.(*GetNomenclatureByArticleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NomenclatureService_GetPhotoModelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).GetPhotoModelList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/GetPhotoModelList",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).GetPhotoModelList(ctx, req.(*GetListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NomenclatureService_GetPhotoModelByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetByIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).GetPhotoModelByID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/GetPhotoModelByID",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).GetPhotoModelByID(ctx, req.(*GetByIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NomenclatureService_CreatePhotoModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PhotoModelWithoutID)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).CreatePhotoModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/CreatePhotoModel",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).CreatePhotoModel(ctx, req.(*PhotoModelWithoutID))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NomenclatureService_UpdatePhotoModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PhotoModel)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).UpdatePhotoModel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/UpdatePhotoModel",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).UpdatePhotoModel(ctx, req.(*PhotoModel))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NomenclatureService_GetDictionarySizeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).GetDictionarySizeList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/GetDictionarySizeList",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).GetDictionarySizeList(ctx, req.(*GetListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NomenclatureService_GetDictionarySizeByGUID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetByGUID)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).GetDictionarySizeByGUID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/GetDictionarySizeByGUID",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).GetDictionarySizeByGUID(ctx, req.(*GetByGUID))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NomenclatureService_UpdateDictionarySize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DictionarySize)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NomenclatureServiceServer).UpdateDictionarySize(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/nomenclature.NomenclatureService/UpdateDictionarySize",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NomenclatureServiceServer).UpdateDictionarySize(ctx, req.(*DictionarySize))
+		return srv.(NomenclatureServiceServer).GetByArticle(ctx, req.(*GetNomenclatureByArticleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -350,40 +126,696 @@ var NomenclatureService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NomenclatureServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetNomenclatureList",
-			Handler:    _NomenclatureService_GetNomenclatureList_Handler,
+			MethodName: "GetList",
+			Handler:    _NomenclatureService_GetList_Handler,
 		},
 		{
-			MethodName: "GetNomenclatureByArticle",
-			Handler:    _NomenclatureService_GetNomenclatureByArticle_Handler,
+			MethodName: "GetByArticle",
+			Handler:    _NomenclatureService_GetByArticle_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/nomenclature.proto",
+}
+
+// PhotoModelServiceClient is the client API for PhotoModelService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PhotoModelServiceClient interface {
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetPhotoModelListResponse, error)
+	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error)
+	Create(ctx context.Context, in *PhotoModelWithoutID, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error)
+	Update(ctx context.Context, in *UpdatePhotoModel, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error)
+	SetNull(ctx context.Context, in *SetNullPhotoModel, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error)
+}
+
+type photoModelServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPhotoModelServiceClient(cc grpc.ClientConnInterface) PhotoModelServiceClient {
+	return &photoModelServiceClient{cc}
+}
+
+func (c *photoModelServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetPhotoModelListResponse, error) {
+	out := new(GetPhotoModelListResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.PhotoModelService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoModelServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error) {
+	out := new(GetPhotoModelByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.PhotoModelService/GetByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoModelServiceClient) Create(ctx context.Context, in *PhotoModelWithoutID, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error) {
+	out := new(GetPhotoModelByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.PhotoModelService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoModelServiceClient) Update(ctx context.Context, in *UpdatePhotoModel, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error) {
+	out := new(GetPhotoModelByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.PhotoModelService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoModelServiceClient) SetNull(ctx context.Context, in *SetNullPhotoModel, opts ...grpc.CallOption) (*GetPhotoModelByIDResponse, error) {
+	out := new(GetPhotoModelByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.PhotoModelService/SetNull", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PhotoModelServiceServer is the server API for PhotoModelService service.
+// All implementations should embed UnimplementedPhotoModelServiceServer
+// for forward compatibility
+type PhotoModelServiceServer interface {
+	GetList(context.Context, *GetListRequest) (*GetPhotoModelListResponse, error)
+	GetByID(context.Context, *GetByIDRequest) (*GetPhotoModelByIDResponse, error)
+	Create(context.Context, *PhotoModelWithoutID) (*GetPhotoModelByIDResponse, error)
+	Update(context.Context, *UpdatePhotoModel) (*GetPhotoModelByIDResponse, error)
+	SetNull(context.Context, *SetNullPhotoModel) (*GetPhotoModelByIDResponse, error)
+}
+
+// UnimplementedPhotoModelServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedPhotoModelServiceServer struct {
+}
+
+func (UnimplementedPhotoModelServiceServer) GetList(context.Context, *GetListRequest) (*GetPhotoModelListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedPhotoModelServiceServer) GetByID(context.Context, *GetByIDRequest) (*GetPhotoModelByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
+}
+func (UnimplementedPhotoModelServiceServer) Create(context.Context, *PhotoModelWithoutID) (*GetPhotoModelByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedPhotoModelServiceServer) Update(context.Context, *UpdatePhotoModel) (*GetPhotoModelByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedPhotoModelServiceServer) SetNull(context.Context, *SetNullPhotoModel) (*GetPhotoModelByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNull not implemented")
+}
+
+// UnsafePhotoModelServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PhotoModelServiceServer will
+// result in compilation errors.
+type UnsafePhotoModelServiceServer interface {
+	mustEmbedUnimplementedPhotoModelServiceServer()
+}
+
+func RegisterPhotoModelServiceServer(s grpc.ServiceRegistrar, srv PhotoModelServiceServer) {
+	s.RegisterService(&PhotoModelService_ServiceDesc, srv)
+}
+
+func _PhotoModelService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoModelServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.PhotoModelService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoModelServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PhotoModelService_GetByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoModelServiceServer).GetByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.PhotoModelService/GetByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoModelServiceServer).GetByID(ctx, req.(*GetByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PhotoModelService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhotoModelWithoutID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoModelServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.PhotoModelService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoModelServiceServer).Create(ctx, req.(*PhotoModelWithoutID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PhotoModelService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePhotoModel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoModelServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.PhotoModelService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoModelServiceServer).Update(ctx, req.(*UpdatePhotoModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PhotoModelService_SetNull_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNullPhotoModel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoModelServiceServer).SetNull(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.PhotoModelService/SetNull",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoModelServiceServer).SetNull(ctx, req.(*SetNullPhotoModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PhotoModelService_ServiceDesc is the grpc.ServiceDesc for PhotoModelService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PhotoModelService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "nomenclature.PhotoModelService",
+	HandlerType: (*PhotoModelServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetList",
+			Handler:    _PhotoModelService_GetList_Handler,
 		},
 		{
-			MethodName: "GetPhotoModelList",
-			Handler:    _NomenclatureService_GetPhotoModelList_Handler,
+			MethodName: "GetByID",
+			Handler:    _PhotoModelService_GetByID_Handler,
 		},
 		{
-			MethodName: "GetPhotoModelByID",
-			Handler:    _NomenclatureService_GetPhotoModelByID_Handler,
+			MethodName: "Create",
+			Handler:    _PhotoModelService_Create_Handler,
 		},
 		{
-			MethodName: "CreatePhotoModel",
-			Handler:    _NomenclatureService_CreatePhotoModel_Handler,
+			MethodName: "Update",
+			Handler:    _PhotoModelService_Update_Handler,
 		},
 		{
-			MethodName: "UpdatePhotoModel",
-			Handler:    _NomenclatureService_UpdatePhotoModel_Handler,
+			MethodName: "SetNull",
+			Handler:    _PhotoModelService_SetNull_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/nomenclature.proto",
+}
+
+// DictionarySizeServiceClient is the client API for DictionarySizeService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type DictionarySizeServiceClient interface {
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetDictionarySizeListResponse, error)
+	GetByGUID(ctx context.Context, in *GetByGUIDRequest, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error)
+	Update(ctx context.Context, in *UpdateDictionarySize, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error)
+	SetNull(ctx context.Context, in *SetNullDictionarySize, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error)
+}
+
+type dictionarySizeServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewDictionarySizeServiceClient(cc grpc.ClientConnInterface) DictionarySizeServiceClient {
+	return &dictionarySizeServiceClient{cc}
+}
+
+func (c *dictionarySizeServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetDictionarySizeListResponse, error) {
+	out := new(GetDictionarySizeListResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.DictionarySizeService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dictionarySizeServiceClient) GetByGUID(ctx context.Context, in *GetByGUIDRequest, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error) {
+	out := new(GetDictionarySizeByGUIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.DictionarySizeService/GetByGUID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dictionarySizeServiceClient) Update(ctx context.Context, in *UpdateDictionarySize, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error) {
+	out := new(GetDictionarySizeByGUIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.DictionarySizeService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dictionarySizeServiceClient) SetNull(ctx context.Context, in *SetNullDictionarySize, opts ...grpc.CallOption) (*GetDictionarySizeByGUIDResponse, error) {
+	out := new(GetDictionarySizeByGUIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.DictionarySizeService/SetNull", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DictionarySizeServiceServer is the server API for DictionarySizeService service.
+// All implementations should embed UnimplementedDictionarySizeServiceServer
+// for forward compatibility
+type DictionarySizeServiceServer interface {
+	GetList(context.Context, *GetListRequest) (*GetDictionarySizeListResponse, error)
+	GetByGUID(context.Context, *GetByGUIDRequest) (*GetDictionarySizeByGUIDResponse, error)
+	Update(context.Context, *UpdateDictionarySize) (*GetDictionarySizeByGUIDResponse, error)
+	SetNull(context.Context, *SetNullDictionarySize) (*GetDictionarySizeByGUIDResponse, error)
+}
+
+// UnimplementedDictionarySizeServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedDictionarySizeServiceServer struct {
+}
+
+func (UnimplementedDictionarySizeServiceServer) GetList(context.Context, *GetListRequest) (*GetDictionarySizeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedDictionarySizeServiceServer) GetByGUID(context.Context, *GetByGUIDRequest) (*GetDictionarySizeByGUIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByGUID not implemented")
+}
+func (UnimplementedDictionarySizeServiceServer) Update(context.Context, *UpdateDictionarySize) (*GetDictionarySizeByGUIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedDictionarySizeServiceServer) SetNull(context.Context, *SetNullDictionarySize) (*GetDictionarySizeByGUIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNull not implemented")
+}
+
+// UnsafeDictionarySizeServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DictionarySizeServiceServer will
+// result in compilation errors.
+type UnsafeDictionarySizeServiceServer interface {
+	mustEmbedUnimplementedDictionarySizeServiceServer()
+}
+
+func RegisterDictionarySizeServiceServer(s grpc.ServiceRegistrar, srv DictionarySizeServiceServer) {
+	s.RegisterService(&DictionarySizeService_ServiceDesc, srv)
+}
+
+func _DictionarySizeService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DictionarySizeServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.DictionarySizeService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DictionarySizeServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DictionarySizeService_GetByGUID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByGUIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DictionarySizeServiceServer).GetByGUID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.DictionarySizeService/GetByGUID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DictionarySizeServiceServer).GetByGUID(ctx, req.(*GetByGUIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DictionarySizeService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDictionarySize)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DictionarySizeServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.DictionarySizeService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DictionarySizeServiceServer).Update(ctx, req.(*UpdateDictionarySize))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DictionarySizeService_SetNull_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNullDictionarySize)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DictionarySizeServiceServer).SetNull(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.DictionarySizeService/SetNull",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DictionarySizeServiceServer).SetNull(ctx, req.(*SetNullDictionarySize))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// DictionarySizeService_ServiceDesc is the grpc.ServiceDesc for DictionarySizeService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DictionarySizeService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "nomenclature.DictionarySizeService",
+	HandlerType: (*DictionarySizeServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetList",
+			Handler:    _DictionarySizeService_GetList_Handler,
 		},
 		{
-			MethodName: "GetDictionarySizeList",
-			Handler:    _NomenclatureService_GetDictionarySizeList_Handler,
+			MethodName: "GetByGUID",
+			Handler:    _DictionarySizeService_GetByGUID_Handler,
 		},
 		{
-			MethodName: "GetDictionarySizeByGUID",
-			Handler:    _NomenclatureService_GetDictionarySizeByGUID_Handler,
+			MethodName: "Update",
+			Handler:    _DictionarySizeService_Update_Handler,
 		},
 		{
-			MethodName: "UpdateDictionarySize",
-			Handler:    _NomenclatureService_UpdateDictionarySize_Handler,
+			MethodName: "SetNull",
+			Handler:    _DictionarySizeService_SetNull_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/nomenclature.proto",
+}
+
+// MaintenanceServiceClient is the client API for MaintenanceService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MaintenanceServiceClient interface {
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetMaintenanceListResponse, error)
+	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error)
+	Create(ctx context.Context, in *MaintenanceithoutID, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error)
+	Update(ctx context.Context, in *UpdateMaintenance, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error)
+	SetNull(ctx context.Context, in *SetNullMaintenance, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error)
+	GetListProductsToMaintenance(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListProductsToMaintenanceResponse, error)
+}
+
+type maintenanceServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMaintenanceServiceClient(cc grpc.ClientConnInterface) MaintenanceServiceClient {
+	return &maintenanceServiceClient{cc}
+}
+
+func (c *maintenanceServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetMaintenanceListResponse, error) {
+	out := new(GetMaintenanceListResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.MaintenanceService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *maintenanceServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error) {
+	out := new(GetMaintenanceByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.MaintenanceService/GetByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *maintenanceServiceClient) Create(ctx context.Context, in *MaintenanceithoutID, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error) {
+	out := new(GetMaintenanceByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.MaintenanceService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *maintenanceServiceClient) Update(ctx context.Context, in *UpdateMaintenance, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error) {
+	out := new(GetMaintenanceByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.MaintenanceService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *maintenanceServiceClient) SetNull(ctx context.Context, in *SetNullMaintenance, opts ...grpc.CallOption) (*GetMaintenanceByIDResponse, error) {
+	out := new(GetMaintenanceByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.MaintenanceService/SetNull", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *maintenanceServiceClient) GetListProductsToMaintenance(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListProductsToMaintenanceResponse, error) {
+	out := new(GetListProductsToMaintenanceResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.MaintenanceService/GetListProductsToMaintenance", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MaintenanceServiceServer is the server API for MaintenanceService service.
+// All implementations should embed UnimplementedMaintenanceServiceServer
+// for forward compatibility
+type MaintenanceServiceServer interface {
+	GetList(context.Context, *GetListRequest) (*GetMaintenanceListResponse, error)
+	GetByID(context.Context, *GetByIDRequest) (*GetMaintenanceByIDResponse, error)
+	Create(context.Context, *MaintenanceithoutID) (*GetMaintenanceByIDResponse, error)
+	Update(context.Context, *UpdateMaintenance) (*GetMaintenanceByIDResponse, error)
+	SetNull(context.Context, *SetNullMaintenance) (*GetMaintenanceByIDResponse, error)
+	GetListProductsToMaintenance(context.Context, *GetListRequest) (*GetListProductsToMaintenanceResponse, error)
+}
+
+// UnimplementedMaintenanceServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedMaintenanceServiceServer struct {
+}
+
+func (UnimplementedMaintenanceServiceServer) GetList(context.Context, *GetListRequest) (*GetMaintenanceListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedMaintenanceServiceServer) GetByID(context.Context, *GetByIDRequest) (*GetMaintenanceByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
+}
+func (UnimplementedMaintenanceServiceServer) Create(context.Context, *MaintenanceithoutID) (*GetMaintenanceByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedMaintenanceServiceServer) Update(context.Context, *UpdateMaintenance) (*GetMaintenanceByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedMaintenanceServiceServer) SetNull(context.Context, *SetNullMaintenance) (*GetMaintenanceByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNull not implemented")
+}
+func (UnimplementedMaintenanceServiceServer) GetListProductsToMaintenance(context.Context, *GetListRequest) (*GetListProductsToMaintenanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetListProductsToMaintenance not implemented")
+}
+
+// UnsafeMaintenanceServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MaintenanceServiceServer will
+// result in compilation errors.
+type UnsafeMaintenanceServiceServer interface {
+	mustEmbedUnimplementedMaintenanceServiceServer()
+}
+
+func RegisterMaintenanceServiceServer(s grpc.ServiceRegistrar, srv MaintenanceServiceServer) {
+	s.RegisterService(&MaintenanceService_ServiceDesc, srv)
+}
+
+func _MaintenanceService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.MaintenanceService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MaintenanceService_GetByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceServiceServer).GetByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.MaintenanceService/GetByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceServiceServer).GetByID(ctx, req.(*GetByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MaintenanceService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MaintenanceithoutID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.MaintenanceService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceServiceServer).Create(ctx, req.(*MaintenanceithoutID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MaintenanceService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMaintenance)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.MaintenanceService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceServiceServer).Update(ctx, req.(*UpdateMaintenance))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MaintenanceService_SetNull_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNullMaintenance)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceServiceServer).SetNull(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.MaintenanceService/SetNull",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceServiceServer).SetNull(ctx, req.(*SetNullMaintenance))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MaintenanceService_GetListProductsToMaintenance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaintenanceServiceServer).GetListProductsToMaintenance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.MaintenanceService/GetListProductsToMaintenance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaintenanceServiceServer).GetListProductsToMaintenance(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// MaintenanceService_ServiceDesc is the grpc.ServiceDesc for MaintenanceService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var MaintenanceService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "nomenclature.MaintenanceService",
+	HandlerType: (*MaintenanceServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetList",
+			Handler:    _MaintenanceService_GetList_Handler,
+		},
+		{
+			MethodName: "GetByID",
+			Handler:    _MaintenanceService_GetByID_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _MaintenanceService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _MaintenanceService_Update_Handler,
+		},
+		{
+			MethodName: "SetNull",
+			Handler:    _MaintenanceService_SetNull_Handler,
+		},
+		{
+			MethodName: "GetListProductsToMaintenance",
+			Handler:    _MaintenanceService_GetListProductsToMaintenance_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
