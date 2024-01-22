@@ -7,5 +7,6 @@
 .idea
 profile*.*
 main
+login.json
 
 /node_modules
