@@ -1,0 +1,429 @@
+syntax = "proto3";
+package orders;
+
+option go_package = "go/order";
+
+message ListRequest {
+  uint32 limit = 1;
+  uint32 offset = 2;
+}
+
+message Paginate {
+  uint32 limit = 1;
+  uint32 offset = 2;
+  uint32 total = 3;
+}
+
+message Error {
+  string target = 1;
+  sint32 code = 2;
+  string message = 3;
+}
+
+message PositionStatus {
+  int64 id = 1;
+  string internal_title = 2;
+  int64 code = 3;
+  bool is_cancel_status = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message Position {
+  int64 id = 1;
+  optional string lamoda_id = 2;
+  optional string lamoda_last_status = 3;
+  PositionStatus status = 4;
+  float price_before_discount = 5;
+  float price = 6;
+  float sum = 7;
+  float discount_sum = 8;
+  float discount_manual = 9;
+  float discount_promo = 10;
+  float discount_bonus = 11;
+  float spent_promo = 12;
+  float spent_bonus = 13;
+  bool is_payed = 14;
+  bool is_preorder = 15;
+  bool is_click_and_collect = 16;
+  bool is_present = 17;
+  bool is_ga_send_enabled = 18;
+  optional int64 store_code = 19;
+  optional string gs1m_mark = 20;
+  optional string cancel_reason = 21;
+  optional string return_reason = 22;
+  optional string lamoda_cancel_reason = 23;
+  optional string last_change_source = 24;
+  int64 version = 25;
+  int64 product_id = 26;
+  int64 item_id = 27;
+  string item_title = 28;
+  string article = 29;
+  int64 barcode = 30;
+  string product_name = 31;
+  string product_title_ru = 32;
+  string product_title_en = 33;
+  optional string color_model_title_ru = 34;
+  optional string color_model_title_en = 35;
+  optional string product_image = 36;
+  string size_title_ru = 37;
+  string size_title_en = 38;
+  string color_guid = 39;
+  optional string color_hex = 40;
+  string color_title_ru = 41;
+  string color_title_en = 42;
+  bool color_has_circle = 43;
+  string created_at = 44;
+  string updated_at = 45;
+}
+
+message PositionHistory {
+  int64 history_id = 1;
+  oneof result {
+    int64 entity_id = 2;
+    Position position = 3;
+  }
+  string source = 4;
+  int64 user_id = 5;
+  string field_name = 6;
+  optional string old_value = 7;
+  string new_value = 8;
+  string created_at = 9;
+}
+
+message StatusGroup {
+  int64 id = 1;
+  string title_ru = 2;
+}
+
+message OrderStatus {
+  int64 id = 1;
+  string title_internal = 2;
+  optional string title_ru = 3;
+  int64 code = 4;
+  StatusGroup group = 5;
+  bool is_returned = 6;
+  bool can_be_returned = 7;
+  bool is_canceled = 8;
+  bool can_be_canceled = 9;
+  bool is_preorder = 10;
+  bool is_offline_shipment = 11;
+  bool is_click_and_collect = 12;
+  string created_at = 13;
+  string updated_at = 14;
+}
+
+message StatusTimer {
+  int64 id = 1;
+  optional string change_time = 2;
+  OrderStatus status = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+message Flow{
+  int64 id = 1;
+  int64 flow_id = 2;
+  int64 current_status_id = 3;
+  int64 next_status_id = 4;
+}
+
+enum ForBloggerType {
+  blogger_type_not = 0;
+  blogger_type_for = 1;
+  blogger_type_return = 2;
+  blogger_type_media = 3;
+  blogger_type_top1 = 4;
+  blogger_type_top2 = 5;
+}
+
+enum PVZProvider {
+  boxberry = 0;
+  lamoda = 1;
+}
+
+message Order {
+  int64 id = 1;
+  string created_at = 2;
+  string updated_at = 3;
+  int64 rcrm_id = 4;
+  string rcrm_site = 5;
+  optional int64 mindbox_id = 6;
+  optional string admitad_uid = 7;
+  optional string dolyame_id = 8;
+  optional int64 dolyame_version = 9;
+  optional string lamoda_id = 10;
+  optional string lamoda_last_status = 11;
+  optional string lamoda_cancel_reason = 12;
+  int64 user_id = 13;
+  OrderStatus status = 14;
+  optional string status_comment = 15;
+  string status_wms = 16;
+  float sum = 17;
+  float surcharge_sum = 18;
+  optional string surcharge_comment = 19;
+  float delivery_price = 20;
+  float discount_sum = 21;
+  float discount_manual = 22;
+  float discount_promo = 23;
+  float discount_bonus = 24;
+  float spend_bonus = 25;
+  float given_bonus = 26;
+  optional string promo_code_id = 27;
+  optional int64 payment_status = 28;
+  string payment_date = 29;
+  optional string delivery_tk_id = 30;
+  optional int64 delivery_method_id = 31;
+  optional string delivery_slug = 32;
+  optional string delivery_datetime = 33;
+  int64 delivery_date_changed_count = 34;
+  optional string delivery_track_number = 35;
+  optional string delivery_comment = 36;
+  optional string pvz_provider_id = 37;
+  optional PVZProvider pvz_provider = 38;
+  optional string geo_id_type = 39;
+  optional string full_address = 40;
+  optional string full_address_id = 41;
+  optional string country_iso_code = 42;
+  optional string region = 43;
+  optional string region_id = 44;
+  optional string city = 45;
+  optional string city_id = 46;
+  optional string street = 47;
+  optional string street_id = 48;
+  optional string house = 49;
+  optional string housing = 50;
+  optional string building = 51;
+  optional string entrance = 52;
+  optional string floor = 53;
+  optional string flat = 54;
+  optional string postal_code = 55;
+  optional string recipient_last_name = 56;
+  optional string recipient_phone = 57;
+  optional string recipient_email = 58;
+  optional string recipient_comment = 59;
+  optional string manager_comment = 60;
+  optional int64 manager_id = 61;
+  optional string manager_processing_reason = 62;
+  optional string return_delivery_tk = 63;
+  optional string return_delivery_method = 64;
+  optional string return_money = 65;
+  optional int64 return_store = 66;
+  optional string return_reason = 67;
+  optional string cancel_reason = 68;
+  optional string order_method = 69;
+  optional string last_change_source = 70;
+  int64 version = 71;
+  optional string seller_1s_guid = 72;
+  optional string seller_store_id = 73;
+  optional string seller_user_id = 74;
+  optional string seller_name = 75;
+  optional string org = 76;
+  optional int64 store_code = 77;
+  optional string storage_expired_at = 78;
+  bool is_increased_storage_expired_at = 79;
+  bool is_dismantle = 80;
+  bool is_ordered_by_qr = 81;
+  string order_type = 82;
+  optional string preorder_planned_delivery_from = 83;
+  optional string preorder_planned_delivery_to = 84;
+  ForBloggerType for_blogger = 85;
+  repeated Position positions = 86;
+}
+
+message OrderHistory {
+  int64 history_id = 1;
+  oneof result {
+    Order order = 2;
+    int64 entity_id = 3;
+  }
+  string source = 4;
+  int64 user_id = 5;
+  string field_name = 6;
+  optional string old_value = 7;
+  string new_value = 8;
+  string created_at = 9;
+}
+
+message ExchangeLog {
+  int64 id = 1;
+  oneof result {
+    int64 entity_id = 2;
+    Order order = 3;
+  }
+  string entity_name = 4;
+  string body = 5;
+  int64 version = 6;
+  string created_at = 7;
+}
+
+message Outbox{
+  int64 id = 1;
+  oneof result {
+    int64 entity_id = 2;
+    Order order = 3;
+  }
+  string entity_name = 4;
+  string event_type = 5;
+  optional string last_message = 6;
+  string status = 7;
+  string destination = 8;
+  string body = 9;
+  int32 retry_counter = 10;
+  int64 version = 11;
+  string created_at = 12;
+  string updated_at = 13;
+}
+
+message GetListOutBoxRequest {
+  // GetListFilters filters = 1;
+  reserved 1;
+  reserved "filters";
+  bool need_orders = 2;
+  ListRequest pagination = 3;
+}
+
+message GetListOutBoxResponse {
+  string status = 1;
+  string message = 2;
+  Paginate pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated Outbox data = 6;
+}
+
+message GetByIDOutBoxRequest {
+  int64 id = 1;
+}
+
+message GetByIDOutBoxResponse {
+  string status = 1;
+  string message = 2;
+  Outbox data = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+}
+
+message SetByIDOutboxBodyRequest {
+  int64 id = 1;
+  string new_body=2;
+}
+
+message SetByIDOutboxBodyResponse {
+  string status = 1;
+  string message = 2;
+  int64 code = 3;
+  repeated Error errors = 4;
+}
+
+message DeleteByIDOutboxRequest {
+  int64 id = 1;
+}
+
+message DeleteByIDOutboxResponse {
+  string status = 1;
+  string message = 2;
+  int64 code = 3;
+  repeated Error errors = 4;
+}
+
+message GetListOrderHistoryRequest {
+  // GetListFilters filters = 1;
+  reserved 1;
+  reserved "filters";
+  bool need_orders = 2;
+  bool need_positions = 3;
+  ListRequest pagination = 4;
+}
+
+message GetListOrderHistoryResponse {
+  string status = 1;
+  string message = 2;
+  Paginate pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated OrderHistory data = 6;
+}
+
+message GetByIDOrderHistoryRequest {
+  int64 id = 1;
+}
+
+message GetByIDOrderHistoryResponse {
+  string status = 1;
+  string message = 2;
+  OrderHistory data = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+}
+
+message GetListPositionHistoryRequest {
+  // GetListFilters filters = 1;
+  reserved 1;
+  reserved "filters";
+  bool need_positions = 2;
+  ListRequest pagination = 3;
+}
+
+message GetListPositionHistoryResponse {
+  string status = 1;
+  string message = 2;
+  Paginate pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated PositionHistory data = 6;
+}
+
+message GetByIDPositionHistoryRequest {
+  int64 id = 1;
+}
+
+message GetByIDPositionHistoryResponse {
+  string status = 1;
+  string message = 2;
+  PositionHistory data = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+}
+
+message GetListOrderRequest {
+  // GetListFilters filters = 1;
+  reserved 1;
+  reserved "filters";
+  bool need_positions = 2;
+  ListRequest pagination = 3;
+}
+
+message GetListOrderResponse {
+  string status = 1;
+  string message = 2;
+  Paginate pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated Order data = 6;
+}
+
+message GetByIDOrderRequest {
+  int64 id = 1;
+}
+
+message GetByIDOrderResponse {
+  string status = 1;
+  string message = 2;
+  Order data = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+}
+
+service OrderService{
+  rpc GetOutboxList (GetListOutBoxRequest) returns (GetListOutBoxResponse);
+  rpc GetOutboxByID (GetByIDOutBoxRequest) returns (GetByIDOutBoxResponse);
+  rpc SetOutboxBodyByID (SetByIDOutboxBodyRequest) returns (SetByIDOutboxBodyResponse);
+  rpc DeleteOutboxByID (DeleteByIDOutboxRequest) returns (DeleteByIDOutboxResponse);
+  rpc GetOrderHistoryList (GetListOrderHistoryRequest) returns (GetListOrderHistoryResponse);
+  rpc GetOrderHistoryByID (GetByIDOrderHistoryRequest) returns (GetByIDOrderHistoryResponse);
+  rpc GetPositionHistoryList (GetListPositionHistoryRequest) returns (GetListPositionHistoryResponse);
+  rpc GetPositionHistoryByID (GetByIDPositionHistoryRequest) returns (GetByIDPositionHistoryResponse);
+  rpc GetOrderList (GetListOrderRequest) returns (GetListOrderResponse);
+  rpc GetOrderByID (GetByIDOrderRequest) returns (GetByIDOrderResponse);
+}

@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+option go_package = "go/store";
+
+package store;
+
+service StoreService {
+  rpc Create (Store) returns (StoreResponse) {}
+  rpc UpdateByStoreCode (Store) returns (StoreResponse) {}
+  rpc GetList (GetListRequest) returns (GetListResponse) {}
+  rpc GetByStoreCode (GetByStoreCodeRequest) returns (StoreResponse) {}
+}
+
+message Pagination {
+  int64 limit = 1;
+  int64 offset = 2;
+  int64 total = 3;
+}
+
+message Filters {}
+
+message Error {
+  string target = 1;
+  int64 code = 2;
+  string message = 3;
+}
+
+message GetListRequest {
+  Pagination pagination = 1;
+  Filters    filters = 2;
+}
+
+message GetListResponse {
+  string status = 1;
+  string message = 2;
+  Pagination pagination = 3;
+  repeated Store data = 4;
+  int64 code = 5;
+  repeated Error errors = 6;
+}
+
+message GetByStoreCodeRequest {
+  int32 store_code = 1;
+}
+
+message StoreResponse {
+  string status = 1;
+  string message = 2;
+  Store data = 4;
+  int64 code = 5;
+  repeated Error errors = 6;
+}
+
+message Store {
+  int32  store_code = 1;
+  // помещение
+  reserved 2;
+  string created_at = 3;
+  string updated_at = 4;
+  string title_ru = 5;
+  string short_title_ru = 6;
+  string title_en = 7;
+  string short_title_en = 8;
+  string address = 9;
+  string short_address = 10;
+  string phone = 11;
+  string geo = 12;
+  int64  countmax_id = 13;
+  string city = 14;
+  string country = 15;
+  string country_iso_code = 16;
+  string schedule = 17;
+  string picture_url = 18;
+  bool   is_active = 19;
+  bool   is_visible = 20;
+  string cluster = 21;
+  string postal = 22;
+  string street = 23;
+  string house = 24;
+  string housing = 25;
+  string floor = 26;
+}

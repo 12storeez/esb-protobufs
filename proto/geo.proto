@@ -36,6 +36,9 @@ service geo {
   // Детали адреса по GeoID
   rpc AddressDetailsByGeoID(AddressDetailsByGeoIDParams) returns (Address) {
   }
+  // Детали страны по номеру телефона
+  rpc CountryDetailsByPhone(CountryDetailsByPhoneRequest) returns (CountryDetailsByPhoneResponse) {
+  }
 }
 
 enum LocaleType {
@@ -268,4 +271,13 @@ message AddressAdditional {
 message DefaultCityListParams {
   string  ip = 1;
   string  country_iso_code = 2;
+}
+
+message CountryDetailsByPhoneRequest {
+  string phone_number = 1;
+}
+
+message CountryDetailsByPhoneResponse {
+  string phone_number = 1;
+  Country country = 2;
 }
