@@ -5867,6 +5867,21 @@
         },
         "updatedAt": {
           "type": "string"
+        },
+        "postal": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "house": {
+          "type": "string"
+        },
+        "housing": {
+          "type": "string"
+        },
+        "floor": {
+          "type": "string"
         }
       }
     },
@@ -6102,6 +6117,21 @@
         "storeCode": {
           "type": "integer",
           "format": "int32"
+        },
+        "postal": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "house": {
+          "type": "string"
+        },
+        "housing": {
+          "type": "string"
+        },
+        "floor": {
+          "type": "string"
         }
       }
     },

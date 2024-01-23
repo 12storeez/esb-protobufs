@@ -84,6 +84,11 @@ message StoreDeliveryTypePickup {
   bool              is_active_by_cells = 8;
   string            created_at = 9;
   string            updated_at = 10;
+  string            postal = 11;
+  string            street = 12;
+  string            house = 13;
+  string            housing = 14;
+  string            floor = 15;
 }
 
 message UpdateStoreDeliveryTypePickup {
@@ -104,6 +109,11 @@ message SuggestStoreDeliveryTypePickup {
   string name = 2;
   bool   is_active = 3;
   int32  store_code = 4;
+  string postal = 5;
+  string street = 6;
+  string house = 7;
+  string housing = 8;
+  string floor = 9;
 }
 
 message SuggestStoreDeliveryTypePickupResponse {
