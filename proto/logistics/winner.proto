@@ -13,7 +13,16 @@ service WinnerService {
       body: "*"
     };
   }
+
+  rpc Intervals(IntervalsRequest) returns (IntervalsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/winner/intervals"
+      body: "*"
+    };
+  }
 }
+
+
 
 message CalculateRequest {
   string    country_iso_code = 1;
@@ -83,4 +92,22 @@ message WinnerInterval {
   string time_from = 2;
   string time_to = 3;
   string code = 4;
+}
+
+message IntervalsRequest {
+  string delivery_type_code = 1;
+  string date = 2;
+}
+
+message Intervals {
+  string name = 1;
+  int32 from_days = 2;
+  int32 to_days = 3;
+  repeated WinnerDeliveryDates delivery_dates = 4;
+}
+
+message IntervalsResponse {
+  string status = 1;
+  string message = 2;
+  Intervals data = 3;
 }
