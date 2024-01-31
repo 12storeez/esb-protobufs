@@ -3828,6 +3828,38 @@
         ]
       }
     },
+    "/api/v1/winner/intervals": {
+      "post": {
+        "operationId": "WinnerService_Intervals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsIntervalsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsIntervalsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "WinnerService"
+        ]
+      }
+    },
     "/api/v1/zone": {
       "get": {
         "operationId": "ZoneService_List",
@@ -5310,6 +5342,54 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsIntervals": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "fromDays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "toDays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryDates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsWinnerDeliveryDates"
+          }
+        }
+      }
+    },
+    "logisticsIntervalsRequest": {
+      "type": "object",
+      "properties": {
+        "deliveryTypeCode": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsIntervalsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/logisticsIntervals"
         }
       }
     },
