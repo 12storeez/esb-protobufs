@@ -101,8 +101,8 @@ message Maintenance {
     optional string video_small = 7;
     optional string video_preview_small = 8;
     optional string details_url = 9;
-    optional string created_at = 10;
-    optional string updated_at = 11;
+    string created_at = 10;
+    string updated_at = 11;
     optional string deleted_at = 12;
 }
 
@@ -141,8 +141,6 @@ message MaintenanceithoutID {
     optional string video_small = 7;
     optional string video_preview_small = 8;
     optional string details_url = 9;
-    optional string created_at = 10;
-    optional string updated_at = 11;
     optional string deleted_at = 12;
 }
 
@@ -287,6 +285,10 @@ message GetByIDRequest {
     int64 id = 1;
 }
 
+message GetByGUIDRequest {
+    string guid = 1;
+}
+
 message GetPhotoModelByIDResponse {
     string status = 1;
     string message = 2;
@@ -302,10 +304,6 @@ message GetDictionarySizeListResponse {
     int64 code = 4;
     repeated Error errors = 5;
     repeated DictionarySize data = 6;
-}
-
-message GetByGUIDRequest {
-    string guid = 1;
 }
 
 message GetDictionarySizeByGUIDResponse {
@@ -354,6 +352,146 @@ message GetListProductsToMaintenanceResponse {
     repeated QuickMaintenance data = 6;
 }
 
+message QuickProductWithTitleRU {
+    string guid = 1;
+    string article = 2;
+    string title_ru = 3;
+}
+
+
+message ProductOrder {
+    int64 id = 1;
+    string type = 2;
+    int32 created_at_coef = 3;
+    int32 views = 4;
+    int32 subscriptions = 5;
+    int32 cart_adds = 6;
+    int32 buys = 7;
+    int32 avail_stocks = 8;
+    string avail_sizes = 9;
+    string attribute_coef = 10;
+    string reduction_factor = 11;
+    bool is_set_manual = 12;
+    int32 total_weight = 13;
+    QuickProductWithTitleRU product = 14;
+    string created_at = 15;
+    string updated_at = 16;
+    optional string deleted_at = 17;
+}
+
+message ProductOrderWithoutID {
+    string type = 1;
+    int32 created_at_coef = 2;
+    int32 views = 3;
+    int32 subscriptions = 4;
+    int32 cart_adds = 5;
+    int32 buys = 6;
+    int32 avail_stocks = 7;
+    string avail_sizes = 8;
+    string attribute_coef = 9;
+    string reduction_factor = 10;
+    bool is_set_manual = 11;
+    int32 total_weight = 12;
+    QuickProductWithTitleRU product = 13;
+    string created_at = 14;
+    string updated_at = 15;
+    optional string deleted_at = 16;
+}
+
+message UpdateProductOrder{
+    int64 id = 1;
+    optional string type = 2;
+    optional int32 created_at_coef = 3;
+    optional int32 views = 4;
+    optional int32 subscriptions = 5;
+    optional int32 cart_adds = 6;
+    optional int32 buys = 7;
+    optional int32 avail_stocks = 8;
+    optional string avail_sizes = 9;
+    optional string attribute_coef = 10;
+    optional string reduction_factor = 11;
+    optional bool is_set_manual = 12;
+    optional int32 total_weight = 13;
+    optional string product_guid = 14;
+    optional string deleted_at = 15;
+}
+
+message GetProductOrderListResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated ProductOrder data = 6;
+}
+
+message GetProductOrderByIDResponse {
+    string status = 1;
+    string message = 2;
+    ProductOrder data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
+message SetNullProductOrder {
+    int64 id = 1;
+    optional bool deleted_at = 2;
+}
+
+message ModelType {
+    int64 id = 1;
+    optional string name = 2;
+    string created_at = 3;
+    string updated_at = 4;
+}
+
+message ModelTypeWithoutID {
+    optional string name = 1;
+}
+
+message UpdateModelType{
+    int64 id = 1;
+    optional string name = 2;
+}
+
+message GetModelTypeListResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated ModelType data = 6;
+}
+
+message GetModelTypeByIDResponse {
+    string status = 1;
+    string message = 2;
+    ModelType data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
+message SetNullModelType {
+    int64 id = 1;
+    optional bool name = 2;
+}
+
+message ProductFilter {
+    string type = 1;
+    string value = 2;
+    string created_at = 3;
+    string updated_at = 4;
+}
+
+message GetProductFilterListResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated ProductFilter data = 6;
+}
+
 service NomenclatureService {
     rpc GetList (GetListRequest) returns (GetNomenclatureListResponse);
     rpc GetByArticle (GetNomenclatureByArticleRequest) returns (GetNomenclatureByArticleResponse);
@@ -381,4 +519,24 @@ service MaintenanceService {
     rpc Update (UpdateMaintenance) returns (GetMaintenanceByIDResponse);
     rpc SetNull (SetNullMaintenance) returns (GetMaintenanceByIDResponse);
     rpc GetListProductsToMaintenance (GetListRequest) returns (GetListProductsToMaintenanceResponse);
+}
+
+service ProductOrderService {
+    rpc GetList (GetListRequest) returns (GetProductOrderListResponse);
+    rpc GetByID (GetByIDRequest) returns (GetProductOrderByIDResponse);
+    rpc Create (ProductOrderWithoutID) returns (GetProductOrderByIDResponse);
+    rpc Update (UpdateProductOrder) returns (GetProductOrderByIDResponse);
+    rpc SetNull (SetNullProductOrder) returns (GetProductOrderByIDResponse);
+}
+
+service ModelTypeService{
+    rpc GetList (GetListRequest) returns (GetModelTypeListResponse);
+    rpc GetByID (GetByIDRequest) returns (GetModelTypeByIDResponse);
+    rpc Create (ModelTypeWithoutID) returns (GetModelTypeByIDResponse);
+    rpc Update (UpdateModelType) returns (GetModelTypeByIDResponse);
+    rpc SetNull (SetNullModelType) returns (GetModelTypeByIDResponse);
+}
+
+service ProductFilterService{
+    rpc GetList (GetListRequest) returns (GetProductFilterListResponse);
 }
