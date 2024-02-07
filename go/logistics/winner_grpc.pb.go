@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WinnerServiceClient interface {
 	Calculate(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
-	Intervals(ctx context.Context, in *IntervalsRequest, opts ...grpc.CallOption) (*IntervalsResponse, error)
+	Intervals(ctx context.Context, in *IntervalsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
 }
 
 type winnerServiceClient struct {
@@ -48,8 +48,8 @@ func (c *winnerServiceClient) Calculate(ctx context.Context, in *CalculateReques
 	return out, nil
 }
 
-func (c *winnerServiceClient) Intervals(ctx context.Context, in *IntervalsRequest, opts ...grpc.CallOption) (*IntervalsResponse, error) {
-	out := new(IntervalsResponse)
+func (c *winnerServiceClient) Intervals(ctx context.Context, in *IntervalsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
+	out := new(UnifiedResponse)
 	err := c.cc.Invoke(ctx, WinnerService_Intervals_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ func (c *winnerServiceClient) Intervals(ctx context.Context, in *IntervalsReques
 // for forward compatibility
 type WinnerServiceServer interface {
 	Calculate(context.Context, *CalculateRequest) (*CalculateResponse, error)
-	Intervals(context.Context, *IntervalsRequest) (*IntervalsResponse, error)
+	Intervals(context.Context, *IntervalsRequest) (*UnifiedResponse, error)
 }
 
 // UnimplementedWinnerServiceServer should be embedded to have forward compatible implementations.
@@ -72,7 +72,7 @@ type UnimplementedWinnerServiceServer struct {
 func (UnimplementedWinnerServiceServer) Calculate(context.Context, *CalculateRequest) (*CalculateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Calculate not implemented")
 }
-func (UnimplementedWinnerServiceServer) Intervals(context.Context, *IntervalsRequest) (*IntervalsResponse, error) {
+func (UnimplementedWinnerServiceServer) Intervals(context.Context, *IntervalsRequest) (*UnifiedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Intervals not implemented")
 }
 

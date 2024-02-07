@@ -5,6 +5,7 @@ option go_package = "go/logistics";
 package logistics;
 
 import "google/api/annotations.proto";
+import "common.proto";
 
 service WinnerService {
   rpc Calculate(CalculateRequest) returns (CalculateResponse) {
@@ -14,7 +15,7 @@ service WinnerService {
     };
   }
 
-  rpc Intervals(IntervalsRequest) returns (IntervalsResponse) {
+  rpc Intervals(IntervalsRequest) returns (common.UnifiedResponse) {
     option (google.api.http) = {
       post: "/api/v1/winner/intervals"
       body: "*"
