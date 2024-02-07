@@ -853,3 +853,543 @@ var MaintenanceService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/nomenclature.proto",
 }
+
+// ProductOrderServiceClient is the client API for ProductOrderService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProductOrderServiceClient interface {
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductOrderListResponse, error)
+	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error)
+	Create(ctx context.Context, in *ProductOrderWithoutID, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error)
+	Update(ctx context.Context, in *UpdateProductOrder, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error)
+	SetNull(ctx context.Context, in *SetNullProductOrder, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error)
+}
+
+type productOrderServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProductOrderServiceClient(cc grpc.ClientConnInterface) ProductOrderServiceClient {
+	return &productOrderServiceClient{cc}
+}
+
+func (c *productOrderServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductOrderListResponse, error) {
+	out := new(GetProductOrderListResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productOrderServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
+	out := new(GetProductOrderByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/GetByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productOrderServiceClient) Create(ctx context.Context, in *ProductOrderWithoutID, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
+	out := new(GetProductOrderByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productOrderServiceClient) Update(ctx context.Context, in *UpdateProductOrder, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
+	out := new(GetProductOrderByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productOrderServiceClient) SetNull(ctx context.Context, in *SetNullProductOrder, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
+	out := new(GetProductOrderByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/SetNull", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProductOrderServiceServer is the server API for ProductOrderService service.
+// All implementations should embed UnimplementedProductOrderServiceServer
+// for forward compatibility
+type ProductOrderServiceServer interface {
+	GetList(context.Context, *GetListRequest) (*GetProductOrderListResponse, error)
+	GetByID(context.Context, *GetByIDRequest) (*GetProductOrderByIDResponse, error)
+	Create(context.Context, *ProductOrderWithoutID) (*GetProductOrderByIDResponse, error)
+	Update(context.Context, *UpdateProductOrder) (*GetProductOrderByIDResponse, error)
+	SetNull(context.Context, *SetNullProductOrder) (*GetProductOrderByIDResponse, error)
+}
+
+// UnimplementedProductOrderServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedProductOrderServiceServer struct {
+}
+
+func (UnimplementedProductOrderServiceServer) GetList(context.Context, *GetListRequest) (*GetProductOrderListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedProductOrderServiceServer) GetByID(context.Context, *GetByIDRequest) (*GetProductOrderByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
+}
+func (UnimplementedProductOrderServiceServer) Create(context.Context, *ProductOrderWithoutID) (*GetProductOrderByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedProductOrderServiceServer) Update(context.Context, *UpdateProductOrder) (*GetProductOrderByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedProductOrderServiceServer) SetNull(context.Context, *SetNullProductOrder) (*GetProductOrderByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNull not implemented")
+}
+
+// UnsafeProductOrderServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProductOrderServiceServer will
+// result in compilation errors.
+type UnsafeProductOrderServiceServer interface {
+	mustEmbedUnimplementedProductOrderServiceServer()
+}
+
+func RegisterProductOrderServiceServer(s grpc.ServiceRegistrar, srv ProductOrderServiceServer) {
+	s.RegisterService(&ProductOrderService_ServiceDesc, srv)
+}
+
+func _ProductOrderService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductOrderServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductOrderService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductOrderServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductOrderService_GetByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductOrderServiceServer).GetByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductOrderService/GetByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductOrderServiceServer).GetByID(ctx, req.(*GetByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductOrderService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductOrderWithoutID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductOrderServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductOrderService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductOrderServiceServer).Create(ctx, req.(*ProductOrderWithoutID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductOrderService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductOrder)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductOrderServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductOrderService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductOrderServiceServer).Update(ctx, req.(*UpdateProductOrder))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductOrderService_SetNull_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNullProductOrder)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductOrderServiceServer).SetNull(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductOrderService/SetNull",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductOrderServiceServer).SetNull(ctx, req.(*SetNullProductOrder))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ProductOrderService_ServiceDesc is the grpc.ServiceDesc for ProductOrderService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ProductOrderService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "nomenclature.ProductOrderService",
+	HandlerType: (*ProductOrderServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetList",
+			Handler:    _ProductOrderService_GetList_Handler,
+		},
+		{
+			MethodName: "GetByID",
+			Handler:    _ProductOrderService_GetByID_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _ProductOrderService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ProductOrderService_Update_Handler,
+		},
+		{
+			MethodName: "SetNull",
+			Handler:    _ProductOrderService_SetNull_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/nomenclature.proto",
+}
+
+// ModelTypeServiceClient is the client API for ModelTypeService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ModelTypeServiceClient interface {
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetModelTypeListResponse, error)
+	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error)
+	Create(ctx context.Context, in *ModelTypeWithoutID, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error)
+	Update(ctx context.Context, in *UpdateModelType, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error)
+	SetNull(ctx context.Context, in *SetNullModelType, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error)
+}
+
+type modelTypeServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewModelTypeServiceClient(cc grpc.ClientConnInterface) ModelTypeServiceClient {
+	return &modelTypeServiceClient{cc}
+}
+
+func (c *modelTypeServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetModelTypeListResponse, error) {
+	out := new(GetModelTypeListResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelTypeServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
+	out := new(GetModelTypeByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/GetByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelTypeServiceClient) Create(ctx context.Context, in *ModelTypeWithoutID, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
+	out := new(GetModelTypeByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelTypeServiceClient) Update(ctx context.Context, in *UpdateModelType, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
+	out := new(GetModelTypeByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *modelTypeServiceClient) SetNull(ctx context.Context, in *SetNullModelType, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
+	out := new(GetModelTypeByIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/SetNull", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ModelTypeServiceServer is the server API for ModelTypeService service.
+// All implementations should embed UnimplementedModelTypeServiceServer
+// for forward compatibility
+type ModelTypeServiceServer interface {
+	GetList(context.Context, *GetListRequest) (*GetModelTypeListResponse, error)
+	GetByID(context.Context, *GetByIDRequest) (*GetModelTypeByIDResponse, error)
+	Create(context.Context, *ModelTypeWithoutID) (*GetModelTypeByIDResponse, error)
+	Update(context.Context, *UpdateModelType) (*GetModelTypeByIDResponse, error)
+	SetNull(context.Context, *SetNullModelType) (*GetModelTypeByIDResponse, error)
+}
+
+// UnimplementedModelTypeServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedModelTypeServiceServer struct {
+}
+
+func (UnimplementedModelTypeServiceServer) GetList(context.Context, *GetListRequest) (*GetModelTypeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedModelTypeServiceServer) GetByID(context.Context, *GetByIDRequest) (*GetModelTypeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
+}
+func (UnimplementedModelTypeServiceServer) Create(context.Context, *ModelTypeWithoutID) (*GetModelTypeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedModelTypeServiceServer) Update(context.Context, *UpdateModelType) (*GetModelTypeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedModelTypeServiceServer) SetNull(context.Context, *SetNullModelType) (*GetModelTypeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNull not implemented")
+}
+
+// UnsafeModelTypeServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ModelTypeServiceServer will
+// result in compilation errors.
+type UnsafeModelTypeServiceServer interface {
+	mustEmbedUnimplementedModelTypeServiceServer()
+}
+
+func RegisterModelTypeServiceServer(s grpc.ServiceRegistrar, srv ModelTypeServiceServer) {
+	s.RegisterService(&ModelTypeService_ServiceDesc, srv)
+}
+
+func _ModelTypeService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelTypeServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ModelTypeService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelTypeServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelTypeService_GetByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelTypeServiceServer).GetByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ModelTypeService/GetByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelTypeServiceServer).GetByID(ctx, req.(*GetByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelTypeService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ModelTypeWithoutID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelTypeServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ModelTypeService/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelTypeServiceServer).Create(ctx, req.(*ModelTypeWithoutID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelTypeService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateModelType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelTypeServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ModelTypeService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelTypeServiceServer).Update(ctx, req.(*UpdateModelType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ModelTypeService_SetNull_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNullModelType)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ModelTypeServiceServer).SetNull(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ModelTypeService/SetNull",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ModelTypeServiceServer).SetNull(ctx, req.(*SetNullModelType))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ModelTypeService_ServiceDesc is the grpc.ServiceDesc for ModelTypeService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ModelTypeService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "nomenclature.ModelTypeService",
+	HandlerType: (*ModelTypeServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetList",
+			Handler:    _ModelTypeService_GetList_Handler,
+		},
+		{
+			MethodName: "GetByID",
+			Handler:    _ModelTypeService_GetByID_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _ModelTypeService_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ModelTypeService_Update_Handler,
+		},
+		{
+			MethodName: "SetNull",
+			Handler:    _ModelTypeService_SetNull_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/nomenclature.proto",
+}
+
+// ProductFilterServiceClient is the client API for ProductFilterService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProductFilterServiceClient interface {
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductFilterListResponse, error)
+}
+
+type productFilterServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProductFilterServiceClient(cc grpc.ClientConnInterface) ProductFilterServiceClient {
+	return &productFilterServiceClient{cc}
+}
+
+func (c *productFilterServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductFilterListResponse, error) {
+	out := new(GetProductFilterListResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductFilterService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProductFilterServiceServer is the server API for ProductFilterService service.
+// All implementations should embed UnimplementedProductFilterServiceServer
+// for forward compatibility
+type ProductFilterServiceServer interface {
+	GetList(context.Context, *GetListRequest) (*GetProductFilterListResponse, error)
+}
+
+// UnimplementedProductFilterServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedProductFilterServiceServer struct {
+}
+
+func (UnimplementedProductFilterServiceServer) GetList(context.Context, *GetListRequest) (*GetProductFilterListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+
+// UnsafeProductFilterServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProductFilterServiceServer will
+// result in compilation errors.
+type UnsafeProductFilterServiceServer interface {
+	mustEmbedUnimplementedProductFilterServiceServer()
+}
+
+func RegisterProductFilterServiceServer(s grpc.ServiceRegistrar, srv ProductFilterServiceServer) {
+	s.RegisterService(&ProductFilterService_ServiceDesc, srv)
+}
+
+func _ProductFilterService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductFilterServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductFilterService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductFilterServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ProductFilterService_ServiceDesc is the grpc.ServiceDesc for ProductFilterService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ProductFilterService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "nomenclature.ProductFilterService",
+	HandlerType: (*ProductFilterServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetList",
+			Handler:    _ProductFilterService_GetList_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/nomenclature.proto",
+}
