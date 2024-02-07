@@ -4615,28 +4615,6 @@
         }
       }
     },
-    "commonFailResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/commonError"
-          }
-        }
-      }
-    },
     "commonPaginate": {
       "type": "object",
       "properties": {
@@ -4654,7 +4632,7 @@
         }
       }
     },
-    "commonSuccessRespnse": {
+    "commonUnifiedResponse": {
       "type": "object",
       "properties": {
         "status": {
@@ -4668,17 +4646,17 @@
         },
         "data": {
           "$ref": "#/definitions/protobufAny"
-        }
-      }
-    },
-    "commonUnifiedResponse": {
-      "type": "object",
-      "properties": {
-        "fail": {
-          "$ref": "#/definitions/commonFailResponse"
         },
-        "success": {
-          "$ref": "#/definitions/commonSuccessRespnse"
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonError"
+          }
         }
       }
     },
