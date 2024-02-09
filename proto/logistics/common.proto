@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package common;
+
+import "google/protobuf/any.proto";
+
+message UnifiedResponse {
+    string status = 1;
+    string message = 2;
+
+    optional Paginate pagination = 3;
+    optional google.protobuf.Any data = 4;
+    optional sint32 code = 5; 
+    repeated Error errors = 6;
+}
+
+message Error {
+    string target = 1;
+    sint32 code = 2;
+    string message = 3;
+}
+
+message Paginate {
+    uint32 limit = 1;
+    uint32 offset = 2;
+    uint32 total = 3;
+  }
