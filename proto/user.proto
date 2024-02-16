@@ -115,8 +115,9 @@ message GetByTokenRequest {
 
 // GetList
 message GetListRequest {
-  GetListFilters filters = 1;
-  Pagination     pagination = 2;
+  optional    GetListFilters filters = 1;
+  Pagination              pagination = 2;
+  optional    string          search = 3;
 }
 
 message GetListResponse {
@@ -153,9 +154,10 @@ enum UserType {
 
 // Filters
 message GetListFilters {
-  string   updated_from = 1;
-  string   updated_to   = 2;
-  UserType type         = 3;
+  optional string   updated_from = 1;
+  optional string   updated_to   = 2;
+  optional UserType type         = 3;
+  repeated string   user_ids     = 4;
 }
 
 // Pagination

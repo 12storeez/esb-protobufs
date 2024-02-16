@@ -854,6 +854,14 @@ var MaintenanceService_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "proto/nomenclature.proto",
 }
 
+const (
+	ProductOrderService_GetList_FullMethodName = "/nomenclature.ProductOrderService/GetList"
+	ProductOrderService_GetByID_FullMethodName = "/nomenclature.ProductOrderService/GetByID"
+	ProductOrderService_Create_FullMethodName  = "/nomenclature.ProductOrderService/Create"
+	ProductOrderService_Update_FullMethodName  = "/nomenclature.ProductOrderService/Update"
+	ProductOrderService_SetNull_FullMethodName = "/nomenclature.ProductOrderService/SetNull"
+)
+
 // ProductOrderServiceClient is the client API for ProductOrderService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
@@ -875,7 +883,7 @@ func NewProductOrderServiceClient(cc grpc.ClientConnInterface) ProductOrderServi
 
 func (c *productOrderServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductOrderListResponse, error) {
 	out := new(GetProductOrderListResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/GetList", in, out, opts...)
+	err := c.cc.Invoke(ctx, ProductOrderService_GetList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -884,7 +892,7 @@ func (c *productOrderServiceClient) GetList(ctx context.Context, in *GetListRequ
 
 func (c *productOrderServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
 	out := new(GetProductOrderByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/GetByID", in, out, opts...)
+	err := c.cc.Invoke(ctx, ProductOrderService_GetByID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -893,7 +901,7 @@ func (c *productOrderServiceClient) GetByID(ctx context.Context, in *GetByIDRequ
 
 func (c *productOrderServiceClient) Create(ctx context.Context, in *ProductOrderWithoutID, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
 	out := new(GetProductOrderByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, ProductOrderService_Create_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -902,7 +910,7 @@ func (c *productOrderServiceClient) Create(ctx context.Context, in *ProductOrder
 
 func (c *productOrderServiceClient) Update(ctx context.Context, in *UpdateProductOrder, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
 	out := new(GetProductOrderByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, ProductOrderService_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -911,7 +919,7 @@ func (c *productOrderServiceClient) Update(ctx context.Context, in *UpdateProduc
 
 func (c *productOrderServiceClient) SetNull(ctx context.Context, in *SetNullProductOrder, opts ...grpc.CallOption) (*GetProductOrderByIDResponse, error) {
 	out := new(GetProductOrderByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ProductOrderService/SetNull", in, out, opts...)
+	err := c.cc.Invoke(ctx, ProductOrderService_SetNull_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -970,7 +978,7 @@ func _ProductOrderService_GetList_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ProductOrderService/GetList",
+		FullMethod: ProductOrderService_GetList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductOrderServiceServer).GetList(ctx, req.(*GetListRequest))
@@ -988,7 +996,7 @@ func _ProductOrderService_GetByID_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ProductOrderService/GetByID",
+		FullMethod: ProductOrderService_GetByID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductOrderServiceServer).GetByID(ctx, req.(*GetByIDRequest))
@@ -1006,7 +1014,7 @@ func _ProductOrderService_Create_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ProductOrderService/Create",
+		FullMethod: ProductOrderService_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductOrderServiceServer).Create(ctx, req.(*ProductOrderWithoutID))
@@ -1024,7 +1032,7 @@ func _ProductOrderService_Update_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ProductOrderService/Update",
+		FullMethod: ProductOrderService_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductOrderServiceServer).Update(ctx, req.(*UpdateProductOrder))
@@ -1042,7 +1050,7 @@ func _ProductOrderService_SetNull_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ProductOrderService/SetNull",
+		FullMethod: ProductOrderService_SetNull_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductOrderServiceServer).SetNull(ctx, req.(*SetNullProductOrder))
@@ -1082,6 +1090,14 @@ var ProductOrderService_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "proto/nomenclature.proto",
 }
 
+const (
+	ModelTypeService_GetList_FullMethodName = "/nomenclature.ModelTypeService/GetList"
+	ModelTypeService_GetByID_FullMethodName = "/nomenclature.ModelTypeService/GetByID"
+	ModelTypeService_Create_FullMethodName  = "/nomenclature.ModelTypeService/Create"
+	ModelTypeService_Update_FullMethodName  = "/nomenclature.ModelTypeService/Update"
+	ModelTypeService_SetNull_FullMethodName = "/nomenclature.ModelTypeService/SetNull"
+)
+
 // ModelTypeServiceClient is the client API for ModelTypeService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
@@ -1103,7 +1119,7 @@ func NewModelTypeServiceClient(cc grpc.ClientConnInterface) ModelTypeServiceClie
 
 func (c *modelTypeServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetModelTypeListResponse, error) {
 	out := new(GetModelTypeListResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/GetList", in, out, opts...)
+	err := c.cc.Invoke(ctx, ModelTypeService_GetList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1112,7 +1128,7 @@ func (c *modelTypeServiceClient) GetList(ctx context.Context, in *GetListRequest
 
 func (c *modelTypeServiceClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
 	out := new(GetModelTypeByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/GetByID", in, out, opts...)
+	err := c.cc.Invoke(ctx, ModelTypeService_GetByID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1121,7 +1137,7 @@ func (c *modelTypeServiceClient) GetByID(ctx context.Context, in *GetByIDRequest
 
 func (c *modelTypeServiceClient) Create(ctx context.Context, in *ModelTypeWithoutID, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
 	out := new(GetModelTypeByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, ModelTypeService_Create_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1130,7 +1146,7 @@ func (c *modelTypeServiceClient) Create(ctx context.Context, in *ModelTypeWithou
 
 func (c *modelTypeServiceClient) Update(ctx context.Context, in *UpdateModelType, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
 	out := new(GetModelTypeByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, ModelTypeService_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1139,7 +1155,7 @@ func (c *modelTypeServiceClient) Update(ctx context.Context, in *UpdateModelType
 
 func (c *modelTypeServiceClient) SetNull(ctx context.Context, in *SetNullModelType, opts ...grpc.CallOption) (*GetModelTypeByIDResponse, error) {
 	out := new(GetModelTypeByIDResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ModelTypeService/SetNull", in, out, opts...)
+	err := c.cc.Invoke(ctx, ModelTypeService_SetNull_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1198,7 +1214,7 @@ func _ModelTypeService_GetList_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ModelTypeService/GetList",
+		FullMethod: ModelTypeService_GetList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelTypeServiceServer).GetList(ctx, req.(*GetListRequest))
@@ -1216,7 +1232,7 @@ func _ModelTypeService_GetByID_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ModelTypeService/GetByID",
+		FullMethod: ModelTypeService_GetByID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelTypeServiceServer).GetByID(ctx, req.(*GetByIDRequest))
@@ -1234,7 +1250,7 @@ func _ModelTypeService_Create_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ModelTypeService/Create",
+		FullMethod: ModelTypeService_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelTypeServiceServer).Create(ctx, req.(*ModelTypeWithoutID))
@@ -1252,7 +1268,7 @@ func _ModelTypeService_Update_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ModelTypeService/Update",
+		FullMethod: ModelTypeService_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelTypeServiceServer).Update(ctx, req.(*UpdateModelType))
@@ -1270,7 +1286,7 @@ func _ModelTypeService_SetNull_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ModelTypeService/SetNull",
+		FullMethod: ModelTypeService_SetNull_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ModelTypeServiceServer).SetNull(ctx, req.(*SetNullModelType))
@@ -1310,6 +1326,10 @@ var ModelTypeService_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "proto/nomenclature.proto",
 }
 
+const (
+	ProductFilterService_GetList_FullMethodName = "/nomenclature.ProductFilterService/GetList"
+)
+
 // ProductFilterServiceClient is the client API for ProductFilterService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
@@ -1327,7 +1347,7 @@ func NewProductFilterServiceClient(cc grpc.ClientConnInterface) ProductFilterSer
 
 func (c *productFilterServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductFilterListResponse, error) {
 	out := new(GetProductFilterListResponse)
-	err := c.cc.Invoke(ctx, "/nomenclature.ProductFilterService/GetList", in, out, opts...)
+	err := c.cc.Invoke(ctx, ProductFilterService_GetList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1370,7 +1390,7 @@ func _ProductFilterService_GetList_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/nomenclature.ProductFilterService/GetList",
+		FullMethod: ProductFilterService_GetList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductFilterServiceServer).GetList(ctx, req.(*GetListRequest))
