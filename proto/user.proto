@@ -11,10 +11,44 @@ service user {
   rpc GetByToken(GetByTokenRequest) returns (GetResponse) {}
   rpc GetList(GetListRequest) returns (GetListResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  rpc Merge(MergeRequest) returns (MergeResponse) {}
   // @TODO: оставить отдельными методами? Или оставить в Update?
 //  rpc Block(BlockRequest) returns (BlockResponse) {}
 //  rpc Unblock(UnblockRequest) returns (UnblockResponse) {}
 }
+
+message MergeRequest {
+  string main_user_id = 1;
+  string duplicate_user_id = 2;
+  optional string phone = 3;
+  optional string email = 4;
+  optional string first_name = 5;
+  optional string middle_name = 6;
+  optional string last_name = 7;
+  optional string birthdate = 8;
+  optional string gender = 9;
+  optional int32 store_code = 10;
+  optional string clothing_size = 11;
+  optional string shoe_size = 12;
+  optional string country = 13;
+  optional string city = 14;
+  optional string region = 15;
+  optional bool is_vic = 16;
+  optional string merge_source = 17;
+}
+
+message MergeResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  MergeResponseData              data = 5;
+}
+
+message MergeResponseData {
+  string            history_id = 1;
+}
+
 
 // CreateRequest
 message CreateRequest {
