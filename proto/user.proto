@@ -160,6 +160,7 @@ message GetListResponse {
   int64             code = 3;
   repeated Error    errors = 4;
   repeated User     data = 5;
+  Pagination        pagination = 6;
 }
 
 // Delete
@@ -196,6 +197,7 @@ message GetListFilters {
 
 // Pagination
 message Pagination {
-  int64 limit = 1;
-  int64 offset = 2;
+  int64          limit = 1;
+  int64          offset = 2;
+  optional int64 total = 3;
 }
