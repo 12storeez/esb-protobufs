@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option go_package = "go/auth";
 
+import "google/protobuf/struct.proto";
+
 package auth;
 
 service auth {
@@ -86,11 +88,7 @@ message ValidateData {
   string             first_name = 4;
   string             last_name = 5;
   string             email = 6;
-  map<string, Roles> roles = 7;
-}
-
-message Roles {
-  repeated string roles = 1;
+  map<string, google.protobuf.ListValue> roles = 7;
 }
 
 // Error
