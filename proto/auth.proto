@@ -86,11 +86,11 @@ message ValidateData {
   string             first_name = 4;
   string             last_name = 5;
   string             email = 6;
-  map<string, Roles> movieTicketPrice = 7;
+  map<string, Roles> roles = 7;
 }
 
 message Roles {
-  repeated string role = 1;
+  repeated string roles = 1;
 }
 
 // Error
