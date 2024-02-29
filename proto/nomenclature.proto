@@ -247,7 +247,7 @@ message DictionarySizeWithoutGUID {
 message GetListRequest {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved   "filters";
+    reserved         "filters";
     PaginationRequest pagination = 2;
 }
 
@@ -398,7 +398,7 @@ message ProductOrderWithoutID {
     optional string deleted_at = 16;
 }
 
-message UpdateProductOrder{
+message UpdateProductOrder {
     int64 id = 1;
     optional string type = 2;
     optional int32 created_at_coef = 3;
@@ -449,7 +449,7 @@ message ModelTypeWithoutID {
     optional string name = 1;
 }
 
-message UpdateModelType{
+message UpdateModelType {
     int64 id = 1;
     optional string name = 2;
 }
@@ -492,6 +492,245 @@ message GetProductFilterListResponse {
     repeated ProductFilter data = 6;
 }
 
+message CategoryBanner {
+    string url = 1;
+    string type = 2;
+    string gender = 3;
+    string preview = 4;
+    string video_mobile = 5;
+}
+
+message CategoryBlock {
+    int32 color = 1;
+    int32 buy_today = 2;
+    int32 description = 3;
+    int32 sizes = 4;
+    int32 params = 5;
+    int32 care = 6;
+    int32 contents = 7;
+    int32 promo = 8;
+}
+
+message CategoryRelatedProduct {
+    string article = 1;
+    string gender = 2;
+}
+
+message Category {
+    int32 id = 1;
+    optional string bitrix_id = 2;
+    optional int32 order = 3;
+    optional int32 state = 4;
+    int32 state_mobile = 5;
+    optional string slug = 6;
+    optional string title_ru = 7;
+    optional string title_en = 8;
+    optional string mobile_title_ru = 9;
+    optional string mobile_title_en = 10;
+    optional string meta_title_ru = 11;
+    optional string meta_title_en = 12;
+    optional string meta_title_man_ru = 13;
+    optional string meta_title_man_en = 14;
+    optional string description_ru = 15;
+    optional string description_en = 16;
+    optional string description_men_ru = 17;
+    optional string description_men_en = 18;
+    optional string meta_description_ru = 19;
+    optional string meta_description_en = 20;
+    optional string meta_description_man_ru = 21;
+    optional string meta_description_man_en = 22;
+    repeated CategoryBanner banners = 23;
+    optional CategoryBlock block = 24;
+    optional string color = 25;
+    bool is_collection = 26;
+    bool is_filter_fit = 27;
+    bool is_filter_rise = 28;
+    bool is_hide_from_all = 29;
+    bool is_hide_from_menu = 30;
+    bool is_hide_from_menu_mobile = 31;
+    bool is_hide_in_widgets = 32;
+    bool is_hide_in_widgets_mobile = 33;
+    bool is_hide_sizes_table = 34;
+    bool is_highlight_in_menu = 35;
+    bool is_products_contain = 36;
+    bool is_show_filters = 37;
+    bool is_show_in_menu_compilation = 38;
+    optional string google_product_category = 39;
+    int32 order_collection = 40;
+    optional string promo_articles = 41;
+    repeated CategoryRelatedProduct related_products = 42;
+    string sorting_type = 43;
+}
+
+message CategoryWithoutID {
+    optional string bitrix_id = 1;
+    optional int32 order = 2;
+    optional int32 state = 3;
+    int32 state_mobile = 4;
+    optional string slug = 5;
+    optional string title_ru = 6;
+    optional string title_en = 7;
+    optional string mobile_title_ru = 8;
+    optional string mobile_title_en = 9;
+    optional string meta_title_ru = 10;
+    optional string meta_title_en = 11;
+    optional string meta_title_man_ru = 12;
+    optional string meta_title_man_en = 13;
+    optional string description_ru = 14;
+    optional string description_en = 15;
+    optional string description_men_ru = 16;
+    optional string description_men_en = 17;
+    optional string meta_description_ru = 18;
+    optional string meta_description_en = 19;
+    optional string meta_description_man_ru = 20;
+    optional string meta_description_man_en = 21;
+    repeated CategoryBanner banners = 22;
+    optional CategoryBlock block = 23;
+    optional string color = 24;
+    bool is_collection = 25;
+    bool is_filter_fit = 26;
+    bool is_filter_rise = 27;
+    bool is_hide_from_all = 28;
+    bool is_hide_from_menu = 29;
+    bool is_hide_from_menu_mobile = 30;
+    bool is_hide_in_widgets = 31;
+    bool is_hide_in_widgets_mobile = 32;
+    bool is_hide_sizes_table = 33;
+    bool is_highlight_in_menu = 34;
+    bool is_products_contain = 35;
+    bool is_show_filters = 36;
+    bool is_show_in_menu_compilation = 37;
+    optional string google_product_category = 38;
+    int32 order_collection = 39;
+    optional string promo_articles = 40;
+    repeated CategoryRelatedProduct related_products = 41;
+    string sorting_type = 42;
+}
+
+message UpdateCategory {
+    int32 id = 1;
+    optional string bitrix_id = 2;
+    optional int32 order = 3;
+    optional int32 state = 4;
+    optional int32 state_mobile = 5;
+    optional string slug = 6;
+    optional string title_ru = 7;
+    optional string title_en = 8;
+    optional string mobile_title_ru = 9;
+    optional string mobile_title_en = 10;
+    optional string meta_title_ru = 11;
+    optional string meta_title_en = 12;
+    optional string meta_title_man_ru = 13;
+    optional string meta_title_man_en = 14;
+    optional string description_ru = 15;
+    optional string description_en = 16;
+    optional string description_men_ru = 17;
+    optional string description_men_en = 18;
+    optional string meta_description_ru = 19;
+    optional string meta_description_en = 20;
+    optional string meta_description_man_ru = 21;
+    optional string meta_description_man_en = 22;
+    repeated CategoryBanner banners = 23;
+    optional CategoryBlock block = 24;
+    optional string color = 25;
+    optional bool is_collection = 26;
+    optional bool is_filter_fit = 27;
+    optional bool is_filter_rise = 28;
+    optional bool is_hide_from_all = 29;
+    optional bool is_hide_from_menu = 30;
+    optional bool is_hide_from_menu_mobile = 31;
+    optional bool is_hide_in_widgets = 32;
+    optional bool is_hide_in_widgets_mobile = 33;
+    optional bool is_hide_sizes_table = 34;
+    optional bool is_highlight_in_menu = 35;
+    optional bool is_products_contain = 36;
+    optional bool is_show_filters = 37;
+    optional bool is_show_in_menu_compilation = 38;
+    optional string google_product_category = 39;
+    optional int32 order_collection = 40;
+    optional string promo_articles = 41;
+    repeated CategoryRelatedProduct related_products = 42;
+    optional string sorting_type = 43;
+}
+
+message SetNullCategory {
+    int32 id = 1;
+    optional bool bitrix_id = 2;
+    optional bool order = 3;
+    optional bool state = 4;
+    optional bool slug = 5;
+    optional bool title_ru = 6;
+    optional bool title_en = 7;
+    optional bool mobile_title_ru = 8;
+    optional bool mobile_title_en = 9;
+    optional bool meta_title_ru = 10;
+    optional bool meta_title_en = 11;
+    optional bool meta_title_man_ru = 12;
+    optional bool meta_title_man_en = 13;
+    optional bool description_ru = 14;
+    optional bool description_en = 15;
+    optional bool description_men_ru = 16;
+    optional bool description_men_en = 17;
+    optional bool meta_description_ru = 18;
+    optional bool meta_description_en = 19;
+    optional bool meta_description_man_ru = 20;
+    optional bool meta_description_man_en = 21;
+    optional bool banners = 22;
+    optional bool block = 23;
+    optional bool color = 24;
+    optional bool google_product_category = 25;
+    optional bool promo_articles = 26;
+    optional bool related_products = 27;
+}
+
+message CategoryForGetList {
+    int32 id = 1;
+    optional int32 order = 2;
+    optional int32 state = 3;
+    int32 state_mobile = 4;
+    optional string slug = 5;
+    optional string title_ru = 6;
+    bool is_collection = 7;
+    bool is_hide_from_menu = 8;
+}
+
+message GetCategoryListResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated CategoryForGetList data = 6;
+}
+
+message GetCategoryByIDResponse {
+    string status = 1;
+    string message = 2;
+    Category data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
+message ProductsToCategory {
+    int32 id = 1;
+    optional string title_ru = 2;
+    repeated string articles = 3;
+}
+
+message GetProductsToCategoryResponse {
+    string status = 1;
+    string message = 2;
+    int64 code = 3;
+    repeated Error errors = 4;
+    ProductsToCategory data = 5;
+}
+
+message UpdateProductsToCategoryRequest {
+    int32 id = 1;
+    repeated string articles = 2;
+    repeated string articles_to_remove = 3;
+}
+
 service NomenclatureService {
     rpc GetList (GetListRequest) returns (GetNomenclatureListResponse);
     rpc GetByArticle (GetNomenclatureByArticleRequest) returns (GetNomenclatureByArticleResponse);
@@ -529,7 +768,7 @@ service ProductOrderService {
     rpc SetNull (SetNullProductOrder) returns (GetProductOrderByIDResponse);
 }
 
-service ModelTypeService{
+service ModelTypeService {
     rpc GetList (GetListRequest) returns (GetModelTypeListResponse);
     rpc GetByID (GetByIDRequest) returns (GetModelTypeByIDResponse);
     rpc Create (ModelTypeWithoutID) returns (GetModelTypeByIDResponse);
@@ -537,6 +776,16 @@ service ModelTypeService{
     rpc SetNull (SetNullModelType) returns (GetModelTypeByIDResponse);
 }
 
-service ProductFilterService{
+service ProductFilterService {
     rpc GetList (GetListRequest) returns (GetProductFilterListResponse);
+}
+
+service CategoryService {
+    rpc GetList (GetListRequest) returns (GetCategoryListResponse);
+    rpc GetByID (GetByIDRequest) returns (GetCategoryByIDResponse);
+    rpc Create (CategoryWithoutID) returns (GetCategoryByIDResponse);
+    rpc Update (UpdateCategory) returns (GetCategoryByIDResponse);
+    rpc SetNull (SetNullCategory) returns (GetCategoryByIDResponse);
+    rpc GetProductsToCategory (GetByIDRequest) returns (GetProductsToCategoryResponse);
+    rpc UpdateProductsToCategory (UpdateProductsToCategoryRequest) returns (GetProductsToCategoryResponse);
 }
