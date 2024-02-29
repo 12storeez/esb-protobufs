@@ -80,12 +80,17 @@ message ValidateResponse {
 }
 
 message ValidateData {
-  string id = 1;
-  string name = 2;
-  string username = 3;
-  string first_name = 4;
-  string last_name = 5;
-  string email = 6;
+  string             id = 1;
+  string             name = 2;
+  string             username = 3;
+  string             first_name = 4;
+  string             last_name = 5;
+  string             email = 6;
+  map<string, Roles> movieTicketPrice = 7;
+}
+
+message Roles {
+  repeated string role = 1;
 }
 
 // Error
