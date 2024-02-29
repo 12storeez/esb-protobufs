@@ -23,6 +23,7 @@ const (
 	Auth_LoginSMS_FullMethodName      = "/auth.auth/LoginSMS"
 	Auth_Logout_FullMethodName        = "/auth.auth/Logout"
 	Auth_Refresh_FullMethodName       = "/auth.auth/Refresh"
+	Auth_Validate_FullMethodName      = "/auth.auth/Validate"
 )
 
 // AuthClient is the client API for Auth service.
@@ -33,6 +34,7 @@ type AuthClient interface {
 	LoginSMS(ctx context.Context, in *LoginSMSRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
+	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 }
 
 type authClient struct {
@@ -79,6 +81,15 @@ func (c *authClient) Refresh(ctx context.Context, in *RefreshRequest, opts ...gr
 	return out, nil
 }
 
+func (c *authClient) Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
+	out := new(ValidateResponse)
+	err := c.cc.Invoke(ctx, Auth_Validate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations should embed UnimplementedAuthServer
 // for forward compatibility
@@ -87,6 +98,7 @@ type AuthServer interface {
 	LoginSMS(context.Context, *LoginSMSRequest) (*LoginResponse, error)
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
+	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
 }
 
 // UnimplementedAuthServer should be embedded to have forward compatible implementations.
@@ -104,6 +116,9 @@ func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutR
 }
 func (UnimplementedAuthServer) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
+}
+func (UnimplementedAuthServer) Validate(context.Context, *ValidateRequest) (*ValidateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
 }
 
 // UnsafeAuthServer may be embedded to opt out of forward compatibility for this service.
@@ -189,6 +204,24 @@ func _Auth_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_Validate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).Validate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_Validate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).Validate(ctx, req.(*ValidateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -211,6 +244,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Refresh",
 			Handler:    _Auth_Refresh_Handler,
+		},
+		{
+			MethodName: "Validate",
+			Handler:    _Auth_Validate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
