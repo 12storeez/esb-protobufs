@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option go_package = "go/auth";
 
+import "google/protobuf/struct.proto";
+
 package auth;
 
 service auth {
@@ -9,6 +11,7 @@ service auth {
   rpc LoginSMS(LoginSMSRequest) returns (LoginResponse) {}
   rpc Logout(LogoutRequest) returns (LogoutResponse) {}
   rpc Refresh(RefreshRequest) returns (RefreshResponse) {}
+  rpc Validate(ValidateRequest) returns (ValidateResponse) {}
 }
 
 // LoginPasswordRequest request
@@ -63,6 +66,29 @@ message RefreshResponse {
   int64               code = 3;
   repeated Error      errors = 4;
   TokenData           data = 5;
+}
+
+// Validate
+message ValidateRequest {
+  string access_token = 1;
+}
+
+message ValidateResponse {
+  string              status = 1;
+  string              message = 2;
+  int64               code = 3;
+  repeated Error      errors = 4;
+  ValidateData        data = 5;
+}
+
+message ValidateData {
+  string             id = 1;
+  string             name = 2;
+  string             username = 3;
+  string             first_name = 4;
+  string             last_name = 5;
+  string             email = 6;
+  map<string, google.protobuf.ListValue> roles = 7;
 }
 
 // Error
