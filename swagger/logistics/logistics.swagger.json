@@ -4710,11 +4710,11 @@
             "$ref": "#/definitions/logisticsWinnerRestriction"
           }
         },
-        "deliveryTypes": {
+        "deliveryModes": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsWinnerDeliveryType"
+            "$ref": "#/definitions/logisticsWinnerDeliveryMode"
           }
         }
       }
@@ -6688,10 +6688,34 @@
         }
       }
     },
+    "logisticsWinnerDeliveryMode": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "deliveryTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsWinnerDeliveryType"
+          }
+        }
+      }
+    },
     "logisticsWinnerDeliveryType": {
       "type": "object",
       "properties": {
         "deliveryTypeName": {
+          "type": "string"
+        },
+        "codeType": {
+          "type": "string"
+        },
+        "codeTk": {
           "type": "string"
         },
         "message": {
@@ -6738,6 +6762,9 @@
         },
         "isDeliveryUseOnlyWorkingDays": {
           "type": "boolean"
+        },
+        "storePickup": {
+          "$ref": "#/definitions/logisticsWinnerStorePickup"
         }
       }
     },
@@ -6797,6 +6824,44 @@
         },
         "popup": {
           "$ref": "#/definitions/logisticsWinnerPopup"
+        }
+      }
+    },
+    "logisticsWinnerStorePickup": {
+      "type": "object",
+      "properties": {
+        "storeCode": {
+          "type": "string"
+        },
+        "storeTitle": {
+          "type": "string"
+        },
+        "postal": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "house": {
+          "type": "string"
+        },
+        "housing": {
+          "type": "string"
+        },
+        "floor": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "schedule": {
+          "type": "string"
         }
       }
     },
