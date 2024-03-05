@@ -23,14 +23,14 @@ message Error {
 
 message GetListRequest {
     reserved 1;
-    reserved      "filters";
+    reserved       "filters";
     PaginationRequest pagination = 2;
 }
 
 message GetListRequestForOrder {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved    "filters";
+    reserved     "filters";
     bool need_orders = 2;
     PaginationRequest pagination = 3;
 }
@@ -38,7 +38,7 @@ message GetListRequestForOrder {
 message GetListRequestForPosition {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved    "filters";
+    reserved     "filters";
     bool need_positions = 2;
     PaginationRequest pagination = 3;
 }
@@ -47,7 +47,7 @@ message GetListRequestForPosition {
 message GetListRequestForOrderAndPosition {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved    "filters";
+    reserved     "filters";
     bool need_orders = 2;
     bool need_positions = 3;
     PaginationRequest pagination = 4;
@@ -131,6 +131,12 @@ message PositionHistory {
 message StatusGroup {
     int64 id = 1;
     string title_ru = 2;
+    string bg_color = 3;
+    string text_color = 4;
+    string text_color_without_bg = 5;
+    string icon = 6;
+    string created_at = 7;
+    string updated_at = 8;
 }
 
 message OrderStatus {
@@ -413,22 +419,29 @@ message City {
 
 message Delivery {
     optional int64 mode_id = 1;
-	optional string mode_name = 2;
+    optional string mode_name = 2;
     optional string track_number = 3;
+}
+
+message OrderStatusGroupForAdmin {
+    int64 id = 1;
+    string bg_color = 2;
+    string text_color = 3;
+    string icon = 4;
 }
 
 message OrderStatusForAdmin {
     int64 id = 1;
     string title_internal = 2;
     optional string title_ru = 3;
-    int32 group_id = 4;
+    OrderStatusGroupForAdmin group = 4;
 }
 
 //  Retrun this is a keyword in programming languages
 message ReturnTK {
     optional string datetime = 1;
-	optional int64 mode_id = 2;
-	optional string mode_name = 3;
+    optional int64 mode_id = 2;
+    optional string mode_name = 3;
 }
 
 message Sum {
