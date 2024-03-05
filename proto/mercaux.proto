@@ -120,6 +120,7 @@ message Quantity {
     int32 discount = 4;
     int32 price = 5;
     int32 price_before_discount = 6;
+    StoreRoom store_room = 7;
 }
 
 message ListStoresResponse {
@@ -182,4 +183,11 @@ message OrderError {
     float  price = 3;
     int32  available_quantity = 4;
     string barcode = 5;
+}
+
+message StoreRoom {
+    string store_id = 1;
+    int32  RM = 2;
+    int32  ST = 3;
+    int32  SH = 4;
 }
