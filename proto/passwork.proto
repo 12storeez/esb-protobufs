@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option go_package = "go/passwork";
+
+package passwork;
+
+service Passwork {
+  rpc GetByID (ParamsGetByID) returns (ResponseGetByID) {
+  }
+  rpc Create (ParamsCreate) returns (ResponseCreate) {
+  }
+  rpc Update (ParamsUpdate) returns (ResponseUpdate) {
+  }
+  rpc Delete (ParamsDelete) returns (ResponseDelete) {
+  }
+}
+
+message ParamsGetByID {
+  int32 user_id = 1;
+}
+
+message ResponseGetByID {
+  string status = 1;
+  string message = 2;
+  int64 code = 3;
+  Data data = 4;
+  repeated Error    errors = 5;
+}
+
+message ParamsCreate {
+  string name = 1;
+  string login = 2;
+  string password = 3;
+  string vaultId = 4;
+  string folderId = 5;
+}
+
+message ResponseCreate {
+  string status = 1;
+  string message = 2;
+  int64 code = 3;
+  Data data = 4;
+  repeated Error    errors = 5;
+}
+
+message ParamsUpdate {
+  string id = 1;
+  string name = 2;
+  string login = 3;
+  string password = 4;
+}
+
+message ResponseUpdate {
+  string status = 1;
+  string message = 2;
+  int64 code = 3;
+  Data data = 4;
+  repeated Error    errors = 5;
+}
+
+message ParamsDelete {
+  string id = 1;
+}
+message ResponseDelete {
+  string status = 1;
+  string message = 2;
+  int64 code = 3;
+  Data data = 4;
+  repeated Error    errors = 5;
+}
+
+message Data {
+  string id = 1;
+  string name = 2;
+  string login = 3;
+  string password = 4;
+  string vaultId = 5;
+  string folderId = 6;
+}
+
+message Error {
+  string target = 1;
+  int64  code = 2;
+  string message = 3;
+}
