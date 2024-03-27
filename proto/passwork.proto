@@ -5,21 +5,21 @@ option go_package = "go/passwork";
 package passwork;
 
 service Passwork {
-  rpc GetByID (ParamsGetByID) returns (ResponseGetByID) {
+  rpc GetByID (GetByIDRequest) returns (GetByIDResponse) {
   }
-  rpc Create (ParamsCreate) returns (ResponseCreate) {
+  rpc Create (CreateRequest) returns (CreateResponse) {
   }
-  rpc Update (ParamsUpdate) returns (ResponseUpdate) {
+  rpc Update (UpdateRequest) returns (UpdateResponse) {
   }
-  rpc Delete (ParamsDelete) returns (ResponseDelete) {
+  rpc Delete (DeleteRequest) returns (DeleteResponse) {
   }
 }
 
-message ParamsGetByID {
-  int32 user_id = 1;
+message GetByIDRequest {
+  string id = 1;
 }
 
-message ResponseGetByID {
+message GetByIDResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
@@ -27,7 +27,7 @@ message ResponseGetByID {
   repeated Error    errors = 5;
 }
 
-message ParamsCreate {
+message CreateRequest {
   string name = 1;
   string login = 2;
   string password = 3;
@@ -35,7 +35,7 @@ message ParamsCreate {
   string folderId = 5;
 }
 
-message ResponseCreate {
+message CreateResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
@@ -43,14 +43,14 @@ message ResponseCreate {
   repeated Error    errors = 5;
 }
 
-message ParamsUpdate {
+message UpdateRequest {
   string id = 1;
   string name = 2;
   string login = 3;
   string password = 4;
 }
 
-message ResponseUpdate {
+message UpdateResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
@@ -58,10 +58,10 @@ message ResponseUpdate {
   repeated Error    errors = 5;
 }
 
-message ParamsDelete {
+message DeleteRequest {
   string id = 1;
 }
-message ResponseDelete {
+message DeleteResponse {
   string status = 1;
   string message = 2;
   int64 code = 3;
