@@ -29,10 +29,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PassworkClient interface {
-	GetByID(ctx context.Context, in *ParamsGetByID, opts ...grpc.CallOption) (*ResponseGetByID, error)
-	Create(ctx context.Context, in *ParamsCreate, opts ...grpc.CallOption) (*ResponseCreate, error)
-	Update(ctx context.Context, in *ParamsUpdate, opts ...grpc.CallOption) (*ResponseUpdate, error)
-	Delete(ctx context.Context, in *ParamsDelete, opts ...grpc.CallOption) (*ResponseDelete, error)
+	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDResponse, error)
+	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
 type passworkClient struct {
@@ -43,8 +43,8 @@ func NewPassworkClient(cc grpc.ClientConnInterface) PassworkClient {
 	return &passworkClient{cc}
 }
 
-func (c *passworkClient) GetByID(ctx context.Context, in *ParamsGetByID, opts ...grpc.CallOption) (*ResponseGetByID, error) {
-	out := new(ResponseGetByID)
+func (c *passworkClient) GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDResponse, error) {
+	out := new(GetByIDResponse)
 	err := c.cc.Invoke(ctx, Passwork_GetByID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -52,8 +52,8 @@ func (c *passworkClient) GetByID(ctx context.Context, in *ParamsGetByID, opts ..
 	return out, nil
 }
 
-func (c *passworkClient) Create(ctx context.Context, in *ParamsCreate, opts ...grpc.CallOption) (*ResponseCreate, error) {
-	out := new(ResponseCreate)
+func (c *passworkClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+	out := new(CreateResponse)
 	err := c.cc.Invoke(ctx, Passwork_Create_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (c *passworkClient) Create(ctx context.Context, in *ParamsCreate, opts ...g
 	return out, nil
 }
 
-func (c *passworkClient) Update(ctx context.Context, in *ParamsUpdate, opts ...grpc.CallOption) (*ResponseUpdate, error) {
-	out := new(ResponseUpdate)
+func (c *passworkClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+	out := new(UpdateResponse)
 	err := c.cc.Invoke(ctx, Passwork_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -70,8 +70,8 @@ func (c *passworkClient) Update(ctx context.Context, in *ParamsUpdate, opts ...g
 	return out, nil
 }
 
-func (c *passworkClient) Delete(ctx context.Context, in *ParamsDelete, opts ...grpc.CallOption) (*ResponseDelete, error) {
-	out := new(ResponseDelete)
+func (c *passworkClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+	out := new(DeleteResponse)
 	err := c.cc.Invoke(ctx, Passwork_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,26 +83,26 @@ func (c *passworkClient) Delete(ctx context.Context, in *ParamsDelete, opts ...g
 // All implementations should embed UnimplementedPassworkServer
 // for forward compatibility
 type PassworkServer interface {
-	GetByID(context.Context, *ParamsGetByID) (*ResponseGetByID, error)
-	Create(context.Context, *ParamsCreate) (*ResponseCreate, error)
-	Update(context.Context, *ParamsUpdate) (*ResponseUpdate, error)
-	Delete(context.Context, *ParamsDelete) (*ResponseDelete, error)
+	GetByID(context.Context, *GetByIDRequest) (*GetByIDResponse, error)
+	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 }
 
 // UnimplementedPassworkServer should be embedded to have forward compatible implementations.
 type UnimplementedPassworkServer struct {
 }
 
-func (UnimplementedPassworkServer) GetByID(context.Context, *ParamsGetByID) (*ResponseGetByID, error) {
+func (UnimplementedPassworkServer) GetByID(context.Context, *GetByIDRequest) (*GetByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
 }
-func (UnimplementedPassworkServer) Create(context.Context, *ParamsCreate) (*ResponseCreate, error) {
+func (UnimplementedPassworkServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedPassworkServer) Update(context.Context, *ParamsUpdate) (*ResponseUpdate, error) {
+func (UnimplementedPassworkServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPassworkServer) Delete(context.Context, *ParamsDelete) (*ResponseDelete, error) {
+func (UnimplementedPassworkServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -118,7 +118,7 @@ func RegisterPassworkServer(s grpc.ServiceRegistrar, srv PassworkServer) {
 }
 
 func _Passwork_GetByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsGetByID)
+	in := new(GetByIDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -130,13 +130,13 @@ func _Passwork_GetByID_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: Passwork_GetByID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PassworkServer).GetByID(ctx, req.(*ParamsGetByID))
+		return srv.(PassworkServer).GetByID(ctx, req.(*GetByIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Passwork_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsCreate)
+	in := new(CreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -148,13 +148,13 @@ func _Passwork_Create_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Passwork_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PassworkServer).Create(ctx, req.(*ParamsCreate))
+		return srv.(PassworkServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Passwork_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsUpdate)
+	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -166,13 +166,13 @@ func _Passwork_Update_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Passwork_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PassworkServer).Update(ctx, req.(*ParamsUpdate))
+		return srv.(PassworkServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Passwork_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsDelete)
+	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -184,7 +184,7 @@ func _Passwork_Delete_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Passwork_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PassworkServer).Delete(ctx, req.(*ParamsDelete))
+		return srv.(PassworkServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
