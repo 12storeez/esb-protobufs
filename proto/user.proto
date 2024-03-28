@@ -172,10 +172,9 @@ message Address {
   string flat = 14;
   string postal_code = 15;
   string metro = 16;
-  string address_source = 17;
-  string last_ordered_at = 18;
-  string created_at = 19;
-  string updated_at = 20;
+  string last_ordered_at = 17;
+  string created_at = 18;
+  string updated_at = 19;
 }
 
 message UpdateResponse {
