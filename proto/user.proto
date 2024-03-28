@@ -63,23 +63,26 @@ message CreateRequest {
   string birthdate = 8;
   string gender = 9;
   string create_source = 10;
+  int64  site_id = 11;
+  string onec_id = 12;
+  string country = 13;
+  string city = 14;
+  string region = 15;
   // клиентские поля
-  int32  store_code = 11;
-  int32  rcrm_id = 12;
-  string clothing_size = 13;
-  string shoe_size = 14;
-  string country = 15;
-  string city = 16;
-  string region = 17;
-  bool   is_vic = 18;
-  bool   is_personal_policy_accepted = 19;
+  int32  store_code = 16;
+  int32  rcrm_id = 17;
+  string clothing_upper_size = 18;
+  string clothing_lower_size = 19;
+  string shoe_size = 20;
+  bool   is_fnf = 21;
+  bool   is_bad = 22;
+  bool   is_personal_policy_accepted = 23;
   // поля внутренних пользователей
-  string department = 20;
-  string position = 21;
-  int64  site_id = 22;
-  string onec_id = 23;
-  string wms_id = 24;
+  string department = 24;
+  string position = 25;
+  string wms_id = 26;
 }
+
 
 message CreateResponse {
   string            status = 1;
@@ -94,31 +97,85 @@ message User {
   string id = 1;
   optional string username = 2;
   optional string password = 3;
+  // служебные поля
+  optional string created_at = 4;
+  optional string updated_at = 5;
+  optional string blocked_at = 6;
+  optional string deleted_at = 7;
   // основные поля
-  optional string phone = 4;
-  optional string email = 5;
-  optional string first_name = 6;
-  optional string middle_name = 7;
-  optional string last_name = 8;
-  optional string birthdate = 9;
-  optional string gender = 10;
-  optional string create_source = 11;
-  // клиентские поля
-  optional int32  store_code = 12;
-  optional int32  rcrm_id = 13;
-  optional string clothing_size = 14;
-  optional string shoe_size = 15;
-  optional string country = 16;
-  optional string city = 17;
-  optional string region = 18;
-  optional bool   is_vic = 19;
-  optional bool   is_personal_policy_accepted = 20;
+  optional string phone = 8;
+  optional string email = 9;
+  optional string first_name = 10;
+  optional string middle_name = 11;
+  optional string last_name = 12;
+  optional string birthdate = 13;
+  optional string gender = 14;
+  optional string create_source = 15;
+  optional int64  site_id = 16;
+  optional string onec_id = 17;
+  optional string country = 18;
+  optional string city = 19;
+  optional string region = 20;
   // поля внутренних пользователей
   optional string department = 21;
   optional string position = 22;
-  optional int64  site_id = 23;
-  optional string onec_id = 24;
   optional string wms_id = 25;
+  // клиентские поля
+  optional int32  store_code = 26;
+  optional int32  rcrm_id = 27;
+  optional string clothing_upper_size = 28;
+  optional string clothing_lower_size = 29;
+  optional string shoe_size = 30;
+  optional bool   is_fnf = 31;
+  optional bool   is_bad = 32;
+  optional bool   is_stylist = 33;
+  optional bool   is_buying_women_products = 34;
+  optional bool   is_buying_men_products = 35;
+  optional bool   is_personal_policy_accepted = 36;
+  optional string timezone = 37;
+  optional string facebook = 38;
+  optional string instagram = 39;
+  optional string telegram = 40;
+  optional string vk = 41;
+  optional string whatsapp = 42;
+  repeated string tags = 43;
+  optional string comment = 44;
+  optional string communication_channel = 45;
+  optional string communication_time = 46;
+  optional string last_communication = 47;
+  optional string brands = 48;
+  optional string do_not_propose = 49;
+  optional string family = 50;
+  optional string hobbies = 51;
+  optional string important_dates = 52;
+  optional string kind_fo_activity = 53;
+  optional string online_experience = 54;
+  optional string personal_assistant = 55;
+  optional string preferences = 56;
+  repeated Address addresses = 57;
+}
+
+message Address {
+  int64 id = 1;
+  string full_address = 2;
+  string full_address_geo_id = 3;
+  string country = 4;
+  string region = 5;
+  string city = 6;
+  string city_geo_id = 7;
+  string street = 8;
+  string house = 9;
+  string housing = 10;
+  string building = 11;
+  string entrance = 12;
+  string floor = 13;
+  string flat = 14;
+  string postal_code = 15;
+  string metro = 16;
+  string address_source = 17;
+  string last_ordered_at = 18;
+  string created_at = 19;
+  string updated_at = 20;
 }
 
 message UpdateResponse {
@@ -150,8 +207,8 @@ message GetByTokenRequest {
 // GetList
 message GetListRequest {
   optional    GetListFilters filters = 1;
-  Pagination              pagination = 2;
-  optional    string          search = 3;
+  Pagination                 pagination = 2;
+  optional    string         search = 3;
 }
 
 message GetListResponse {
@@ -193,6 +250,12 @@ message GetListFilters {
   optional string   updated_to   = 2;
   optional UserType type         = 3;
   repeated string   user_ids     = 4;
+  optional string   created_from = 5;
+  optional string   created_to   = 6;
+  optional string   country      = 7;
+  optional string   region       = 8;
+  optional string   city         = 9;
+  optional bool     is_fnf       = 10;
 }
 
 // Pagination
