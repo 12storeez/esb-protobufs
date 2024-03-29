@@ -30,7 +30,7 @@ message MergeRequest {
   optional int32 store_code = 10;
   optional string clothing_size = 11;
   optional string shoe_size = 12;
-  optional string country = 13;
+  optional string country_iso_code = 13;
   optional string city = 14;
   optional string region = 15;
   optional bool is_vic = 16;
@@ -65,7 +65,7 @@ message CreateRequest {
   string create_source = 10;
   int64  site_id = 11;
   string onec_id = 12;
-  string country = 13;
+  string country_iso_code = 13;
   string city = 14;
   string region = 15;
   // клиентские поля
@@ -113,7 +113,7 @@ message User {
   optional string create_source = 15;
   optional int64  site_id = 16;
   optional string onec_id = 17;
-  optional string country = 18;
+  optional string country_iso_code = 18;
   optional string city = 19;
   optional string region = 20;
   // поля внутренних пользователей
@@ -159,7 +159,7 @@ message Address {
   int64 id = 1;
   string full_address = 2;
   string full_address_geo_id = 3;
-  string country = 4;
+  string country_iso_code = 4;
   string region = 5;
   string city = 6;
   string city_geo_id = 7;
@@ -245,16 +245,16 @@ enum UserType {
 
 // Filters
 message GetListFilters {
-  optional string   updated_from = 1;
-  optional string   updated_to   = 2;
-  optional UserType type         = 3;
-  repeated string   user_ids     = 4;
-  optional string   created_from = 5;
-  optional string   created_to   = 6;
-  optional string   country      = 7;
-  optional string   region       = 8;
-  optional string   city         = 9;
-  optional bool     is_fnf       = 10;
+  optional string   updated_from     = 1;
+  optional string   updated_to       = 2;
+  optional UserType type             = 3;
+  repeated string   user_ids         = 4;
+  optional string   created_from     = 5;
+  optional string   created_to       = 6;
+  optional string   country_iso_code = 7;
+  optional string   region           = 8;
+  optional string   city             = 9;
+  optional bool     is_fnf           = 10;
 }
 
 // Pagination
