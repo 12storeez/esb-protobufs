@@ -247,7 +247,7 @@ message DictionarySizeWithoutGUID {
 message GetListRequest {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved         "filters";
+    reserved                       "filters";
     PaginationRequest pagination = 2;
 }
 
@@ -731,6 +731,263 @@ message UpdateProductsToCategoryRequest {
     repeated string articles_to_remove = 3;
 }
 
+message ProductForAdminGetList {
+    string guid = 1;
+    string article = 2;
+    string avail_sizes = 3;
+    optional string google_category_code = 4;
+    optional string image = 5;
+    bool is_coming_soon = 6;
+    bool is_preorder_avaliable = 7;
+    optional string price = 8;
+    optional int32 state = 9;
+    optional int32 state_mobile = 10;
+    optional int32 stock_order = 11;
+    optional int32 stock_order_mobile = 12;
+    optional string super_model_guid = 13;
+    optional string title_ru = 14;
+}
+
+message GetProductForAdminListResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+    repeated ProductForAdminGetList data = 6;
+}
+
+message ProductForAdminColor {
+    optional string hash = 1;
+    optional string title_ru = 2;
+}
+
+message ProductForAdminImages {
+    optional string detail = 1;
+    optional string ghost = 2;
+    optional string popup = 4;
+    optional string square = 5;
+    optional string general = 6;
+    optional string headless = 7;
+    optional string xl = 8;
+}
+
+message ProductForAdminMainCategory {
+    int32 id = 1;
+    optional string slug = 2;
+    optional string title_ru = 3;
+}
+
+message ProductForAdminMaterial {
+    optional string description_ru = 1;
+    optional string textile_title_ru = 2;
+}
+
+message ProductForAdminModelTitle {
+    string title_ru = 1;
+    optional string title_en = 2;
+    optional string title_short_ru = 3;
+    optional string title_short_vk_ru = 4;
+}
+
+message ProductForAdminModelType {
+    optional int32 id = 1;
+}
+
+message ProductForAdminPhotoModelDescription {
+    optional int32 id = 1;
+    optional string growth = 2;
+    optional string bust = 3;
+    optional string hips = 4;
+    optional string waist = 5;
+    optional string use_size_ru = 6;
+}
+
+message ProductForAdminPhotoModel {
+    optional ProductForAdminPhotoModelDescription standard = 1;
+    optional ProductForAdminPhotoModelDescription xl = 2;
+}
+
+
+message ProductForAdminVideosThumbs {
+    string small = 1;
+    string large = 2;
+}
+
+message ProductForAdminVideos {
+    string url = 1;
+    string type = 2;
+    ProductForAdminVideosThumbs thumbs = 3;
+}
+
+message ProductForAdmin {
+    string guid = 1;
+    string article = 2;
+    optional string categories = 3;
+    int32 compressibility = 4;
+    optional string custom_tag = 5;
+    optional string description_ru = 6;
+    bool disable_send_mail = 7;
+    optional string fashion = 8;
+    optional string fashion_stylist = 9;
+    string gender = 10;
+    optional string google_category_code = 11;
+    ProductForAdminImages images = 12;
+    bool is_commission = 13;
+    bool is_offline_shipment_available = 14;
+    bool is_preorder_available = 15;
+    bool is_present = 16;
+    bool is_sample_sale = 17;
+    ProductForAdminMainCategory main_category = 18;
+    ProductForAdminMaterial material = 19;
+    optional string model_parameters_ru = 20;
+    optional string model_sizes_ru = 21;
+    ProductForAdminModelTitle model_title = 22;
+    ProductForAdminModelType model_type = 23;
+    ProductForAdminPhotoModel photo_model = 24;
+    optional string pilling_grade = 25;
+    optional string preorder_planned_delivery_from = 26;
+    optional string preorder_planned_delivery_to = 27;
+    optional string price = 28;
+    optional string price_discount = 29;
+    optional string recommended_products = 30;
+    optional string related_products = 31;
+    optional string service_ru = 32;
+    optional string sizes_help_ru = 33;
+    optional string slug = 34;
+    optional int32 state = 35;
+    optional int32 state_mobile = 36;
+    optional string temperature_ru = 37;
+    optional string super_model_title_ru = 38;
+    repeated ProductForAdminVideos videos = 39;
+}
+
+message GetProductForAdminByGUIDResponse {
+    string status = 1;
+    string message = 2;
+    ProductForAdmin data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
+message UpdateProductForAdminModelTitle {
+    optional string title_ru = 1;
+    optional string title_en = 2;
+    optional string title_short_ru = 3;
+    optional string title_short_vk_ru = 4;
+}
+
+message UpdateProductForAdminMainCategory {
+    optional int32 id = 1;
+    optional string slug = 2;
+    optional string title_ru = 3;
+}
+
+message UpdateProductForAdmin {
+    string guid = 1;
+    optional string categories = 2;
+    optional int32 compressibility = 3;
+    optional string custom_tag = 4;
+    optional string description_ru = 5;
+    optional bool disable_send_mail = 6;
+    optional string fashion = 7;
+    optional string fashion_stylist = 8;
+    optional string google_category_code = 9;
+    optional ProductForAdminImages images = 10;
+    optional bool is_commission = 11;
+    optional UpdateProductForAdminMainCategory main_category = 12;
+    optional ProductForAdminMaterial material = 13;
+    optional string model_parameters_ru = 14;
+    optional string model_sizes_ru = 15;
+    optional UpdateProductForAdminModelTitle model_title = 16;
+    optional ProductForAdminModelType model_type = 17;
+    optional ProductForAdminPhotoModel photo_model = 18;
+    optional string preorder_planned_delivery_from = 19;
+    optional string preorder_planned_delivery_to = 20;
+    optional string recommended_products = 21;
+    optional string related_products = 22;
+    optional string service_ru = 23;
+    optional string sizes_help_ru = 24;
+    optional int32 state = 25;
+    optional int32 state_mobile = 26;
+    optional string temperature_ru = 27;
+    repeated ProductForAdminVideos videos = 28;
+}
+
+
+message SetNullProductForAdminImages {
+    optional bool detail = 1;
+    optional bool ghost = 2;
+    optional bool popup = 4;
+    optional bool square = 5;
+    optional bool general = 6;
+    optional bool headless = 7;
+    optional bool xl = 8;
+}
+
+message SetNullProductForAdminMainCategory {
+    optional bool slug = 2;
+    optional bool title_ru = 3;
+}
+
+message SetNullProductForAdminMaterial {
+    optional bool description_ru = 1;
+    optional bool textile_title_ru = 2;
+}
+
+message SetNullProductForAdminModelTitle {
+    optional bool title_en = 1;
+    optional bool title_short_ru = 2;
+    optional bool title_short_vk_ru = 3;
+}
+
+message SetNullProductForAdminModelType {
+    optional bool id = 1;
+}
+
+message SetNullProductForAdminPhotoModelDescription {
+    optional bool id = 1;
+    optional bool growth = 2;
+    optional bool bust = 3;
+    optional bool hips = 4;
+    optional bool waist = 5;
+    optional bool use_size_ru = 6;
+}
+
+message SetNullProductForAdminPhotoModel {
+    optional SetNullProductForAdminPhotoModelDescription standard = 1;
+    optional SetNullProductForAdminPhotoModelDescription xl = 2;
+}
+
+
+message SetNullProductForAdmin {
+    string guid = 1;
+    optional bool categories = 2;
+    optional bool custom_tag = 3;
+    optional bool description_ru = 4;
+    optional bool fashion = 5;
+    optional bool fashion_stylist = 6;
+    optional bool google_category_code = 7;
+    optional SetNullProductForAdminImages images = 8;
+    optional SetNullProductForAdminMainCategory main_category = 9;
+    optional SetNullProductForAdminMaterial material = 10;
+    optional bool model_parameters_ru = 11;
+    optional bool model_sizes_ru = 12;
+    optional SetNullProductForAdminModelTitle model_title = 13;
+    optional SetNullProductForAdminModelType model_type = 14;
+    optional SetNullProductForAdminPhotoModel photo_model = 15;
+    optional bool preorder_planned_delivery_from = 16;
+    optional bool preorder_planned_delivery_to = 17;
+    optional bool recommended_products = 18;
+    optional bool related_products = 19;
+    optional bool service_ru = 20;
+    optional bool sizes_help_ru = 21;
+    optional bool state = 22;
+    optional bool state_mobile = 23;
+    optional bool temperature_ru = 24;
+    optional bool videos = 25;
+}
+
 service NomenclatureService {
     rpc GetList (GetListRequest) returns (GetNomenclatureListResponse);
     rpc GetByArticle (GetNomenclatureByArticleRequest) returns (GetNomenclatureByArticleResponse);
@@ -788,4 +1045,11 @@ service CategoryService {
     rpc SetNull (SetNullCategory) returns (GetCategoryByIDResponse);
     rpc GetProductsToCategory (GetByIDRequest) returns (GetProductsToCategoryResponse);
     rpc UpdateProductsToCategory (UpdateProductsToCategoryRequest) returns (GetProductsToCategoryResponse);
+}
+
+service ProductForAdminService {
+    rpc GetList (GetListRequest) returns (GetProductForAdminListResponse);
+    rpc GetByGUID (GetByGUIDRequest) returns (GetProductForAdminByGUIDResponse);
+    rpc Update (UpdateProductForAdmin) returns (GetProductForAdminByGUIDResponse);
+    rpc SetNull (SetNullProductForAdmin) returns (GetProductForAdminByGUIDResponse);
 }

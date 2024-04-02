@@ -1723,3 +1723,195 @@ var CategoryService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/nomenclature.proto",
 }
+
+// ProductForAdminServiceClient is the client API for ProductForAdminService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProductForAdminServiceClient interface {
+	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductForAdminListResponse, error)
+	GetByGUID(ctx context.Context, in *GetByGUIDRequest, opts ...grpc.CallOption) (*GetProductForAdminByGUIDResponse, error)
+	Update(ctx context.Context, in *UpdateProductForAdmin, opts ...grpc.CallOption) (*GetProductForAdminByGUIDResponse, error)
+	SetNull(ctx context.Context, in *SetNullProductForAdmin, opts ...grpc.CallOption) (*GetProductForAdminByGUIDResponse, error)
+}
+
+type productForAdminServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProductForAdminServiceClient(cc grpc.ClientConnInterface) ProductForAdminServiceClient {
+	return &productForAdminServiceClient{cc}
+}
+
+func (c *productForAdminServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetProductForAdminListResponse, error) {
+	out := new(GetProductForAdminListResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductForAdminService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productForAdminServiceClient) GetByGUID(ctx context.Context, in *GetByGUIDRequest, opts ...grpc.CallOption) (*GetProductForAdminByGUIDResponse, error) {
+	out := new(GetProductForAdminByGUIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductForAdminService/GetByGUID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productForAdminServiceClient) Update(ctx context.Context, in *UpdateProductForAdmin, opts ...grpc.CallOption) (*GetProductForAdminByGUIDResponse, error) {
+	out := new(GetProductForAdminByGUIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductForAdminService/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productForAdminServiceClient) SetNull(ctx context.Context, in *SetNullProductForAdmin, opts ...grpc.CallOption) (*GetProductForAdminByGUIDResponse, error) {
+	out := new(GetProductForAdminByGUIDResponse)
+	err := c.cc.Invoke(ctx, "/nomenclature.ProductForAdminService/SetNull", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProductForAdminServiceServer is the server API for ProductForAdminService service.
+// All implementations should embed UnimplementedProductForAdminServiceServer
+// for forward compatibility
+type ProductForAdminServiceServer interface {
+	GetList(context.Context, *GetListRequest) (*GetProductForAdminListResponse, error)
+	GetByGUID(context.Context, *GetByGUIDRequest) (*GetProductForAdminByGUIDResponse, error)
+	Update(context.Context, *UpdateProductForAdmin) (*GetProductForAdminByGUIDResponse, error)
+	SetNull(context.Context, *SetNullProductForAdmin) (*GetProductForAdminByGUIDResponse, error)
+}
+
+// UnimplementedProductForAdminServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedProductForAdminServiceServer struct {
+}
+
+func (UnimplementedProductForAdminServiceServer) GetList(context.Context, *GetListRequest) (*GetProductForAdminListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedProductForAdminServiceServer) GetByGUID(context.Context, *GetByGUIDRequest) (*GetProductForAdminByGUIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByGUID not implemented")
+}
+func (UnimplementedProductForAdminServiceServer) Update(context.Context, *UpdateProductForAdmin) (*GetProductForAdminByGUIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedProductForAdminServiceServer) SetNull(context.Context, *SetNullProductForAdmin) (*GetProductForAdminByGUIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNull not implemented")
+}
+
+// UnsafeProductForAdminServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProductForAdminServiceServer will
+// result in compilation errors.
+type UnsafeProductForAdminServiceServer interface {
+	mustEmbedUnimplementedProductForAdminServiceServer()
+}
+
+func RegisterProductForAdminServiceServer(s grpc.ServiceRegistrar, srv ProductForAdminServiceServer) {
+	s.RegisterService(&ProductForAdminService_ServiceDesc, srv)
+}
+
+func _ProductForAdminService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductForAdminServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductForAdminService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductForAdminServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductForAdminService_GetByGUID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByGUIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductForAdminServiceServer).GetByGUID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductForAdminService/GetByGUID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductForAdminServiceServer).GetByGUID(ctx, req.(*GetByGUIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductForAdminService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductForAdmin)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductForAdminServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductForAdminService/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductForAdminServiceServer).Update(ctx, req.(*UpdateProductForAdmin))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductForAdminService_SetNull_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNullProductForAdmin)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductForAdminServiceServer).SetNull(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/nomenclature.ProductForAdminService/SetNull",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductForAdminServiceServer).SetNull(ctx, req.(*SetNullProductForAdmin))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ProductForAdminService_ServiceDesc is the grpc.ServiceDesc for ProductForAdminService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ProductForAdminService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "nomenclature.ProductForAdminService",
+	HandlerType: (*ProductForAdminServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetList",
+			Handler:    _ProductForAdminService_GetList_Handler,
+		},
+		{
+			MethodName: "GetByGUID",
+			Handler:    _ProductForAdminService_GetByGUID_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ProductForAdminService_Update_Handler,
+		},
+		{
+			MethodName: "SetNull",
+			Handler:    _ProductForAdminService_SetNull_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/nomenclature.proto",
+}
