@@ -114,45 +114,72 @@ message User {
   optional int64  site_id = 16;
   optional string onec_id = 17;
   optional string country_iso_code = 18;
+  optional string country_name = 19;
+  optional string city = 20;
+  optional string region = 21;
+  // поля внутренних пользователей
+  optional string department = 22;
+  optional string position = 23;
+  optional string wms_id = 24;
+  // клиентские поля
+  optional int32  store_code = 25;
+  optional int32  rcrm_id = 26;
+  optional string clothing_upper_size = 27;
+  optional string clothing_lower_size = 28;
+  optional string shoe_size = 29;
+  optional bool   is_fnf = 30;
+  optional bool   is_bad = 31;
+  optional bool   is_stylist = 32;
+  optional bool   is_buying_women_products = 33;
+  optional bool   is_buying_men_products = 34;
+  optional bool   is_personal_policy_accepted = 35;
+  optional string timezone = 36;
+  optional string facebook = 37;
+  optional string instagram = 38;
+  optional string telegram = 39;
+  optional string vk = 40;
+  optional string whatsapp = 41;
+  repeated string tags = 42;
+  optional string comment = 43;
+  optional string communication_channel = 44;
+  optional string communication_time = 45;
+  optional string last_communication = 46;
+  optional string brands = 47;
+  optional string do_not_propose = 48;
+  optional string family = 49;
+  optional string hobbies = 50;
+  optional string important_dates = 51;
+  optional string kind_fo_activity = 52;
+  optional string online_experience = 53;
+  optional string personal_assistant = 54;
+  optional string preferences = 55;
+  repeated Address addresses = 56;
+}
+
+message UserShort {
+  string id = 1;
+  string username = 2;
+  string created_at = 3;
+  string updated_at = 4;
+  optional string blocked_at = 5;
+  optional string deleted_at = 6;
+  optional string phone = 7;
+  optional string email = 8;
+  optional string first_name = 9;
+  optional string middle_name = 10;
+  optional string last_name = 11;
+  optional string birthdate = 12;
+  optional string gender = 13;
+  optional string create_source = 14;
+  optional int64  site_id = 15;
+  optional string onec_id = 16;
+  optional string country_iso_code = 17;
+  optional string country_name = 18;
   optional string city = 19;
   optional string region = 20;
-  // поля внутренних пользователей
-  optional string department = 21;
-  optional string position = 22;
-  optional string wms_id = 25;
-  // клиентские поля
-  optional int32  store_code = 26;
-  optional int32  rcrm_id = 27;
-  optional string clothing_upper_size = 28;
-  optional string clothing_lower_size = 29;
-  optional string shoe_size = 30;
-  optional bool   is_fnf = 31;
-  optional bool   is_bad = 32;
-  optional bool   is_stylist = 33;
-  optional bool   is_buying_women_products = 34;
-  optional bool   is_buying_men_products = 35;
-  optional bool   is_personal_policy_accepted = 36;
-  optional string timezone = 37;
-  optional string facebook = 38;
-  optional string instagram = 39;
-  optional string telegram = 40;
-  optional string vk = 41;
-  optional string whatsapp = 42;
-  repeated string tags = 43;
-  optional string comment = 44;
-  optional string communication_channel = 45;
-  optional string communication_time = 46;
-  optional string last_communication = 47;
-  optional string brands = 48;
-  optional string do_not_propose = 49;
-  optional string family = 50;
-  optional string hobbies = 51;
-  optional string important_dates = 52;
-  optional string kind_fo_activity = 53;
-  optional string online_experience = 54;
-  optional string personal_assistant = 55;
-  optional string preferences = 56;
-  repeated Address addresses = 57;
+  optional int32  rcrm_id = 21;
+  optional bool   is_fnf = 22;
+  optional bool   is_bad = 23;
 }
 
 message Address {
@@ -211,12 +238,12 @@ message GetListRequest {
 }
 
 message GetListResponse {
-  string            status = 1;
-  string            message = 2;
-  int64             code = 3;
-  repeated Error    errors = 4;
-  repeated User     data = 5;
-  Pagination        pagination = 6;
+  string             status = 1;
+  string             message = 2;
+  int64              code = 3;
+  repeated Error     errors = 4;
+  repeated UserShort data = 5;
+  Pagination         pagination = 6;
 }
 
 // Delete
