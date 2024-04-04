@@ -154,6 +154,8 @@ message User {
   optional string personal_assistant = 54;
   optional string preferences = 55;
   repeated Address addresses = 56;
+  optional bool is_employee = 57;
+  optional int32 rcrm_manager_id = 58;
 }
 
 message UserShort {
@@ -282,6 +284,7 @@ message GetListFilters {
   optional string   region           = 8;
   optional string   city             = 9;
   optional bool     is_fnf           = 10;
+  optional bool     is_bad           = 11;
 }
 
 // Pagination
