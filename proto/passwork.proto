@@ -31,8 +31,8 @@ message CreateRequest {
   string name = 1;
   string login = 2;
   string password = 3;
-  string vaultId = 4;
-  string folderId = 5;
+  string vault_id = 4;
+  string folder_id = 5;
 }
 
 message CreateResponse {
@@ -74,8 +74,8 @@ message Data {
   string name = 2;
   string login = 3;
   string password = 4;
-  string vaultId = 5;
-  string folderId = 6;
+  string vault_id = 5;
+  string folder_id = 6;
 }
 
 message Error {
