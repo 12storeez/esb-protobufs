@@ -23,14 +23,14 @@ message Error {
 
 message GetListRequest {
     reserved 1;
-    reserved       "filters";
+    reserved         "filters";
     PaginationRequest pagination = 2;
 }
 
 message GetListRequestForOrder {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved     "filters";
+    reserved       "filters";
     bool need_orders = 2;
     PaginationRequest pagination = 3;
 }
@@ -38,7 +38,7 @@ message GetListRequestForOrder {
 message GetListRequestForPosition {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved     "filters";
+    reserved       "filters";
     bool need_positions = 2;
     PaginationRequest pagination = 3;
 }
@@ -47,7 +47,7 @@ message GetListRequestForPosition {
 message GetListRequestForOrderAndPosition {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved     "filters";
+    reserved       "filters";
     bool need_orders = 2;
     bool need_positions = 3;
     PaginationRequest pagination = 4;
@@ -480,6 +480,146 @@ message GetListForAdminResponse {
     repeated Error errors = 6;
 }
 
+message Address {
+    optional string geo_id_type = 1;
+    optional string full_address_geo_id = 2;
+    optional string full_address = 3;
+    optional string country_iso_code = 4;
+    optional string city_geo_id = 5;
+    optional string city = 6;
+    optional string street_geo_id = 7;
+    optional string street = 8;
+    optional string house = 9;
+    optional string housing = 10;
+    optional string building = 11;
+    optional string entrance = 12;
+    optional string floor = 13;
+    optional string flat = 14;
+    optional string postal_code = 15;
+}
+
+message Recipient {
+    optional string first_name = 1;
+    optional string last_name = 2;
+    optional string email = 4;
+    optional string phone = 5;
+}
+
+message FullDelivery {
+    optional string comment = 1;
+    optional string date = 2;
+    optional string time = 3;
+    optional string track_number = 4;
+    optional string inner_track_number = 5;
+    optional int32 type_id = 6;
+    optional string type_code = 7;
+    optional string type_mode = 8;
+    optional string type_name = 9;
+    bool is_dismantle = 10;
+    optional string pvz_provider_id = 11;
+    string pvz_provider = 12;
+    optional string storage_expired_at = 13;
+    Address address = 14;
+    Recipient recipient = 15;
+}
+
+message OrderStatusGroup {
+    int32 id = 1;
+    string bg_color = 2;
+    string text_color = 3;
+    string icon = 4;
+}
+
+message OrderStatusForAdminFull {
+    int32 id = 1;
+    string title_internal = 2;
+    optional string title_ru = 3;
+    OrderStatusGroup group = 4;
+}
+
+message UserMSFullUser {
+    string id = 1;
+    optional string first_name = 2;
+    optional string middle_name = 3;
+    optional string last_name = 4;
+    optional string email = 5;
+    optional bool is_bad = 6;
+    optional bool is_fnf = 7;
+    optional string phone = 8;
+}
+
+message PositionForAdmin {
+    int64 id = 1;
+    optional string created_at = 2;
+    int64 barcode = 3;
+    optional string  color_title_ru = 4;
+    float discount_manual = 5;
+    float discount_manual_percent = 6;
+    float discount_manual_from_order = 7;
+    float discount_sum = 8;
+    float price = 9;
+    float price_before_discount = 10;
+    float sum = 11;
+    string product_guid = 12;
+    string product_article = 13;
+    optional string product_image = 14;
+    optional string product_title_ru = 15;
+    string size_title_ru = 16;
+    float spent_promo = 17;
+    float spent_bonus = 18;
+    string status_internal_title = 19;
+    optional int32 store_code = 20;
+}
+
+message OrderForAdminFull {
+    int64 id = 1;
+    string created_at = 2;
+    string cancel_reason = 3;
+    string currency_iso = 4;
+    float delivery_price = 5;
+    float discount_manual = 6;
+    float discount_manual_percent = 7;
+    float discount_sum = 8;
+    float discount_sum_percent = 9;
+    string for_blogger = 10;
+    float given_bonus = 11;
+    bool is_call_required = 12;
+    optional string manager_comment = 13;
+    string order_country_iso_code = 14;
+    optional string order_method = 15;
+    string order_type = 16;
+    optional string payment_date = 17;
+    optional string payment_status = 18;
+    optional string payment_url = 19;
+    optional string preorder_planned_delivery_from = 20;
+    optional string preorder_planned_delivery_to = 21;
+    optional string promo_code_id = 22;
+    optional string recipient_comment = 23;
+    float spent_bonus = 24;
+    float spent_promo = 25;
+    string status_wms = 26;
+    optional int32 store_code = 27;
+    float sum = 28;
+    float sum_to_pay = 29;
+    optional string surcharge_comment = 30;
+    float surcharge_sum = 31;
+    float total_positions_prices = 32;
+    FullDelivery delivery = 33;
+    User manager = 34;
+    OrderStatusForAdminFull order_status = 35;
+    repeated PositionForAdmin positions = 36;
+    User seller = 37;
+    UserMSFullUser user = 39;
+}
+
+message GetByIDForAdminResponse {
+    string status = 1;
+    string message = 2;
+    OrderForAdminFull data = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+}
+
 service OutboxService {
     rpc GetList (GetListRequestForOrder) returns (GetListOutBoxResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDOutBoxResponse);
@@ -501,4 +641,5 @@ service OrderService {
     rpc GetList (GetListRequestForPosition) returns (GetListOrderResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDOrderResponse);
     rpc GetListForAdmin (GetListRequest) returns (GetListForAdminResponse);
+    rpc GetOrderByIDForAdmin (GetByIDRequest) returns (GetByIDForAdminResponse);
 }

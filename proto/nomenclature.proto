@@ -107,29 +107,33 @@ message Maintenance {
 }
 
 message UpdateMaintenance {
-    int64 id = 1;
-    optional string alias = 2;
-    optional string title_ru = 3;
-    optional string title_en = 4;
-    optional string video = 5;
-    optional string video_preview = 6;
-    optional string video_small = 7;
-    optional string video_preview_small = 8;
-    optional string details_url = 9;
-    optional string deleted_at = 12;
+    optional string alias = 1;
+    optional string title_ru = 2;
+    optional string title_en = 3;
+    optional string video = 4;
+    optional string video_preview = 5;
+    optional string video_small = 6;
+    optional string video_preview_small = 7;
+    optional string details_url = 8;
+    optional string deleted_at = 9;
 }
 
 message SetNullMaintenance {
+    optional bool alias = 1;
+    optional bool title_ru = 2;
+    optional bool title_en = 3;
+    optional bool video = 4;
+    optional bool video_preview = 5;
+    optional bool video_small = 6;
+    optional bool video_preview_small = 7;
+    optional bool details_url = 8;
+    optional bool deleted_at = 9;
+}
+
+message UpdatesMaintenance {
     int64 id = 1;
-    optional bool alias = 2;
-    optional bool title_ru = 3;
-    optional bool title_en = 4;
-    optional bool video = 5;
-    optional bool video_preview = 6;
-    optional bool video_small = 7;
-    optional bool video_preview_small = 8;
-    optional bool details_url = 9;
-    optional bool deleted_at = 12;
+    optional UpdateMaintenance update = 2;
+    optional SetNullMaintenance null = 3;
 }
 
 message MaintenanceithoutID {
@@ -181,19 +185,23 @@ message PhotoModel {
 }
 
 message UpdatePhotoModel {
-    int64 id = 1;
-    optional string name = 2;
-    optional int32 growth = 3;
-    optional int32 bust = 4;
-    optional int32 waist = 5;
-    optional int32 hips = 6;
-    optional bool is_model_xl = 7;
-    optional string image_files = 8;
+    optional string name = 1;
+    optional int32 growth = 2;
+    optional int32 bust = 3;
+    optional int32 waist = 4;
+    optional int32 hips = 5;
+    optional bool is_model_xl = 6;
+    optional string image_files = 7;
 }
 
 message SetNullPhotoModel {
+    optional bool image_files = 1;
+}
+
+message UpdatesPhotoModel {
     int64 id = 1;
-    optional bool image_files = 2;
+    optional UpdatePhotoModel update = 2;
+    optional SetNullPhotoModel null = 3;
 }
 
 message PhotoModelWithoutID {
@@ -219,19 +227,24 @@ message DictionarySize {
     string updated_at = 8;
 }
 
+
 message UpdateDictionarySize {
-    string guid = 1;
-    optional string title = 2;
-    optional string type = 3;
-    optional int32 state = 4;
-    optional int32 state_mobile = 5;
-    optional int32 order = 6;
+    optional string title = 1;
+    optional string type = 2;
+    optional int32 state = 3;
+    optional int32 state_mobile = 4;
+    optional int32 order = 5;
 }
 
 message SetNullDictionarySize {
+    optional bool state = 1;
+    optional bool state_mobile = 2;
+}
+
+message UpdatesDictionarySize {
     string guid = 1;
-    optional bool state = 2;
-    optional bool state_mobile = 3;
+    optional UpdateDictionarySize update = 2;
+    optional SetNullDictionarySize null = 3;
 }
 
 message DictionarySizeWithoutGUID {
@@ -247,7 +260,7 @@ message DictionarySizeWithoutGUID {
 message GetListRequest {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved                       "filters";
+    reserved                         "filters";
     PaginationRequest pagination = 2;
 }
 
@@ -399,21 +412,30 @@ message ProductOrderWithoutID {
 }
 
 message UpdateProductOrder {
+    optional string type = 1;
+    optional int32 created_at_coef = 2;
+    optional int32 views = 3;
+    optional int32 subscriptions = 4;
+    optional int32 cart_adds = 5;
+    optional int32 buys = 6;
+    optional int32 avail_stocks = 7;
+    optional string avail_sizes = 8;
+    optional string attribute_coef = 9;
+    optional string reduction_factor = 10;
+    optional bool is_set_manual = 11;
+    optional int32 total_weight = 12;
+    optional string product_guid = 13;
+    optional string deleted_at = 14;
+}
+
+message SetNullProductOrder {
+    optional bool deleted_at = 1;
+}
+
+message UpdatesProductOrder {
     int64 id = 1;
-    optional string type = 2;
-    optional int32 created_at_coef = 3;
-    optional int32 views = 4;
-    optional int32 subscriptions = 5;
-    optional int32 cart_adds = 6;
-    optional int32 buys = 7;
-    optional int32 avail_stocks = 8;
-    optional string avail_sizes = 9;
-    optional string attribute_coef = 10;
-    optional string reduction_factor = 11;
-    optional bool is_set_manual = 12;
-    optional int32 total_weight = 13;
-    optional string product_guid = 14;
-    optional string deleted_at = 15;
+    optional UpdateProductOrder update = 2;
+    optional SetNullProductOrder null = 3;
 }
 
 message GetProductOrderListResponse {
@@ -433,11 +455,6 @@ message GetProductOrderByIDResponse {
     repeated Error errors = 6;
 }
 
-message SetNullProductOrder {
-    int64 id = 1;
-    optional bool deleted_at = 2;
-}
-
 message ModelType {
     int64 id = 1;
     optional string name = 2;
@@ -450,8 +467,17 @@ message ModelTypeWithoutID {
 }
 
 message UpdateModelType {
+    optional string name = 1;
+}
+
+message SetNullModelType {
+    optional bool name = 2;
+}
+
+message UpdatesModelType {
     int64 id = 1;
-    optional string name = 2;
+    optional UpdateModelType update = 2;
+    optional SetNullModelType null = 3;
 }
 
 message GetModelTypeListResponse {
@@ -469,11 +495,6 @@ message GetModelTypeByIDResponse {
     ModelType data = 4;
     int64 code = 5;
     repeated Error errors = 6;
-}
-
-message SetNullModelType {
-    int64 id = 1;
-    optional bool name = 2;
 }
 
 message ProductFilter {
@@ -608,79 +629,83 @@ message CategoryWithoutID {
 }
 
 message UpdateCategory {
-    int32 id = 1;
-    optional string bitrix_id = 2;
-    optional int32 order = 3;
-    optional int32 state = 4;
-    optional int32 state_mobile = 5;
-    optional string slug = 6;
-    optional string title_ru = 7;
-    optional string title_en = 8;
-    optional string mobile_title_ru = 9;
-    optional string mobile_title_en = 10;
-    optional string meta_title_ru = 11;
-    optional string meta_title_en = 12;
-    optional string meta_title_man_ru = 13;
-    optional string meta_title_man_en = 14;
-    optional string description_ru = 15;
-    optional string description_en = 16;
-    optional string description_men_ru = 17;
-    optional string description_men_en = 18;
-    optional string meta_description_ru = 19;
-    optional string meta_description_en = 20;
-    optional string meta_description_man_ru = 21;
-    optional string meta_description_man_en = 22;
-    repeated CategoryBanner banners = 23;
-    optional CategoryBlock block = 24;
-    optional string color = 25;
-    optional bool is_collection = 26;
-    optional bool is_filter_fit = 27;
-    optional bool is_filter_rise = 28;
-    optional bool is_hide_from_all = 29;
-    optional bool is_hide_from_menu = 30;
-    optional bool is_hide_from_menu_mobile = 31;
-    optional bool is_hide_in_widgets = 32;
-    optional bool is_hide_in_widgets_mobile = 33;
-    optional bool is_hide_sizes_table = 34;
-    optional bool is_highlight_in_menu = 35;
-    optional bool is_products_contain = 36;
-    optional bool is_show_filters = 37;
-    optional bool is_show_in_menu_compilation = 38;
-    optional string google_product_category = 39;
-    optional int32 order_collection = 40;
-    optional string promo_articles = 41;
-    repeated CategoryRelatedProduct related_products = 42;
-    optional string sorting_type = 43;
+    optional string bitrix_id = 1;
+    optional int32 order = 2;
+    optional int32 state = 3;
+    optional int32 state_mobile = 4;
+    optional string slug = 5;
+    optional string title_ru = 6;
+    optional string title_en = 7;
+    optional string mobile_title_ru = 8;
+    optional string mobile_title_en = 9;
+    optional string meta_title_ru = 10;
+    optional string meta_title_en = 11;
+    optional string meta_title_man_ru = 12;
+    optional string meta_title_man_en = 13;
+    optional string description_ru = 14;
+    optional string description_en = 15;
+    optional string description_men_ru = 16;
+    optional string description_men_en = 17;
+    optional string meta_description_ru = 18;
+    optional string meta_description_en = 19;
+    optional string meta_description_man_ru = 20;
+    optional string meta_description_man_en = 21;
+    repeated CategoryBanner banners = 22;
+    optional CategoryBlock block = 23;
+    optional string color = 24;
+    optional bool is_collection = 25;
+    optional bool is_filter_fit = 26;
+    optional bool is_filter_rise = 27;
+    optional bool is_hide_from_all = 28;
+    optional bool is_hide_from_menu = 29;
+    optional bool is_hide_from_menu_mobile = 30;
+    optional bool is_hide_in_widgets = 31;
+    optional bool is_hide_in_widgets_mobile = 32;
+    optional bool is_hide_sizes_table = 33;
+    optional bool is_highlight_in_menu = 34;
+    optional bool is_products_contain = 35;
+    optional bool is_show_filters = 36;
+    optional bool is_show_in_menu_compilation = 37;
+    optional string google_product_category = 38;
+    optional int32 order_collection = 39;
+    optional string promo_articles = 40;
+    repeated CategoryRelatedProduct related_products = 41;
+    optional string sorting_type = 42;
 }
 
 message SetNullCategory {
+    optional bool bitrix_id = 1;
+    optional bool order = 2;
+    optional bool state = 3;
+    optional bool slug = 4;
+    optional bool title_ru = 5;
+    optional bool title_en = 6;
+    optional bool mobile_title_ru = 7;
+    optional bool mobile_title_en = 8;
+    optional bool meta_title_ru = 9;
+    optional bool meta_title_en = 10;
+    optional bool meta_title_man_ru = 11;
+    optional bool meta_title_man_en = 12;
+    optional bool description_ru = 13;
+    optional bool description_en = 14;
+    optional bool description_men_ru = 15;
+    optional bool description_men_en = 16;
+    optional bool meta_description_ru = 17;
+    optional bool meta_description_en = 18;
+    optional bool meta_description_man_ru = 19;
+    optional bool meta_description_man_en = 20;
+    optional bool banners = 21;
+    optional bool block = 22;
+    optional bool color = 23;
+    optional bool google_product_category = 24;
+    optional bool promo_articles = 25;
+    optional bool related_products = 26;
+}
+
+message UpdatesCategory {
     int32 id = 1;
-    optional bool bitrix_id = 2;
-    optional bool order = 3;
-    optional bool state = 4;
-    optional bool slug = 5;
-    optional bool title_ru = 6;
-    optional bool title_en = 7;
-    optional bool mobile_title_ru = 8;
-    optional bool mobile_title_en = 9;
-    optional bool meta_title_ru = 10;
-    optional bool meta_title_en = 11;
-    optional bool meta_title_man_ru = 12;
-    optional bool meta_title_man_en = 13;
-    optional bool description_ru = 14;
-    optional bool description_en = 15;
-    optional bool description_men_ru = 16;
-    optional bool description_men_en = 17;
-    optional bool meta_description_ru = 18;
-    optional bool meta_description_en = 19;
-    optional bool meta_description_man_ru = 20;
-    optional bool meta_description_man_en = 21;
-    optional bool banners = 22;
-    optional bool block = 23;
-    optional bool color = 24;
-    optional bool google_product_category = 25;
-    optional bool promo_articles = 26;
-    optional bool related_products = 27;
+    optional UpdateCategory update = 2;
+    optional SetNullCategory null = 3;
 }
 
 message CategoryForGetList {
@@ -884,34 +909,33 @@ message UpdateProductForAdminMainCategory {
 }
 
 message UpdateProductForAdmin {
-    string guid = 1;
-    optional string categories = 2;
-    optional int32 compressibility = 3;
-    optional string custom_tag = 4;
-    optional string description_ru = 5;
-    optional bool disable_send_mail = 6;
-    optional string fashion = 7;
-    optional string fashion_stylist = 8;
-    optional string google_category_code = 9;
-    optional ProductForAdminImages images = 10;
-    optional bool is_commission = 11;
-    optional UpdateProductForAdminMainCategory main_category = 12;
-    optional ProductForAdminMaterial material = 13;
-    optional string model_parameters_ru = 14;
-    optional string model_sizes_ru = 15;
-    optional UpdateProductForAdminModelTitle model_title = 16;
-    optional ProductForAdminModelType model_type = 17;
-    optional ProductForAdminPhotoModel photo_model = 18;
-    optional string preorder_planned_delivery_from = 19;
-    optional string preorder_planned_delivery_to = 20;
-    optional string recommended_products = 21;
-    optional string related_products = 22;
-    optional string service_ru = 23;
-    optional string sizes_help_ru = 24;
-    optional int32 state = 25;
-    optional int32 state_mobile = 26;
-    optional string temperature_ru = 27;
-    repeated ProductForAdminVideos videos = 28;
+    optional string categories = 1;
+    optional int32 compressibility = 2;
+    optional string custom_tag = 3;
+    optional string description_ru = 4;
+    optional bool disable_send_mail = 5;
+    optional string fashion = 6;
+    optional string fashion_stylist = 7;
+    optional string google_category_code = 8;
+    optional ProductForAdminImages images = 9;
+    optional bool is_commission = 10;
+    optional UpdateProductForAdminMainCategory main_category = 11;
+    optional ProductForAdminMaterial material = 12;
+    optional string model_parameters_ru = 13;
+    optional string model_sizes_ru = 14;
+    optional UpdateProductForAdminModelTitle model_title = 15;
+    optional ProductForAdminModelType model_type = 16;
+    optional ProductForAdminPhotoModel photo_model = 17;
+    optional string preorder_planned_delivery_from = 18;
+    optional string preorder_planned_delivery_to = 19;
+    optional string recommended_products = 20;
+    optional string related_products = 21;
+    optional string service_ru = 22;
+    optional string sizes_help_ru = 23;
+    optional int32 state = 24;
+    optional int32 state_mobile = 25;
+    optional string temperature_ru = 26;
+    repeated ProductForAdminVideos videos = 27;
 }
 
 
@@ -924,6 +948,7 @@ message SetNullProductForAdminImages {
     optional bool headless = 7;
     optional bool xl = 8;
 }
+
 
 message SetNullProductForAdminMainCategory {
     optional bool slug = 2;
@@ -961,32 +986,38 @@ message SetNullProductForAdminPhotoModel {
 
 
 message SetNullProductForAdmin {
-    string guid = 1;
-    optional bool categories = 2;
-    optional bool custom_tag = 3;
-    optional bool description_ru = 4;
-    optional bool fashion = 5;
-    optional bool fashion_stylist = 6;
-    optional bool google_category_code = 7;
-    optional SetNullProductForAdminImages images = 8;
-    optional SetNullProductForAdminMainCategory main_category = 9;
-    optional SetNullProductForAdminMaterial material = 10;
-    optional bool model_parameters_ru = 11;
-    optional bool model_sizes_ru = 12;
-    optional SetNullProductForAdminModelTitle model_title = 13;
-    optional SetNullProductForAdminModelType model_type = 14;
-    optional SetNullProductForAdminPhotoModel photo_model = 15;
-    optional bool preorder_planned_delivery_from = 16;
-    optional bool preorder_planned_delivery_to = 17;
-    optional bool recommended_products = 18;
-    optional bool related_products = 19;
-    optional bool service_ru = 20;
-    optional bool sizes_help_ru = 21;
-    optional bool state = 22;
-    optional bool state_mobile = 23;
-    optional bool temperature_ru = 24;
-    optional bool videos = 25;
+    optional bool categories = 1;
+    optional bool custom_tag = 2;
+    optional bool description_ru = 3;
+    optional bool fashion = 4;
+    optional bool fashion_stylist = 5;
+    optional bool google_category_code = 6;
+    optional SetNullProductForAdminImages images = 7;
+    optional SetNullProductForAdminMainCategory main_category = 8;
+    optional SetNullProductForAdminMaterial material = 9;
+    optional bool model_parameters_ru = 10;
+    optional bool model_sizes_ru = 11;
+    optional SetNullProductForAdminModelTitle model_title = 12;
+    optional SetNullProductForAdminModelType model_type = 13;
+    optional SetNullProductForAdminPhotoModel photo_model = 14;
+    optional bool preorder_planned_delivery_from = 15;
+    optional bool preorder_planned_delivery_to = 16;
+    optional bool recommended_products = 17;
+    optional bool related_products = 18;
+    optional bool service_ru = 19;
+    optional bool sizes_help_ru = 20;
+    optional bool state = 21;
+    optional bool state_mobile = 22;
+    optional bool temperature_ru = 23;
+    optional bool videos = 24;
 }
+
+message UpdatesProductForAdmin {
+    string guid = 1;
+    optional UpdateProductForAdmin update = 2;
+    optional SetNullProductForAdmin null = 3;
+}
+
 
 service NomenclatureService {
     rpc GetList (GetListRequest) returns (GetNomenclatureListResponse);
@@ -997,23 +1028,20 @@ service PhotoModelService {
     rpc GetList (GetListRequest) returns (GetPhotoModelListResponse);
     rpc GetByID (GetByIDRequest) returns (GetPhotoModelByIDResponse);
     rpc Create (PhotoModelWithoutID) returns (GetPhotoModelByIDResponse);
-    rpc Update (UpdatePhotoModel) returns (GetPhotoModelByIDResponse);
-    rpc SetNull (SetNullPhotoModel) returns (GetPhotoModelByIDResponse);
+    rpc Update (UpdatesPhotoModel) returns (GetPhotoModelByIDResponse);
 }
 
 service DictionarySizeService {
     rpc GetList (GetListRequest) returns (GetDictionarySizeListResponse);
     rpc GetByGUID (GetByGUIDRequest) returns (GetDictionarySizeByGUIDResponse);
-    rpc Update (UpdateDictionarySize) returns (GetDictionarySizeByGUIDResponse);
-    rpc SetNull (SetNullDictionarySize) returns (GetDictionarySizeByGUIDResponse);
+    rpc Update (UpdatesDictionarySize) returns (GetDictionarySizeByGUIDResponse);
 }
 
 service MaintenanceService {
     rpc GetList (GetListRequest) returns (GetMaintenanceListResponse);
     rpc GetByID (GetByIDRequest) returns (GetMaintenanceByIDResponse);
     rpc Create (MaintenanceithoutID) returns (GetMaintenanceByIDResponse);
-    rpc Update (UpdateMaintenance) returns (GetMaintenanceByIDResponse);
-    rpc SetNull (SetNullMaintenance) returns (GetMaintenanceByIDResponse);
+    rpc Update (UpdatesMaintenance) returns (GetMaintenanceByIDResponse);
     rpc GetListProductsToMaintenance (GetListRequest) returns (GetListProductsToMaintenanceResponse);
 }
 
@@ -1021,16 +1049,14 @@ service ProductOrderService {
     rpc GetList (GetListRequest) returns (GetProductOrderListResponse);
     rpc GetByID (GetByIDRequest) returns (GetProductOrderByIDResponse);
     rpc Create (ProductOrderWithoutID) returns (GetProductOrderByIDResponse);
-    rpc Update (UpdateProductOrder) returns (GetProductOrderByIDResponse);
-    rpc SetNull (SetNullProductOrder) returns (GetProductOrderByIDResponse);
+    rpc Update (UpdatesProductOrder) returns (GetProductOrderByIDResponse);
 }
 
 service ModelTypeService {
     rpc GetList (GetListRequest) returns (GetModelTypeListResponse);
     rpc GetByID (GetByIDRequest) returns (GetModelTypeByIDResponse);
     rpc Create (ModelTypeWithoutID) returns (GetModelTypeByIDResponse);
-    rpc Update (UpdateModelType) returns (GetModelTypeByIDResponse);
-    rpc SetNull (SetNullModelType) returns (GetModelTypeByIDResponse);
+    rpc Update (UpdatesModelType) returns (GetModelTypeByIDResponse);
 }
 
 service ProductFilterService {
@@ -1041,8 +1067,7 @@ service CategoryService {
     rpc GetList (GetListRequest) returns (GetCategoryListResponse);
     rpc GetByID (GetByIDRequest) returns (GetCategoryByIDResponse);
     rpc Create (CategoryWithoutID) returns (GetCategoryByIDResponse);
-    rpc Update (UpdateCategory) returns (GetCategoryByIDResponse);
-    rpc SetNull (SetNullCategory) returns (GetCategoryByIDResponse);
+    rpc Update (UpdatesCategory) returns (GetCategoryByIDResponse);
     rpc GetProductsToCategory (GetByIDRequest) returns (GetProductsToCategoryResponse);
     rpc UpdateProductsToCategory (UpdateProductsToCategoryRequest) returns (GetProductsToCategoryResponse);
 }
@@ -1050,6 +1075,5 @@ service CategoryService {
 service ProductForAdminService {
     rpc GetList (GetListRequest) returns (GetProductForAdminListResponse);
     rpc GetByGUID (GetByGUIDRequest) returns (GetProductForAdminByGUIDResponse);
-    rpc Update (UpdateProductForAdmin) returns (GetProductForAdminByGUIDResponse);
-    rpc SetNull (SetNullProductForAdmin) returns (GetProductForAdminByGUIDResponse);
+    rpc Update (UpdatesProductForAdmin) returns (GetProductForAdminByGUIDResponse);
 }

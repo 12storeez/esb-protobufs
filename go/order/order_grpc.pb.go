@@ -457,6 +457,7 @@ type OrderServiceClient interface {
 	GetList(ctx context.Context, in *GetListRequestForPosition, opts ...grpc.CallOption) (*GetListOrderResponse, error)
 	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDOrderResponse, error)
 	GetListForAdmin(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListForAdminResponse, error)
+	GetOrderByIDForAdmin(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDForAdminResponse, error)
 }
 
 type orderServiceClient struct {
@@ -494,6 +495,15 @@ func (c *orderServiceClient) GetListForAdmin(ctx context.Context, in *GetListReq
 	return out, nil
 }
 
+func (c *orderServiceClient) GetOrderByIDForAdmin(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDForAdminResponse, error) {
+	out := new(GetByIDForAdminResponse)
+	err := c.cc.Invoke(ctx, "/orders.OrderService/GetOrderByIDForAdmin", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderServiceServer is the server API for OrderService service.
 // All implementations should embed UnimplementedOrderServiceServer
 // for forward compatibility
@@ -501,6 +511,7 @@ type OrderServiceServer interface {
 	GetList(context.Context, *GetListRequestForPosition) (*GetListOrderResponse, error)
 	GetByID(context.Context, *GetByIDRequest) (*GetByIDOrderResponse, error)
 	GetListForAdmin(context.Context, *GetListRequest) (*GetListForAdminResponse, error)
+	GetOrderByIDForAdmin(context.Context, *GetByIDRequest) (*GetByIDForAdminResponse, error)
 }
 
 // UnimplementedOrderServiceServer should be embedded to have forward compatible implementations.
@@ -515,6 +526,9 @@ func (UnimplementedOrderServiceServer) GetByID(context.Context, *GetByIDRequest)
 }
 func (UnimplementedOrderServiceServer) GetListForAdmin(context.Context, *GetListRequest) (*GetListForAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetListForAdmin not implemented")
+}
+func (UnimplementedOrderServiceServer) GetOrderByIDForAdmin(context.Context, *GetByIDRequest) (*GetByIDForAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByIDForAdmin not implemented")
 }
 
 // UnsafeOrderServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -582,6 +596,24 @@ func _OrderService_GetListForAdmin_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderService_GetOrderByIDForAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).GetOrderByIDForAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/orders.OrderService/GetOrderByIDForAdmin",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).GetOrderByIDForAdmin(ctx, req.(*GetByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -600,6 +632,10 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetListForAdmin",
 			Handler:    _OrderService_GetListForAdmin_Handler,
+		},
+		{
+			MethodName: "GetOrderByIDForAdmin",
+			Handler:    _OrderService_GetOrderByIDForAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
