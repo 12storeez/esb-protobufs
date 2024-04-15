@@ -308,7 +308,7 @@
         },
         "blocks": {
           "type": "string",
-          "title": "https://api.slack.com/methods/chat.postMessage#arg_blocks\nhttps://api.slack.com/reference/block-kit/blocks\nhttps://api.slack.com/messaging/composing/layouts\njson represented as string"
+          "title": "https://api.slack.com/methods/chat.postMessage#arg_blocks\r\nhttps://api.slack.com/reference/block-kit/blocks\r\nhttps://api.slack.com/messaging/composing/layouts\r\njson represented as string"
         }
       }
     },
