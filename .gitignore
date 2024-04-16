@@ -8,5 +8,6 @@
 profile*.*
 main
 login.json
+Makefile.local
 
 /node_modules

@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "store.proto";
 import "delivery_type.proto";
+import "message.proto";
 
 
 service StoreDeliveryTypePickupService {
@@ -89,6 +90,7 @@ message StoreDeliveryTypePickup {
   string            house = 13;
   string            housing = 14;
   string            floor = 15;
+  repeated Rel      rels = 16;
 }
 
 message UpdateStoreDeliveryTypePickup {
