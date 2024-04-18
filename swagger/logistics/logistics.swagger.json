@@ -410,7 +410,41 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsDeliveryCalendarServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "deliveryModeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "deliveryTypeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "dateFrom": {
+                  "type": "string"
+                },
+                "dateTo": {
+                  "type": "string"
+                },
+                "isDeliveryDelayed": {
+                  "type": "boolean"
+                },
+                "intervals": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsInterval"
+                  }
+                }
+              }
             }
           }
         ],
@@ -625,7 +659,21 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsDeliveryMethodServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -840,7 +888,30 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsDeliveryModeServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "titleRu": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "isBackupMethod": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "isWinnerCompetitionActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -1061,7 +1132,153 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsDeliveryTypeServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "transportCompanyModeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "zoneGroupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "descriptionRu": {
+                  "type": "string"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "defaultDaysFrom": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "defaultDaysTo": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "deliveryPrice": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "deliveryPriceBorder": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "deliveryPriceAfterBorder": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "deliveryMinDays": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isOnlyDaysAmount": {
+                  "type": "boolean"
+                },
+                "consolidationHours": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "gapHours": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "priorityCoefficient": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "maxDaysCoefficient": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "tariffCoefficient": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "winnerPercent": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "maxPrice": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByPriceIsActive": {
+                  "type": "boolean"
+                },
+                "restrictionByPriceMessageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByPricePopupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "maxQuantity": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByQuantityIsActive": {
+                  "type": "boolean"
+                },
+                "restrictionByQuantityMessageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByQuantityPopupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "maxQuantityPerArticle": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByQuantityPerArticleIsActive": {
+                  "type": "boolean"
+                },
+                "restrictionByQuantityPerArticleMessageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restrictionByQuantityPerArticlePopupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isVisibleWhileRestricted": {
+                  "type": "boolean"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "paymentMethodToDeliveryType": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsUpdatePaymentMethodToDeliveryType"
+                  }
+                },
+                "categoryDeliveryTypeRestrictions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsUpdateCategoryRestriction"
+                  }
+                },
+                "intervals": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsInterval"
+                  }
+                }
+              }
             }
           }
         ],
@@ -1239,7 +1456,33 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsIntervalServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "clientTimeFrom": {
+                  "type": "string"
+                },
+                "clientTimeTo": {
+                  "type": "string"
+                },
+                "tkTimeFrom": {
+                  "type": "string"
+                },
+                "tkTimeTo": {
+                  "type": "string"
+                },
+                "dayOfWeek": {
+                  "$ref": "#/definitions/logisticsDayOfWeek"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -1454,7 +1697,25 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsMessageServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "rels": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsRel"
+                  }
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -1669,7 +1930,24 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsPaymentMethodServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "titleRu": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -1884,7 +2162,31 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsPopupServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "buttonText": {
+                  "type": "string"
+                },
+                "rels": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsRel"
+                  }
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -2062,7 +2364,28 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCategoryDeliveryTypeRestrictionServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "categoryId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "deliveryTypeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              }
             }
           }
         ],
@@ -2240,7 +2563,28 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCategoryZoneGroupRestrictionServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "categoryId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "zoneGroupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              }
             }
           }
         ],
@@ -2359,7 +2703,27 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsGlobalRestrictionsServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "messageId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "popupId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "restriction": {
+                  "$ref": "#/definitions/logisticsRestriction"
+                },
+                "value": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              }
             }
           }
         ],
@@ -2795,7 +3159,24 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsStoreDeliveryTypePickupServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "storeCode": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "deliveryTypeId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "maxCells": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "isActive": {
+                  "type": "boolean"
+                }
+              }
             }
           }
         ],
@@ -3127,7 +3508,59 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsTransportCompanyModeServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "transportCompany": {
+                  "$ref": "#/definitions/logisticsTransportCompany"
+                },
+                "deliveryMode": {
+                  "$ref": "#/definitions/logisticsDeliveryMode"
+                },
+                "deliveryMethod": {
+                  "$ref": "#/definitions/logisticsDeliveryMethod"
+                },
+                "intervals": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsInterval"
+                  }
+                },
+                "deliveryIntervalDays": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "sdtCode": {
+                  "type": "string"
+                },
+                "isPriceBorderIncludeDelivery": {
+                  "type": "boolean"
+                },
+                "isPriceBorderIncludePresent": {
+                  "type": "boolean"
+                },
+                "isProductQuantityBorderIncludeDelivery": {
+                  "type": "boolean"
+                },
+                "isProductQuantityBorderIncludePresent": {
+                  "type": "boolean"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -3331,7 +3764,30 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsTransportCompanyServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "trackUrl": {
+                  "type": "string"
+                },
+                "hasIntegration": {
+                  "type": "boolean"
+                },
+                "isDeliveryUseOnlyWorkingDays": {
+                  "type": "boolean"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -3690,7 +4146,22 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsZoneGroupServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "zoneIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
             }
           }
         ],
@@ -3943,7 +4414,16 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsZoneToGeoServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "zoneId": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "geoIdNew": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -4078,7 +4558,38 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsZoneServiceUpdateBody"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                },
+                "zoneGroups": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/logisticsZoneGroupInfo"
+                  }
+                },
+                "geoIdQuantity": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "geoIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
         ],
@@ -4273,30 +4784,6 @@
         }
       }
     },
-    "logisticsCategoryDeliveryTypeRestrictionServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "categoryId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "deliveryTypeId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "messageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "popupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "isActive": {
-          "type": "boolean"
-        }
-      }
-    },
     "logisticsCategoryRestriction": {
       "type": "object",
       "properties": {
@@ -4351,30 +4838,6 @@
         },
         "updatedAt": {
           "type": "string"
-        }
-      }
-    },
-    "logisticsCategoryZoneGroupRestrictionServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "categoryId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "zoneGroupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "messageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "popupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "isActive": {
-          "type": "boolean"
         }
       }
     },
@@ -4633,43 +5096,6 @@
         }
       }
     },
-    "logisticsDeliveryCalendarServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "deliveryModeId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "deliveryTypeId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "messageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "popupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "dateFrom": {
-          "type": "string"
-        },
-        "dateTo": {
-          "type": "string"
-        },
-        "isDeliveryDelayed": {
-          "type": "boolean"
-        },
-        "intervals": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
-          }
-        }
-      }
-    },
     "logisticsDeliveryMethod": {
       "type": "object",
       "properties": {
@@ -4691,23 +5117,6 @@
         }
       }
     },
-    "logisticsDeliveryMethodServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
     "logisticsDeliveryMode": {
       "type": "object",
       "properties": {
@@ -4715,32 +5124,6 @@
           "type": "integer",
           "format": "int32"
         },
-        "titleRu": {
-          "type": "string"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "isBackupMethod": {
-          "type": "boolean"
-        },
-        "code": {
-          "type": "string"
-        },
-        "isWinnerCompetitionActive": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsDeliveryModeServiceUpdateBody": {
-      "type": "object",
-      "properties": {
         "titleRu": {
           "type": "string"
         },
@@ -4921,155 +5304,6 @@
         }
       }
     },
-    "logisticsDeliveryTypeServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "transportCompanyModeId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "zoneGroupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "name": {
-          "type": "string"
-        },
-        "descriptionRu": {
-          "type": "string"
-        },
-        "popupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "code": {
-          "type": "string"
-        },
-        "defaultDaysFrom": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "defaultDaysTo": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "deliveryPrice": {
-          "type": "number",
-          "format": "float"
-        },
-        "deliveryPriceBorder": {
-          "type": "number",
-          "format": "float"
-        },
-        "deliveryPriceAfterBorder": {
-          "type": "number",
-          "format": "float"
-        },
-        "deliveryMinDays": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "isOnlyDaysAmount": {
-          "type": "boolean"
-        },
-        "consolidationHours": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "gapHours": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "priorityCoefficient": {
-          "type": "number",
-          "format": "float"
-        },
-        "maxDaysCoefficient": {
-          "type": "number",
-          "format": "float"
-        },
-        "tariffCoefficient": {
-          "type": "number",
-          "format": "float"
-        },
-        "winnerPercent": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "maxPrice": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restrictionByPriceIsActive": {
-          "type": "boolean"
-        },
-        "restrictionByPriceMessageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restrictionByPricePopupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "maxQuantity": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restrictionByQuantityIsActive": {
-          "type": "boolean"
-        },
-        "restrictionByQuantityMessageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restrictionByQuantityPopupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "maxQuantityPerArticle": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restrictionByQuantityPerArticleIsActive": {
-          "type": "boolean"
-        },
-        "restrictionByQuantityPerArticleMessageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restrictionByQuantityPerArticlePopupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "isVisibleWhileRestricted": {
-          "type": "boolean"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "paymentMethodToDeliveryType": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsUpdatePaymentMethodToDeliveryType"
-          }
-        },
-        "categoryDeliveryTypeRestrictions": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsUpdateCategoryRestriction"
-          }
-        },
-        "intervals": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
-          }
-        }
-      }
-    },
     "logisticsDeliveryTypeShort": {
       "type": "object",
       "properties": {
@@ -5138,29 +5372,6 @@
       ],
       "default": "price"
     },
-    "logisticsGlobalRestrictionsServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "messageId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "popupId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "restriction": {
-          "$ref": "#/definitions/logisticsRestriction"
-        },
-        "value": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "isActive": {
-          "type": "boolean"
-        }
-      }
-    },
     "logisticsInterval": {
       "type": "object",
       "properties": {
@@ -5168,35 +5379,6 @@
           "type": "integer",
           "format": "int32"
         },
-        "clientTimeFrom": {
-          "type": "string"
-        },
-        "clientTimeTo": {
-          "type": "string"
-        },
-        "tkTimeFrom": {
-          "type": "string"
-        },
-        "tkTimeTo": {
-          "type": "string"
-        },
-        "dayOfWeek": {
-          "$ref": "#/definitions/logisticsDayOfWeek"
-        },
-        "code": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsIntervalServiceUpdateBody": {
-      "type": "object",
-      "properties": {
         "clientTimeFrom": {
           "type": "string"
         },
@@ -5595,27 +5777,6 @@
         }
       }
     },
-    "logisticsMessageServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "text": {
-          "type": "string"
-        },
-        "rels": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsRel"
-          }
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
     "logisticsPaymentMethod": {
       "type": "object",
       "properties": {
@@ -5660,26 +5821,6 @@
         }
       }
     },
-    "logisticsPaymentMethodServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "titleRu": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
     "logisticsPaymentMethodToDeliveryType": {
       "type": "object",
       "properties": {
@@ -5712,33 +5853,6 @@
           "type": "integer",
           "format": "int32"
         },
-        "text": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "buttonText": {
-          "type": "string"
-        },
-        "rels": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsRel"
-          }
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsPopupServiceUpdateBody": {
-      "type": "object",
-      "properties": {
         "text": {
           "type": "string"
         },
@@ -5878,26 +5992,6 @@
             "type": "object",
             "$ref": "#/definitions/logisticsRel"
           }
-        }
-      }
-    },
-    "logisticsStoreDeliveryTypePickupServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "storeCode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "deliveryTypeId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "maxCells": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "isActive": {
-          "type": "boolean"
         }
       }
     },
@@ -6413,61 +6507,6 @@
         }
       }
     },
-    "logisticsTransportCompanyModeServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "transportCompany": {
-          "$ref": "#/definitions/logisticsTransportCompany"
-        },
-        "deliveryMode": {
-          "$ref": "#/definitions/logisticsDeliveryMode"
-        },
-        "deliveryMethod": {
-          "$ref": "#/definitions/logisticsDeliveryMethod"
-        },
-        "intervals": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
-          }
-        },
-        "deliveryIntervalDays": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "title": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
-        },
-        "sdtCode": {
-          "type": "string"
-        },
-        "isPriceBorderIncludeDelivery": {
-          "type": "boolean"
-        },
-        "isPriceBorderIncludePresent": {
-          "type": "boolean"
-        },
-        "isProductQuantityBorderIncludeDelivery": {
-          "type": "boolean"
-        },
-        "isProductQuantityBorderIncludePresent": {
-          "type": "boolean"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
     "logisticsTransportCompanyModeShort": {
       "type": "object",
       "properties": {
@@ -6477,32 +6516,6 @@
         },
         "title": {
           "type": "string"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsTransportCompanyServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "trackUrl": {
-          "type": "string"
-        },
-        "hasIntegration": {
-          "type": "boolean"
-        },
-        "isDeliveryUseOnlyWorkingDays": {
-          "type": "boolean"
         },
         "isActive": {
           "type": "boolean"
@@ -6976,58 +6989,6 @@
         }
       }
     },
-    "logisticsZoneGroupServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "zoneIds": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      }
-    },
-    "logisticsZoneServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        },
-        "zoneGroups": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsZoneGroupInfo"
-          }
-        },
-        "geoIdQuantity": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "geoIds": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "logisticsZoneToGeo": {
       "type": "object",
       "properties": {
@@ -7064,18 +7025,6 @@
           "type": "string"
         },
         "description": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsZoneToGeoServiceUpdateBody": {
-      "type": "object",
-      "properties": {
-        "zoneId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "geoIdNew": {
           "type": "string"
         }
       }
