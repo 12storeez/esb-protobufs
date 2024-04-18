@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	User_Info_FullMethodName         = "/mindbox.User/Info"
-	User_Orders_FullMethodName       = "/mindbox.User/Orders"
-	User_SendOSMICard_FullMethodName = "/mindbox.User/SendOSMICard"
+	User_Info_FullMethodName           = "/mindbox.User/Info"
+	User_Orders_FullMethodName         = "/mindbox.User/Orders"
+	User_SendOSMICard_FullMethodName   = "/mindbox.User/SendOSMICard"
+	User_BonusesHistory_FullMethodName = "/mindbox.User/BonusesHistory"
 )
 
 // UserClient is the client API for User service.
@@ -31,6 +32,7 @@ type UserClient interface {
 	Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error)
 	Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.CallOption) (*ResponseOrders, error)
 	SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts ...grpc.CallOption) (*ResponseOSMICard, error)
+	BonusesHistory(ctx context.Context, in *BonusesHistoryRequest, opts ...grpc.CallOption) (*BonusesHistoryResponse, error)
 }
 
 type userClient struct {
@@ -68,6 +70,15 @@ func (c *userClient) SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts 
 	return out, nil
 }
 
+func (c *userClient) BonusesHistory(ctx context.Context, in *BonusesHistoryRequest, opts ...grpc.CallOption) (*BonusesHistoryResponse, error) {
+	out := new(BonusesHistoryResponse)
+	err := c.cc.Invoke(ctx, User_BonusesHistory_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations should embed UnimplementedUserServer
 // for forward compatibility
@@ -75,6 +86,7 @@ type UserServer interface {
 	Info(context.Context, *ParamsUser) (*ResponseUser, error)
 	Orders(context.Context, *ParamsOrders) (*ResponseOrders, error)
 	SendOSMICard(context.Context, *ParamsOSMICard) (*ResponseOSMICard, error)
+	BonusesHistory(context.Context, *BonusesHistoryRequest) (*BonusesHistoryResponse, error)
 }
 
 // UnimplementedUserServer should be embedded to have forward compatible implementations.
@@ -89,6 +101,9 @@ func (UnimplementedUserServer) Orders(context.Context, *ParamsOrders) (*Response
 }
 func (UnimplementedUserServer) SendOSMICard(context.Context, *ParamsOSMICard) (*ResponseOSMICard, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendOSMICard not implemented")
+}
+func (UnimplementedUserServer) BonusesHistory(context.Context, *BonusesHistoryRequest) (*BonusesHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BonusesHistory not implemented")
 }
 
 // UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
@@ -156,6 +171,24 @@ func _User_SendOSMICard_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_BonusesHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BonusesHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).BonusesHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_BonusesHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).BonusesHistory(ctx, req.(*BonusesHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -174,6 +207,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendOSMICard",
 			Handler:    _User_SendOSMICard_Handler,
+		},
+		{
+			MethodName: "BonusesHistory",
+			Handler:    _User_BonusesHistory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

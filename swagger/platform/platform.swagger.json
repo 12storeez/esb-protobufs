@@ -176,18 +176,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "appName": {
-                  "type": "string"
-                },
-                "callbackUri": {
-                  "type": "string"
-                },
-                "clientSecret": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ClientsUpsertBody"
             }
           }
         ],
@@ -224,18 +213,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "appName": {
-                  "type": "string"
-                },
-                "callbackUri": {
-                  "type": "string"
-                },
-                "clientSecret": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/ClientsUpdateBody"
             }
           }
         ],
@@ -322,6 +300,34 @@
     }
   },
   "definitions": {
+    "ClientsUpdateBody": {
+      "type": "object",
+      "properties": {
+        "appName": {
+          "type": "string"
+        },
+        "callbackUri": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        }
+      }
+    },
+    "ClientsUpsertBody": {
+      "type": "object",
+      "properties": {
+        "appName": {
+          "type": "string"
+        },
+        "callbackUri": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        }
+      }
+    },
     "platformClient": {
       "type": "object",
       "properties": {
