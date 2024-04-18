@@ -11,6 +11,8 @@ service User {
     }
     rpc SendOSMICard (ParamsOSMICard) returns (ResponseOSMICard) {
     }
+    rpc BonusesHistory (BonusesHistoryRequest) returns (BonusesHistoryResponse) {
+    }
 }
 
 service Mobile {
@@ -169,4 +171,41 @@ message RemoveDeviceParams {
 
 message RemoveDeviceResponse {
     bool ok = 1;
+}
+
+message BonusesHistoryRequest {
+    Pagination pagination = 1;
+    Filters filters = 2;
+    string site_id = 3;
+}
+
+message Pagination {
+    int32 limit = 1;
+    int32 offset = 2;
+}
+message Filters {
+    string date_from = 1;
+    string date_to = 2;
+}
+
+message BonusesHistoryResponse {
+    string status = 1;
+    string message = 2;
+    int64 code = 3;
+    repeated BonusesHistoryResponseData data = 4;
+    repeated Error errors = 5;
+}
+message Error {
+    string target = 1;
+    int64 code = 2;
+    string message = 3;
+}
+
+message BonusesHistoryResponseData {
+    string order_id = 1;
+    string created_date = 2;
+    int32 acquired_balance_change = 3;
+    string available_from_date = 4;
+    string balance_change_kind = 5;
+    string expiration_date = 6;
 }
