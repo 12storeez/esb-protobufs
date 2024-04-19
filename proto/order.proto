@@ -23,14 +23,14 @@ message Error {
 
 message GetListRequest {
     reserved 1;
-    reserved         "filters";
+    reserved           "filters";
     PaginationRequest pagination = 2;
 }
 
 message GetListRequestForOrder {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved       "filters";
+    reserved         "filters";
     bool need_orders = 2;
     PaginationRequest pagination = 3;
 }
@@ -38,7 +38,7 @@ message GetListRequestForOrder {
 message GetListRequestForPosition {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved       "filters";
+    reserved         "filters";
     bool need_positions = 2;
     PaginationRequest pagination = 3;
 }
@@ -47,7 +47,7 @@ message GetListRequestForPosition {
 message GetListRequestForOrderAndPosition {
     // GetListFilters filters = 1;
     reserved 1;
-    reserved       "filters";
+    reserved         "filters";
     bool need_orders = 2;
     bool need_positions = 3;
     PaginationRequest pagination = 4;
@@ -60,10 +60,12 @@ message GetByIDRequest {
 message PositionStatus {
     int64 id = 1;
     string internal_title = 2;
-    int64 code = 3;
+    //    int64 code = 3;
+    reserved 3; // Deprecated "field 'int64 code' changed to 'optional string code'"
     bool is_cancel_status = 4;
     string created_at = 5;
     string updated_at = 6;
+    optional string code = 7;
 }
 
 message Position {
@@ -140,17 +142,25 @@ message OrderStatus {
     int64 id = 1;
     string title_internal = 2;
     optional string title_ru = 3;
-    int64 code = 4;
+//    int64 code = 4;
+    reserved 4; // Deprecated "'int64 code' changed to 'optional string code'"
     StatusGroup group = 5;
     bool is_returned = 6;
     bool can_be_returned = 7;
     bool is_canceled = 8;
     bool can_be_canceled = 9;
     bool is_preorder = 10;
-    bool is_offline_shipment = 11;
-    bool is_click_and_collect = 12;
+    //    bool is_offline_shipment = 11;
+    //    bool is_click_and_collect = 12;
+    reserved 11; // Deprecated "is_offline_shipment renamed to is_cnc_light"
+    reserved   "is_offline_shipment";
+    reserved 12; // Deprecated "is_click_and_collect renamed to is_cnc_big"
+    reserved   "is_click_and_collect";
     string created_at = 13;
     string updated_at = 14;
+    bool is_cnc_light = 15;
+    bool is_cnc_big = 16;
+    optional string code = 17;
 }
 
 message StatusTimer {
@@ -159,13 +169,6 @@ message StatusTimer {
     OrderStatus status = 3;
     string created_at = 4;
     string updated_at = 5;
-}
-
-message Flow {
-    int64 id = 1;
-    int64 flow_id = 2;
-    int64 current_status_id = 3;
-    int64 next_status_id = 4;
 }
 
 message Order {
@@ -256,10 +259,14 @@ message Order {
     optional string order_method = 85;
     optional string last_change_source = 86;
     int64 version = 87;
-    optional string seller_1s_guid = 88;
+    //    optional string seller_1s_guid = 88;
+    reserved 88;
+    reserved   "seller_1s_guid"; // Deprecated "field removed"
     optional string seller_store_id = 89;
     optional string seller_user_guid = 90;
-    optional string seller_name = 91;
+    //    optional string seller_name = 91;
+    reserved 91;
+    reserved   "seller_name"; // Deprecated "field removed"
     optional string org = 92;
     optional int64 store_code = 93;
     optional string storage_expired_at = 94;
@@ -552,7 +559,7 @@ message PositionForAdmin {
     int64 id = 1;
     optional string created_at = 2;
     int64 barcode = 3;
-    optional string  color_title_ru = 4;
+    optional string color_title_ru = 4;
     float discount_manual = 5;
     float discount_manual_percent = 6;
     float discount_manual_from_order = 7;
