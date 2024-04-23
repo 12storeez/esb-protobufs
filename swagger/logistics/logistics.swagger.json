@@ -4770,6 +4770,32 @@
         }
       }
     },
+    "logisticsDeliveryModeServiceUpdateBody": {
+      "type": "object",
+      "properties": {
+        "titleRu": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "isBackupMethod": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string"
+        },
+        "isWinnerCompetitionActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsDeliveryType": {
       "type": "object",
       "properties": {
@@ -4916,13 +4942,6 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/logisticsInterval"
-          }
-        },
-        "storePickups": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsStorePickup"
           }
         }
       }
@@ -5910,36 +5929,20 @@
     "logisticsStorePickup": {
       "type": "object",
       "properties": {
-        "id": {
+        "storeCode": {
           "type": "integer",
           "format": "int32"
         },
-        "store": {
-          "$ref": "#/definitions/logisticsStore"
+        "deliveryTypeId": {
+          "type": "integer",
+          "format": "int32"
         },
         "maxCells": {
           "type": "integer",
           "format": "int32"
         },
-        "busyCells": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "freeCells": {
-          "type": "integer",
-          "format": "int32"
-        },
         "isActive": {
           "type": "boolean"
-        },
-        "isActiveByCells": {
-          "type": "boolean"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
         }
       }
     },
