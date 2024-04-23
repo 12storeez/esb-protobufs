@@ -4735,6 +4735,38 @@
         },
         "updatedAt": {
           "type": "string"
+        },
+        "isForClients": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsDeliveryModeServiceUpdateBody": {
+      "type": "object",
+      "properties": {
+        "titleRu": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "isBackupMethod": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string"
+        },
+        "isWinnerCompetitionActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "isForClients": {
+          "type": "boolean"
         }
       }
     },
@@ -5875,6 +5907,26 @@
       }
     },
     "logisticsStoreDeliveryTypePickupServiceUpdateBody": {
+      "type": "object",
+      "properties": {
+        "storeCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryTypeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxCells": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logisticsStorePickup": {
       "type": "object",
       "properties": {
         "storeCode": {
