@@ -231,7 +231,8 @@ message GetResponse {
 
 // GetUserAddresses
 message GetUserAddressesRequest {
-  string user_id = 1;
+  string     user_id = 1;
+  Pagination pagination = 2;
 }
 
 message GetUserAddressesResponse {
