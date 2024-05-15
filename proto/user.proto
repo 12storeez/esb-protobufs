@@ -12,9 +12,10 @@ service user {
   rpc GetList(GetListRequest) returns (GetListResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
   rpc Merge(MergeRequest) returns (MergeResponse) {}
+  rpc GetUserAddresses(GetUserAddressesRequest) returns (GetUserAddressesResponse) {}
   // @TODO: оставить отдельными методами? Или оставить в Update?
-//  rpc Block(BlockRequest) returns (BlockResponse) {}
-//  rpc Unblock(UnblockRequest) returns (UnblockResponse) {}
+  //  rpc Block(BlockRequest) returns (BlockResponse) {}
+  //  rpc Unblock(UnblockRequest) returns (UnblockResponse) {}
 }
 
 message MergeRequest {
@@ -153,7 +154,7 @@ message User {
   optional string online_experience = 53;
   optional string personal_assistant = 54;
   optional string preferences = 55;
-  repeated Address addresses = 56;
+  Address main_address = 56;
   optional bool is_employee = 57;
   optional int32 rcrm_manager_id = 58;
 }
@@ -189,21 +190,22 @@ message Address {
   string full_address = 2;
   string full_address_geo_id = 3;
   string country_iso_code = 4;
-  string region = 5;
-  string city = 6;
-  string city_geo_id = 7;
-  string street = 8;
-  string house = 9;
-  string housing = 10;
-  string building = 11;
-  string entrance = 12;
-  string floor = 13;
-  string flat = 14;
-  string postal_code = 15;
-  string metro = 16;
-  string last_ordered_at = 17;
-  string created_at = 18;
-  string updated_at = 19;
+  string country_name = 5;
+  string region = 6;
+  string city = 7;
+  string city_geo_id = 8;
+  string street = 9;
+  string house = 10;
+  string housing = 11;
+  string building = 12;
+  string entrance = 13;
+  string floor = 14;
+  string flat = 15;
+  string postal_code = 16;
+  string metro = 17;
+  string last_ordered_at = 18;
+  string created_at = 19;
+  string updated_at = 20;
 }
 
 message UpdateResponse {
@@ -225,6 +227,21 @@ message GetResponse {
   int64             code = 3;
   repeated Error    errors = 4;
   User              data = 5;
+}
+
+// GetUserAddresses
+message GetUserAddressesRequest {
+  string     user_id = 1;
+  Pagination pagination = 2;
+}
+
+message GetUserAddressesResponse {
+  string             status = 1;
+  string             message = 2;
+  int64              code = 3;
+  repeated Error     errors = 4;
+  repeated Address   data = 5;
+  Pagination         pagination = 6;
 }
 
 // GetByToken

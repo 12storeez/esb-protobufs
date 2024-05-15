@@ -126,7 +126,6 @@ message DeliveryType {
   repeated PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
   repeated CategoryRestriction             category_delivery_type_restrictions = 38;
   repeated Interval                        intervals = 39;
-  repeated StorePickup                     store_pickups = 40;
 }
 
 message CategoryRestriction {

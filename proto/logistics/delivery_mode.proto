@@ -60,6 +60,7 @@ message DeliveryMode {
   bool    is_winner_competition_active = 6;
   string  created_at = 7;
   string  updated_at = 8;
+  bool    is_for_clients = 9;
 }
 
 message ListDeliveryModeRequest {
