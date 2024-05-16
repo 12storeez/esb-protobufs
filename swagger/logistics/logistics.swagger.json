@@ -5829,7 +5829,10 @@
         "store": {
           "$ref": "#/definitions/logisticsStore"
         },
-        "deliveryType": {
+        "deliveryTypePickup": {
+          "$ref": "#/definitions/logisticsDeliveryTypeShort"
+        },
+        "deliveryTypeShipment": {
           "$ref": "#/definitions/logisticsDeliveryTypeShort"
         },
         "maxCells": {
@@ -5844,10 +5847,13 @@
           "type": "integer",
           "format": "int32"
         },
-        "isActive": {
+        "isActivePickup": {
           "type": "boolean"
         },
-        "isActiveByCells": {
+        "isActivePickupByCells": {
+          "type": "boolean"
+        },
+        "isActiveShipment": {
           "type": "boolean"
         },
         "createdAt": {
