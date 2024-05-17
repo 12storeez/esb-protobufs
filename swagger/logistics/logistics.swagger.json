@@ -5833,7 +5833,7 @@
         "store": {
           "$ref": "#/definitions/logisticsStore"
         },
-        "deliveryType": {
+        "deliveryTypePickup": {
           "$ref": "#/definitions/logisticsDeliveryTypeShort"
         },
         "deliveryTypeShipment": {
@@ -5851,7 +5851,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "isActive": {
+        "isActivePickup": {
           "type": "boolean"
         },
         "isActivePickupByCells": {

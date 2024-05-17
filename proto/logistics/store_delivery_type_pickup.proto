@@ -78,12 +78,12 @@ message ListStoreDeliveryTypeResponse {
 message StoreDeliveryType {
   int32             id = 1;
   Store             store = 2;
-  DeliveryTypeShort delivery_type_ = 3;
+  DeliveryTypeShort delivery_type_pickup = 3;
   DeliveryTypeShort delivery_type_shipment = 4;
   int32             max_cells = 5;
   int32             busy_cells = 6;
   int32             free_cells = 7;
-  bool              is_active_ = 8;
+  bool              is_active_pickup = 8;
   bool              is_active_pickup_by_cells = 9;
   bool              is_active_shipment = 10;
   string            created_at = 11;
