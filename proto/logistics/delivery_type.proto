@@ -247,5 +247,6 @@ message SuggestDeliveryTypeResponse {
 
 message FilterDeliveryType {
   bool is_store_pickup = 1;
+  bool is_store_shipment = 2;
 }
 
