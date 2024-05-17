@@ -48,7 +48,7 @@
       "name": "StoreService"
     },
     {
-      "name": "StoreDeliveryTypePickupService"
+      "name": "StoreDeliveryTypeService"
     },
     {
       "name": "TransportCompanyService"
@@ -2589,14 +2589,14 @@
         ]
       }
     },
-    "/api/v1/store-delivery-type-pickup": {
+    "/api/v1/store-delivery-type": {
       "get": {
-        "operationId": "StoreDeliveryTypePickupService_List",
+        "operationId": "StoreDeliveryTypeService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsListStoreDeliveryTypePickupResponse"
+              "$ref": "#/definitions/logisticsListStoreDeliveryTypeResponse"
             }
           },
           "default": {
@@ -2635,11 +2635,11 @@
           }
         ],
         "tags": [
-          "StoreDeliveryTypePickupService"
+          "StoreDeliveryTypeService"
         ]
       },
       "post": {
-        "operationId": "StoreDeliveryTypePickupService_Create",
+        "operationId": "StoreDeliveryTypeService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2660,23 +2660,23 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsCreateStoreDeliveryTypePickup"
+              "$ref": "#/definitions/logisticsCreateStoreDeliveryType"
             }
           }
         ],
         "tags": [
-          "StoreDeliveryTypePickupService"
+          "StoreDeliveryTypeService"
         ]
       }
     },
-    "/api/v1/store-delivery-type-pickup/suggest": {
+    "/api/v1/store-delivery-type/suggest": {
       "get": {
-        "operationId": "StoreDeliveryTypePickupService_Suggest",
+        "operationId": "StoreDeliveryTypeService_Suggest",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsSuggestStoreDeliveryTypePickupResponse"
+              "$ref": "#/definitions/logisticsSuggestStoreDeliveryTypeResponse"
             }
           },
           "default": {
@@ -2702,13 +2702,13 @@
           }
         ],
         "tags": [
-          "StoreDeliveryTypePickupService"
+          "StoreDeliveryTypeService"
         ]
       }
     },
-    "/api/v1/store-delivery-type-pickup/{id}": {
+    "/api/v1/store-delivery-type/{id}": {
       "get": {
-        "operationId": "StoreDeliveryTypePickupService_Get",
+        "operationId": "StoreDeliveryTypeService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2733,11 +2733,11 @@
           }
         ],
         "tags": [
-          "StoreDeliveryTypePickupService"
+          "StoreDeliveryTypeService"
         ]
       },
       "delete": {
-        "operationId": "StoreDeliveryTypePickupService_Delete",
+        "operationId": "StoreDeliveryTypeService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2763,11 +2763,11 @@
           }
         ],
         "tags": [
-          "StoreDeliveryTypePickupService"
+          "StoreDeliveryTypeService"
         ]
       },
       "patch": {
-        "operationId": "StoreDeliveryTypePickupService_Update",
+        "operationId": "StoreDeliveryTypeService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2795,12 +2795,12 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/logisticsStoreDeliveryTypePickupServiceUpdateBody"
+              "$ref": "#/definitions/logisticsStoreDeliveryTypeServiceUpdateBody"
             }
           }
         ],
         "tags": [
-          "StoreDeliveryTypePickupService"
+          "StoreDeliveryTypeService"
         ]
       }
     },
@@ -4493,7 +4493,7 @@
         }
       }
     },
-    "logisticsCreateStoreDeliveryTypePickup": {
+    "logisticsCreateStoreDeliveryType": {
       "type": "object",
       "properties": {
         "storeCode": {
@@ -5445,7 +5445,7 @@
         }
       }
     },
-    "logisticsListStoreDeliveryTypePickupResponse": {
+    "logisticsListStoreDeliveryTypeResponse": {
       "type": "object",
       "properties": {
         "results": {
@@ -5833,7 +5833,7 @@
         "store": {
           "$ref": "#/definitions/logisticsStore"
         },
-        "deliveryTypePickup": {
+        "deliveryType": {
           "$ref": "#/definitions/logisticsDeliveryTypeShort"
         },
         "deliveryTypeShipment": {
@@ -5851,7 +5851,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "isActivePickup": {
+        "isActive": {
           "type": "boolean"
         },
         "isActivePickupByCells": {
@@ -5890,7 +5890,7 @@
         }
       }
     },
-    "logisticsStoreDeliveryTypePickupServiceUpdateBody": {
+    "logisticsStoreDeliveryTypeServiceUpdateBody": {
       "type": "object",
       "properties": {
         "storeCode": {
@@ -6094,7 +6094,7 @@
         }
       }
     },
-    "logisticsSuggestStoreDeliveryTypePickup": {
+    "logisticsSuggestStoreDeliveryType": {
       "type": "object",
       "properties": {
         "id": {
@@ -6128,14 +6128,14 @@
         }
       }
     },
-    "logisticsSuggestStoreDeliveryTypePickupResponse": {
+    "logisticsSuggestStoreDeliveryTypeResponse": {
       "type": "object",
       "properties": {
         "results": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsSuggestStoreDeliveryTypePickup"
+            "$ref": "#/definitions/logisticsSuggestStoreDeliveryType"
           }
         },
         "total": {
