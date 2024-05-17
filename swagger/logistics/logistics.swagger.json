@@ -2644,7 +2644,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsStoreDeliveryTypePickup"
+              "$ref": "#/definitions/logisticsStoreDeliveryType"
             }
           },
           "default": {
@@ -2713,7 +2713,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsStoreDeliveryTypePickup"
+              "$ref": "#/definitions/logisticsStoreDeliveryType"
             }
           },
           "default": {
@@ -2772,7 +2772,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsStoreDeliveryTypePickup"
+              "$ref": "#/definitions/logisticsStoreDeliveryType"
             }
           },
           "default": {
@@ -4500,7 +4500,11 @@
           "type": "integer",
           "format": "int32"
         },
-        "deliveryTypeId": {
+        "deliveryTypePickupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryTypeShipmentId": {
           "type": "integer",
           "format": "int32"
         },
@@ -5448,7 +5452,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsStoreDeliveryTypePickup"
+            "$ref": "#/definitions/logisticsStoreDeliveryType"
           }
         },
         "total": {
@@ -5819,7 +5823,7 @@
         }
       }
     },
-    "logisticsStoreDeliveryTypePickup": {
+    "logisticsStoreDeliveryType": {
       "type": "object",
       "properties": {
         "id": {
@@ -5893,7 +5897,11 @@
           "type": "integer",
           "format": "int32"
         },
-        "deliveryTypeId": {
+        "deliveryTypePickupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryTypeShipmentId": {
           "type": "integer",
           "format": "int32"
         },

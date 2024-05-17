@@ -33,9 +33,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StoreDeliveryTypePickupServiceClient interface {
 	List(ctx context.Context, in *ListStoreDeliveryTypePickupRequest, opts ...grpc.CallOption) (*ListStoreDeliveryTypePickupResponse, error)
-	Create(ctx context.Context, in *CreateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error)
-	Get(ctx context.Context, in *StoreDeliveryTypePickupId, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error)
-	Update(ctx context.Context, in *UpdateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error)
+	Create(ctx context.Context, in *CreateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryType, error)
+	Get(ctx context.Context, in *StoreDeliveryTypePickupId, opts ...grpc.CallOption) (*StoreDeliveryType, error)
+	Update(ctx context.Context, in *UpdateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryType, error)
 	Delete(ctx context.Context, in *StoreDeliveryTypePickupId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Suggest(ctx context.Context, in *SuggestStoreDeliveryTypePickupRequest, opts ...grpc.CallOption) (*SuggestStoreDeliveryTypePickupResponse, error)
 }
@@ -57,8 +57,8 @@ func (c *storeDeliveryTypePickupServiceClient) List(ctx context.Context, in *Lis
 	return out, nil
 }
 
-func (c *storeDeliveryTypePickupServiceClient) Create(ctx context.Context, in *CreateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error) {
-	out := new(StoreDeliveryTypePickup)
+func (c *storeDeliveryTypePickupServiceClient) Create(ctx context.Context, in *CreateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryType, error) {
+	out := new(StoreDeliveryType)
 	err := c.cc.Invoke(ctx, StoreDeliveryTypePickupService_Create_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -66,8 +66,8 @@ func (c *storeDeliveryTypePickupServiceClient) Create(ctx context.Context, in *C
 	return out, nil
 }
 
-func (c *storeDeliveryTypePickupServiceClient) Get(ctx context.Context, in *StoreDeliveryTypePickupId, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error) {
-	out := new(StoreDeliveryTypePickup)
+func (c *storeDeliveryTypePickupServiceClient) Get(ctx context.Context, in *StoreDeliveryTypePickupId, opts ...grpc.CallOption) (*StoreDeliveryType, error) {
+	out := new(StoreDeliveryType)
 	err := c.cc.Invoke(ctx, StoreDeliveryTypePickupService_Get_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -75,8 +75,8 @@ func (c *storeDeliveryTypePickupServiceClient) Get(ctx context.Context, in *Stor
 	return out, nil
 }
 
-func (c *storeDeliveryTypePickupServiceClient) Update(ctx context.Context, in *UpdateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryTypePickup, error) {
-	out := new(StoreDeliveryTypePickup)
+func (c *storeDeliveryTypePickupServiceClient) Update(ctx context.Context, in *UpdateStoreDeliveryTypePickup, opts ...grpc.CallOption) (*StoreDeliveryType, error) {
+	out := new(StoreDeliveryType)
 	err := c.cc.Invoke(ctx, StoreDeliveryTypePickupService_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -107,9 +107,9 @@ func (c *storeDeliveryTypePickupServiceClient) Suggest(ctx context.Context, in *
 // for forward compatibility
 type StoreDeliveryTypePickupServiceServer interface {
 	List(context.Context, *ListStoreDeliveryTypePickupRequest) (*ListStoreDeliveryTypePickupResponse, error)
-	Create(context.Context, *CreateStoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error)
-	Get(context.Context, *StoreDeliveryTypePickupId) (*StoreDeliveryTypePickup, error)
-	Update(context.Context, *UpdateStoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error)
+	Create(context.Context, *CreateStoreDeliveryTypePickup) (*StoreDeliveryType, error)
+	Get(context.Context, *StoreDeliveryTypePickupId) (*StoreDeliveryType, error)
+	Update(context.Context, *UpdateStoreDeliveryTypePickup) (*StoreDeliveryType, error)
 	Delete(context.Context, *StoreDeliveryTypePickupId) (*emptypb.Empty, error)
 	Suggest(context.Context, *SuggestStoreDeliveryTypePickupRequest) (*SuggestStoreDeliveryTypePickupResponse, error)
 }
@@ -121,13 +121,13 @@ type UnimplementedStoreDeliveryTypePickupServiceServer struct {
 func (UnimplementedStoreDeliveryTypePickupServiceServer) List(context.Context, *ListStoreDeliveryTypePickupRequest) (*ListStoreDeliveryTypePickupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedStoreDeliveryTypePickupServiceServer) Create(context.Context, *CreateStoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error) {
+func (UnimplementedStoreDeliveryTypePickupServiceServer) Create(context.Context, *CreateStoreDeliveryTypePickup) (*StoreDeliveryType, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedStoreDeliveryTypePickupServiceServer) Get(context.Context, *StoreDeliveryTypePickupId) (*StoreDeliveryTypePickup, error) {
+func (UnimplementedStoreDeliveryTypePickupServiceServer) Get(context.Context, *StoreDeliveryTypePickupId) (*StoreDeliveryType, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedStoreDeliveryTypePickupServiceServer) Update(context.Context, *UpdateStoreDeliveryTypePickup) (*StoreDeliveryTypePickup, error) {
+func (UnimplementedStoreDeliveryTypePickupServiceServer) Update(context.Context, *UpdateStoreDeliveryTypePickup) (*StoreDeliveryType, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedStoreDeliveryTypePickupServiceServer) Delete(context.Context, *StoreDeliveryTypePickupId) (*emptypb.Empty, error) {
