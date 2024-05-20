@@ -60,7 +60,7 @@ message CreateStoreDeliveryType {
   int32   delivery_type_pickup_id = 2;
   int32   delivery_type_shipment_id = 3;
   int32   max_cells = 4;
-  bool    is_active = 5;
+  bool    is_active_pickup = 5;
 }
 
 message ListStoreDeliveryTypeRequest {
@@ -102,7 +102,7 @@ message UpdateStoreDeliveryType {
   int32             delivery_type_pickup_id = 3;
   int32             delivery_type_shipment_id = 4;
   int32             max_cells = 5;
-  bool              is_active = 6;
+  bool              is_active_pickup = 6;
 }
 
 message SuggestStoreDeliveryTypeRequest {
@@ -113,7 +113,7 @@ message SuggestStoreDeliveryTypeRequest {
 message SuggestStoreDeliveryType {
   int32  id = 1;
   string name = 2;
-  bool   is_active = 3;
+  bool   is_active_pickup = 3;
   int32  store_code = 4;
   string postal = 5;
   string street = 6;

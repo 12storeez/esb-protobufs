@@ -4518,7 +4518,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "isActive": {
+        "isActivePickup": {
           "type": "boolean"
         }
       }
@@ -5918,7 +5918,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "isActive": {
+        "isActivePickup": {
           "type": "boolean"
         }
       }
@@ -6113,7 +6113,7 @@
         "name": {
           "type": "string"
         },
-        "isActive": {
+        "isActivePickup": {
           "type": "boolean"
         },
         "storeCode": {
