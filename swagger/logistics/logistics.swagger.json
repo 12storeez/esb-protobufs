@@ -965,12 +965,6 @@
             "in": "query",
             "required": false,
             "type": "boolean"
-          },
-          {
-            "name": "filter.isStoreShipment",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
           }
         ],
         "tags": [
@@ -5104,9 +5098,6 @@
       "type": "object",
       "properties": {
         "isStorePickup": {
-          "type": "boolean"
-        },
-        "isStoreShipment": {
           "type": "boolean"
         }
       }
