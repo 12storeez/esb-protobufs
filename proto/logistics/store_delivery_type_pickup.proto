@@ -57,8 +57,8 @@ message StoreDeliveryTypeId {
 
 message CreateStoreDeliveryType {
   int32   store_code = 1;
-  int32   delivery_type_pickup_id = 2;
-  int32   delivery_type_shipment_id = 3;
+  int32   pickup_delivery_type_id = 2;
+  int32   shipment_delivery_type_id = 3;
   int32   max_cells = 4;
   bool    is_active_pickup = 5;
 }
@@ -99,8 +99,8 @@ message StoreDeliveryType {
 message UpdateStoreDeliveryType {
   int32             id = 1;
   int32             store_code = 2;
-  int32             delivery_type_pickup_id = 3;
-  int32             delivery_type_shipment_id = 4;
+  int32             pickup_delivery_type_id = 3;
+  int32             shipment_delivery_type_id = 4;
   int32             max_cells = 5;
   bool              is_active_pickup = 6;
 }
