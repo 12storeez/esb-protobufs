@@ -466,6 +466,11 @@ message User {
 }
 
 message OrderForAdmin {
+    repeated DetailedOrderForAdmin orders = 1;
+    repeated DetailedStatusGroupForAdmin status_groups = 2;
+}
+
+message DetailedOrderForAdmin {
     int64 id = 1;
     City city = 2;
     string created_at = 3;
@@ -478,11 +483,14 @@ message OrderForAdmin {
     User user = 10;
 }
 
+message DetailedStatusGroupForAdmin {
+}
+
 message GetListForAdminResponse {
     string status = 1;
     string message = 2;
     PaginationResponse pagination = 3;
-    repeated OrderForAdmin data = 4;
+    OrderForAdmin data = 4;
     int64 code = 5;
     repeated Error errors = 6;
 }
