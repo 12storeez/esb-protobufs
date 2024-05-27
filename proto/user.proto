@@ -8,6 +8,7 @@ service user {
   rpc Create(CreateRequest) returns (CreateResponse) {}
   rpc Update(User) returns (UpdateResponse) {}
   rpc Get(GetRequest) returns (GetResponse) {}
+  rpc GetBySiteID(GetBySiteIDRequest) returns (GetResponse) {}
   rpc GetByToken(GetByTokenRequest) returns (GetResponse) {}
   rpc GetList(GetListRequest) returns (GetListResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
@@ -227,6 +228,11 @@ message GetResponse {
   int64             code = 3;
   repeated Error    errors = 4;
   User              data = 5;
+}
+
+// GetBySiteIDRequest
+message GetBySiteIDRequest {
+  string site_id = 1;
 }
 
 // GetUserAddresses

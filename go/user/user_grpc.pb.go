@@ -22,6 +22,7 @@ const (
 	User_Create_FullMethodName           = "/user.user/Create"
 	User_Update_FullMethodName           = "/user.user/Update"
 	User_Get_FullMethodName              = "/user.user/Get"
+	User_GetBySiteID_FullMethodName      = "/user.user/GetBySiteID"
 	User_GetByToken_FullMethodName       = "/user.user/GetByToken"
 	User_GetList_FullMethodName          = "/user.user/GetList"
 	User_Delete_FullMethodName           = "/user.user/Delete"
@@ -36,6 +37,7 @@ type UserClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Update(ctx context.Context, in *User, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetBySiteID(ctx context.Context, in *GetBySiteIDRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetByToken(ctx context.Context, in *GetByTokenRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
@@ -72,6 +74,15 @@ func (c *userClient) Update(ctx context.Context, in *User, opts ...grpc.CallOpti
 func (c *userClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
 	err := c.cc.Invoke(ctx, User_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetBySiteID(ctx context.Context, in *GetBySiteIDRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, User_GetBySiteID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,6 +141,7 @@ type UserServer interface {
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Update(context.Context, *User) (*UpdateResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	GetBySiteID(context.Context, *GetBySiteIDRequest) (*GetResponse, error)
 	GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
@@ -149,6 +161,9 @@ func (UnimplementedUserServer) Update(context.Context, *User) (*UpdateResponse, 
 }
 func (UnimplementedUserServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedUserServer) GetBySiteID(context.Context, *GetBySiteIDRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBySiteID not implemented")
 }
 func (UnimplementedUserServer) GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByToken not implemented")
@@ -227,6 +242,24 @@ func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).Get(ctx, req.(*GetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetBySiteID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBySiteIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetBySiteID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetBySiteID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetBySiteID(ctx, req.(*GetBySiteIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -339,6 +372,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _User_Get_Handler,
+		},
+		{
+			MethodName: "GetBySiteID",
+			Handler:    _User_GetBySiteID_Handler,
 		},
 		{
 			MethodName: "GetByToken",

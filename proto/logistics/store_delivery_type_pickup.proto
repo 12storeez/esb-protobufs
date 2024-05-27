@@ -11,105 +11,109 @@ import "delivery_type.proto";
 import "message.proto";
 
 
-service StoreDeliveryTypePickupService {
-  rpc List(ListStoreDeliveryTypePickupRequest) returns (ListStoreDeliveryTypePickupResponse) {
+service StoreDeliveryTypeService {
+  rpc List(ListStoreDeliveryTypeRequest) returns (ListStoreDeliveryTypeResponse) {
     option (google.api.http) = {
-      get: "/api/v1/store-delivery-type-pickup"
+      get: "/api/v1/store-delivery-type"
     };
   }
 
-  rpc Create(CreateStoreDeliveryTypePickup) returns (StoreDeliveryTypePickup) {
+  rpc Create(CreateStoreDeliveryType) returns (StoreDeliveryType) {
     option (google.api.http) = {
-      post: "/api/v1/store-delivery-type-pickup"
+      post: "/api/v1/store-delivery-type"
       body: "*"
     };
   }
 
-  rpc Get(StoreDeliveryTypePickupId) returns (StoreDeliveryTypePickup) {
+  rpc Get(StoreDeliveryTypeId) returns (StoreDeliveryType) {
     option (google.api.http) = {
-      get: "/api/v1/store-delivery-type-pickup/{id}"
+      get: "/api/v1/store-delivery-type/{id}"
     };
   }
 
-  rpc Update(UpdateStoreDeliveryTypePickup) returns (StoreDeliveryTypePickup) {
+  rpc Update(UpdateStoreDeliveryType) returns (StoreDeliveryType) {
     option (google.api.http) = {
-      patch: "/api/v1/store-delivery-type-pickup/{id}"
+      patch: "/api/v1/store-delivery-type/{id}"
       body: "*"
     };
   }
 
-  rpc Delete(StoreDeliveryTypePickupId) returns (google.protobuf.Empty) {
+  rpc Delete(StoreDeliveryTypeId) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/api/v1/store-delivery-type-pickup/{id}"
+      delete: "/api/v1/store-delivery-type/{id}"
     };
   }
 
-  rpc Suggest(SuggestStoreDeliveryTypePickupRequest) returns (SuggestStoreDeliveryTypePickupResponse) {
+  rpc Suggest(SuggestStoreDeliveryTypeRequest) returns (SuggestStoreDeliveryTypeResponse) {
     option (google.api.http) = {
-      get: "/api/v1/store-delivery-type-pickup/suggest"
+      get: "/api/v1/store-delivery-type/suggest"
     };
   }
 }
 
-message StoreDeliveryTypePickupId {
+message StoreDeliveryTypeId {
   int32 id = 1;
 }
 
-message CreateStoreDeliveryTypePickup {
+message CreateStoreDeliveryType {
   int32   store_code = 1;
-  int32   delivery_type_id = 2;
-  int32   max_cells = 3;
-  bool    is_active = 4;
+  int32   pickup_delivery_type_id = 2;
+  int32   shipment_delivery_type_id = 3;
+  int32   max_cells = 4;
+  bool    is_active_pickup = 5;
 }
 
-message ListStoreDeliveryTypePickupRequest {
+message ListStoreDeliveryTypeRequest {
   int32   limit = 1;
   int32   offset = 2;
   string  search = 3;
   string  sort = 4;
 }
 
-message ListStoreDeliveryTypePickupResponse {
-  repeated StoreDeliveryTypePickup  results = 1;
-  int32                             total = 2;
+message ListStoreDeliveryTypeResponse {
+  repeated StoreDeliveryType  results = 1;
+  int32                       total = 2;
 }
 
-message StoreDeliveryTypePickup {
+message StoreDeliveryType {
   int32             id = 1;
   Store             store = 2;
-  DeliveryTypeShort delivery_type = 3;
-  int32             max_cells = 4;
-  int32             busy_cells = 5;
-  int32             free_cells = 6;
-  bool              is_active = 7;
-  bool              is_active_by_cells = 8;
-  string            created_at = 9;
-  string            updated_at = 10;
-  string            postal = 11;
-  string            street = 12;
-  string            house = 13;
-  string            housing = 14;
-  string            floor = 15;
-  repeated Rel      rels = 16;
+  DeliveryTypeShort delivery_type_pickup = 3;
+  DeliveryTypeShort delivery_type_shipment = 4;
+  int32             max_cells = 5;
+  int32             busy_cells = 6;
+  int32             free_cells = 7;
+  bool              is_active_pickup = 8;
+  bool              is_active_pickup_by_cells = 9;
+  bool              is_active_shipment = 10;
+  string            created_at = 11;
+  string            updated_at = 12;
+  string            postal = 13;
+  string            street = 14;
+  string            house = 15;
+  string            housing = 16;
+  string            floor = 17;
+  repeated Rel      rels = 18;
 }
 
-message UpdateStoreDeliveryTypePickup {
+message UpdateStoreDeliveryType {
   int32             id = 1;
   int32             store_code = 2;
-  int32             delivery_type_id = 3;
-  int32             max_cells = 4;
-  bool              is_active = 5;
+  int32             pickup_delivery_type_id = 3;
+  int32             shipment_delivery_type_id = 4;
+  int32             max_cells = 5;
+  bool              is_active_pickup = 6;
 }
 
-message SuggestStoreDeliveryTypePickupRequest {
+message SuggestStoreDeliveryTypeRequest {
   int32  limit = 1;
   string search = 2;
 }
 
-message SuggestStoreDeliveryTypePickup {
+message SuggestStoreDeliveryType {
   int32  id = 1;
   string name = 2;
-  bool   is_active = 3;
+  bool   is_active_pickup = 3;
   int32  store_code = 4;
   string postal = 5;
   string street = 6;
@@ -118,7 +122,7 @@ message SuggestStoreDeliveryTypePickup {
   string floor = 9;
 }
 
-message SuggestStoreDeliveryTypePickupResponse {
-  repeated SuggestStoreDeliveryTypePickup   results = 1;
-  int32                                     total = 2;
+message SuggestStoreDeliveryTypeResponse {
+  repeated SuggestStoreDeliveryType   results = 1;
+  int32                               total = 2;
 }
