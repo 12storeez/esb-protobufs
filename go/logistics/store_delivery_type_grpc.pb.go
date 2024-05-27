@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.21.9
-// source: store_delivery_type_pickup.proto
+// source: store_delivery_type.proto
 
 package logistics
 
@@ -289,5 +289,5 @@ var StoreDeliveryTypeService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "store_delivery_type_pickup.proto",
+	Metadata: "store_delivery_type.proto",
 }
