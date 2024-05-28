@@ -472,15 +472,17 @@ message OrderForAdmin {
 
 message DetailedOrderForAdmin {
     int64 id = 1;
-    City city = 2;
-    string created_at = 3;
-    Delivery delivery = 4;
-    optional string manager_comment = 5;
-    OrderStatusForAdmin order_status = 6;
-    optional string payment_status = 7;
-    ReturnTK return_tk = 8;
-    Sum sum = 9;
-    User user = 10;
+    optional int64 site_id = 2; // добавлено поле, из orders.site_id, id заказа с сайта
+    optional int64 rcrm_id = 3;
+    City city = 4;
+    string created_at = 5;
+    Delivery delivery = 6;
+    optional string manager_comment = 7;
+    OrderStatusForAdmin order_status = 8;
+    optional string payment_status = 9;
+    ReturnTK return_tk = 10;
+    Sum sum = 11;
+    User user = 12;
 }
 
 message DetailedStatusGroupForAdmin {
