@@ -490,7 +490,7 @@ message DetailedStatusGroupForAdmin {
     string           text_color_without_bg = 4;
     string           title_ru = 5;
     string           icon = 6;
-    string           orders_count = 7;
+    int32           orders_count = 7;
     repeated         DetailedOrderStatusForAdmin statuses = 8;
 }
 
