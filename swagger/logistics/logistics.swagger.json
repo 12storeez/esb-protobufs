@@ -5629,6 +5629,9 @@
         "titleRu": {
           "type": "string"
         },
+        "titleInternal": {
+          "type": "string"
+        },
         "code": {
           "type": "string"
         },
@@ -5667,6 +5670,9 @@
       "type": "object",
       "properties": {
         "titleRu": {
+          "type": "string"
+        },
+        "titleInternal": {
           "type": "string"
         },
         "code": {

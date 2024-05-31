@@ -54,10 +54,11 @@ message PaymentMethodId {
 message PaymentMethod {
   int32   id = 1;
   string  title_ru = 2;
-  string  code = 3;
-  bool    is_active = 4;
-  string  created_at = 5;
-  string  updated_at = 6;
+  string  title_internal = 3;
+  string  code = 4;
+  bool    is_active = 5;
+  string  created_at = 6;
+  string  updated_at = 7;
 }
 
 message ListPaymentMethodRequest {
