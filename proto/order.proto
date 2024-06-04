@@ -665,7 +665,7 @@ message GetOrdersByUserIDResponse {
     string status = 1;
     string message = 2;
     PaginationResponse pagination = 3;
-    repeated Outbox data = 4;
+    repeated GetOrdersByUserIDResponseData data = 4;
     int64 code = 5;
     repeated Error errors = 6;
 }
