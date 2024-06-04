@@ -658,7 +658,7 @@ message GetOrdersByUserIDRequest {
 }
 
 message GetOrderByUserIDFilter {
-    bool is_final_status = 1;
+    optional bool is_final_status = 1;
 }
 
 message GetOrdersByUserIDResponse {
