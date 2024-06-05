@@ -689,7 +689,7 @@ message OrderStatusByUserID {
     int64 id = 1;
     string title_internal = 2;
     optional string title_ru = 3;
-    StatusGroup group = 4;
+    StatusGroupByUserID group = 4;
 }
 
 message StatusGroupByUserID {
