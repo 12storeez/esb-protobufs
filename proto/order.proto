@@ -723,6 +723,7 @@ service PositionHistoryService {
 
 service OrderService {
     rpc GetList (GetListRequestForPosition) returns (GetListOrderResponse);
+    rpc GetListByUserID (GetOrdersByUserIDRequest) returns (GetOrdersByUserIDResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDOrderResponse);
     rpc GetListForAdmin (GetListRequest) returns (GetListForAdminResponse);
     rpc GetOrderByIDForAdmin (GetByIDRequest) returns (GetByIDForAdminResponse);
