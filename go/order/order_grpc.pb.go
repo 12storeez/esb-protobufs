@@ -469,6 +469,7 @@ var PositionHistoryService_ServiceDesc = grpc.ServiceDesc{
 
 const (
 	OrderService_GetList_FullMethodName              = "/orders.OrderService/GetList"
+	OrderService_GetListByUserID_FullMethodName      = "/orders.OrderService/GetListByUserID"
 	OrderService_GetByID_FullMethodName              = "/orders.OrderService/GetByID"
 	OrderService_GetListForAdmin_FullMethodName      = "/orders.OrderService/GetListForAdmin"
 	OrderService_GetOrderByIDForAdmin_FullMethodName = "/orders.OrderService/GetOrderByIDForAdmin"
@@ -479,6 +480,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OrderServiceClient interface {
 	GetList(ctx context.Context, in *GetListRequestForPosition, opts ...grpc.CallOption) (*GetListOrderResponse, error)
+	GetListByUserID(ctx context.Context, in *GetOrdersByUserIDRequest, opts ...grpc.CallOption) (*GetOrdersByUserIDResponse, error)
 	GetByID(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDOrderResponse, error)
 	GetListForAdmin(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListForAdminResponse, error)
 	GetOrderByIDForAdmin(ctx context.Context, in *GetByIDRequest, opts ...grpc.CallOption) (*GetByIDForAdminResponse, error)
@@ -495,6 +497,15 @@ func NewOrderServiceClient(cc grpc.ClientConnInterface) OrderServiceClient {
 func (c *orderServiceClient) GetList(ctx context.Context, in *GetListRequestForPosition, opts ...grpc.CallOption) (*GetListOrderResponse, error) {
 	out := new(GetListOrderResponse)
 	err := c.cc.Invoke(ctx, OrderService_GetList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderServiceClient) GetListByUserID(ctx context.Context, in *GetOrdersByUserIDRequest, opts ...grpc.CallOption) (*GetOrdersByUserIDResponse, error) {
+	out := new(GetOrdersByUserIDResponse)
+	err := c.cc.Invoke(ctx, OrderService_GetListByUserID_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -533,6 +544,7 @@ func (c *orderServiceClient) GetOrderByIDForAdmin(ctx context.Context, in *GetBy
 // for forward compatibility
 type OrderServiceServer interface {
 	GetList(context.Context, *GetListRequestForPosition) (*GetListOrderResponse, error)
+	GetListByUserID(context.Context, *GetOrdersByUserIDRequest) (*GetOrdersByUserIDResponse, error)
 	GetByID(context.Context, *GetByIDRequest) (*GetByIDOrderResponse, error)
 	GetListForAdmin(context.Context, *GetListRequest) (*GetListForAdminResponse, error)
 	GetOrderByIDForAdmin(context.Context, *GetByIDRequest) (*GetByIDForAdminResponse, error)
@@ -544,6 +556,9 @@ type UnimplementedOrderServiceServer struct {
 
 func (UnimplementedOrderServiceServer) GetList(context.Context, *GetListRequestForPosition) (*GetListOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedOrderServiceServer) GetListByUserID(context.Context, *GetOrdersByUserIDRequest) (*GetOrdersByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetListByUserID not implemented")
 }
 func (UnimplementedOrderServiceServer) GetByID(context.Context, *GetByIDRequest) (*GetByIDOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
@@ -580,6 +595,24 @@ func _OrderService_GetList_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(OrderServiceServer).GetList(ctx, req.(*GetListRequestForPosition))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderService_GetListByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrdersByUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).GetListByUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderService_GetListByUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).GetListByUserID(ctx, req.(*GetOrdersByUserIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -648,6 +681,10 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _OrderService_GetList_Handler,
+		},
+		{
+			MethodName: "GetListByUserID",
+			Handler:    _OrderService_GetListByUserID_Handler,
 		},
 		{
 			MethodName: "GetByID",

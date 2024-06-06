@@ -651,6 +651,59 @@ message GetByIDForAdminResponse {
     repeated Error errors = 5;
 }
 
+message GetOrdersByUserIDRequest {
+    PaginationRequest pagination = 1;
+    GetOrderByUserIDFilter filters = 2;
+    string user_id = 3;
+}
+
+message GetOrderByUserIDFilter {
+    optional bool is_final_status = 1;
+}
+
+message GetOrdersByUserIDResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    repeated GetOrdersByUserIDResponseData data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
+message GetOrdersByUserIDResponseData {
+    int64 id = 1;
+    string updated_at = 2;
+    optional int64 site_id = 3;
+    optional int64 rcrm_id = 4;
+    string currency_iso = 5;
+    float delivery_price = 6;
+    float discount_from_onec = 7;
+    float discount_sum = 8;
+    float sum_before_discount = 9;
+    float total_sum = 10;
+    OrderStatusByUserID order_status = 11;
+    StoreByUserID store = 12;
+}
+
+message OrderStatusByUserID {
+    int64 id = 1;
+    string title_internal = 2;
+    optional string title_ru = 3;
+    StatusGroupByUserID group = 4;
+}
+
+message StatusGroupByUserID {
+    int64 id = 1;
+    string bg_color = 2;
+    string text_color = 3;
+    string icon = 4;
+}
+
+message StoreByUserID {
+    optional int32 code = 1;
+    optional string short_title_ru = 2;
+}
+
 service OutboxService {
     rpc GetList (GetListRequestForOrder) returns (GetListOutBoxResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDOutBoxResponse);
@@ -670,6 +723,7 @@ service PositionHistoryService {
 
 service OrderService {
     rpc GetList (GetListRequestForPosition) returns (GetListOrderResponse);
+    rpc GetListByUserID (GetOrdersByUserIDRequest) returns (GetOrdersByUserIDResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDOrderResponse);
     rpc GetListForAdmin (GetListRequest) returns (GetListForAdminResponse);
     rpc GetOrderByIDForAdmin (GetByIDRequest) returns (GetByIDForAdminResponse);
