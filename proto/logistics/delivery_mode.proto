@@ -54,13 +54,14 @@ message DeliveryModeId {
 message DeliveryMode {
   int32   id = 1;
   string  title_ru = 2;
-  bool    is_active = 3;
-  bool    is_backup_method = 4;
-  string  code = 5;
-  bool    is_winner_competition_active = 6;
-  string  created_at = 7;
-  string  updated_at = 8;
-  bool    is_for_clients = 9;
+  string  title_internal = 3;
+  bool    is_active = 4;
+  bool    is_backup_method = 5;
+  string  code = 6;
+  bool    is_winner_competition_active = 7;
+  string  created_at = 8;
+  string  updated_at = 9;
+  bool    is_for_clients = 10;
 }
 
 message ListDeliveryModeRequest {

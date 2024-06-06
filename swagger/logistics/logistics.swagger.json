@@ -4722,6 +4722,9 @@
         "titleRu": {
           "type": "string"
         },
+        "titleInternal": {
+          "type": "string"
+        },
         "isActive": {
           "type": "boolean"
         },
@@ -4749,6 +4752,9 @@
       "type": "object",
       "properties": {
         "titleRu": {
+          "type": "string"
+        },
+        "titleInternal": {
           "type": "string"
         },
         "isActive": {
