@@ -4722,6 +4722,9 @@
         "titleRu": {
           "type": "string"
         },
+        "titleInternal": {
+          "type": "string"
+        },
         "isActive": {
           "type": "boolean"
         },
@@ -4749,6 +4752,9 @@
       "type": "object",
       "properties": {
         "titleRu": {
+          "type": "string"
+        },
+        "titleInternal": {
           "type": "string"
         },
         "isActive": {
@@ -5629,6 +5635,9 @@
         "titleRu": {
           "type": "string"
         },
+        "titleInternal": {
+          "type": "string"
+        },
         "code": {
           "type": "string"
         },
@@ -5667,6 +5676,9 @@
       "type": "object",
       "properties": {
         "titleRu": {
+          "type": "string"
+        },
+        "titleInternal": {
           "type": "string"
         },
         "code": {
@@ -5786,7 +5798,7 @@
           "type": "string"
         }
       },
-      "title": "Database relationship for message, where\r\n- id - identifier for the related entity\r\n- name - display name of the related entity\r\n- rel - entity name\r\n- rel_name - display name for the entity\r\n- href - link to the rel through id (like /api/v1/transport-company/2/)"
+      "title": "Database relationship for message, where\n- id - identifier for the related entity\n- name - display name of the related entity\n- rel - entity name\n- rel_name - display name for the entity\n- href - link to the rel through id (like /api/v1/transport-company/2/)"
     },
     "logisticsRestriction": {
       "type": "string",
