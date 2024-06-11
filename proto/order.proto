@@ -476,7 +476,7 @@ message DetailedOrderForAdmin {
     optional int64 rcrm_id = 3;
     City city = 4;
     string created_at = 5;
-    Delivery delivery = 6;
+    Delivery delivery_tk = 6;
     optional string manager_comment = 7;
     OrderStatusForAdmin order_status = 8;
     optional string payment_status = 9;
