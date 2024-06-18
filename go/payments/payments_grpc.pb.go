@@ -19,18 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Payments_GetCardsByUserID_FullMethodName = "/payments.Payments/GetCardsByUserID"
-	Payments_SaveUserCard_FullMethodName     = "/payments.Payments/SaveUserCard"
-	Payments_DeleteCardByID_FullMethodName   = "/payments.Payments/DeleteCardByID"
+	Payments_GetPaymentsByOrderIDForAdmin_FullMethodName = "/payments.Payments/GetPaymentsByOrderIDForAdmin"
 )
 
 // PaymentsClient is the client API for Payments service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PaymentsClient interface {
-	GetCardsByUserID(ctx context.Context, in *ParamsGetCardByUserID, opts ...grpc.CallOption) (*ResponseGetCardByUserID, error)
-	SaveUserCard(ctx context.Context, in *UserCard, opts ...grpc.CallOption) (*ResponseSuccess, error)
-	DeleteCardByID(ctx context.Context, in *ParamsDeleteCardByID, opts ...grpc.CallOption) (*ResponseSuccess, error)
+	GetPaymentsByOrderIDForAdmin(ctx context.Context, in *GetPaymentsByOrderIDForAdminRequest, opts ...grpc.CallOption) (*GetPaymentsByOrderIDForAdminResponse, error)
 }
 
 type paymentsClient struct {
@@ -41,27 +37,9 @@ func NewPaymentsClient(cc grpc.ClientConnInterface) PaymentsClient {
 	return &paymentsClient{cc}
 }
 
-func (c *paymentsClient) GetCardsByUserID(ctx context.Context, in *ParamsGetCardByUserID, opts ...grpc.CallOption) (*ResponseGetCardByUserID, error) {
-	out := new(ResponseGetCardByUserID)
-	err := c.cc.Invoke(ctx, Payments_GetCardsByUserID_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *paymentsClient) SaveUserCard(ctx context.Context, in *UserCard, opts ...grpc.CallOption) (*ResponseSuccess, error) {
-	out := new(ResponseSuccess)
-	err := c.cc.Invoke(ctx, Payments_SaveUserCard_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *paymentsClient) DeleteCardByID(ctx context.Context, in *ParamsDeleteCardByID, opts ...grpc.CallOption) (*ResponseSuccess, error) {
-	out := new(ResponseSuccess)
-	err := c.cc.Invoke(ctx, Payments_DeleteCardByID_FullMethodName, in, out, opts...)
+func (c *paymentsClient) GetPaymentsByOrderIDForAdmin(ctx context.Context, in *GetPaymentsByOrderIDForAdminRequest, opts ...grpc.CallOption) (*GetPaymentsByOrderIDForAdminResponse, error) {
+	out := new(GetPaymentsByOrderIDForAdminResponse)
+	err := c.cc.Invoke(ctx, Payments_GetPaymentsByOrderIDForAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,23 +50,15 @@ func (c *paymentsClient) DeleteCardByID(ctx context.Context, in *ParamsDeleteCar
 // All implementations should embed UnimplementedPaymentsServer
 // for forward compatibility
 type PaymentsServer interface {
-	GetCardsByUserID(context.Context, *ParamsGetCardByUserID) (*ResponseGetCardByUserID, error)
-	SaveUserCard(context.Context, *UserCard) (*ResponseSuccess, error)
-	DeleteCardByID(context.Context, *ParamsDeleteCardByID) (*ResponseSuccess, error)
+	GetPaymentsByOrderIDForAdmin(context.Context, *GetPaymentsByOrderIDForAdminRequest) (*GetPaymentsByOrderIDForAdminResponse, error)
 }
 
 // UnimplementedPaymentsServer should be embedded to have forward compatible implementations.
 type UnimplementedPaymentsServer struct {
 }
 
-func (UnimplementedPaymentsServer) GetCardsByUserID(context.Context, *ParamsGetCardByUserID) (*ResponseGetCardByUserID, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCardsByUserID not implemented")
-}
-func (UnimplementedPaymentsServer) SaveUserCard(context.Context, *UserCard) (*ResponseSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SaveUserCard not implemented")
-}
-func (UnimplementedPaymentsServer) DeleteCardByID(context.Context, *ParamsDeleteCardByID) (*ResponseSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCardByID not implemented")
+func (UnimplementedPaymentsServer) GetPaymentsByOrderIDForAdmin(context.Context, *GetPaymentsByOrderIDForAdminRequest) (*GetPaymentsByOrderIDForAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentsByOrderIDForAdmin not implemented")
 }
 
 // UnsafePaymentsServer may be embedded to opt out of forward compatibility for this service.
@@ -102,56 +72,20 @@ func RegisterPaymentsServer(s grpc.ServiceRegistrar, srv PaymentsServer) {
 	s.RegisterService(&Payments_ServiceDesc, srv)
 }
 
-func _Payments_GetCardsByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsGetCardByUserID)
+func _Payments_GetPaymentsByOrderIDForAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPaymentsByOrderIDForAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentsServer).GetCardsByUserID(ctx, in)
+		return srv.(PaymentsServer).GetPaymentsByOrderIDForAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Payments_GetCardsByUserID_FullMethodName,
+		FullMethod: Payments_GetPaymentsByOrderIDForAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentsServer).GetCardsByUserID(ctx, req.(*ParamsGetCardByUserID))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Payments_SaveUserCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserCard)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PaymentsServer).SaveUserCard(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Payments_SaveUserCard_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentsServer).SaveUserCard(ctx, req.(*UserCard))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Payments_DeleteCardByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ParamsDeleteCardByID)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PaymentsServer).DeleteCardByID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Payments_DeleteCardByID_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentsServer).DeleteCardByID(ctx, req.(*ParamsDeleteCardByID))
+		return srv.(PaymentsServer).GetPaymentsByOrderIDForAdmin(ctx, req.(*GetPaymentsByOrderIDForAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -164,16 +98,8 @@ var Payments_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PaymentsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetCardsByUserID",
-			Handler:    _Payments_GetCardsByUserID_Handler,
-		},
-		{
-			MethodName: "SaveUserCard",
-			Handler:    _Payments_SaveUserCard_Handler,
-		},
-		{
-			MethodName: "DeleteCardByID",
-			Handler:    _Payments_DeleteCardByID_Handler,
+			MethodName: "GetPaymentsByOrderIDForAdmin",
+			Handler:    _Payments_GetPaymentsByOrderIDForAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
