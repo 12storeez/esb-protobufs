@@ -5,38 +5,62 @@ option go_package = "go/payments";
 package payments;
 
 service Payments {
-    rpc GetCardsByUserID (ParamsGetCardByUserID) returns (ResponseGetCardByUserID) {
-    }
-    rpc SaveUserCard (UserCard) returns (ResponseSuccess) {
-    }
-    rpc DeleteCardByID (ParamsDeleteCardByID) returns (ResponseSuccess) {
+    rpc GetPaymentsByOrderIDForAdmin (GetPaymentsByOrderIDForAdminRequest) returns (GetPaymentsByOrderIDForAdminResponse) {
     }
 }
 
-message ParamsGetCardByUserID {
-    int32 user_id = 1;
+message GetPaymentsByOrderIDForAdminRequest {
+    int64 order_id = 1;
+    PaginationRequest pagination = 2;
 }
 
-message ResponseGetCardByUserID {
-    int32 total = 1;
-    repeated UserCard cards = 2;
+message GetPaymentsByOrderIDForAdminResponse {
+    string status = 1;
+    string message = 2;
+    repeated Payment data = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
 }
 
-message ResponseSuccess {
-    bool ok = 1;
+message PaginationRequest {
+    uint32 limit = 1;
+    uint32 offset = 2;
 }
 
-message ParamsDeleteCardByID {
-    int32 card_id = 1;
+message PaginationResponse {
+    uint32 limit = 1;
+    uint32 offset = 2;
+    uint32 total = 3;
 }
 
-message UserCard {
-    int32 id = 1;
-    int32 user_id = 2;
-    string type = 3;
-    string vendor = 4;
-    string number = 5;
-    string exp_date = 6;
-    bool active = 7;
-    bool test = 8;
+message Error {
+    string target = 1;
+    sint32 code = 2;
+    string message = 3;
+}
+
+
+message Payment {
+    uint32 id = 1;
+    string created_at = 2;
+    optional string updated_at = 3;
+    optional string paid_at = 4;
+    optional string payment_url = 5;
+    PaymentAmount amount = 6;
+    PaymentMethod payment_method = 7;
+    PaymentStatus status = 8;
+}
+message PaymentAmount {
+    float value = 1;
+    string currency_iso = 2;
+}
+message PaymentMethod {
+    int64 id = 1;
+    optional string title = 2;
+}
+message PaymentStatus {
+    int64 id = 1;
+    optional string title = 2;
+    string icon_filename = 3;
+    bool is_payment_completed = 4;
 }
