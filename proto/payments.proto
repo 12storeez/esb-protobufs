@@ -17,9 +17,10 @@ message GetPaymentsByOrderIDForAdminRequest {
 message GetPaymentsByOrderIDForAdminResponse {
     string status = 1;
     string message = 2;
-    repeated Payment data = 3;
-    int64 code = 4;
-    repeated Error errors = 5;
+    PaginationResponse pagination = 3;
+    repeated Payment data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
 }
 
 message PaginationRequest {

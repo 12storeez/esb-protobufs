@@ -1217,45 +1217,6 @@ export namespace orders {
     bonuses_accrued?: number;
   }
 }
-export namespace payments {
-  export interface Payments {
-    getCardsByUserID(
-      request: ParamsGetCardByUserID,
-      metadata?: any
-    ): Observable<ResponseGetCardByUserID>;
-    saveUserCard(
-      request: UserCard,
-      metadata?: any
-    ): Observable<ResponseSuccess>;
-    deleteCardByID(
-      request: ParamsDeleteCardByID,
-      metadata?: any
-    ): Observable<ResponseSuccess>;
-  }
-  export interface ParamsGetCardByUserID {
-    user_id?: number;
-  }
-  export interface ResponseGetCardByUserID {
-    total?: number;
-    cards?: UserCard[];
-  }
-  export interface ResponseSuccess {
-    ok?: boolean;
-  }
-  export interface ParamsDeleteCardByID {
-    card_id?: number;
-  }
-  export interface UserCard {
-    id?: number;
-    user_id?: number;
-    type?: string;
-    vendor?: string;
-    number?: string;
-    exp_date?: string;
-    active?: boolean;
-    test?: boolean;
-  }
-}
 export namespace slack {
   export interface Slack {
     send(request: SendRequest, metadata?: any): Observable<SendResponse>;
