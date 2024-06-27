@@ -618,7 +618,7 @@ message OrderForAdminFull {
   float discount_bonus = 9;
   float discount_promo = 10;
   float discount_manual = 11;
-  float discount_manual_percent = 12;
+  optional string discount_manual_percent = 12;
   float discount_manual_reason = 13;
   float discount_sum = 14;
   float discount_sum_percent = 15;
