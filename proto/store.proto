@@ -5,38 +5,42 @@ option go_package = "go/store";
 package store;
 
 service StoreService {
-  rpc Create (Store) returns (StoreResponse) {}
   rpc UpdateByStoreCode (Store) returns (StoreResponse) {}
   rpc GetList (GetListRequest) returns (GetListResponse) {}
   rpc GetByStoreCode (GetByStoreCodeRequest) returns (StoreResponse) {}
 }
 
-message Pagination {
-  int64 limit = 1;
-  int64 offset = 2;
-  int64 total = 3;
+message PaginationRequest {
+  uint32 limit = 1;
+  uint32 offset = 2;
 }
 
-message Filters {}
+message PaginationResponse {
+  uint32 limit = 1;
+  uint32 offset = 2;
+  uint32 total = 3;
+}
 
 message Error {
   string target = 1;
-  int64 code = 2;
+  uint32 code = 2;
   string message = 3;
 }
 
+//message Filters {}
+
 message GetListRequest {
-  Pagination pagination = 1;
-  Filters    filters = 2;
+  PaginationRequest pagination = 1;
+  //Filters    filters = 2;
 }
 
 message GetListResponse {
   string status = 1;
   string message = 2;
-  Pagination pagination = 3;
-  repeated Store data = 4;
-  int64 code = 5;
-  repeated Error errors = 6;
+  PaginationResponse pagination = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+  repeated Store data = 6;
 }
 
 message GetByStoreCodeRequest {
@@ -46,37 +50,59 @@ message GetByStoreCodeRequest {
 message StoreResponse {
   string status = 1;
   string message = 2;
-  Store data = 4;
-  int64 code = 5;
-  repeated Error errors = 6;
+  Store data = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
 }
 
 message Store {
   int32  store_code = 1;
-  // помещение
-  reserved 2;
   string created_at = 3;
   string updated_at = 4;
-  string title_ru = 5;
-  string short_title_ru = 6;
-  string title_en = 7;
-  string short_title_en = 8;
-  string address = 9;
-  string short_address = 10;
-  string phone = 11;
-  string geo = 12;
-  int64  countmax_id = 13;
-  string city = 14;
-  string country = 15;
-  string country_iso_code = 16;
-  string schedule = 17;
-  string picture_url = 18;
-  bool   is_active = 19;
-  bool   is_visible = 20;
-  string cluster = 21;
-  string postal = 22;
-  string street = 23;
-  string house = 24;
-  string housing = 25;
-  string floor = 26;
+  optional string deleted_at = 5;
+  optional string title_ru = 6;
+  optional string short_title_ru = 7;
+  optional string title_en = 8;
+  optional string short_title_en = 9;
+  string phone = 10;
+  optional string email = 11;
+  optional string latitude = 12;
+  optional string longitude = 13;
+  optional int64  countmax_id = 14;
+  optional string city = 15;
+  optional string city_en = 16;
+  optional string country = 17;
+  optional string country_iso_code = 18;
+  optional string mon_from = 19;
+  optional string mon_to = 20;
+  optional string tue_from = 21;
+  optional string tue_to = 22;
+  optional string wed_from = 23;
+  optional string wed_to = 24;
+  optional string thu_from = 25;
+  optional string thu_to = 26;
+  optional string fri_from = 27;
+  optional string fri_to = 28;
+  optional string sat_from = 29;
+  optional string sat_to = 30;
+  optional string sun_from = 31;
+  optional string sun_to = 32;
+  optional string picture_url = 33;
+  optional string cluster = 34;
+  optional string postal = 35;
+  optional string street = 36;
+  optional string house = 37;
+  optional string housing = 38;
+  optional string building = 39;
+  optional string block = 40;
+  optional string floor = 41;
+  optional string metro_ru = 42;
+  optional string route = 43;
+  bool   is_visible = 44;
+  bool   is_visible_mobile = 45;
+  bool   is_active = 46;
+  bool   is_for_sale = 47;
+  bool   is_for_cnc_light = 48;
+  bool   is_for_cnc_big = 49;
+  int32 max_cells = 50;
 }
