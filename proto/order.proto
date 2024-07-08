@@ -22,32 +22,25 @@ message Error {
 }
 
 message GetListRequest {
-    reserved 1;
-    reserved           "filters";
+    optional string filters = 1;
     PaginationRequest pagination = 2;
 }
 
 message GetListRequestForOrder {
-    // GetListFilters filters = 1;
-    reserved 1;
-    reserved         "filters";
+    optional string filters = 1;
     bool need_orders = 2;
     PaginationRequest pagination = 3;
 }
 
 message GetListRequestForPosition {
-    // GetListFilters filters = 1;
-    reserved 1;
-    reserved         "filters";
+    optional string filters = 1;
     bool need_positions = 2;
     PaginationRequest pagination = 3;
 }
 
 
 message GetListRequestForOrderAndPosition {
-    // GetListFilters filters = 1;
-    reserved 1;
-    reserved         "filters";
+    optional string filters = 1;
     bool need_orders = 2;
     bool need_positions = 3;
     PaginationRequest pagination = 4;
