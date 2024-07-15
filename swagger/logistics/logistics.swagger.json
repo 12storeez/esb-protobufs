@@ -6768,6 +6768,12 @@
         },
         "code": {
           "type": "string"
+        },
+        "internalTimeFrom": {
+          "type": "string"
+        },
+        "internalTimeTo": {
+          "type": "string"
         }
       }
     },
