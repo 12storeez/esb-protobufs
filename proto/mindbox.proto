@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option go_package = "go/mindbox";
 
+import "google/protobuf/struct.proto";
+
 package mindbox;
 
 service User {
@@ -210,4 +212,68 @@ message BonusesHistoryResponseData {
     string available_from_date = 4;
     string balance_change_kind = 5;
     string expiration_date = 6;
+}
+
+service OrderService {
+    rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {
+    }
+    rpc UpdateOrder(UpdateOrderRequest) returns (UpdateOrderResponse) {
+    }
+}
+
+message CreateOrderRequest {
+    string order_id = 1;
+    optional string mindbox_user_id = 2;
+    optional string site_user_id = 3;
+    optional string store_code = 4;
+    float total_price = 5;
+    repeated PositionsCreateData positions = 6;
+    repeated PaymentsCreateData payments = 7;
+}
+message PositionsCreateData {
+    string id = 1;
+    int64 quantity = 2;
+    float price = 3;
+    int64 sequence_number = 4;
+    optional int64 status = 5;
+    optional int64 line_id = 6;
+}
+message PaymentsCreateData {
+    string type = 1;
+    float amount = 2;
+}
+
+message CreateOrderResponse {
+    string status = 1;
+    string message = 2;
+    CreateOrderResponseData data = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+}
+
+message CreateOrderResponseData {
+    int64 mindbox_id = 1;
+}
+
+message UpdateOrderRequest {
+    string order_id = 1;
+    optional int64 order_mindbox_id = 2;
+    string store_code = 3;
+    map<string, google.protobuf.Value> custom_fields = 4;
+    repeated PositionsUpdateData positions = 5;
+    string execution_datetime = 6;
+}
+
+message PositionsUpdateData {
+    string id = 1;
+    int64 quantity = 2;
+    int64 status = 3;
+    map<string, google.protobuf.Value> custom_fields = 4;
+}
+
+message UpdateOrderResponse {
+    string status = 1;
+    string message = 2;
+    int64 code = 3;
+    repeated Error errors = 4;
 }
