@@ -5,7 +5,7 @@ option go_package = "go/store";
 package store;
 
 service StoreService {
-  rpc UpdateByStoreCode (Store) returns (StoreResponse) {}
+  //rpc UpdateByStoreCode (Store) returns (StoreResponse) {}
   rpc GetList (GetListRequest) returns (GetListResponse) {}
   rpc GetByStoreCode (GetByStoreCodeRequest) returns (StoreResponse) {}
 }
@@ -105,4 +105,14 @@ message Store {
   bool   is_for_cnc_light = 48;
   bool   is_for_cnc_big = 49;
   int32 max_cells = 50;
+  repeated ScheduleChanges schedule_changes = 51;
+}
+
+message ScheduleChanges {
+  string created_at = 1;
+  string updated_at = 2;
+  int32  store_code = 3;
+  string day = 4;
+  optional string time_from = 5;
+  optional string time_to = 6;
 }

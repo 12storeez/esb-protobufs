@@ -19,16 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StoreService_UpdateByStoreCode_FullMethodName = "/store.StoreService/UpdateByStoreCode"
-	StoreService_GetList_FullMethodName           = "/store.StoreService/GetList"
-	StoreService_GetByStoreCode_FullMethodName    = "/store.StoreService/GetByStoreCode"
+	StoreService_GetList_FullMethodName        = "/store.StoreService/GetList"
+	StoreService_GetByStoreCode_FullMethodName = "/store.StoreService/GetByStoreCode"
 )
 
 // StoreServiceClient is the client API for StoreService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StoreServiceClient interface {
-	UpdateByStoreCode(ctx context.Context, in *Store, opts ...grpc.CallOption) (*StoreResponse, error)
+	//rpc UpdateByStoreCode (Store) returns (StoreResponse) {}
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	GetByStoreCode(ctx context.Context, in *GetByStoreCodeRequest, opts ...grpc.CallOption) (*StoreResponse, error)
 }
@@ -39,15 +38,6 @@ type storeServiceClient struct {
 
 func NewStoreServiceClient(cc grpc.ClientConnInterface) StoreServiceClient {
 	return &storeServiceClient{cc}
-}
-
-func (c *storeServiceClient) UpdateByStoreCode(ctx context.Context, in *Store, opts ...grpc.CallOption) (*StoreResponse, error) {
-	out := new(StoreResponse)
-	err := c.cc.Invoke(ctx, StoreService_UpdateByStoreCode_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *storeServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error) {
@@ -72,7 +62,7 @@ func (c *storeServiceClient) GetByStoreCode(ctx context.Context, in *GetByStoreC
 // All implementations should embed UnimplementedStoreServiceServer
 // for forward compatibility
 type StoreServiceServer interface {
-	UpdateByStoreCode(context.Context, *Store) (*StoreResponse, error)
+	//rpc UpdateByStoreCode (Store) returns (StoreResponse) {}
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
 	GetByStoreCode(context.Context, *GetByStoreCodeRequest) (*StoreResponse, error)
 }
@@ -81,9 +71,6 @@ type StoreServiceServer interface {
 type UnimplementedStoreServiceServer struct {
 }
 
-func (UnimplementedStoreServiceServer) UpdateByStoreCode(context.Context, *Store) (*StoreResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateByStoreCode not implemented")
-}
 func (UnimplementedStoreServiceServer) GetList(context.Context, *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
 }
@@ -100,24 +87,6 @@ type UnsafeStoreServiceServer interface {
 
 func RegisterStoreServiceServer(s grpc.ServiceRegistrar, srv StoreServiceServer) {
 	s.RegisterService(&StoreService_ServiceDesc, srv)
-}
-
-func _StoreService_UpdateByStoreCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Store)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StoreServiceServer).UpdateByStoreCode(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StoreService_UpdateByStoreCode_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StoreServiceServer).UpdateByStoreCode(ctx, req.(*Store))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _StoreService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -163,10 +132,6 @@ var StoreService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "store.StoreService",
 	HandlerType: (*StoreServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "UpdateByStoreCode",
-			Handler:    _StoreService_UpdateByStoreCode_Handler,
-		},
 		{
 			MethodName: "GetList",
 			Handler:    _StoreService_GetList_Handler,
