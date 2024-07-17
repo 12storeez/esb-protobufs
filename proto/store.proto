@@ -105,7 +105,7 @@ message Store {
   bool   is_for_cnc_light = 48;
   bool   is_for_cnc_big = 49;
   int32 max_cells = 50;
-  repeated ScheduleChanges scheduleChanges = 51;
+  repeated ScheduleChanges schedule_changes = 51;
 }
 
 message ScheduleChanges {
