@@ -267,8 +267,9 @@ message UpdateOrderRequest {
 message PositionsUpdateData {
     string id = 1;
     int64 quantity = 2;
-    int64 status = 3;
-    map<string, google.protobuf.Value> custom_fields = 4;
+    float discounted_price = 3;
+    int64 status = 4;
+    map<string, google.protobuf.Value> custom_fields = 5;
 }
 
 message UpdateOrderResponse {
