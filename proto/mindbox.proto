@@ -259,7 +259,7 @@ message UpdateOrderRequest {
     string order_id = 1;
     optional int64 order_mindbox_id = 2;
     string store_code = 3;
-    google.protobuf.Value custom_fields = 4;
+    google.protobuf.Struct custom_fields = 4;
     repeated PositionsUpdateData positions = 5;
     string execution_datetime = 6;
 }
@@ -269,7 +269,7 @@ message PositionsUpdateData {
     int64 quantity = 2;
     float discounted_price = 3;
     int64 status = 4;
-    map<string, google.protobuf.Value> custom_fields = 5;
+    map<string, google.protobuf.Struct> custom_fields = 5;
 }
 
 message UpdateOrderResponse {
