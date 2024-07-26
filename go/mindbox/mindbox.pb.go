@@ -2293,12 +2293,12 @@ type UpdateOrderRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OrderId           string                     `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	OrderMindboxId    *int64                     `protobuf:"varint,2,opt,name=order_mindbox_id,json=orderMindboxId,proto3,oneof" json:"order_mindbox_id,omitempty"`
-	StoreCode         string                     `protobuf:"bytes,3,opt,name=store_code,json=storeCode,proto3" json:"store_code,omitempty"`
-	CustomFields      map[string]*structpb.Value `protobuf:"bytes,4,rep,name=custom_fields,json=customFields,proto3" json:"custom_fields,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Positions         []*PositionsUpdateData     `protobuf:"bytes,5,rep,name=positions,proto3" json:"positions,omitempty"`
-	ExecutionDatetime string                     `protobuf:"bytes,6,opt,name=execution_datetime,json=executionDatetime,proto3" json:"execution_datetime,omitempty"`
+	OrderId           string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	OrderMindboxId    *int64                 `protobuf:"varint,2,opt,name=order_mindbox_id,json=orderMindboxId,proto3,oneof" json:"order_mindbox_id,omitempty"`
+	StoreCode         string                 `protobuf:"bytes,3,opt,name=store_code,json=storeCode,proto3" json:"store_code,omitempty"`
+	CustomFields      *structpb.Value        `protobuf:"bytes,4,opt,name=custom_fields,json=customFields,proto3" json:"custom_fields,omitempty"`
+	Positions         []*PositionsUpdateData `protobuf:"bytes,5,rep,name=positions,proto3" json:"positions,omitempty"`
+	ExecutionDatetime string                 `protobuf:"bytes,6,opt,name=execution_datetime,json=executionDatetime,proto3" json:"execution_datetime,omitempty"`
 }
 
 func (x *UpdateOrderRequest) Reset() {
@@ -2354,7 +2354,7 @@ func (x *UpdateOrderRequest) GetStoreCode() string {
 	return ""
 }
 
-func (x *UpdateOrderRequest) GetCustomFields() map[string]*structpb.Value {
+func (x *UpdateOrderRequest) GetCustomFields() *structpb.Value {
 	if x != nil {
 		return x.CustomFields
 	}
@@ -2798,7 +2798,7 @@ var file_proto_mindbox_proto_rawDesc = []byte{
 	0x38, 0x0a, 0x17, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1d, 0x0a, 0x0a, 0x6d, 0x69,
 	0x6e, 0x64, 0x62, 0x6f, 0x78, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09,
-	0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x49, 0x64, 0x22, 0xaa, 0x03, 0x0a, 0x12, 0x55, 0x70,
+	0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x49, 0x64, 0x22, 0xba, 0x02, 0x0a, 0x12, 0x55, 0x70,
 	0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x19, 0x0a, 0x08, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x07, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x2d, 0x0a, 0x10, 0x6f,
@@ -2806,25 +2806,18 @@ var file_proto_mindbox_proto_rawDesc = []byte{
 	0x02, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52, 0x0e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x4d, 0x69,
 	0x6e, 0x64, 0x62, 0x6f, 0x78, 0x49, 0x64, 0x88, 0x01, 0x01, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x74,
 	0x6f, 0x72, 0x65, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
-	0x73, 0x74, 0x6f, 0x72, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x52, 0x0a, 0x0d, 0x63, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x5f, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x2d, 0x2e, 0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x43, 0x75,
-	0x73, 0x74, 0x6f, 0x6d, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52,
-	0x0c, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x12, 0x3a, 0x0a,
-	0x09, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x1c, 0x2e, 0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x2e, 0x50, 0x6f, 0x73, 0x69, 0x74,
-	0x69, 0x6f, 0x6e, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x61, 0x74, 0x61, 0x52, 0x09,
-	0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x2d, 0x0a, 0x12, 0x65, 0x78, 0x65,
-	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x18,
-	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x11, 0x65, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
-	0x44, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x1a, 0x57, 0x0a, 0x11, 0x43, 0x75, 0x73, 0x74,
-	0x6f, 0x6d, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a,
-	0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12,
-	0x2c, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38,
-	0x01, 0x42, 0x13, 0x0a, 0x11, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x6d, 0x69, 0x6e, 0x64,
+	0x73, 0x74, 0x6f, 0x72, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x3b, 0x0a, 0x0d, 0x63, 0x75, 0x73,
+	0x74, 0x6f, 0x6d, 0x5f, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x0c, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d,
+	0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x12, 0x3a, 0x0a, 0x09, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x6d, 0x69, 0x6e, 0x64,
+	0x62, 0x6f, 0x78, 0x2e, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x44, 0x61, 0x74, 0x61, 0x52, 0x09, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x12, 0x2d, 0x0a, 0x12, 0x65, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x5f,
+	0x64, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x11,
+	0x65, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d,
+	0x65, 0x42, 0x13, 0x0a, 0x11, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x6d, 0x69, 0x6e, 0x64,
 	0x62, 0x6f, 0x78, 0x5f, 0x69, 0x64, 0x22, 0xb2, 0x02, 0x0a, 0x13, 0x50, 0x6f, 0x73, 0x69, 0x74,
 	0x69, 0x6f, 0x6e, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x61, 0x74, 0x61, 0x12, 0x0e,
 	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1a,
@@ -2935,7 +2928,7 @@ func file_proto_mindbox_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_mindbox_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_proto_mindbox_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
+var file_proto_mindbox_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
 var file_proto_mindbox_proto_goTypes = []interface{}{
 	(Platform)(0),                      // 0: mindbox.Platform
 	(*PushClickParams)(nil),            // 1: mindbox.PushClickParams
@@ -2976,9 +2969,8 @@ var file_proto_mindbox_proto_goTypes = []interface{}{
 	(*UpdateOrderRequest)(nil),         // 36: mindbox.UpdateOrderRequest
 	(*PositionsUpdateData)(nil),        // 37: mindbox.PositionsUpdateData
 	(*UpdateOrderResponse)(nil),        // 38: mindbox.UpdateOrderResponse
-	nil,                                // 39: mindbox.UpdateOrderRequest.CustomFieldsEntry
-	nil,                                // 40: mindbox.PositionsUpdateData.CustomFieldsEntry
-	(*structpb.Value)(nil),             // 41: google.protobuf.Value
+	nil,                                // 39: mindbox.PositionsUpdateData.CustomFieldsEntry
+	(*structpb.Value)(nil),             // 40: google.protobuf.Value
 }
 var file_proto_mindbox_proto_depIdxs = []int32{
 	0,  // 0: mindbox.InitClientParams.platform:type_name -> mindbox.Platform
@@ -2992,45 +2984,44 @@ var file_proto_mindbox_proto_depIdxs = []int32{
 	33, // 8: mindbox.CreateOrderRequest.payments:type_name -> mindbox.PaymentsCreateData
 	35, // 9: mindbox.CreateOrderResponse.data:type_name -> mindbox.CreateOrderResponseData
 	29, // 10: mindbox.CreateOrderResponse.errors:type_name -> mindbox.Error
-	39, // 11: mindbox.UpdateOrderRequest.custom_fields:type_name -> mindbox.UpdateOrderRequest.CustomFieldsEntry
+	40, // 11: mindbox.UpdateOrderRequest.custom_fields:type_name -> google.protobuf.Value
 	37, // 12: mindbox.UpdateOrderRequest.positions:type_name -> mindbox.PositionsUpdateData
-	40, // 13: mindbox.PositionsUpdateData.custom_fields:type_name -> mindbox.PositionsUpdateData.CustomFieldsEntry
+	39, // 13: mindbox.PositionsUpdateData.custom_fields:type_name -> mindbox.PositionsUpdateData.CustomFieldsEntry
 	29, // 14: mindbox.UpdateOrderResponse.errors:type_name -> mindbox.Error
-	41, // 15: mindbox.UpdateOrderRequest.CustomFieldsEntry.value:type_name -> google.protobuf.Value
-	41, // 16: mindbox.PositionsUpdateData.CustomFieldsEntry.value:type_name -> google.protobuf.Value
-	9,  // 17: mindbox.User.Info:input_type -> mindbox.ParamsUser
-	12, // 18: mindbox.User.Orders:input_type -> mindbox.ParamsOrders
-	21, // 19: mindbox.User.SendOSMICard:input_type -> mindbox.ParamsOSMICard
-	25, // 20: mindbox.User.BonusesHistory:input_type -> mindbox.BonusesHistoryRequest
-	5,  // 21: mindbox.Mobile.InitDevice:input_type -> mindbox.InitDeviceParams
-	7,  // 22: mindbox.Mobile.InitClient:input_type -> mindbox.InitClientParams
-	23, // 23: mindbox.Mobile.RemoveDevice:input_type -> mindbox.RemoveDeviceParams
-	15, // 24: mindbox.Mobile.Code:input_type -> mindbox.ParamsCode
-	17, // 25: mindbox.Mobile.CheckCode:input_type -> mindbox.ParamsCheckCode
-	19, // 26: mindbox.Mobile.EditUser:input_type -> mindbox.ParamsEditUser
-	3,  // 27: mindbox.Mobile.IsUserExist:input_type -> mindbox.IsUserExistParams
-	1,  // 28: mindbox.Mobile.PushClick:input_type -> mindbox.PushClickParams
-	31, // 29: mindbox.Order.CreateOrder:input_type -> mindbox.CreateOrderRequest
-	36, // 30: mindbox.Order.UpdateOrder:input_type -> mindbox.UpdateOrderRequest
-	10, // 31: mindbox.User.Info:output_type -> mindbox.ResponseUser
-	13, // 32: mindbox.User.Orders:output_type -> mindbox.ResponseOrders
-	22, // 33: mindbox.User.SendOSMICard:output_type -> mindbox.ResponseOSMICard
-	28, // 34: mindbox.User.BonusesHistory:output_type -> mindbox.BonusesHistoryResponse
-	6,  // 35: mindbox.Mobile.InitDevice:output_type -> mindbox.InitDeviceResponse
-	8,  // 36: mindbox.Mobile.InitClient:output_type -> mindbox.InitClientResponse
-	24, // 37: mindbox.Mobile.RemoveDevice:output_type -> mindbox.RemoveDeviceResponse
-	16, // 38: mindbox.Mobile.Code:output_type -> mindbox.ResponseCode
-	18, // 39: mindbox.Mobile.CheckCode:output_type -> mindbox.ResponseCheckCode
-	20, // 40: mindbox.Mobile.EditUser:output_type -> mindbox.ResponseEditUser
-	4,  // 41: mindbox.Mobile.IsUserExist:output_type -> mindbox.IsUserExistResponse
-	2,  // 42: mindbox.Mobile.PushClick:output_type -> mindbox.PushClickResponse
-	34, // 43: mindbox.Order.CreateOrder:output_type -> mindbox.CreateOrderResponse
-	38, // 44: mindbox.Order.UpdateOrder:output_type -> mindbox.UpdateOrderResponse
-	31, // [31:45] is the sub-list for method output_type
-	17, // [17:31] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	40, // 15: mindbox.PositionsUpdateData.CustomFieldsEntry.value:type_name -> google.protobuf.Value
+	9,  // 16: mindbox.User.Info:input_type -> mindbox.ParamsUser
+	12, // 17: mindbox.User.Orders:input_type -> mindbox.ParamsOrders
+	21, // 18: mindbox.User.SendOSMICard:input_type -> mindbox.ParamsOSMICard
+	25, // 19: mindbox.User.BonusesHistory:input_type -> mindbox.BonusesHistoryRequest
+	5,  // 20: mindbox.Mobile.InitDevice:input_type -> mindbox.InitDeviceParams
+	7,  // 21: mindbox.Mobile.InitClient:input_type -> mindbox.InitClientParams
+	23, // 22: mindbox.Mobile.RemoveDevice:input_type -> mindbox.RemoveDeviceParams
+	15, // 23: mindbox.Mobile.Code:input_type -> mindbox.ParamsCode
+	17, // 24: mindbox.Mobile.CheckCode:input_type -> mindbox.ParamsCheckCode
+	19, // 25: mindbox.Mobile.EditUser:input_type -> mindbox.ParamsEditUser
+	3,  // 26: mindbox.Mobile.IsUserExist:input_type -> mindbox.IsUserExistParams
+	1,  // 27: mindbox.Mobile.PushClick:input_type -> mindbox.PushClickParams
+	31, // 28: mindbox.Order.CreateOrder:input_type -> mindbox.CreateOrderRequest
+	36, // 29: mindbox.Order.UpdateOrder:input_type -> mindbox.UpdateOrderRequest
+	10, // 30: mindbox.User.Info:output_type -> mindbox.ResponseUser
+	13, // 31: mindbox.User.Orders:output_type -> mindbox.ResponseOrders
+	22, // 32: mindbox.User.SendOSMICard:output_type -> mindbox.ResponseOSMICard
+	28, // 33: mindbox.User.BonusesHistory:output_type -> mindbox.BonusesHistoryResponse
+	6,  // 34: mindbox.Mobile.InitDevice:output_type -> mindbox.InitDeviceResponse
+	8,  // 35: mindbox.Mobile.InitClient:output_type -> mindbox.InitClientResponse
+	24, // 36: mindbox.Mobile.RemoveDevice:output_type -> mindbox.RemoveDeviceResponse
+	16, // 37: mindbox.Mobile.Code:output_type -> mindbox.ResponseCode
+	18, // 38: mindbox.Mobile.CheckCode:output_type -> mindbox.ResponseCheckCode
+	20, // 39: mindbox.Mobile.EditUser:output_type -> mindbox.ResponseEditUser
+	4,  // 40: mindbox.Mobile.IsUserExist:output_type -> mindbox.IsUserExistResponse
+	2,  // 41: mindbox.Mobile.PushClick:output_type -> mindbox.PushClickResponse
+	34, // 42: mindbox.Order.CreateOrder:output_type -> mindbox.CreateOrderResponse
+	38, // 43: mindbox.Order.UpdateOrder:output_type -> mindbox.UpdateOrderResponse
+	30, // [30:44] is the sub-list for method output_type
+	16, // [16:30] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_proto_mindbox_proto_init() }
@@ -3505,7 +3496,7 @@ func file_proto_mindbox_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_mindbox_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   40,
+			NumMessages:   39,
 			NumExtensions: 0,
 			NumServices:   3,
 		},

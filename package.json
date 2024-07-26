@@ -1,6 +1,6 @@
 {
   "name": "esb-protobufs",
-  "version": "0.7.58",
+  "version": "0.7.59",
   "description": "protobuf for esb project",
   "types": "./typescript/index.d.ts",
   "main": "./typescript/index.js",
