@@ -709,6 +709,26 @@ message StoreByUserID {
     optional string short_title_ru = 2;
 }
 
+message GetUpdatePaymentStatusRequest {
+    int64 order_id = 1;
+    float paid_sum = 2;
+    Status status = 3;
+}
+
+message Status {
+    bool has_errors = 1;
+    bool has_paid_in_other_order = 2;
+}
+
+message GetUpdatePaymentStatusResponse {
+    string status = 1;
+    string message = 2;
+    PaginationResponse pagination = 3;
+    repeated Outbox data = 4;
+    int64 code = 5;
+    repeated Error errors = 6;
+}
+
 service OutboxService {
     rpc GetList (GetListRequestForOrder) returns (GetListOutBoxResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDOutBoxResponse);
@@ -732,4 +752,8 @@ service OrderService {
     rpc GetByID (GetByIDRequest) returns (GetByIDOrderResponse);
     rpc GetListForAdmin (GetListRequest) returns (GetListForAdminResponse);
     rpc GetOrderByIDForAdmin (GetByIDRequest) returns (GetByIDForAdminResponse);
+}
+
+service OrderPaymentService {
+    rpc UpdatePaymentStatus (GetUpdatePaymentStatusRequest) returns (GetUpdatePaymentStatusResponse);
 }
