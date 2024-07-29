@@ -702,3 +702,91 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/order.proto",
 }
+
+const (
+	OrderPaymentService_UpdatePaymentStatus_FullMethodName = "/orders.OrderPaymentService/UpdatePaymentStatus"
+)
+
+// OrderPaymentServiceClient is the client API for OrderPaymentService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type OrderPaymentServiceClient interface {
+	UpdatePaymentStatus(ctx context.Context, in *GetUpdatePaymentStatusRequest, opts ...grpc.CallOption) (*GetUpdatePaymentStatusResponse, error)
+}
+
+type orderPaymentServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewOrderPaymentServiceClient(cc grpc.ClientConnInterface) OrderPaymentServiceClient {
+	return &orderPaymentServiceClient{cc}
+}
+
+func (c *orderPaymentServiceClient) UpdatePaymentStatus(ctx context.Context, in *GetUpdatePaymentStatusRequest, opts ...grpc.CallOption) (*GetUpdatePaymentStatusResponse, error) {
+	out := new(GetUpdatePaymentStatusResponse)
+	err := c.cc.Invoke(ctx, OrderPaymentService_UpdatePaymentStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// OrderPaymentServiceServer is the server API for OrderPaymentService service.
+// All implementations should embed UnimplementedOrderPaymentServiceServer
+// for forward compatibility
+type OrderPaymentServiceServer interface {
+	UpdatePaymentStatus(context.Context, *GetUpdatePaymentStatusRequest) (*GetUpdatePaymentStatusResponse, error)
+}
+
+// UnimplementedOrderPaymentServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedOrderPaymentServiceServer struct {
+}
+
+func (UnimplementedOrderPaymentServiceServer) UpdatePaymentStatus(context.Context, *GetUpdatePaymentStatusRequest) (*GetUpdatePaymentStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePaymentStatus not implemented")
+}
+
+// UnsafeOrderPaymentServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to OrderPaymentServiceServer will
+// result in compilation errors.
+type UnsafeOrderPaymentServiceServer interface {
+	mustEmbedUnimplementedOrderPaymentServiceServer()
+}
+
+func RegisterOrderPaymentServiceServer(s grpc.ServiceRegistrar, srv OrderPaymentServiceServer) {
+	s.RegisterService(&OrderPaymentService_ServiceDesc, srv)
+}
+
+func _OrderPaymentService_UpdatePaymentStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUpdatePaymentStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderPaymentServiceServer).UpdatePaymentStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderPaymentService_UpdatePaymentStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderPaymentServiceServer).UpdatePaymentStatus(ctx, req.(*GetUpdatePaymentStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// OrderPaymentService_ServiceDesc is the grpc.ServiceDesc for OrderPaymentService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var OrderPaymentService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "orders.OrderPaymentService",
+	HandlerType: (*OrderPaymentServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UpdatePaymentStatus",
+			Handler:    _OrderPaymentService_UpdatePaymentStatus_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/order.proto",
+}
