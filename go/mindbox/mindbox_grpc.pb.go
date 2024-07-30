@@ -565,8 +565,9 @@ var Mobile_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Order_CreateOrder_FullMethodName = "/mindbox.Order/CreateOrder"
-	Order_UpdateOrder_FullMethodName = "/mindbox.Order/UpdateOrder"
+	Order_CreateOrder_FullMethodName  = "/mindbox.Order/CreateOrder"
+	Order_UpdateOrder_FullMethodName  = "/mindbox.Order/UpdateOrder"
+	Order_GetOrderInfo_FullMethodName = "/mindbox.Order/GetOrderInfo"
 )
 
 // OrderClient is the client API for Order service.
@@ -575,6 +576,7 @@ const (
 type OrderClient interface {
 	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
 	UpdateOrder(ctx context.Context, in *UpdateOrderRequest, opts ...grpc.CallOption) (*UpdateOrderResponse, error)
+	GetOrderInfo(ctx context.Context, in *GetOrderInfoRequest, opts ...grpc.CallOption) (*GetOrderInfoResponse, error)
 }
 
 type orderClient struct {
@@ -603,12 +605,22 @@ func (c *orderClient) UpdateOrder(ctx context.Context, in *UpdateOrderRequest, o
 	return out, nil
 }
 
+func (c *orderClient) GetOrderInfo(ctx context.Context, in *GetOrderInfoRequest, opts ...grpc.CallOption) (*GetOrderInfoResponse, error) {
+	out := new(GetOrderInfoResponse)
+	err := c.cc.Invoke(ctx, Order_GetOrderInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderServer is the server API for Order service.
 // All implementations should embed UnimplementedOrderServer
 // for forward compatibility
 type OrderServer interface {
 	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
 	UpdateOrder(context.Context, *UpdateOrderRequest) (*UpdateOrderResponse, error)
+	GetOrderInfo(context.Context, *GetOrderInfoRequest) (*GetOrderInfoResponse, error)
 }
 
 // UnimplementedOrderServer should be embedded to have forward compatible implementations.
@@ -620,6 +632,9 @@ func (UnimplementedOrderServer) CreateOrder(context.Context, *CreateOrderRequest
 }
 func (UnimplementedOrderServer) UpdateOrder(context.Context, *UpdateOrderRequest) (*UpdateOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrder not implemented")
+}
+func (UnimplementedOrderServer) GetOrderInfo(context.Context, *GetOrderInfoRequest) (*GetOrderInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrderInfo not implemented")
 }
 
 // UnsafeOrderServer may be embedded to opt out of forward compatibility for this service.
@@ -669,6 +684,24 @@ func _Order_UpdateOrder_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Order_GetOrderInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServer).GetOrderInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Order_GetOrderInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServer).GetOrderInfo(ctx, req.(*GetOrderInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Order_ServiceDesc is the grpc.ServiceDesc for Order service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -683,6 +716,10 @@ var Order_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateOrder",
 			Handler:    _Order_UpdateOrder_Handler,
+		},
+		{
+			MethodName: "GetOrderInfo",
+			Handler:    _Order_GetOrderInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
