@@ -565,9 +565,11 @@ var Mobile_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Order_CreateOrder_FullMethodName  = "/mindbox.Order/CreateOrder"
-	Order_UpdateOrder_FullMethodName  = "/mindbox.Order/UpdateOrder"
-	Order_GetOrderInfo_FullMethodName = "/mindbox.Order/GetOrderInfo"
+	Order_CreateOrder_FullMethodName           = "/mindbox.Order/CreateOrder"
+	Order_UpdateOrder_FullMethodName           = "/mindbox.Order/UpdateOrder"
+	Order_GetOrderInfo_FullMethodName          = "/mindbox.Order/GetOrderInfo"
+	Order_CalculateAuthorized_FullMethodName   = "/mindbox.Order/CalculateAuthorized"
+	Order_CalculateUnauthorized_FullMethodName = "/mindbox.Order/CalculateUnauthorized"
 )
 
 // OrderClient is the client API for Order service.
@@ -577,6 +579,8 @@ type OrderClient interface {
 	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
 	UpdateOrder(ctx context.Context, in *UpdateOrderRequest, opts ...grpc.CallOption) (*UpdateOrderResponse, error)
 	GetOrderInfo(ctx context.Context, in *GetOrderInfoRequest, opts ...grpc.CallOption) (*GetOrderInfoResponse, error)
+	CalculateAuthorized(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
+	CalculateUnauthorized(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
 }
 
 type orderClient struct {
@@ -614,6 +618,24 @@ func (c *orderClient) GetOrderInfo(ctx context.Context, in *GetOrderInfoRequest,
 	return out, nil
 }
 
+func (c *orderClient) CalculateAuthorized(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error) {
+	out := new(CalculateResponse)
+	err := c.cc.Invoke(ctx, Order_CalculateAuthorized_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderClient) CalculateUnauthorized(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error) {
+	out := new(CalculateResponse)
+	err := c.cc.Invoke(ctx, Order_CalculateUnauthorized_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderServer is the server API for Order service.
 // All implementations should embed UnimplementedOrderServer
 // for forward compatibility
@@ -621,6 +643,8 @@ type OrderServer interface {
 	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
 	UpdateOrder(context.Context, *UpdateOrderRequest) (*UpdateOrderResponse, error)
 	GetOrderInfo(context.Context, *GetOrderInfoRequest) (*GetOrderInfoResponse, error)
+	CalculateAuthorized(context.Context, *CalculateRequest) (*CalculateResponse, error)
+	CalculateUnauthorized(context.Context, *CalculateRequest) (*CalculateResponse, error)
 }
 
 // UnimplementedOrderServer should be embedded to have forward compatible implementations.
@@ -635,6 +659,12 @@ func (UnimplementedOrderServer) UpdateOrder(context.Context, *UpdateOrderRequest
 }
 func (UnimplementedOrderServer) GetOrderInfo(context.Context, *GetOrderInfoRequest) (*GetOrderInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrderInfo not implemented")
+}
+func (UnimplementedOrderServer) CalculateAuthorized(context.Context, *CalculateRequest) (*CalculateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CalculateAuthorized not implemented")
+}
+func (UnimplementedOrderServer) CalculateUnauthorized(context.Context, *CalculateRequest) (*CalculateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CalculateUnauthorized not implemented")
 }
 
 // UnsafeOrderServer may be embedded to opt out of forward compatibility for this service.
@@ -702,6 +732,42 @@ func _Order_GetOrderInfo_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Order_CalculateAuthorized_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CalculateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServer).CalculateAuthorized(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Order_CalculateAuthorized_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServer).CalculateAuthorized(ctx, req.(*CalculateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Order_CalculateUnauthorized_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CalculateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServer).CalculateUnauthorized(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Order_CalculateUnauthorized_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServer).CalculateUnauthorized(ctx, req.(*CalculateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Order_ServiceDesc is the grpc.ServiceDesc for Order service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -720,6 +786,14 @@ var Order_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrderInfo",
 			Handler:    _Order_GetOrderInfo_Handler,
+		},
+		{
+			MethodName: "CalculateAuthorized",
+			Handler:    _Order_CalculateAuthorized_Handler,
+		},
+		{
+			MethodName: "CalculateUnauthorized",
+			Handler:    _Order_CalculateUnauthorized_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
