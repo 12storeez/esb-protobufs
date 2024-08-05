@@ -302,8 +302,8 @@ message GetOrderInfoResponseData {
     string id = 1;
     int64 mindbox_id = 2;
     string create_datetime = 3;
-    fixed64 delivery_cost = 4;
-    fixed64 discounted_total_price = 5;
+    float delivery_cost = 4;
+    float discounted_total_price = 5;
     string processing_status = 6;
     optional string custom_fields = 7;
     repeated GetOrderInfoAppliedPromotions applied_promotions = 8;
@@ -314,7 +314,7 @@ message GetOrderInfoResponseData {
 
 message GetOrderInfoAppliedPromotions {
     string type = 1;
-    fixed64 amount = 2;
+    float amount = 2;
     string promotion_name = 3;
     string promotion_type = 4;
     string promotion_id = 5;
@@ -323,22 +323,22 @@ message GetOrderInfoAppliedPromotions {
 }
 
 message GetOrderInfoBonusesChanges {
-    fixed64 earned_amount = 1;
-    fixed64 spent_amount = 2;
+    float earned_amount = 1;
+    float spent_amount = 2;
     string balance_type_name = 3;
     string balance_type_system_name = 4;
 }
 
 message GetOrderInfoPayments {
     string type = 1;
-    fixed64 amount = 2;
+    float amount = 2;
 }
 
 message GetOrderInfoPositions {
     string id = 1;
     int64 quantity = 2;
-    fixed64 price = 3;
-    fixed64 discounted_price = 4;
+    float price = 3;
+    float discounted_price = 4;
     int64 sequence_number = 5;
     string status = 6;
     int64 line_id = 7;
@@ -349,7 +349,7 @@ message GetOrderInfoPositions {
 message CalculateRequest {
     optional string area_id = 1;
     optional int64 cashdesk_id = 2;
-    optional fixed64 delivery_cost = 3;
+    optional float delivery_cost = 3;
     optional int64 mindbox_user_id = 4;
     optional string site_user_id = 5;
     optional string custom_fields = 6;
@@ -362,7 +362,7 @@ message CalculateRequest {
 }
 
 message CalculateBonuses {
-    fixed64 amount = 1;
+    float amount = 1;
     optional string balance_type_system_name = 2;
 }
 
@@ -384,14 +384,14 @@ message CalculatePaymentsByGiftcard {
 message CalculateRequestedPromotions {
     string id = 1;
     string type = 2;
-    fixed64 amount = 3;
+    float amount = 3;
     optional string coupon_code = 4;
 }
 
 message CalculatePositions {
     optional string id = 1;
     int64 quantity = 2;
-    fixed64 price = 3;
+    float price = 3;
     optional int64 sequence_number = 4;
     int64 status = 5;
     optional int64 line_id = 6;
@@ -411,8 +411,8 @@ message CalculateResponseData {
     int64 mindbox_id = 1;
     int64 mindbox_user_id = 2;
     string site_user_id = 3;
-    fixed64 delivery_cost = 4;
-    fixed64 discounted_total_price = 5;
+    float delivery_cost = 4;
+    float discounted_total_price = 5;
     string processing_status = 6;
     string custom_fields = 7;
     CalculateResponseTotalBonuses total_bonuses = 8;
@@ -426,17 +426,17 @@ message CalculateResponseData {
 }
 
 message CalculateResponseTotalBonuses {
-    fixed64 available_for_order = 1;
-    fixed64 spent_for_order = 2;
+    float available_for_order = 1;
+    float spent_for_order = 2;
     string status = 3;
-    fixed64 available = 4;
-    fixed64 blocked = 5;
-    fixed64 total = 6;
+    float available = 4;
+    float blocked = 5;
+    float total = 6;
 }
 
 message CalculateResponseAppliedPromotions {
     string type = 1;
-    fixed64 amount = 2;
+    float amount = 2;
     string promotion_name = 3;
     string promotion_type = 4;
     string promotion_id = 5;
@@ -445,25 +445,25 @@ message CalculateResponseAppliedPromotions {
 }
 
 message CalculateResponseBonusesChanges {
-    fixed64 earned_amount = 1;
-    fixed64 spent_amount = 2;
+    float earned_amount = 1;
+    float spent_amount = 2;
     string balance_type_name = 3;
     string balance_type_system_name = 4;
 }
 
 message CalculateResponseBonusesInfo {
-    fixed64 available_for_order = 1;
-    fixed64 spent_for_order = 2;
+    float available_for_order = 1;
+    float spent_for_order = 2;
     string status = 3;
-    fixed64 available = 4;
-    fixed64 blocked = 5;
-    fixed64 total = 6;
+    float available = 4;
+    float blocked = 5;
+    float total = 6;
     string balance_type_name = 7;
     string balance_type_system_name = 8;
 }
 
 message CalculateResponseCoupons {
-    fixed64 discount_for_order = 1;
+    float discount_for_order = 1;
     string available_from = 2;
     string available_to = 3;
     string status = 4;
@@ -473,16 +473,16 @@ message CalculateResponseCoupons {
 
 message CalculateResponsePayments {
     string type = 1;
-    fixed64 available_amount_for_order = 2;
+    float available_amount_for_order = 2;
     CalculateResponseGiftcard giftcard = 3;
 }
 
 message CalculateResponseGiftcard {
     string id = 1;
     string status = 2;
-    fixed64 available = 3;
-    fixed64 total = 4;
-    fixed64 used = 5;
+    float available = 3;
+    float total = 4;
+    float used = 5;
 }
 
 message CalculateResponsePlaceholders {
@@ -504,7 +504,7 @@ message CalculateResponseContent {
 
 message CalculateResponsePossibleDiscounts {
     int64 count = 1;
-    fixed64 amount = 2;
+    float amount = 2;
     string type = 3;
     repeated CalculateResponseProduct products = 4;
 }
@@ -517,8 +517,8 @@ message CalculateResponseProduct {
 message CalculateResponsePositions {
     string id = 1;
     int64 quantity = 2;
-    fixed64 price = 3;
-    fixed64 discounted_price = 4;
+    float price = 3;
+    float discounted_price = 4;
     int64 sequence_number = 5;
     string status = 6;
     int64 line_id = 7;
