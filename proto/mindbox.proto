@@ -274,7 +274,7 @@ message UpdateOrderRequest {
 message PositionsUpdateData {
     optional string id = 1;
     int64 quantity = 2;
-    optional float discounted_price = 3;
+    float discounted_price = 3;
     int64 status = 4;
     optional string custom_fields = 5;
 }
