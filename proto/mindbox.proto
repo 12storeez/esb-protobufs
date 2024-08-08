@@ -227,27 +227,27 @@ message BonusesHistoryResponseData {
 }
 
 message CreateOrderRequest {
-    string order_id = 1;
+    optional string order_id = 1;
     optional string mindbox_user_id = 2;
     optional string site_user_id = 3;
     optional string store_code = 4;
-    float total_price = 5;
+    optional float total_price = 5;
     repeated PositionsCreateData positions = 6;
     repeated PaymentsCreateData payments = 7;
 }
 
 message PositionsCreateData {
-    string id = 1;
+    optional string id = 1;
     int64 quantity = 2;
     float price = 3;
     int64 sequence_number = 4;
-    optional int64 status = 5;
+    int64 status = 5;
     optional int64 line_id = 6;
 }
 
 message PaymentsCreateData {
     string type = 1;
-    float amount = 2;
+    optional float amount = 2;
 }
 
 message CreateOrderResponse {
@@ -265,16 +265,16 @@ message CreateOrderResponseData {
 message UpdateOrderRequest {
     string order_id = 1;
     optional int64 order_mindbox_id = 2;
-    string store_code = 3;
+    optional string store_code = 3;
     optional string custom_fields = 4;
     repeated PositionsUpdateData positions = 5;
-    string execution_datetime = 6;
+    optional string execution_datetime = 6;
 }
 
 message PositionsUpdateData {
-    string id = 1;
+    optional string id = 1;
     int64 quantity = 2;
-    float discounted_price = 3;
+    optional float discounted_price = 3;
     int64 status = 4;
     optional string custom_fields = 5;
 }
