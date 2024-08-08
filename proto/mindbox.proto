@@ -227,7 +227,7 @@ message BonusesHistoryResponseData {
 }
 
 message CreateOrderRequest {
-    optional string order_id = 1;
+    string order_id = 1;
     optional string mindbox_user_id = 2;
     optional string site_user_id = 3;
     optional string store_code = 4;
