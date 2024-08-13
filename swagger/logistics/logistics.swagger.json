@@ -4146,6 +4146,10 @@
             "type": "object",
             "$ref": "#/definitions/commonError"
           }
+        },
+        "httpCode": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
