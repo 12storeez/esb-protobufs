@@ -62,6 +62,6 @@ message PaymentMethod {
 message PaymentStatus {
     int64 id = 1;
     optional string title = 2;
-    string icon_filename = 3;
+    string icon = 3;
     bool is_payment_completed = 4;
 }
