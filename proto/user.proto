@@ -274,6 +274,7 @@ message GetListResponse {
 // Delete
 message DeleteRequest {
   string id = 1;
+  optional string delete_reason = 2;
 }
 
 message DeleteResponse {
