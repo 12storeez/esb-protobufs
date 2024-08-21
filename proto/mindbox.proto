@@ -269,6 +269,7 @@ message UpdateOrderRequest {
     optional string custom_fields = 4;
     repeated PositionsUpdateData positions = 5;
     optional string execution_datetime = 6;
+    optional float total_price = 7;
 }
 
 message PositionsUpdateData {
