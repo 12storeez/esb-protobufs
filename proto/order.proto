@@ -736,7 +736,7 @@ message GetOrdersStatsByUserIDForAdminRequest {
 message GetOrdersStatsByUserIDForAdminResponse {
   string status = 1;
   string message = 2;
-  repeated OrdersStats data = 3;
+  OrdersStats data = 3;
   int64 code = 4;
   repeated Error errors = 5;
 }
