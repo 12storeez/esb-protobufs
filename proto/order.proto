@@ -729,6 +729,25 @@ message GetUpdatePaymentStatusResponse {
     repeated Error errors = 6;
 }
 
+message GetOrdersStatsByUserIDForAdminRequest {
+  int64 user_id = 1;
+}
+
+message GetOrdersStatsByUserIDForAdminResponse {
+  string status = 1;
+  string message = 2;
+  repeated OrdersStats data = 3;
+  int64 code = 4;
+  repeated Error errors = 5;
+}
+
+message OrdersStats {
+  string currency_iso = 1;
+  int32 order_quantity = 2;
+  float total_orders_sum = 3;
+  float average_receipt = 4;
+}
+
 service OutboxService {
     rpc GetList (GetListRequestForOrder) returns (GetListOutBoxResponse);
     rpc GetByID (GetByIDRequest) returns (GetByIDOutBoxResponse);
@@ -756,4 +775,9 @@ service OrderService {
 
 service OrderPaymentService {
     rpc UpdatePaymentStatus (GetUpdatePaymentStatusRequest) returns (GetUpdatePaymentStatusResponse);
+}
+
+service UserService {
+    rpc GetOrdersStatsByUserIDForAdmin (GetOrdersStatsByUserIDForAdminRequest) returns (GetOrdersStatsByUserIDForAdminResponse) {
+    }
 }
