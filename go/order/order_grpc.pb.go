@@ -790,3 +790,91 @@ var OrderPaymentService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/order.proto",
 }
+
+const (
+	UserService_GetOrdersStatsByUserIDForAdmin_FullMethodName = "/orders.UserService/GetOrdersStatsByUserIDForAdmin"
+)
+
+// UserServiceClient is the client API for UserService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UserServiceClient interface {
+	GetOrdersStatsByUserIDForAdmin(ctx context.Context, in *GetOrdersStatsByUserIDForAdminRequest, opts ...grpc.CallOption) (*GetOrdersStatsByUserIDForAdminResponse, error)
+}
+
+type userServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
+	return &userServiceClient{cc}
+}
+
+func (c *userServiceClient) GetOrdersStatsByUserIDForAdmin(ctx context.Context, in *GetOrdersStatsByUserIDForAdminRequest, opts ...grpc.CallOption) (*GetOrdersStatsByUserIDForAdminResponse, error) {
+	out := new(GetOrdersStatsByUserIDForAdminResponse)
+	err := c.cc.Invoke(ctx, UserService_GetOrdersStatsByUserIDForAdmin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UserServiceServer is the server API for UserService service.
+// All implementations should embed UnimplementedUserServiceServer
+// for forward compatibility
+type UserServiceServer interface {
+	GetOrdersStatsByUserIDForAdmin(context.Context, *GetOrdersStatsByUserIDForAdminRequest) (*GetOrdersStatsByUserIDForAdminResponse, error)
+}
+
+// UnimplementedUserServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedUserServiceServer struct {
+}
+
+func (UnimplementedUserServiceServer) GetOrdersStatsByUserIDForAdmin(context.Context, *GetOrdersStatsByUserIDForAdminRequest) (*GetOrdersStatsByUserIDForAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrdersStatsByUserIDForAdmin not implemented")
+}
+
+// UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserServiceServer will
+// result in compilation errors.
+type UnsafeUserServiceServer interface {
+	mustEmbedUnimplementedUserServiceServer()
+}
+
+func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
+	s.RegisterService(&UserService_ServiceDesc, srv)
+}
+
+func _UserService_GetOrdersStatsByUserIDForAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrdersStatsByUserIDForAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetOrdersStatsByUserIDForAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetOrdersStatsByUserIDForAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetOrdersStatsByUserIDForAdmin(ctx, req.(*GetOrdersStatsByUserIDForAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var UserService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "orders.UserService",
+	HandlerType: (*UserServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetOrdersStatsByUserIDForAdmin",
+			Handler:    _UserService_GetOrdersStatsByUserIDForAdmin_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/order.proto",
+}

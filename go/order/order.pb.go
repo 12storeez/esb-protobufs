@@ -6628,6 +6628,203 @@ func (x *GetUpdatePaymentStatusResponse) GetErrors() []*Error {
 	return nil
 }
 
+type GetOrdersStatsByUserIDForAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+}
+
+func (x *GetOrdersStatsByUserIDForAdminRequest) Reset() {
+	*x = GetOrdersStatsByUserIDForAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_order_proto_msgTypes[61]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOrdersStatsByUserIDForAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrdersStatsByUserIDForAdminRequest) ProtoMessage() {}
+
+func (x *GetOrdersStatsByUserIDForAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_order_proto_msgTypes[61]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrdersStatsByUserIDForAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetOrdersStatsByUserIDForAdminRequest) Descriptor() ([]byte, []int) {
+	return file_proto_order_proto_rawDescGZIP(), []int{61}
+}
+
+func (x *GetOrdersStatsByUserIDForAdminRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type GetOrdersStatsByUserIDForAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status  string         `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Message string         `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Data    []*OrdersStats `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
+	Code    int64          `protobuf:"varint,4,opt,name=code,proto3" json:"code,omitempty"`
+	Errors  []*Error       `protobuf:"bytes,5,rep,name=errors,proto3" json:"errors,omitempty"`
+}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) Reset() {
+	*x = GetOrdersStatsByUserIDForAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_order_proto_msgTypes[62]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrdersStatsByUserIDForAdminResponse) ProtoMessage() {}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_order_proto_msgTypes[62]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrdersStatsByUserIDForAdminResponse.ProtoReflect.Descriptor instead.
+func (*GetOrdersStatsByUserIDForAdminResponse) Descriptor() ([]byte, []int) {
+	return file_proto_order_proto_rawDescGZIP(), []int{62}
+}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) GetData() []*OrdersStats {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) GetCode() int64 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *GetOrdersStatsByUserIDForAdminResponse) GetErrors() []*Error {
+	if x != nil {
+		return x.Errors
+	}
+	return nil
+}
+
+type OrdersStats struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CurrencyIso    string  `protobuf:"bytes,1,opt,name=currency_iso,json=currencyIso,proto3" json:"currency_iso,omitempty"`
+	OrderQuantity  int32   `protobuf:"varint,2,opt,name=order_quantity,json=orderQuantity,proto3" json:"order_quantity,omitempty"`
+	TotalOrdersSum float32 `protobuf:"fixed32,3,opt,name=total_orders_sum,json=totalOrdersSum,proto3" json:"total_orders_sum,omitempty"`
+	AverageReceipt float32 `protobuf:"fixed32,4,opt,name=average_receipt,json=averageReceipt,proto3" json:"average_receipt,omitempty"`
+}
+
+func (x *OrdersStats) Reset() {
+	*x = OrdersStats{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_order_proto_msgTypes[63]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *OrdersStats) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OrdersStats) ProtoMessage() {}
+
+func (x *OrdersStats) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_order_proto_msgTypes[63]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OrdersStats.ProtoReflect.Descriptor instead.
+func (*OrdersStats) Descriptor() ([]byte, []int) {
+	return file_proto_order_proto_rawDescGZIP(), []int{63}
+}
+
+func (x *OrdersStats) GetCurrencyIso() string {
+	if x != nil {
+		return x.CurrencyIso
+	}
+	return ""
+}
+
+func (x *OrdersStats) GetOrderQuantity() int32 {
+	if x != nil {
+		return x.OrderQuantity
+	}
+	return 0
+}
+
+func (x *OrdersStats) GetTotalOrdersSum() float32 {
+	if x != nil {
+		return x.TotalOrdersSum
+	}
+	return 0
+}
+
+func (x *OrdersStats) GetAverageReceipt() float32 {
+	if x != nil {
+		return x.AverageReceipt
+	}
+	return 0
+}
+
 var File_proto_order_proto protoreflect.FileDescriptor
 
 var file_proto_order_proto_rawDesc = []byte{
@@ -8124,7 +8321,34 @@ var file_proto_order_proto_rawDesc = []byte{
 	0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x25, 0x0a, 0x06,
 	0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x18, 0x06, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x6f,
 	0x72, 0x64, 0x65, 0x72, 0x73, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x52, 0x06, 0x65, 0x72, 0x72,
-	0x6f, 0x72, 0x73, 0x32, 0xc0, 0x02, 0x0a, 0x0d, 0x4f, 0x75, 0x74, 0x62, 0x6f, 0x78, 0x53, 0x65,
+	0x6f, 0x72, 0x73, 0x22, 0x40, 0x0a, 0x25, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
+	0x53, 0x74, 0x61, 0x74, 0x73, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x46, 0x6f, 0x72,
+	0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07,
+	0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75,
+	0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0xbe, 0x01, 0x0a, 0x26, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64,
+	0x65, 0x72, 0x73, 0x53, 0x74, 0x61, 0x74, 0x73, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44,
+	0x46, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x12, 0x27, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x13, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
+	0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x63,
+	0x6f, 0x64, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12,
+	0x25, 0x0a, 0x06, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x0d, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x52, 0x06,
+	0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x22, 0xaa, 0x01, 0x0a, 0x0b, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x73, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e,
+	0x63, 0x79, 0x5f, 0x69, 0x73, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x75,
+	0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x49, 0x73, 0x6f, 0x12, 0x25, 0x0a, 0x0e, 0x6f, 0x72, 0x64,
+	0x65, 0x72, 0x5f, 0x71, 0x75, 0x61, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x0d, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x51, 0x75, 0x61, 0x6e, 0x74, 0x69, 0x74, 0x79,
+	0x12, 0x28, 0x0a, 0x10, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73,
+	0x5f, 0x73, 0x75, 0x6d, 0x18, 0x03, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0e, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x53, 0x75, 0x6d, 0x12, 0x27, 0x0a, 0x0f, 0x61, 0x76,
+	0x65, 0x72, 0x61, 0x67, 0x65, 0x5f, 0x72, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x02, 0x52, 0x0e, 0x61, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65,
+	0x69, 0x70, 0x74, 0x32, 0xc0, 0x02, 0x0a, 0x0d, 0x4f, 0x75, 0x74, 0x62, 0x6f, 0x78, 0x53, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x48, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x4c, 0x69, 0x73, 0x74,
 	0x12, 0x1e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x4c, 0x69, 0x73,
 	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x46, 0x6f, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72,
@@ -8200,9 +8424,18 @@ var file_proto_order_proto_rawDesc = []byte{
 	0x65, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x2e, 0x47,
 	0x65, 0x74, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x53,
-	0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x0a, 0x5a,
-	0x08, 0x67, 0x6f, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x91, 0x01,
+	0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x81, 0x01,
+	0x0a, 0x1e, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x53, 0x74, 0x61, 0x74, 0x73,
+	0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x46, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e,
+	0x12, 0x2d, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64,
+	0x65, 0x72, 0x73, 0x53, 0x74, 0x61, 0x74, 0x73, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44,
+	0x46, 0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x2e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65,
+	0x72, 0x73, 0x53, 0x74, 0x61, 0x74, 0x73, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x46,
+	0x6f, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x42, 0x0a, 0x5a, 0x08, 0x67, 0x6f, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -8217,69 +8450,72 @@ func file_proto_order_proto_rawDescGZIP() []byte {
 	return file_proto_order_proto_rawDescData
 }
 
-var file_proto_order_proto_msgTypes = make([]protoimpl.MessageInfo, 61)
+var file_proto_order_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
 var file_proto_order_proto_goTypes = []interface{}{
-	(*PaginationRequest)(nil),                 // 0: orders.PaginationRequest
-	(*PaginationResponse)(nil),                // 1: orders.PaginationResponse
-	(*Error)(nil),                             // 2: orders.Error
-	(*GetListRequest)(nil),                    // 3: orders.GetListRequest
-	(*GetListRequestForOrder)(nil),            // 4: orders.GetListRequestForOrder
-	(*GetListRequestForPosition)(nil),         // 5: orders.GetListRequestForPosition
-	(*GetListRequestForOrderAndPosition)(nil), // 6: orders.GetListRequestForOrderAndPosition
-	(*GetByIDRequest)(nil),                    // 7: orders.GetByIDRequest
-	(*PositionStatus)(nil),                    // 8: orders.PositionStatus
-	(*Position)(nil),                          // 9: orders.Position
-	(*PositionHistory)(nil),                   // 10: orders.PositionHistory
-	(*StatusGroup)(nil),                       // 11: orders.StatusGroup
-	(*OrderStatus)(nil),                       // 12: orders.OrderStatus
-	(*StatusTimer)(nil),                       // 13: orders.StatusTimer
-	(*Order)(nil),                             // 14: orders.Order
-	(*OrderHistory)(nil),                      // 15: orders.OrderHistory
-	(*ExchangeLog)(nil),                       // 16: orders.ExchangeLog
-	(*Outbox)(nil),                            // 17: orders.Outbox
-	(*GetListOutBoxResponse)(nil),             // 18: orders.GetListOutBoxResponse
-	(*GetByIDOutBoxResponse)(nil),             // 19: orders.GetByIDOutBoxResponse
-	(*SetByIDOutboxBodyRequest)(nil),          // 20: orders.SetByIDOutboxBodyRequest
-	(*SetByIDOutboxBodyResponse)(nil),         // 21: orders.SetByIDOutboxBodyResponse
-	(*DeleteByIDOutboxRequest)(nil),           // 22: orders.DeleteByIDOutboxRequest
-	(*DeleteByIDOutboxResponse)(nil),          // 23: orders.DeleteByIDOutboxResponse
-	(*GetListOrderHistoryResponse)(nil),       // 24: orders.GetListOrderHistoryResponse
-	(*GetByIDOrderHistoryResponse)(nil),       // 25: orders.GetByIDOrderHistoryResponse
-	(*GetListPositionHistoryResponse)(nil),    // 26: orders.GetListPositionHistoryResponse
-	(*GetByIDPositionHistoryResponse)(nil),    // 27: orders.GetByIDPositionHistoryResponse
-	(*GetListOrderResponse)(nil),              // 28: orders.GetListOrderResponse
-	(*GetByIDOrderResponse)(nil),              // 29: orders.GetByIDOrderResponse
-	(*City)(nil),                              // 30: orders.City
-	(*Delivery)(nil),                          // 31: orders.Delivery
-	(*OrderStatusGroupForAdmin)(nil),          // 32: orders.OrderStatusGroupForAdmin
-	(*OrderStatusForAdmin)(nil),               // 33: orders.OrderStatusForAdmin
-	(*ReturnTK)(nil),                          // 34: orders.ReturnTK
-	(*Sum)(nil),                               // 35: orders.Sum
-	(*User)(nil),                              // 36: orders.User
-	(*OrderForAdmin)(nil),                     // 37: orders.OrderForAdmin
-	(*DetailedOrderForAdmin)(nil),             // 38: orders.DetailedOrderForAdmin
-	(*DetailedStatusGroupForAdmin)(nil),       // 39: orders.DetailedStatusGroupForAdmin
-	(*DetailedOrderStatusForAdmin)(nil),       // 40: orders.DetailedOrderStatusForAdmin
-	(*GetListForAdminResponse)(nil),           // 41: orders.GetListForAdminResponse
-	(*Address)(nil),                           // 42: orders.Address
-	(*Recipient)(nil),                         // 43: orders.Recipient
-	(*FullDelivery)(nil),                      // 44: orders.FullDelivery
-	(*OrderStatusGroup)(nil),                  // 45: orders.OrderStatusGroup
-	(*OrderStatusForAdminFull)(nil),           // 46: orders.OrderStatusForAdminFull
-	(*UserMSFullUser)(nil),                    // 47: orders.UserMSFullUser
-	(*PositionForAdmin)(nil),                  // 48: orders.PositionForAdmin
-	(*OrderForAdminFull)(nil),                 // 49: orders.OrderForAdminFull
-	(*GetByIDForAdminResponse)(nil),           // 50: orders.GetByIDForAdminResponse
-	(*GetOrdersByUserIDRequest)(nil),          // 51: orders.GetOrdersByUserIDRequest
-	(*GetOrderByUserIDFilter)(nil),            // 52: orders.GetOrderByUserIDFilter
-	(*GetOrdersByUserIDResponse)(nil),         // 53: orders.GetOrdersByUserIDResponse
-	(*GetOrdersByUserIDResponseData)(nil),     // 54: orders.GetOrdersByUserIDResponseData
-	(*OrderStatusByUserID)(nil),               // 55: orders.OrderStatusByUserID
-	(*StatusGroupByUserID)(nil),               // 56: orders.StatusGroupByUserID
-	(*StoreByUserID)(nil),                     // 57: orders.StoreByUserID
-	(*GetUpdatePaymentStatusRequest)(nil),     // 58: orders.GetUpdatePaymentStatusRequest
-	(*Status)(nil),                            // 59: orders.Status
-	(*GetUpdatePaymentStatusResponse)(nil),    // 60: orders.GetUpdatePaymentStatusResponse
+	(*PaginationRequest)(nil),                      // 0: orders.PaginationRequest
+	(*PaginationResponse)(nil),                     // 1: orders.PaginationResponse
+	(*Error)(nil),                                  // 2: orders.Error
+	(*GetListRequest)(nil),                         // 3: orders.GetListRequest
+	(*GetListRequestForOrder)(nil),                 // 4: orders.GetListRequestForOrder
+	(*GetListRequestForPosition)(nil),              // 5: orders.GetListRequestForPosition
+	(*GetListRequestForOrderAndPosition)(nil),      // 6: orders.GetListRequestForOrderAndPosition
+	(*GetByIDRequest)(nil),                         // 7: orders.GetByIDRequest
+	(*PositionStatus)(nil),                         // 8: orders.PositionStatus
+	(*Position)(nil),                               // 9: orders.Position
+	(*PositionHistory)(nil),                        // 10: orders.PositionHistory
+	(*StatusGroup)(nil),                            // 11: orders.StatusGroup
+	(*OrderStatus)(nil),                            // 12: orders.OrderStatus
+	(*StatusTimer)(nil),                            // 13: orders.StatusTimer
+	(*Order)(nil),                                  // 14: orders.Order
+	(*OrderHistory)(nil),                           // 15: orders.OrderHistory
+	(*ExchangeLog)(nil),                            // 16: orders.ExchangeLog
+	(*Outbox)(nil),                                 // 17: orders.Outbox
+	(*GetListOutBoxResponse)(nil),                  // 18: orders.GetListOutBoxResponse
+	(*GetByIDOutBoxResponse)(nil),                  // 19: orders.GetByIDOutBoxResponse
+	(*SetByIDOutboxBodyRequest)(nil),               // 20: orders.SetByIDOutboxBodyRequest
+	(*SetByIDOutboxBodyResponse)(nil),              // 21: orders.SetByIDOutboxBodyResponse
+	(*DeleteByIDOutboxRequest)(nil),                // 22: orders.DeleteByIDOutboxRequest
+	(*DeleteByIDOutboxResponse)(nil),               // 23: orders.DeleteByIDOutboxResponse
+	(*GetListOrderHistoryResponse)(nil),            // 24: orders.GetListOrderHistoryResponse
+	(*GetByIDOrderHistoryResponse)(nil),            // 25: orders.GetByIDOrderHistoryResponse
+	(*GetListPositionHistoryResponse)(nil),         // 26: orders.GetListPositionHistoryResponse
+	(*GetByIDPositionHistoryResponse)(nil),         // 27: orders.GetByIDPositionHistoryResponse
+	(*GetListOrderResponse)(nil),                   // 28: orders.GetListOrderResponse
+	(*GetByIDOrderResponse)(nil),                   // 29: orders.GetByIDOrderResponse
+	(*City)(nil),                                   // 30: orders.City
+	(*Delivery)(nil),                               // 31: orders.Delivery
+	(*OrderStatusGroupForAdmin)(nil),               // 32: orders.OrderStatusGroupForAdmin
+	(*OrderStatusForAdmin)(nil),                    // 33: orders.OrderStatusForAdmin
+	(*ReturnTK)(nil),                               // 34: orders.ReturnTK
+	(*Sum)(nil),                                    // 35: orders.Sum
+	(*User)(nil),                                   // 36: orders.User
+	(*OrderForAdmin)(nil),                          // 37: orders.OrderForAdmin
+	(*DetailedOrderForAdmin)(nil),                  // 38: orders.DetailedOrderForAdmin
+	(*DetailedStatusGroupForAdmin)(nil),            // 39: orders.DetailedStatusGroupForAdmin
+	(*DetailedOrderStatusForAdmin)(nil),            // 40: orders.DetailedOrderStatusForAdmin
+	(*GetListForAdminResponse)(nil),                // 41: orders.GetListForAdminResponse
+	(*Address)(nil),                                // 42: orders.Address
+	(*Recipient)(nil),                              // 43: orders.Recipient
+	(*FullDelivery)(nil),                           // 44: orders.FullDelivery
+	(*OrderStatusGroup)(nil),                       // 45: orders.OrderStatusGroup
+	(*OrderStatusForAdminFull)(nil),                // 46: orders.OrderStatusForAdminFull
+	(*UserMSFullUser)(nil),                         // 47: orders.UserMSFullUser
+	(*PositionForAdmin)(nil),                       // 48: orders.PositionForAdmin
+	(*OrderForAdminFull)(nil),                      // 49: orders.OrderForAdminFull
+	(*GetByIDForAdminResponse)(nil),                // 50: orders.GetByIDForAdminResponse
+	(*GetOrdersByUserIDRequest)(nil),               // 51: orders.GetOrdersByUserIDRequest
+	(*GetOrderByUserIDFilter)(nil),                 // 52: orders.GetOrderByUserIDFilter
+	(*GetOrdersByUserIDResponse)(nil),              // 53: orders.GetOrdersByUserIDResponse
+	(*GetOrdersByUserIDResponseData)(nil),          // 54: orders.GetOrdersByUserIDResponseData
+	(*OrderStatusByUserID)(nil),                    // 55: orders.OrderStatusByUserID
+	(*StatusGroupByUserID)(nil),                    // 56: orders.StatusGroupByUserID
+	(*StoreByUserID)(nil),                          // 57: orders.StoreByUserID
+	(*GetUpdatePaymentStatusRequest)(nil),          // 58: orders.GetUpdatePaymentStatusRequest
+	(*Status)(nil),                                 // 59: orders.Status
+	(*GetUpdatePaymentStatusResponse)(nil),         // 60: orders.GetUpdatePaymentStatusResponse
+	(*GetOrdersStatsByUserIDForAdminRequest)(nil),  // 61: orders.GetOrdersStatsByUserIDForAdminRequest
+	(*GetOrdersStatsByUserIDForAdminResponse)(nil), // 62: orders.GetOrdersStatsByUserIDForAdminResponse
+	(*OrdersStats)(nil),                            // 63: orders.OrdersStats
 }
 var file_proto_order_proto_depIdxs = []int32{
 	0,  // 0: orders.GetListRequest.pagination:type_name -> orders.PaginationRequest
@@ -8353,39 +8589,43 @@ var file_proto_order_proto_depIdxs = []int32{
 	1,  // 68: orders.GetUpdatePaymentStatusResponse.pagination:type_name -> orders.PaginationResponse
 	17, // 69: orders.GetUpdatePaymentStatusResponse.data:type_name -> orders.Outbox
 	2,  // 70: orders.GetUpdatePaymentStatusResponse.errors:type_name -> orders.Error
-	4,  // 71: orders.OutboxService.GetList:input_type -> orders.GetListRequestForOrder
-	7,  // 72: orders.OutboxService.GetByID:input_type -> orders.GetByIDRequest
-	20, // 73: orders.OutboxService.SetBodyByID:input_type -> orders.SetByIDOutboxBodyRequest
-	22, // 74: orders.OutboxService.DeleteByID:input_type -> orders.DeleteByIDOutboxRequest
-	6,  // 75: orders.OrderHistoryService.GetList:input_type -> orders.GetListRequestForOrderAndPosition
-	7,  // 76: orders.OrderHistoryService.GetByID:input_type -> orders.GetByIDRequest
-	5,  // 77: orders.PositionHistoryService.GetList:input_type -> orders.GetListRequestForPosition
-	7,  // 78: orders.PositionHistoryService.GetByID:input_type -> orders.GetByIDRequest
-	5,  // 79: orders.OrderService.GetList:input_type -> orders.GetListRequestForPosition
-	51, // 80: orders.OrderService.GetListByUserID:input_type -> orders.GetOrdersByUserIDRequest
-	7,  // 81: orders.OrderService.GetByID:input_type -> orders.GetByIDRequest
-	3,  // 82: orders.OrderService.GetListForAdmin:input_type -> orders.GetListRequest
-	7,  // 83: orders.OrderService.GetOrderByIDForAdmin:input_type -> orders.GetByIDRequest
-	58, // 84: orders.OrderPaymentService.UpdatePaymentStatus:input_type -> orders.GetUpdatePaymentStatusRequest
-	18, // 85: orders.OutboxService.GetList:output_type -> orders.GetListOutBoxResponse
-	19, // 86: orders.OutboxService.GetByID:output_type -> orders.GetByIDOutBoxResponse
-	21, // 87: orders.OutboxService.SetBodyByID:output_type -> orders.SetByIDOutboxBodyResponse
-	23, // 88: orders.OutboxService.DeleteByID:output_type -> orders.DeleteByIDOutboxResponse
-	24, // 89: orders.OrderHistoryService.GetList:output_type -> orders.GetListOrderHistoryResponse
-	25, // 90: orders.OrderHistoryService.GetByID:output_type -> orders.GetByIDOrderHistoryResponse
-	26, // 91: orders.PositionHistoryService.GetList:output_type -> orders.GetListPositionHistoryResponse
-	27, // 92: orders.PositionHistoryService.GetByID:output_type -> orders.GetByIDPositionHistoryResponse
-	28, // 93: orders.OrderService.GetList:output_type -> orders.GetListOrderResponse
-	53, // 94: orders.OrderService.GetListByUserID:output_type -> orders.GetOrdersByUserIDResponse
-	29, // 95: orders.OrderService.GetByID:output_type -> orders.GetByIDOrderResponse
-	41, // 96: orders.OrderService.GetListForAdmin:output_type -> orders.GetListForAdminResponse
-	50, // 97: orders.OrderService.GetOrderByIDForAdmin:output_type -> orders.GetByIDForAdminResponse
-	60, // 98: orders.OrderPaymentService.UpdatePaymentStatus:output_type -> orders.GetUpdatePaymentStatusResponse
-	85, // [85:99] is the sub-list for method output_type
-	71, // [71:85] is the sub-list for method input_type
-	71, // [71:71] is the sub-list for extension type_name
-	71, // [71:71] is the sub-list for extension extendee
-	0,  // [0:71] is the sub-list for field type_name
+	63, // 71: orders.GetOrdersStatsByUserIDForAdminResponse.data:type_name -> orders.OrdersStats
+	2,  // 72: orders.GetOrdersStatsByUserIDForAdminResponse.errors:type_name -> orders.Error
+	4,  // 73: orders.OutboxService.GetList:input_type -> orders.GetListRequestForOrder
+	7,  // 74: orders.OutboxService.GetByID:input_type -> orders.GetByIDRequest
+	20, // 75: orders.OutboxService.SetBodyByID:input_type -> orders.SetByIDOutboxBodyRequest
+	22, // 76: orders.OutboxService.DeleteByID:input_type -> orders.DeleteByIDOutboxRequest
+	6,  // 77: orders.OrderHistoryService.GetList:input_type -> orders.GetListRequestForOrderAndPosition
+	7,  // 78: orders.OrderHistoryService.GetByID:input_type -> orders.GetByIDRequest
+	5,  // 79: orders.PositionHistoryService.GetList:input_type -> orders.GetListRequestForPosition
+	7,  // 80: orders.PositionHistoryService.GetByID:input_type -> orders.GetByIDRequest
+	5,  // 81: orders.OrderService.GetList:input_type -> orders.GetListRequestForPosition
+	51, // 82: orders.OrderService.GetListByUserID:input_type -> orders.GetOrdersByUserIDRequest
+	7,  // 83: orders.OrderService.GetByID:input_type -> orders.GetByIDRequest
+	3,  // 84: orders.OrderService.GetListForAdmin:input_type -> orders.GetListRequest
+	7,  // 85: orders.OrderService.GetOrderByIDForAdmin:input_type -> orders.GetByIDRequest
+	58, // 86: orders.OrderPaymentService.UpdatePaymentStatus:input_type -> orders.GetUpdatePaymentStatusRequest
+	61, // 87: orders.UserService.GetOrdersStatsByUserIDForAdmin:input_type -> orders.GetOrdersStatsByUserIDForAdminRequest
+	18, // 88: orders.OutboxService.GetList:output_type -> orders.GetListOutBoxResponse
+	19, // 89: orders.OutboxService.GetByID:output_type -> orders.GetByIDOutBoxResponse
+	21, // 90: orders.OutboxService.SetBodyByID:output_type -> orders.SetByIDOutboxBodyResponse
+	23, // 91: orders.OutboxService.DeleteByID:output_type -> orders.DeleteByIDOutboxResponse
+	24, // 92: orders.OrderHistoryService.GetList:output_type -> orders.GetListOrderHistoryResponse
+	25, // 93: orders.OrderHistoryService.GetByID:output_type -> orders.GetByIDOrderHistoryResponse
+	26, // 94: orders.PositionHistoryService.GetList:output_type -> orders.GetListPositionHistoryResponse
+	27, // 95: orders.PositionHistoryService.GetByID:output_type -> orders.GetByIDPositionHistoryResponse
+	28, // 96: orders.OrderService.GetList:output_type -> orders.GetListOrderResponse
+	53, // 97: orders.OrderService.GetListByUserID:output_type -> orders.GetOrdersByUserIDResponse
+	29, // 98: orders.OrderService.GetByID:output_type -> orders.GetByIDOrderResponse
+	41, // 99: orders.OrderService.GetListForAdmin:output_type -> orders.GetListForAdminResponse
+	50, // 100: orders.OrderService.GetOrderByIDForAdmin:output_type -> orders.GetByIDForAdminResponse
+	60, // 101: orders.OrderPaymentService.UpdatePaymentStatus:output_type -> orders.GetUpdatePaymentStatusResponse
+	62, // 102: orders.UserService.GetOrdersStatsByUserIDForAdmin:output_type -> orders.GetOrdersStatsByUserIDForAdminResponse
+	88, // [88:103] is the sub-list for method output_type
+	73, // [73:88] is the sub-list for method input_type
+	73, // [73:73] is the sub-list for extension type_name
+	73, // [73:73] is the sub-list for extension extendee
+	0,  // [0:73] is the sub-list for field type_name
 }
 
 func init() { file_proto_order_proto_init() }
@@ -9126,6 +9366,42 @@ func file_proto_order_proto_init() {
 				return nil
 			}
 		}
+		file_proto_order_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOrdersStatsByUserIDForAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_order_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOrdersStatsByUserIDForAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_order_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*OrdersStats); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_proto_order_proto_msgTypes[3].OneofWrappers = []interface{}{}
 	file_proto_order_proto_msgTypes[4].OneofWrappers = []interface{}{}
@@ -9175,9 +9451,9 @@ func file_proto_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_order_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   61,
+			NumMessages:   64,
 			NumExtensions: 0,
-			NumServices:   5,
+			NumServices:   6,
 		},
 		GoTypes:           file_proto_order_proto_goTypes,
 		DependencyIndexes: file_proto_order_proto_depIdxs,
