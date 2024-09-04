@@ -736,7 +736,7 @@ message GetOrdersStatsByUserIDForAdminRequest {
 message GetOrdersStatsByUserIDForAdminResponse {
   string status = 1;
   string message = 2;
-  OrdersStats data = 3;
+  repeated OrdersStats data = 3;
   int64 code = 4;
   repeated Error errors = 5;
 }
@@ -771,13 +771,9 @@ service OrderService {
     rpc GetByID (GetByIDRequest) returns (GetByIDOrderResponse);
     rpc GetListForAdmin (GetListRequest) returns (GetListForAdminResponse);
     rpc GetOrderByIDForAdmin (GetByIDRequest) returns (GetByIDForAdminResponse);
+    rpc GetOrdersStatsByUserIDForAdmin (GetOrdersStatsByUserIDForAdminRequest) returns (GetOrdersStatsByUserIDForAdminResponse);
 }
 
 service OrderPaymentService {
     rpc UpdatePaymentStatus (GetUpdatePaymentStatusRequest) returns (GetUpdatePaymentStatusResponse);
-}
-
-service UserService {
-    rpc GetOrdersStatsByUserIDForAdmin (GetOrdersStatsByUserIDForAdminRequest) returns (GetOrdersStatsByUserIDForAdminResponse) {
-    }
 }
