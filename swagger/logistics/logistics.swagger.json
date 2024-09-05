@@ -6333,7 +6333,10 @@
           "type": "integer",
           "format": "int32"
         },
-        "name": {
+        "titleRu": {
+          "type": "string"
+        },
+        "titleInternal": {
           "type": "string"
         },
         "trackUrl": {
@@ -6352,6 +6355,9 @@
           "type": "string"
         },
         "updatedAt": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }
@@ -6494,7 +6500,10 @@
     "logisticsTransportCompanyServiceUpdateBody": {
       "type": "object",
       "properties": {
-        "name": {
+        "titleRu": {
+          "type": "string"
+        },
+        "titleInternal": {
           "type": "string"
         },
         "trackUrl": {
@@ -6513,6 +6522,9 @@
           "type": "string"
         },
         "updatedAt": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }
