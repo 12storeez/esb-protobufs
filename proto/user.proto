@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
+
 option go_package = "go/user";
 
 package user;
@@ -14,9 +16,10 @@ service user {
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
   rpc Merge(MergeRequest) returns (MergeResponse) {}
   rpc GetUserAddresses(GetUserAddressesRequest) returns (GetUserAddressesResponse) {}
-  // @TODO: оставить отдельными методами? Или оставить в Update?
-  //  rpc Block(BlockRequest) returns (BlockResponse) {}
-  //  rpc Unblock(UnblockRequest) returns (UnblockResponse) {}
+  rpc Block(BlockRequest) returns (GetResponse) {}
+  rpc Unblock(UnblockRequest) returns (GetResponse) {}
+  rpc GetByUsername(GetByUsernameRequest) returns (GetResponse) {}
+  rpc GetBlockTypeList(google.protobuf.Empty) returns (GetBlockTypeListResponse) {}
 }
 
 message MergeRequest {
@@ -316,4 +319,41 @@ message Pagination {
   int64          limit = 1;
   int64          offset = 2;
   optional int64 total = 3;
+}
+
+// Block
+message BlockRequest { // при получении запроса данные пишем в БД в users.block_type_user
+  string             user_id = 1;
+  int32              block_type_id = 2;
+  string             block_reason = 3; // обязательное к заполнению
+  string             created_by = 4; // uuid пользователя-админа, который заблокировал клиента
+}
+
+// Unblock
+message UnblockRequest { // при получении запроса в БД в users.block_type_user заполняем deleted_at для соответствующей записи
+  string             user_id = 1;
+  int32              block_type_id = 2;
+  string             updated_by = 3; // uuid пользователя-админа, который разблокировал клиента
+}
+
+// GetByUsername
+message GetByUsernameRequest {
+  string             username = 1;
+}
+
+// GetBlockTypeList
+message GetBlockTypeListResponse {
+  string             status = 1;
+  string             message = 2;
+  int64              code = 3;
+  repeated Error     errors = 4;
+  repeated BlockType data = 5;
+}
+
+message BlockType { // данные берём из БД в users.block_type
+  int32              id = 1;
+  string             title = 2;
+  string             slug = 3;
+  string             comment = 4;
+  bool               is_full_block = 5;
 }
