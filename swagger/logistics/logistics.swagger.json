@@ -4518,6 +4518,9 @@
         },
         "isActivePickup": {
           "type": "boolean"
+        },
+        "isActiveShipment": {
+          "type": "boolean"
         }
       }
     },
@@ -5927,6 +5930,9 @@
         },
         "isActivePickup": {
           "type": "boolean"
+        },
+        "isActiveShipment": {
+          "type": "boolean"
         }
       }
     },
@@ -6141,6 +6147,9 @@
         },
         "floor": {
           "type": "string"
+        },
+        "isActiveShipment": {
+          "type": "boolean"
         }
       }
     },
