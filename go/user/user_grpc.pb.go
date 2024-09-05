@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -28,6 +29,10 @@ const (
 	User_Delete_FullMethodName           = "/user.user/Delete"
 	User_Merge_FullMethodName            = "/user.user/Merge"
 	User_GetUserAddresses_FullMethodName = "/user.user/GetUserAddresses"
+	User_Block_FullMethodName            = "/user.user/Block"
+	User_Unblock_FullMethodName          = "/user.user/Unblock"
+	User_GetByUsername_FullMethodName    = "/user.user/GetByUsername"
+	User_GetBlockTypeList_FullMethodName = "/user.user/GetBlockTypeList"
 )
 
 // UserClient is the client API for User service.
@@ -43,6 +48,10 @@ type UserClient interface {
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	Merge(ctx context.Context, in *MergeRequest, opts ...grpc.CallOption) (*MergeResponse, error)
 	GetUserAddresses(ctx context.Context, in *GetUserAddressesRequest, opts ...grpc.CallOption) (*GetUserAddressesResponse, error)
+	Block(ctx context.Context, in *BlockRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	Unblock(ctx context.Context, in *UnblockRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetByUsername(ctx context.Context, in *GetByUsernameRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetBlockTypeList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetBlockTypeListResponse, error)
 }
 
 type userClient struct {
@@ -134,6 +143,42 @@ func (c *userClient) GetUserAddresses(ctx context.Context, in *GetUserAddressesR
 	return out, nil
 }
 
+func (c *userClient) Block(ctx context.Context, in *BlockRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, User_Block_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Unblock(ctx context.Context, in *UnblockRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, User_Unblock_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetByUsername(ctx context.Context, in *GetByUsernameRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, User_GetByUsername_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetBlockTypeList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetBlockTypeListResponse, error) {
+	out := new(GetBlockTypeListResponse)
+	err := c.cc.Invoke(ctx, User_GetBlockTypeList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations should embed UnimplementedUserServer
 // for forward compatibility
@@ -147,6 +192,10 @@ type UserServer interface {
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	Merge(context.Context, *MergeRequest) (*MergeResponse, error)
 	GetUserAddresses(context.Context, *GetUserAddressesRequest) (*GetUserAddressesResponse, error)
+	Block(context.Context, *BlockRequest) (*GetResponse, error)
+	Unblock(context.Context, *UnblockRequest) (*GetResponse, error)
+	GetByUsername(context.Context, *GetByUsernameRequest) (*GetResponse, error)
+	GetBlockTypeList(context.Context, *emptypb.Empty) (*GetBlockTypeListResponse, error)
 }
 
 // UnimplementedUserServer should be embedded to have forward compatible implementations.
@@ -179,6 +228,18 @@ func (UnimplementedUserServer) Merge(context.Context, *MergeRequest) (*MergeResp
 }
 func (UnimplementedUserServer) GetUserAddresses(context.Context, *GetUserAddressesRequest) (*GetUserAddressesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserAddresses not implemented")
+}
+func (UnimplementedUserServer) Block(context.Context, *BlockRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Block not implemented")
+}
+func (UnimplementedUserServer) Unblock(context.Context, *UnblockRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unblock not implemented")
+}
+func (UnimplementedUserServer) GetByUsername(context.Context, *GetByUsernameRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByUsername not implemented")
+}
+func (UnimplementedUserServer) GetBlockTypeList(context.Context, *emptypb.Empty) (*GetBlockTypeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBlockTypeList not implemented")
 }
 
 // UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
@@ -354,6 +415,78 @@ func _User_GetUserAddresses_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_Block_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Block(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Block_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Block(ctx, req.(*BlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Unblock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnblockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Unblock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Unblock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Unblock(ctx, req.(*UnblockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetByUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetByUsername_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetByUsername(ctx, req.(*GetByUsernameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetBlockTypeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetBlockTypeList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetBlockTypeList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetBlockTypeList(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -396,6 +529,22 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserAddresses",
 			Handler:    _User_GetUserAddresses_Handler,
+		},
+		{
+			MethodName: "Block",
+			Handler:    _User_Block_Handler,
+		},
+		{
+			MethodName: "Unblock",
+			Handler:    _User_Unblock_Handler,
+		},
+		{
+			MethodName: "GetByUsername",
+			Handler:    _User_GetByUsername_Handler,
+		},
+		{
+			MethodName: "GetBlockTypeList",
+			Handler:    _User_GetBlockTypeList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
