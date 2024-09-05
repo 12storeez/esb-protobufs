@@ -53,13 +53,15 @@ message TransportCompanyId {
 
 message TransportCompany {
   int32  id = 1;
-  string name = 2;
-  string track_url = 3;
-  bool   has_integration = 4;
-  bool   is_delivery_use_only_working_days = 5;
-  bool   is_active = 6;
-  string created_at = 7;
-  string updated_at = 8;
+  string title_ru = 2;
+  string title_internal = 3;
+  string track_url = 4;
+  bool   has_integration = 5;
+  bool   is_delivery_use_only_working_days = 6;
+  bool   is_active = 7;
+  string created_at = 8;
+  string updated_at = 9;
+  string name = 10;
 }
 
 message ListTransportCompanyRequest {
