@@ -4190,6 +4190,9 @@
         },
         "orderDatetime": {
           "type": "string"
+        },
+        "isCartForClients": {
+          "type": "boolean"
         }
       }
     },
@@ -6776,6 +6779,9 @@
         },
         "storePickup": {
           "$ref": "#/definitions/logisticsWinnerStorePickup"
+        },
+        "storeShipment": {
+          "$ref": "#/definitions/logisticsWinnerStoreShipment"
         }
       }
     },
@@ -6878,6 +6884,17 @@
           "type": "string"
         },
         "schedule": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsWinnerStoreShipment": {
+      "type": "object",
+      "properties": {
+        "storeCode": {
+          "type": "string"
+        },
+        "storeTitle": {
           "type": "string"
         }
       }
