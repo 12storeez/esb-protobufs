@@ -105,7 +105,7 @@ message User {
   // служебные поля
   optional string created_at = 4;
   optional string updated_at = 5;
-  optional string blocked_at = 6;
+  reserved 6; // поле зарезервировано blocked_at
   optional string deleted_at = 7;
   // основные поля
   optional string phone = 8;
@@ -161,6 +161,7 @@ message User {
   Address main_address = 56;
   optional bool is_employee = 57;
   optional int32 rcrm_manager_id = 58;
+  repeated UserBlockType user_block_types = 59;
 }
 
 message UserShort {
@@ -356,4 +357,13 @@ message BlockType { // данные берём из БД в users.block_type
   string             slug = 3;
   string             comment = 4;
   bool               is_full_block = 5;
+}
+
+message UserBlockType { // данные берём из БД
+  int32              id = 1; // из users.block_type_user.block_type_id
+  string             title = 2; // из users.block_type.title, для вывода на фронте
+  string             slug = 3; // из users.block_type.slug, для маппинга на фронте
+  bool               is_full_block = 4; // из users.block_type.is_full_block
+  optional string    block_reason = 5; // из users.block_type_user.block_reason, для вывода на фронте
+  string             blocked_at = 6; // из users.block_type_user.blocked_at, для вывода на фронте
 }
