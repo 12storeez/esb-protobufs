@@ -153,6 +153,7 @@ message Details {
   string title = 3;
   string full_title = 4;
   string type = 5;
+  string title_with_type = 6;
 }
 
 message RegionDetails {
@@ -161,8 +162,8 @@ message RegionDetails {
   string title = 3;
   string full_title = 4;
   string type = 5;
-
   string iso_code = 6;
+  string title_with_type = 7;
 }
 
 message HouseDetails {
@@ -171,9 +172,9 @@ message HouseDetails {
   string  title = 3;
   string  full_title = 4;
   string  type = 5;
-
   string  building = 6;
   string  block = 7;
+  string  title_with_type = 8;
 }
 
 message CountryDetails {
