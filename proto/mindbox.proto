@@ -219,11 +219,11 @@ message Error {
 
 message BonusesHistoryResponseData {
     string order_id = 1;
-    string created_date = 2;
+    string created_datetime = 2;
     int32 acquired_balance_change = 3;
-    string available_from_date = 4;
+    string available_from_datetime = 4;
     string balance_change_kind = 5;
-    string expiration_date = 6;
+    string expiration_datetime = 6;
 }
 
 message CreateOrderRequest {
