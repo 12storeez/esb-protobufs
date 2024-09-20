@@ -232,8 +232,12 @@ message CreateOrderRequest {
     optional string site_user_id = 3;
     optional string store_code = 4;
     optional float total_price = 5;
-    repeated PositionsCreateData positions = 6;
-    repeated PaymentsCreateData payments = 7;
+    optional float delivery_cost = 6;
+    optional string custom_fields = 7;
+    repeated CalculateBonuses bonuses = 8;
+    repeated CalculateRequestedPromotions requested_promotions = 9;
+    repeated PositionsCreateData positions = 10;
+    repeated PaymentsCreateData payments = 11;
 }
 
 message PositionsCreateData {
@@ -243,6 +247,7 @@ message PositionsCreateData {
     int64 sequence_number = 4;
     int64 status = 5;
     optional int64 line_id = 6;
+    optional string custom_fields = 7;
 }
 
 message PaymentsCreateData {
