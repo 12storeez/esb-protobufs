@@ -40,7 +40,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
-	Update(ctx context.Context, in *User, opts ...grpc.CallOption) (*UpdateResponse, error)
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetBySiteID(ctx context.Context, in *GetBySiteIDRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetByToken(ctx context.Context, in *GetByTokenRequest, opts ...grpc.CallOption) (*GetResponse, error)
@@ -71,7 +71,7 @@ func (c *userClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *userClient) Update(ctx context.Context, in *User, opts ...grpc.CallOption) (*UpdateResponse, error) {
+func (c *userClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
 	out := new(UpdateResponse)
 	err := c.cc.Invoke(ctx, User_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -184,7 +184,7 @@ func (c *userClient) GetBlockTypeList(ctx context.Context, in *emptypb.Empty, op
 // for forward compatibility
 type UserServer interface {
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
-	Update(context.Context, *User) (*UpdateResponse, error)
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	GetBySiteID(context.Context, *GetBySiteIDRequest) (*GetResponse, error)
 	GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error)
@@ -205,7 +205,7 @@ type UnimplementedUserServer struct {
 func (UnimplementedUserServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedUserServer) Update(context.Context, *User) (*UpdateResponse, error) {
+func (UnimplementedUserServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedUserServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
@@ -272,7 +272,7 @@ func _User_Create_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _User_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(User)
+	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -284,7 +284,7 @@ func _User_Update_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: User_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Update(ctx, req.(*User))
+		return srv.(UserServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
