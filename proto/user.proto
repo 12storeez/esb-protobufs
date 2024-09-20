@@ -161,17 +161,11 @@ message User {
   optional string preferences = 56;
   optional string keep_in_mind = 57; // добавлено в TNT-1067
   optional string given_gifts = 58; // добавлено в TNT-1067
-  optional string fnf_stylist_id = 59; // добавлено в TNT-1067
-  optional string fnf_stylist_first_name = 60; // добавлено в TNT-1067
-  optional string fnf_stylist_middle_name = 61; // добавлено в TNT-1067
-  optional string fnf_stylist_last_name = 62; // добавлено в TNT-1067
-  optional string seller_id = 63; // добавлено в TNT-1067
-  optional string seller_first_name = 64; // добавлено в TNT-1067
-  optional string seller_middle_name = 65; // добавлено в TNT-1067
-  optional string seller_last_name = 66; // добавлено в TNT-1067
-  Address  main_address = 67;
-  optional bool   is_employee = 68;
-  repeated UserBlockType user_block_types = 69;
+  Address  main_address = 59;
+  optional bool   is_employee = 60;
+  repeated UserBlockType user_block_types = 61;
+  optional UserShortInfo fnf_stylist = 62; // добавлено в TNT-1067, передавать информацию для клиента с user.id = user.fnf_stylist_id
+  optional UserShortInfo seller = 63; // добавлено в TNT-1067, передавать информацию для клиента с user.id = user.seller_id
 }
 
 message UserShort {
@@ -443,4 +437,11 @@ message UpdateRequest {
   optional string given_gifts = 55;
   optional string fnf_stylist_id = 56;
   optional string seller_id = 57;
+}
+
+message UserShortInfo { // добавлено в TNT-1067
+  string id = 1;
+  optional string first_name = 2;
+  optional string middle_name = 3;
+  optional string last_name = 4;
 }
