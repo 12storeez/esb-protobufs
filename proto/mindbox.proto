@@ -248,6 +248,7 @@ message PositionsCreateData {
     int64 status = 5;
     optional int64 line_id = 6;
     optional string custom_fields = 7;
+    repeated CalculateRequestedPromotions requested_promotions = 8;
 }
 
 message PaymentsCreateData {
