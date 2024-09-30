@@ -579,7 +579,7 @@ const (
 type OrderClient interface {
 	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
 	UpdateOrder(ctx context.Context, in *UpdateOrderRequest, opts ...grpc.CallOption) (*UpdateOrderResponse, error)
-	UpdateOrderV2(ctx context.Context, in *UpdateOrderRequestV2, opts ...grpc.CallOption) (*UpdateOrderV2Response, error)
+	UpdateOrderV2(ctx context.Context, in *UpdateOrderV2Request, opts ...grpc.CallOption) (*UpdateOrderV2Response, error)
 	GetOrderInfo(ctx context.Context, in *GetOrderInfoRequest, opts ...grpc.CallOption) (*GetOrderInfoResponse, error)
 	CalculateAuthorized(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
 	CalculateUnauthorized(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
@@ -611,7 +611,7 @@ func (c *orderClient) UpdateOrder(ctx context.Context, in *UpdateOrderRequest, o
 	return out, nil
 }
 
-func (c *orderClient) UpdateOrderV2(ctx context.Context, in *UpdateOrderRequestV2, opts ...grpc.CallOption) (*UpdateOrderV2Response, error) {
+func (c *orderClient) UpdateOrderV2(ctx context.Context, in *UpdateOrderV2Request, opts ...grpc.CallOption) (*UpdateOrderV2Response, error) {
 	out := new(UpdateOrderV2Response)
 	err := c.cc.Invoke(ctx, Order_UpdateOrderV2_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -653,7 +653,7 @@ func (c *orderClient) CalculateUnauthorized(ctx context.Context, in *CalculateRe
 type OrderServer interface {
 	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
 	UpdateOrder(context.Context, *UpdateOrderRequest) (*UpdateOrderResponse, error)
-	UpdateOrderV2(context.Context, *UpdateOrderRequestV2) (*UpdateOrderV2Response, error)
+	UpdateOrderV2(context.Context, *UpdateOrderV2Request) (*UpdateOrderV2Response, error)
 	GetOrderInfo(context.Context, *GetOrderInfoRequest) (*GetOrderInfoResponse, error)
 	CalculateAuthorized(context.Context, *CalculateRequest) (*CalculateResponse, error)
 	CalculateUnauthorized(context.Context, *CalculateRequest) (*CalculateResponse, error)
@@ -669,7 +669,7 @@ func (UnimplementedOrderServer) CreateOrder(context.Context, *CreateOrderRequest
 func (UnimplementedOrderServer) UpdateOrder(context.Context, *UpdateOrderRequest) (*UpdateOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrder not implemented")
 }
-func (UnimplementedOrderServer) UpdateOrderV2(context.Context, *UpdateOrderRequestV2) (*UpdateOrderV2Response, error) {
+func (UnimplementedOrderServer) UpdateOrderV2(context.Context, *UpdateOrderV2Request) (*UpdateOrderV2Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrderV2 not implemented")
 }
 func (UnimplementedOrderServer) GetOrderInfo(context.Context, *GetOrderInfoRequest) (*GetOrderInfoResponse, error) {
@@ -730,7 +730,7 @@ func _Order_UpdateOrder_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _Order_UpdateOrderV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateOrderRequestV2)
+	in := new(UpdateOrderV2Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -742,7 +742,7 @@ func _Order_UpdateOrderV2_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Order_UpdateOrderV2_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrderServer).UpdateOrderV2(ctx, req.(*UpdateOrderRequestV2))
+		return srv.(OrderServer).UpdateOrderV2(ctx, req.(*UpdateOrderV2Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
