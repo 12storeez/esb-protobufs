@@ -39,6 +39,8 @@ service Order {
     }
     rpc UpdateOrder(UpdateOrderRequest) returns (UpdateOrderResponse) {
     }
+    rpc UpdateOrderV2(UpdateOrderRequestV2) returns (UpdateOrderResponse) {
+    }
     rpc GetOrderInfo(GetOrderInfoRequest) returns (GetOrderInfoResponse) {
     }
     rpc CalculateAuthorized(CalculateRequest) returns (CalculateResponse) {
@@ -276,6 +278,18 @@ message UpdateOrderRequest {
     repeated PositionsUpdateData positions = 5;
     optional string execution_datetime = 6;
     optional float total_price = 7;
+}
+
+message UpdateOrderRequestV2 {
+    string order_id = 1;
+    optional string store_code = 2;
+    optional float total_price = 3;
+    optional float delivery_cost = 4;
+    optional string custom_fields = 5;
+    repeated CalculateBonuses bonuses = 6;
+    repeated CalculateRequestedPromotions requested_promotions = 7;
+    repeated PositionsCreateData positions = 8;
+    repeated PaymentsCreateData payments = 9;
 }
 
 message PositionsUpdateData {
