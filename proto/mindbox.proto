@@ -39,7 +39,7 @@ service Order {
     }
     rpc UpdateOrder(UpdateOrderRequest) returns (UpdateOrderResponse) {
     }
-    rpc UpdateOrderV2(UpdateOrderRequestV2) returns (UpdateOrderResponse) {
+    rpc UpdateOrderV2(UpdateOrderRequestV2) returns (UpdateOrderV2Response) {
     }
     rpc GetOrderInfo(GetOrderInfoRequest) returns (GetOrderInfoResponse) {
     }
@@ -290,6 +290,18 @@ message UpdateOrderRequestV2 {
     repeated CalculateRequestedPromotions requested_promotions = 7;
     repeated PositionsCreateData positions = 8;
     repeated PaymentsCreateData payments = 9;
+}
+
+message UpdateOrderV2Response {
+    string status = 1;
+    string message = 2;
+    UpdateOrderV2ResponseData data = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+}
+
+message UpdateOrderV2ResponseData {
+    int64 mindbox_id = 1;
 }
 
 message PositionsUpdateData {
