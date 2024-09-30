@@ -39,7 +39,7 @@ service Order {
     }
     rpc UpdateOrder(UpdateOrderRequest) returns (UpdateOrderResponse) {
     }
-    rpc UpdateOrderV2(UpdateOrderRequestV2) returns (UpdateOrderV2Response) {
+    rpc UpdateOrderV2(UpdateOrderV2Request) returns (UpdateOrderV2Response) {
     }
     rpc GetOrderInfo(GetOrderInfoRequest) returns (GetOrderInfoResponse) {
     }
@@ -280,7 +280,7 @@ message UpdateOrderRequest {
     optional float total_price = 7;
 }
 
-message UpdateOrderRequestV2 {
+message UpdateOrderV2Request {
     string order_id = 1;
     optional string store_code = 2;
     optional float total_price = 3;

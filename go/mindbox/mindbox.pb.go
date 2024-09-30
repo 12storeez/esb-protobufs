@@ -2430,7 +2430,7 @@ func (x *UpdateOrderRequest) GetTotalPrice() float32 {
 	return 0
 }
 
-type UpdateOrderRequestV2 struct {
+type UpdateOrderV2Request struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -2446,8 +2446,8 @@ type UpdateOrderRequestV2 struct {
 	Payments            []*PaymentsCreateData           `protobuf:"bytes,9,rep,name=payments,proto3" json:"payments,omitempty"`
 }
 
-func (x *UpdateOrderRequestV2) Reset() {
-	*x = UpdateOrderRequestV2{}
+func (x *UpdateOrderV2Request) Reset() {
+	*x = UpdateOrderV2Request{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_mindbox_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2455,13 +2455,13 @@ func (x *UpdateOrderRequestV2) Reset() {
 	}
 }
 
-func (x *UpdateOrderRequestV2) String() string {
+func (x *UpdateOrderV2Request) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateOrderRequestV2) ProtoMessage() {}
+func (*UpdateOrderV2Request) ProtoMessage() {}
 
-func (x *UpdateOrderRequestV2) ProtoReflect() protoreflect.Message {
+func (x *UpdateOrderV2Request) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_mindbox_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2473,68 +2473,68 @@ func (x *UpdateOrderRequestV2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateOrderRequestV2.ProtoReflect.Descriptor instead.
-func (*UpdateOrderRequestV2) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateOrderV2Request.ProtoReflect.Descriptor instead.
+func (*UpdateOrderV2Request) Descriptor() ([]byte, []int) {
 	return file_proto_mindbox_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *UpdateOrderRequestV2) GetOrderId() string {
+func (x *UpdateOrderV2Request) GetOrderId() string {
 	if x != nil {
 		return x.OrderId
 	}
 	return ""
 }
 
-func (x *UpdateOrderRequestV2) GetStoreCode() string {
+func (x *UpdateOrderV2Request) GetStoreCode() string {
 	if x != nil && x.StoreCode != nil {
 		return *x.StoreCode
 	}
 	return ""
 }
 
-func (x *UpdateOrderRequestV2) GetTotalPrice() float32 {
+func (x *UpdateOrderV2Request) GetTotalPrice() float32 {
 	if x != nil && x.TotalPrice != nil {
 		return *x.TotalPrice
 	}
 	return 0
 }
 
-func (x *UpdateOrderRequestV2) GetDeliveryCost() float32 {
+func (x *UpdateOrderV2Request) GetDeliveryCost() float32 {
 	if x != nil && x.DeliveryCost != nil {
 		return *x.DeliveryCost
 	}
 	return 0
 }
 
-func (x *UpdateOrderRequestV2) GetCustomFields() string {
+func (x *UpdateOrderV2Request) GetCustomFields() string {
 	if x != nil && x.CustomFields != nil {
 		return *x.CustomFields
 	}
 	return ""
 }
 
-func (x *UpdateOrderRequestV2) GetBonuses() []*CalculateBonuses {
+func (x *UpdateOrderV2Request) GetBonuses() []*CalculateBonuses {
 	if x != nil {
 		return x.Bonuses
 	}
 	return nil
 }
 
-func (x *UpdateOrderRequestV2) GetRequestedPromotions() []*CalculateRequestedPromotions {
+func (x *UpdateOrderV2Request) GetRequestedPromotions() []*CalculateRequestedPromotions {
 	if x != nil {
 		return x.RequestedPromotions
 	}
 	return nil
 }
 
-func (x *UpdateOrderRequestV2) GetPositions() []*PositionsCreateData {
+func (x *UpdateOrderV2Request) GetPositions() []*PositionsCreateData {
 	if x != nil {
 		return x.Positions
 	}
 	return nil
 }
 
-func (x *UpdateOrderRequestV2) GetPayments() []*PaymentsCreateData {
+func (x *UpdateOrderV2Request) GetPayments() []*PaymentsCreateData {
 	if x != nil {
 		return x.Payments
 	}
@@ -5494,7 +5494,7 @@ var file_proto_mindbox_proto_rawDesc = []byte{
 	0x5f, 0x65, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x74,
 	0x69, 0x6d, 0x65, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x70, 0x72,
 	0x69, 0x63, 0x65, 0x22, 0x96, 0x04, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4f, 0x72,
-	0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x56, 0x32, 0x12, 0x19, 0x0a, 0x08,
+	0x64, 0x65, 0x72, 0x56, 0x32, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x19, 0x0a, 0x08,
 	0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
 	0x6f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x22, 0x0a, 0x0a, 0x73, 0x74, 0x6f, 0x72, 0x65,
 	0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x09, 0x73,
@@ -6077,8 +6077,8 @@ var file_proto_mindbox_proto_rawDesc = []byte{
 	0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x22, 0x00, 0x12, 0x50, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64,
 	0x65, 0x72, 0x56, 0x32, 0x12, 0x1d, 0x2e, 0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x2e, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x56, 0x32, 0x1a, 0x1e, 0x2e, 0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x2e, 0x55, 0x70,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x56, 0x32, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x2e, 0x55, 0x70,
 	0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x56, 0x32, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4d, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65,
 	0x72, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1c, 0x2e, 0x6d, 0x69, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x2e,
@@ -6151,7 +6151,7 @@ var file_proto_mindbox_proto_goTypes = []interface{}{
 	(*CreateOrderResponse)(nil),                // 34: mindbox.CreateOrderResponse
 	(*CreateOrderResponseData)(nil),            // 35: mindbox.CreateOrderResponseData
 	(*UpdateOrderRequest)(nil),                 // 36: mindbox.UpdateOrderRequest
-	(*UpdateOrderRequestV2)(nil),               // 37: mindbox.UpdateOrderRequestV2
+	(*UpdateOrderV2Request)(nil),               // 37: mindbox.UpdateOrderV2Request
 	(*UpdateOrderV2Response)(nil),              // 38: mindbox.UpdateOrderV2Response
 	(*UpdateOrderV2ResponseData)(nil),          // 39: mindbox.UpdateOrderV2ResponseData
 	(*PositionsUpdateData)(nil),                // 40: mindbox.PositionsUpdateData
@@ -6201,10 +6201,10 @@ var file_proto_mindbox_proto_depIdxs = []int32{
 	35, // 12: mindbox.CreateOrderResponse.data:type_name -> mindbox.CreateOrderResponseData
 	29, // 13: mindbox.CreateOrderResponse.errors:type_name -> mindbox.Error
 	40, // 14: mindbox.UpdateOrderRequest.positions:type_name -> mindbox.PositionsUpdateData
-	50, // 15: mindbox.UpdateOrderRequestV2.bonuses:type_name -> mindbox.CalculateBonuses
-	54, // 16: mindbox.UpdateOrderRequestV2.requested_promotions:type_name -> mindbox.CalculateRequestedPromotions
-	32, // 17: mindbox.UpdateOrderRequestV2.positions:type_name -> mindbox.PositionsCreateData
-	33, // 18: mindbox.UpdateOrderRequestV2.payments:type_name -> mindbox.PaymentsCreateData
+	50, // 15: mindbox.UpdateOrderV2Request.bonuses:type_name -> mindbox.CalculateBonuses
+	54, // 16: mindbox.UpdateOrderV2Request.requested_promotions:type_name -> mindbox.CalculateRequestedPromotions
+	32, // 17: mindbox.UpdateOrderV2Request.positions:type_name -> mindbox.PositionsCreateData
+	33, // 18: mindbox.UpdateOrderV2Request.payments:type_name -> mindbox.PaymentsCreateData
 	39, // 19: mindbox.UpdateOrderV2Response.data:type_name -> mindbox.UpdateOrderV2ResponseData
 	29, // 20: mindbox.UpdateOrderV2Response.errors:type_name -> mindbox.Error
 	29, // 21: mindbox.UpdateOrderResponse.errors:type_name -> mindbox.Error
@@ -6251,7 +6251,7 @@ var file_proto_mindbox_proto_depIdxs = []int32{
 	1,  // 62: mindbox.Mobile.PushClick:input_type -> mindbox.PushClickParams
 	31, // 63: mindbox.Order.CreateOrder:input_type -> mindbox.CreateOrderRequest
 	36, // 64: mindbox.Order.UpdateOrder:input_type -> mindbox.UpdateOrderRequest
-	37, // 65: mindbox.Order.UpdateOrderV2:input_type -> mindbox.UpdateOrderRequestV2
+	37, // 65: mindbox.Order.UpdateOrderV2:input_type -> mindbox.UpdateOrderV2Request
 	42, // 66: mindbox.Order.GetOrderInfo:input_type -> mindbox.GetOrderInfoRequest
 	49, // 67: mindbox.Order.CalculateAuthorized:input_type -> mindbox.CalculateRequest
 	49, // 68: mindbox.Order.CalculateUnauthorized:input_type -> mindbox.CalculateRequest
@@ -6719,7 +6719,7 @@ func file_proto_mindbox_proto_init() {
 			}
 		}
 		file_proto_mindbox_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateOrderRequestV2); i {
+			switch v := v.(*UpdateOrderV2Request); i {
 			case 0:
 				return &v.state
 			case 1:
