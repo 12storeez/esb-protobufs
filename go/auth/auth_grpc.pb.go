@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,11 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Auth_LoginPassword_FullMethodName = "/auth.auth/LoginPassword"
-	Auth_LoginSMS_FullMethodName      = "/auth.auth/LoginSMS"
-	Auth_Logout_FullMethodName        = "/auth.auth/Logout"
-	Auth_Refresh_FullMethodName       = "/auth.auth/Refresh"
-	Auth_Validate_FullMethodName      = "/auth.auth/Validate"
+	Auth_LoginPassword_FullMethodName   = "/auth.auth/LoginPassword"
+	Auth_LoginSMS_FullMethodName        = "/auth.auth/LoginSMS"
+	Auth_Logout_FullMethodName          = "/auth.auth/Logout"
+	Auth_Refresh_FullMethodName         = "/auth.auth/Refresh"
+	Auth_Validate_FullMethodName        = "/auth.auth/Validate"
+	Auth_LoginTBankCode_FullMethodName  = "/auth.auth/LoginTBankCode"
+	Auth_GetAuthSettings_FullMethodName = "/auth.auth/GetAuthSettings"
 )
 
 // AuthClient is the client API for Auth service.
@@ -35,6 +38,8 @@ type AuthClient interface {
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	Validate(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
+	LoginTBankCode(ctx context.Context, in *LoginTBankCodeRequest, opts ...grpc.CallOption) (*LoginTBankCodeResponse, error)
+	GetAuthSettings(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAuthSettingsResponse, error)
 }
 
 type authClient struct {
@@ -90,6 +95,24 @@ func (c *authClient) Validate(ctx context.Context, in *ValidateRequest, opts ...
 	return out, nil
 }
 
+func (c *authClient) LoginTBankCode(ctx context.Context, in *LoginTBankCodeRequest, opts ...grpc.CallOption) (*LoginTBankCodeResponse, error) {
+	out := new(LoginTBankCodeResponse)
+	err := c.cc.Invoke(ctx, Auth_LoginTBankCode_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) GetAuthSettings(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAuthSettingsResponse, error) {
+	out := new(GetAuthSettingsResponse)
+	err := c.cc.Invoke(ctx, Auth_GetAuthSettings_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations should embed UnimplementedAuthServer
 // for forward compatibility
@@ -99,6 +122,8 @@ type AuthServer interface {
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	Validate(context.Context, *ValidateRequest) (*ValidateResponse, error)
+	LoginTBankCode(context.Context, *LoginTBankCodeRequest) (*LoginTBankCodeResponse, error)
+	GetAuthSettings(context.Context, *emptypb.Empty) (*GetAuthSettingsResponse, error)
 }
 
 // UnimplementedAuthServer should be embedded to have forward compatible implementations.
@@ -119,6 +144,12 @@ func (UnimplementedAuthServer) Refresh(context.Context, *RefreshRequest) (*Refre
 }
 func (UnimplementedAuthServer) Validate(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Validate not implemented")
+}
+func (UnimplementedAuthServer) LoginTBankCode(context.Context, *LoginTBankCodeRequest) (*LoginTBankCodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginTBankCode not implemented")
+}
+func (UnimplementedAuthServer) GetAuthSettings(context.Context, *emptypb.Empty) (*GetAuthSettingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthSettings not implemented")
 }
 
 // UnsafeAuthServer may be embedded to opt out of forward compatibility for this service.
@@ -222,6 +253,42 @@ func _Auth_Validate_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_LoginTBankCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginTBankCodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).LoginTBankCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_LoginTBankCode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).LoginTBankCode(ctx, req.(*LoginTBankCodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_GetAuthSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetAuthSettings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetAuthSettings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetAuthSettings(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -248,6 +315,14 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Validate",
 			Handler:    _Auth_Validate_Handler,
+		},
+		{
+			MethodName: "LoginTBankCode",
+			Handler:    _Auth_LoginTBankCode_Handler,
+		},
+		{
+			MethodName: "GetAuthSettings",
+			Handler:    _Auth_GetAuthSettings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
