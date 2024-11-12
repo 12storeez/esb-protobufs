@@ -24,8 +24,12 @@ test:
 	docker run --rm -v $(PWD):/app -w /app protobuf-generator
 
 # Скачать и запустить последнюю версию protobuf-generator из yandex registry
-go:
+go-unix:
 	cat login.json | docker login --username json_key --password-stdin cr.yandex
 	docker run --rm -v $(PWD):/app -w /app cr.yandex/crpio465qcfelrmo3fv8/esb-protobufs/protobuf-generator
+
+go-win:
+	type login.json | docker login --username json_key --password-stdin cr.yandex
+	docker run --rm -v $(CURDIR):/app -w /app cr.yandex/crpio465qcfelrmo3fv8/esb-protobufs/protobuf-generator
 
 .DEFAULT_GOAL := go
