@@ -4937,6 +4937,15 @@
             "type": "object",
             "$ref": "#/definitions/logisticsInterval"
           }
+        },
+        "restrictionByWeightIsActive": {
+          "type": "boolean"
+        },
+        "restrictionByWeightMessageId": {
+          "$ref": "#/definitions/logisticsRestrictionByWeightMessageId"
+        },
+        "restrictionByWeightPopupId": {
+          "$ref": "#/definitions/logisticsRestrictionByWeightPopupId"
         }
       }
     },
@@ -5086,6 +5095,21 @@
             "type": "object",
             "$ref": "#/definitions/logisticsInterval"
           }
+        },
+        "maxWeight": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restrictionByWeightIsActive": {
+          "type": "boolean"
+        },
+        "restrictionByWeightMessageId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restrictionByWeightPopupId": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -5808,7 +5832,7 @@
           "type": "string"
         }
       },
-      "title": "Database relationship for message, where\n- id - identifier for the related entity\n- name - display name of the related entity\n- rel - entity name\n- rel_name - display name for the entity\n- href - link to the rel through id (like /api/v1/transport-company/2/)"
+      "title": "Database relationship for message, where\r\n- id - identifier for the related entity\r\n- name - display name of the related entity\r\n- rel - entity name\r\n- rel_name - display name for the entity\r\n- href - link to the rel through id (like /api/v1/transport-company/2/)"
     },
     "logisticsRestriction": {
       "type": "string",
@@ -5817,6 +5841,62 @@
         "quantity"
       ],
       "default": "price"
+    },
+    "logisticsRestrictionByWeightMessageId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "text": {
+          "type": "string"
+        },
+        "rel": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsRel"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsRestrictionByWeightPopupId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "text": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "buttonText": {
+          "type": "string"
+        },
+        "rel": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsRel"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
     },
     "logisticsStore": {
       "type": "object",
