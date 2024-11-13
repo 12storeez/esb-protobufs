@@ -4942,10 +4942,10 @@
           "type": "boolean"
         },
         "restrictionByWeightMessageId": {
-          "$ref": "#/definitions/logisticsRestrictionByWeightMessageId"
+          "$ref": "#/definitions/logisticsMessage"
         },
         "restrictionByWeightPopupId": {
-          "$ref": "#/definitions/logisticsRestrictionByWeightPopupId"
+          "$ref": "#/definitions/logisticsPopup"
         }
       }
     },
@@ -5841,62 +5841,6 @@
         "quantity"
       ],
       "default": "price"
-    },
-    "logisticsRestrictionByWeightMessageId": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "text": {
-          "type": "string"
-        },
-        "rel": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsRel"
-          }
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsRestrictionByWeightPopupId": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "text": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "buttonText": {
-          "type": "string"
-        },
-        "rel": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsRel"
-          }
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string"
-        }
-      }
     },
     "logisticsStore": {
       "type": "object",
