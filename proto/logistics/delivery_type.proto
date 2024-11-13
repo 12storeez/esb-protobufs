@@ -131,25 +131,6 @@ message DeliveryType {
   Popup                                    restriction_by_weight_popup_id = 42;
 }
 
-message RestrictionByWeightMessageId {
-  int32 id = 1;
-  string text = 2;
-  repeated Rel rel = 3;
-  string created_at = 4;
-  string updated_at = 5;
-}
-
-message RestrictionByWeightPopupId {
-  int32 id = 1;
-  string text = 2;
-  string title = 3;
-  string button_text = 4;
-  repeated Rel rel = 5;
-  string created_at = 6;
-  string updated_at = 7;
-}
-
-
 message CategoryRestriction {
   int32        id = 1;
   Category     category = 2;
