@@ -164,8 +164,8 @@ message User {
   Address  main_address = 59;
   optional bool   is_employee = 60;
   repeated UserBlockType user_block_types = 61;
-  optional UserShortInfo fnf_stylist = 62; // добавлено в TNT-1067, передавать информацию для клиента с user.id = user.fnf_stylist_id
-  optional UserShortInfo seller = 63; // добавлено в TNT-1067, передавать информацию для клиента с user.id = user.seller_id
+  optional string fnf_stylist_id = 62;
+  optional string seller_id = 63;
 }
 
 message UserShort {
