@@ -35,5 +35,5 @@
 чтобы это обновление автоматически подтянулось в [NPM пакет](https://www.npmjs.com/package/esb-protobufs)
 
 ## Генерация c помощью Makefile
-`make go` - скачает последний образ protobuf-generator из cr-yandex и сгенериует (изменит) протофайлы в дирекории go.
+`make go-unix || make go-win` - скачает последний образ protobuf-generator из cr-yandex и сгенериует (изменит) протофайлы в дирекории go.
 Важно: в переменной PWD нужно указать абсолютный путь до клонированного репозитория esb-protobufs
