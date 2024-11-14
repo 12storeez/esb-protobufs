@@ -131,25 +131,6 @@ message DeliveryType {
   Popup                                    restriction_by_weight_popup_id = 42;
 }
 
-message RestrictionByWeightMessageId {
-  int32 id = 1;
-  string text = 2;
-  repeated Rel rel = 3;
-  string created_at = 4;
-  string updated_at = 5;
-}
-
-message RestrictionByWeightPopupId {
-  int32 id = 1;
-  string text = 2;
-  string title = 3;
-  string button_text = 4;
-  repeated Rel rel = 5;
-  string created_at = 6;
-  string updated_at = 7;
-}
-
-
 message CategoryRestriction {
   int32        id = 1;
   Category     category = 2;
@@ -187,7 +168,6 @@ message PaymentMethodCategoryRestriction {
   string   created_at = 4;
   string   updated_at = 5;
 }
-
 
 message UpdateDeliveryType {
   int32                                    id = 1;
@@ -227,7 +207,7 @@ message UpdateDeliveryType {
   repeated UpdatePaymentMethodToDeliveryType      payment_method_to_delivery_type = 35;
   repeated UpdateCategoryRestriction              category_delivery_type_restrictions = 36;
   repeated Interval                               intervals = 37;
-  int32                                    maxWeight = 38;
+  int32                                    max_weight = 38;
   bool                                     restriction_by_weight_is_active = 39;
   int32                                    restriction_by_weight_message_id = 40;
   int32                                    restriction_by_weight_popup_id = 41;
