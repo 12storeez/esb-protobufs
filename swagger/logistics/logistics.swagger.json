@@ -4946,6 +4946,10 @@
         },
         "restrictionByWeightPopupId": {
           "$ref": "#/definitions/logisticsPopup"
+        },
+        "maxWeight": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
