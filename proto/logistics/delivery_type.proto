@@ -129,6 +129,7 @@ message DeliveryType {
   bool                                     restriction_by_weight_is_active = 40;
   Message                                  restriction_by_weight_message_id = 41;
   Popup                                    restriction_by_weight_popup_id = 42;
+  int32                                    max_weight = 43;
 }
 
 message CategoryRestriction {
