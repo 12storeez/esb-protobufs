@@ -79,8 +79,8 @@ message ListStoreDeliveryTypeResponse {
 message StoreDeliveryType {
   int32             id = 1;
   Store             store = 2;
-  DeliveryTypeShort delivery_type_pickup = 3;
-  DeliveryTypeShort delivery_type_shipment = 4;
+  optional DeliveryTypeShort delivery_type_pickup = 3;
+  optional DeliveryTypeShort delivery_type_shipment = 4;
   int32             max_cells = 5;
   int32             busy_cells = 6;
   int32             free_cells = 7;
