@@ -6387,9 +6387,6 @@
         },
         "updatedAt": {
           "type": "string"
-        },
-        "name": {
-          "type": "string"
         }
       }
     },
@@ -6553,9 +6550,6 @@
           "type": "string"
         },
         "updatedAt": {
-          "type": "string"
-        },
-        "name": {
           "type": "string"
         }
       }
