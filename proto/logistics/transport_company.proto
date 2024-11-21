@@ -61,7 +61,6 @@ message TransportCompany {
   bool   is_active = 7;
   string created_at = 8;
   string updated_at = 9;
-  string name = 10;
 }
 
 message ListTransportCompanyRequest {
