@@ -44,6 +44,7 @@ message CartPosition {
   int32   quantity = 2;
   float   price = 3;
   bool    is_present = 4;
+  int32   weight = 5;
 }
 
 message CalculateResponse {
