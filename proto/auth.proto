@@ -87,12 +87,14 @@ message GetTBankSettingsData {
 
 message GetTBankSettingsMobileData {
   string authLink = 1;
+  string code_verifier = 2;
 }
 
 message GetTBankSettingsWebData {
   string redirect_uri = 1;
   string response_type = 2;
   string client_id = 3;
+  string code_verifier = 4;
 }
 
 
