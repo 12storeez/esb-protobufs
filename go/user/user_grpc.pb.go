@@ -20,19 +20,19 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	User_Create_FullMethodName           = "/user.user/Create"
-	User_Update_FullMethodName           = "/user.user/Update"
-	User_Get_FullMethodName              = "/user.user/Get"
-	User_GetBySiteID_FullMethodName      = "/user.user/GetBySiteID"
-	User_GetByToken_FullMethodName       = "/user.user/GetByToken"
-	User_GetList_FullMethodName          = "/user.user/GetList"
-	User_Delete_FullMethodName           = "/user.user/Delete"
-	User_Merge_FullMethodName            = "/user.user/Merge"
-	User_GetUserAddresses_FullMethodName = "/user.user/GetUserAddresses"
-	User_Block_FullMethodName            = "/user.user/Block"
-	User_Unblock_FullMethodName          = "/user.user/Unblock"
-	User_GetByUsername_FullMethodName    = "/user.user/GetByUsername"
-	User_GetBlockTypeList_FullMethodName = "/user.user/GetBlockTypeList"
+	User_Create_FullMethodName             = "/user.user/Create"
+	User_Update_FullMethodName             = "/user.user/Update"
+	User_Get_FullMethodName                = "/user.user/Get"
+	User_GetBySiteID_FullMethodName        = "/user.user/GetBySiteID"
+	User_GetByUsername_FullMethodName      = "/user.user/GetByUsername"
+	User_GetByToken_FullMethodName         = "/user.user/GetByToken"
+	User_GetList_FullMethodName            = "/user.user/GetList"
+	User_Delete_FullMethodName             = "/user.user/Delete"
+	User_Merge_FullMethodName              = "/user.user/Merge"
+	User_GetUserAddresses_FullMethodName   = "/user.user/GetUserAddresses"
+	User_Restrict_FullMethodName           = "/user.user/Restrict"
+	User_DeleteRestriction_FullMethodName  = "/user.user/DeleteRestriction"
+	User_GetRestrictionList_FullMethodName = "/user.user/GetRestrictionList"
 )
 
 // UserClient is the client API for User service.
@@ -43,15 +43,15 @@ type UserClient interface {
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetBySiteID(ctx context.Context, in *GetBySiteIDRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetByUsername(ctx context.Context, in *GetByUsernameRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetByToken(ctx context.Context, in *GetByTokenRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	Merge(ctx context.Context, in *MergeRequest, opts ...grpc.CallOption) (*MergeResponse, error)
 	GetUserAddresses(ctx context.Context, in *GetUserAddressesRequest, opts ...grpc.CallOption) (*GetUserAddressesResponse, error)
-	Block(ctx context.Context, in *BlockRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	Unblock(ctx context.Context, in *UnblockRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	GetByUsername(ctx context.Context, in *GetByUsernameRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	GetBlockTypeList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetBlockTypeListResponse, error)
+	Restrict(ctx context.Context, in *RestrictRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	DeleteRestriction(ctx context.Context, in *DeleteRestrictionRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetRestrictionList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetRestrictionListResponse, error)
 }
 
 type userClient struct {
@@ -92,6 +92,15 @@ func (c *userClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallO
 func (c *userClient) GetBySiteID(ctx context.Context, in *GetBySiteIDRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
 	err := c.cc.Invoke(ctx, User_GetBySiteID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetByUsername(ctx context.Context, in *GetByUsernameRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, User_GetByUsername_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -143,36 +152,27 @@ func (c *userClient) GetUserAddresses(ctx context.Context, in *GetUserAddressesR
 	return out, nil
 }
 
-func (c *userClient) Block(ctx context.Context, in *BlockRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *userClient) Restrict(ctx context.Context, in *RestrictRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, User_Block_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, User_Restrict_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) Unblock(ctx context.Context, in *UnblockRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+func (c *userClient) DeleteRestriction(ctx context.Context, in *DeleteRestrictionRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, User_Unblock_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, User_DeleteRestriction_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) GetByUsername(ctx context.Context, in *GetByUsernameRequest, opts ...grpc.CallOption) (*GetResponse, error) {
-	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, User_GetByUsername_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) GetBlockTypeList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetBlockTypeListResponse, error) {
-	out := new(GetBlockTypeListResponse)
-	err := c.cc.Invoke(ctx, User_GetBlockTypeList_FullMethodName, in, out, opts...)
+func (c *userClient) GetRestrictionList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetRestrictionListResponse, error) {
+	out := new(GetRestrictionListResponse)
+	err := c.cc.Invoke(ctx, User_GetRestrictionList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -187,15 +187,15 @@ type UserServer interface {
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	GetBySiteID(context.Context, *GetBySiteIDRequest) (*GetResponse, error)
+	GetByUsername(context.Context, *GetByUsernameRequest) (*GetResponse, error)
 	GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	Merge(context.Context, *MergeRequest) (*MergeResponse, error)
 	GetUserAddresses(context.Context, *GetUserAddressesRequest) (*GetUserAddressesResponse, error)
-	Block(context.Context, *BlockRequest) (*GetResponse, error)
-	Unblock(context.Context, *UnblockRequest) (*GetResponse, error)
-	GetByUsername(context.Context, *GetByUsernameRequest) (*GetResponse, error)
-	GetBlockTypeList(context.Context, *emptypb.Empty) (*GetBlockTypeListResponse, error)
+	Restrict(context.Context, *RestrictRequest) (*GetResponse, error)
+	DeleteRestriction(context.Context, *DeleteRestrictionRequest) (*GetResponse, error)
+	GetRestrictionList(context.Context, *emptypb.Empty) (*GetRestrictionListResponse, error)
 }
 
 // UnimplementedUserServer should be embedded to have forward compatible implementations.
@@ -214,6 +214,9 @@ func (UnimplementedUserServer) Get(context.Context, *GetRequest) (*GetResponse, 
 func (UnimplementedUserServer) GetBySiteID(context.Context, *GetBySiteIDRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBySiteID not implemented")
 }
+func (UnimplementedUserServer) GetByUsername(context.Context, *GetByUsernameRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByUsername not implemented")
+}
 func (UnimplementedUserServer) GetByToken(context.Context, *GetByTokenRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByToken not implemented")
 }
@@ -229,17 +232,14 @@ func (UnimplementedUserServer) Merge(context.Context, *MergeRequest) (*MergeResp
 func (UnimplementedUserServer) GetUserAddresses(context.Context, *GetUserAddressesRequest) (*GetUserAddressesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserAddresses not implemented")
 }
-func (UnimplementedUserServer) Block(context.Context, *BlockRequest) (*GetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Block not implemented")
+func (UnimplementedUserServer) Restrict(context.Context, *RestrictRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Restrict not implemented")
 }
-func (UnimplementedUserServer) Unblock(context.Context, *UnblockRequest) (*GetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Unblock not implemented")
+func (UnimplementedUserServer) DeleteRestriction(context.Context, *DeleteRestrictionRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRestriction not implemented")
 }
-func (UnimplementedUserServer) GetByUsername(context.Context, *GetByUsernameRequest) (*GetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetByUsername not implemented")
-}
-func (UnimplementedUserServer) GetBlockTypeList(context.Context, *emptypb.Empty) (*GetBlockTypeListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBlockTypeList not implemented")
+func (UnimplementedUserServer) GetRestrictionList(context.Context, *emptypb.Empty) (*GetRestrictionListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRestrictionList not implemented")
 }
 
 // UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
@@ -321,6 +321,24 @@ func _User_GetBySiteID_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).GetBySiteID(ctx, req.(*GetBySiteIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetByUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetByUsername_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetByUsername(ctx, req.(*GetByUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -415,74 +433,56 @@ func _User_GetUserAddresses_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_Block_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlockRequest)
+func _User_Restrict_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestrictRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).Block(ctx, in)
+		return srv.(UserServer).Restrict(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_Block_FullMethodName,
+		FullMethod: User_Restrict_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Block(ctx, req.(*BlockRequest))
+		return srv.(UserServer).Restrict(ctx, req.(*RestrictRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_Unblock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnblockRequest)
+func _User_DeleteRestriction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRestrictionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).Unblock(ctx, in)
+		return srv.(UserServer).DeleteRestriction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_Unblock_FullMethodName,
+		FullMethod: User_DeleteRestriction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Unblock(ctx, req.(*UnblockRequest))
+		return srv.(UserServer).DeleteRestriction(ctx, req.(*DeleteRestrictionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_GetByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetByUsernameRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).GetByUsername(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_GetByUsername_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetByUsername(ctx, req.(*GetByUsernameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_GetBlockTypeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_GetRestrictionList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).GetBlockTypeList(ctx, in)
+		return srv.(UserServer).GetRestrictionList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_GetBlockTypeList_FullMethodName,
+		FullMethod: User_GetRestrictionList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetBlockTypeList(ctx, req.(*emptypb.Empty))
+		return srv.(UserServer).GetRestrictionList(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -511,6 +511,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_GetBySiteID_Handler,
 		},
 		{
+			MethodName: "GetByUsername",
+			Handler:    _User_GetByUsername_Handler,
+		},
+		{
 			MethodName: "GetByToken",
 			Handler:    _User_GetByToken_Handler,
 		},
@@ -531,20 +535,16 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_GetUserAddresses_Handler,
 		},
 		{
-			MethodName: "Block",
-			Handler:    _User_Block_Handler,
+			MethodName: "Restrict",
+			Handler:    _User_Restrict_Handler,
 		},
 		{
-			MethodName: "Unblock",
-			Handler:    _User_Unblock_Handler,
+			MethodName: "DeleteRestriction",
+			Handler:    _User_DeleteRestriction_Handler,
 		},
 		{
-			MethodName: "GetByUsername",
-			Handler:    _User_GetByUsername_Handler,
-		},
-		{
-			MethodName: "GetBlockTypeList",
-			Handler:    _User_GetBlockTypeList_Handler,
+			MethodName: "GetRestrictionList",
+			Handler:    _User_GetRestrictionList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
