@@ -11,15 +11,15 @@ service user {
   rpc Update(UpdateRequest) returns (UpdateResponse) {}
   rpc Get(GetRequest) returns (GetResponse) {}
   rpc GetBySiteID(GetBySiteIDRequest) returns (GetResponse) {}
+  rpc GetByUsername(GetByUsernameRequest) returns (GetResponse) {}
   rpc GetByToken(GetByTokenRequest) returns (GetResponse) {}
   rpc GetList(GetListRequest) returns (GetListResponse) {}
   rpc Delete(DeleteRequest) returns (DeleteResponse) {}
   rpc Merge(MergeRequest) returns (MergeResponse) {}
   rpc GetUserAddresses(GetUserAddressesRequest) returns (GetUserAddressesResponse) {}
-  rpc Block(BlockRequest) returns (GetResponse) {}
-  rpc Unblock(UnblockRequest) returns (GetResponse) {}
-  rpc GetByUsername(GetByUsernameRequest) returns (GetResponse) {}
-  rpc GetBlockTypeList(google.protobuf.Empty) returns (GetBlockTypeListResponse) {}
+  rpc Restrict(RestrictRequest) returns (GetResponse) {}
+  rpc DeleteRestriction(DeleteRestrictionRequest) returns (GetResponse) {}
+  rpc GetRestrictionList(google.protobuf.Empty) returns (GetRestrictionListResponse) {}
 }
 
 message MergeRequest {
@@ -163,7 +163,7 @@ message User {
   optional string given_gifts = 58; // добавлено в TNT-1067
   Address  main_address = 59;
   optional bool   is_employee = 60;
-  repeated UserBlockType user_block_types = 61;
+  repeated UserRestriction user_restrictions = 61;
   optional string fnf_stylist_id = 62;
   optional string seller_id = 63;
 }
@@ -173,7 +173,7 @@ message UserShort {
   string username = 2;
   string created_at = 3;
   string updated_at = 4;
-  optional string blocked_at = 5;
+  optional string restricted_at = 5;
   optional string deleted_at = 6;
   optional string phone = 7;
   optional string email = 8;
@@ -330,18 +330,18 @@ message Pagination {
   optional int64 total = 3;
 }
 
-// Block
-message BlockRequest { // при получении запроса данные пишем в БД в users.block_type_user
+// Restrict
+message RestrictRequest { // при получении запроса данные пишем в БД в users.user_restriction
   string             user_id = 1;
-  int32              block_type_id = 2;
-  string             block_reason = 3; // обязательное к заполнению
+  int32              restriction_id = 2;
+  string             restriction_reason = 3; // обязательное к заполнению
   string             created_by = 4; // uuid пользователя-админа, который заблокировал клиента
 }
 
-// Unblock
-message UnblockRequest { // при получении запроса в БД в users.block_type_user заполняем deleted_at для соответствующей записи
+// DeleteRestriction
+message DeleteRestrictionRequest { // при получении запроса в БД в users.user_restriction заполняем deleted_at для соответствующей записи
   string             user_id = 1;
-  int32              block_type_id = 2;
+  int32              restriction_id = 2;
   string             updated_by = 3; // uuid пользователя-админа, который разблокировал клиента
 }
 
@@ -350,30 +350,30 @@ message GetByUsernameRequest {
   string             username = 1;
 }
 
-// GetBlockTypeList
-message GetBlockTypeListResponse {
+// GetRestrictionListResponse
+message GetRestrictionListResponse {
   string             status = 1;
   string             message = 2;
   int64              code = 3;
   repeated Error     errors = 4;
-  repeated BlockType data = 5;
+  repeated Restriction data = 5;
 }
 
-message BlockType { // данные берём из БД в users.block_type
+message Restriction { // данные берём из БД в users.restriction
   int32              id = 1;
   string             title = 2;
   string             slug = 3;
   string             comment = 4;
-  bool               is_full_block = 5;
+  bool               is_auth_disabled = 5;
 }
 
-message UserBlockType { // данные берём из БД
-  int32              id = 1; // из users.block_type_user.block_type_id
-  string             title = 2; // из users.block_type.title, для вывода на фронте
-  string             slug = 3; // из users.block_type.slug, для маппинга на фронте
-  bool               is_full_block = 4; // из users.block_type.is_full_block
-  optional string    block_reason = 5; // из users.block_type_user.block_reason, для вывода на фронте
-  string             blocked_at = 6; // из users.block_type_user.blocked_at, для вывода на фронте
+message UserRestriction { // данные берём из БД
+  int32              id = 1; // из users.user_restriction.restriction_id
+  string             title = 2; // из users.restriction.title, для вывода на фронте
+  string             slug = 3; // из users.restriction.slug, для маппинга на фронте
+  bool               is_auth_disabled = 4; // из users.restriction.is_auth_disabled
+  optional string    restriction_reason = 5; // из users.user_restriction.restriction_reason, для вывода на фронте
+  string             created_at = 6; // из users.user_restriction.created_at, для вывода на фронте
 }
 
 message UpdateRequest {
