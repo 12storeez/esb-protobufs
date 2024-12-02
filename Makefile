@@ -33,4 +33,4 @@ go-win:
 	type login.json | docker login --username json_key --password-stdin cr.yandex
 	docker run --rm -v $(CURDIR):/app -w /app cr.yandex/crpio465qcfelrmo3fv8/esb-protobufs/protobuf-generator
 
-.DEFAULT_GOAL := go
+.DEFAULT_GOAL := go-unix
