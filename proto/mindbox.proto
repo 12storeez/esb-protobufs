@@ -240,6 +240,8 @@ message CreateOrderRequest {
     repeated CalculateRequestedPromotions requested_promotions = 9;
     repeated PositionsCreateData positions = 10;
     repeated PaymentsCreateData payments = 11;
+    optional string email = 12;
+    optional string mobile_phone = 13;
 }
 
 message PositionsCreateData {
