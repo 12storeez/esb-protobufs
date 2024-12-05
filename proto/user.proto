@@ -438,6 +438,7 @@ message UpdateRequest {
   optional string given_gifts = 55;
   optional string fnf_stylist_id = 56;
   optional string seller_id = 57;
+  optional string source = 58; //  добавлено в TNT-1177
 }
 
 message UserShortInfo { // добавлено в TNT-1067
