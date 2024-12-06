@@ -432,7 +432,7 @@ message UpdateRequest {
   optional string family = 49;
   optional string hobbies = 50;
   optional string important_dates = 51;
-  optional string kind_fo_activity = 52;
+  optional string kind_of_activity = 52;
   optional string preferences = 53;
   optional string keep_in_mind = 54;
   optional string given_gifts = 55;
