@@ -86,7 +86,7 @@ message GetTBankSettingsData {
 }
 
 message GetTBankSettingsMobileData {
-  string authLink = 1;
+  string auth_link = 1;
   string code_verifier = 2;
 }
 
