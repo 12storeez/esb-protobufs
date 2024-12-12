@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package app.grpc.tBankMs;
+
+option go_package = "go/t-bank-ms";
+
+service tBankMs {
+  rpc LoginByCode(LoginRequest) returns (LoginResponse) {}
+}
+
+message LoginRequest {
+  string phone = 1;
+  string code = 2;
+  optional string codeVerifier = 3;
+}
+
+message LoginResponse {
+  oneof data {
+    SuccessLoginResponse success = 1;
+    FailResponse fail = 2;
+  }
+}
+
+message SuccessLoginResponse {
+  string email = 1;
+  bool   emailVerified = 2;
+  string familyName = 3;
+  string birthdate = 4;
+  string sub = 5;
+  string name = 6;
+  string gender = 7;
+  string phoneNumber = 8;
+  bool   phoneNumberVerified = 9;
+  string middleName = 10;
+  string givenName = 11;
+}
+
+// FailResponse
+message FailResponse {
+  sint32 code = 1;
+  repeated Error errors = 2;
+  string error_message = 3;
+  sint32 http_code = 4;
+}
+
+// Error
+message Error {
+  string target = 1;
+  sint32 code = 2;
+  string message = 3;
+}
