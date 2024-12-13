@@ -41,13 +41,14 @@ message LoginSMSRequest {
 message LoginTBankCodeRequest {
   string phone = 1;
   string code = 2;
-  optional string codeVerifier = 3;
+  optional string code_verifier = 3;
 }
 
 message LoginTBankCodeResponse {
+  string status = 1;
   oneof data {
-    SuccessLoginTBankCodeResponse success = 1;
-    FailResponse fail = 2;
+    SuccessLoginTBankCodeResponse success = 2;
+    FailResponse fail = 3;
   }
 }
 
