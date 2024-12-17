@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+
+service Delivery{
+  rpc List(OrderPickUpPointsRequest) returns (OrderPickUpPointsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery/pickup/provider/{provider}/points"
+    };
+  }
+
+  rpc Detail(OrderPickUpPointsDetailRequest) returns (OrderPickUpPointsDetailResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/delivery/pickup/provider/{provider}/points/{point}"
+    };
+  }
+
+}
+
+message OrderPickUpPointsRequest {
+  string provider =  1;
+  string city_id =   2;
+  string city_name = 3;
+  string search =    4;
+  int32  offset =    5;
+  int32  limit =     6;
+}
+
+message OrderPickUpPointsResponse {
+  repeated PickupPoint  results = 1;
+  int32                 total =   2;
+}
+
+message PickupPoint {
+  string  id =      1;
+  string  address = 2;
+  string  title =   3;
+  double  lat =     4;
+  double  lng =     5;
+  bool    success = 6;
+  int32   total =   7;
+}
+
+message OrderPickUpPointsDetailRequest {
+  string provider =  1;
+  string point =     2;
+}
+
+message OrderPickUpPointsDetailResponse {
+  string id =               1;
+  string address =          2;
+  string title =            3;
+  string delivery_period =  4;
+  string work_time =        5;
+  string phone =            6;
+  string trip_description = 7;
+}
