@@ -284,6 +284,7 @@ message GetListResponse {
 message DeleteRequest {
   string id = 1;
   optional string delete_reason = 2;
+  optional string source = 3; // https://tracker.yandex.ru/TNT-1209
 }
 
 message DeleteResponse {
