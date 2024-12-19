@@ -292,6 +292,8 @@ message UpdateOrderV2Request {
     repeated CalculateRequestedPromotions requested_promotions = 7;
     repeated PositionsCreateData positions = 8;
     repeated PaymentsCreateData payments = 9;
+    optional string email = 10;
+    optional string mobile_phone = 11;
 }
 
 message UpdateOrderV2Response {
