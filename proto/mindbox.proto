@@ -5,6 +5,14 @@ option go_package = "go/mindbox";
 package mindbox;
 
 service User {
+    rpc Create (UpsertUserRequest) returns (UpsertUserResponse) {
+    }
+    rpc Update (UpsertUserRequest) returns (UpsertUserResponse) {
+    }
+    rpc UpdateMobile (UpsertUserRequest) returns (UpsertUserResponse) {
+    }
+    rpc Delete (DeleteUserRequest) returns (DeleteUserResponse) {
+    }
     rpc Info (ParamsUser) returns (ResponseUser) {
     }
     rpc Orders (ParamsOrders) returns (ResponseOrders) {
@@ -561,4 +569,41 @@ message CalculateResponsePositions {
     int64 line_id = 7;
     string custom_fields = 8;
     repeated CalculateResponseAppliedPromotions applied_promotions = 9;
+}
+
+message UpsertUserRequest {
+    string site_id = 1;
+    optional string email = 2;
+    optional string mobile_phone = 3;
+    optional string birthdate = 4;
+    optional string gender = 5;
+    optional string first_name = 6;
+    optional string middle_name = 7;
+    optional string last_name = 8;
+    optional string custom_fields = 9;
+}
+
+message UpsertUserResponse {
+    string status = 1;
+    string message = 2;
+    UpsertUserResponseData data = 3;
+    int64 code = 4;
+    repeated Error errors = 5;
+}
+
+message UpsertUserResponseData {
+    int64 mindbox_id = 1;
+}
+
+message DeleteUserRequest {
+    optional string site_id = 1;
+    optional string mobile_phone = 2;
+    optional string execution_datetime = 3;
+}
+
+message DeleteUserResponse {
+    string status = 1;
+    string message = 2;
+    int64 code = 3;
+    repeated Error errors = 4;
 }
