@@ -19,6 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	User_Create_FullMethodName         = "/mindbox.User/Create"
+	User_Update_FullMethodName         = "/mindbox.User/Update"
+	User_UpdateMobile_FullMethodName   = "/mindbox.User/UpdateMobile"
+	User_Delete_FullMethodName         = "/mindbox.User/Delete"
 	User_Info_FullMethodName           = "/mindbox.User/Info"
 	User_Orders_FullMethodName         = "/mindbox.User/Orders"
 	User_SendOSMICard_FullMethodName   = "/mindbox.User/SendOSMICard"
@@ -29,6 +33,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
+	Create(ctx context.Context, in *UpsertUserRequest, opts ...grpc.CallOption) (*UpsertUserResponse, error)
+	Update(ctx context.Context, in *UpsertUserRequest, opts ...grpc.CallOption) (*UpsertUserResponse, error)
+	UpdateMobile(ctx context.Context, in *UpsertUserRequest, opts ...grpc.CallOption) (*UpsertUserResponse, error)
+	Delete(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 	Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error)
 	Orders(ctx context.Context, in *ParamsOrders, opts ...grpc.CallOption) (*ResponseOrders, error)
 	SendOSMICard(ctx context.Context, in *ParamsOSMICard, opts ...grpc.CallOption) (*ResponseOSMICard, error)
@@ -41,6 +49,42 @@ type userClient struct {
 
 func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 	return &userClient{cc}
+}
+
+func (c *userClient) Create(ctx context.Context, in *UpsertUserRequest, opts ...grpc.CallOption) (*UpsertUserResponse, error) {
+	out := new(UpsertUserResponse)
+	err := c.cc.Invoke(ctx, User_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Update(ctx context.Context, in *UpsertUserRequest, opts ...grpc.CallOption) (*UpsertUserResponse, error) {
+	out := new(UpsertUserResponse)
+	err := c.cc.Invoke(ctx, User_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) UpdateMobile(ctx context.Context, in *UpsertUserRequest, opts ...grpc.CallOption) (*UpsertUserResponse, error) {
+	out := new(UpsertUserResponse)
+	err := c.cc.Invoke(ctx, User_UpdateMobile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Delete(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
+	out := new(DeleteUserResponse)
+	err := c.cc.Invoke(ctx, User_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *userClient) Info(ctx context.Context, in *ParamsUser, opts ...grpc.CallOption) (*ResponseUser, error) {
@@ -83,6 +127,10 @@ func (c *userClient) BonusesHistory(ctx context.Context, in *BonusesHistoryReque
 // All implementations should embed UnimplementedUserServer
 // for forward compatibility
 type UserServer interface {
+	Create(context.Context, *UpsertUserRequest) (*UpsertUserResponse, error)
+	Update(context.Context, *UpsertUserRequest) (*UpsertUserResponse, error)
+	UpdateMobile(context.Context, *UpsertUserRequest) (*UpsertUserResponse, error)
+	Delete(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	Info(context.Context, *ParamsUser) (*ResponseUser, error)
 	Orders(context.Context, *ParamsOrders) (*ResponseOrders, error)
 	SendOSMICard(context.Context, *ParamsOSMICard) (*ResponseOSMICard, error)
@@ -93,6 +141,18 @@ type UserServer interface {
 type UnimplementedUserServer struct {
 }
 
+func (UnimplementedUserServer) Create(context.Context, *UpsertUserRequest) (*UpsertUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedUserServer) Update(context.Context, *UpsertUserRequest) (*UpsertUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedUserServer) UpdateMobile(context.Context, *UpsertUserRequest) (*UpsertUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMobile not implemented")
+}
+func (UnimplementedUserServer) Delete(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
 func (UnimplementedUserServer) Info(context.Context, *ParamsUser) (*ResponseUser, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
 }
@@ -115,6 +175,78 @@ type UnsafeUserServer interface {
 
 func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
 	s.RegisterService(&User_ServiceDesc, srv)
+}
+
+func _User_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Create(ctx, req.(*UpsertUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Update(ctx, req.(*UpsertUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_UpdateMobile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).UpdateMobile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_UpdateMobile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).UpdateMobile(ctx, req.(*UpsertUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Delete(ctx, req.(*DeleteUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _User_Info_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -196,6 +328,22 @@ var User_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "mindbox.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _User_Create_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _User_Update_Handler,
+		},
+		{
+			MethodName: "UpdateMobile",
+			Handler:    _User_UpdateMobile_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _User_Delete_Handler,
+		},
 		{
 			MethodName: "Info",
 			Handler:    _User_Info_Handler,
