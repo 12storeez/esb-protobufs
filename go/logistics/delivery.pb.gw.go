@@ -36,7 +36,7 @@ var (
 )
 
 func request_Delivery_List_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq OrderPickUpPointsRequest
+	var protoReq PickUpPointsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -69,7 +69,7 @@ func request_Delivery_List_0(ctx context.Context, marshaler runtime.Marshaler, c
 }
 
 func local_request_Delivery_List_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq OrderPickUpPointsRequest
+	var protoReq PickUpPointsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -102,7 +102,7 @@ func local_request_Delivery_List_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func request_Delivery_Detail_0(ctx context.Context, marshaler runtime.Marshaler, client DeliveryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq OrderPickUpPointsDetailRequest
+	var protoReq PickUpPointsDetailRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -138,7 +138,7 @@ func request_Delivery_Detail_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_Delivery_Detail_0(ctx context.Context, marshaler runtime.Marshaler, server DeliveryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq OrderPickUpPointsDetailRequest
+	var protoReq PickUpPointsDetailRequest
 	var metadata runtime.ServerMetadata
 
 	var (

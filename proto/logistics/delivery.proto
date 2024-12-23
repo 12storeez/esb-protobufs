@@ -7,13 +7,13 @@ package logistics;
 import "google/api/annotations.proto";
 
 service Delivery{
-  rpc List(OrderPickUpPointsRequest) returns (OrderPickUpPointsResponse) {
+  rpc List(PickUpPointsRequest) returns (PickUpPointsResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery/pickup/provider/{provider}/points"
     };
   }
 
-  rpc Detail(OrderPickUpPointsDetailRequest) returns (OrderPickUpPointsDetailResponse) {
+  rpc Detail(PickUpPointsDetailRequest) returns (PickUpPointsDetailResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery/pickup/provider/{provider}/points/{point}"
     };
@@ -21,7 +21,7 @@ service Delivery{
 
 }
 
-message OrderPickUpPointsRequest {
+message PickUpPointsRequest {
   string provider =  1;
   string city_id =   2;
   string city_name = 3;
@@ -30,7 +30,7 @@ message OrderPickUpPointsRequest {
   int32  limit =     6;
 }
 
-message OrderPickUpPointsResponse {
+message PickUpPointsResponse {
   repeated PickupPoint  results = 1;
   int32                 total =   2;
 }
@@ -41,16 +41,14 @@ message PickupPoint {
   string  title =   3;
   double  lat =     4;
   double  lng =     5;
-  bool    success = 6;
-  int32   total =   7;
 }
 
-message OrderPickUpPointsDetailRequest {
+message PickUpPointsDetailRequest {
   string provider =  1;
   string point =     2;
 }
 
-message OrderPickUpPointsDetailResponse {
+message PickUpPointsDetailResponse {
   string id =               1;
   string address =          2;
   string title =            3;

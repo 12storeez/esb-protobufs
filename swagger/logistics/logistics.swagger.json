@@ -1080,7 +1080,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsOrderPickUpPointsResponse"
+              "$ref": "#/definitions/logisticsPickUpPointsResponse"
             }
           },
           "default": {
@@ -1142,7 +1142,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsOrderPickUpPointsDetailResponse"
+              "$ref": "#/definitions/logisticsPickUpPointsDetailResponse"
             }
           },
           "default": {
@@ -5768,48 +5768,6 @@
         }
       }
     },
-    "logisticsOrderPickUpPointsDetailResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "deliveryPeriod": {
-          "type": "string"
-        },
-        "workTime": {
-          "type": "string"
-        },
-        "phone": {
-          "type": "string"
-        },
-        "tripDescription": {
-          "type": "string"
-        }
-      }
-    },
-    "logisticsOrderPickUpPointsResponse": {
-      "type": "object",
-      "properties": {
-        "results": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsPickupPoint"
-          }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
     "logisticsPaymentMethod": {
       "type": "object",
       "properties": {
@@ -5905,6 +5863,48 @@
         }
       }
     },
+    "logisticsPickUpPointsDetailResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "deliveryPeriod": {
+          "type": "string"
+        },
+        "workTime": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "tripDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsPickUpPointsResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsPickupPoint"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "logisticsPickupPoint": {
       "type": "object",
       "properties": {
@@ -5924,13 +5924,6 @@
         "lng": {
           "type": "number",
           "format": "double"
-        },
-        "success": {
-          "type": "boolean"
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },

@@ -27,8 +27,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeliveryClient interface {
-	List(ctx context.Context, in *OrderPickUpPointsRequest, opts ...grpc.CallOption) (*OrderPickUpPointsResponse, error)
-	Detail(ctx context.Context, in *OrderPickUpPointsDetailRequest, opts ...grpc.CallOption) (*OrderPickUpPointsDetailResponse, error)
+	List(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*PickUpPointsResponse, error)
+	Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*PickUpPointsDetailResponse, error)
 }
 
 type deliveryClient struct {
@@ -39,8 +39,8 @@ func NewDeliveryClient(cc grpc.ClientConnInterface) DeliveryClient {
 	return &deliveryClient{cc}
 }
 
-func (c *deliveryClient) List(ctx context.Context, in *OrderPickUpPointsRequest, opts ...grpc.CallOption) (*OrderPickUpPointsResponse, error) {
-	out := new(OrderPickUpPointsResponse)
+func (c *deliveryClient) List(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*PickUpPointsResponse, error) {
+	out := new(PickUpPointsResponse)
 	err := c.cc.Invoke(ctx, Delivery_List_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -48,8 +48,8 @@ func (c *deliveryClient) List(ctx context.Context, in *OrderPickUpPointsRequest,
 	return out, nil
 }
 
-func (c *deliveryClient) Detail(ctx context.Context, in *OrderPickUpPointsDetailRequest, opts ...grpc.CallOption) (*OrderPickUpPointsDetailResponse, error) {
-	out := new(OrderPickUpPointsDetailResponse)
+func (c *deliveryClient) Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*PickUpPointsDetailResponse, error) {
+	out := new(PickUpPointsDetailResponse)
 	err := c.cc.Invoke(ctx, Delivery_Detail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -61,18 +61,18 @@ func (c *deliveryClient) Detail(ctx context.Context, in *OrderPickUpPointsDetail
 // All implementations should embed UnimplementedDeliveryServer
 // for forward compatibility
 type DeliveryServer interface {
-	List(context.Context, *OrderPickUpPointsRequest) (*OrderPickUpPointsResponse, error)
-	Detail(context.Context, *OrderPickUpPointsDetailRequest) (*OrderPickUpPointsDetailResponse, error)
+	List(context.Context, *PickUpPointsRequest) (*PickUpPointsResponse, error)
+	Detail(context.Context, *PickUpPointsDetailRequest) (*PickUpPointsDetailResponse, error)
 }
 
 // UnimplementedDeliveryServer should be embedded to have forward compatible implementations.
 type UnimplementedDeliveryServer struct {
 }
 
-func (UnimplementedDeliveryServer) List(context.Context, *OrderPickUpPointsRequest) (*OrderPickUpPointsResponse, error) {
+func (UnimplementedDeliveryServer) List(context.Context, *PickUpPointsRequest) (*PickUpPointsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedDeliveryServer) Detail(context.Context, *OrderPickUpPointsDetailRequest) (*OrderPickUpPointsDetailResponse, error) {
+func (UnimplementedDeliveryServer) Detail(context.Context, *PickUpPointsDetailRequest) (*PickUpPointsDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Detail not implemented")
 }
 
@@ -88,7 +88,7 @@ func RegisterDeliveryServer(s grpc.ServiceRegistrar, srv DeliveryServer) {
 }
 
 func _Delivery_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OrderPickUpPointsRequest)
+	in := new(PickUpPointsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -100,13 +100,13 @@ func _Delivery_List_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: Delivery_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).List(ctx, req.(*OrderPickUpPointsRequest))
+		return srv.(DeliveryServer).List(ctx, req.(*PickUpPointsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Delivery_Detail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OrderPickUpPointsDetailRequest)
+	in := new(PickUpPointsDetailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func _Delivery_Detail_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Delivery_Detail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeliveryServer).Detail(ctx, req.(*OrderPickUpPointsDetailRequest))
+		return srv.(DeliveryServer).Detail(ctx, req.(*PickUpPointsDetailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
