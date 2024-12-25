@@ -11,12 +11,15 @@ service Delivery{
   rpc List(PickUpPointsRequest) returns (PickUpPointsResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery/pickup/provider/{provider}/points"
+      body: "*"
     };
   }
 
   rpc Detail(PickUpPointsDetailRequest) returns (common.UnifiedResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery/pickup/provider/{provider}/points/{point}"
+      body: "*"
+
     };
   }
 
