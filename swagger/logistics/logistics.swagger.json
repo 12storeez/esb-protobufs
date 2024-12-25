@@ -6592,6 +6592,13 @@
         },
         "isWeightBorderIncludePresent": {
           "type": "boolean"
+        },
+        "rels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsRel"
+          }
         }
       }
     },
@@ -6650,6 +6657,13 @@
         },
         "isWeightBorderIncludePresent": {
           "type": "boolean"
+        },
+        "rels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsRel"
+          }
         }
       }
     },
