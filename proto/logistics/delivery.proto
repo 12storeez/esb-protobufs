@@ -5,6 +5,7 @@ option go_package = "go/logistics";
 package logistics;
 
 import "google/api/annotations.proto";
+import "common.proto";
 
 service Delivery{
   rpc List(PickUpPointsRequest) returns (PickUpPointsResponse) {
@@ -13,7 +14,7 @@ service Delivery{
     };
   }
 
-  rpc Detail(PickUpPointsDetailRequest) returns (PickUpPointsDetailResponse) {
+  rpc Detail(PickUpPointsDetailRequest) returns (common.UnifiedResponse) {
     option (google.api.http) = {
       get: "/api/v1/delivery/pickup/provider/{provider}/points/{point}"
     };
