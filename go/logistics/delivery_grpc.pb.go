@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeliveryClient interface {
 	List(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*PickUpPointsResponse, error)
-	Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*PickUpPointsDetailResponse, error)
+	Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
 }
 
 type deliveryClient struct {
@@ -48,8 +48,8 @@ func (c *deliveryClient) List(ctx context.Context, in *PickUpPointsRequest, opts
 	return out, nil
 }
 
-func (c *deliveryClient) Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*PickUpPointsDetailResponse, error) {
-	out := new(PickUpPointsDetailResponse)
+func (c *deliveryClient) Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
+	out := new(UnifiedResponse)
 	err := c.cc.Invoke(ctx, Delivery_Detail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ func (c *deliveryClient) Detail(ctx context.Context, in *PickUpPointsDetailReque
 // for forward compatibility
 type DeliveryServer interface {
 	List(context.Context, *PickUpPointsRequest) (*PickUpPointsResponse, error)
-	Detail(context.Context, *PickUpPointsDetailRequest) (*PickUpPointsDetailResponse, error)
+	Detail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error)
 }
 
 // UnimplementedDeliveryServer should be embedded to have forward compatible implementations.
@@ -72,7 +72,7 @@ type UnimplementedDeliveryServer struct {
 func (UnimplementedDeliveryServer) List(context.Context, *PickUpPointsRequest) (*PickUpPointsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedDeliveryServer) Detail(context.Context, *PickUpPointsDetailRequest) (*PickUpPointsDetailResponse, error) {
+func (UnimplementedDeliveryServer) Detail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Detail not implemented")
 }
 
