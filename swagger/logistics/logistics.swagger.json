@@ -18,9 +18,6 @@
       "name": "CountryService"
     },
     {
-      "name": "Delivery"
-    },
-    {
       "name": "DeliveryCalendarService"
     },
     {
@@ -1070,104 +1067,6 @@
         ],
         "tags": [
           "DeliveryTypeService"
-        ]
-      }
-    },
-    "/api/v1/delivery/pickup/provider/{provider}/points": {
-      "get": {
-        "operationId": "Delivery_List",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/logisticsPickUpPointsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "provider",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "cityId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "cityName",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "Delivery"
-        ]
-      }
-    },
-    "/api/v1/delivery/pickup/provider/{provider}/points/{point}": {
-      "get": {
-        "operationId": "Delivery_Detail",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/commonUnifiedResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "provider",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "point",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Delivery"
         ]
       }
     },
@@ -3505,6 +3404,104 @@
         ]
       }
     },
+    "/api/v1/winner/pickup/{filter.provider}/points": {
+      "get": {
+        "operationId": "WinnerService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commonUnifiedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter.provider",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filter.cityId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter.cityName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter.search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "WinnerService"
+        ]
+      }
+    },
+    "/api/v1/winner/pickup/{provider}/points/{point}": {
+      "get": {
+        "operationId": "WinnerService_Detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commonUnifiedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "point",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WinnerService"
+        ]
+      }
+    },
     "/api/v1/zone": {
       "get": {
         "operationId": "ZoneService_List",
@@ -5243,6 +5240,23 @@
         }
       }
     },
+    "logisticsFilter": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "cityId": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string"
+        },
+        "search": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsFilterDeliveryType": {
       "type": "object",
       "properties": {
@@ -5768,6 +5782,19 @@
         }
       }
     },
+    "logisticsPagination": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "logisticsPaymentMethod": {
       "type": "object",
       "properties": {
@@ -5860,44 +5887,6 @@
             "type": "object",
             "$ref": "#/definitions/logisticsPaymentMethodCategoryRestriction"
           }
-        }
-      }
-    },
-    "logisticsPickUpPointsResponse": {
-      "type": "object",
-      "properties": {
-        "results": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsPickupPoint"
-          }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "logisticsPickupPoint": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "lat": {
-          "type": "number",
-          "format": "double"
-        },
-        "lng": {
-          "type": "number",
-          "format": "double"
         }
       }
     },
