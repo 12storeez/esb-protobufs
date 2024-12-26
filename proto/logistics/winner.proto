@@ -54,7 +54,6 @@ message Filter {
 
 message PickUpPointsResponse {
   repeated PickupPoint  results = 1;
-  int32                 total =   2;
 }
 
 message PickupPoint {
