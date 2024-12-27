@@ -3451,14 +3451,14 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           {
             "name": "pagination.offset",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -5787,11 +5787,11 @@
       "properties": {
         "limit": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "offset": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         }
       }
     },
