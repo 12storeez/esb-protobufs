@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	WinnerService_Calculate_FullMethodName = "/logistics.WinnerService/Calculate"
-	WinnerService_Intervals_FullMethodName = "/logistics.WinnerService/Intervals"
-	WinnerService_List_FullMethodName      = "/logistics.WinnerService/List"
-	WinnerService_Detail_FullMethodName    = "/logistics.WinnerService/Detail"
+	WinnerService_Calculate_FullMethodName    = "/logistics.WinnerService/Calculate"
+	WinnerService_Intervals_FullMethodName    = "/logistics.WinnerService/Intervals"
+	WinnerService_PickupList_FullMethodName   = "/logistics.WinnerService/PickupList"
+	WinnerService_PickupDetail_FullMethodName = "/logistics.WinnerService/PickupDetail"
 )
 
 // WinnerServiceClient is the client API for WinnerService service.
@@ -31,8 +31,8 @@ const (
 type WinnerServiceClient interface {
 	Calculate(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
 	Intervals(ctx context.Context, in *IntervalsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
-	List(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
-	Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
+	PickupList(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
+	PickupDetail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
 }
 
 type winnerServiceClient struct {
@@ -61,18 +61,18 @@ func (c *winnerServiceClient) Intervals(ctx context.Context, in *IntervalsReques
 	return out, nil
 }
 
-func (c *winnerServiceClient) List(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
+func (c *winnerServiceClient) PickupList(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
 	out := new(UnifiedResponse)
-	err := c.cc.Invoke(ctx, WinnerService_List_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, WinnerService_PickupList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *winnerServiceClient) Detail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
+func (c *winnerServiceClient) PickupDetail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
 	out := new(UnifiedResponse)
-	err := c.cc.Invoke(ctx, WinnerService_Detail_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, WinnerService_PickupDetail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,8 +85,8 @@ func (c *winnerServiceClient) Detail(ctx context.Context, in *PickUpPointsDetail
 type WinnerServiceServer interface {
 	Calculate(context.Context, *CalculateRequest) (*CalculateResponse, error)
 	Intervals(context.Context, *IntervalsRequest) (*UnifiedResponse, error)
-	List(context.Context, *PickUpPointsRequest) (*UnifiedResponse, error)
-	Detail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error)
+	PickupList(context.Context, *PickUpPointsRequest) (*UnifiedResponse, error)
+	PickupDetail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error)
 }
 
 // UnimplementedWinnerServiceServer should be embedded to have forward compatible implementations.
@@ -99,11 +99,11 @@ func (UnimplementedWinnerServiceServer) Calculate(context.Context, *CalculateReq
 func (UnimplementedWinnerServiceServer) Intervals(context.Context, *IntervalsRequest) (*UnifiedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Intervals not implemented")
 }
-func (UnimplementedWinnerServiceServer) List(context.Context, *PickUpPointsRequest) (*UnifiedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+func (UnimplementedWinnerServiceServer) PickupList(context.Context, *PickUpPointsRequest) (*UnifiedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PickupList not implemented")
 }
-func (UnimplementedWinnerServiceServer) Detail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Detail not implemented")
+func (UnimplementedWinnerServiceServer) PickupDetail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PickupDetail not implemented")
 }
 
 // UnsafeWinnerServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -153,38 +153,38 @@ func _WinnerService_Intervals_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WinnerService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _WinnerService_PickupList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PickUpPointsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WinnerServiceServer).List(ctx, in)
+		return srv.(WinnerServiceServer).PickupList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: WinnerService_List_FullMethodName,
+		FullMethod: WinnerService_PickupList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WinnerServiceServer).List(ctx, req.(*PickUpPointsRequest))
+		return srv.(WinnerServiceServer).PickupList(ctx, req.(*PickUpPointsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WinnerService_Detail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _WinnerService_PickupDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PickUpPointsDetailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WinnerServiceServer).Detail(ctx, in)
+		return srv.(WinnerServiceServer).PickupDetail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: WinnerService_Detail_FullMethodName,
+		FullMethod: WinnerService_PickupDetail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WinnerServiceServer).Detail(ctx, req.(*PickUpPointsDetailRequest))
+		return srv.(WinnerServiceServer).PickupDetail(ctx, req.(*PickUpPointsDetailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -205,12 +205,12 @@ var WinnerService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _WinnerService_Intervals_Handler,
 		},
 		{
-			MethodName: "List",
-			Handler:    _WinnerService_List_Handler,
+			MethodName: "PickupList",
+			Handler:    _WinnerService_PickupList_Handler,
 		},
 		{
-			MethodName: "Detail",
-			Handler:    _WinnerService_Detail_Handler,
+			MethodName: "PickupDetail",
+			Handler:    _WinnerService_PickupDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -3406,7 +3406,7 @@
     },
     "/api/v1/winner/pickup/{filter.provider}/points": {
       "get": {
-        "operationId": "WinnerService_List",
+        "operationId": "WinnerService_PickupList",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3468,7 +3468,7 @@
     },
     "/api/v1/winner/pickup/{provider}/points/{point}": {
       "get": {
-        "operationId": "WinnerService_Detail",
+        "operationId": "WinnerService_PickupDetail",
         "responses": {
           "200": {
             "description": "A successful response.",

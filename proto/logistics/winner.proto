@@ -22,13 +22,13 @@ service WinnerService {
     };
   }
 
-  rpc List(PickUpPointsRequest) returns (common.UnifiedResponse) {
+  rpc PickupList(PickUpPointsRequest) returns (common.UnifiedResponse) {
     option (google.api.http) = {
       get: "/api/v1/winner/pickup/{filter.provider}/points"
     };
   }
 
-  rpc Detail(PickUpPointsDetailRequest) returns (common.UnifiedResponse) {
+  rpc PickupDetail(PickUpPointsDetailRequest) returns (common.UnifiedResponse) {
     option (google.api.http) = {
       get: "/api/v1/winner/pickup/{provider}/points/{point}"
     };
