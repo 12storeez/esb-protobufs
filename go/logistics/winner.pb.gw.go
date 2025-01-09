@@ -84,10 +84,10 @@ func local_request_WinnerService_Intervals_0(ctx context.Context, marshaler runt
 }
 
 var (
-	filter_WinnerService_List_0 = &utilities.DoubleArray{Encoding: map[string]int{"filter": 0, "provider": 1}, Base: []int{1, 1, 1, 0}, Check: []int{0, 1, 2, 3}}
+	filter_WinnerService_PickupList_0 = &utilities.DoubleArray{Encoding: map[string]int{"filter": 0, "provider": 1}, Base: []int{1, 1, 1, 0}, Check: []int{0, 1, 2, 3}}
 )
 
-func request_WinnerService_List_0(ctx context.Context, marshaler runtime.Marshaler, client WinnerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_WinnerService_PickupList_0(ctx context.Context, marshaler runtime.Marshaler, client WinnerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq PickUpPointsRequest
 	var metadata runtime.ServerMetadata
 
@@ -111,16 +111,16 @@ func request_WinnerService_List_0(ctx context.Context, marshaler runtime.Marshal
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WinnerService_List_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WinnerService_PickupList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.List(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.PickupList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_WinnerService_List_0(ctx context.Context, marshaler runtime.Marshaler, server WinnerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_WinnerService_PickupList_0(ctx context.Context, marshaler runtime.Marshaler, server WinnerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq PickUpPointsRequest
 	var metadata runtime.ServerMetadata
 
@@ -144,16 +144,16 @@ func local_request_WinnerService_List_0(ctx context.Context, marshaler runtime.M
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WinnerService_List_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_WinnerService_PickupList_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.List(ctx, &protoReq)
+	msg, err := server.PickupList(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_WinnerService_Detail_0(ctx context.Context, marshaler runtime.Marshaler, client WinnerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_WinnerService_PickupDetail_0(ctx context.Context, marshaler runtime.Marshaler, client WinnerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq PickUpPointsDetailRequest
 	var metadata runtime.ServerMetadata
 
@@ -184,12 +184,12 @@ func request_WinnerService_Detail_0(ctx context.Context, marshaler runtime.Marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "point", err)
 	}
 
-	msg, err := client.Detail(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.PickupDetail(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_WinnerService_Detail_0(ctx context.Context, marshaler runtime.Marshaler, server WinnerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_WinnerService_PickupDetail_0(ctx context.Context, marshaler runtime.Marshaler, server WinnerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq PickUpPointsDetailRequest
 	var metadata runtime.ServerMetadata
 
@@ -220,7 +220,7 @@ func local_request_WinnerService_Detail_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "point", err)
 	}
 
-	msg, err := server.Detail(ctx, &protoReq)
+	msg, err := server.PickupDetail(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -281,7 +281,7 @@ func RegisterWinnerServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_WinnerService_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_WinnerService_PickupList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -289,12 +289,12 @@ func RegisterWinnerServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.WinnerService/List", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{filter.provider}/points"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.WinnerService/PickupList", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{filter.provider}/points"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_WinnerService_List_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_WinnerService_PickupList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -302,11 +302,11 @@ func RegisterWinnerServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_WinnerService_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_WinnerService_PickupList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_WinnerService_Detail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_WinnerService_PickupDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -314,12 +314,12 @@ func RegisterWinnerServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.WinnerService/Detail", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{provider}/points/{point}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.WinnerService/PickupDetail", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{provider}/points/{point}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_WinnerService_Detail_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_WinnerService_PickupDetail_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -327,7 +327,7 @@ func RegisterWinnerServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_WinnerService_Detail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_WinnerService_PickupDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -416,47 +416,47 @@ func RegisterWinnerServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_WinnerService_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_WinnerService_PickupList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.WinnerService/List", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{filter.provider}/points"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.WinnerService/PickupList", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{filter.provider}/points"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_WinnerService_List_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_WinnerService_PickupList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_WinnerService_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_WinnerService_PickupList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_WinnerService_Detail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_WinnerService_PickupDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.WinnerService/Detail", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{provider}/points/{point}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.WinnerService/PickupDetail", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/{provider}/points/{point}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_WinnerService_Detail_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_WinnerService_PickupDetail_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_WinnerService_Detail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_WinnerService_PickupDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -468,9 +468,9 @@ var (
 
 	pattern_WinnerService_Intervals_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "winner", "intervals"}, ""))
 
-	pattern_WinnerService_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "winner", "pickup", "filter.provider", "points"}, ""))
+	pattern_WinnerService_PickupList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "winner", "pickup", "filter.provider", "points"}, ""))
 
-	pattern_WinnerService_Detail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "winner", "pickup", "provider", "points", "point"}, ""))
+	pattern_WinnerService_PickupDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "winner", "pickup", "provider", "points", "point"}, ""))
 )
 
 var (
@@ -478,7 +478,7 @@ var (
 
 	forward_WinnerService_Intervals_0 = runtime.ForwardResponseMessage
 
-	forward_WinnerService_List_0 = runtime.ForwardResponseMessage
+	forward_WinnerService_PickupList_0 = runtime.ForwardResponseMessage
 
-	forward_WinnerService_Detail_0 = runtime.ForwardResponseMessage
+	forward_WinnerService_PickupDetail_0 = runtime.ForwardResponseMessage
 )
