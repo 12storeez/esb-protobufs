@@ -3404,6 +3404,104 @@
         ]
       }
     },
+    "/api/v1/winner/pickup/{filter.provider}/points": {
+      "get": {
+        "operationId": "WinnerService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commonUnifiedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter.provider",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filter.cityId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter.cityName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter.search",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pagination.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "WinnerService"
+        ]
+      }
+    },
+    "/api/v1/winner/pickup/{provider}/points/{point}": {
+      "get": {
+        "operationId": "WinnerService_Detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commonUnifiedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "point",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WinnerService"
+        ]
+      }
+    },
     "/api/v1/zone": {
       "get": {
         "operationId": "ZoneService_List",
@@ -5142,6 +5240,23 @@
         }
       }
     },
+    "logisticsFilter": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "cityId": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string"
+        },
+        "search": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsFilterDeliveryType": {
       "type": "object",
       "properties": {
@@ -5664,6 +5779,19 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsPagination": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
