@@ -5043,10 +5043,10 @@
         "restrictionByWeightIsActive": {
           "type": "boolean"
         },
-        "restrictionByWeightMessageId": {
+        "restrictionByWeightMessage": {
           "$ref": "#/definitions/logisticsMessage"
         },
-        "restrictionByWeightPopupId": {
+        "restrictionByWeightPopup": {
           "$ref": "#/definitions/logisticsPopup"
         },
         "maxWeight": {
