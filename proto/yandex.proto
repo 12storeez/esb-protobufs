@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "go/yandex";
+
+package yandex;
+
+service Yandex {
+  rpc Create (CreateRequest) returns (CreateResponse) {
+  }
+}
+
+message CreateRequest {
+  string          title = 1;
+}
+
+message CreateResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+}
+
+message Error {
+  string target = 1;
+  int64  code = 2;
+  string message = 3;
+}
