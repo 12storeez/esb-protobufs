@@ -58,6 +58,11 @@ service Order {
 
 }
 
+service Gift {
+    rpc SendCodeByEmail(SendCodeByEmailRequest) returns (SendCodeResponse) {} // tnt-1243
+    rpc VerifyCode(VerifyCodeRequest) returns (VerifyCodeResponse) {}         // tnt-1243
+}
+
 message PushClickParams {
     string message_unique_key = 1;
     string button_unique_key = 2;
@@ -602,6 +607,38 @@ message DeleteUserRequest {
 }
 
 message DeleteUserResponse {
+    string status = 1;
+    string message = 2;
+    int64 code = 3;
+    repeated Error errors = 4;
+}
+
+// gifts tnt-1243
+
+// SendCodeByEmail Отправка кода для ПС на почту. При получении запроса проксируем в Mindbox в операцию Giftemail
+message SendCodeByEmailRequest {
+    string email = 1;
+}
+
+message SendCodeResponse {
+    string status = 1;
+    string message = 2;
+    int64 code = 3;
+    SendCodeResponseData data = 4;
+    repeated Error errors = 5;
+}
+
+message SendCodeResponseData {
+    int64 timestamp = 1; // метка времени, когда в следующий раз можно попробовать отправить код повторно
+}
+
+// VerifyCode Проверка кодов для ПС. При получении запроса проксируем в Mindbox в операцию Checkcode
+message VerifyCodeRequest {
+    string email = 1;
+    string code = 2;
+}
+
+message VerifyCodeResponse {
     string status = 1;
     string message = 2;
     int64 code = 3;
