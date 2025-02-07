@@ -984,3 +984,128 @@ var Order_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/mindbox.proto",
 }
+
+const (
+	Gift_SendCodeByEmail_FullMethodName = "/mindbox.Gift/SendCodeByEmail"
+	Gift_VerifyCode_FullMethodName      = "/mindbox.Gift/VerifyCode"
+)
+
+// GiftClient is the client API for Gift service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GiftClient interface {
+	SendCodeByEmail(ctx context.Context, in *SendCodeByEmailRequest, opts ...grpc.CallOption) (*SendCodeResponse, error)
+	VerifyCode(ctx context.Context, in *VerifyCodeRequest, opts ...grpc.CallOption) (*VerifyCodeResponse, error)
+}
+
+type giftClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGiftClient(cc grpc.ClientConnInterface) GiftClient {
+	return &giftClient{cc}
+}
+
+func (c *giftClient) SendCodeByEmail(ctx context.Context, in *SendCodeByEmailRequest, opts ...grpc.CallOption) (*SendCodeResponse, error) {
+	out := new(SendCodeResponse)
+	err := c.cc.Invoke(ctx, Gift_SendCodeByEmail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *giftClient) VerifyCode(ctx context.Context, in *VerifyCodeRequest, opts ...grpc.CallOption) (*VerifyCodeResponse, error) {
+	out := new(VerifyCodeResponse)
+	err := c.cc.Invoke(ctx, Gift_VerifyCode_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GiftServer is the server API for Gift service.
+// All implementations should embed UnimplementedGiftServer
+// for forward compatibility
+type GiftServer interface {
+	SendCodeByEmail(context.Context, *SendCodeByEmailRequest) (*SendCodeResponse, error)
+	VerifyCode(context.Context, *VerifyCodeRequest) (*VerifyCodeResponse, error)
+}
+
+// UnimplementedGiftServer should be embedded to have forward compatible implementations.
+type UnimplementedGiftServer struct {
+}
+
+func (UnimplementedGiftServer) SendCodeByEmail(context.Context, *SendCodeByEmailRequest) (*SendCodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendCodeByEmail not implemented")
+}
+func (UnimplementedGiftServer) VerifyCode(context.Context, *VerifyCodeRequest) (*VerifyCodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyCode not implemented")
+}
+
+// UnsafeGiftServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GiftServer will
+// result in compilation errors.
+type UnsafeGiftServer interface {
+	mustEmbedUnimplementedGiftServer()
+}
+
+func RegisterGiftServer(s grpc.ServiceRegistrar, srv GiftServer) {
+	s.RegisterService(&Gift_ServiceDesc, srv)
+}
+
+func _Gift_SendCodeByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendCodeByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).SendCodeByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_SendCodeByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).SendCodeByEmail(ctx, req.(*SendCodeByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gift_VerifyCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyCodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).VerifyCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_VerifyCode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).VerifyCode(ctx, req.(*VerifyCodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Gift_ServiceDesc is the grpc.ServiceDesc for Gift service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Gift_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.Gift",
+	HandlerType: (*GiftServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SendCodeByEmail",
+			Handler:    _Gift_SendCodeByEmail_Handler,
+		},
+		{
+			MethodName: "VerifyCode",
+			Handler:    _Gift_VerifyCode_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mindbox.proto",
+}
