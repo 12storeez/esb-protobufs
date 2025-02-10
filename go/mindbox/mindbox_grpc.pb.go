@@ -987,6 +987,7 @@ var Order_ServiceDesc = grpc.ServiceDesc{
 
 const (
 	Gift_SendCodeByEmail_FullMethodName = "/mindbox.Gift/SendCodeByEmail"
+	Gift_SendCodeBySMS_FullMethodName   = "/mindbox.Gift/SendCodeBySMS"
 	Gift_VerifyCode_FullMethodName      = "/mindbox.Gift/VerifyCode"
 )
 
@@ -995,6 +996,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GiftClient interface {
 	SendCodeByEmail(ctx context.Context, in *SendCodeByEmailRequest, opts ...grpc.CallOption) (*SendCodeResponse, error)
+	SendCodeBySMS(ctx context.Context, in *SendCodeBySMSRequest, opts ...grpc.CallOption) (*SendCodeResponse, error)
 	VerifyCode(ctx context.Context, in *VerifyCodeRequest, opts ...grpc.CallOption) (*VerifyCodeResponse, error)
 }
 
@@ -1015,6 +1017,15 @@ func (c *giftClient) SendCodeByEmail(ctx context.Context, in *SendCodeByEmailReq
 	return out, nil
 }
 
+func (c *giftClient) SendCodeBySMS(ctx context.Context, in *SendCodeBySMSRequest, opts ...grpc.CallOption) (*SendCodeResponse, error) {
+	out := new(SendCodeResponse)
+	err := c.cc.Invoke(ctx, Gift_SendCodeBySMS_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *giftClient) VerifyCode(ctx context.Context, in *VerifyCodeRequest, opts ...grpc.CallOption) (*VerifyCodeResponse, error) {
 	out := new(VerifyCodeResponse)
 	err := c.cc.Invoke(ctx, Gift_VerifyCode_FullMethodName, in, out, opts...)
@@ -1029,6 +1040,7 @@ func (c *giftClient) VerifyCode(ctx context.Context, in *VerifyCodeRequest, opts
 // for forward compatibility
 type GiftServer interface {
 	SendCodeByEmail(context.Context, *SendCodeByEmailRequest) (*SendCodeResponse, error)
+	SendCodeBySMS(context.Context, *SendCodeBySMSRequest) (*SendCodeResponse, error)
 	VerifyCode(context.Context, *VerifyCodeRequest) (*VerifyCodeResponse, error)
 }
 
@@ -1038,6 +1050,9 @@ type UnimplementedGiftServer struct {
 
 func (UnimplementedGiftServer) SendCodeByEmail(context.Context, *SendCodeByEmailRequest) (*SendCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendCodeByEmail not implemented")
+}
+func (UnimplementedGiftServer) SendCodeBySMS(context.Context, *SendCodeBySMSRequest) (*SendCodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendCodeBySMS not implemented")
 }
 func (UnimplementedGiftServer) VerifyCode(context.Context, *VerifyCodeRequest) (*VerifyCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyCode not implemented")
@@ -1072,6 +1087,24 @@ func _Gift_SendCodeByEmail_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Gift_SendCodeBySMS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendCodeBySMSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).SendCodeBySMS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_SendCodeBySMS_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).SendCodeBySMS(ctx, req.(*SendCodeBySMSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Gift_VerifyCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyCodeRequest)
 	if err := dec(in); err != nil {
@@ -1100,6 +1133,10 @@ var Gift_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendCodeByEmail",
 			Handler:    _Gift_SendCodeByEmail_Handler,
+		},
+		{
+			MethodName: "SendCodeBySMS",
+			Handler:    _Gift_SendCodeBySMS_Handler,
 		},
 		{
 			MethodName: "VerifyCode",
