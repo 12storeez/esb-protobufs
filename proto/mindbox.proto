@@ -60,6 +60,7 @@ service Order {
 
 service Gift {
     rpc SendCodeByEmail(SendCodeByEmailRequest) returns (SendCodeResponse) {} // tnt-1243
+    rpc SendCodeBySMS(SendCodeBySMSRequest) returns (SendCodeResponse) {}     // tnt-1243
     rpc VerifyCode(VerifyCodeRequest) returns (VerifyCodeResponse) {}         // tnt-1243
 }
 
@@ -620,6 +621,11 @@ message SendCodeByEmailRequest {
     string email = 1;
 }
 
+// SendCodeBySMS Отправка кода для ПС на телефон. При получении запроса проксируем в Mindbox в операцию Giftsms
+message SendCodeBySMSRequest {
+    string mobile_phone = 1;
+}
+
 message SendCodeResponse {
     string status = 1;
     string message = 2;
@@ -634,8 +640,9 @@ message SendCodeResponseData {
 
 // VerifyCode Проверка кодов для ПС. При получении запроса проксируем в Mindbox в операцию Checkcode
 message VerifyCodeRequest {
-    string email = 1;
-    string code = 2;
+    optional string email = 1;
+    optional string mobile_phone = 2;
+    string code = 3;
 }
 
 message VerifyCodeResponse {
