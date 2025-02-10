@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+option go_package = "go/receipt";
+
+package app.grpc.receipt;
+
+service ReceiptService {
+  rpc SellPrepaymentReceipt (SellRequest) returns (ReceiptResponse) {}
+  rpc SellFullpaymentReceipt (SellRequest) returns (ReceiptResponse) {}
+  rpc RefundPrepaymentReceipt (RefundRequest) returns (ReceiptResponse) {}
+  rpc RefundFullpaymentReceipt (RefundRequest) returns (ReceiptResponse) {}
+}
+
+message SellPrepaymentRequest {
+  bool isCorrection = 1;
+  Order order = 2;
+  Payment payment = 3;
+  repeated Position positions = 4;
+}
+
+message SellRequest {
+  bool isCorrection = 1;
+  Order order = 2;
+  repeated Payment payments = 3;
+  repeated Position positions = 4;
+}
+
+message RefundRequest {
+  bool isCorrection = 1;
+  Order order = 2;
+  RefundPayment payment = 3;
+  repeated Position refunds = 4;
+}
+
+message ReceiptResponse {
+  oneof data {
+    ReceiptSuccessResponse success = 1;
+    FailResponse fail = 2;
+  }
+}
+
+message ReceiptSuccessResponse {
+  string status = 1;
+  int32 internalId = 2;
+  optional string error = 3;
+}
+
+message Order {
+  int32 id = 1;
+  string paymentMethod = 2;
+  string phone = 3;
+  string email = 4;
+  bool isCertificate = 5;
+  optional string realizatedAt = 6;
+}
+
+message Position {
+  string name = 1;
+  PositionType type = 2;
+  string price = 3;
+  int32 quantity = 4;
+  string sum = 5;
+  string barcode = 6;
+  bool isCommission = 7;
+  optional string gs1m = 8;
+}
+
+enum PositionType {
+  PRODUCT = 0;
+  SERVICE = 1;
+}
+
+message Payment {
+  string sum = 1;
+  string transactionId = 2;
+  string paymentDate = 3;
+}
+
+message RefundPayment {
+  string transactionId = 1;
+  string refundDate = 2;
+  string returnQuid = 3;
+}
+
+message FailResponse {
+  sint32 code = 1;
+  repeated Error errors = 2;
+  string error_message = 3;
+  sint32 http_code = 4;
+}
+
+message Error {
+  string target = 1;
+  sint32 code = 2;
+  string message = 3;
+}
