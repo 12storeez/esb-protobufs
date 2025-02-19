@@ -10,7 +10,8 @@ service Yandex {
 }
 
 message CreateRequest {
-  string          title = 1;
+  string ticket_key = 1;
+  string slack_channel = 2;
 }
 
 message CreateResponse {
