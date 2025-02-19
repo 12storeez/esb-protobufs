@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Yandex_Create_FullMethodName = "/yandex.Yandex/Create"
+	Yandex_HandleCreateEvent_FullMethodName = "/yandex.Yandex/HandleCreateEvent"
 )
 
 // YandexClient is the client API for Yandex service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type YandexClient interface {
-	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	HandleCreateEvent(ctx context.Context, in *HandleCreateEventRequest, opts ...grpc.CallOption) (*HandleCreateEventResponse, error)
 }
 
 type yandexClient struct {
@@ -37,9 +37,9 @@ func NewYandexClient(cc grpc.ClientConnInterface) YandexClient {
 	return &yandexClient{cc}
 }
 
-func (c *yandexClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
-	out := new(CreateResponse)
-	err := c.cc.Invoke(ctx, Yandex_Create_FullMethodName, in, out, opts...)
+func (c *yandexClient) HandleCreateEvent(ctx context.Context, in *HandleCreateEventRequest, opts ...grpc.CallOption) (*HandleCreateEventResponse, error) {
+	out := new(HandleCreateEventResponse)
+	err := c.cc.Invoke(ctx, Yandex_HandleCreateEvent_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,15 +50,15 @@ func (c *yandexClient) Create(ctx context.Context, in *CreateRequest, opts ...gr
 // All implementations should embed UnimplementedYandexServer
 // for forward compatibility
 type YandexServer interface {
-	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	HandleCreateEvent(context.Context, *HandleCreateEventRequest) (*HandleCreateEventResponse, error)
 }
 
 // UnimplementedYandexServer should be embedded to have forward compatible implementations.
 type UnimplementedYandexServer struct {
 }
 
-func (UnimplementedYandexServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+func (UnimplementedYandexServer) HandleCreateEvent(context.Context, *HandleCreateEventRequest) (*HandleCreateEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HandleCreateEvent not implemented")
 }
 
 // UnsafeYandexServer may be embedded to opt out of forward compatibility for this service.
@@ -72,20 +72,20 @@ func RegisterYandexServer(s grpc.ServiceRegistrar, srv YandexServer) {
 	s.RegisterService(&Yandex_ServiceDesc, srv)
 }
 
-func _Yandex_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRequest)
+func _Yandex_HandleCreateEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HandleCreateEventRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(YandexServer).Create(ctx, in)
+		return srv.(YandexServer).HandleCreateEvent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Yandex_Create_FullMethodName,
+		FullMethod: Yandex_HandleCreateEvent_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(YandexServer).Create(ctx, req.(*CreateRequest))
+		return srv.(YandexServer).HandleCreateEvent(ctx, req.(*HandleCreateEventRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -98,8 +98,8 @@ var Yandex_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*YandexServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Create",
-			Handler:    _Yandex_Create_Handler,
+			MethodName: "HandleCreateEvent",
+			Handler:    _Yandex_HandleCreateEvent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
