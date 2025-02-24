@@ -5,16 +5,18 @@ option go_package = "go/yandex";
 package yandex;
 
 service Yandex {
-  rpc HandleCreateEvent (HandleCreateEventRequest) returns (HandleCreateEventResponse) {
+  rpc HandleCreateEvent (HandleEventRequest) returns (HandleEventResponse) {
+  }
+  rpc HandleUpdateEvent (HandleEventRequest) returns (HandleEventResponse) {
   }
 }
 
-message HandleCreateEventRequest {
+message HandleEventRequest {
   string ticket_key = 1;
   string slack_channel = 2;
 }
 
-message HandleCreateEventResponse {
+message HandleEventResponse {
   string            status = 1;
   string            message = 2;
   int64             code = 3;
