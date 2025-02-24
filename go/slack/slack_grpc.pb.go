@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Slack_Send_FullMethodName   = "/slack.Slack/Send"
-	Slack_Update_FullMethodName = "/slack.Slack/Update"
-	Slack_Delete_FullMethodName = "/slack.Slack/Delete"
+	Slack_Send_FullMethodName           = "/slack.Slack/Send"
+	Slack_Update_FullMethodName         = "/slack.Slack/Update"
+	Slack_Delete_FullMethodName         = "/slack.Slack/Delete"
+	Slack_GetMessageLink_FullMethodName = "/slack.Slack/GetMessageLink"
 )
 
 // SlackClient is the client API for Slack service.
@@ -31,6 +32,7 @@ type SlackClient interface {
 	Send(ctx context.Context, in *SendRequest, opts ...grpc.CallOption) (*SendResponse, error)
 	Update(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 	Delete(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*BaseResponse, error)
+	GetMessageLink(ctx context.Context, in *GetMessageLinkRequest, opts ...grpc.CallOption) (*GetMessageLinkResponse, error)
 }
 
 type slackClient struct {
@@ -68,6 +70,15 @@ func (c *slackClient) Delete(ctx context.Context, in *DeleteMessageRequest, opts
 	return out, nil
 }
 
+func (c *slackClient) GetMessageLink(ctx context.Context, in *GetMessageLinkRequest, opts ...grpc.CallOption) (*GetMessageLinkResponse, error) {
+	out := new(GetMessageLinkResponse)
+	err := c.cc.Invoke(ctx, Slack_GetMessageLink_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SlackServer is the server API for Slack service.
 // All implementations should embed UnimplementedSlackServer
 // for forward compatibility
@@ -75,6 +86,7 @@ type SlackServer interface {
 	Send(context.Context, *SendRequest) (*SendResponse, error)
 	Update(context.Context, *UpdateMessageRequest) (*BaseResponse, error)
 	Delete(context.Context, *DeleteMessageRequest) (*BaseResponse, error)
+	GetMessageLink(context.Context, *GetMessageLinkRequest) (*GetMessageLinkResponse, error)
 }
 
 // UnimplementedSlackServer should be embedded to have forward compatible implementations.
@@ -89,6 +101,9 @@ func (UnimplementedSlackServer) Update(context.Context, *UpdateMessageRequest) (
 }
 func (UnimplementedSlackServer) Delete(context.Context, *DeleteMessageRequest) (*BaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedSlackServer) GetMessageLink(context.Context, *GetMessageLinkRequest) (*GetMessageLinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMessageLink not implemented")
 }
 
 // UnsafeSlackServer may be embedded to opt out of forward compatibility for this service.
@@ -156,6 +171,24 @@ func _Slack_Delete_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Slack_GetMessageLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMessageLinkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SlackServer).GetMessageLink(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Slack_GetMessageLink_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SlackServer).GetMessageLink(ctx, req.(*GetMessageLinkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Slack_ServiceDesc is the grpc.ServiceDesc for Slack service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -174,6 +207,10 @@ var Slack_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _Slack_Delete_Handler,
+		},
+		{
+			MethodName: "GetMessageLink",
+			Handler:    _Slack_GetMessageLink_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
