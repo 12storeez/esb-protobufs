@@ -34,6 +34,7 @@ message SendResponse {
 message SendData {
     string thread_id = 1;
     string channel_id = 2;
+    string message_link = 3;
 }
 
 message UpdateMessageRequest {
