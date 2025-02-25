@@ -101,7 +101,6 @@ message TransportCompanyMode {
   string            created_at = 15;
   string            updated_at = 16;
   bool              is_weight_border_include_present = 17;
-  repeated Rel      rels = 18;
 }
 
 message TransportCompanyModeShort {
@@ -110,6 +109,7 @@ message TransportCompanyModeShort {
   bool        is_active = 3;
   string      created_at = 4;
   string      updated_at = 5;
+  repeated Rel      rels = 6;
 }
 
 message ListTransportCompanyModeRequest {
