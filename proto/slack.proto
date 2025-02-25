@@ -11,6 +11,8 @@ service Slack {
     }
     rpc Delete (DeleteMessageRequest) returns (BaseResponse) {
     }
+    rpc GetMessageLink (GetMessageLinkRequest) returns (GetMessageLinkResponse) {
+    }
 }
 
 message SendRequest {
@@ -48,6 +50,23 @@ message UpdateMessageRequest {
 message DeleteMessageRequest {
     string          channel = 2;
     string          thread_id = 6;
+}
+
+message GetMessageLinkRequest {
+    string          channel = 2;
+    string          thread_id = 6;
+}
+
+message GetMessageLinkResponse {
+    string            status = 1;
+    string            message = 2;
+    int64             code = 3;
+    repeated Error    errors = 4;
+    GetMessageLinkData          data = 5;
+}
+
+message GetMessageLinkData {
+    string message_link = 3;
 }
 
 message BaseResponse {
