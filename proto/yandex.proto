@@ -9,6 +9,8 @@ service Yandex {
   }
   rpc HandleUpdateEvent (HandleEventRequest) returns (HandleEventResponse) {
   }
+  rpc HandleNewCommentEvent (HandleEventRequest) returns (HandleEventResponse) {
+  }
 }
 
 message HandleEventRequest {
