@@ -6582,7 +6582,7 @@
         "isWeightBorderIncludePresent": {
           "type": "boolean"
         },
-        "isPresentQuantityBorderInclude": {
+        "isProductQuantityByArticleBorderIncludePresent": {
           "type": "boolean"
         }
       }
@@ -6643,7 +6643,7 @@
         "isWeightBorderIncludePresent": {
           "type": "boolean"
         },
-        "isPresentQuantityBorderInclude": {
+        "isProductQuantityByArticleBorderIncludePresent": {
           "type": "boolean"
         }
       }
