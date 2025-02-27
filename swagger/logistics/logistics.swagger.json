@@ -6581,6 +6581,9 @@
         },
         "isWeightBorderIncludePresent": {
           "type": "boolean"
+        },
+        "isProductQuantityByArticleBorderIncludePresent": {
+          "type": "boolean"
         }
       }
     },
@@ -6638,6 +6641,9 @@
           "type": "string"
         },
         "isWeightBorderIncludePresent": {
+          "type": "boolean"
+        },
+        "isProductQuantityByArticleBorderIncludePresent": {
           "type": "boolean"
         }
       }
