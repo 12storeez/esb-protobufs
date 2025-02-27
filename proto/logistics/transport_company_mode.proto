@@ -101,6 +101,7 @@ message TransportCompanyMode {
   string            created_at = 15;
   string            updated_at = 16;
   bool              is_weight_border_include_present = 17;
+  bool              is_present_quantity_border_include_delivery = 18;
 }
 
 message TransportCompanyModeShort {
