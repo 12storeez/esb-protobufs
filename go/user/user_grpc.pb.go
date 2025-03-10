@@ -550,3 +550,202 @@ var User_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/user.proto",
 }
+
+const (
+	Employee_GetStylistsList_FullMethodName   = "/user.Employee/GetStylistsList"
+	Employee_GetStylistByID_FullMethodName    = "/user.Employee/GetStylistByID"
+	Employee_UpdateStylistByID_FullMethodName = "/user.Employee/UpdateStylistByID"
+	Employee_PromoteToStylist_FullMethodName  = "/user.Employee/PromoteToStylist"
+)
+
+// EmployeeClient is the client API for Employee service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type EmployeeClient interface {
+	GetStylistsList(ctx context.Context, in *GetStylistsListRequest, opts ...grpc.CallOption) (*GetStylistsListResponse, error)
+	GetStylistByID(ctx context.Context, in *GetStylistByIDRequest, opts ...grpc.CallOption) (*GetStylistByIDResponse, error)
+	UpdateStylistByID(ctx context.Context, in *UpdateStylistByIDRequest, opts ...grpc.CallOption) (*GetStylistByIDResponse, error)
+	PromoteToStylist(ctx context.Context, in *PromoteToStylistRequest, opts ...grpc.CallOption) (*PromoteToStylistResponse, error)
+}
+
+type employeeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEmployeeClient(cc grpc.ClientConnInterface) EmployeeClient {
+	return &employeeClient{cc}
+}
+
+func (c *employeeClient) GetStylistsList(ctx context.Context, in *GetStylistsListRequest, opts ...grpc.CallOption) (*GetStylistsListResponse, error) {
+	out := new(GetStylistsListResponse)
+	err := c.cc.Invoke(ctx, Employee_GetStylistsList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *employeeClient) GetStylistByID(ctx context.Context, in *GetStylistByIDRequest, opts ...grpc.CallOption) (*GetStylistByIDResponse, error) {
+	out := new(GetStylistByIDResponse)
+	err := c.cc.Invoke(ctx, Employee_GetStylistByID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *employeeClient) UpdateStylistByID(ctx context.Context, in *UpdateStylistByIDRequest, opts ...grpc.CallOption) (*GetStylistByIDResponse, error) {
+	out := new(GetStylistByIDResponse)
+	err := c.cc.Invoke(ctx, Employee_UpdateStylistByID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *employeeClient) PromoteToStylist(ctx context.Context, in *PromoteToStylistRequest, opts ...grpc.CallOption) (*PromoteToStylistResponse, error) {
+	out := new(PromoteToStylistResponse)
+	err := c.cc.Invoke(ctx, Employee_PromoteToStylist_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EmployeeServer is the server API for Employee service.
+// All implementations should embed UnimplementedEmployeeServer
+// for forward compatibility
+type EmployeeServer interface {
+	GetStylistsList(context.Context, *GetStylistsListRequest) (*GetStylistsListResponse, error)
+	GetStylistByID(context.Context, *GetStylistByIDRequest) (*GetStylistByIDResponse, error)
+	UpdateStylistByID(context.Context, *UpdateStylistByIDRequest) (*GetStylistByIDResponse, error)
+	PromoteToStylist(context.Context, *PromoteToStylistRequest) (*PromoteToStylistResponse, error)
+}
+
+// UnimplementedEmployeeServer should be embedded to have forward compatible implementations.
+type UnimplementedEmployeeServer struct {
+}
+
+func (UnimplementedEmployeeServer) GetStylistsList(context.Context, *GetStylistsListRequest) (*GetStylistsListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStylistsList not implemented")
+}
+func (UnimplementedEmployeeServer) GetStylistByID(context.Context, *GetStylistByIDRequest) (*GetStylistByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStylistByID not implemented")
+}
+func (UnimplementedEmployeeServer) UpdateStylistByID(context.Context, *UpdateStylistByIDRequest) (*GetStylistByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateStylistByID not implemented")
+}
+func (UnimplementedEmployeeServer) PromoteToStylist(context.Context, *PromoteToStylistRequest) (*PromoteToStylistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PromoteToStylist not implemented")
+}
+
+// UnsafeEmployeeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EmployeeServer will
+// result in compilation errors.
+type UnsafeEmployeeServer interface {
+	mustEmbedUnimplementedEmployeeServer()
+}
+
+func RegisterEmployeeServer(s grpc.ServiceRegistrar, srv EmployeeServer) {
+	s.RegisterService(&Employee_ServiceDesc, srv)
+}
+
+func _Employee_GetStylistsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStylistsListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmployeeServer).GetStylistsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Employee_GetStylistsList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmployeeServer).GetStylistsList(ctx, req.(*GetStylistsListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Employee_GetStylistByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStylistByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmployeeServer).GetStylistByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Employee_GetStylistByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmployeeServer).GetStylistByID(ctx, req.(*GetStylistByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Employee_UpdateStylistByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateStylistByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmployeeServer).UpdateStylistByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Employee_UpdateStylistByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmployeeServer).UpdateStylistByID(ctx, req.(*UpdateStylistByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Employee_PromoteToStylist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PromoteToStylistRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmployeeServer).PromoteToStylist(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Employee_PromoteToStylist_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmployeeServer).PromoteToStylist(ctx, req.(*PromoteToStylistRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Employee_ServiceDesc is the grpc.ServiceDesc for Employee service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Employee_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "user.Employee",
+	HandlerType: (*EmployeeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetStylistsList",
+			Handler:    _Employee_GetStylistsList_Handler,
+		},
+		{
+			MethodName: "GetStylistByID",
+			Handler:    _Employee_GetStylistByID_Handler,
+		},
+		{
+			MethodName: "UpdateStylistByID",
+			Handler:    _Employee_UpdateStylistByID_Handler,
+		},
+		{
+			MethodName: "PromoteToStylist",
+			Handler:    _Employee_PromoteToStylist_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/user.proto",
+}
