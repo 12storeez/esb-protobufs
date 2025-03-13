@@ -470,6 +470,7 @@ message GetStylistsListResponse {
     int64 code = 3;
     repeated Stylist data = 4;
     repeated Error errors = 5;
+    Pagination pagination = 6;
 }
 
 message Stylist {
@@ -481,7 +482,7 @@ message Stylist {
     optional string corp_phone = 6;
     optional string corp_telegram = 7;
     optional string corp_whatsapp = 8;
-    optional string store_code = 9;
+    optional int32  store_code = 9;
     optional string schedule = 10;
 }
 
