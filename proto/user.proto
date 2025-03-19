@@ -93,6 +93,7 @@ message CreateRequest {
   string department = 24;
   string position = 25;
   string wms_id = 26;
+  bool is_seller = 27; // https://tracker.yandex.ru/TNT-1316 
 }
 
 
@@ -329,6 +330,9 @@ message GetListFilters {
   optional bool     is_vbc           = 12;
   optional bool     is_fnf_stylist   = 13;
   optional bool     is_seller        = 14;
+  repeated int64    user_site_ids    = 15; // https://tracker.yandex.ru/TNT-1315
+  repeated string   user_onec_ids    = 16; // https://tracker.yandex.ru/TNT-1315
+
 }
 
 // Pagination
