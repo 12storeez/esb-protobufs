@@ -403,7 +403,7 @@ type CreateRequest struct {
 	Department string `protobuf:"bytes,24,opt,name=department,proto3" json:"department,omitempty"`
 	Position   string `protobuf:"bytes,25,opt,name=position,proto3" json:"position,omitempty"`
 	WmsId      string `protobuf:"bytes,26,opt,name=wms_id,json=wmsId,proto3" json:"wms_id,omitempty"`
-	IsSeller   bool   `protobuf:"varint,27,opt,name=is_seller,json=isSeller,proto3" json:"is_seller,omitempty"` // https://tracker.yandex.ru/TNT-1316 если пришёл в запросе - создавать запись в users.employee
+	IsSeller   bool   `protobuf:"varint,27,opt,name=is_seller,json=isSeller,proto3" json:"is_seller,omitempty"` // https://tracker.yandex.ru/TNT-1316
 }
 
 func (x *CreateRequest) Reset() {
