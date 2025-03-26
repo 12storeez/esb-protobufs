@@ -22,6 +22,7 @@ const (
 	Yandex_HandleCreateEvent_FullMethodName     = "/yandex.Yandex/HandleCreateEvent"
 	Yandex_HandleUpdateEvent_FullMethodName     = "/yandex.Yandex/HandleUpdateEvent"
 	Yandex_HandleNewCommentEvent_FullMethodName = "/yandex.Yandex/HandleNewCommentEvent"
+	Yandex_CreateComment_FullMethodName         = "/yandex.Yandex/CreateComment"
 )
 
 // YandexClient is the client API for Yandex service.
@@ -31,6 +32,7 @@ type YandexClient interface {
 	HandleCreateEvent(ctx context.Context, in *HandleEventRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
 	HandleUpdateEvent(ctx context.Context, in *HandleEventRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
 	HandleNewCommentEvent(ctx context.Context, in *HandleEventRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
+	CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
 }
 
 type yandexClient struct {
@@ -68,6 +70,15 @@ func (c *yandexClient) HandleNewCommentEvent(ctx context.Context, in *HandleEven
 	return out, nil
 }
 
+func (c *yandexClient) CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*HandleEventResponse, error) {
+	out := new(HandleEventResponse)
+	err := c.cc.Invoke(ctx, Yandex_CreateComment_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // YandexServer is the server API for Yandex service.
 // All implementations should embed UnimplementedYandexServer
 // for forward compatibility
@@ -75,6 +86,7 @@ type YandexServer interface {
 	HandleCreateEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error)
 	HandleUpdateEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error)
 	HandleNewCommentEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error)
+	CreateComment(context.Context, *CreateCommentRequest) (*HandleEventResponse, error)
 }
 
 // UnimplementedYandexServer should be embedded to have forward compatible implementations.
@@ -89,6 +101,9 @@ func (UnimplementedYandexServer) HandleUpdateEvent(context.Context, *HandleEvent
 }
 func (UnimplementedYandexServer) HandleNewCommentEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HandleNewCommentEvent not implemented")
+}
+func (UnimplementedYandexServer) CreateComment(context.Context, *CreateCommentRequest) (*HandleEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateComment not implemented")
 }
 
 // UnsafeYandexServer may be embedded to opt out of forward compatibility for this service.
@@ -156,6 +171,24 @@ func _Yandex_HandleNewCommentEvent_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Yandex_CreateComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCommentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(YandexServer).CreateComment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Yandex_CreateComment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(YandexServer).CreateComment(ctx, req.(*CreateCommentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Yandex_ServiceDesc is the grpc.ServiceDesc for Yandex service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -174,6 +207,10 @@ var Yandex_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "HandleNewCommentEvent",
 			Handler:    _Yandex_HandleNewCommentEvent_Handler,
+		},
+		{
+			MethodName: "CreateComment",
+			Handler:    _Yandex_CreateComment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
