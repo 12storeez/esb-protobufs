@@ -86,9 +86,9 @@ message Position {
     optional string return_reason = 22;
     optional string lamoda_cancel_reason = 23;
     optional string last_change_source = 24;
-    string product_guid = 25;
-    string article = 26;
-    int64 barcode = 27;
+    optional string product_guid = 25;
+    optional string article = 26;
+    optional int64 barcode = 27;
     string product_title_ru = 28;
     string product_title_en = 29;
     optional string color_model_title_ru = 30;
@@ -96,7 +96,7 @@ message Position {
     optional string product_image = 32;
     string size_title_ru = 33;
     string size_title_en = 34;
-    string color_guid = 35;
+    optional string color_guid = 35;
     optional string color_hex = 36;
     string color_title_ru = 37;
     string color_title_en = 38;
@@ -576,7 +576,7 @@ message UserMSFullUser {
 message PositionForAdmin {
   int64 id = 1;
   optional string created_at = 2;
-  int64 barcode = 3;
+  optional int64 barcode = 3;
   optional string color_hex = 4;
   optional string color_title_ru = 5;
   float discount_bonus = 6;
@@ -588,8 +588,8 @@ message PositionForAdmin {
   float price = 12;
   float price_before_discount = 13;
   float sum = 14;
-  string product_guid = 15;
-  string product_article = 16;
+  optional string product_guid = 15;
+  optional string product_article = 16;
   optional string product_image = 17;
   optional string product_title_ru = 18;
   string size_title_ru = 19;
