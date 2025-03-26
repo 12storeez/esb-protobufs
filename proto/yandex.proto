@@ -11,6 +11,13 @@ service Yandex {
   }
   rpc HandleNewCommentEvent (HandleEventRequest) returns (HandleEventResponse) {
   }
+  rpc CreateComment (CreateCommentRequest) returns (HandleEventResponse) {
+  }
+}
+
+message CreateCommentRequest {
+  string text = 1;
+  repeated string summonees = 2;
 }
 
 message HandleEventRequest {
