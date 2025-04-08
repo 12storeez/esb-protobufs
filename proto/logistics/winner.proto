@@ -70,13 +70,14 @@ message PickUpPointsDetailRequest {
 }
 
 message PickUpPointsDetailResponse {
-  string id =               1;
-  string address =          2;
-  string title =            3;
-  string delivery_period =  4;
-  string work_time =        5;
-  string phone =            6;
-  string trip_description = 7;
+  string id =                1;
+  string address =           2;
+  string title =             3;
+  string delivery_period =   4;
+  string work_time =         5;
+  string phone =             6;
+  string trip_description =  7;
+  optional string zip_code = 8;
 }
 
 message CalculateRequest {
