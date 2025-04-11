@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "common.proto";
+import "google/api/annotations.proto";
+
+service AddressFileService {
+  rpc List(ListAddressFileRequest) returns (common.UnifiedResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/address/file"
+    };
+  }
+  rpc Create(CreateAddressFile) returns (AddressFile) {
+    option (google.api.http) = {
+      post: "/api/v1/address/file"
+      body: "*"
+    };
+  }
+}
+
+message AddressFile {
+  int32         id = 1;
+  string        name = 2;
+  FileCategory  category = 3;
+  string        url = 4;
+  string        created_at = 5;
+  string        updated_at = 6;
+}
+
+message CreateAddressFile {
+  string        name = 1;
+  FileCategory  category = 2;
+  string        url = 3;
+}
+
+message ListAddressFileRequest {
+  AddressFileFilter         filter = 1;
+  common.PaginationRequest  pagination = 2;
+}
+
+message AddressFileFilter {
+  FileCategory FileCategory = 1;
+}
+
+enum FileCategory {
+  CITYFIAS = 0;
+  CITYTEXT = 1;
+  ADDRESSFIAS = 2;
+  ADDRESSTEXT = 3;
+}
+
+message ListDataResponse {
+  repeated AddressFile data = 1;
+}

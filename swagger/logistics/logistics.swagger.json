@@ -1,10 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "category.proto",
+    "title": "address_file.proto",
     "version": "version not set"
   },
   "tags": [
+    {
+      "name": "AddressFileService"
+    },
     {
       "name": "CategoryService"
     },
@@ -79,6 +82,87 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/address/file": {
+      "get": {
+        "operationId": "AddressFileService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commonUnifiedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter.FileCategory",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CITYFIAS",
+              "CITYTEXT",
+              "ADDRESSFIAS",
+              "ADDRESSTEXT"
+            ],
+            "default": "CITYFIAS"
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pagination.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AddressFileService"
+        ]
+      },
+      "post": {
+        "operationId": "AddressFileService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsAddressFile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logisticsCreateAddressFile"
+            }
+          }
+        ],
+        "tags": [
+          "AddressFileService"
+        ]
+      }
+    },
     "/api/v1/category": {
       "get": {
         "operationId": "CategoryService_List",
@@ -4219,6 +4303,19 @@
         }
       }
     },
+    "commonPaginationRequest": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
     "commonUnifiedResponse": {
       "type": "object",
       "properties": {
@@ -4248,6 +4345,38 @@
         "httpCode": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "logisticsAddressFile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/definitions/logisticsFileCategory"
+        },
+        "url": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsAddressFileFilter": {
+      "type": "object",
+      "properties": {
+        "FileCategory": {
+          "$ref": "#/definitions/logisticsFileCategory"
         }
       }
     },
@@ -4494,6 +4623,20 @@
           "type": "string"
         },
         "countryNameRu": {
+          "type": "string"
+        }
+      }
+    },
+    "logisticsCreateAddressFile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/definitions/logisticsFileCategory"
+        },
+        "url": {
           "type": "string"
         }
       }
@@ -5239,6 +5382,16 @@
           "type": "string"
         }
       }
+    },
+    "logisticsFileCategory": {
+      "type": "string",
+      "enum": [
+        "CITYFIAS",
+        "CITYTEXT",
+        "ADDRESSFIAS",
+        "ADDRESSTEXT"
+      ],
+      "default": "CITYFIAS"
     },
     "logisticsFilter": {
       "type": "object",

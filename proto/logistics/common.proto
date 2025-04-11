@@ -28,3 +28,8 @@ message Paginate {
   uint32 offset = 2;
   uint32 total = 3;
 }
+
+message PaginationRequest {
+  uint32 limit = 1;
+  uint32 offset = 2;
+}
