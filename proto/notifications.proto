@@ -17,6 +17,7 @@ message SendRequest {
   repeated string attachments = 5;
   string          channel = 6;
   Payload         payload = 7;
+  optional string          incoming_system = 8;
 }
 
 message Payload {

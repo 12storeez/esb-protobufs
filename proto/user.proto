@@ -93,6 +93,7 @@ message CreateRequest {
   string department = 24;
   string position = 25;
   string wms_id = 26;
+  bool is_seller = 27; // https://tracker.yandex.ru/TNT-1316
 }
 
 
@@ -173,6 +174,18 @@ message User {
   repeated UserRestriction user_restrictions = 61;
   optional string fnf_stylist_id = 62;
   optional string seller_id = 63;
+
+  // https://tracker.yandex.ru/TNT-1295 (64-73)
+  optional string photo=64;                   // в БД user.photo
+  optional string distribution_date=65;       // в БД client.distribution_date
+  optional string established_contact=66;     // в БД client.established_contact
+  optional string prefered_order_channel=67;  // в БД client.prefered_order_channel
+  optional bool is_met_offline=68;            // в БД client.is_met_offline
+  optional string opinion_leader=69;          // в БД client.opinion_leader
+  optional string favorite_promotion=70;      // в БД client.favorite_promotion
+  optional string promise=71;                 // в БД client.promise
+  optional string promised_date=72;           // в БД client.promised_date
+  optional string has_app=73;                 // в БД client.has_app
 }
 
 message UserShort {
@@ -329,6 +342,9 @@ message GetListFilters {
   optional bool     is_vbc           = 12;
   optional bool     is_fnf_stylist   = 13;
   optional bool     is_seller        = 14;
+  repeated int64    user_site_ids    = 15; // https://tracker.yandex.ru/TNT-1315
+  repeated string   user_onec_ids    = 16; // https://tracker.yandex.ru/TNT-1315
+
 }
 
 // Pagination
@@ -447,6 +463,17 @@ message UpdateRequest {
   optional string fnf_stylist_id = 56;
   optional string seller_id = 57;
   optional string source = 58; //  добавлено в TNT-1177
+  // https://tracker.yandex.ru/TNT-1295 (64-73)
+  optional string photo=59;                   // в БД user.photo
+  optional string distribution_date=60;       // в БД client.distribution_date
+  optional string established_contact=61;     // в БД client.established_contact
+  optional string prefered_order_channel=62;  // в БД client.prefered_order_channel
+  optional bool is_met_offline=63;            // в БД client.is_met_offline
+  optional string opinion_leader=64;          // в БД client.opinion_leader
+  optional string favorite_promotion=65;      // в БД client.favorite_promotion
+  optional string promise=66;                 // в БД client.promise
+  optional string promised_date=67;           // в БД client.promised_date
+  optional string has_app=68;                 // в БД client.has_app
 }
 
 message UserShortInfo { // добавлено в TNT-1067
@@ -470,6 +497,7 @@ message GetStylistsListResponse {
     int64 code = 3;
     repeated Stylist data = 4;
     repeated Error errors = 5;
+    Pagination pagination = 6;
 }
 
 message Stylist {
@@ -481,7 +509,7 @@ message Stylist {
     optional string corp_phone = 6;
     optional string corp_telegram = 7;
     optional string corp_whatsapp = 8;
-    optional string store_code = 9;
+    optional int32  store_code = 9;
     optional string schedule = 10;
 }
 
