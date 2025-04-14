@@ -45,17 +45,20 @@ message UpdateMessageRequest {
     string          title = 3;
     string          message = 4;
     bool            is_split_by_blocks_enabled = 7;
+    optional string          incoming_system = 8;
 }
 
 
 message DeleteMessageRequest {
     string          channel = 2;
     string          thread_id = 6;
+    optional string          incoming_system = 7;
 }
 
 message GetMessageLinkRequest {
     string          channel = 2;
     string          thread_id = 6;
+    optional string          incoming_system = 7;
 }
 
 message GetMessageLinkResponse {
