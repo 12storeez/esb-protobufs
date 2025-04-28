@@ -5342,7 +5342,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsGroupsInterval"
           }
         },
         "maxWeight": {
@@ -5477,6 +5477,21 @@
         },
         "isActive": {
           "type": "boolean"
+        }
+      }
+    },
+    "logisticsGroupsInterval": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsInterval"
+          }
         }
       }
     },

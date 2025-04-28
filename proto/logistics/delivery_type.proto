@@ -207,7 +207,7 @@ message UpdateDeliveryType {
   bool                                     is_active = 34;
   repeated UpdatePaymentMethodToDeliveryType      payment_method_to_delivery_type = 35;
   repeated UpdateCategoryRestriction              category_delivery_type_restrictions = 36;
-  repeated Interval                               intervals = 37;
+  repeated GroupsInterval                               intervals = 37;
   int32                                    max_weight = 38;
   bool                                     restriction_by_weight_is_active = 39;
   int32                                    restriction_by_weight_message_id = 40;
