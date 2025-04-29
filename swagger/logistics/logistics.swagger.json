@@ -106,12 +106,13 @@
             "required": false,
             "type": "string",
             "enum": [
+              "FILE_CATEGORY_UNSPECIFIED",
               "CITYFIAS",
               "CITYTEXT",
               "ADDRESSFIAS",
               "ADDRESSTEXT"
             ],
-            "default": "CITYFIAS"
+            "default": "FILE_CATEGORY_UNSPECIFIED"
           },
           {
             "name": "pagination.limit",
@@ -5386,12 +5387,13 @@
     "logisticsFileCategory": {
       "type": "string",
       "enum": [
+        "FILE_CATEGORY_UNSPECIFIED",
         "CITYFIAS",
         "CITYTEXT",
         "ADDRESSFIAS",
         "ADDRESSTEXT"
       ],
-      "default": "CITYFIAS"
+      "default": "FILE_CATEGORY_UNSPECIFIED"
     },
     "logisticsFilter": {
       "type": "object",

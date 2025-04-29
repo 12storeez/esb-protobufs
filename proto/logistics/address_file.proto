@@ -46,12 +46,13 @@ message AddressFileFilter {
 }
 
 enum FileCategory {
-  CITYFIAS = 0;
-  CITYTEXT = 1;
-  ADDRESSFIAS = 2;
-  ADDRESSTEXT = 3;
+  FILE_CATEGORY_UNSPECIFIED = 0;
+  CITYFIAS = 1;
+  CITYTEXT = 2;
+  ADDRESSFIAS = 3;
+  ADDRESSTEXT = 4;
 }
 
-message ListDataResponse {
+message ListAddressFileResponse {
   repeated AddressFile data = 1;
 }
