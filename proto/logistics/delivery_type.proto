@@ -125,7 +125,7 @@ message DeliveryType {
   string                                   updated_at = 36;
   repeated PaymentMethodToDeliveryType     payment_method_to_delivery_type = 37;
   repeated CategoryRestriction             category_delivery_type_restrictions = 38;
-  repeated Interval                        intervals = 39;
+  repeated IntervalsGroups                 intervals_groups  = 39;
   bool                                     restriction_by_weight_is_active = 40;
   Message                                  restriction_by_weight_message = 41;
   Popup                                    restriction_by_weight_popup = 42;
@@ -207,7 +207,7 @@ message UpdateDeliveryType {
   bool                                     is_active = 34;
   repeated UpdatePaymentMethodToDeliveryType      payment_method_to_delivery_type = 35;
   repeated UpdateCategoryRestriction              category_delivery_type_restrictions = 36;
-  repeated GroupsInterval                               intervals = 37;
+  repeated IntervalsGroups                               intervals_groups = 37;
   int32                                    max_weight = 38;
   bool                                     restriction_by_weight_is_active = 39;
   int32                                    restriction_by_weight_message_id = 40;

@@ -79,7 +79,7 @@ message ListIntervalResponse {
   int32             total = 2;
 }
 
-message GroupsInterval {
+message IntervalsGroups {
   string group_id = 1;
   repeated Interval intervals = 2;
 }

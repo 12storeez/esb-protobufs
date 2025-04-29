@@ -5176,11 +5176,11 @@
             "$ref": "#/definitions/logisticsCategoryRestriction"
           }
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         },
         "restrictionByWeightIsActive": {
@@ -5338,11 +5338,11 @@
             "$ref": "#/definitions/logisticsUpdateCategoryRestriction"
           }
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsGroupsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         },
         "maxWeight": {
@@ -5480,21 +5480,6 @@
         }
       }
     },
-    "logisticsGroupsInterval": {
-      "type": "object",
-      "properties": {
-        "groupId": {
-          "type": "string"
-        },
-        "intervals": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
-          }
-        }
-      }
-    },
     "logisticsInterval": {
       "type": "object",
       "properties": {
@@ -5554,6 +5539,21 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsIntervalsGroups": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsInterval"
+          }
         }
       }
     },
