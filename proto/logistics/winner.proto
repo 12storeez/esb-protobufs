@@ -78,6 +78,7 @@ message PickUpPointsDetailResponse {
   string phone =             6;
   string trip_description =  7;
   optional string zip_code = 8;
+  string city_geo_id =       9;
 }
 
 message CalculateRequest {
