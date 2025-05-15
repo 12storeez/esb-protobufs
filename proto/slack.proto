@@ -13,7 +13,7 @@ service Slack {
     }
     rpc GetMessageLink (GetMessageLinkRequest) returns (GetMessageLinkResponse) {
     }
-    rpc FileUpload (FileUploadRequest) returns (FileUploadResponse) {
+    rpc FileUpload (stream FileUploadRequest) returns (FileUploadResponse) {
     }
 }
 

@@ -34,7 +34,7 @@ type SlackClient interface {
 	Update(ctx context.Context, in *UpdateMessageRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 	Delete(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 	GetMessageLink(ctx context.Context, in *GetMessageLinkRequest, opts ...grpc.CallOption) (*GetMessageLinkResponse, error)
-	FileUpload(ctx context.Context, in *FileUploadRequest, opts ...grpc.CallOption) (*FileUploadResponse, error)
+	FileUpload(ctx context.Context, opts ...grpc.CallOption) (Slack_FileUploadClient, error)
 }
 
 type slackClient struct {
@@ -81,13 +81,38 @@ func (c *slackClient) GetMessageLink(ctx context.Context, in *GetMessageLinkRequ
 	return out, nil
 }
 
-func (c *slackClient) FileUpload(ctx context.Context, in *FileUploadRequest, opts ...grpc.CallOption) (*FileUploadResponse, error) {
-	out := new(FileUploadResponse)
-	err := c.cc.Invoke(ctx, Slack_FileUpload_FullMethodName, in, out, opts...)
+func (c *slackClient) FileUpload(ctx context.Context, opts ...grpc.CallOption) (Slack_FileUploadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Slack_ServiceDesc.Streams[0], Slack_FileUpload_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &slackFileUploadClient{stream}
+	return x, nil
+}
+
+type Slack_FileUploadClient interface {
+	Send(*FileUploadRequest) error
+	CloseAndRecv() (*FileUploadResponse, error)
+	grpc.ClientStream
+}
+
+type slackFileUploadClient struct {
+	grpc.ClientStream
+}
+
+func (x *slackFileUploadClient) Send(m *FileUploadRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *slackFileUploadClient) CloseAndRecv() (*FileUploadResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(FileUploadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // SlackServer is the server API for Slack service.
@@ -98,7 +123,7 @@ type SlackServer interface {
 	Update(context.Context, *UpdateMessageRequest) (*BaseResponse, error)
 	Delete(context.Context, *DeleteMessageRequest) (*BaseResponse, error)
 	GetMessageLink(context.Context, *GetMessageLinkRequest) (*GetMessageLinkResponse, error)
-	FileUpload(context.Context, *FileUploadRequest) (*FileUploadResponse, error)
+	FileUpload(Slack_FileUploadServer) error
 }
 
 // UnimplementedSlackServer should be embedded to have forward compatible implementations.
@@ -117,8 +142,8 @@ func (UnimplementedSlackServer) Delete(context.Context, *DeleteMessageRequest) (
 func (UnimplementedSlackServer) GetMessageLink(context.Context, *GetMessageLinkRequest) (*GetMessageLinkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMessageLink not implemented")
 }
-func (UnimplementedSlackServer) FileUpload(context.Context, *FileUploadRequest) (*FileUploadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FileUpload not implemented")
+func (UnimplementedSlackServer) FileUpload(Slack_FileUploadServer) error {
+	return status.Errorf(codes.Unimplemented, "method FileUpload not implemented")
 }
 
 // UnsafeSlackServer may be embedded to opt out of forward compatibility for this service.
@@ -204,22 +229,30 @@ func _Slack_GetMessageLink_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Slack_FileUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FileUploadRequest)
-	if err := dec(in); err != nil {
+func _Slack_FileUpload_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(SlackServer).FileUpload(&slackFileUploadServer{stream})
+}
+
+type Slack_FileUploadServer interface {
+	SendAndClose(*FileUploadResponse) error
+	Recv() (*FileUploadRequest, error)
+	grpc.ServerStream
+}
+
+type slackFileUploadServer struct {
+	grpc.ServerStream
+}
+
+func (x *slackFileUploadServer) SendAndClose(m *FileUploadResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *slackFileUploadServer) Recv() (*FileUploadRequest, error) {
+	m := new(FileUploadRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
-	if interceptor == nil {
-		return srv.(SlackServer).FileUpload(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Slack_FileUpload_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SlackServer).FileUpload(ctx, req.(*FileUploadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return m, nil
 }
 
 // Slack_ServiceDesc is the grpc.ServiceDesc for Slack service.
@@ -245,11 +278,13 @@ var Slack_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetMessageLink",
 			Handler:    _Slack_GetMessageLink_Handler,
 		},
+	},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "FileUpload",
-			Handler:    _Slack_FileUpload_Handler,
+			StreamName:    "FileUpload",
+			Handler:       _Slack_FileUpload_Handler,
+			ClientStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/slack.proto",
 }
