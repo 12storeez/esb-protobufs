@@ -21,7 +21,7 @@ message FileUploadRequest {
     string file_name = 1;
     bytes file = 2;
     uint32 size = 3;
-    optional string incoming_system = 8;
+    optional string incoming_system = 4;
 }
 
 message FileUploadResponse {
