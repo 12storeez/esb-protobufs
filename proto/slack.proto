@@ -23,6 +23,14 @@ message FileUploadRequest {
 }
 
 message FileUploadResponse {
+    string            status = 1;
+    string            message = 2;
+    int64             code = 3;
+    repeated Error    errors = 4;
+    FileUploadResponseData          data = 5;
+}
+
+message FileUploadResponseData {
     string id = 1;
     string name = 2;
     string permalink = 3;
