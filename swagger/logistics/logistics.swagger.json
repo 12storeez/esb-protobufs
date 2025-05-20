@@ -4409,7 +4409,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "cartsGroup": {
+        "cartsCategory": {
           "type": "array",
           "items": {
             "type": "object",
@@ -4447,7 +4447,8 @@
       "type": "object",
       "properties": {
         "barcode": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "quantity": {
           "type": "integer",
