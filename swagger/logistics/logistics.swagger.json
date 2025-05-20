@@ -4409,11 +4409,11 @@
           "type": "integer",
           "format": "int32"
         },
-        "cart": {
+        "cartsGroup": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsCartPosition"
+            "$ref": "#/definitions/logisticsCartsCategory"
           }
         },
         "orderDatetime": {
@@ -4446,9 +4446,8 @@
     "logisticsCartPosition": {
       "type": "object",
       "properties": {
-        "categoryId": {
-          "type": "integer",
-          "format": "int32"
+        "barcode": {
+          "type": "string"
         },
         "quantity": {
           "type": "integer",
@@ -4464,6 +4463,22 @@
         "weight": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "logisticsCartsCategory": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cartPosition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsCartPosition"
+          }
         }
       }
     },
