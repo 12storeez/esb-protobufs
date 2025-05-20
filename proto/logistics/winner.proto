@@ -100,7 +100,6 @@ message CartsCategory {
   repeated CartPosition cart_position = 2;
 }
 
-
 message CartPosition {
   int32    barcode =    1;
   int32    quantity =   2;
@@ -112,7 +111,6 @@ message CartPosition {
 message CalculateResponse {
   repeated WinnerRestriction  restrictions = 1;
   repeated WinnerDeliveryMode delivery_modes = 2;
-
 }
 
 message WinnerDeliveryMode {
