@@ -7,8 +7,8 @@ package logistics;
 import "google/api/annotations.proto";
 import "common.proto";
 
-service PickupPointsService{
-  rpc PickupList(PickUpPointsRequest) returns (common.UnifiedResponse) {
+service PickupPointsLogisticsService{
+  rpc PickupList(PickUpPointsLogisticsRequest) returns (common.UnifiedResponse) {
     option (google.api.http) = {
       post: "/api/v1/pickup/{provider}/points"
       body: "*"
@@ -16,21 +16,21 @@ service PickupPointsService{
   }
 }
 
-message Pagination {
-  uint32 limit =  1;
-  uint32 offset = 2;
-}
+//message Pagination {
+//  uint32 limit =  1;
+//  uint32 offset = 2;
+//}
 
-message PickUpPointsRequest {
+message PickUpPointsLogisticsRequest {
   string provider = 1;
-  Filter filter =   2;
-  Pagination pagination = 3;
+  LogisticsPickUpPointsFilter filter =   2;
+  common.Paginate pagination = 3;
 }
 
-message Filter {
+message LogisticsPickUpPointsFilter {
   int32 id = 1;
   int32 pvzId = 2;
   string address = 3;
-  string coordinates = 4; // TODO првоерить  тип
+  string coordinates = 4; // TODO првоерить тип
   bool is_active = 5;
 }
