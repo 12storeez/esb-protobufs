@@ -1,6 +1,10 @@
 syntax = "proto3";
 
 option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
 import "common.proto";
 
 service PickupPointsService{
