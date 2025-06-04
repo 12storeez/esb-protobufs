@@ -5,6 +5,7 @@ option go_package = "go/logistics";
 package logistics;
 
 import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
 import "common.proto";
 
 service PickupPointsLogisticsService{
@@ -26,7 +27,7 @@ message LogisticsPickUpPointsFilter {
   int32 id = 1;
   string pvzId = 2;
   string address = 3;
-  optional bool is_active = 4; // TODO возможно добавить состояние не задано
+  google.protobuf.BoolValue is_active = 4; // TODO возможно добавить состояние не задано
   common.Coordinates coordinates = 5; // TODO првоерить тип
 }
 
