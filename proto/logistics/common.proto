@@ -33,3 +33,8 @@ message PaginationRequest {
   uint32 limit = 1;
   uint32 offset = 2;
 }
+
+message Coordinates {
+  double lat = 1;
+  double lng = 2;
+}

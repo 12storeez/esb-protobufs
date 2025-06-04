@@ -16,21 +16,35 @@ service PickupPointsLogisticsService{
   }
 }
 
-//message Pagination {
-//  uint32 limit =  1;
-//  uint32 offset = 2;
-//}
-
 message PickUpPointsLogisticsRequest {
   string provider = 1;
   LogisticsPickUpPointsFilter filter =   2;
-  common.Paginate pagination = 3;
+  common.PaginationRequest pagination = 3;
 }
 
 message LogisticsPickUpPointsFilter {
   int32 id = 1;
-  int32 pvzId = 2;
+  string pvzId = 2;
   string address = 3;
-  string coordinates = 4; // TODO првоерить тип
-  bool is_active = 5;
+  optional bool is_active = 4; // TODO возможно добавить состояние не задано
+  common.Coordinates coordinates = 5; // TODO првоерить тип
+}
+
+message PickUpPointsLogisticsResponse {
+  repeated PickupPointLogistics points = 1;
+}
+
+message PickupPointLogistics {
+  int32 id =        1;
+  string title =    2;
+  string code =     3;
+  bool is_active =  4;
+  string delivery_period = 5;
+  string phone =           6;
+  string timetable =       7;
+  string metro =   8;
+  string address = 9;
+  string trip_description = 10;
+  common.Coordinates coordinates = 11;
+  string  provider = 12;
 }

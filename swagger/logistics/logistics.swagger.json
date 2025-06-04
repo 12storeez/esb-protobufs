@@ -4313,6 +4313,19 @@
     }
   },
   "definitions": {
+    "commonCoordinates": {
+      "type": "object",
+      "properties": {
+        "lat": {
+          "type": "number",
+          "format": "double"
+        },
+        "lng": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "commonError": {
       "type": "object",
       "properties": {
@@ -5956,18 +5969,18 @@
           "format": "int32"
         },
         "pvzId": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "address": {
           "type": "string"
         },
-        "coordinates": {
-          "type": "string",
-          "title": "TODO првоерить тип"
-        },
         "isActive": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "TODO возможно добавить состояние не задано"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/commonCoordinates",
+          "title": "TODO првоерить тип"
         }
       }
     },
@@ -6132,7 +6145,7 @@
           "$ref": "#/definitions/logisticsLogisticsPickUpPointsFilter"
         },
         "pagination": {
-          "$ref": "#/definitions/commonPaginate"
+          "$ref": "#/definitions/commonPaginationRequest"
         }
       }
     },
