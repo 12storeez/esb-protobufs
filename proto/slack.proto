@@ -50,6 +50,7 @@ message SendRequest {
     bool            is_split_by_blocks_enabled = 7;
     optional string          incoming_system = 8;
     repeated Attachment attachments_v2 = 9;
+    repeated SlackAttachment slack_attachments = 10;
 }
 
 message Attachment {
