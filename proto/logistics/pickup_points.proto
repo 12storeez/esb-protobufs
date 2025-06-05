@@ -11,7 +11,14 @@ import "common.proto";
 service PickupPointsLogisticsService{
   rpc PickupList(PickUpPointsLogisticsRequest) returns (common.UnifiedResponse) {
     option (google.api.http) = {
-      post: "/api/v1/pickup/{provider}/points"
+      post: "/api/v1/pickup/provider/{provider}/points"
+      body: "*"
+    };
+  }
+
+  rpc PickupUpdate(PickUpPointsLogisticsUpdateRequest) returns (common.UnifiedResponse) {
+    option (google.api.http) = {
+      patch: "/api/v1/pickup/provider/{provider}/points/{id}"
       body: "*"
     };
   }
@@ -19,16 +26,28 @@ service PickupPointsLogisticsService{
 
 message PickUpPointsLogisticsRequest {
   string provider = 1;
-  LogisticsPickUpPointsFilter filter =   2;
+  LogisticsPickUpPointsFilter filter = 2;
   common.PaginationRequest pagination = 3;
+}
+
+message PickUpPointsLogisticsUpdateRequest {
+  int32 id = 1;
+  string provider = 2;
+  bool is_active = 3;
+}
+
+message PickUpPointsLogisticsUpdateResponse {
+  string status = 1;
+  string message = 2;
+  PickupPointLogistics data = 3;
 }
 
 message LogisticsPickUpPointsFilter {
   int32 id = 1;
   string pvzId = 2;
   string address = 3;
-  google.protobuf.BoolValue is_active = 4; // TODO возможно добавить состояние не задано
-  common.Coordinates coordinates = 5; // TODO првоерить тип
+  google.protobuf.BoolValue is_active = 4;
+  string coordinates = 5; 
 }
 
 message PickUpPointsLogisticsResponse {
@@ -36,16 +55,16 @@ message PickUpPointsLogisticsResponse {
 }
 
 message PickupPointLogistics {
-  int32 id =        1;
-  string title =    2;
-  string code =     3;
-  bool is_active =  4;
+  int32  id = 1;
+  string title = 2;
+  string code = 3;
+  bool   is_active = 4;
   string delivery_period = 5;
-  string phone =           6;
-  string timetable =       7;
-  string metro =   8;
+  string phone = 6;
+  string timetable = 7;
+  string metro = 8;
   string address = 9;
   string trip_description = 10;
-  common.Coordinates coordinates = 11;
-  string  provider = 12;
+  string coordinates = 11;
+  string provider = 12;
 }

@@ -1766,7 +1766,7 @@
         ]
       }
     },
-    "/api/v1/pickup/{provider}/points": {
+    "/api/v1/pickup/provider/{provider}/points": {
       "post": {
         "operationId": "PickupPointsLogisticsService_PickupList",
         "responses": {
@@ -1796,6 +1796,51 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/logisticsPickupPointsLogisticsServicePickupListBody"
+            }
+          }
+        ],
+        "tags": [
+          "PickupPointsLogisticsService"
+        ]
+      }
+    },
+    "/api/v1/pickup/provider/{provider}/points/{id}": {
+      "patch": {
+        "operationId": "PickupPointsLogisticsService_PickupUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/commonUnifiedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PickupPointsLogisticsServicePickupUpdateBody"
             }
           }
         ],
@@ -4313,16 +4358,11 @@
     }
   },
   "definitions": {
-    "commonCoordinates": {
+    "PickupPointsLogisticsServicePickupUpdateBody": {
       "type": "object",
       "properties": {
-        "lat": {
-          "type": "number",
-          "format": "double"
-        },
-        "lng": {
-          "type": "number",
-          "format": "double"
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
@@ -5975,12 +6015,10 @@
           "type": "string"
         },
         "isActive": {
-          "type": "boolean",
-          "title": "TODO возможно добавить состояние не задано"
+          "type": "boolean"
         },
         "coordinates": {
-          "$ref": "#/definitions/commonCoordinates",
-          "title": "TODO првоерить тип"
+          "type": "string"
         }
       }
     },

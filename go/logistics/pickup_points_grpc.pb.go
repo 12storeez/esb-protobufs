@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PickupPointsLogisticsService_PickupList_FullMethodName = "/logistics.PickupPointsLogisticsService/PickupList"
+	PickupPointsLogisticsService_PickupList_FullMethodName   = "/logistics.PickupPointsLogisticsService/PickupList"
+	PickupPointsLogisticsService_PickupUpdate_FullMethodName = "/logistics.PickupPointsLogisticsService/PickupUpdate"
 )
 
 // PickupPointsLogisticsServiceClient is the client API for PickupPointsLogisticsService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PickupPointsLogisticsServiceClient interface {
 	PickupList(ctx context.Context, in *PickUpPointsLogisticsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
+	PickupUpdate(ctx context.Context, in *PickUpPointsLogisticsUpdateRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
 }
 
 type pickupPointsLogisticsServiceClient struct {
@@ -46,11 +48,21 @@ func (c *pickupPointsLogisticsServiceClient) PickupList(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *pickupPointsLogisticsServiceClient) PickupUpdate(ctx context.Context, in *PickUpPointsLogisticsUpdateRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
+	out := new(UnifiedResponse)
+	err := c.cc.Invoke(ctx, PickupPointsLogisticsService_PickupUpdate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PickupPointsLogisticsServiceServer is the server API for PickupPointsLogisticsService service.
 // All implementations should embed UnimplementedPickupPointsLogisticsServiceServer
 // for forward compatibility
 type PickupPointsLogisticsServiceServer interface {
 	PickupList(context.Context, *PickUpPointsLogisticsRequest) (*UnifiedResponse, error)
+	PickupUpdate(context.Context, *PickUpPointsLogisticsUpdateRequest) (*UnifiedResponse, error)
 }
 
 // UnimplementedPickupPointsLogisticsServiceServer should be embedded to have forward compatible implementations.
@@ -59,6 +71,9 @@ type UnimplementedPickupPointsLogisticsServiceServer struct {
 
 func (UnimplementedPickupPointsLogisticsServiceServer) PickupList(context.Context, *PickUpPointsLogisticsRequest) (*UnifiedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PickupList not implemented")
+}
+func (UnimplementedPickupPointsLogisticsServiceServer) PickupUpdate(context.Context, *PickUpPointsLogisticsUpdateRequest) (*UnifiedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PickupUpdate not implemented")
 }
 
 // UnsafePickupPointsLogisticsServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -90,6 +105,24 @@ func _PickupPointsLogisticsService_PickupList_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PickupPointsLogisticsService_PickupUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PickUpPointsLogisticsUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PickupPointsLogisticsServiceServer).PickupUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PickupPointsLogisticsService_PickupUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PickupPointsLogisticsServiceServer).PickupUpdate(ctx, req.(*PickUpPointsLogisticsUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PickupPointsLogisticsService_ServiceDesc is the grpc.ServiceDesc for PickupPointsLogisticsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +133,10 @@ var PickupPointsLogisticsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PickupList",
 			Handler:    _PickupPointsLogisticsService_PickupList_Handler,
+		},
+		{
+			MethodName: "PickupUpdate",
+			Handler:    _PickupPointsLogisticsService_PickupUpdate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
