@@ -1773,7 +1773,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/commonUnifiedResponse"
+              "$ref": "#/definitions/logisticsPickUpPointsLogisticsResponse"
             }
           },
           "default": {
@@ -6172,6 +6172,18 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/logisticsPaymentMethodCategoryRestriction"
+          }
+        }
+      }
+    },
+    "logisticsPickUpPointsLogisticsResponse": {
+      "type": "object",
+      "properties": {
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsPickupPointLogistics"
           }
         }
       }

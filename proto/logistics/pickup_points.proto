@@ -9,7 +9,7 @@ import "google/protobuf/wrappers.proto";
 import "common.proto";
 
 service PickupPointsLogisticsService{
-  rpc PickupList(PickUpPointsLogisticsRequest) returns (common.UnifiedResponse) {
+  rpc PickupList(PickUpPointsLogisticsRequest) returns (PickUpPointsLogisticsResponse) {
     option (google.api.http) = {
       post: "/api/v1/pickup/provider/{provider}/points"
       body: "*"

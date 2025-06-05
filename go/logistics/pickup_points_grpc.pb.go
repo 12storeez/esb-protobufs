@@ -27,7 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PickupPointsLogisticsServiceClient interface {
-	PickupList(ctx context.Context, in *PickUpPointsLogisticsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
+	PickupList(ctx context.Context, in *PickUpPointsLogisticsRequest, opts ...grpc.CallOption) (*PickUpPointsLogisticsResponse, error)
 	PickupUpdate(ctx context.Context, in *PickUpPointsLogisticsUpdateRequest, opts ...grpc.CallOption) (*PickUpPointsLogisticsUpdateResponse, error)
 }
 
@@ -39,8 +39,8 @@ func NewPickupPointsLogisticsServiceClient(cc grpc.ClientConnInterface) PickupPo
 	return &pickupPointsLogisticsServiceClient{cc}
 }
 
-func (c *pickupPointsLogisticsServiceClient) PickupList(ctx context.Context, in *PickUpPointsLogisticsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error) {
-	out := new(UnifiedResponse)
+func (c *pickupPointsLogisticsServiceClient) PickupList(ctx context.Context, in *PickUpPointsLogisticsRequest, opts ...grpc.CallOption) (*PickUpPointsLogisticsResponse, error) {
+	out := new(PickUpPointsLogisticsResponse)
 	err := c.cc.Invoke(ctx, PickupPointsLogisticsService_PickupList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -61,7 +61,7 @@ func (c *pickupPointsLogisticsServiceClient) PickupUpdate(ctx context.Context, i
 // All implementations should embed UnimplementedPickupPointsLogisticsServiceServer
 // for forward compatibility
 type PickupPointsLogisticsServiceServer interface {
-	PickupList(context.Context, *PickUpPointsLogisticsRequest) (*UnifiedResponse, error)
+	PickupList(context.Context, *PickUpPointsLogisticsRequest) (*PickUpPointsLogisticsResponse, error)
 	PickupUpdate(context.Context, *PickUpPointsLogisticsUpdateRequest) (*PickUpPointsLogisticsUpdateResponse, error)
 }
 
@@ -69,7 +69,7 @@ type PickupPointsLogisticsServiceServer interface {
 type UnimplementedPickupPointsLogisticsServiceServer struct {
 }
 
-func (UnimplementedPickupPointsLogisticsServiceServer) PickupList(context.Context, *PickUpPointsLogisticsRequest) (*UnifiedResponse, error) {
+func (UnimplementedPickupPointsLogisticsServiceServer) PickupList(context.Context, *PickUpPointsLogisticsRequest) (*PickUpPointsLogisticsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PickupList not implemented")
 }
 func (UnimplementedPickupPointsLogisticsServiceServer) PickupUpdate(context.Context, *PickUpPointsLogisticsUpdateRequest) (*PickUpPointsLogisticsUpdateResponse, error) {
