@@ -6179,6 +6179,9 @@
     "logisticsPickUpPointsLogisticsResponse": {
       "type": "object",
       "properties": {
+        "pagination": {
+          "$ref": "#/definitions/commonPaginate"
+        },
         "points": {
           "type": "array",
           "items": {

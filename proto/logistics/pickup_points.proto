@@ -51,7 +51,8 @@ message LogisticsPickUpPointsFilter {
 }
 
 message PickUpPointsLogisticsResponse {
-  repeated PickupPointLogistics points = 1;
+  common.Paginate pagination = 1;
+  repeated PickupPointLogistics points = 2;
 }
 
 message PickupPointLogistics {
