@@ -1811,7 +1811,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/commonUnifiedResponse"
+              "$ref": "#/definitions/logisticsPickUpPointsLogisticsUpdateResponse"
             }
           },
           "default": {
@@ -6173,6 +6173,62 @@
             "type": "object",
             "$ref": "#/definitions/logisticsPaymentMethodCategoryRestriction"
           }
+        }
+      }
+    },
+    "logisticsPickUpPointsLogisticsUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/logisticsPickupPointLogistics"
+        }
+      }
+    },
+    "logisticsPickupPointLogistics": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "deliveryPeriod": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "timetable": {
+          "type": "string"
+        },
+        "metro": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "tripDescription": {
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
         }
       }
     },

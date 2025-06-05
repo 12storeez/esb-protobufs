@@ -16,7 +16,7 @@ service PickupPointsLogisticsService{
     };
   }
 
-  rpc PickupUpdate(PickUpPointsLogisticsUpdateRequest) returns (common.UnifiedResponse) {
+  rpc PickupUpdate(PickUpPointsLogisticsUpdateRequest) returns (PickUpPointsLogisticsUpdateResponse) {
     option (google.api.http) = {
       patch: "/api/v1/pickup/provider/{provider}/points/{id}"
       body: "*"
@@ -47,7 +47,7 @@ message LogisticsPickUpPointsFilter {
   string pvzId = 2;
   string address = 3;
   google.protobuf.BoolValue is_active = 4;
-  string coordinates = 5; 
+  string coordinates = 5;
 }
 
 message PickUpPointsLogisticsResponse {
