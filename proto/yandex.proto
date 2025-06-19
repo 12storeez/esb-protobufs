@@ -19,11 +19,13 @@ message CreateCommentRequest {
   string ticket_id = 1;
   string text = 2;
   repeated string summonees = 3;
+  optional bool is_attachment_disabled = 4;
 }
 
 message HandleEventRequest {
   string ticket_key = 1;
   string slack_channel = 2;
+  optional bool is_attachment_disabled = 3;
 }
 
 message HandleEventResponse {
