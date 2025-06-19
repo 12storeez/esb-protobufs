@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_PickupPointsLogisticsService_PickupList_0(ctx context.Context, marshaler runtime.Marshaler, client PickupPointsLogisticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickUpPointsLogisticsRequest
+	var protoReq PickupPointsLogisticsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -62,7 +62,7 @@ func request_PickupPointsLogisticsService_PickupList_0(ctx context.Context, mars
 }
 
 func local_request_PickupPointsLogisticsService_PickupList_0(ctx context.Context, marshaler runtime.Marshaler, server PickupPointsLogisticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickUpPointsLogisticsRequest
+	var protoReq PickupPointsLogisticsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -92,7 +92,7 @@ func local_request_PickupPointsLogisticsService_PickupList_0(ctx context.Context
 }
 
 func request_PickupPointsLogisticsService_PickupUpdate_0(ctx context.Context, marshaler runtime.Marshaler, client PickupPointsLogisticsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickUpPointsLogisticsUpdateRequest
+	var protoReq PickupPointsLogisticsUpdateRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -132,7 +132,7 @@ func request_PickupPointsLogisticsService_PickupUpdate_0(ctx context.Context, ma
 }
 
 func local_request_PickupPointsLogisticsService_PickupUpdate_0(ctx context.Context, marshaler runtime.Marshaler, server PickupPointsLogisticsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PickUpPointsLogisticsUpdateRequest
+	var protoReq PickupPointsLogisticsUpdateRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {

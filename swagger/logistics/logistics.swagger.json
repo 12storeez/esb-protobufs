@@ -1773,7 +1773,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsPickUpPointsLogisticsResponse"
+              "$ref": "#/definitions/logisticsPickupPointsLogisticsResponse"
             }
           },
           "default": {
@@ -1811,7 +1811,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/logisticsPickUpPointsLogisticsUpdateResponse"
+              "$ref": "#/definitions/logisticsPickupPointLogistics"
             }
           },
           "default": {
@@ -6001,7 +6001,7 @@
         }
       }
     },
-    "logisticsLogisticsPickUpPointsFilter": {
+    "logisticsLogisticsPickupPointsFilter": {
       "type": "object",
       "properties": {
         "id": {
@@ -6176,35 +6176,6 @@
         }
       }
     },
-    "logisticsPickUpPointsLogisticsResponse": {
-      "type": "object",
-      "properties": {
-        "pagination": {
-          "$ref": "#/definitions/commonPaginate"
-        },
-        "points": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsPickupPointLogistics"
-          }
-        }
-      }
-    },
-    "logisticsPickUpPointsLogisticsUpdateResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/logisticsPickupPointLogistics"
-        }
-      }
-    },
     "logisticsPickupPointLogistics": {
       "type": "object",
       "properties": {
@@ -6247,11 +6218,26 @@
         }
       }
     },
+    "logisticsPickupPointsLogisticsResponse": {
+      "type": "object",
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/commonPaginate"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsPickupPointLogistics"
+          }
+        }
+      }
+    },
     "logisticsPickupPointsLogisticsServicePickupListBody": {
       "type": "object",
       "properties": {
         "filter": {
-          "$ref": "#/definitions/logisticsLogisticsPickUpPointsFilter"
+          "$ref": "#/definitions/logisticsLogisticsPickupPointsFilter"
         },
         "pagination": {
           "$ref": "#/definitions/commonPaginationRequest"

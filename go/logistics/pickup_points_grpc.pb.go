@@ -27,8 +27,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PickupPointsLogisticsServiceClient interface {
-	PickupList(ctx context.Context, in *PickUpPointsLogisticsRequest, opts ...grpc.CallOption) (*PickUpPointsLogisticsResponse, error)
-	PickupUpdate(ctx context.Context, in *PickUpPointsLogisticsUpdateRequest, opts ...grpc.CallOption) (*PickUpPointsLogisticsUpdateResponse, error)
+	PickupList(ctx context.Context, in *PickupPointsLogisticsRequest, opts ...grpc.CallOption) (*PickupPointsLogisticsResponse, error)
+	PickupUpdate(ctx context.Context, in *PickupPointsLogisticsUpdateRequest, opts ...grpc.CallOption) (*PickupPointLogistics, error)
 }
 
 type pickupPointsLogisticsServiceClient struct {
@@ -39,8 +39,8 @@ func NewPickupPointsLogisticsServiceClient(cc grpc.ClientConnInterface) PickupPo
 	return &pickupPointsLogisticsServiceClient{cc}
 }
 
-func (c *pickupPointsLogisticsServiceClient) PickupList(ctx context.Context, in *PickUpPointsLogisticsRequest, opts ...grpc.CallOption) (*PickUpPointsLogisticsResponse, error) {
-	out := new(PickUpPointsLogisticsResponse)
+func (c *pickupPointsLogisticsServiceClient) PickupList(ctx context.Context, in *PickupPointsLogisticsRequest, opts ...grpc.CallOption) (*PickupPointsLogisticsResponse, error) {
+	out := new(PickupPointsLogisticsResponse)
 	err := c.cc.Invoke(ctx, PickupPointsLogisticsService_PickupList_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -48,8 +48,8 @@ func (c *pickupPointsLogisticsServiceClient) PickupList(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *pickupPointsLogisticsServiceClient) PickupUpdate(ctx context.Context, in *PickUpPointsLogisticsUpdateRequest, opts ...grpc.CallOption) (*PickUpPointsLogisticsUpdateResponse, error) {
-	out := new(PickUpPointsLogisticsUpdateResponse)
+func (c *pickupPointsLogisticsServiceClient) PickupUpdate(ctx context.Context, in *PickupPointsLogisticsUpdateRequest, opts ...grpc.CallOption) (*PickupPointLogistics, error) {
+	out := new(PickupPointLogistics)
 	err := c.cc.Invoke(ctx, PickupPointsLogisticsService_PickupUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -61,18 +61,18 @@ func (c *pickupPointsLogisticsServiceClient) PickupUpdate(ctx context.Context, i
 // All implementations should embed UnimplementedPickupPointsLogisticsServiceServer
 // for forward compatibility
 type PickupPointsLogisticsServiceServer interface {
-	PickupList(context.Context, *PickUpPointsLogisticsRequest) (*PickUpPointsLogisticsResponse, error)
-	PickupUpdate(context.Context, *PickUpPointsLogisticsUpdateRequest) (*PickUpPointsLogisticsUpdateResponse, error)
+	PickupList(context.Context, *PickupPointsLogisticsRequest) (*PickupPointsLogisticsResponse, error)
+	PickupUpdate(context.Context, *PickupPointsLogisticsUpdateRequest) (*PickupPointLogistics, error)
 }
 
 // UnimplementedPickupPointsLogisticsServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedPickupPointsLogisticsServiceServer struct {
 }
 
-func (UnimplementedPickupPointsLogisticsServiceServer) PickupList(context.Context, *PickUpPointsLogisticsRequest) (*PickUpPointsLogisticsResponse, error) {
+func (UnimplementedPickupPointsLogisticsServiceServer) PickupList(context.Context, *PickupPointsLogisticsRequest) (*PickupPointsLogisticsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PickupList not implemented")
 }
-func (UnimplementedPickupPointsLogisticsServiceServer) PickupUpdate(context.Context, *PickUpPointsLogisticsUpdateRequest) (*PickUpPointsLogisticsUpdateResponse, error) {
+func (UnimplementedPickupPointsLogisticsServiceServer) PickupUpdate(context.Context, *PickupPointsLogisticsUpdateRequest) (*PickupPointLogistics, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PickupUpdate not implemented")
 }
 
@@ -88,7 +88,7 @@ func RegisterPickupPointsLogisticsServiceServer(s grpc.ServiceRegistrar, srv Pic
 }
 
 func _PickupPointsLogisticsService_PickupList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PickUpPointsLogisticsRequest)
+	in := new(PickupPointsLogisticsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -100,13 +100,13 @@ func _PickupPointsLogisticsService_PickupList_Handler(srv interface{}, ctx conte
 		FullMethod: PickupPointsLogisticsService_PickupList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PickupPointsLogisticsServiceServer).PickupList(ctx, req.(*PickUpPointsLogisticsRequest))
+		return srv.(PickupPointsLogisticsServiceServer).PickupList(ctx, req.(*PickupPointsLogisticsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PickupPointsLogisticsService_PickupUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PickUpPointsLogisticsUpdateRequest)
+	in := new(PickupPointsLogisticsUpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func _PickupPointsLogisticsService_PickupUpdate_Handler(srv interface{}, ctx con
 		FullMethod: PickupPointsLogisticsService_PickupUpdate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PickupPointsLogisticsServiceServer).PickupUpdate(ctx, req.(*PickUpPointsLogisticsUpdateRequest))
+		return srv.(PickupPointsLogisticsServiceServer).PickupUpdate(ctx, req.(*PickupPointsLogisticsUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

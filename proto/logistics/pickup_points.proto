@@ -9,14 +9,14 @@ import "google/protobuf/wrappers.proto";
 import "common.proto";
 
 service PickupPointsLogisticsService{
-  rpc PickupList(PickUpPointsLogisticsRequest) returns (PickUpPointsLogisticsResponse) {
+  rpc PickupList(PickupPointsLogisticsRequest) returns (PickupPointsLogisticsResponse) {
     option (google.api.http) = {
       post: "/api/v1/pickup/provider/{provider}/points"
       body: "*"
     };
   }
 
-  rpc PickupUpdate(PickUpPointsLogisticsUpdateRequest) returns (PickUpPointsLogisticsUpdateResponse) {
+  rpc PickupUpdate(PickupPointsLogisticsUpdateRequest) returns (PickupPointLogistics) {
     option (google.api.http) = {
       patch: "/api/v1/pickup/provider/{provider}/points/{id}"
       body: "*"
@@ -24,33 +24,27 @@ service PickupPointsLogisticsService{
   }
 }
 
-message PickUpPointsLogisticsRequest {
+message PickupPointsLogisticsRequest {
   string provider = 1;
-  LogisticsPickUpPointsFilter filter = 2;
+  LogisticsPickupPointsFilter filter = 2;
   common.PaginationRequest pagination = 3;
 }
 
-message PickUpPointsLogisticsUpdateRequest {
+message PickupPointsLogisticsUpdateRequest {
   int32 id = 1;
   string provider = 2;
   bool is_active = 3;
 }
 
-message PickUpPointsLogisticsUpdateResponse {
-  string status = 1;
-  string message = 2;
-  PickupPointLogistics data = 3;
-}
-
-message LogisticsPickUpPointsFilter {
+message LogisticsPickupPointsFilter {
   int32 id = 1;
-  string pvzId = 2;
+  string pvz_id = 2;
   string address = 3;
   google.protobuf.BoolValue is_active = 4;
   string coordinates = 5;
 }
 
-message PickUpPointsLogisticsResponse {
+message PickupPointsLogisticsResponse {
   common.Paginate pagination = 1;
   repeated PickupPointLogistics points = 2;
 }
