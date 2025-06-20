@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+option go_package = "go/logistics";
+
+package logistics;
+
+import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
+import "common.proto";
+
+service PickupPointsLogisticsService{
+  rpc PickupList(PickupPointsLogisticsRequest) returns (PickupPointsLogisticsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/pickup/provider/{provider}/points"
+      body: "*"
+    };
+  }
+
+  rpc PickupUpdate(PickupPointsLogisticsUpdateRequest) returns (PickupPointLogistics) {
+    option (google.api.http) = {
+      patch: "/api/v1/pickup/provider/{provider}/points/{id}"
+      body: "*"
+    };
+  }
+}
+
+message PickupPointsLogisticsRequest {
+  string provider = 1;
+  LogisticsPickupPointsFilter filter = 2;
+  common.PaginationRequest pagination = 3;
+}
+
+message PickupPointsLogisticsUpdateRequest {
+  int32 id = 1;
+  string provider = 2;
+  bool is_active = 3;
+}
+
+message LogisticsPickupPointsFilter {
+  int32 id = 1;
+  string pvz_id = 2;
+  string address = 3;
+  google.protobuf.BoolValue is_active = 4;
+  string coordinates = 5;
+}
+
+message PickupPointsLogisticsResponse {
+  common.Paginate pagination = 1;
+  repeated PickupPointLogistics points = 2;
+}
+
+message PickupPointLogistics {
+  int32  id = 1;
+  string title = 2;
+  string code = 3;
+  bool   is_active = 4;
+  string delivery_period = 5;
+  string phone = 6;
+  string timetable = 7;
+  string metro = 8;
+  string address = 9;
+  string trip_description = 10;
+  string coordinates = 11;
+  string provider = 12;
+}
