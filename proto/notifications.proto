@@ -35,6 +35,7 @@ message Payload {
 message SlackAttachment {
   string link = 1;
   string name = 2;
+  string id = 3;
 }
 
 message SendResponse {
