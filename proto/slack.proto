@@ -15,6 +15,12 @@ service Slack {
     }
     rpc FileUpload (stream FileUploadRequest) returns (FileUploadResponse) {
     }
+    rpc FileDelete (FileDeleteRequest) returns (BaseResponse) {
+    }
+}
+
+message FileDeleteRequest {
+    string file_id = 1;
 }
 
 message FileUploadRequest {

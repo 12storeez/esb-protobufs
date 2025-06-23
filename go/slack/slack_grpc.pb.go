@@ -24,6 +24,7 @@ const (
 	Slack_Delete_FullMethodName         = "/slack.Slack/Delete"
 	Slack_GetMessageLink_FullMethodName = "/slack.Slack/GetMessageLink"
 	Slack_FileUpload_FullMethodName     = "/slack.Slack/FileUpload"
+	Slack_FileDelete_FullMethodName     = "/slack.Slack/FileDelete"
 )
 
 // SlackClient is the client API for Slack service.
@@ -35,6 +36,7 @@ type SlackClient interface {
 	Delete(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 	GetMessageLink(ctx context.Context, in *GetMessageLinkRequest, opts ...grpc.CallOption) (*GetMessageLinkResponse, error)
 	FileUpload(ctx context.Context, opts ...grpc.CallOption) (Slack_FileUploadClient, error)
+	FileDelete(ctx context.Context, in *FileDeleteRequest, opts ...grpc.CallOption) (*BaseResponse, error)
 }
 
 type slackClient struct {
@@ -115,6 +117,15 @@ func (x *slackFileUploadClient) CloseAndRecv() (*FileUploadResponse, error) {
 	return m, nil
 }
 
+func (c *slackClient) FileDelete(ctx context.Context, in *FileDeleteRequest, opts ...grpc.CallOption) (*BaseResponse, error) {
+	out := new(BaseResponse)
+	err := c.cc.Invoke(ctx, Slack_FileDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SlackServer is the server API for Slack service.
 // All implementations should embed UnimplementedSlackServer
 // for forward compatibility
@@ -124,6 +135,7 @@ type SlackServer interface {
 	Delete(context.Context, *DeleteMessageRequest) (*BaseResponse, error)
 	GetMessageLink(context.Context, *GetMessageLinkRequest) (*GetMessageLinkResponse, error)
 	FileUpload(Slack_FileUploadServer) error
+	FileDelete(context.Context, *FileDeleteRequest) (*BaseResponse, error)
 }
 
 // UnimplementedSlackServer should be embedded to have forward compatible implementations.
@@ -144,6 +156,9 @@ func (UnimplementedSlackServer) GetMessageLink(context.Context, *GetMessageLinkR
 }
 func (UnimplementedSlackServer) FileUpload(Slack_FileUploadServer) error {
 	return status.Errorf(codes.Unimplemented, "method FileUpload not implemented")
+}
+func (UnimplementedSlackServer) FileDelete(context.Context, *FileDeleteRequest) (*BaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FileDelete not implemented")
 }
 
 // UnsafeSlackServer may be embedded to opt out of forward compatibility for this service.
@@ -255,6 +270,24 @@ func (x *slackFileUploadServer) Recv() (*FileUploadRequest, error) {
 	return m, nil
 }
 
+func _Slack_FileDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FileDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SlackServer).FileDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Slack_FileDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SlackServer).FileDelete(ctx, req.(*FileDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Slack_ServiceDesc is the grpc.ServiceDesc for Slack service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -277,6 +310,10 @@ var Slack_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMessageLink",
 			Handler:    _Slack_GetMessageLink_Handler,
+		},
+		{
+			MethodName: "FileDelete",
+			Handler:    _Slack_FileDelete_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
