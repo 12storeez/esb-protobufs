@@ -21,6 +21,7 @@ service Slack {
 
 message FileDeleteRequest {
     string file_id = 1;
+    optional string incoming_system = 2;
 }
 
 message FileUploadRequest {
