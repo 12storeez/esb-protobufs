@@ -1146,3 +1146,91 @@ var Gift_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/mindbox.proto",
 }
+
+const (
+	Card_Recommendations_FullMethodName = "/mindbox.Card/Recommendations"
+)
+
+// CardClient is the client API for Card service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CardClient interface {
+	Recommendations(ctx context.Context, in *RecommendationsRequest, opts ...grpc.CallOption) (*RecommendationsResponse, error)
+}
+
+type cardClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCardClient(cc grpc.ClientConnInterface) CardClient {
+	return &cardClient{cc}
+}
+
+func (c *cardClient) Recommendations(ctx context.Context, in *RecommendationsRequest, opts ...grpc.CallOption) (*RecommendationsResponse, error) {
+	out := new(RecommendationsResponse)
+	err := c.cc.Invoke(ctx, Card_Recommendations_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CardServer is the server API for Card service.
+// All implementations should embed UnimplementedCardServer
+// for forward compatibility
+type CardServer interface {
+	Recommendations(context.Context, *RecommendationsRequest) (*RecommendationsResponse, error)
+}
+
+// UnimplementedCardServer should be embedded to have forward compatible implementations.
+type UnimplementedCardServer struct {
+}
+
+func (UnimplementedCardServer) Recommendations(context.Context, *RecommendationsRequest) (*RecommendationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Recommendations not implemented")
+}
+
+// UnsafeCardServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CardServer will
+// result in compilation errors.
+type UnsafeCardServer interface {
+	mustEmbedUnimplementedCardServer()
+}
+
+func RegisterCardServer(s grpc.ServiceRegistrar, srv CardServer) {
+	s.RegisterService(&Card_ServiceDesc, srv)
+}
+
+func _Card_Recommendations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecommendationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CardServer).Recommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Card_Recommendations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CardServer).Recommendations(ctx, req.(*RecommendationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Card_ServiceDesc is the grpc.ServiceDesc for Card service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Card_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.Card",
+	HandlerType: (*CardServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Recommendations",
+			Handler:    _Card_Recommendations_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mindbox.proto",
+}
