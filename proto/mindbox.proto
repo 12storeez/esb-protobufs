@@ -64,7 +64,7 @@ service Gift {
     rpc VerifyCode(VerifyCodeRequest) returns (VerifyCodeResponse) {}         // tnt-1243
 }
 
-service Card {
+service Cart {
     rpc Recommendations(RecommendationsRequest) returns (RecommendationsResponse) {}
 }
 
