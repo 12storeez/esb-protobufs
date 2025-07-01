@@ -20,6 +20,7 @@ message CreateCommentRequest {
   string text = 2;
   repeated string summonees = 3;
   optional bool is_attachment_disabled = 4;
+  repeated string  attachment_ids = 5;
 }
 
 message HandleEventRequest {
