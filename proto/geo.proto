@@ -4,8 +4,6 @@ option go_package = "go/geo";
 
 package geo;
 
-import "google/protobuf/wrappers.proto";
-
 service geo {
   // Suggest по странам. Возвращет страны из БД
   rpc SuggestCountry(SuggestCountryParams) returns (SuggestCountryResponse) {
@@ -218,8 +216,14 @@ message SuggestAddressParams {
   string       search = 4;
   int32        limit = 5;
   int32        offset = 6;
-  google.protobuf.StringValue suggest_type = 7;
+  SuggestType suggest_type = 7;
   string street_id = 8;
+}
+
+enum SuggestType {
+  SUGGEST_TYPE_UNKNOWN = 0;
+  STREET = 1;
+  HOUSE =  2;
 }
 
 message SuggestAddressResponse {
