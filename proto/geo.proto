@@ -221,9 +221,9 @@ message SuggestAddressParams {
 }
 
 enum SuggestType {
-  SUGGEST_TYPE_UNKNOWN = 0;
-  STREET = 1;
-  HOUSE =  2;
+  ST_UNKNOWN = 0;
+  ST_STREET =  1;
+  ST_HOUSE =   2;
 }
 
 message SuggestAddressResponse {
