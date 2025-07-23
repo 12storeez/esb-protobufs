@@ -216,6 +216,14 @@ message SuggestAddressParams {
   string       search = 4;
   int32        limit = 5;
   int32        offset = 6;
+  SuggestType suggest_type = 7;
+  string street_id = 8;
+}
+
+enum SuggestType {
+  ST_UNKNOWN = 0;
+  ST_STREET =  1;
+  ST_HOUSE =   2;
 }
 
 message SuggestAddressResponse {
