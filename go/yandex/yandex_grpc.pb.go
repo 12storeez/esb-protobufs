@@ -22,6 +22,7 @@ const (
 	Yandex_HandleCreateEvent_FullMethodName     = "/yandex.Yandex/HandleCreateEvent"
 	Yandex_HandleUpdateEvent_FullMethodName     = "/yandex.Yandex/HandleUpdateEvent"
 	Yandex_HandleNewCommentEvent_FullMethodName = "/yandex.Yandex/HandleNewCommentEvent"
+	Yandex_CreateTicket_FullMethodName          = "/yandex.Yandex/CreateTicket"
 	Yandex_CreateComment_FullMethodName         = "/yandex.Yandex/CreateComment"
 )
 
@@ -32,6 +33,7 @@ type YandexClient interface {
 	HandleCreateEvent(ctx context.Context, in *HandleEventRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
 	HandleUpdateEvent(ctx context.Context, in *HandleEventRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
 	HandleNewCommentEvent(ctx context.Context, in *HandleEventRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
+	CreateTicket(ctx context.Context, in *CreateTicketRequest, opts ...grpc.CallOption) (*CreateTicketResponse, error)
 	CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*HandleEventResponse, error)
 }
 
@@ -70,6 +72,15 @@ func (c *yandexClient) HandleNewCommentEvent(ctx context.Context, in *HandleEven
 	return out, nil
 }
 
+func (c *yandexClient) CreateTicket(ctx context.Context, in *CreateTicketRequest, opts ...grpc.CallOption) (*CreateTicketResponse, error) {
+	out := new(CreateTicketResponse)
+	err := c.cc.Invoke(ctx, Yandex_CreateTicket_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *yandexClient) CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*HandleEventResponse, error) {
 	out := new(HandleEventResponse)
 	err := c.cc.Invoke(ctx, Yandex_CreateComment_FullMethodName, in, out, opts...)
@@ -86,6 +97,7 @@ type YandexServer interface {
 	HandleCreateEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error)
 	HandleUpdateEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error)
 	HandleNewCommentEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error)
+	CreateTicket(context.Context, *CreateTicketRequest) (*CreateTicketResponse, error)
 	CreateComment(context.Context, *CreateCommentRequest) (*HandleEventResponse, error)
 }
 
@@ -101,6 +113,9 @@ func (UnimplementedYandexServer) HandleUpdateEvent(context.Context, *HandleEvent
 }
 func (UnimplementedYandexServer) HandleNewCommentEvent(context.Context, *HandleEventRequest) (*HandleEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HandleNewCommentEvent not implemented")
+}
+func (UnimplementedYandexServer) CreateTicket(context.Context, *CreateTicketRequest) (*CreateTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTicket not implemented")
 }
 func (UnimplementedYandexServer) CreateComment(context.Context, *CreateCommentRequest) (*HandleEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateComment not implemented")
@@ -171,6 +186,24 @@ func _Yandex_HandleNewCommentEvent_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Yandex_CreateTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTicketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(YandexServer).CreateTicket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Yandex_CreateTicket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(YandexServer).CreateTicket(ctx, req.(*CreateTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Yandex_CreateComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateCommentRequest)
 	if err := dec(in); err != nil {
@@ -207,6 +240,10 @@ var Yandex_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "HandleNewCommentEvent",
 			Handler:    _Yandex_HandleNewCommentEvent_Handler,
+		},
+		{
+			MethodName: "CreateTicket",
+			Handler:    _Yandex_CreateTicket_Handler,
 		},
 		{
 			MethodName: "CreateComment",
