@@ -11,8 +11,39 @@ service Yandex {
   }
   rpc HandleNewCommentEvent (HandleEventRequest) returns (HandleEventResponse) {
   }
+  rpc CreateTicket (CreateTicketRequest) returns (CreateTicketResponse) {
+  }
   rpc CreateComment (CreateCommentRequest) returns (HandleEventResponse) {
   }
+}
+
+message CreateTicketRequest {
+  string summary = 1;
+  string queue = 2;
+  optional string parent = 3;
+  optional string description = 4;
+  optional string type = 5;
+  optional string priority = 6;
+  optional string author_tracker_id = 7;
+  repeated Attachment attachments = 8;
+  optional string custom_fields = 9;
+}
+
+message Attachment {
+  string link = 1;
+  optional string name = 2;
+}
+
+message CreateTicketResponse {
+  string            status = 1;
+  string            message = 2;
+  int64             code = 3;
+  repeated Error    errors = 4;
+  CreateTicketResponseData data = 5;
+}
+
+message CreateTicketResponseData {
+  string ticket_key = 1;
 }
 
 message CreateCommentRequest {
