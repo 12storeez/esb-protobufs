@@ -18,11 +18,24 @@ message SendRequest {
   string          channel = 6;
   Payload         payload = 7;
   optional string          incoming_system = 8;
+  repeated Attachment attachments_v2 = 9;
+}
+
+message Attachment {
+  string link = 1;
+  string name = 2;
 }
 
 message Payload {
   string thread_id = 1;
   bool   is_split_by_blocks_enabled = 2;
+  repeated SlackAttachment slack_attachments = 3;
+}
+
+message SlackAttachment {
+  string link = 1;
+  string name = 2;
+  string id = 3;
 }
 
 message SendResponse {
@@ -37,6 +50,14 @@ message SendResponse {
 message SendData {
   string thread_id = 1;
   string channel_id = 2;
+  repeated AttachmentResponse attachments = 3;
+}
+
+message AttachmentResponse {
+  string link = 1;
+  string name = 2;
+  string slack_link = 3;
+  string slack_id = 4;
 }
 
 // Error

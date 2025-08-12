@@ -1146,3 +1146,91 @@ var Gift_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "proto/mindbox.proto",
 }
+
+const (
+	Cart_Recommendations_FullMethodName = "/mindbox.Cart/Recommendations"
+)
+
+// CartClient is the client API for Cart service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CartClient interface {
+	Recommendations(ctx context.Context, in *RecommendationsRequest, opts ...grpc.CallOption) (*RecommendationsResponse, error)
+}
+
+type cartClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCartClient(cc grpc.ClientConnInterface) CartClient {
+	return &cartClient{cc}
+}
+
+func (c *cartClient) Recommendations(ctx context.Context, in *RecommendationsRequest, opts ...grpc.CallOption) (*RecommendationsResponse, error) {
+	out := new(RecommendationsResponse)
+	err := c.cc.Invoke(ctx, Cart_Recommendations_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CartServer is the server API for Cart service.
+// All implementations should embed UnimplementedCartServer
+// for forward compatibility
+type CartServer interface {
+	Recommendations(context.Context, *RecommendationsRequest) (*RecommendationsResponse, error)
+}
+
+// UnimplementedCartServer should be embedded to have forward compatible implementations.
+type UnimplementedCartServer struct {
+}
+
+func (UnimplementedCartServer) Recommendations(context.Context, *RecommendationsRequest) (*RecommendationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Recommendations not implemented")
+}
+
+// UnsafeCartServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CartServer will
+// result in compilation errors.
+type UnsafeCartServer interface {
+	mustEmbedUnimplementedCartServer()
+}
+
+func RegisterCartServer(s grpc.ServiceRegistrar, srv CartServer) {
+	s.RegisterService(&Cart_ServiceDesc, srv)
+}
+
+func _Cart_Recommendations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecommendationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CartServer).Recommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cart_Recommendations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CartServer).Recommendations(ctx, req.(*RecommendationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Cart_ServiceDesc is the grpc.ServiceDesc for Cart service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Cart_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.Cart",
+	HandlerType: (*CartServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Recommendations",
+			Handler:    _Cart_Recommendations_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mindbox.proto",
+}

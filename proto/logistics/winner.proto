@@ -78,6 +78,7 @@ message PickUpPointsDetailResponse {
   string phone =             6;
   string trip_description =  7;
   optional string zip_code = 8;
+  string city_geo_id =       9;
 }
 
 message CalculateRequest {
@@ -89,23 +90,27 @@ message CalculateRequest {
   string    house_geo_id = 6;
   string    geo_id = 7;
   int32     cart_id = 8;
-  repeated  CartPosition cart = 9;
+  repeated  CartsCategory carts_category= 9;
   string    order_datetime = 10;
   bool      is_cart_for_clients = 11;
 }
 
+message CartsCategory {
+  int32    category_id = 1;
+  repeated CartPosition cart_position = 2;
+}
+
 message CartPosition {
-  int32   category_id = 1;
-  int32   quantity = 2;
-  float   price = 3;
-  bool    is_present = 4;
-  int32   weight = 5;
+  int32    barcode =    1;
+  int32    quantity =   2;
+  float    price =      3;
+  bool     is_present = 4;
+  int32    weight =     5;
 }
 
 message CalculateResponse {
   repeated WinnerRestriction  restrictions = 1;
   repeated WinnerDeliveryMode delivery_modes = 2;
-
 }
 
 message WinnerDeliveryMode {

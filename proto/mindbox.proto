@@ -64,6 +64,10 @@ service Gift {
     rpc VerifyCode(VerifyCodeRequest) returns (VerifyCodeResponse) {}         // tnt-1243
 }
 
+service Cart {
+    rpc Recommendations(RecommendationsRequest) returns (RecommendationsResponse) {}
+}
+
 message PushClickParams {
     string message_unique_key = 1;
     string button_unique_key = 2;
@@ -650,4 +654,17 @@ message VerifyCodeResponse {
     string message = 2;
     int64 code = 3;
     repeated Error errors = 4;
+}
+
+// Card.Recommendations
+message RecommendationsRequest {
+    uint32 limit = 1;
+}
+
+message RecommendationsResponse {
+    string status = 1;
+    string message = 2;
+    int64 code = 3;
+    repeated string data = 4;
+    repeated Error errors = 5;
 }
