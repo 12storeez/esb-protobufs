@@ -4994,11 +4994,11 @@
         "updatedAt": {
           "type": "string"
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         }
       }
@@ -5031,11 +5031,11 @@
         "isDeliveryDelayed": {
           "type": "boolean"
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         }
       }
@@ -5287,11 +5287,11 @@
             "$ref": "#/definitions/logisticsCategoryRestriction"
           }
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         },
         "restrictionByWeightIsActive": {
@@ -5449,11 +5449,11 @@
             "$ref": "#/definitions/logisticsUpdateCategoryRestriction"
           }
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         },
         "maxWeight": {
@@ -5651,6 +5651,21 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "logisticsIntervalsGroups": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsInterval"
+          }
         }
       }
     },

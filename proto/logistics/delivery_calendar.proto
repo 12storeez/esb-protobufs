@@ -70,7 +70,7 @@ message UpdateDeliveryCalendar {
   string            date_from = 6;
   string            date_to = 7;
   bool              is_delivery_delayed = 8;
-  repeated Interval intervals = 9;
+  repeated IntervalsGroups intervals_groups = 9;
 }
 
 message DeliveryCalendar {
@@ -84,7 +84,7 @@ message DeliveryCalendar {
   bool                is_delivery_delayed = 8;
   string              created_at = 9;
   string              updated_at = 10;
-  repeated Interval   intervals = 11;
+  repeated IntervalsGroups   intervals_groups = 11;
 }
 
 message ListDeliveryCalendarRequest {
