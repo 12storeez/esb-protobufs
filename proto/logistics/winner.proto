@@ -36,7 +36,7 @@ service WinnerService {
 
   rpc AddressDetails(AddressDetailsRequest) returns (AddressDetailsResponse) {
     option (google.api.http) = {
-      get: " /api/v1/winner/pickup/address_details/provider/{provider}/point/{point}"
+      get: "/api/v1/winner/pickup/address_details/provider/{provider}/point/{point}"
     };
   }
 }
