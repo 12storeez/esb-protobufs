@@ -33,6 +33,29 @@ service WinnerService {
       get: "/api/v1/winner/pickup/{provider}/points/{point}"
     };
   }
+
+  rpc AddressDetails(AddressDetailsRequest) returns (AddressDetailsResponse) {
+    option (google.api.http) = {
+      get: " /api/v1/winner/pickup/address_details/provider/{provider}/point/{point}"
+    };
+  }
+}
+
+message AddressDetailsRequest {
+  string provider = 1;
+  string point =    2;
+}
+
+message AddressDetailsResponse {
+  string pvz_id = 1;
+  string full_address = 2;
+  string country_iso = 3;
+  string region = 4;
+  string city = 5;
+  string street = 6;
+  string house = 7;
+  string postal = 8;
+  string city_fias = 9;
 }
 
 message Pagination {

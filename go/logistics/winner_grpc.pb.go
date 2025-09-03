@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	WinnerService_Calculate_FullMethodName    = "/logistics.WinnerService/Calculate"
-	WinnerService_Intervals_FullMethodName    = "/logistics.WinnerService/Intervals"
-	WinnerService_PickupList_FullMethodName   = "/logistics.WinnerService/PickupList"
-	WinnerService_PickupDetail_FullMethodName = "/logistics.WinnerService/PickupDetail"
+	WinnerService_Calculate_FullMethodName      = "/logistics.WinnerService/Calculate"
+	WinnerService_Intervals_FullMethodName      = "/logistics.WinnerService/Intervals"
+	WinnerService_PickupList_FullMethodName     = "/logistics.WinnerService/PickupList"
+	WinnerService_PickupDetail_FullMethodName   = "/logistics.WinnerService/PickupDetail"
+	WinnerService_AddressDetails_FullMethodName = "/logistics.WinnerService/AddressDetails"
 )
 
 // WinnerServiceClient is the client API for WinnerService service.
@@ -33,6 +34,7 @@ type WinnerServiceClient interface {
 	Intervals(ctx context.Context, in *IntervalsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
 	PickupList(ctx context.Context, in *PickUpPointsRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
 	PickupDetail(ctx context.Context, in *PickUpPointsDetailRequest, opts ...grpc.CallOption) (*UnifiedResponse, error)
+	AddressDetails(ctx context.Context, in *AddressDetailsRequest, opts ...grpc.CallOption) (*AddressDetailsResponse, error)
 }
 
 type winnerServiceClient struct {
@@ -79,6 +81,15 @@ func (c *winnerServiceClient) PickupDetail(ctx context.Context, in *PickUpPoints
 	return out, nil
 }
 
+func (c *winnerServiceClient) AddressDetails(ctx context.Context, in *AddressDetailsRequest, opts ...grpc.CallOption) (*AddressDetailsResponse, error) {
+	out := new(AddressDetailsResponse)
+	err := c.cc.Invoke(ctx, WinnerService_AddressDetails_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WinnerServiceServer is the server API for WinnerService service.
 // All implementations should embed UnimplementedWinnerServiceServer
 // for forward compatibility
@@ -87,6 +98,7 @@ type WinnerServiceServer interface {
 	Intervals(context.Context, *IntervalsRequest) (*UnifiedResponse, error)
 	PickupList(context.Context, *PickUpPointsRequest) (*UnifiedResponse, error)
 	PickupDetail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error)
+	AddressDetails(context.Context, *AddressDetailsRequest) (*AddressDetailsResponse, error)
 }
 
 // UnimplementedWinnerServiceServer should be embedded to have forward compatible implementations.
@@ -104,6 +116,9 @@ func (UnimplementedWinnerServiceServer) PickupList(context.Context, *PickUpPoint
 }
 func (UnimplementedWinnerServiceServer) PickupDetail(context.Context, *PickUpPointsDetailRequest) (*UnifiedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PickupDetail not implemented")
+}
+func (UnimplementedWinnerServiceServer) AddressDetails(context.Context, *AddressDetailsRequest) (*AddressDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddressDetails not implemented")
 }
 
 // UnsafeWinnerServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -189,6 +204,24 @@ func _WinnerService_PickupDetail_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WinnerService_AddressDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddressDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WinnerServiceServer).AddressDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WinnerService_AddressDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WinnerServiceServer).AddressDetails(ctx, req.(*AddressDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WinnerService_ServiceDesc is the grpc.ServiceDesc for WinnerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -211,6 +244,10 @@ var WinnerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PickupDetail",
 			Handler:    _WinnerService_PickupDetail_Handler,
+		},
+		{
+			MethodName: "AddressDetails",
+			Handler:    _WinnerService_AddressDetails_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

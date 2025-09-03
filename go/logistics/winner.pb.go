@@ -21,6 +21,172 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type AddressDetailsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Provider string `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
+	Point    string `protobuf:"bytes,2,opt,name=point,proto3" json:"point,omitempty"`
+}
+
+func (x *AddressDetailsRequest) Reset() {
+	*x = AddressDetailsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_winner_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddressDetailsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddressDetailsRequest) ProtoMessage() {}
+
+func (x *AddressDetailsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_winner_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddressDetailsRequest.ProtoReflect.Descriptor instead.
+func (*AddressDetailsRequest) Descriptor() ([]byte, []int) {
+	return file_winner_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *AddressDetailsRequest) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+func (x *AddressDetailsRequest) GetPoint() string {
+	if x != nil {
+		return x.Point
+	}
+	return ""
+}
+
+type AddressDetailsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	PvzId       string `protobuf:"bytes,1,opt,name=pvz_id,json=pvzId,proto3" json:"pvz_id,omitempty"`
+	FullAddress string `protobuf:"bytes,2,opt,name=full_address,json=fullAddress,proto3" json:"full_address,omitempty"`
+	CountryIso  string `protobuf:"bytes,3,opt,name=country_iso,json=countryIso,proto3" json:"country_iso,omitempty"`
+	Region      string `protobuf:"bytes,4,opt,name=region,proto3" json:"region,omitempty"`
+	City        string `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
+	Street      string `protobuf:"bytes,6,opt,name=street,proto3" json:"street,omitempty"`
+	House       string `protobuf:"bytes,7,opt,name=house,proto3" json:"house,omitempty"`
+	Postal      string `protobuf:"bytes,8,opt,name=postal,proto3" json:"postal,omitempty"`
+	CityFias    string `protobuf:"bytes,9,opt,name=city_fias,json=cityFias,proto3" json:"city_fias,omitempty"`
+}
+
+func (x *AddressDetailsResponse) Reset() {
+	*x = AddressDetailsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_winner_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddressDetailsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddressDetailsResponse) ProtoMessage() {}
+
+func (x *AddressDetailsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_winner_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddressDetailsResponse.ProtoReflect.Descriptor instead.
+func (*AddressDetailsResponse) Descriptor() ([]byte, []int) {
+	return file_winner_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *AddressDetailsResponse) GetPvzId() string {
+	if x != nil {
+		return x.PvzId
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetFullAddress() string {
+	if x != nil {
+		return x.FullAddress
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetCountryIso() string {
+	if x != nil {
+		return x.CountryIso
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetStreet() string {
+	if x != nil {
+		return x.Street
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetHouse() string {
+	if x != nil {
+		return x.House
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetPostal() string {
+	if x != nil {
+		return x.Postal
+	}
+	return ""
+}
+
+func (x *AddressDetailsResponse) GetCityFias() string {
+	if x != nil {
+		return x.CityFias
+	}
+	return ""
+}
+
 type Pagination struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -33,7 +199,7 @@ type Pagination struct {
 func (x *Pagination) Reset() {
 	*x = Pagination{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[0]
+		mi := &file_winner_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -46,7 +212,7 @@ func (x *Pagination) String() string {
 func (*Pagination) ProtoMessage() {}
 
 func (x *Pagination) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[0]
+	mi := &file_winner_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +225,7 @@ func (x *Pagination) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pagination.ProtoReflect.Descriptor instead.
 func (*Pagination) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{0}
+	return file_winner_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Pagination) GetLimit() uint32 {
@@ -88,7 +254,7 @@ type PickUpPointsRequest struct {
 func (x *PickUpPointsRequest) Reset() {
 	*x = PickUpPointsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[1]
+		mi := &file_winner_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -101,7 +267,7 @@ func (x *PickUpPointsRequest) String() string {
 func (*PickUpPointsRequest) ProtoMessage() {}
 
 func (x *PickUpPointsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[1]
+	mi := &file_winner_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114,7 +280,7 @@ func (x *PickUpPointsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PickUpPointsRequest.ProtoReflect.Descriptor instead.
 func (*PickUpPointsRequest) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{1}
+	return file_winner_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PickUpPointsRequest) GetFilter() *Filter {
@@ -145,7 +311,7 @@ type Filter struct {
 func (x *Filter) Reset() {
 	*x = Filter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[2]
+		mi := &file_winner_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -158,7 +324,7 @@ func (x *Filter) String() string {
 func (*Filter) ProtoMessage() {}
 
 func (x *Filter) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[2]
+	mi := &file_winner_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -171,7 +337,7 @@ func (x *Filter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Filter.ProtoReflect.Descriptor instead.
 func (*Filter) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{2}
+	return file_winner_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Filter) GetProvider() string {
@@ -213,7 +379,7 @@ type PickUpPointsResponse struct {
 func (x *PickUpPointsResponse) Reset() {
 	*x = PickUpPointsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[3]
+		mi := &file_winner_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -226,7 +392,7 @@ func (x *PickUpPointsResponse) String() string {
 func (*PickUpPointsResponse) ProtoMessage() {}
 
 func (x *PickUpPointsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[3]
+	mi := &file_winner_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -239,7 +405,7 @@ func (x *PickUpPointsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PickUpPointsResponse.ProtoReflect.Descriptor instead.
 func (*PickUpPointsResponse) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{3}
+	return file_winner_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PickUpPointsResponse) GetResults() []*PickupPoint {
@@ -264,7 +430,7 @@ type PickupPoint struct {
 func (x *PickupPoint) Reset() {
 	*x = PickupPoint{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[4]
+		mi := &file_winner_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -277,7 +443,7 @@ func (x *PickupPoint) String() string {
 func (*PickupPoint) ProtoMessage() {}
 
 func (x *PickupPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[4]
+	mi := &file_winner_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -290,7 +456,7 @@ func (x *PickupPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PickupPoint.ProtoReflect.Descriptor instead.
 func (*PickupPoint) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{4}
+	return file_winner_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PickupPoint) GetId() string {
@@ -340,7 +506,7 @@ type PickUpPointsDetailRequest struct {
 func (x *PickUpPointsDetailRequest) Reset() {
 	*x = PickUpPointsDetailRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[5]
+		mi := &file_winner_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -353,7 +519,7 @@ func (x *PickUpPointsDetailRequest) String() string {
 func (*PickUpPointsDetailRequest) ProtoMessage() {}
 
 func (x *PickUpPointsDetailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[5]
+	mi := &file_winner_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -366,7 +532,7 @@ func (x *PickUpPointsDetailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PickUpPointsDetailRequest.ProtoReflect.Descriptor instead.
 func (*PickUpPointsDetailRequest) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{5}
+	return file_winner_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PickUpPointsDetailRequest) GetProvider() string {
@@ -402,7 +568,7 @@ type PickUpPointsDetailResponse struct {
 func (x *PickUpPointsDetailResponse) Reset() {
 	*x = PickUpPointsDetailResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[6]
+		mi := &file_winner_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -415,7 +581,7 @@ func (x *PickUpPointsDetailResponse) String() string {
 func (*PickUpPointsDetailResponse) ProtoMessage() {}
 
 func (x *PickUpPointsDetailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[6]
+	mi := &file_winner_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -428,7 +594,7 @@ func (x *PickUpPointsDetailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PickUpPointsDetailResponse.ProtoReflect.Descriptor instead.
 func (*PickUpPointsDetailResponse) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{6}
+	return file_winner_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *PickUpPointsDetailResponse) GetId() string {
@@ -515,7 +681,7 @@ type CalculateRequest struct {
 func (x *CalculateRequest) Reset() {
 	*x = CalculateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[7]
+		mi := &file_winner_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -528,7 +694,7 @@ func (x *CalculateRequest) String() string {
 func (*CalculateRequest) ProtoMessage() {}
 
 func (x *CalculateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[7]
+	mi := &file_winner_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -541,7 +707,7 @@ func (x *CalculateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalculateRequest.ProtoReflect.Descriptor instead.
 func (*CalculateRequest) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{7}
+	return file_winner_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CalculateRequest) GetCountryIsoCode() string {
@@ -633,7 +799,7 @@ type CartsCategory struct {
 func (x *CartsCategory) Reset() {
 	*x = CartsCategory{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[8]
+		mi := &file_winner_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -646,7 +812,7 @@ func (x *CartsCategory) String() string {
 func (*CartsCategory) ProtoMessage() {}
 
 func (x *CartsCategory) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[8]
+	mi := &file_winner_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -659,7 +825,7 @@ func (x *CartsCategory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CartsCategory.ProtoReflect.Descriptor instead.
 func (*CartsCategory) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{8}
+	return file_winner_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CartsCategory) GetCategoryId() int32 {
@@ -691,7 +857,7 @@ type CartPosition struct {
 func (x *CartPosition) Reset() {
 	*x = CartPosition{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[9]
+		mi := &file_winner_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -704,7 +870,7 @@ func (x *CartPosition) String() string {
 func (*CartPosition) ProtoMessage() {}
 
 func (x *CartPosition) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[9]
+	mi := &file_winner_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -717,7 +883,7 @@ func (x *CartPosition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CartPosition.ProtoReflect.Descriptor instead.
 func (*CartPosition) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{9}
+	return file_winner_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CartPosition) GetBarcode() int32 {
@@ -767,7 +933,7 @@ type CalculateResponse struct {
 func (x *CalculateResponse) Reset() {
 	*x = CalculateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[10]
+		mi := &file_winner_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -780,7 +946,7 @@ func (x *CalculateResponse) String() string {
 func (*CalculateResponse) ProtoMessage() {}
 
 func (x *CalculateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[10]
+	mi := &file_winner_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -793,7 +959,7 @@ func (x *CalculateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalculateResponse.ProtoReflect.Descriptor instead.
 func (*CalculateResponse) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{10}
+	return file_winner_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CalculateResponse) GetRestrictions() []*WinnerRestriction {
@@ -823,7 +989,7 @@ type WinnerDeliveryMode struct {
 func (x *WinnerDeliveryMode) Reset() {
 	*x = WinnerDeliveryMode{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[11]
+		mi := &file_winner_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -836,7 +1002,7 @@ func (x *WinnerDeliveryMode) String() string {
 func (*WinnerDeliveryMode) ProtoMessage() {}
 
 func (x *WinnerDeliveryMode) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[11]
+	mi := &file_winner_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -849,7 +1015,7 @@ func (x *WinnerDeliveryMode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerDeliveryMode.ProtoReflect.Descriptor instead.
 func (*WinnerDeliveryMode) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{11}
+	return file_winner_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *WinnerDeliveryMode) GetTitle() string {
@@ -885,7 +1051,7 @@ type WinnerRestriction struct {
 func (x *WinnerRestriction) Reset() {
 	*x = WinnerRestriction{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[12]
+		mi := &file_winner_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -898,7 +1064,7 @@ func (x *WinnerRestriction) String() string {
 func (*WinnerRestriction) ProtoMessage() {}
 
 func (x *WinnerRestriction) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[12]
+	mi := &file_winner_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -911,7 +1077,7 @@ func (x *WinnerRestriction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerRestriction.ProtoReflect.Descriptor instead.
 func (*WinnerRestriction) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{12}
+	return file_winner_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *WinnerRestriction) GetMessage() string {
@@ -941,7 +1107,7 @@ type WinnerPopup struct {
 func (x *WinnerPopup) Reset() {
 	*x = WinnerPopup{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[13]
+		mi := &file_winner_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -954,7 +1120,7 @@ func (x *WinnerPopup) String() string {
 func (*WinnerPopup) ProtoMessage() {}
 
 func (x *WinnerPopup) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[13]
+	mi := &file_winner_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -967,7 +1133,7 @@ func (x *WinnerPopup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerPopup.ProtoReflect.Descriptor instead.
 func (*WinnerPopup) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{13}
+	return file_winner_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *WinnerPopup) GetTitle() string {
@@ -1017,7 +1183,7 @@ type WinnerDeliveryType struct {
 func (x *WinnerDeliveryType) Reset() {
 	*x = WinnerDeliveryType{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[14]
+		mi := &file_winner_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1030,7 +1196,7 @@ func (x *WinnerDeliveryType) String() string {
 func (*WinnerDeliveryType) ProtoMessage() {}
 
 func (x *WinnerDeliveryType) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[14]
+	mi := &file_winner_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1043,7 +1209,7 @@ func (x *WinnerDeliveryType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerDeliveryType.ProtoReflect.Descriptor instead.
 func (*WinnerDeliveryType) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{14}
+	return file_winner_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *WinnerDeliveryType) GetDeliveryTypeName() string {
@@ -1172,7 +1338,7 @@ type WinnerPaymentMethod struct {
 func (x *WinnerPaymentMethod) Reset() {
 	*x = WinnerPaymentMethod{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[15]
+		mi := &file_winner_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1185,7 +1351,7 @@ func (x *WinnerPaymentMethod) String() string {
 func (*WinnerPaymentMethod) ProtoMessage() {}
 
 func (x *WinnerPaymentMethod) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[15]
+	mi := &file_winner_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1198,7 +1364,7 @@ func (x *WinnerPaymentMethod) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerPaymentMethod.ProtoReflect.Descriptor instead.
 func (*WinnerPaymentMethod) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{15}
+	return file_winner_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *WinnerPaymentMethod) GetTitleRu() string {
@@ -1242,7 +1408,7 @@ type WinnerDeliveryDates struct {
 func (x *WinnerDeliveryDates) Reset() {
 	*x = WinnerDeliveryDates{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[16]
+		mi := &file_winner_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1255,7 +1421,7 @@ func (x *WinnerDeliveryDates) String() string {
 func (*WinnerDeliveryDates) ProtoMessage() {}
 
 func (x *WinnerDeliveryDates) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[16]
+	mi := &file_winner_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1268,7 +1434,7 @@ func (x *WinnerDeliveryDates) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerDeliveryDates.ProtoReflect.Descriptor instead.
 func (*WinnerDeliveryDates) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{16}
+	return file_winner_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *WinnerDeliveryDates) GetDate() string {
@@ -1308,7 +1474,7 @@ type WinnerInterval struct {
 func (x *WinnerInterval) Reset() {
 	*x = WinnerInterval{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[17]
+		mi := &file_winner_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1321,7 +1487,7 @@ func (x *WinnerInterval) String() string {
 func (*WinnerInterval) ProtoMessage() {}
 
 func (x *WinnerInterval) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[17]
+	mi := &file_winner_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1334,7 +1500,7 @@ func (x *WinnerInterval) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerInterval.ProtoReflect.Descriptor instead.
 func (*WinnerInterval) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{17}
+	return file_winner_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *WinnerInterval) GetTitle() string {
@@ -1391,7 +1557,7 @@ type IntervalsRequest struct {
 func (x *IntervalsRequest) Reset() {
 	*x = IntervalsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[18]
+		mi := &file_winner_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1404,7 +1570,7 @@ func (x *IntervalsRequest) String() string {
 func (*IntervalsRequest) ProtoMessage() {}
 
 func (x *IntervalsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[18]
+	mi := &file_winner_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1417,7 +1583,7 @@ func (x *IntervalsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IntervalsRequest.ProtoReflect.Descriptor instead.
 func (*IntervalsRequest) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{18}
+	return file_winner_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *IntervalsRequest) GetDeliveryTypeCode() string {
@@ -1448,7 +1614,7 @@ type Intervals struct {
 func (x *Intervals) Reset() {
 	*x = Intervals{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[19]
+		mi := &file_winner_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1461,7 +1627,7 @@ func (x *Intervals) String() string {
 func (*Intervals) ProtoMessage() {}
 
 func (x *Intervals) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[19]
+	mi := &file_winner_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1474,7 +1640,7 @@ func (x *Intervals) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Intervals.ProtoReflect.Descriptor instead.
 func (*Intervals) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{19}
+	return file_winner_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *Intervals) GetName() string {
@@ -1518,7 +1684,7 @@ type IntervalsResponse struct {
 func (x *IntervalsResponse) Reset() {
 	*x = IntervalsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[20]
+		mi := &file_winner_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1531,7 +1697,7 @@ func (x *IntervalsResponse) String() string {
 func (*IntervalsResponse) ProtoMessage() {}
 
 func (x *IntervalsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[20]
+	mi := &file_winner_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1544,7 +1710,7 @@ func (x *IntervalsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IntervalsResponse.ProtoReflect.Descriptor instead.
 func (*IntervalsResponse) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{20}
+	return file_winner_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *IntervalsResponse) GetStatus() string {
@@ -1589,7 +1755,7 @@ type WinnerStorePickup struct {
 func (x *WinnerStorePickup) Reset() {
 	*x = WinnerStorePickup{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[21]
+		mi := &file_winner_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1602,7 +1768,7 @@ func (x *WinnerStorePickup) String() string {
 func (*WinnerStorePickup) ProtoMessage() {}
 
 func (x *WinnerStorePickup) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[21]
+	mi := &file_winner_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1615,7 +1781,7 @@ func (x *WinnerStorePickup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerStorePickup.ProtoReflect.Descriptor instead.
 func (*WinnerStorePickup) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{21}
+	return file_winner_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *WinnerStorePickup) GetStoreCode() string {
@@ -1707,7 +1873,7 @@ type WinnerStoreShipment struct {
 func (x *WinnerStoreShipment) Reset() {
 	*x = WinnerStoreShipment{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_winner_proto_msgTypes[22]
+		mi := &file_winner_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1720,7 +1886,7 @@ func (x *WinnerStoreShipment) String() string {
 func (*WinnerStoreShipment) ProtoMessage() {}
 
 func (x *WinnerStoreShipment) ProtoReflect() protoreflect.Message {
-	mi := &file_winner_proto_msgTypes[22]
+	mi := &file_winner_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1733,7 +1899,7 @@ func (x *WinnerStoreShipment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WinnerStoreShipment.ProtoReflect.Descriptor instead.
 func (*WinnerStoreShipment) Descriptor() ([]byte, []int) {
-	return file_winner_proto_rawDescGZIP(), []int{22}
+	return file_winner_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *WinnerStoreShipment) GetStoreCode() string {
@@ -1757,7 +1923,28 @@ var file_winner_proto_rawDesc = []byte{
 	0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e,
 	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0c, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x3a, 0x0a, 0x0a, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x49, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a,
+	0x0a, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x6f,
+	0x69, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x70, 0x6f, 0x69, 0x6e, 0x74,
+	0x22, 0x82, 0x02, 0x0a, 0x16, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x44, 0x65, 0x74, 0x61,
+	0x69, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x15, 0x0a, 0x06, 0x70,
+	0x76, 0x7a, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x70, 0x76, 0x7a,
+	0x49, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x66, 0x75, 0x6c, 0x6c, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x66, 0x75, 0x6c, 0x6c, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79,
+	0x5f, 0x69, 0x73, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x72, 0x79, 0x49, 0x73, 0x6f, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x12,
+	0x0a, 0x04, 0x63, 0x69, 0x74, 0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x63, 0x69,
+	0x74, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x72, 0x65, 0x65, 0x74, 0x18, 0x06, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x72, 0x65, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x68, 0x6f,
+	0x75, 0x73, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x68, 0x6f, 0x75, 0x73, 0x65,
+	0x12, 0x16, 0x0a, 0x06, 0x70, 0x6f, 0x73, 0x74, 0x61, 0x6c, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x70, 0x6f, 0x73, 0x74, 0x61, 0x6c, 0x12, 0x1b, 0x0a, 0x09, 0x63, 0x69, 0x74, 0x79,
+	0x5f, 0x66, 0x69, 0x61, 0x73, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x69, 0x74,
+	0x79, 0x46, 0x69, 0x61, 0x73, 0x22, 0x3a, 0x0a, 0x0a, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x0d, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66,
 	0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65,
@@ -2010,7 +2197,7 @@ var file_winner_proto_rawDesc = []byte{
 	0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x74, 0x6f, 0x72,
 	0x65, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x5f, 0x74,
 	0x69, 0x74, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x6f, 0x72,
-	0x65, 0x54, 0x69, 0x74, 0x6c, 0x65, 0x32, 0xec, 0x03, 0x0a, 0x0d, 0x57, 0x69, 0x6e, 0x6e, 0x65,
+	0x65, 0x54, 0x69, 0x74, 0x6c, 0x65, 0x32, 0x96, 0x05, 0x0a, 0x0d, 0x57, 0x69, 0x6e, 0x6e, 0x65,
 	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x6b, 0x0a, 0x09, 0x43, 0x61, 0x6c, 0x63,
 	0x75, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x1b, 0x2e, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63,
 	0x73, 0x2e, 0x43, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
@@ -2041,8 +2228,19 @@ var file_winner_proto_rawDesc = []byte{
 	0xe4, 0x93, 0x02, 0x31, 0x12, 0x2f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x77, 0x69,
 	0x6e, 0x6e, 0x65, 0x72, 0x2f, 0x70, 0x69, 0x63, 0x6b, 0x75, 0x70, 0x2f, 0x7b, 0x70, 0x72, 0x6f,
 	0x76, 0x69, 0x64, 0x65, 0x72, 0x7d, 0x2f, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x70,
-	0x6f, 0x69, 0x6e, 0x74, 0x7d, 0x42, 0x0e, 0x5a, 0x0c, 0x67, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69,
-	0x73, 0x74, 0x69, 0x63, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x69, 0x6e, 0x74, 0x7d, 0x12, 0xa7, 0x01, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x73, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x12, 0x20, 0x2e, 0x6c, 0x6f, 0x67, 0x69, 0x73,
+	0x74, 0x69, 0x63, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x44, 0x65, 0x74, 0x61,
+	0x69, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x6c, 0x6f, 0x67,
+	0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x44, 0x65,
+	0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x50, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x4a, 0x12, 0x48, 0x20, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f,
+	0x77, 0x69, 0x6e, 0x6e, 0x65, 0x72, 0x2f, 0x70, 0x69, 0x63, 0x6b, 0x75, 0x70, 0x2f, 0x61, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x2f, 0x70, 0x72,
+	0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x2f, 0x7b, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72,
+	0x7d, 0x2f, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x2f, 0x7b, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x7d, 0x42,
+	0x0e, 0x5a, 0x0c, 0x67, 0x6f, 0x2f, 0x6c, 0x6f, 0x67, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2057,62 +2255,66 @@ func file_winner_proto_rawDescGZIP() []byte {
 	return file_winner_proto_rawDescData
 }
 
-var file_winner_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_winner_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_winner_proto_goTypes = []interface{}{
-	(*Pagination)(nil),                 // 0: logistics.Pagination
-	(*PickUpPointsRequest)(nil),        // 1: logistics.PickUpPointsRequest
-	(*Filter)(nil),                     // 2: logistics.Filter
-	(*PickUpPointsResponse)(nil),       // 3: logistics.PickUpPointsResponse
-	(*PickupPoint)(nil),                // 4: logistics.PickupPoint
-	(*PickUpPointsDetailRequest)(nil),  // 5: logistics.PickUpPointsDetailRequest
-	(*PickUpPointsDetailResponse)(nil), // 6: logistics.PickUpPointsDetailResponse
-	(*CalculateRequest)(nil),           // 7: logistics.CalculateRequest
-	(*CartsCategory)(nil),              // 8: logistics.CartsCategory
-	(*CartPosition)(nil),               // 9: logistics.CartPosition
-	(*CalculateResponse)(nil),          // 10: logistics.CalculateResponse
-	(*WinnerDeliveryMode)(nil),         // 11: logistics.WinnerDeliveryMode
-	(*WinnerRestriction)(nil),          // 12: logistics.WinnerRestriction
-	(*WinnerPopup)(nil),                // 13: logistics.WinnerPopup
-	(*WinnerDeliveryType)(nil),         // 14: logistics.WinnerDeliveryType
-	(*WinnerPaymentMethod)(nil),        // 15: logistics.WinnerPaymentMethod
-	(*WinnerDeliveryDates)(nil),        // 16: logistics.WinnerDeliveryDates
-	(*WinnerInterval)(nil),             // 17: logistics.WinnerInterval
-	(*IntervalsRequest)(nil),           // 18: logistics.IntervalsRequest
-	(*Intervals)(nil),                  // 19: logistics.Intervals
-	(*IntervalsResponse)(nil),          // 20: logistics.IntervalsResponse
-	(*WinnerStorePickup)(nil),          // 21: logistics.WinnerStorePickup
-	(*WinnerStoreShipment)(nil),        // 22: logistics.WinnerStoreShipment
-	(*UnifiedResponse)(nil),            // 23: common.UnifiedResponse
+	(*AddressDetailsRequest)(nil),      // 0: logistics.AddressDetailsRequest
+	(*AddressDetailsResponse)(nil),     // 1: logistics.AddressDetailsResponse
+	(*Pagination)(nil),                 // 2: logistics.Pagination
+	(*PickUpPointsRequest)(nil),        // 3: logistics.PickUpPointsRequest
+	(*Filter)(nil),                     // 4: logistics.Filter
+	(*PickUpPointsResponse)(nil),       // 5: logistics.PickUpPointsResponse
+	(*PickupPoint)(nil),                // 6: logistics.PickupPoint
+	(*PickUpPointsDetailRequest)(nil),  // 7: logistics.PickUpPointsDetailRequest
+	(*PickUpPointsDetailResponse)(nil), // 8: logistics.PickUpPointsDetailResponse
+	(*CalculateRequest)(nil),           // 9: logistics.CalculateRequest
+	(*CartsCategory)(nil),              // 10: logistics.CartsCategory
+	(*CartPosition)(nil),               // 11: logistics.CartPosition
+	(*CalculateResponse)(nil),          // 12: logistics.CalculateResponse
+	(*WinnerDeliveryMode)(nil),         // 13: logistics.WinnerDeliveryMode
+	(*WinnerRestriction)(nil),          // 14: logistics.WinnerRestriction
+	(*WinnerPopup)(nil),                // 15: logistics.WinnerPopup
+	(*WinnerDeliveryType)(nil),         // 16: logistics.WinnerDeliveryType
+	(*WinnerPaymentMethod)(nil),        // 17: logistics.WinnerPaymentMethod
+	(*WinnerDeliveryDates)(nil),        // 18: logistics.WinnerDeliveryDates
+	(*WinnerInterval)(nil),             // 19: logistics.WinnerInterval
+	(*IntervalsRequest)(nil),           // 20: logistics.IntervalsRequest
+	(*Intervals)(nil),                  // 21: logistics.Intervals
+	(*IntervalsResponse)(nil),          // 22: logistics.IntervalsResponse
+	(*WinnerStorePickup)(nil),          // 23: logistics.WinnerStorePickup
+	(*WinnerStoreShipment)(nil),        // 24: logistics.WinnerStoreShipment
+	(*UnifiedResponse)(nil),            // 25: common.UnifiedResponse
 }
 var file_winner_proto_depIdxs = []int32{
-	2,  // 0: logistics.PickUpPointsRequest.filter:type_name -> logistics.Filter
-	0,  // 1: logistics.PickUpPointsRequest.pagination:type_name -> logistics.Pagination
-	4,  // 2: logistics.PickUpPointsResponse.results:type_name -> logistics.PickupPoint
-	8,  // 3: logistics.CalculateRequest.carts_category:type_name -> logistics.CartsCategory
-	9,  // 4: logistics.CartsCategory.cart_position:type_name -> logistics.CartPosition
-	12, // 5: logistics.CalculateResponse.restrictions:type_name -> logistics.WinnerRestriction
-	11, // 6: logistics.CalculateResponse.delivery_modes:type_name -> logistics.WinnerDeliveryMode
-	14, // 7: logistics.WinnerDeliveryMode.delivery_types:type_name -> logistics.WinnerDeliveryType
-	13, // 8: logistics.WinnerRestriction.popup:type_name -> logistics.WinnerPopup
-	13, // 9: logistics.WinnerDeliveryType.popup:type_name -> logistics.WinnerPopup
-	15, // 10: logistics.WinnerDeliveryType.payment_methods:type_name -> logistics.WinnerPaymentMethod
-	16, // 11: logistics.WinnerDeliveryType.delivery_dates:type_name -> logistics.WinnerDeliveryDates
-	12, // 12: logistics.WinnerDeliveryType.restrictions:type_name -> logistics.WinnerRestriction
-	21, // 13: logistics.WinnerDeliveryType.store_pickup:type_name -> logistics.WinnerStorePickup
-	22, // 14: logistics.WinnerDeliveryType.store_shipment:type_name -> logistics.WinnerStoreShipment
-	17, // 15: logistics.WinnerDeliveryDates.intervals:type_name -> logistics.WinnerInterval
-	16, // 16: logistics.Intervals.delivery_dates:type_name -> logistics.WinnerDeliveryDates
-	19, // 17: logistics.IntervalsResponse.data:type_name -> logistics.Intervals
-	7,  // 18: logistics.WinnerService.Calculate:input_type -> logistics.CalculateRequest
-	18, // 19: logistics.WinnerService.Intervals:input_type -> logistics.IntervalsRequest
-	1,  // 20: logistics.WinnerService.PickupList:input_type -> logistics.PickUpPointsRequest
-	5,  // 21: logistics.WinnerService.PickupDetail:input_type -> logistics.PickUpPointsDetailRequest
-	10, // 22: logistics.WinnerService.Calculate:output_type -> logistics.CalculateResponse
-	23, // 23: logistics.WinnerService.Intervals:output_type -> common.UnifiedResponse
-	23, // 24: logistics.WinnerService.PickupList:output_type -> common.UnifiedResponse
-	23, // 25: logistics.WinnerService.PickupDetail:output_type -> common.UnifiedResponse
-	22, // [22:26] is the sub-list for method output_type
-	18, // [18:22] is the sub-list for method input_type
+	4,  // 0: logistics.PickUpPointsRequest.filter:type_name -> logistics.Filter
+	2,  // 1: logistics.PickUpPointsRequest.pagination:type_name -> logistics.Pagination
+	6,  // 2: logistics.PickUpPointsResponse.results:type_name -> logistics.PickupPoint
+	10, // 3: logistics.CalculateRequest.carts_category:type_name -> logistics.CartsCategory
+	11, // 4: logistics.CartsCategory.cart_position:type_name -> logistics.CartPosition
+	14, // 5: logistics.CalculateResponse.restrictions:type_name -> logistics.WinnerRestriction
+	13, // 6: logistics.CalculateResponse.delivery_modes:type_name -> logistics.WinnerDeliveryMode
+	16, // 7: logistics.WinnerDeliveryMode.delivery_types:type_name -> logistics.WinnerDeliveryType
+	15, // 8: logistics.WinnerRestriction.popup:type_name -> logistics.WinnerPopup
+	15, // 9: logistics.WinnerDeliveryType.popup:type_name -> logistics.WinnerPopup
+	17, // 10: logistics.WinnerDeliveryType.payment_methods:type_name -> logistics.WinnerPaymentMethod
+	18, // 11: logistics.WinnerDeliveryType.delivery_dates:type_name -> logistics.WinnerDeliveryDates
+	14, // 12: logistics.WinnerDeliveryType.restrictions:type_name -> logistics.WinnerRestriction
+	23, // 13: logistics.WinnerDeliveryType.store_pickup:type_name -> logistics.WinnerStorePickup
+	24, // 14: logistics.WinnerDeliveryType.store_shipment:type_name -> logistics.WinnerStoreShipment
+	19, // 15: logistics.WinnerDeliveryDates.intervals:type_name -> logistics.WinnerInterval
+	18, // 16: logistics.Intervals.delivery_dates:type_name -> logistics.WinnerDeliveryDates
+	21, // 17: logistics.IntervalsResponse.data:type_name -> logistics.Intervals
+	9,  // 18: logistics.WinnerService.Calculate:input_type -> logistics.CalculateRequest
+	20, // 19: logistics.WinnerService.Intervals:input_type -> logistics.IntervalsRequest
+	3,  // 20: logistics.WinnerService.PickupList:input_type -> logistics.PickUpPointsRequest
+	7,  // 21: logistics.WinnerService.PickupDetail:input_type -> logistics.PickUpPointsDetailRequest
+	0,  // 22: logistics.WinnerService.AddressDetails:input_type -> logistics.AddressDetailsRequest
+	12, // 23: logistics.WinnerService.Calculate:output_type -> logistics.CalculateResponse
+	25, // 24: logistics.WinnerService.Intervals:output_type -> common.UnifiedResponse
+	25, // 25: logistics.WinnerService.PickupList:output_type -> common.UnifiedResponse
+	25, // 26: logistics.WinnerService.PickupDetail:output_type -> common.UnifiedResponse
+	1,  // 27: logistics.WinnerService.AddressDetails:output_type -> logistics.AddressDetailsResponse
+	23, // [23:28] is the sub-list for method output_type
+	18, // [18:23] is the sub-list for method input_type
 	18, // [18:18] is the sub-list for extension type_name
 	18, // [18:18] is the sub-list for extension extendee
 	0,  // [0:18] is the sub-list for field type_name
@@ -2126,7 +2328,7 @@ func file_winner_proto_init() {
 	file_common_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_winner_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Pagination); i {
+			switch v := v.(*AddressDetailsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2138,7 +2340,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PickUpPointsRequest); i {
+			switch v := v.(*AddressDetailsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2150,7 +2352,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Filter); i {
+			switch v := v.(*Pagination); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2162,7 +2364,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PickUpPointsResponse); i {
+			switch v := v.(*PickUpPointsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2174,7 +2376,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PickupPoint); i {
+			switch v := v.(*Filter); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2186,7 +2388,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PickUpPointsDetailRequest); i {
+			switch v := v.(*PickUpPointsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2198,7 +2400,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PickUpPointsDetailResponse); i {
+			switch v := v.(*PickupPoint); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2210,7 +2412,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CalculateRequest); i {
+			switch v := v.(*PickUpPointsDetailRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2222,7 +2424,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CartsCategory); i {
+			switch v := v.(*PickUpPointsDetailResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2234,7 +2436,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CartPosition); i {
+			switch v := v.(*CalculateRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2246,7 +2448,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CalculateResponse); i {
+			switch v := v.(*CartsCategory); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2258,7 +2460,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerDeliveryMode); i {
+			switch v := v.(*CartPosition); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2270,7 +2472,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerRestriction); i {
+			switch v := v.(*CalculateResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2282,7 +2484,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerPopup); i {
+			switch v := v.(*WinnerDeliveryMode); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2294,7 +2496,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerDeliveryType); i {
+			switch v := v.(*WinnerRestriction); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2306,7 +2508,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerPaymentMethod); i {
+			switch v := v.(*WinnerPopup); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2318,7 +2520,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerDeliveryDates); i {
+			switch v := v.(*WinnerDeliveryType); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2330,7 +2532,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerInterval); i {
+			switch v := v.(*WinnerPaymentMethod); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2342,7 +2544,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IntervalsRequest); i {
+			switch v := v.(*WinnerDeliveryDates); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2354,7 +2556,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Intervals); i {
+			switch v := v.(*WinnerInterval); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2366,7 +2568,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IntervalsResponse); i {
+			switch v := v.(*IntervalsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2378,7 +2580,7 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WinnerStorePickup); i {
+			switch v := v.(*Intervals); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2390,6 +2592,30 @@ func file_winner_proto_init() {
 			}
 		}
 		file_winner_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*IntervalsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_winner_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*WinnerStorePickup); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_winner_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*WinnerStoreShipment); i {
 			case 0:
 				return &v.state
@@ -2402,14 +2628,14 @@ func file_winner_proto_init() {
 			}
 		}
 	}
-	file_winner_proto_msgTypes[6].OneofWrappers = []interface{}{}
+	file_winner_proto_msgTypes[8].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_winner_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
