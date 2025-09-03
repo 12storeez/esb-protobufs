@@ -47,7 +47,7 @@ message AddressDetailsRequest {
 }
 
 message AddressDetailsResponse {
-  string pvz_id = 1;
+  int32  pvz_id = 1;
   string full_address = 2;
   string country_iso = 3;
   string region = 4;
