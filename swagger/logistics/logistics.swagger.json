@@ -4483,8 +4483,7 @@
       "type": "object",
       "properties": {
         "pvzId": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "fullAddress": {
           "type": "string"
