@@ -225,6 +225,78 @@ func local_request_WinnerService_PickupDetail_0(ctx context.Context, marshaler r
 
 }
 
+func request_WinnerService_AddressDetails_0(ctx context.Context, marshaler runtime.Marshaler, client WinnerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq AddressDetailsRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["provider"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "provider")
+	}
+
+	protoReq.Provider, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "provider", err)
+	}
+
+	val, ok = pathParams["point"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "point")
+	}
+
+	protoReq.Point, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "point", err)
+	}
+
+	msg, err := client.AddressDetails(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_WinnerService_AddressDetails_0(ctx context.Context, marshaler runtime.Marshaler, server WinnerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq AddressDetailsRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["provider"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "provider")
+	}
+
+	protoReq.Provider, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "provider", err)
+	}
+
+	val, ok = pathParams["point"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "point")
+	}
+
+	protoReq.Point, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "point", err)
+	}
+
+	msg, err := server.AddressDetails(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterWinnerServiceHandlerServer registers the http handlers for service WinnerService to "mux".
 // UnaryRPC     :call WinnerServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -328,6 +400,31 @@ func RegisterWinnerServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		}
 
 		forward_WinnerService_PickupDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_WinnerService_AddressDetails_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/logistics.WinnerService/AddressDetails", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/address_details/provider/{provider}/point/{point}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_WinnerService_AddressDetails_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_WinnerService_AddressDetails_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -460,6 +557,28 @@ func RegisterWinnerServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
+	mux.Handle("GET", pattern_WinnerService_AddressDetails_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/logistics.WinnerService/AddressDetails", runtime.WithHTTPPathPattern("/api/v1/winner/pickup/address_details/provider/{provider}/point/{point}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_WinnerService_AddressDetails_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_WinnerService_AddressDetails_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -471,6 +590,8 @@ var (
 	pattern_WinnerService_PickupList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "winner", "pickup", "filter.provider", "points"}, ""))
 
 	pattern_WinnerService_PickupDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "winner", "pickup", "provider", "points", "point"}, ""))
+
+	pattern_WinnerService_AddressDetails_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "winner", "pickup", "address_details", "provider", "point"}, ""))
 )
 
 var (
@@ -481,4 +602,6 @@ var (
 	forward_WinnerService_PickupList_0 = runtime.ForwardResponseMessage
 
 	forward_WinnerService_PickupDetail_0 = runtime.ForwardResponseMessage
+
+	forward_WinnerService_AddressDetails_0 = runtime.ForwardResponseMessage
 )

@@ -3575,6 +3575,42 @@
         ]
       }
     },
+    "/api/v1/winner/pickup/address_details/provider/{provider}/point/{point}": {
+      "get": {
+        "operationId": "WinnerService_AddressDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/logisticsAddressDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "point",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WinnerService"
+        ]
+      }
+    },
     "/api/v1/winner/pickup/{filter.provider}/points": {
       "get": {
         "operationId": "WinnerService_PickupList",
@@ -4440,6 +4476,38 @@
         "httpCode": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "logisticsAddressDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "pvzId": {
+          "type": "string"
+        },
+        "fullAddress": {
+          "type": "string"
+        },
+        "countryIso": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "house": {
+          "type": "string"
+        },
+        "postal": {
+          "type": "string"
+        },
+        "cityFias": {
+          "type": "string"
         }
       }
     },
