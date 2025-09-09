@@ -58,7 +58,7 @@ message CreateDeliveryCalendar {
   string            date_from = 5;
   string            date_to = 6;
   bool              is_delivery_delayed = 7;
-  repeated Interval intervals = 8;
+  repeated IntervalsGroups intervals_groups  = 8;
 }
 
 message UpdateDeliveryCalendar {

@@ -4896,11 +4896,11 @@
         "isDeliveryDelayed": {
           "type": "boolean"
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         }
       }
