@@ -19,6 +19,25 @@ service Slack {
     }
     rpc FileDelete (FileDeleteRequest) returns (BaseResponse) {
     }
+    rpc IsMessageExists (IsMessageExistsRequest) returns (IsMessageExistsResponse) {
+    }
+}
+
+message IsMessageExistsRequest {
+    string channel_id = 1;
+    string thread_ts = 2;
+}
+
+message IsMessageExistsResponse {
+    string            status = 1;
+    string            message = 2;
+    int64             code = 3;
+    repeated Error    errors = 4;
+    IsMessageExistsData          data = 5;
+}
+
+message IsMessageExistsData {
+    bool is_exists = 1;
 }
 
 message FileDeleteRequest {

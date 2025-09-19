@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Slack_Send_FullMethodName           = "/slack.Slack/Send"
-	Slack_Update_FullMethodName         = "/slack.Slack/Update"
-	Slack_Delete_FullMethodName         = "/slack.Slack/Delete"
-	Slack_GetMessageLink_FullMethodName = "/slack.Slack/GetMessageLink"
-	Slack_FileUpload_FullMethodName     = "/slack.Slack/FileUpload"
-	Slack_FileDownload_FullMethodName   = "/slack.Slack/FileDownload"
-	Slack_FileDelete_FullMethodName     = "/slack.Slack/FileDelete"
+	Slack_Send_FullMethodName            = "/slack.Slack/Send"
+	Slack_Update_FullMethodName          = "/slack.Slack/Update"
+	Slack_Delete_FullMethodName          = "/slack.Slack/Delete"
+	Slack_GetMessageLink_FullMethodName  = "/slack.Slack/GetMessageLink"
+	Slack_FileUpload_FullMethodName      = "/slack.Slack/FileUpload"
+	Slack_FileDownload_FullMethodName    = "/slack.Slack/FileDownload"
+	Slack_FileDelete_FullMethodName      = "/slack.Slack/FileDelete"
+	Slack_IsMessageExists_FullMethodName = "/slack.Slack/IsMessageExists"
 )
 
 // SlackClient is the client API for Slack service.
@@ -39,6 +40,7 @@ type SlackClient interface {
 	FileUpload(ctx context.Context, opts ...grpc.CallOption) (Slack_FileUploadClient, error)
 	FileDownload(ctx context.Context, in *FileDownloadRequest, opts ...grpc.CallOption) (Slack_FileDownloadClient, error)
 	FileDelete(ctx context.Context, in *FileDeleteRequest, opts ...grpc.CallOption) (*BaseResponse, error)
+	IsMessageExists(ctx context.Context, in *IsMessageExistsRequest, opts ...grpc.CallOption) (*IsMessageExistsResponse, error)
 }
 
 type slackClient struct {
@@ -160,6 +162,15 @@ func (c *slackClient) FileDelete(ctx context.Context, in *FileDeleteRequest, opt
 	return out, nil
 }
 
+func (c *slackClient) IsMessageExists(ctx context.Context, in *IsMessageExistsRequest, opts ...grpc.CallOption) (*IsMessageExistsResponse, error) {
+	out := new(IsMessageExistsResponse)
+	err := c.cc.Invoke(ctx, Slack_IsMessageExists_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SlackServer is the server API for Slack service.
 // All implementations should embed UnimplementedSlackServer
 // for forward compatibility
@@ -171,6 +182,7 @@ type SlackServer interface {
 	FileUpload(Slack_FileUploadServer) error
 	FileDownload(*FileDownloadRequest, Slack_FileDownloadServer) error
 	FileDelete(context.Context, *FileDeleteRequest) (*BaseResponse, error)
+	IsMessageExists(context.Context, *IsMessageExistsRequest) (*IsMessageExistsResponse, error)
 }
 
 // UnimplementedSlackServer should be embedded to have forward compatible implementations.
@@ -197,6 +209,9 @@ func (UnimplementedSlackServer) FileDownload(*FileDownloadRequest, Slack_FileDow
 }
 func (UnimplementedSlackServer) FileDelete(context.Context, *FileDeleteRequest) (*BaseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FileDelete not implemented")
+}
+func (UnimplementedSlackServer) IsMessageExists(context.Context, *IsMessageExistsRequest) (*IsMessageExistsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsMessageExists not implemented")
 }
 
 // UnsafeSlackServer may be embedded to opt out of forward compatibility for this service.
@@ -347,6 +362,24 @@ func _Slack_FileDelete_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Slack_IsMessageExists_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsMessageExistsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SlackServer).IsMessageExists(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Slack_IsMessageExists_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SlackServer).IsMessageExists(ctx, req.(*IsMessageExistsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Slack_ServiceDesc is the grpc.ServiceDesc for Slack service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -373,6 +406,10 @@ var Slack_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FileDelete",
 			Handler:    _Slack_FileDelete_Handler,
+		},
+		{
+			MethodName: "IsMessageExists",
+			Handler:    _Slack_IsMessageExists_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
