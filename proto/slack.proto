@@ -26,6 +26,7 @@ service Slack {
 message IsMessageExistsRequest {
     string channel_id = 1;
     string thread_ts = 2;
+    optional string incoming_system = 3;
 }
 
 message IsMessageExistsResponse {
