@@ -3654,6 +3654,24 @@
             "type": "string"
           },
           {
+            "name": "filter.hasPartialRefuse",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "filter.hasFittingRoom",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "filter.hasCod",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
             "name": "pagination.limit",
             "in": "query",
             "required": false,
@@ -5587,6 +5605,22 @@
         },
         "search": {
           "type": "string"
+        },
+        "codPayment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/logisticsPayment"
+          }
+        },
+        "hasPartialRefuse": {
+          "type": "boolean"
+        },
+        "hasFittingRoom": {
+          "type": "boolean"
+        },
+        "hasCod": {
+          "type": "boolean"
         }
       }
     },
@@ -6163,6 +6197,9 @@
           "format": "int64"
         }
       }
+    },
+    "logisticsPayment": {
+      "type": "object"
     },
     "logisticsPaymentMethod": {
       "type": "object",
