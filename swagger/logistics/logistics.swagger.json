@@ -3654,6 +3654,20 @@
             "type": "string"
           },
           {
+            "name": "filter.codPayment",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CASH",
+                "CARD"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
             "name": "filter.hasPartialRefuse",
             "in": "query",
             "required": false,
@@ -5609,8 +5623,7 @@
         "codPayment": {
           "type": "array",
           "items": {
-            "type": "object",
-            "$ref": "#/definitions/logisticsPayment"
+            "$ref": "#/definitions/logisticsPaymentType"
           }
         },
         "hasPartialRefuse": {
@@ -6198,9 +6211,6 @@
         }
       }
     },
-    "logisticsPayment": {
-      "type": "object"
-    },
     "logisticsPaymentMethod": {
       "type": "object",
       "properties": {
@@ -6295,6 +6305,14 @@
           }
         }
       }
+    },
+    "logisticsPaymentType": {
+      "type": "string",
+      "enum": [
+        "CASH",
+        "CARD"
+      ],
+      "default": "CASH"
     },
     "logisticsPickupPointLogistics": {
       "type": "object",

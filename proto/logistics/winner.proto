@@ -73,7 +73,7 @@ message Filter {
   string city_id =   2;
   string city_name = 3;
   string search =    4;
-  repeated Payment cod_payment = 5;
+  repeated Payment.Type cod_payment = 5;
   bool has_partial_refuse = 6;
   bool has_fitting_room = 7;
   bool has_cod = 8;
