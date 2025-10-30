@@ -3654,20 +3654,6 @@
             "type": "string"
           },
           {
-            "name": "filter.codPayment",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "CASH",
-                "CARD"
-              ]
-            },
-            "collectionFormat": "multi"
-          },
-          {
             "name": "filter.hasPartialRefuse",
             "in": "query",
             "required": false,
@@ -3698,6 +3684,20 @@
             "required": false,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "codPayment",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CASH",
+                "CARD"
+              ]
+            },
+            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -5619,12 +5619,6 @@
         },
         "search": {
           "type": "string"
-        },
-        "codPayment": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/logisticsPaymentType"
-          }
         },
         "hasPartialRefuse": {
           "type": "boolean"
