@@ -66,7 +66,6 @@ message Pagination {
 message PickUpPointsRequest {
   Filter filter =         1;
   Pagination pagination = 2;
-  repeated Payment.Type cod_payment = 3;
 }
 
 message Filter {
@@ -77,6 +76,7 @@ message Filter {
   bool has_partial_refuse = 5;
   bool has_fitting_room = 6;
   bool has_cod = 7;
+  repeated Payment.Type cod_payment = 8;
 }
 
 message Payment {
