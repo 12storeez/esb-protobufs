@@ -6,6 +6,7 @@ package logistics;
 
 import "google/api/annotations.proto";
 import "common.proto";
+import "google/protobuf/wrappers.proto";
 
 service WinnerService {
   rpc Calculate(CalculateRequest) returns (CalculateResponse) {
@@ -97,11 +98,11 @@ message PickupPoint {
   string  title =   3;
   double  lat =     4;
   double  lng =     5;
-  bool has_partial_refuse = 6;
-  bool has_fitting_room = 7;
-  bool has_cod = 8;
-  bool has_payment_cash = 9;
-  bool has_payment_card = 10;
+  google.protobuf.BoolValue has_partial_refuse = 6;
+  google.protobuf.BoolValue has_fitting_room = 7;
+  google.protobuf.BoolValue has_cod = 8;
+  google.protobuf.BoolValue has_payment_cash = 9;
+  google.protobuf.BoolValue has_payment_card = 10;
 }
 
 message PickUpPointsDetailRequest {
