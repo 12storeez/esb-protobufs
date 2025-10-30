@@ -74,9 +74,9 @@ message Filter {
   string city_id =   2;
   string city_name = 3;
   string search =    4;
-  bool has_partial_refuse = 5;
-  bool has_fitting_room = 6;
-  bool has_cod = 7;
+  google.protobuf.BoolValue has_partial_refuse = 5;
+  google.protobuf.BoolValue has_fitting_room = 6;
+  google.protobuf.BoolValue has_cod = 7;
   repeated Payment.Type cod_payment = 8;
 }
 
@@ -121,11 +121,11 @@ message PickUpPointsDetailResponse {
   optional string zip_code = 8;
   string city_geo_id =       9;
 
-  bool has_partial_refuse = 10;
-  bool has_fitting_room = 11;
-  bool has_cod = 12;
-  bool has_payment_cash = 13;
-  bool has_payment_card = 14;
+  google.protobuf.BoolValue has_partial_refuse = 10;
+  google.protobuf.BoolValue has_fitting_room = 11;
+  google.protobuf.BoolValue has_cod = 12;
+  google.protobuf.BoolValue has_payment_cash = 13;
+  google.protobuf.BoolValue has_payment_card = 14;
 }
 
 message CalculateRequest {
