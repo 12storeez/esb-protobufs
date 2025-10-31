@@ -6,6 +6,7 @@ package logistics;
 
 import "google/api/annotations.proto";
 import "common.proto";
+import "google/protobuf/wrappers.proto";
 
 service WinnerService {
   rpc Calculate(CalculateRequest) returns (CalculateResponse) {
@@ -73,7 +74,19 @@ message Filter {
   string city_id =   2;
   string city_name = 3;
   string search =    4;
+  google.protobuf.BoolValue has_partial_refuse = 5;
+  google.protobuf.BoolValue has_fitting_room = 6;
+  google.protobuf.BoolValue has_cod = 7;
+  repeated Payment.Type cod_payment = 8;
 }
+
+message Payment {
+  enum Type {
+      CASH = 0;
+      CARD = 1;
+  }
+}
+
 
 message PickUpPointsResponse {
   repeated PickupPoint  results = 1;
@@ -85,6 +98,11 @@ message PickupPoint {
   string  title =   3;
   double  lat =     4;
   double  lng =     5;
+  google.protobuf.BoolValue has_partial_refuse = 6;
+  google.protobuf.BoolValue has_fitting_room = 7;
+  google.protobuf.BoolValue has_cod = 8;
+  google.protobuf.BoolValue has_payment_cash = 9;
+  google.protobuf.BoolValue has_payment_card = 10;
 }
 
 message PickUpPointsDetailRequest {
@@ -102,6 +120,12 @@ message PickUpPointsDetailResponse {
   string trip_description =  7;
   optional string zip_code = 8;
   string city_geo_id =       9;
+
+  google.protobuf.BoolValue has_partial_refuse = 10;
+  google.protobuf.BoolValue has_fitting_room = 11;
+  google.protobuf.BoolValue has_cod = 12;
+  google.protobuf.BoolValue has_payment_cash = 13;
+  google.protobuf.BoolValue has_payment_card = 14;
 }
 
 message CalculateRequest {

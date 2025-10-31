@@ -3654,6 +3654,38 @@
             "type": "string"
           },
           {
+            "name": "filter.hasPartialRefuse",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "filter.hasFittingRoom",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "filter.hasCod",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "filter.codPayment",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CASH",
+                "CARD"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
             "name": "pagination.limit",
             "in": "query",
             "required": false,
@@ -5587,6 +5619,21 @@
         },
         "search": {
           "type": "string"
+        },
+        "hasPartialRefuse": {
+          "type": "boolean"
+        },
+        "hasFittingRoom": {
+          "type": "boolean"
+        },
+        "hasCod": {
+          "type": "boolean"
+        },
+        "codPayment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/logisticsPaymentType"
+          }
         }
       }
     },
@@ -6258,6 +6305,14 @@
           }
         }
       }
+    },
+    "logisticsPaymentType": {
+      "type": "string",
+      "enum": [
+        "CASH",
+        "CARD"
+      ],
+      "default": "CASH"
     },
     "logisticsPickupPointLogistics": {
       "type": "object",
