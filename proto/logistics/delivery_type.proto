@@ -101,8 +101,8 @@ message DeliveryType {
   float                                    delivery_price_after_border = 12;
   int32                                    delivery_min_days = 13;
   bool                                     is_only_days_amount = 14;
-  int32                                    consolidation_hours = 15;
-  int32                                    gap_hours = 16;
+  int32                                    consolidation_minutes = 15;
+  int32                                    gap_minutes = 16;
   float                                    priority_coefficient = 17;
   float                                    max_days_coefficient = 18;
   float                                    tariff_coefficient = 19;
@@ -185,8 +185,8 @@ message UpdateDeliveryType {
   float                                    delivery_price_after_border = 12;
   int32                                    delivery_min_days = 13;
   bool                                     is_only_days_amount = 14;
-  int32                                    consolidation_hours = 15;
-  int32                                    gap_hours = 16;
+  int32                                    consolidation_minutes = 15;
+  int32                                    gap_minutes = 16;
   float                                    priority_coefficient = 17;
   float                                    max_days_coefficient = 18;
   float                                    tariff_coefficient = 19;
