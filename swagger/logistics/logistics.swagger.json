@@ -5298,11 +5298,11 @@
         "isOnlyDaysAmount": {
           "type": "boolean"
         },
-        "consolidationHours": {
+        "consolidationMinutes": {
           "type": "integer",
           "format": "int32"
         },
-        "gapHours": {
+        "gapMinutes": {
           "type": "integer",
           "format": "int32"
         },
@@ -5460,11 +5460,11 @@
         "isOnlyDaysAmount": {
           "type": "boolean"
         },
-        "consolidationHours": {
+        "consolidationMinutes": {
           "type": "integer",
           "format": "int32"
         },
-        "gapHours": {
+        "gapMinutes": {
           "type": "integer",
           "format": "int32"
         },
