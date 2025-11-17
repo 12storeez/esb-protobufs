@@ -75,7 +75,7 @@ message ListIntervalRequest {
 }
 
 message ListIntervalResponse {
-  repeated Interval results = 1;
+  repeated IntervalsGroups intervals_groups = 1;
   int32             total = 2;
 }
 
