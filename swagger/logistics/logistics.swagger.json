@@ -5942,11 +5942,11 @@
     "logisticsListIntervalResponse": {
       "type": "object",
       "properties": {
-        "results": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         },
         "total": {
@@ -7030,11 +7030,11 @@
         "deliveryMethod": {
           "$ref": "#/definitions/logisticsDeliveryMethod"
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         },
         "deliveryIntervalDays": {
@@ -7091,11 +7091,11 @@
         "deliveryMethod": {
           "$ref": "#/definitions/logisticsDeliveryMethod"
         },
-        "intervals": {
+        "intervalsGroups": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/logisticsInterval"
+            "$ref": "#/definitions/logisticsIntervalsGroups"
           }
         },
         "deliveryIntervalDays": {

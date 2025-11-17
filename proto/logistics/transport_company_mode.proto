@@ -88,7 +88,7 @@ message TransportCompanyMode {
   TransportCompany  transport_company = 2;
   DeliveryMode      delivery_mode = 3;
   DeliveryMethod    delivery_method = 4;
-  repeated Interval intervals = 5;
+  repeated IntervalsGroups intervals_groups = 5;
   int32             delivery_interval_days = 6;
   string            title = 7;
   string            code = 8;
