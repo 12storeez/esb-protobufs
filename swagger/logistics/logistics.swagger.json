@@ -6353,6 +6353,21 @@
         },
         "provider": {
           "type": "string"
+        },
+        "hasPartialRefuse": {
+          "type": "boolean"
+        },
+        "hasFittingRoom": {
+          "type": "boolean"
+        },
+        "hasCod": {
+          "type": "boolean"
+        },
+        "hasPaymentCash": {
+          "type": "boolean"
+        },
+        "hasPaymentCard": {
+          "type": "boolean"
         }
       }
     },

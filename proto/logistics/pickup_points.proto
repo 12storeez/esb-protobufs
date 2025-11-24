@@ -62,4 +62,9 @@ message PickupPointLogistics {
   string trip_description = 10;
   string coordinates = 11;
   string provider = 12;
+  google.protobuf.BoolValue has_partial_refuse = 13;
+  google.protobuf.BoolValue has_fitting_room = 14;
+  google.protobuf.BoolValue has_cod = 15;
+  google.protobuf.BoolValue has_payment_cash = 16;
+  google.protobuf.BoolValue has_payment_card = 17;
 }
