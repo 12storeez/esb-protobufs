@@ -221,6 +221,7 @@ message WinnerInterval {
 message IntervalsRequest {
   string delivery_type_code = 1;
   string date = 2;
+  string timezone = 3;
 }
 
 message Intervals {
