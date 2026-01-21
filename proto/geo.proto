@@ -145,6 +145,7 @@ message City {
   Phone           phone = 11;
   Location        location = 12;
   CityAdditional  additional = 13;
+  string          timezone = 14;
 }
 
 message Details {
