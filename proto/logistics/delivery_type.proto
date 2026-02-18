@@ -130,6 +130,7 @@ message DeliveryType {
   Message                                  restriction_by_weight_message = 41;
   Popup                                    restriction_by_weight_popup = 42;
   int32                                    max_weight = 43;
+  optional int32                           delivery_min_days_cnc = 44;
 }
 
 message CategoryRestriction {
@@ -212,6 +213,7 @@ message UpdateDeliveryType {
   bool                                     restriction_by_weight_is_active = 39;
   int32                                    restriction_by_weight_message_id = 40;
   int32                                    restriction_by_weight_popup_id = 41;
+  optional int32                           delivery_min_days_cnc = 42;
 }
 
 message UpdatePaymentMethodToDeliveryType {

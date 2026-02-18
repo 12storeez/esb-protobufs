@@ -5406,6 +5406,10 @@
         "maxWeight": {
           "type": "integer",
           "format": "int32"
+        },
+        "deliveryMinDaysCnc": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -5568,6 +5572,10 @@
           "format": "int32"
         },
         "restrictionByWeightPopupId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deliveryMinDaysCnc": {
           "type": "integer",
           "format": "int32"
         }
