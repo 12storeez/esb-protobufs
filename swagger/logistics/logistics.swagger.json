@@ -5803,6 +5803,9 @@
         },
         "timezone": {
           "type": "string"
+        },
+        "orderType": {
+          "$ref": "#/definitions/logisticsOrderType"
         }
       }
     },
@@ -6208,6 +6211,15 @@
           "type": "string"
         }
       }
+    },
+    "logisticsOrderType": {
+      "type": "string",
+      "enum": [
+        "order",
+        "cnc",
+        "preorder"
+      ],
+      "default": "order"
     },
     "logisticsPagination": {
       "type": "object",
