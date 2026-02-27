@@ -4615,6 +4615,12 @@
         },
         "isCartForClients": {
           "type": "boolean"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "orderType": {
+          "$ref": "#/definitions/logisticsOrderType"
         }
       }
     },

@@ -140,6 +140,8 @@ message CalculateRequest {
   repeated  CartsCategory carts_category= 9;
   string    order_datetime = 10;
   bool      is_cart_for_clients = 11;
+  string timezone = 12;
+  OrderType order_type = 13;
 }
 
 message CartsCategory {
