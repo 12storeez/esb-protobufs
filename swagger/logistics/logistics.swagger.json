@@ -6221,11 +6221,11 @@
     "logisticsOrderType": {
       "type": "string",
       "enum": [
-        "order",
-        "cnc",
-        "preorder"
+        "ORDER",
+        "CNC",
+        "PREORDER"
       ],
-      "default": "order"
+      "default": "ORDER"
     },
     "logisticsPagination": {
       "type": "object",
