@@ -265,7 +265,3 @@ enum OrderType {
   PREORDER = 2;
 }
 
-message Test {
-  string test = 1;
-}
-
