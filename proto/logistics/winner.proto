@@ -264,3 +264,8 @@ enum OrderType {
   CNC = 1;
   PREORDER = 2;
 }
+
+message Test {
+  string test = 1;
+}
+
