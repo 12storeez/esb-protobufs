@@ -260,7 +260,7 @@ message WinnerStoreShipment{
 }
 
 enum OrderType {
-  order = 0;
-  cnc = 1;
-  preorder = 2;
+  ORDER = 0;
+  CNC = 1;
+  PREORDER = 2;
 }
