@@ -225,6 +225,7 @@ message IntervalsRequest {
   string date = 2;
   string timezone = 3;
   OrderType order_type = 4;
+  string delivery_address = 5;
 }
 
 message Intervals {

@@ -72,6 +72,7 @@ message DeliveryTypeShort {
   bool    is_active = 3;
   string  created_at = 4;
   string  updated_at = 5;
+  bool    is_intervals_integration_enabled = 6;
 }
 
 message ListDeliveryTypeRequest {
@@ -131,6 +132,7 @@ message DeliveryType {
   Popup                                    restriction_by_weight_popup = 42;
   int32                                    max_weight = 43;
   optional int32                           delivery_min_days_cnc = 44;
+  bool                                     is_intervals_integration_enabled = 45;
 }
 
 message CategoryRestriction {
@@ -214,6 +216,7 @@ message UpdateDeliveryType {
   int32                                    restriction_by_weight_message_id = 40;
   int32                                    restriction_by_weight_popup_id = 41;
   optional int32                           delivery_min_days_cnc = 42;
+  bool                                     is_intervals_integration_enabled = 43;
 }
 
 message UpdatePaymentMethodToDeliveryType {

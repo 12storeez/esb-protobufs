@@ -5416,6 +5416,9 @@
         "deliveryMinDaysCnc": {
           "type": "integer",
           "format": "int32"
+        },
+        "isIntervalsIntegrationEnabled": {
+          "type": "boolean"
         }
       }
     },
@@ -5584,6 +5587,9 @@
         "deliveryMinDaysCnc": {
           "type": "integer",
           "format": "int32"
+        },
+        "isIntervalsIntegrationEnabled": {
+          "type": "boolean"
         }
       }
     },
@@ -5605,6 +5611,9 @@
         },
         "updatedAt": {
           "type": "string"
+        },
+        "isIntervalsIntegrationEnabled": {
+          "type": "boolean"
         }
       }
     },
@@ -5812,6 +5821,9 @@
         },
         "orderType": {
           "$ref": "#/definitions/logisticsOrderType"
+        },
+        "deliveryAddress": {
+          "type": "string"
         }
       }
     },
@@ -7120,6 +7132,9 @@
         },
         "isProductQuantityByArticleBorderIncludePresent": {
           "type": "boolean"
+        },
+        "isIntervalsIntegrationEnabled": {
+          "type": "boolean"
         }
       }
     },
@@ -7181,6 +7196,9 @@
         },
         "isProductQuantityByArticleBorderIncludePresent": {
           "type": "boolean"
+        },
+        "isIntervalsIntegrationEnabled": {
+          "type": "boolean"
         }
       }
     },
@@ -7209,6 +7227,9 @@
             "type": "object",
             "$ref": "#/definitions/logisticsRel"
           }
+        },
+        "isIntervalsIntegrationEnabled": {
+          "type": "boolean"
         }
       }
     },
