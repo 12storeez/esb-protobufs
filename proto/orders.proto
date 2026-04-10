@@ -9,6 +9,7 @@ service Offline {
     }
     rpc GetById (ParamsOrderById) returns (ResponseOfflineById) {
     }
+    rpc GetByGuid (ParamsOrderByGuid) returns (ResponseOfflineByGuid) {}
 }
 
 message ParamsOfflineByClient {
@@ -26,8 +27,16 @@ message ParamsOrderById {
     int32 id = 1;
     int32 client_id = 2;
 }
+message ParamsOrderByGuid {
+    string guid = 1;
+    int32 client_id = 2;
+}
 
 message ResponseOfflineById {
+    Order result = 1;
+}
+
+message ResponseOfflineByGuid {
     Order result = 1;
 }
 
