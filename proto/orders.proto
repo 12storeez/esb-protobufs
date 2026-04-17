@@ -29,7 +29,6 @@ message ParamsOrderById {
 }
 message ParamsOrderByGuid {
     string guid = 1;
-    int32 client_id = 2;
 }
 
 message ResponseOfflineById {
