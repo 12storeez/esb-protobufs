@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Offline_ByClient_FullMethodName = "/orders.Offline/ByClient"
-	Offline_GetById_FullMethodName  = "/orders.Offline/GetById"
+	Offline_ByClient_FullMethodName  = "/orders.Offline/ByClient"
+	Offline_GetById_FullMethodName   = "/orders.Offline/GetById"
+	Offline_GetByGuid_FullMethodName = "/orders.Offline/GetByGuid"
 )
 
 // OfflineClient is the client API for Offline service.
@@ -29,6 +30,7 @@ const (
 type OfflineClient interface {
 	ByClient(ctx context.Context, in *ParamsOfflineByClient, opts ...grpc.CallOption) (*ResponseOffline, error)
 	GetById(ctx context.Context, in *ParamsOrderById, opts ...grpc.CallOption) (*ResponseOfflineById, error)
+	GetByGuid(ctx context.Context, in *ParamsOrderByGuid, opts ...grpc.CallOption) (*ResponseOfflineByGuid, error)
 }
 
 type offlineClient struct {
@@ -57,12 +59,22 @@ func (c *offlineClient) GetById(ctx context.Context, in *ParamsOrderById, opts .
 	return out, nil
 }
 
+func (c *offlineClient) GetByGuid(ctx context.Context, in *ParamsOrderByGuid, opts ...grpc.CallOption) (*ResponseOfflineByGuid, error) {
+	out := new(ResponseOfflineByGuid)
+	err := c.cc.Invoke(ctx, Offline_GetByGuid_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OfflineServer is the server API for Offline service.
 // All implementations should embed UnimplementedOfflineServer
 // for forward compatibility
 type OfflineServer interface {
 	ByClient(context.Context, *ParamsOfflineByClient) (*ResponseOffline, error)
 	GetById(context.Context, *ParamsOrderById) (*ResponseOfflineById, error)
+	GetByGuid(context.Context, *ParamsOrderByGuid) (*ResponseOfflineByGuid, error)
 }
 
 // UnimplementedOfflineServer should be embedded to have forward compatible implementations.
@@ -74,6 +86,9 @@ func (UnimplementedOfflineServer) ByClient(context.Context, *ParamsOfflineByClie
 }
 func (UnimplementedOfflineServer) GetById(context.Context, *ParamsOrderById) (*ResponseOfflineById, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
+}
+func (UnimplementedOfflineServer) GetByGuid(context.Context, *ParamsOrderByGuid) (*ResponseOfflineByGuid, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByGuid not implemented")
 }
 
 // UnsafeOfflineServer may be embedded to opt out of forward compatibility for this service.
@@ -123,6 +138,24 @@ func _Offline_GetById_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Offline_GetByGuid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ParamsOrderByGuid)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OfflineServer).GetByGuid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Offline_GetByGuid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OfflineServer).GetByGuid(ctx, req.(*ParamsOrderByGuid))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Offline_ServiceDesc is the grpc.ServiceDesc for Offline service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -137,6 +170,10 @@ var Offline_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetById",
 			Handler:    _Offline_GetById_Handler,
+		},
+		{
+			MethodName: "GetByGuid",
+			Handler:    _Offline_GetByGuid_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
