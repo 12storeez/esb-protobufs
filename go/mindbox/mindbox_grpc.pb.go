@@ -1155,7 +1155,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CartClient interface {
-	Recommendations(ctx context.Context, in *RecommendationsRequest, opts ...grpc.CallOption) (*RecommendationsResponse, error)
+	Recommendations(ctx context.Context, in *RecommendationsRequestCart, opts ...grpc.CallOption) (*RecommendationsResponse, error)
 }
 
 type cartClient struct {
@@ -1166,7 +1166,7 @@ func NewCartClient(cc grpc.ClientConnInterface) CartClient {
 	return &cartClient{cc}
 }
 
-func (c *cartClient) Recommendations(ctx context.Context, in *RecommendationsRequest, opts ...grpc.CallOption) (*RecommendationsResponse, error) {
+func (c *cartClient) Recommendations(ctx context.Context, in *RecommendationsRequestCart, opts ...grpc.CallOption) (*RecommendationsResponse, error) {
 	out := new(RecommendationsResponse)
 	err := c.cc.Invoke(ctx, Cart_Recommendations_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -1179,14 +1179,14 @@ func (c *cartClient) Recommendations(ctx context.Context, in *RecommendationsReq
 // All implementations should embed UnimplementedCartServer
 // for forward compatibility
 type CartServer interface {
-	Recommendations(context.Context, *RecommendationsRequest) (*RecommendationsResponse, error)
+	Recommendations(context.Context, *RecommendationsRequestCart) (*RecommendationsResponse, error)
 }
 
 // UnimplementedCartServer should be embedded to have forward compatible implementations.
 type UnimplementedCartServer struct {
 }
 
-func (UnimplementedCartServer) Recommendations(context.Context, *RecommendationsRequest) (*RecommendationsResponse, error) {
+func (UnimplementedCartServer) Recommendations(context.Context, *RecommendationsRequestCart) (*RecommendationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Recommendations not implemented")
 }
 
@@ -1202,7 +1202,7 @@ func RegisterCartServer(s grpc.ServiceRegistrar, srv CartServer) {
 }
 
 func _Cart_Recommendations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RecommendationsRequest)
+	in := new(RecommendationsRequestCart)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1214,7 +1214,7 @@ func _Cart_Recommendations_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: Cart_Recommendations_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CartServer).Recommendations(ctx, req.(*RecommendationsRequest))
+		return srv.(CartServer).Recommendations(ctx, req.(*RecommendationsRequestCart))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1229,6 +1229,94 @@ var Cart_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Recommendations",
 			Handler:    _Cart_Recommendations_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/mindbox.proto",
+}
+
+const (
+	Product_Recommendations_FullMethodName = "/mindbox.Product/Recommendations"
+)
+
+// ProductClient is the client API for Product service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProductClient interface {
+	Recommendations(ctx context.Context, in *RecommendationsRequestProduct, opts ...grpc.CallOption) (*RecommendationsResponse, error)
+}
+
+type productClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProductClient(cc grpc.ClientConnInterface) ProductClient {
+	return &productClient{cc}
+}
+
+func (c *productClient) Recommendations(ctx context.Context, in *RecommendationsRequestProduct, opts ...grpc.CallOption) (*RecommendationsResponse, error) {
+	out := new(RecommendationsResponse)
+	err := c.cc.Invoke(ctx, Product_Recommendations_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProductServer is the server API for Product service.
+// All implementations should embed UnimplementedProductServer
+// for forward compatibility
+type ProductServer interface {
+	Recommendations(context.Context, *RecommendationsRequestProduct) (*RecommendationsResponse, error)
+}
+
+// UnimplementedProductServer should be embedded to have forward compatible implementations.
+type UnimplementedProductServer struct {
+}
+
+func (UnimplementedProductServer) Recommendations(context.Context, *RecommendationsRequestProduct) (*RecommendationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Recommendations not implemented")
+}
+
+// UnsafeProductServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProductServer will
+// result in compilation errors.
+type UnsafeProductServer interface {
+	mustEmbedUnimplementedProductServer()
+}
+
+func RegisterProductServer(s grpc.ServiceRegistrar, srv ProductServer) {
+	s.RegisterService(&Product_ServiceDesc, srv)
+}
+
+func _Product_Recommendations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecommendationsRequestProduct)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).Recommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Product_Recommendations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).Recommendations(ctx, req.(*RecommendationsRequestProduct))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Product_ServiceDesc is the grpc.ServiceDesc for Product service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Product_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mindbox.Product",
+	HandlerType: (*ProductServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Recommendations",
+			Handler:    _Product_Recommendations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

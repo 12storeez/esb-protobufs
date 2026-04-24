@@ -65,7 +65,11 @@ service Gift {
 }
 
 service Cart {
-    rpc Recommendations(RecommendationsRequest) returns (RecommendationsResponse) {}
+    rpc Recommendations(RecommendationsRequestCart) returns (RecommendationsResponse) {}
+}
+
+service Product {
+    rpc Recommendations(RecommendationsRequestProduct) returns (RecommendationsResponse) {}
 }
 
 message PushClickParams {
@@ -657,8 +661,14 @@ message VerifyCodeResponse {
 }
 
 // Card.Recommendations
-message RecommendationsRequest {
+message RecommendationsRequestCart {
     uint32 limit = 1;
+}
+
+// Product.Recommendations
+message RecommendationsRequestProduct {
+    uint32 limit = 1;
+    string product_id = 2;
 }
 
 message RecommendationsResponse {
