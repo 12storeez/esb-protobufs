@@ -78,6 +78,7 @@ message Filter {
   google.protobuf.BoolValue has_fitting_room = 6;
   google.protobuf.BoolValue has_cod = 7;
   repeated Payment.Type cod_payment = 8;
+  google.protobuf.BoolValue is_return_available = 9;
 }
 
 message Payment {
@@ -103,6 +104,7 @@ message PickupPoint {
   google.protobuf.BoolValue has_cod = 8;
   google.protobuf.BoolValue has_payment_cash = 9;
   google.protobuf.BoolValue has_payment_card = 10;
+  google.protobuf.BoolValue is_return_available = 11;
 }
 
 message PickUpPointsDetailRequest {
@@ -126,6 +128,7 @@ message PickUpPointsDetailResponse {
   google.protobuf.BoolValue has_cod = 12;
   google.protobuf.BoolValue has_payment_cash = 13;
   google.protobuf.BoolValue has_payment_card = 14;
+  google.protobuf.BoolValue is_return_available = 15;
 }
 
 message CalculateRequest {

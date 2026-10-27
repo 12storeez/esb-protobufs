@@ -3686,6 +3686,12 @@
             "collectionFormat": "multi"
           },
           {
+            "name": "filter.isReturnAvailable",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
             "name": "pagination.limit",
             "in": "query",
             "required": false,
@@ -5657,6 +5663,9 @@
           "items": {
             "$ref": "#/definitions/logisticsPaymentType"
           }
+        },
+        "isReturnAvailable": {
+          "type": "boolean"
         }
       }
     },
