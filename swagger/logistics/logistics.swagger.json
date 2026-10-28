@@ -6418,6 +6418,9 @@
         },
         "hasPaymentCard": {
           "type": "boolean"
+        },
+        "isReturnAvailable": {
+          "type": "boolean"
         }
       }
     },
