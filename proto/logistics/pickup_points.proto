@@ -67,4 +67,5 @@ message PickupPointLogistics {
   google.protobuf.BoolValue has_cod = 15;
   google.protobuf.BoolValue has_payment_cash = 16;
   google.protobuf.BoolValue has_payment_card = 17;
+  google.protobuf.BoolValue is_return_available = 18;
 }
