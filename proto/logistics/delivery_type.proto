@@ -73,6 +73,7 @@ message DeliveryTypeShort {
   string  created_at = 4;
   string  updated_at = 5;
   bool    is_intervals_integration_enabled = 6;
+  bool    is_return = 7;
 }
 
 message ListDeliveryTypeRequest {
@@ -133,6 +134,7 @@ message DeliveryType {
   int32                                    max_weight = 43;
   optional int32                           delivery_min_days_cnc = 44;
   bool                                     is_intervals_integration_enabled = 45;
+  bool                                     is_return = 46;
 }
 
 message CategoryRestriction {
@@ -217,6 +219,7 @@ message UpdateDeliveryType {
   int32                                    restriction_by_weight_popup_id = 41;
   optional int32                           delivery_min_days_cnc = 42;
   bool                                     is_intervals_integration_enabled = 43;
+  bool                                     is_return = 44;
 }
 
 message UpdatePaymentMethodToDeliveryType {
@@ -250,6 +253,7 @@ message SuggestDeliveryType {
   int32  id = 1;
   string name = 2;
   bool   is_active = 3;
+  bool   is_return = 4;
 }
 
 message SuggestDeliveryTypeResponse {
@@ -259,5 +263,6 @@ message SuggestDeliveryTypeResponse {
 
 message FilterDeliveryType {
   bool is_store_pickup = 1;
+  optional bool is_return = 2;
 }
 
