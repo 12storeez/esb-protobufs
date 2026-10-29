@@ -1053,6 +1053,12 @@
             "in": "query",
             "required": false,
             "type": "boolean"
+          },
+          {
+            "name": "filter.isReturn",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -5425,6 +5431,9 @@
         },
         "isIntervalsIntegrationEnabled": {
           "type": "boolean"
+        },
+        "isReturn": {
+          "type": "boolean"
         }
       }
     },
@@ -5596,6 +5605,9 @@
         },
         "isIntervalsIntegrationEnabled": {
           "type": "boolean"
+        },
+        "isReturn": {
+          "type": "boolean"
         }
       }
     },
@@ -5619,6 +5631,9 @@
           "type": "string"
         },
         "isIntervalsIntegrationEnabled": {
+          "type": "boolean"
+        },
+        "isReturn": {
           "type": "boolean"
         }
       }
@@ -5673,6 +5688,9 @@
       "type": "object",
       "properties": {
         "isStorePickup": {
+          "type": "boolean"
+        },
+        "isReturn": {
           "type": "boolean"
         }
       }
@@ -6732,6 +6750,9 @@
           "type": "string"
         },
         "isActive": {
+          "type": "boolean"
+        },
+        "isReturn": {
           "type": "boolean"
         }
       }
