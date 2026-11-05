@@ -229,6 +229,8 @@ message IntervalsRequest {
   string timezone = 3;
   OrderType order_type = 4;
   string delivery_address = 5;
+  string sending_address = 6;
+  bool is_return = 7;
 }
 
 message Intervals {
