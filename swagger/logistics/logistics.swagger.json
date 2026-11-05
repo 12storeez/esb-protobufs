@@ -5851,6 +5851,12 @@
         },
         "deliveryAddress": {
           "type": "string"
+        },
+        "sendingAddress": {
+          "type": "string"
+        },
+        "isReturn": {
+          "type": "boolean"
         }
       }
     },
