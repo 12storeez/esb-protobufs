@@ -228,9 +228,18 @@ message IntervalsRequest {
   string date = 2;
   string timezone = 3;
   OrderType order_type = 4;
-  string delivery_address = 5;
-  string sending_address = 6;
+  ClientAddress delivery_address = 5;
+  ClientAddress sending_address = 6;
   bool is_return = 7;
+}
+
+message ClientAddress {
+  string full_address = 1;
+  string country_iso = 2;
+  string region = 3;
+  string city = 4;
+  string street = 5;
+  string house = 6;
 }
 
 message Intervals {
