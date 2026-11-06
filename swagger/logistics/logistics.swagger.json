@@ -4845,6 +4845,29 @@
         }
       }
     },
+    "logisticsClientAddress": {
+      "type": "object",
+      "properties": {
+        "fullAddress": {
+          "type": "string"
+        },
+        "countryIso": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "house": {
+          "type": "string"
+        }
+      }
+    },
     "logisticsCountry": {
       "type": "object",
       "properties": {
@@ -5850,10 +5873,10 @@
           "$ref": "#/definitions/logisticsOrderType"
         },
         "deliveryAddress": {
-          "type": "string"
+          "$ref": "#/definitions/logisticsClientAddress"
         },
         "sendingAddress": {
-          "type": "string"
+          "$ref": "#/definitions/logisticsClientAddress"
         },
         "isReturn": {
           "type": "boolean"
